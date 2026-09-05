@@ -1,0 +1,48 @@
+{
+  "sourceDigest": "9db08213c35fb5bfa6ac90f082dd8db81f7511602af0c2b662ea2cb06d7123c1",
+  "scriptedOnly": true,
+  "humanReview": "pending",
+  "councilReview": "not performed",
+  "outcomes": [
+    {
+      "id": "studio.page.hq",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-blueprint",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-entitlements",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-financial-model",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-founders-circle",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-reporting",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.students",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.surface.hq-shell-navigation",
+      "complete": true,
+      "errors": []
+    }
+  ]
+}

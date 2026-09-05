@@ -20,6 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
+          fetch-depth: 0
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
@@ -40,6 +41,8 @@ jobs:
           pnpm exec tsx --import ./src/test/register-server-only.mjs --test scripts/experience/january-extension/fixture.test.ts
       - name: Verify the exact complete Studio extension capture
         run: node scripts/experience/january-extension-verify.mjs --manifest=experience/reviews/january-studio14-2026-09-05/capture-2026-09-05T01-41-27-920Z/manifest.json
+      - name: Verify the independent Atlas filter component capture
+        run: python3 scripts/experience/january-atlas-filter.py --output="$RUNNER_TEMP/studio-atlas-filter-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
       - name: Enforce finding and audit ratchets
         run: pnpm run experience:audit -- --enforce
       - name: Run UX Assurance specialist modes

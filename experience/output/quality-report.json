@@ -1,11 +1,11 @@
 {
   "schemaVersion": "signal-design-quality-report/1",
-  "generatedAt": "2026-09-03T04:18:44.942Z",
+  "generatedAt": "2026-09-05T02:46:13.042Z",
   "status": "baseline-held",
   "readiness": {
     "status": "not-certified",
     "reasons": [
-      "20/4860 required state/breakpoint audit cells pass",
+      "20/4856 required state/breakpoint audit cells pass",
       "24 visual baselines await approval"
     ]
   },
@@ -30,7 +30,7 @@
   },
   "inventory": {
     "experiences": 250,
-    "stateVariants": 1215,
+    "stateVariants": 1214,
     "breakpointVariants": 1000,
     "products": {
       "notes": 20,
@@ -49,8 +49,8 @@
       "application-shell-and-navigation": 4,
       "create-and-edit-form": 3,
       "dashboard-or-command-centre": 9,
-      "detail-or-record-view": 54,
-      "editor-or-canvas": 9,
+      "detail-or-record-view": 55,
+      "editor-or-canvas": 8,
       "feedback-interruption-and-exception": 29,
       "list-and-data-table": 12,
       "onboarding-and-authentication": 14,
@@ -59,9 +59,9 @@
       "search-and-command-interface": 4,
       "settings-and-administration": 14
     },
-    "fixtureCoverage": 6,
-    "screenshotCoverage": 6,
-    "accessibilityCoverage": 6,
+    "fixtureCoverage": 29,
+    "screenshotCoverage": 29,
+    "accessibilityCoverage": 29,
     "passing": 0,
     "underRemediation": 0,
     "assertedPassing": 0
@@ -145,10 +145,10 @@
   },
   "audits": {
     "total": 20,
-    "requiredCells": 4860,
+    "requiredCells": 4856,
     "passing": 20,
-    "failing": 4840,
-    "missing": 4840,
+    "failing": 4836,
+    "missing": 4836,
     "duplicate": 0,
     "falsePassingExperienceIds": [],
     "byProduct": {
@@ -249,18 +249,18 @@
     },
     "states": {
       "capturedVariants": 16,
-      "requiredVariants": 1215,
-      "completeFixtureExperiences": 6
+      "requiredVariants": 1214,
+      "completeFixtureExperiences": 29
     },
     "breakpoints": {
       "capturedVariants": 64,
       "requiredVariants": 1000,
-      "completeScreenshotExperiences": 6
+      "completeScreenshotExperiences": 29
     },
     "accessibility": {
       "passingCaptures": 64,
       "totalCaptures": 64,
-      "completeExperiences": 6
+      "completeExperiences": 29
     },
     "designSystemConformance": {
       "passingRepositories": 6,

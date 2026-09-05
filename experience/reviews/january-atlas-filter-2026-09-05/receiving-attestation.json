@@ -1,0 +1,1251 @@
+{
+  "schemaVersion": "atlas-filter-offline-attestation/1",
+  "createdAt": "2026-09-05T02:42:19.976Z",
+  "complete": true,
+  "scriptedOnly": true,
+  "humanReview": "pending",
+  "councilReview": "not performed",
+  "sourceCommit": "17305479d47c3654102be7e84a382478ee3eead0",
+  "observedReceivingHead": "2df4b135af26a03910782d1ea911b565c9f05fdc",
+  "capturedObservedHead": "9dc4118e830a41b1f50107d467aeb817ad7392b7",
+  "ancestryVerified": true,
+  "frozenInputDiff": [],
+  "frozenInputPaths": [
+    "src",
+    "content",
+    "contracts",
+    "public",
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "next.config.ts",
+    "experience/config.json",
+    "docs/signal-studio-review/remediation-program.yaml",
+    "scripts/experience/january-extension",
+    "scripts/experience/january/receipt.mjs",
+    "scripts/experience/january/matrix.mjs",
+    "scripts/experience/lib.mjs",
+    "scripts/experience/capture-approval.mjs"
+  ],
+  "manifestSha256": "cacaf7649baee6fc755901fcd49df66af23d833822eb8931954736ef139b0c2c",
+  "sourcePlanSha256": "c6708b62d7e487d207129f6ab3543b851ecff3c913c16c07c79e2e7836ba63de",
+  "identity": {
+    "commit": "17305479d47c3654102be7e84a382478ee3eead0",
+    "sourceDigest": "9db08213c35fb5bfa6ac90f082dd8db81f7511602af0c2b662ea2cb06d7123c1",
+    "buildInputsDigest": "d086fecd1edbe4e7dd42a4a31133abd003e1e1d675b2f48d9b49772315d9409f",
+    "extensionToolingDigest": "0d8f9f610e6fa11bd2eecbd6fb1a0d52565e5f1dd095ebee71f36295938be388",
+    "registryDigest": "f9badb0397c623b971e5cc3c2d0359eade865fe15b5821b2825f351a1301d1cf",
+    "fixtureDigest": "83a256aaa73bd93891257d2c87d8f05392bf0a78f45038f7b452530827561c9f",
+    "harnessDigest": "831c007698adf9e50cf830fd31f075306ebbca91a4085188b35bc02ab03b147f",
+    "buildId": "m2n_Zi39DsiZ2z4nDWQGd",
+    "buildReceiptSha256": "72711c98c560ecbed31c2c6241a31b77b7d6fe888388b16ab2ed886cae3817a8",
+    "buildLogSha256": "949ee7543d2e8aa431d67660c8877eac78c0a14d88b3b10661cc180b8ad9de4c"
+  },
+  "originalBuild": {
+    "sourceDigest": "9db08213c35fb5bfa6ac90f082dd8db81f7511602af0c2b662ea2cb06d7123c1",
+    "buildInputsDigest": "d086fecd1edbe4e7dd42a4a31133abd003e1e1d675b2f48d9b49772315d9409f",
+    "buildId": "m2n_Zi39DsiZ2z4nDWQGd",
+    "builtAt": "2026-09-05T01:40:20.543Z",
+    "node": "v24.19.0",
+    "command": "node scripts/experience/january-extension/serve.mjs build",
+    "log": "build-2026-09-05T01-39-25-867Z.log",
+    "environment": "allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration"
+  },
+  "portableVerifierSha256": "67b1d93609c1f00e6784e2c1d1f98e5bdd4584a6dbcacb63d4d0a87ec3fff6f5",
+  "portableHelper": {
+    "path": "scripts/experience/january-extension-build-inputs.mjs",
+    "sha256": "b8645764be2581c94e078f13dbcce24f643304e7821dbb4bd9b3c1f3812dd4a8",
+    "canonicalLfSha256": "be824bd68b8d388514d05f07950d8cfafe9b611b74a2d25dde8c2b8a5a410988"
+  },
+  "intendedCases": 16,
+  "receivedCases": 16,
+  "passingCases": 16,
+  "filterableEntries": 12,
+  "pinnedExcluded": "ios-suite-app",
+  "lensCounts": {
+    "Products": 3,
+    "Processes": 6,
+    "Data Flows": 3
+  },
+  "screenshots": [
+    {
+      "kind": "primary",
+      "path": "screenshots/default-mobile-primary.png",
+      "sha256": "675feae9540a72b4444da810cdfa4c90dea0d14275557746fe10d06f81a9fd17",
+      "state": "default",
+      "breakpoint": "mobile",
+      "bytes": 57850,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/default-tablet-primary.png",
+      "sha256": "70c0f3a62b15ea3996684199303c75e18ab746ba19c16adc2c804b8fccc81e80",
+      "state": "default",
+      "breakpoint": "tablet",
+      "bytes": 80581,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/default-desktop-primary.png",
+      "sha256": "3ad170bd8510a3311f798c6798e8f6f6b79d4105da4507dcb10fe3b780b23e37",
+      "state": "default",
+      "breakpoint": "desktop",
+      "bytes": 100626,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/default-wide-primary.png",
+      "sha256": "3efa12826cb6d920e7157f64b6444d28ca3a2db29df02296dc039c5705777bfc",
+      "state": "default",
+      "breakpoint": "wide",
+      "bytes": 111546,
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "kind": "typed-long-query",
+      "path": "screenshots/long-content-mobile-typed-long-query.png",
+      "sha256": "ea385ed97b2ed53dd49cb9330ac27c35c2b12a1ed0ca435a1163c546e0463f68",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "bytes": 43355,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "kind": "authored-long-result",
+      "path": "screenshots/long-content-mobile-authored-long-result.png",
+      "sha256": "37079f449e8b30bf6ab2a728f6ee9439cc8394cb73c424070057acccb858d51d",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "bytes": 70635,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/long-content-mobile-primary.png",
+      "sha256": "9f866cf740389eb866e26372d7463fb1f44eb9c5d2ba9122b0a4b5e7671ccea1",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "bytes": 59462,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "kind": "typed-long-query",
+      "path": "screenshots/long-content-tablet-typed-long-query.png",
+      "sha256": "22e7ad4102a93151e8a6b9b55336b2818079a3a4690efc47d26de87167630f99",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "bytes": 68792,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "kind": "authored-long-result",
+      "path": "screenshots/long-content-tablet-authored-long-result.png",
+      "sha256": "f7cd9cf05e6767dac3f98dd040e5efb0899d01e634382f0685918a430a3e177c",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "bytes": 99292,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/long-content-tablet-primary.png",
+      "sha256": "7c1c7ff4dc2ed73552429708f4c600cdea0aa0d8f82f2156879235a32d7dc8ca",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "bytes": 85249,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "kind": "typed-long-query",
+      "path": "screenshots/long-content-desktop-typed-long-query.png",
+      "sha256": "c10d2053e130e31898a0afb1c2d0a6af0838ec79dc6b2670abdca509ae3ff214",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "bytes": 98350,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "kind": "authored-long-result",
+      "path": "screenshots/long-content-desktop-authored-long-result.png",
+      "sha256": "1d9f9a4ea1cfaf66c8744746890a7fa6835f028a8d60de680cc31511b7e05962",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "bytes": 113917,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/long-content-desktop-primary.png",
+      "sha256": "7068ef7544c34e7460cc78322face30af166082738b28a84a2907778c5e3ca74",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "bytes": 120640,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "kind": "typed-long-query",
+      "path": "screenshots/long-content-wide-typed-long-query.png",
+      "sha256": "dc05a40e821032be317729664710ab96154de3335cbf1a038b5f8568e4fd1767",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "bytes": 104777,
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "kind": "authored-long-result",
+      "path": "screenshots/long-content-wide-authored-long-result.png",
+      "sha256": "d5c7fc9fdb80d36eb451d22bae9abf9692aeca2daef0d91d0682baa19f40bcec",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "bytes": 136130,
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/long-content-wide-primary.png",
+      "sha256": "599077412c6bb0be14e91a5e2492593af3035f700f9515b8e0ff805d56609080",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "bytes": 122838,
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/reduced-motion-mobile-primary.png",
+      "sha256": "675feae9540a72b4444da810cdfa4c90dea0d14275557746fe10d06f81a9fd17",
+      "state": "reduced-motion",
+      "breakpoint": "mobile",
+      "bytes": 57850,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/reduced-motion-tablet-primary.png",
+      "sha256": "70c0f3a62b15ea3996684199303c75e18ab746ba19c16adc2c804b8fccc81e80",
+      "state": "reduced-motion",
+      "breakpoint": "tablet",
+      "bytes": 80581,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/reduced-motion-desktop-primary.png",
+      "sha256": "3ad170bd8510a3311f798c6798e8f6f6b79d4105da4507dcb10fe3b780b23e37",
+      "state": "reduced-motion",
+      "breakpoint": "desktop",
+      "bytes": 100626,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/reduced-motion-wide-primary.png",
+      "sha256": "3efa12826cb6d920e7157f64b6444d28ca3a2db29df02296dc039c5705777bfc",
+      "state": "reduced-motion",
+      "breakpoint": "wide",
+      "bytes": 111546,
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "kind": "search-focus",
+      "path": "screenshots/keyboard-only-mobile-search-focus.png",
+      "sha256": "fd27047e0801d2c3850809f28d9614cf40a93ff816e3a05237f8fb667afb412e",
+      "state": "keyboard-only",
+      "breakpoint": "mobile",
+      "bytes": 58116,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "kind": "lens-focus",
+      "path": "screenshots/keyboard-only-mobile-lens-focus.png",
+      "sha256": "0a1102dc03ad101619cc2b5c07a6cd092d080b235c331bb28538462228b0ed4c",
+      "state": "keyboard-only",
+      "breakpoint": "mobile",
+      "bytes": 58070,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/keyboard-only-mobile-primary.png",
+      "sha256": "01b7783fd58434847733aad03bbf892f8e93bc0dd4ff16216d776dcce85d2e7c",
+      "state": "keyboard-only",
+      "breakpoint": "mobile",
+      "bytes": 58488,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "kind": "navigated-result",
+      "path": "screenshots/keyboard-only-mobile-navigated-result.png",
+      "sha256": "4506c94b324714fd3eb6fb9add5d277e6187ad3e2ceeafff3a370812f06b02e8",
+      "state": "keyboard-only",
+      "breakpoint": "mobile",
+      "bytes": 57696,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "kind": "search-focus",
+      "path": "screenshots/keyboard-only-tablet-search-focus.png",
+      "sha256": "70c0f3a62b15ea3996684199303c75e18ab746ba19c16adc2c804b8fccc81e80",
+      "state": "keyboard-only",
+      "breakpoint": "tablet",
+      "bytes": 80581,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "kind": "lens-focus",
+      "path": "screenshots/keyboard-only-tablet-lens-focus.png",
+      "sha256": "99a2b69a3230f8e84de4d84bb53c2943ede35ce0934b5eb4ac05bf3b3182ff29",
+      "state": "keyboard-only",
+      "breakpoint": "tablet",
+      "bytes": 80505,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/keyboard-only-tablet-primary.png",
+      "sha256": "85144cc82738680d553513ff9fc40aa46ab3af8e58cb5a66f62ff6ee21ecc92a",
+      "state": "keyboard-only",
+      "breakpoint": "tablet",
+      "bytes": 85646,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "kind": "navigated-result",
+      "path": "screenshots/keyboard-only-tablet-navigated-result.png",
+      "sha256": "0ce8b03857956503f5d3ed4781249937ae263278903bf3be556540e40b0a90c9",
+      "state": "keyboard-only",
+      "breakpoint": "tablet",
+      "bytes": 87583,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "kind": "search-focus",
+      "path": "screenshots/keyboard-only-desktop-search-focus.png",
+      "sha256": "2daf88de5127d0404ffafba914676e848ff5d6866f3a0b4904092d138d64f89e",
+      "state": "keyboard-only",
+      "breakpoint": "desktop",
+      "bytes": 101173,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "kind": "lens-focus",
+      "path": "screenshots/keyboard-only-desktop-lens-focus.png",
+      "sha256": "8c27d66f987074fe296539ae83af451612138193d8f213c472288f8c7732ccc6",
+      "state": "keyboard-only",
+      "breakpoint": "desktop",
+      "bytes": 101098,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/keyboard-only-desktop-primary.png",
+      "sha256": "26ecb96bcbdc2bff2283a9068e6bb12b0a8d3787fe2df351d40fdb9216e16376",
+      "state": "keyboard-only",
+      "breakpoint": "desktop",
+      "bytes": 122266,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "kind": "navigated-result",
+      "path": "screenshots/keyboard-only-desktop-navigated-result.png",
+      "sha256": "25a431d0d160d3eecb531b66540ee43092a217cc5ae97fac1a7717466596b1e0",
+      "state": "keyboard-only",
+      "breakpoint": "desktop",
+      "bytes": 108200,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "kind": "search-focus",
+      "path": "screenshots/keyboard-only-wide-search-focus.png",
+      "sha256": "7cdc2b7bbbc1df47c6d7114ca921065de4e20ca8483f0ef0e4d1f74649e78161",
+      "state": "keyboard-only",
+      "breakpoint": "wide",
+      "bytes": 110822,
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "kind": "lens-focus",
+      "path": "screenshots/keyboard-only-wide-lens-focus.png",
+      "sha256": "88a96920bab0d359abaa245017897f4075a7606dde033ed70906438ab3fab0b8",
+      "state": "keyboard-only",
+      "breakpoint": "wide",
+      "bytes": 110769,
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "kind": "primary",
+      "path": "screenshots/keyboard-only-wide-primary.png",
+      "sha256": "af013e79c66ff1f36a3102f12ada93b8515249532e609fb78c4012ab2ec74705",
+      "state": "keyboard-only",
+      "breakpoint": "wide",
+      "bytes": 132294,
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "kind": "navigated-result",
+      "path": "screenshots/keyboard-only-wide-navigated-result.png",
+      "sha256": "db73c97d84a8402449a1f7e62d8ca02382c542c82761b00ae6985d366c67889b",
+      "state": "keyboard-only",
+      "breakpoint": "wide",
+      "bytes": 115047,
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    }
+  ],
+  "accessibility": [
+    {
+      "state": "default",
+      "breakpoint": "mobile",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "a[href$=\"brand-enforcement\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"brand-enforcement\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"plan-cycle\"] > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "default",
+      "breakpoint": "tablet",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "default",
+      "breakpoint": "desktop",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "default",
+      "breakpoint": "wide",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "a[href$=\"brand-enforcement\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"brand-enforcement\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"plan-cycle\"] > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "long-content",
+      "breakpoint": "wide",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "reduced-motion",
+      "breakpoint": "mobile",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "a[href$=\"brand-enforcement\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"brand-enforcement\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"plan-cycle\"] > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "reduced-motion",
+      "breakpoint": "tablet",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "reduced-motion",
+      "breakpoint": "desktop",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "reduced-motion",
+      "breakpoint": "wide",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "keyboard-only",
+      "breakpoint": "mobile",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(1) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "a[href$=\"brand-enforcement\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"brand-enforcement\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"plan-cycle\"] > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "keyboard-only",
+      "breakpoint": "tablet",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "keyboard-only",
+      "breakpoint": "desktop",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "state": "keyboard-only",
+      "breakpoint": "wide",
+      "blocking": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "section:nth-child(2) > .divide-y.divide-border-soft > li:nth-child(2) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"analytics-daily-cron\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "li:nth-child(5) > .atlas-row.items-baseline.gap-5 > .atlas-row-age.hidden.sm\\:inline"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .atlas-row-index"
+            ],
+            [
+              "a[href$=\"memory-and-hooks\"] > .min-w-0.flex-1 > .atlas-row-title.group-hover\\:text-accent > .atlas-row-state"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(1) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ],
+            [
+              "section:nth-child(3) > .divide-y.divide-border-soft > li:nth-child(3) > .atlas-row.items-baseline.gap-5 > .atlas-row-index"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Scripted Chromium component proof only; no human, council, 9.5, full-product or provider acceptance.",
+    "Axe contrast incompletes are retained for manual review; zero violations is not full accessibility certification.",
+    "Focus tests prove visible outline, a visible target region and one unobscured hit-test point, not the entire focused row. Mobile result lower content overlaps the fixed notice.",
+    "Browser permits only designated loopback GET/HEAD; server-side provider absence was not independently instrumented.",
+    "Read-only existing synthetic HQ session; no database seeding or server/build/environment changes.",
+    "Offline proof checks original captured build receipt/log and per-case served build ID; it does not assert the current server remains running."
+  ],
+  "errors": []
+}

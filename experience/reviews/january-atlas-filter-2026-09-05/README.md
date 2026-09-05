@@ -1,0 +1,11 @@
+# Atlas filter component evidence
+
+The immutable archive contains the independent 16-case browser capture, all 36 PNGs, source/fixture/build receipts, exact captured harness, portable verifier, 28 contract tests, seven rejected counterfactuals and the failed earlier attempts. It preserves the observed bytes across Windows and Linux checkouts. Git LFS must be hydrated.
+
+Accepted source: `17305479d47c3654102be7e84a382478ee3eead0`; served build: `m2n_Zi39DsiZ2z4nDWQGd`. Exact manifest: `atlas-filter-acceptance/evidence/capture-2026-09-05T02-01-59-317Z/manifest.json`, SHA-256 `cacaf7649baee6fc755901fcd49df66af23d833822eb8931954736ef139b0c2c`. The bundle SHA-256 is `dc1f9530cc4c4d3a519f5cdd3ce1eca61ec8ea20b0960f8d2ba45a3f2c085e31`.
+
+Run `python3 scripts/experience/january-atlas-filter.py --output=/absolute/new/directory/outside/studio` with Node on PATH, or pass `--node` with its executable path. This verifies the exact archive before extraction, runs its contract tests and re-attests the captured evidence against the current checkout. No browser, current build, database, provider or credentials are required. The verifier rejects changed runtime, fixture, build inputs, viewport requirements, captured tooling or images. It does not choose a latest run or reconstruct a replacement receipt.
+
+The four states are default, long content, reduced motion and keyboard only, each at 390, 768, 1280 and 1440 pixels. Canonical records supply all membership/query expectations: 13 loaded, one pinned iOS record excluded and 12 filterable (three Products, six Processes, three Data Flows). The captured tests exercise positive title/summary/tag queries, lens intersections, clearing, long input, focus and real result navigation.
+
+This is scripted component coverage. Axe contrast incompletes remain for manual review; a visible focused target is proved, not the entire row being unobscured by the fixed preview notice. Canceled local RSC requests remain in the receipts under the narrow existing exception. Human comprehension, council scores, native zoom, full accessibility, provider and production acceptance remain unverified. The initial 12/16 capture and failed original post-transfer attestor are retained and are not accepted results.

@@ -555,6 +555,12 @@
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
       "automatedTestCoverage": "complete"
+    },
+    "studio.surface.atlas-filter": {
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     }
   }
 }
