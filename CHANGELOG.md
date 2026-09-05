@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-05 · S·173 · tightens · Narrow screens keep the controls reachable
+
+**The internal January candidate gives Email Lab controls room to wrap and Venue Kit text room to read.** Preview regions remain reachable by keyboard. The development notice stays available without covering the controls.
+
+Fresh January and Venue Kit captures cover188 and20 cases across four widths. The selected-browser Email Lab error, unrenewed extension/Atlas evidence and human review remain open. No production release or outreach is implied.
+
 ## 2026-09-04 · S·172 · holds · Event waits for project access enforcement
 
 **The January contract marks new Event sales unavailable.** The approved €89

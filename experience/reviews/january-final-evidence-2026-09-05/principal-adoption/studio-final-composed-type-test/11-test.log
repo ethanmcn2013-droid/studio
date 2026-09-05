@@ -1,0 +1,2699 @@
+TAP version 13
+# Subtest: public pricing truth and decision contract
+    # Subtest: renders exactly Free, Student, Pro and Enterprise as the public ladder
+    ok 1 - renders exactly Free, Student, Pro and Enterprise as the public ladder
+      ---
+      duration_ms: 2.275
+      type: 'test'
+      ...
+    # Subtest: derives all published consumer amounts and terms from the contract adapter
+    ok 2 - derives all published consumer amounts and terms from the contract adapter
+      ---
+      duration_ms: 0.755
+      type: 'test'
+      ...
+    # Subtest: keeps Enterprise founder-led and free of unsupported capability claims
+    ok 3 - keeps Enterprise founder-led and free of unsupported capability claims
+      ---
+      duration_ms: 0.4365
+      type: 'test'
+      ...
+    # Subtest: uses one typed plan model for the ledger and comparison
+    ok 4 - uses one typed plan model for the ledger and comparison
+      ---
+      duration_ms: 0.2578
+      type: 'test'
+      ...
+    # Subtest: carries a plan-specific waitlist path and confirms it on arrival
+    ok 5 - carries a plan-specific waitlist path and confirms it on arrival
+      ---
+      duration_ms: 0.3637
+      type: 'test'
+      ...
+    # Subtest: leaves pricing available to signed-in people choosing or changing access
+    ok 6 - leaves pricing available to signed-in people choosing or changing access
+      ---
+      duration_ms: 0.4085
+      type: 'test'
+      ...
+    # Subtest: publishes the four-plan name contract in metadata, structured data and the manifest
+    ok 7 - publishes the four-plan name contract in metadata, structured data and the manifest
+      ---
+      duration_ms: 0.5141
+      type: 'test'
+      ...
+    # Subtest: uses real first-party proof and bounded state motion
+    ok 8 - uses real first-party proof and bounded state motion
+      ---
+      duration_ms: 0.4598
+      type: 'test'
+      ...
+    # Subtest: keeps the public pricing voice free of dashes, hype and recommendation theatre
+    ok 9 - keeps the public pricing voice free of dashes, hype and recommendation theatre
+      ---
+      duration_ms: 0.5993
+      type: 'test'
+      ...
+    1..9
+ok 1 - public pricing truth and decision contract
+  ---
+  duration_ms: 8.9649
+  type: 'suite'
+  ...
+# Subtest: public story proof contract
+    # Subtest: keeps the landing story to hero, product proof, wedge and invitation
+    ok 1 - keeps the landing story to hero, product proof, wedge and invitation
+      ---
+      duration_ms: 0.3256
+      type: 'test'
+      ...
+    # Subtest: pins the public Mara and Finn proof to the canonical fixture date
+    ok 2 - pins the public Mara and Finn proof to the canonical fixture date
+      ---
+      duration_ms: 0.1947
+      type: 'test'
+      ...
+    1..2
+ok 2 - public story proof contract
+  ---
+  duration_ms: 0.8432
+  type: 'suite'
+  ...
+# Subtest: registry holds exactly the seventeen prototype templates with unique ids
+ok 3 - registry holds exactly the seventeen prototype templates with unique ids
+  ---
+  duration_ms: 2.9666
+  type: 'test'
+  ...
+# Subtest: all templates render in all directions with all fixtures
+ok 4 - all templates render in all directions with all fixtures
+  ---
+  duration_ms: 1984.5916
+  type: 'test'
+  ...
+# Subtest: utility templates carry exact facts outside prose
+ok 5 - utility templates carry exact facts outside prose
+  ---
+  duration_ms: 40.8678
+  type: 'test'
+  ...
+# Subtest: the sign-in code survives plain text and never becomes an image
+ok 6 - the sign-in code survives plain text and never becomes an image
+  ---
+  duration_ms: 51.5107
+  type: 'test'
+  ...
+# Subtest: edge fixtures render without breaking layout assumptions
+ok 7 - edge fixtures render without breaking layout assumptions
+  ---
+  duration_ms: 58.0801
+  type: 'test'
+  ...
+# Subtest: review transforms: forced dark and blocked images
+ok 8 - review transforms: forced dark and blocked images
+  ---
+  duration_ms: 19.8405
+  type: 'test'
+  ...
+# Subtest: founder outreach carries no button and no tracking furniture
+ok 9 - founder outreach carries no button and no tracking furniture
+  ---
+  duration_ms: 120.3349
+  type: 'test'
+  ...
+# Subtest: Account CSV export
+    # Subtest: keeps withheld and unavailable numeric fields blank
+    ok 1 - keeps withheld and unavailable numeric fields blank
+      ---
+      duration_ms: 3.0052
+      type: 'test'
+      ...
+    # Subtest: labels every CSV with sample metadata and no privacy leaks
+    ok 2 - labels every CSV with sample metadata and no privacy leaks
+      ---
+      duration_ms: 2.5977
+      type: 'test'
+      ...
+    1..2
+ok 10 - Account CSV export
+  ---
+  duration_ms: 7.4709
+  type: 'suite'
+  ...
+# Subtest: Signal Studio Account fixtures
+    # Subtest: complete passes privacy and integrity assertions
+    ok 1 - complete passes privacy and integrity assertions
+      ---
+      duration_ms: 3.9612
+      type: 'test'
+      ...
+    # Subtest: partial passes privacy and integrity assertions
+    ok 2 - partial passes privacy and integrity assertions
+      ---
+      duration_ms: 0.5201
+      type: 'test'
+      ...
+    # Subtest: suppressed passes privacy and integrity assertions
+    ok 3 - suppressed passes privacy and integrity assertions
+      ---
+      duration_ms: 0.5037
+      type: 'test'
+      ...
+    # Subtest: unavailable passes privacy and integrity assertions
+    ok 4 - unavailable passes privacy and integrity assertions
+      ---
+      duration_ms: 0.3675
+      type: 'test'
+      ...
+    # Subtest: partial keeps access exact and behavioural rates unavailable
+    ok 5 - partial keeps access exact and behavioural rates unavailable
+      ---
+      duration_ms: 0.3663
+      type: 'test'
+      ...
+    # Subtest: suppressed never contradicts a tiny eligible cohort
+    ok 6 - suppressed never contradicts a tiny eligible cohort
+      ---
+      duration_ms: 0.5631
+      type: 'test'
+      ...
+    # Subtest: unavailable keeps access visible and behavioural values unavailable
+    ok 7 - unavailable keeps access visible and behavioural values unavailable
+      ---
+      duration_ms: 0.2485
+      type: 'test'
+      ...
+    # Subtest: complete exposes comparable continuation with denominator
+    ok 8 - complete exposes comparable continuation with denominator
+      ---
+      duration_ms: 0.3221
+      type: 'test'
+      ...
+    # Subtest: edition proofs carry distinct vocabulary without student drill-down
+    ok 9 - edition proofs carry distinct vocabulary without student drill-down
+      ---
+      duration_ms: 0.7366
+      type: 'test'
+      ...
+    1..9
+ok 11 - Signal Studio Account fixtures
+  ---
+  duration_ms: 10.4751
+  type: 'suite'
+  ...
+# Subtest: an action inside the sponsored window attributes to the sponsor
+ok 12 - an action inside the sponsored window attributes to the sponsor
+  ---
+  duration_ms: 2.3933
+  type: 'test'
+  ...
+# Subtest: a subject with no redemption is not attributed
+ok 13 - a subject with no redemption is not attributed
+  ---
+  duration_ms: 0.4049
+  type: 'test'
+  ...
+# Subtest: work done before redemption is not sponsored use
+ok 14 - work done before redemption is not sponsored use
+  ---
+  duration_ms: 0.2527
+  type: 'test'
+  ...
+# Subtest: work done after access ended is outside the window
+ok 15 - work done after access ended is outside the window
+  ---
+  duration_ms: 0.2278
+  type: 'test'
+  ...
+# Subtest: two sponsors covering the same moment is ambiguous, so neither is credited
+ok 16 - two sponsors covering the same moment is ambiguous, so neither is credited
+  ---
+  duration_ms: 0.2408
+  type: 'test'
+  ...
+# Subtest: demo, seed, and view-as chains never count as real use
+ok 17 - demo, seed, and view-as chains never count as real use
+  ---
+  duration_ms: 0.2644
+  type: 'test'
+  ...
+# Subtest: the boundary moments of the window are inclusive
+ok 18 - the boundary moments of the window are inclusive
+  ---
+  duration_ms: 0.5508
+  type: 'test'
+  ...
+# Subtest: the same sponsor recorded twice is not ambiguous
+ok 19 - the same sponsor recorded twice is not ambiguous
+  ---
+  duration_ms: 0.3951
+  type: 'test'
+  ...
+# Subtest: full coverage yields an exact value with its denominator
+ok 20 - full coverage yields an exact value with its denominator
+  ---
+  duration_ms: 3.1015
+  type: 'test'
+  ...
+# Subtest: partial coverage can only understate, so it becomes a lower bound
+ok 21 - partial coverage can only understate, so it becomes a lower bound
+  ---
+  duration_ms: 0.5984
+  type: 'test'
+  ...
+# Subtest: no rows at all is unavailable, never zero
+ok 22 - no rows at all is unavailable, never zero
+  ---
+  duration_ms: 0.2906
+  type: 'test'
+  ...
+# Subtest: a measured quiet day counts as covered but not as used
+ok 23 - a measured quiet day counts as covered but not as used
+  ---
+  duration_ms: 0.2953
+  type: 'test'
+  ...
+# Subtest: a small group is withheld regardless of coverage
+ok 24 - a small group is withheld regardless of coverage
+  ---
+  duration_ms: 0.275
+  type: 'test'
+  ...
+# Subtest: the eligible count takes the largest day, not the average
+ok 25 - the eligible count takes the largest day, not the average
+  ---
+  duration_ms: 0.4531
+  type: 'test'
+  ...
+# Subtest: a trailing window counts active workspaces exactly from lifecycle
+ok 26 - a trailing window counts active workspaces exactly from lifecycle
+  ---
+  duration_ms: 0.6055
+  type: 'test'
+  ...
+# Subtest: a closed historical period can only give a lower bound
+ok 27 - a closed historical period can only give a lower bound
+  ---
+  duration_ms: 0.3168
+  type: 'test'
+  ...
+# Subtest: first useful action counts workspaces whose first day falls inside the window
+ok 28 - first useful action counts workspaces whose first day falls inside the window
+  ---
+  duration_ms: 0.6257
+  type: 'test'
+  ...
+# Subtest: an open day-30 cohort is unavailable, not a rate
+ok 29 - an open day-30 cohort is unavailable, not a rate
+  ---
+  duration_ms: 1.724
+  type: 'test'
+  ...
+# Subtest: a sealed cohort under five is withheld
+ok 30 - a sealed cohort under five is withheld
+  ---
+  duration_ms: 0.4327
+  type: 'test'
+  ...
+# Subtest: a sealed cohort of five reports returned over eligible
+ok 31 - a sealed cohort of five reports returned over eligible
+  ---
+  duration_ms: 0.3869
+  type: 'test'
+  ...
+# Subtest: an unsealed or indeterminate row is excluded from both sides
+ok 32 - an unsealed or indeterminate row is excluded from both sides
+  ---
+  duration_ms: 0.2834
+  type: 'test'
+  ...
+# Subtest: an uninstrumented product is unavailable, never zero reach
+ok 33 - an uninstrumented product is unavailable, never zero reach
+  ---
+  duration_ms: 0.9189
+  type: 'test'
+  ...
+# Subtest: a covered product reports reach from lifecycle on a trailing window
+ok 34 - a covered product reports reach from lifecycle on a trailing window
+  ---
+  duration_ms: 0.3745
+  type: 'test'
+  ...
+# Subtest: every product reach is suppressed for a small group
+ok 35 - every product reach is suppressed for a small group
+  ---
+  duration_ms: 0.35
+  type: 'test'
+  ...
+# Subtest: coverage is complete only with every day and every expected module
+ok 36 - coverage is complete only with every day and every expected module
+  ---
+  duration_ms: 0.7016
+  type: 'test'
+  ...
+# Subtest: no metric in any state ever renders as an exact zero for absent data
+ok 37 - no metric in any state ever renders as an exact zero for absent data
+  ---
+  duration_ms: 0.4092
+  type: 'test'
+  ...
+# Subtest: a committed action emits exactly one event
+ok 38 - a committed action emits exactly one event
+  ---
+  duration_ms: 3.2057
+  type: 'test'
+  ...
+# Subtest: a rolled-back transaction emits nothing
+ok 39 - a rolled-back transaction emits nothing
+  ---
+  duration_ms: 0.5326
+  type: 'test'
+  ...
+# Subtest: the flag is off by default, so production stays dark
+ok 40 - the flag is off by default, so production stays dark
+  ---
+  duration_ms: 0.2938
+  type: 'test'
+  ...
+# Subtest: no raw identifier survives into the emitted event
+ok 41 - no raw identifier survives into the emitted event
+  ---
+  duration_ms: 0.6294
+  type: 'test'
+  ...
+# Subtest: the emitted event carries only the seven contracted fields
+ok 42 - the emitted event carries only the seven contracted fields
+  ---
+  duration_ms: 4.751
+  type: 'test'
+  ...
+# Subtest: hashing is stable for a salt and changes with it
+ok 43 - hashing is stable for a salt and changes with it
+  ---
+  duration_ms: 0.4872
+  type: 'test'
+  ...
+# Subtest: replaying the same eventId yields an identical event, so the sink can dedupe
+ok 44 - replaying the same eventId yields an identical event, so the sink can dedupe
+  ---
+  duration_ms: 0.5358
+  type: 'test'
+  ...
+# Subtest: a kind outside the allowlist never reaches the sink
+ok 45 - a kind outside the allowlist never reaches the sink
+  ---
+  duration_ms: 0.359
+  type: 'test'
+  ...
+# Subtest: a missing salt blocks emission rather than sending a weak hash
+ok 46 - a missing salt blocks emission rather than sending a weak hash
+  ---
+  duration_ms: 0.5274
+  type: 'test'
+  ...
+# Subtest: a missing identity blocks emission
+ok 47 - a missing identity blocks emission
+  ---
+  duration_ms: 0.7908
+  type: 'test'
+  ...
+# Subtest: accepts a well-formed event
+ok 48 - accepts a well-formed event
+  ---
+  duration_ms: 2.7934
+  type: 'test'
+  ...
+# Subtest: every allowlisted kind is accepted under its own product
+ok 49 - every allowlisted kind is accepted under its own product
+  ---
+  duration_ms: 1.6259
+  type: 'test'
+  ...
+# Subtest: a kind belonging to another product is rejected
+ok 50 - a kind belonging to another product is rejected
+  ---
+  duration_ms: 0.3877
+  type: 'test'
+  ...
+# Subtest: page views and other unlisted kinds are rejected
+ok 51 - page views and other unlisted kinds are rejected
+  ---
+  duration_ms: 0.3289
+  type: 'test'
+  ...
+# Subtest: forbidden content fields are rejected, not stripped
+ok 52 - forbidden content fields are rejected, not stripped
+  ---
+  duration_ms: 0.7265
+  type: 'test'
+  ...
+# Subtest: a forbidden field cannot hide inside a nested object
+ok 53 - a forbidden field cannot hide inside a nested object
+  ---
+  duration_ms: 0.2437
+  type: 'test'
+  ...
+# Subtest: raw identifiers are refused so only hashes can travel
+ok 54 - raw identifiers are refused so only hashes can travel
+  ---
+  duration_ms: 0.4575
+  type: 'test'
+  ...
+# Subtest: unhashed-looking identity values are rejected
+ok 55 - unhashed-looking identity values are rejected
+  ---
+  duration_ms: 0.2978
+  type: 'test'
+  ...
+# Subtest: missing and extra fields are both rejected
+ok 56 - missing and extra fields are both rejected
+  ---
+  duration_ms: 1.0191
+  type: 'test'
+  ...
+# Subtest: a foreign instrumentation version is rejected
+ok 57 - a foreign instrumentation version is rejected
+  ---
+  duration_ms: 0.9698
+  type: 'test'
+  ...
+# Subtest: timestamps must be positive numbers
+ok 58 - timestamps must be positive numbers
+  ---
+  duration_ms: 0.3735
+  type: 'test'
+  ...
+# Subtest: isAllowedKind refuses unknown products
+ok 59 - isAllowedKind refuses unknown products
+  ---
+  duration_ms: 0.1679
+  type: 'test'
+  ...
+# Subtest: a closed period freezes
+ok 60 - a closed period freezes
+  ---
+  duration_ms: 48.3042
+  type: 'test'
+  ...
+# Subtest: a period still running refuses to freeze
+ok 61 - a period still running refuses to freeze
+  ---
+  duration_ms: 0.5117
+  type: 'test'
+  ...
+# Subtest: a period with no coverage is not frozen at all
+ok 62 - a period with no coverage is not frozen at all
+  ---
+  duration_ms: 0.9237
+  type: 'test'
+  ...
+# Subtest: an already frozen period is not frozen twice
+ok 63 - an already frozen period is not frozen twice
+  ---
+  duration_ms: 0.3144
+  type: 'test'
+  ...
+# Subtest: a frozen report drops the live label for the closed-period one
+ok 64 - a frozen report drops the live label for the closed-period one
+  ---
+  duration_ms: 1.6115
+  type: 'test'
+  ...
+# Subtest: a frozen report reads back byte-identically
+ok 65 - a frozen report reads back byte-identically
+  ---
+  duration_ms: 3.1378
+  type: 'test'
+  ...
+# Subtest: editing a stored payload is detected
+ok 66 - editing a stored payload is detected
+  ---
+  duration_ms: 5.727
+  type: 'test'
+  ...
+# Subtest: an unreadable payload is refused rather than guessed at
+ok 67 - an unreadable payload is refused rather than guessed at
+  ---
+  duration_ms: 0.3832
+  type: 'test'
+  ...
+# Subtest: the hash depends on content, not on key order
+ok 68 - the hash depends on content, not on key order
+  ---
+  duration_ms: 0.5008
+  type: 'test'
+  ...
+# Subtest: a suppressed period still freezes, and records that it was suppressed
+ok 69 - a suppressed period still freezes, and records that it was suppressed
+  ---
+  duration_ms: 1.9651
+  type: 'test'
+  ...
+# Subtest: a period end that has not closed locally is not closed
+ok 70 - a period end that has not closed locally is not closed
+  ---
+  duration_ms: 0.8878
+  type: 'test'
+  ...
+# Subtest: a sponsored action attributes to the venue through the redemption chain
+ok 71 - a sponsored action attributes to the venue through the redemption chain
+  ---
+  duration_ms: 98.3703
+  type: 'test'
+  ...
+# Subtest: replaying an event id does not double count
+ok 72 - replaying an event id does not double count
+  ---
+  duration_ms: 5.4495
+  type: 'test'
+  ...
+# Subtest: an unknown subject is stored unattributed, not credited to a venue
+ok 73 - an unknown subject is stored unattributed, not credited to a venue
+  ---
+  duration_ms: 8.1396
+  type: 'test'
+  ...
+# Subtest: action before redemption is not sponsored use
+ok 74 - action before redemption is not sponsored use
+  ---
+  duration_ms: 13.8112
+  type: 'test'
+  ...
+# Subtest: a missing salt stores nothing, because a config fault is not low adoption
+ok 75 - a missing salt stores nothing, because a config fault is not low adoption
+  ---
+  duration_ms: 4.554
+  type: 'test'
+  ...
+# Subtest: an invalid event never reaches the database
+ok 76 - an invalid event never reaches the database
+  ---
+  duration_ms: 4.5068
+  type: 'test'
+  ...
+# Subtest: no raw identifier is written to the event row
+ok 77 - no raw identifier is written to the event row
+  ---
+  duration_ms: 5.5411
+  type: 'test'
+  ...
+# Subtest: the salt epoch is recorded so a rotation reads as a coverage break
+ok 78 - the salt epoch is recorded so a rotation reads as a coverage break
+  ---
+  duration_ms: 4.2901
+  type: 'test'
+  ...
+# Subtest: the epoch fingerprint does not expose the salt
+ok 79 - the epoch fingerprint does not expose the salt
+  ---
+  duration_ms: 0.8157
+  type: 'test'
+  ...
+# Subtest: a venue-local evening in summer files under the venue day
+ok 80 - a venue-local evening in summer files under the venue day
+  ---
+  duration_ms: 5.3801
+  type: 'test'
+  ...
+# Subtest: the default zone is the one the account contract names
+ok 81 - the default zone is the one the account contract names
+  ---
+  duration_ms: 1.6571
+  type: 'test'
+  ...
+# Subtest: a local date is the venue's day, not the UTC day
+ok 82 - a local date is the venue's day, not the UTC day
+  ---
+  duration_ms: 38.5094
+  type: 'test'
+  ...
+# Subtest: winter timestamps agree with UTC, because Dublin is UTC then
+ok 83 - winter timestamps agree with UTC, because Dublin is UTC then
+  ---
+  duration_ms: 0.3
+  type: 'test'
+  ...
+# Subtest: dates are returned as YYYY-MM-DD
+ok 84 - dates are returned as YYYY-MM-DD
+  ---
+  duration_ms: 0.4799
+  type: 'test'
+  ...
+# Subtest: a non-finite timestamp is refused rather than silently bucketed
+ok 85 - a non-finite timestamp is refused rather than silently bucketed
+  ---
+  duration_ms: 0.7433
+  type: 'test'
+  ...
+# Subtest: a window lists every local day inclusively, oldest first
+ok 86 - a window lists every local day inclusively, oldest first
+  ---
+  duration_ms: 1.6366
+  type: 'test'
+  ...
+# Subtest: the spring-forward day is not skipped
+ok 87 - the spring-forward day is not skipped
+  ---
+  duration_ms: 0.4504
+  type: 'test'
+  ...
+# Subtest: the autumn-back day appears exactly once
+ok 88 - the autumn-back day appears exactly once
+  ---
+  duration_ms: 0.2768
+  type: 'test'
+  ...
+# Subtest: an inverted window yields nothing
+ok 89 - an inverted window yields nothing
+  ---
+  duration_ms: 0.4129
+  type: 'test'
+  ...
+# Subtest: today is never closed, so a partial day cannot be reported as whole
+ok 90 - today is never closed, so a partial day cannot be reported as whole
+  ---
+  duration_ms: 0.812
+  type: 'test'
+  ...
+# Subtest: a future day is never closed
+ok 91 - a future day is never closed
+  ---
+  duration_ms: 0.2599
+  type: 'test'
+  ...
+# Subtest: yesterday closes only after the local grace hour
+ok 92 - yesterday closes only after the local grace hour
+  ---
+  duration_ms: 2.2284
+  type: 'test'
+  ...
+# Subtest: older days are closed regardless of the grace hour
+ok 93 - older days are closed regardless of the grace hour
+  ---
+  duration_ms: 0.54
+  type: 'test'
+  ...
+# Subtest: the windows are the ones the metric dictionary names
+ok 94 - the windows are the ones the metric dictionary names
+  ---
+  duration_ms: 10.7398
+  type: 'test'
+  ...
+# Subtest: a return inside the window counts
+ok 95 - a return inside the window counts
+  ---
+  duration_ms: 0.6107
+  type: 'test'
+  ...
+# Subtest: a return outside the window does not count
+ok 96 - a return outside the window does not count
+  ---
+  duration_ms: 0.3487
+  type: 'test'
+  ...
+# Subtest: continuous use still counts once, not per action
+ok 97 - continuous use still counts once, not per action
+  ---
+  duration_ms: 0.2104
+  type: 'test'
+  ...
+# Subtest: a cohort is not closed until its last day has passed
+ok 98 - a cohort is not closed until its last day has passed
+  ---
+  duration_ms: 0.2865
+  type: 'test'
+  ...
+# Subtest: an open cohort reports unavailable, never a rate
+ok 99 - an open cohort reports unavailable, never a rate
+  ---
+  duration_ms: 0.6211
+  type: 'test'
+  ...
+# Subtest: a closed cohort under five is withheld, not shown
+ok 100 - a closed cohort under five is withheld, not shown
+  ---
+  duration_ms: 0.3118
+  type: 'test'
+  ...
+# Subtest: five closed activations produce a rate with its denominator
+ok 101 - five closed activations produce a rate with its denominator
+  ---
+  duration_ms: 0.2864
+  type: 'test'
+  ...
+# Subtest: only closed activations enter the denominator
+ok 102 - only closed activations enter the denominator
+  ---
+  duration_ms: 0.562
+  type: 'test'
+  ...
+# Subtest: nobody returning is a real zero rate, not a withheld one
+ok 103 - nobody returning is a real zero rate, not a withheld one
+  ---
+  duration_ms: 0.8119
+  type: 'test'
+  ...
+# Subtest: an empty cohort is unavailable
+ok 104 - an empty cohort is unavailable
+  ---
+  duration_ms: 0.2199
+  type: 'test'
+  ...
+# Subtest: the horizons are independent
+ok 105 - the horizons are independent
+  ---
+  duration_ms: 0.2071
+  type: 'test'
+  ...
+# Subtest: one workspace acting ten times counts once as active
+ok 106 - one workspace acting ten times counts once as active
+  ---
+  duration_ms: 55.0014
+  type: 'test'
+  ...
+# Subtest: a replayed event id is dropped rather than summed
+ok 107 - a replayed event id is dropped rather than summed
+  ---
+  duration_ms: 0.9432
+  type: 'test'
+  ...
+# Subtest: a quiet day inside the window still gets a row
+ok 108 - a quiet day inside the window still gets a row
+  ---
+  duration_ms: 0.7532
+  type: 'test'
+  ...
+# Subtest: an uninstrumented product is null, never zero
+ok 109 - an uninstrumented product is null, never zero
+  ---
+  duration_ms: 0.7306
+  type: 'test'
+  ...
+# Subtest: an instrumented product with no activity is a measured zero
+ok 110 - an instrumented product with no activity is a measured zero
+  ---
+  duration_ms: 1.6895
+  type: 'test'
+  ...
+# Subtest: the coverage mask records what was instrumented against what was expected
+ok 111 - the coverage mask records what was instrumented against what was expected
+  ---
+  duration_ms: 0.5007
+  type: 'test'
+  ...
+# Subtest: events from another sponsor never join this venue
+ok 112 - events from another sponsor never join this venue
+  ---
+  duration_ms: 0.7381
+  type: 'test'
+  ...
+# Subtest: hashes from a different salt epoch are refused
+ok 113 - hashes from a different salt epoch are refused
+  ---
+  duration_ms: 0.424
+  type: 'test'
+  ...
+# Subtest: an event outside the window is rejected rather than folded in
+ok 114 - an event outside the window is rejected rather than folded in
+  ---
+  duration_ms: 0.8556
+  type: 'test'
+  ...
+# Subtest: first action counts only the first time a workspace appears
+ok 115 - first action counts only the first time a workspace appears
+  ---
+  duration_ms: 1.1273
+  type: 'test'
+  ...
+# Subtest: a workspace already known from an earlier window is not a first action
+ok 116 - a workspace already known from an earlier window is not a first action
+  ---
+  duration_ms: 0.6501
+  type: 'test'
+  ...
+# Subtest: lifecycle records the earliest and latest day a workspace acted
+ok 117 - lifecycle records the earliest and latest day a workspace acted
+  ---
+  duration_ms: 0.439
+  type: 'test'
+  ...
+# Subtest: lifecycle tracks the last day per product
+ok 118 - lifecycle tracks the last day per product
+  ---
+  duration_ms: 0.5379
+  type: 'test'
+  ...
+# Subtest: merging lifecycle only ever widens the span
+ok 119 - merging lifecycle only ever widens the span
+  ---
+  duration_ms: 0.4072
+  type: 'test'
+  ...
+# Subtest: merging a delta into nothing yields the delta
+ok 120 - merging a delta into nothing yields the delta
+  ---
+  duration_ms: 0.3064
+  type: 'test'
+  ...
+# Subtest: no raw content or identity can reach a daily row
+ok 121 - no raw content or identity can reach a daily row
+  ---
+  duration_ms: 0.5408
+  type: 'test'
+  ...
+# Subtest: the band is days 25 through 35 after the first action
+ok 122 - the band is days 25 through 35 after the first action
+  ---
+  duration_ms: 5.1347
+  type: 'test'
+  ...
+# Subtest: a band cannot be judged before its last day closes
+ok 123 - a band cannot be judged before its last day closes
+  ---
+  duration_ms: 47.0986
+  type: 'test'
+  ...
+# Subtest: an open band yields no verdict at all
+ok 124 - an open band yields no verdict at all
+  ---
+  duration_ms: 0.6359
+  type: 'test'
+  ...
+# Subtest: a return inside the band seals as returned
+ok 125 - a return inside the band seals as returned
+  ---
+  duration_ms: 1.3328
+  type: 'test'
+  ...
+# Subtest: activity outside the band does not count as a return
+ok 126 - activity outside the band does not count as a return
+  ---
+  duration_ms: 2.4418
+  type: 'test'
+  ...
+# Subtest: both band edges are inclusive
+ok 127 - both band edges are inclusive
+  ---
+  duration_ms: 11.8003
+  type: 'test'
+  ...
+# Subtest: evidence is intact while the band's earliest day is inside retention
+ok 128 - evidence is intact while the band's earliest day is inside retention
+  ---
+  duration_ms: 0.6914
+  type: 'test'
+  ...
+# Subtest: a band sealed after its evidence was swept is indeterminate, never a zero
+ok 129 - a band sealed after its evidence was swept is indeterminate, never a zero
+  ---
+  duration_ms: 0.9602
+  type: 'test'
+  ...
+# Subtest: indeterminate is chosen even when the stored dates would say not returned
+ok 130 - indeterminate is chosen even when the stored dates would say not returned
+  ---
+  duration_ms: 2.636
+  type: 'test'
+  ...
+# Subtest: a healthy cadence reports ok
+ok 131 - a healthy cadence reports ok
+  ---
+  duration_ms: 1.9891
+  type: 'test'
+  ...
+# Subtest: a cadence past the safe gap is not ok
+ok 132 - a cadence past the safe gap is not ok
+  ---
+  duration_ms: 0.7776
+  type: 'test'
+  ...
+# Subtest: candidates whose evidence is already gone are counted as at risk
+ok 133 - candidates whose evidence is already gone are counted as at risk
+  ---
+  duration_ms: 0.5205
+  type: 'test'
+  ...
+# Subtest: never having sealed is reported rather than treated as fine
+ok 134 - never having sealed is reported rather than treated as fine
+  ---
+  duration_ms: 0.3656
+  type: 'test'
+  ...
+# Subtest: the safe gap leaves real slack against retention
+ok 135 - the safe gap leaves real slack against retention
+  ---
+  duration_ms: 0.1769
+  type: 'test'
+  ...
+# Subtest: a behavioural count is withheld below three eligible workspaces
+ok 136 - a behavioural count is withheld below three eligible workspaces
+  ---
+  duration_ms: 3.2272
+  type: 'test'
+  ...
+# Subtest: a rate is withheld below five eligible workspaces
+ok 137 - a rate is withheld below five eligible workspaces
+  ---
+  duration_ms: 0.4026
+  type: 'test'
+  ...
+# Subtest: an absent value is unavailable at every cohort size, never zero
+ok 138 - an absent value is unavailable at every cohort size, never zero
+  ---
+  duration_ms: 0.5677
+  type: 'test'
+  ...
+# Subtest: a real zero is still reportable once the cohort is large enough
+ok 139 - a real zero is still reportable once the cohort is large enough
+  ---
+  duration_ms: 0.2216
+  type: 'test'
+  ...
+# Subtest: coverage is unavailable when no day produced a rollup
+ok 140 - coverage is unavailable when no day produced a rollup
+  ---
+  duration_ms: 0.3283
+  type: 'test'
+  ...
+# Subtest: coverage is suppressed for a small cohort even with full days
+ok 141 - coverage is suppressed for a small cohort even with full days
+  ---
+  duration_ms: 0.2209
+  type: 'test'
+  ...
+# Subtest: a missing day or a missing product makes coverage partial
+ok 142 - a missing day or a missing product makes coverage partial
+  ---
+  duration_ms: 0.2028
+  type: 'test'
+  ...
+# Subtest: coverage is complete only with every day and every product
+ok 143 - coverage is complete only with every day and every product
+  ---
+  duration_ms: 0.2062
+  type: 'test'
+  ...
+# Subtest: the guard catches an absent metric dressed up as a value
+ok 144 - the guard catches an absent metric dressed up as a value
+  ---
+  duration_ms: 1.1874
+  type: 'test'
+  ...
+# Subtest: the thresholds are the ones the privacy contract names
+ok 145 - the thresholds are the ones the privacy contract names
+  ---
+  duration_ms: 0.7849
+  type: 'test'
+  ...
+# Subtest: access delivery state
+    # Subtest: treats a minted code with no delivery data as available
+    ok 1 - treats a minted code with no delivery data as available
+      ---
+      duration_ms: 4.7708
+      type: 'test'
+      ...
+    # Subtest: treats a delivered code as issued and shows the delivery date
+    ok 2 - treats a delivered code as issued and shows the delivery date
+      ---
+      duration_ms: 0.6898
+      type: 'test'
+      ...
+    # Subtest: treats a passed expiry as expired
+    ok 3 - treats a passed expiry as expired
+      ---
+      duration_ms: 0.4236
+      type: 'test'
+      ...
+    # Subtest: treats the expiry boundary as inclusive
+    ok 4 - treats the expiry boundary as inclusive
+      ---
+      duration_ms: 0.4908
+      type: 'test'
+      ...
+    # Subtest: keeps a redeemed code redeemed even after its expiry passes
+    ok 5 - keeps a redeemed code redeemed even after its expiry passes
+      ---
+      duration_ms: 0.3917
+      type: 'test'
+      ...
+    # Subtest: keeps a revoked code revoked above every other signal
+    ok 6 - keeps a revoked code revoked above every other signal
+      ---
+      duration_ms: 0.3778
+      type: 'test'
+      ...
+    # Subtest: says not delivered yet once the venue records any delivery
+    ok 7 - says not delivered yet once the venue records any delivery
+      ---
+      duration_ms: 0.6773
+      type: 'test'
+      ...
+    # Subtest: produces an identical snapshot when both columns are absent
+    ok 8 - produces an identical snapshot when both columns are absent
+      ---
+      duration_ms: 3.4042
+      type: 'test'
+      ...
+    # Subtest: preserves the legacy mint-date fallback for redeemed and revoked rows
+    ok 9 - preserves the legacy mint-date fallback for redeemed and revoked rows
+      ---
+      duration_ms: 1.2579
+      type: 'test'
+      ...
+    # Subtest: never leaks a plaintext code through the new states
+    ok 10 - never leaks a plaintext code through the new states
+      ---
+      duration_ms: 2.3884
+      type: 'test'
+      ...
+    # Subtest: leaves allotment metrics untouched, because they count headroom not rows
+    ok 11 - leaves allotment metrics untouched, because they count headroom not rows
+      ---
+      duration_ms: 0.493
+      type: 'test'
+      ...
+    1..11
+ok 146 - access delivery state
+  ---
+  duration_ms: 18.5408
+  type: 'suite'
+  ...
+# Subtest: maskLicenseCode
+    # Subtest: never echoes the plaintext code
+    ok 1 - never echoes the plaintext code
+      ---
+      duration_ms: 1.7422
+      type: 'test'
+      ...
+    1..1
+ok 147 - maskLicenseCode
+  ---
+  duration_ms: 4.3677
+  type: 'suite'
+  ...
+# Subtest: projectVenueAccessSnapshot
+    # Subtest: projects live access with unavailable behavioural metrics
+    ok 1 - projects live access with unavailable behavioural metrics
+      ---
+      duration_ms: 11.1179
+      type: 'test'
+      ...
+    # Subtest: flags allotment drift without inventing zeros for usage
+    ok 2 - flags allotment drift without inventing zeros for usage
+      ---
+      duration_ms: 0.6643
+      type: 'test'
+      ...
+    # Subtest: R-016: an unlimited venue is never shown a seat count
+    ok 3 - R-016: an unlimited venue is never shown a seat count
+      ---
+      duration_ms: 0.892
+      type: 'test'
+      ...
+    # Subtest: R-016: the headroom warning is suppressed, not merely zero
+    ok 4 - R-016: the headroom warning is suppressed, not merely zero
+      ---
+      duration_ms: 0.6313
+      type: 'test'
+      ...
+    # Subtest: R-016: the next action is to issue, never to request more
+    ok 5 - R-016: the next action is to issue, never to request more
+      ---
+      duration_ms: 0.661
+      type: 'test'
+      ...
+    # Subtest: nothing in an unlimited snapshot reads as a seat number
+    ok 6 - nothing in an unlimited snapshot reads as a seat number
+      ---
+      duration_ms: 0.6195
+      type: 'test'
+      ...
+    # Subtest: a limited venue is unchanged by the unlimited branch
+    ok 7 - a limited venue is unchanged by the unlimited branch
+      ---
+      duration_ms: 0.79
+      type: 'test'
+      ...
+    # Subtest: a sponsor with no mode recorded keeps the capped behaviour
+    ok 8 - a sponsor with no mode recorded keeps the capped behaviour
+      ---
+      duration_ms: 0.4994
+      type: 'test'
+      ...
+    1..8
+ok 148 - projectVenueAccessSnapshot
+  ---
+  duration_ms: 17.1702
+  type: 'suite'
+  ...
+# Subtest: usage overlays access without disturbing the ledger figures
+ok 149 - usage overlays access without disturbing the ledger figures
+  ---
+  duration_ms: 4.4214
+  type: 'test'
+  ...
+# Subtest: complete coverage reports real behaviour
+ok 150 - complete coverage reports real behaviour
+  ---
+  duration_ms: 0.837
+  type: 'test'
+  ...
+# Subtest: a hole in the rollup leaves access exact and usage a lower bound
+ok 151 - a hole in the rollup leaves access exact and usage a lower bound
+  ---
+  duration_ms: 0.6089
+  type: 'test'
+  ...
+# Subtest: no rollup at all keeps every behavioural metric unavailable, never zero
+ok 152 - no rollup at all keeps every behavioural metric unavailable, never zero
+  ---
+  duration_ms: 0.4041
+  type: 'test'
+  ...
+# Subtest: a small venue is suppressed rather than described
+ok 153 - a small venue is suppressed rather than described
+  ---
+  duration_ms: 0.5628
+  type: 'test'
+  ...
+# Subtest: suppression discards inherited observed metadata; privacy guard rejects its reintroduction
+ok 154 - suppression discards inherited observed metadata; privacy guard rejects its reintroduction
+  ---
+  duration_ms: 3.111
+  type: 'test'
+  ...
+# Subtest: an uninstrumented product stays unavailable while the others report
+ok 155 - an uninstrumented product stays unavailable while the others report
+  ---
+  duration_ms: 0.6561
+  type: 'test'
+  ...
+# Subtest: the composed snapshot leaks no identity
+ok 156 - the composed snapshot leaks no identity
+  ---
+  duration_ms: 0.6161
+  type: 'test'
+  ...
+# Subtest: no absent metric is ever rendered as an exact zero
+ok 157 - no absent metric is ever rendered as an exact zero
+  ---
+  duration_ms: 1.6679
+  type: 'test'
+  ...
+# Subtest: Account roles
+    # Subtest: gives owners member and preference control
+    ok 1 - gives owners member and preference control
+      ---
+      duration_ms: 1.6931
+      type: 'test'
+      ...
+    # Subtest: keeps managers from member changes
+    ok 2 - keeps managers from member changes
+      ---
+      duration_ms: 0.4664
+      type: 'test'
+      ...
+    # Subtest: keeps viewers read-only for reports and usage
+    ok 3 - keeps viewers read-only for reports and usage
+      ---
+      duration_ms: 0.265
+      type: 'test'
+      ...
+    1..3
+ok 158 - Account roles
+  ---
+  duration_ms: 4.4919
+  type: 'suite'
+  ...
+# Subtest: Generated account samples
+    # Subtest: complete PDF/CSV artifacts exist with sample labelling
+    ok 1 - complete PDF/CSV artifacts exist with sample labelling
+      ---
+      duration_ms: 5.3425
+      type: 'test'
+      ...
+    # Subtest: partial PDF/CSV artifacts exist with sample labelling
+    ok 2 - partial PDF/CSV artifacts exist with sample labelling
+      ---
+      duration_ms: 3.6051
+      type: 'test'
+      ...
+    # Subtest: suppressed PDF/CSV artifacts exist with sample labelling
+    ok 3 - suppressed PDF/CSV artifacts exist with sample labelling
+      ---
+      duration_ms: 1.812
+      type: 'test'
+      ...
+    # Subtest: unavailable PDF/CSV artifacts exist with sample labelling
+    ok 4 - unavailable PDF/CSV artifacts exist with sample labelling
+      ---
+      duration_ms: 1.7936
+      type: 'test'
+      ...
+    1..4
+ok 159 - Generated account samples
+  ---
+  duration_ms: 14.6797
+  type: 'suite'
+  ...
+# Subtest: the real Atlas Mermaid fence round-trips its Unicode labels exactly
+ok 160 - the real Atlas Mermaid fence round-trips its Unicode labels exactly
+  ---
+  duration_ms: 15.8708
+  type: 'test'
+  ...
+# Subtest: Unicode transport preserves accents, non-Latin text and supplementary code points
+ok 161 - Unicode transport preserves accents, non-Latin text and supplementary code points
+  ---
+  duration_ms: 0.5282
+  type: 'test'
+  ...
+# Subtest: malformed Base64 or UTF-8 is rejected rather than producing corrupted labels
+ok 162 - malformed Base64 or UTF-8 is rejected rather than producing corrupted labels
+  ---
+  duration_ms: 0.8705
+  type: 'test'
+  ...
+# Subtest: nested lists and wrapped prose stay inside their owning list item
+ok 163 - nested lists and wrapped prose stay inside their owning list item
+  ---
+  duration_ms: 0.3941
+  type: 'test'
+  ...
+# Subtest: list type changes and following prose close the previous list correctly
+ok 164 - list type changes and following prose close the previous list correctly
+  ---
+  duration_ms: 0.4481
+  type: 'test'
+  ...
+# Subtest: nested list text stays escaped and fences are not interpreted as list items
+ok 165 - nested list text stays escaped and fences are not interpreted as list items
+  ---
+  duration_ms: 0.597
+  type: 'test'
+  ...
+# Subtest: exports ratified amounts independently of offer availability
+ok 166 - exports ratified amounts independently of offer availability
+  ---
+  duration_ms: 50.2412
+  type: 'test'
+  ...
+# Subtest: encodes the founder-ratified commercial policy pack
+ok 167 - encodes the founder-ratified commercial policy pack
+  ---
+  duration_ms: 1.4378
+  type: 'test'
+  ...
+# Subtest: presents public consumer terms without converting cadence into permanence
+ok 168 - presents public consumer terms without converting cadence into permanence
+  ---
+  duration_ms: 1.5676
+  type: 'test'
+  ...
+# Subtest: a ratified Event amount and term do not become an available sale or archive claim
+ok 169 - a ratified Event amount and term do not become an available sale or archive claim
+  ---
+  duration_ms: 1.2439
+  type: 'test'
+  ...
+# Subtest: encodes the ratified Founding 25 position
+ok 170 - encodes the ratified Founding 25 position
+  ---
+  duration_ms: 0.4258
+  type: 'test'
+  ...
+# Subtest: refuses permanence wording anywhere in the contract
+ok 171 - refuses permanence wording anywhere in the contract
+  ---
+  duration_ms: 0.7737
+  type: 'test'
+  ...
+# Subtest: states entitlement as unlimited and never as a count
+ok 172 - states entitlement as unlimited and never as a count
+  ---
+  duration_ms: 0.6005
+  type: 'test'
+  ...
+# Subtest: states venue pricing as VAT-inclusive
+ok 173 - states venue pricing as VAT-inclusive
+  ---
+  duration_ms: 0.2103
+  type: 'test'
+  ...
+# Subtest: carries the couple access grace rule, not just the floor
+ok 174 - carries the couple access grace rule, not just the floor
+  ---
+  duration_ms: 0.9807
+  type: 'test'
+  ...
+# Subtest: resolveTier: no rows resolves to free, not read-only
+ok 175 - resolveTier: no rows resolves to free, not read-only
+  ---
+  duration_ms: 2.3493
+  type: 'test'
+  ...
+# Subtest: resolveTier: live higher tier beats live lower tier
+ok 176 - resolveTier: live higher tier beats live lower tier
+  ---
+  duration_ms: 0.5652
+  type: 'test'
+  ...
+# Subtest: resolveTier: expired rows are ignored for live resolution
+ok 177 - resolveTier: expired rows are ignored for live resolution
+  ---
+  duration_ms: 0.2888
+  type: 'test'
+  ...
+# Subtest: resolveTier: lapsed non-refunded Event keeps read-only access
+ok 178 - resolveTier: lapsed non-refunded Event keeps read-only access
+  ---
+  duration_ms: 0.2528
+  type: 'test'
+  ...
+# Subtest: resolveTier: refunded lapsed Event loses read access
+ok 179 - resolveTier: refunded lapsed Event loses read access
+  ---
+  duration_ms: 0.2395
+  type: 'test'
+  ...
+# Subtest: resolveTier: a live tier is never downgraded by a lapsed Event
+ok 180 - resolveTier: a live tier is never downgraded by a lapsed Event
+  ---
+  duration_ms: 0.2284
+  type: 'test'
+  ...
+# Subtest: pickBest: same tier breaks tie to the longest-lasting row
+ok 181 - pickBest: same tier breaks tie to the longest-lasting row
+  ---
+  duration_ms: 0.3196
+  type: 'test'
+  ...
+# Subtest: pickBest: null expiry (perpetual) outlasts any finite expiry
+ok 182 - pickBest: null expiry (perpetual) outlasts any finite expiry
+  ---
+  duration_ms: 0.2033
+  type: 'test'
+  ...
+# Subtest: pickBest: equal expiry breaks tie by id ascending (deterministic)
+ok 183 - pickBest: equal expiry breaks tie by id ascending (deterministic)
+  ---
+  duration_ms: 0.5435
+  type: 'test'
+  ...
+# Subtest: chainHash is order-independent and null-stable
+ok 184 - chainHash is order-independent and null-stable
+  ---
+  duration_ms: 1.0816
+  type: 'test'
+  ...
+# Subtest: verifyChainRows: an intact chain verifies
+ok 185 - verifyChainRows: an intact chain verifies
+  ---
+  duration_ms: 2.6615
+  type: 'test'
+  ...
+# Subtest: verifyChainRows: a tampered payload is caught
+ok 186 - verifyChainRows: a tampered payload is caught
+  ---
+  duration_ms: 0.5312
+  type: 'test'
+  ...
+# Subtest: verifyChainRows: a broken prev-link is caught
+ok 187 - verifyChainRows: a broken prev-link is caught
+  ---
+  duration_ms: 0.5843
+  type: 'test'
+  ...
+# Subtest: checkBulk: within limits is allowed
+ok 188 - checkBulk: within limits is allowed
+  ---
+  duration_ms: 0.2615
+  type: 'test'
+  ...
+# Subtest: checkBulk: over the hard cap is refused
+ok 189 - checkBulk: over the hard cap is refused
+  ---
+  duration_ms: 0.1705
+  type: 'test'
+  ...
+# Subtest: checkBulk: over the two-person threshold needs a second approver
+ok 190 - checkBulk: over the two-person threshold needs a second approver
+  ---
+  duration_ms: 0.213
+  type: 'test'
+  ...
+# Subtest: checkBulk: negative or non-integer counts are refused
+ok 191 - checkBulk: negative or non-integer counts are refused
+  ---
+  duration_ms: 0.1861
+  type: 'test'
+  ...
+# Subtest: parseRoster: parses id:Name pairs and id-only entries
+ok 192 - parseRoster: parses id:Name pairs and id-only entries
+  ---
+  duration_ms: 0.4097
+  type: 'test'
+  ...
+# Subtest: resolveOperator: fail-closed without id or name
+ok 193 - resolveOperator: fail-closed without id or name
+  ---
+  duration_ms: 0.3087
+  type: 'test'
+  ...
+# Subtest: resolveOperator: no roster accepts any named operator
+ok 194 - resolveOperator: no roster accepts any named operator
+  ---
+  duration_ms: 0.2423
+  type: 'test'
+  ...
+# Subtest: resolveOperator: with a roster, only listed operators pass
+ok 195 - resolveOperator: with a roster, only listed operators pass
+  ---
+  duration_ms: 0.2164
+  type: 'test'
+  ...
+# Subtest: resolveOperator: roster resolves the canonical name
+ok 196 - resolveOperator: roster resolves the canonical name
+  ---
+  duration_ms: 0.1801
+  type: 'test'
+  ...
+# Subtest: svix: a signature the scheme produces is accepted, others rejected
+ok 197 - svix: a signature the scheme produces is accepted, others rejected
+  ---
+  duration_ms: 1.1834
+  type: 'test'
+  ...
+# Subtest: svix timestamps reject replay and implausible future delivery
+ok 198 - svix timestamps reject replay and implausible future delivery
+  ---
+  duration_ms: 0.3563
+  type: 'test'
+  ...
+# Subtest: license-code audit projection never contains the bearer code
+ok 199 - license-code audit projection never contains the bearer code
+  ---
+  duration_ms: 7.414
+  type: 'test'
+  ...
+# Subtest: sponsor_requests contract
+    # Subtest: locks request kinds and states to the roles doc
+    ok 1 - locks request kinds and states to the roles doc
+      ---
+      duration_ms: 2.4969
+      type: 'test'
+      ...
+    1..1
+ok 200 - sponsor_requests contract
+  ---
+  duration_ms: 3.9899
+  type: 'suite'
+  ...
+# Subtest: default projection contains exactly the safe sponsor metadata
+ok 201 - default projection contains exactly the safe sponsor metadata
+  ---
+  duration_ms: 8.2281
+  type: 'test'
+  ...
+# Subtest: default projection excludes workspace id, couple or class label, dates, and ceremony
+ok 202 - default projection excludes workspace id, couple or class label, dates, and ceremony
+  ---
+  duration_ms: 0.6601
+  type: 'test'
+  ...
+# Subtest: extra raw content on an input object is never spread into the projection
+ok 203 - extra raw content on an input object is never spread into the projection
+  ---
+  duration_ms: 0.4087
+  type: 'test'
+  ...
+# Subtest: active owner consent reveals only the specifically requested field
+ok 204 - active owner consent reveals only the specifically requested field
+  ---
+  duration_ms: 1.4876
+  type: 'test'
+  ...
+# Subtest: every consentable field requires its own active owner grant
+ok 205 - every consentable field requires its own active owner grant
+  ---
+  duration_ms: 1.4356
+  type: 'test'
+  ...
+# Subtest: requesting a field without its consent grant leaves it absent
+ok 206 - requesting a field without its consent grant leaves it absent
+  ---
+  duration_ms: 0.5086
+  type: 'test'
+  ...
+# Subtest: grant revocation removes the field immediately
+ok 207 - grant revocation removes the field immediately
+  ---
+  duration_ms: 0.6845
+  type: 'test'
+  ...
+# Subtest: a pending, ended, or revoked activation cannot reveal consented fields
+ok 208 - a pending, ended, or revoked activation cannot reveal consented fields
+  ---
+  duration_ms: 0.4876
+  type: 'test'
+  ...
+# Subtest: mass-assigned forbidden content fields are all rejected
+ok 209 - mass-assigned forbidden content fields are all rejected
+  ---
+  duration_ms: 7.3079
+  type: 'test'
+  ...
+# Subtest: unknown fields fail closed
+ok 210 - unknown fields fail closed
+  ---
+  duration_ms: 1.218
+  type: 'test'
+  ...
+# Subtest: a forbidden field persisted as a grant is rejected even when not requested
+ok 211 - a forbidden field persisted as a grant is rejected even when not requested
+  ---
+  duration_ms: 0.7177
+  type: 'test'
+  ...
+# Subtest: invalid or stale receipts fail closed
+ok 212 - invalid or stale receipts fail closed
+  ---
+  duration_ms: 0.4937
+  type: 'test'
+  ...
+# Subtest: only the activation owner can grant or revoke consent
+ok 213 - only the activation owner can grant or revoke consent
+  ---
+  duration_ms: 0.3921
+  type: 'test'
+  ...
+# Subtest: an incomplete revocation receipt fails closed
+ok 214 - an incomplete revocation receipt fails closed
+  ---
+  duration_ms: 0.4865
+  type: 'test'
+  ...
+# Subtest: duplicate active grants for one field fail closed
+ok 215 - duplicate active grants for one field fail closed
+  ---
+  duration_ms: 0.2965
+  type: 'test'
+  ...
+# Subtest: sponsor capabilities allow metadata but deny membership and every content class
+ok 216 - sponsor capabilities allow metadata but deny membership and every content class
+  ---
+  duration_ms: 0.6575
+  type: 'test'
+  ...
+# Subtest: a failed privacy operation is not marked complete and can retry
+ok 217 - a failed privacy operation is not marked complete and can retry
+  ---
+  duration_ms: 4.0149
+  type: 'test'
+  ...
+# Subtest: a completion-write failure returns retryable state
+ok 218 - a completion-write failure returns retryable state
+  ---
+  duration_ms: 0.6849
+  type: 'test'
+  ...
+# Subtest: HQ nav active matching
+    # Subtest: does not let /hq steal nested account-review
+    ok 1 - does not let /hq steal nested account-review
+      ---
+      duration_ms: 2.1394
+      type: 'test'
+      ...
+    # Subtest: still resolves exact Today
+    ok 2 - still resolves exact Today
+      ---
+      duration_ms: 0.5911
+      type: 'test'
+      ...
+    # Subtest: resolves owned legacy venue-portal redirect under Account review
+    ok 3 - resolves owned legacy venue-portal redirect under Account review
+      ---
+      duration_ms: 0.2868
+      type: 'test'
+      ...
+    1..3
+ok 219 - HQ nav active matching
+  ---
+  duration_ms: 6.2374
+  type: 'suite'
+  ...
+# Subtest: finalizeInbox: empty input → empty result with zero tier counts
+ok 220 - finalizeInbox: empty input → empty result with zero tier counts
+  ---
+  duration_ms: 3.1311
+  type: 'test'
+  ...
+# Subtest: finalizeInbox: sorts high → mid → low
+ok 221 - finalizeInbox: sorts high → mid → low
+  ---
+  duration_ms: 0.5539
+  type: 'test'
+  ...
+# Subtest: finalizeInbox: within tier, oldest date first
+ok 222 - finalizeInbox: within tier, oldest date first
+  ---
+  duration_ms: 39.7526
+  type: 'test'
+  ...
+# Subtest: finalizeInbox: undated items sort after dated ones within tier
+ok 223 - finalizeInbox: undated items sort after dated ones within tier
+  ---
+  duration_ms: 0.5326
+  type: 'test'
+  ...
+# Subtest: finalizeInbox: ties on tier+date break by title alphabetically
+ok 224 - finalizeInbox: ties on tier+date break by title alphabetically
+  ---
+  duration_ms: 0.6192
+  type: 'test'
+  ...
+# Subtest: finalizeInbox: tier counts tally accurately
+ok 225 - finalizeInbox: tier counts tally accurately
+  ---
+  duration_ms: 2.7118
+  type: 'test'
+  ...
+# Subtest: finalizeInbox: doesn't mutate the input array
+ok 226 - finalizeInbox: doesn't mutate the input array
+  ---
+  duration_ms: 1.1045
+  type: 'test'
+  ...
+# Subtest: parseFrontmatter: inline arrays without commas in values
+ok 227 - parseFrontmatter: inline arrays without commas in values
+  ---
+  duration_ms: 8.6938
+  type: 'test'
+  ...
+# Subtest: parseFrontmatter: JSON arrays survive comma-in-string values
+ok 228 - parseFrontmatter: JSON arrays survive comma-in-string values
+  ---
+  duration_ms: 0.4942
+  type: 'test'
+  ...
+# Subtest: parseFrontmatter: quoted scalar strips quotes
+ok 229 - parseFrontmatter: quoted scalar strips quotes
+  ---
+  duration_ms: 0.2625
+  type: 'test'
+  ...
+# Subtest: parseFrontmatter: no frontmatter block returns body as-is
+ok 230 - parseFrontmatter: no frontmatter block returns body as-is
+  ---
+  duration_ms: 0.2414
+  type: 'test'
+  ...
+# Subtest: parseFrontmatter: empty array literal
+ok 231 - parseFrontmatter: empty array literal
+  ---
+  duration_ms: 0.3423
+  type: 'test'
+  ...
+# Subtest: splitH2Sections: walks H2 headings into named map
+ok 232 - splitH2Sections: walks H2 headings into named map
+  ---
+  duration_ms: 0.5783
+  type: 'test'
+  ...
+# Subtest: splitH2Sections: H3 inside a section stays with the parent
+ok 233 - splitH2Sections: H3 inside a section stays with the parent
+  ---
+  duration_ms: 0.5719
+  type: 'test'
+  ...
+# Subtest: toEntry: missing frontmatter fields fall back to defaults
+ok 234 - toEntry: missing frontmatter fields fall back to defaults
+  ---
+  duration_ms: 0.5944
+  type: 'test'
+  ...
+# Subtest: toEntry: title defaults to fileSlug when frontmatter missing
+ok 235 - toEntry: title defaults to fileSlug when frontmatter missing
+  ---
+  duration_ms: 0.9497
+  type: 'test'
+  ...
+# Subtest: sortByDateDesc: most recent first; ties break by title
+ok 236 - sortByDateDesc: most recent first; ties break by title
+  ---
+  duration_ms: 23.2408
+  type: 'test'
+  ...
+# Subtest: countByStatus: tallies frontmatter status field; missing → '—'
+ok 237 - countByStatus: tallies frontmatter status field; missing → '—'
+  ---
+  duration_ms: 0.5204
+  type: 'test'
+  ...
+# Subtest: the founder ledger has unique ids and typed open-item effort
+ok 238 - the founder ledger has unique ids and typed open-item effort
+  ---
+  duration_ms: 42.5571
+  type: 'test'
+  ...
+# Subtest: redemption is distribution; entitlement and code counts never become useful activation
+ok 239 - redemption is distribution; entitlement and code counts never become useful activation
+  ---
+  duration_ms: 27.4323
+  type: 'test'
+  ...
+# Subtest: missing ledgers and CRM stay unread rather than falling back to examples or zero use
+ok 240 - missing ledgers and CRM stay unread rather than falling back to examples or zero use
+  ---
+  duration_ms: 0.5278
+  type: 'test'
+  ...
+# Subtest: January target keeps the clock in internal testing and never automatically passes a milestone
+ok 241 - January target keeps the clock in internal testing and never automatically passes a milestone
+  ---
+  duration_ms: 1.2932
+  type: 'test'
+  ...
+# Subtest: venue proof excludes historical, future, invalid, unsent and other-segment CRM records
+ok 242 - venue proof excludes historical, future, invalid, unsent and other-segment CRM records
+  ---
+  duration_ms: 0.4764
+  type: 'test'
+  ...
+# Subtest: launch readiness uses January and never equates cash or a passed target with release approval
+ok 243 - launch readiness uses January and never equates cash or a passed target with release approval
+  ---
+  duration_ms: 30.4925
+  type: 'test'
+  ...
+# Subtest: every /hq route directory is registered (and vice versa)
+ok 244 - every /hq route directory is registered (and vice versa)
+  ---
+  duration_ms: 13.9998
+  type: 'test'
+  ...
+# Subtest: room slugs are kebab-case and routes derive from slugs
+ok 245 - room slugs are kebab-case and routes derive from slugs
+  ---
+  duration_ms: 0.8132
+  type: 'test'
+  ...
+# Subtest: registry integrity: unique slugs, valid groups, resolvable parents
+ok 246 - registry integrity: unique slugs, valid groups, resolvable parents
+  ---
+  duration_ms: 1.4597
+  type: 'test'
+  ...
+# Subtest: content/hq status values stay inside the declared sets
+ok 247 - content/hq status values stay inside the declared sets
+  ---
+  duration_ms: 88.2147
+  type: 'test'
+  ...
+# Subtest: the /hq password gate stays in place and narrow
+ok 248 - the /hq password gate stays in place and narrow
+  ---
+  duration_ms: 1.1572
+  type: 'test'
+  ...
+# Subtest: the retired public review hub redirects into private HQ
+ok 249 - the retired public review hub redirects into private HQ
+  ---
+  duration_ms: 0.8282
+  type: 'test'
+  ...
+# Subtest: product URL contract
+    # Subtest: keeps marketing links on the umbrella and app links on the consolidated app
+    ok 1 - keeps marketing links on the umbrella and app links on the consolidated app
+      ---
+      duration_ms: 2.014
+      type: 'test'
+      ...
+    # Subtest: keeps public and service origins separate from marketing and app destinations
+    ok 2 - keeps public and service origins separate from marketing and app destinations
+      ---
+      duration_ms: 0.4314
+      type: 'test'
+      ...
+    # Subtest: keeps the exact public wedding path ahead of wildcard proxying
+    ok 3 - keeps the exact public wedding path ahead of wildcard proxying
+      ---
+      duration_ms: 0.8687
+      type: 'test'
+      ...
+    # Subtest: keeps every homepage product link same-tab and bound to marketing destinations
+    ok 4 - keeps every homepage product link same-tab and bound to marketing destinations
+      ---
+      duration_ms: 1.2499
+      type: 'test'
+      ...
+    1..4
+ok 250 - product URL contract
+  ---
+  duration_ms: 6.5734
+  type: 'suite'
+  ...
+# Subtest: suite contract v2
+    # Subtest: validates calendar dates and IANA timezones
+    ok 1 - validates calendar dates and IANA timezones
+      ---
+      duration_ms: 51.9954
+      type: 'test'
+      ...
+    # Subtest: validates a planning period without changing v1
+    ok 2 - validates a planning period without changing v1
+      ---
+      duration_ms: 0.8431
+      type: 'test'
+      ...
+    # Subtest: validates a workspace with immutable suite identity
+    ok 3 - validates a workspace with immutable suite identity
+      ---
+      duration_ms: 0.3664
+      type: 'test'
+      ...
+    # Subtest: carries planning period and workspace through v2 context
+    ok 4 - carries planning period and workspace through v2 context
+      ---
+      duration_ms: 0.39
+      type: 'test'
+      ...
+    # Subtest: centralises context language without changing permissions
+    ok 5 - centralises context language without changing permissions
+      ---
+      duration_ms: 1.3256
+      type: 'test'
+      ...
+    1..5
+ok 251 - suite contract v2
+  ---
+  duration_ms: 57.2519
+  type: 'suite'
+  ...
+# Subtest: suite contracts
+    # Subtest: keeps the umbrella and four unified-app products in one registry
+    ok 1 - keeps the umbrella and four unified-app products in one registry
+      ---
+      duration_ms: 2.6229
+      type: 'test'
+      ...
+    # Subtest: creates and validates a versioned object reference
+    ok 2 - creates and validates a versioned object reference
+      ---
+      duration_ms: 0.6684
+      type: 'test'
+      ...
+    # Subtest: accepts context with a return path and rejects malformed context
+    ok 3 - accepts context with a return path and rejects malformed context
+      ---
+      duration_ms: 0.4074
+      type: 'test'
+      ...
+    1..3
+ok 252 - suite contracts
+  ---
+  duration_ms: 5.6743
+  type: 'suite'
+  ...
+# Subtest: member resolves only explicit member capabilities
+ok 253 - member resolves only explicit member capabilities
+  ---
+  duration_ms: 2.3209
+  type: 'test'
+  ...
+# Subtest: guest cannot manage or write workspace
+ok 254 - guest cannot manage or write workspace
+  ---
+  duration_ms: 0.3914
+  type: 'test'
+  ...
+# Subtest: removed or suspended identity fails closed
+ok 255 - removed or suspended identity fails closed
+  ---
+  duration_ms: 0.2397
+  type: 'test'
+  ...
+# Subtest: expired entitlement fails closed
+ok 256 - expired entitlement fails closed
+  ---
+  duration_ms: 0.2257
+  type: 'test'
+  ...
+# Subtest: all eight suite journey contracts pass
+ok 257 - all eight suite journey contracts pass
+  ---
+  duration_ms: 2.4828
+  type: 'test'
+  ...
+# Subtest: delete plans cover every product and derived store
+ok 258 - delete plans cover every product and derived store
+  ---
+  duration_ms: 2.2074
+  type: 'test'
+  ...
+# Subtest: suspension can be account-scoped but never accepts email as identity
+ok 259 - suspension can be account-scoped but never accepts email as identity
+  ---
+  duration_ms: 0.5843
+  type: 'test'
+  ...
+# Subtest: workspace-scoped actions require an explicit workspace
+ok 260 - workspace-scoped actions require an explicit workspace
+  ---
+  duration_ms: 0.3165
+  type: 'test'
+  ...
+# Subtest: execution is idempotent for duplicate operation keys
+ok 261 - execution is idempotent for duplicate operation keys
+  ---
+  duration_ms: 1.1767
+  type: 'test'
+  ...
+# Subtest: platform contract is versioned and lists the required shared seams
+ok 262 - platform contract is versioned and lists the required shared seams
+  ---
+  duration_ms: 2.4929
+  type: 'test'
+  ...
+# Subtest: telemetry scrubbing removes credentials and PII keys
+ok 263 - telemetry scrubbing removes credentials and PII keys
+  ---
+  duration_ms: 1.7404
+  type: 'test'
+  ...
+# Subtest: capability resolver fails closed
+ok 264 - capability resolver fails closed
+  ---
+  duration_ms: 0.2804
+  type: 'test'
+  ...
+# Subtest: Wave 3 public interface contracts
+    # Subtest: uses one versioned review story across landing proof components
+    ok 1 - uses one versioned review story across landing proof components
+      ---
+      duration_ms: 9.6794
+      type: 'test'
+      ...
+    # Subtest: keeps the public story to the three-product suite
+    ok 2 - keeps the public story to the three-product suite
+      ---
+      duration_ms: 5.2624
+      type: 'test'
+      ...
+    # Subtest: arms landing proof motion only after hydration, consent and intersection
+    ok 3 - arms landing proof motion only after hydration, consent and intersection
+      ---
+      duration_ms: 3.2407
+      type: 'test'
+      ...
+    # Subtest: shows plain priority names and no raw project slug in the Tasks proof
+    ok 4 - shows plain priority names and no raw project slug in the Tasks proof
+      ---
+      duration_ms: 1.0864
+      type: 'test'
+      ...
+    1..4
+ok 265 - Wave 3 public interface contracts
+  ---
+  duration_ms: 27.3237
+  type: 'suite'
+  ...
+# Subtest: the mode vocabulary is exactly two values and defaults to the safe one
+ok 266 - the mode vocabulary is exactly two values and defaults to the safe one
+  ---
+  duration_ms: 3.0186
+  type: 'test'
+  ...
+# Subtest: a missing or unknown mode is never read as unlimited
+ok 267 - a missing or unknown mode is never read as unlimited
+  ---
+  duration_ms: 0.5693
+  type: 'test'
+  ...
+# Subtest: remaining headroom is null, never zero, when the question does not apply
+ok 268 - remaining headroom is null, never zero, when the question does not apply
+  ---
+  duration_ms: 0.3282
+  type: 'test'
+  ...
+# Subtest: the fair-use ceiling doubles the venue's own annual figure
+ok 269 - the fair-use ceiling doubles the venue's own annual figure
+  ---
+  duration_ms: 0.6012
+  type: 'test'
+  ...
+# Subtest: the ceiling never drops below the floor
+ok 270 - the ceiling never drops below the floor
+  ---
+  duration_ms: 0.4448
+  type: 'test'
+  ...
+# Subtest: a breach is reported at the crossing, not before
+ok 271 - a breach is reported at the crossing, not before
+  ---
+  duration_ms: 0.4227
+  type: 'test'
+  ...
+# Subtest: no ceiling means no signal, and never a refusal
+ok 272 - no ceiling means no signal, and never a refusal
+  ---
+  duration_ms: 0.2484
+  type: 'test'
+  ...
+# Subtest: the shared constants match the vectors
+ok 273 - the shared constants match the vectors
+  ---
+  duration_ms: 2.1541
+  type: 'test'
+  ...
+# Subtest: wedding-date parsing matches the vectors
+ok 274 - wedding-date parsing matches the vectors
+  ---
+  duration_ms: 2.341
+  type: 'test'
+  ...
+# Subtest: expiry computation matches the vectors
+ok 275 - expiry computation matches the vectors
+  ---
+  duration_ms: 0.5522
+  type: 'test'
+  ...
+# Subtest: recompute matches the vectors
+ok 276 - recompute matches the vectors
+  ---
+  duration_ms: 0.4735
+  type: 'test'
+  ...
+# Subtest: Venue Edition has one standard annual price
+ok 277 - Venue Edition has one standard annual price
+  ---
+  duration_ms: 3.8442
+  type: 'test'
+  ...
+# Subtest: the Founding 25 rate is EUR 1,000 and the writer chooses it
+ok 278 - the Founding 25 rate is EUR 1,000 and the writer chooses it
+  ---
+  duration_ms: 0.9534
+  type: 'test'
+  ...
+# Subtest: pilot venues remain outside paid revenue
+ok 279 - pilot venues remain outside paid revenue
+  ---
+  duration_ms: 0.3027
+  type: 'test'
+  ...
+# Subtest: Venue Edition couple access lasts 18 months, with a 90-day grace
+ok 280 - Venue Edition couple access lasts 18 months, with a 90-day grace
+  ---
+  duration_ms: 0.3549
+  type: 'test'
+  ...
+# Subtest: a wedding date parses to the UTC midnight that starts the day
+ok 281 - a wedding date parses to the UTC midnight that starts the day
+  ---
+  duration_ms: 7.685
+  type: 'test'
+  ...
+# Subtest: an epoch inside the day floors to that day, never past it
+ok 282 - an epoch inside the day floors to that day, never past it
+  ---
+  duration_ms: 0.3165
+  type: 'test'
+  ...
+# Subtest: an unparseable or impossible date is null, never today
+ok 283 - an unparseable or impossible date is null, never today
+  ---
+  duration_ms: 0.5298
+  type: 'test'
+  ...
+# Subtest: R-015: a long-lead booking keeps access 90 days past the wedding
+ok 284 - R-015: a long-lead booking keeps access 90 days past the wedding
+  ---
+  duration_ms: 0.4754
+  type: 'test'
+  ...
+# Subtest: a short-lead booking keeps the ratified 548-day floor
+ok 285 - a short-lead booking keeps the ratified 548-day floor
+  ---
+  duration_ms: 2.7459
+  type: 'test'
+  ...
+# Subtest: no wedding date falls back to the floor, exactly as shipped
+ok 286 - no wedding date falls back to the floor, exactly as shipped
+  ---
+  duration_ms: 1.0033
+  type: 'test'
+  ...
+# Subtest: there is no upper cap: a three-year lead gets three years
+ok 287 - there is no upper cap: a three-year lead gets three years
+  ---
+  duration_ms: 0.352
+  type: 'test'
+  ...
+# Subtest: a known long-lead wedding date produces a longer mint duration
+ok 288 - a known long-lead wedding date produces a longer mint duration
+  ---
+  duration_ms: 0.3309
+  type: 'test'
+  ...
+# Subtest: mint duration never drops below the ratified floor
+ok 289 - mint duration never drops below the ratified floor
+  ---
+  duration_ms: 0.2242
+  type: 'test'
+  ...
+# Subtest: a postponement extends access automatically
+ok 290 - a postponement extends access automatically
+  ---
+  duration_ms: 0.3411
+  type: 'test'
+  ...
+# Subtest: bringing the wedding forward never shortens access
+ok 291 - bringing the wedding forward never shortens access
+  ---
+  duration_ms: 0.2193
+  type: 'test'
+  ...
+# Subtest: clearing the wedding date never shortens access
+ok 292 - clearing the wedding date never shortens access
+  ---
+  duration_ms: 0.1992
+  type: 'test'
+  ...
+# Subtest: a row with no expiry is never given one
+ok 293 - a row with no expiry is never given one
+  ---
+  duration_ms: 0.2015
+  type: 'test'
+  ...
+# Subtest: recompute is idempotent — repeating it changes nothing
+ok 294 - recompute is idempotent — repeating it changes nothing
+  ---
+  duration_ms: 0.2216
+  type: 'test'
+  ...
+# Subtest: the mint guard accepts the floor and any computed duration above it
+ok 295 - the mint guard accepts the floor and any computed duration above it
+  ---
+  duration_ms: 0.2228
+  type: 'test'
+  ...
+# Subtest: the mint guard still refuses anything shorter than the ratified term
+ok 296 - the mint guard still refuses anything shorter than the ratified term
+  ---
+  duration_ms: 0.4723
+  type: 'test'
+  ...
+# Subtest: the mint guard refuses a null or fractional duration
+ok 297 - the mint guard refuses a null or fractional duration
+  ---
+  duration_ms: 0.2238
+  type: 'test'
+  ...
+# Subtest: the number itself
+    # Subtest: is always NN/25, zero-padded
+    ok 1 - is always NN/25, zero-padded
+      ---
+      duration_ms: 1.4236
+      type: 'test'
+      ...
+    # Subtest: refuses anything outside the programme
+    ok 2 - refuses anything outside the programme
+      ---
+      duration_ms: 0.5596
+      type: 'test'
+      ...
+    1..2
+ok 298 - the number itself
+  ---
+  duration_ms: 3.9541
+  type: 'suite'
+  ...
+# Subtest: choosing the next place
+    # Subtest: gives the lowest free number
+    ok 1 - gives the lowest free number
+      ---
+      duration_ms: 0.7902
+      type: 'test'
+      ...
+    # Subtest: counts a lapsed venue's number as taken
+    ok 2 - counts a lapsed venue's number as taken
+      ---
+      duration_ms: 0.3627
+      type: 'test'
+      ...
+    # Subtest: returns null when the programme is full
+    ok 3 - returns null when the programme is full
+      ---
+      duration_ms: 0.5499
+      type: 'test'
+      ...
+    # Subtest: ignores junk in the taken set rather than miscounting
+    ok 4 - ignores junk in the taken set rather than miscounting
+      ---
+      duration_ms: 0.2443
+      type: 'test'
+      ...
+    # Subtest: reports places left honestly
+    ok 5 - reports places left honestly
+      ---
+      duration_ms: 0.3524
+      type: 'test'
+      ...
+    1..5
+ok 299 - choosing the next place
+  ---
+  duration_ms: 3.4019
+  type: 'suite'
+  ...
+# Subtest: assignment order
+    # Subtest: orders by the moment the payment clears
+    ok 1 - orders by the moment the payment clears
+      ---
+      duration_ms: 0.6846
+      type: 'test'
+      ...
+    # Subtest: breaks a same-instant tie on the earlier signature
+    ok 2 - breaks a same-instant tie on the earlier signature
+      ---
+      duration_ms: 0.4392
+      type: 'test'
+      ...
+    # Subtest: asks for the founder when nothing separates two claims
+    ok 3 - asks for the founder when nothing separates two claims
+      ---
+      duration_ms: 0.4983
+      type: 'test'
+      ...
+    # Subtest: puts a known signature date ahead of an unknown one
+    ok 4 - puts a known signature date ahead of an unknown one
+      ---
+      duration_ms: 0.2575
+      type: 'test'
+      ...
+    1..4
+ok 300 - assignment order
+  ---
+  duration_ms: 2.5554
+  type: 'suite'
+  ...
+# Subtest: who may hold a number
+    # Subtest: refuses before the payment clears
+    ok 1 - refuses before the payment clears
+      ---
+      duration_ms: 0.5324
+      type: 'test'
+      ...
+    # Subtest: refuses a venue that is not on the founding plan
+    ok 2 - refuses a venue that is not on the founding plan
+      ---
+      duration_ms: 0.2304
+      type: 'test'
+      ...
+    # Subtest: refuses a second number to a venue that already holds one
+    ok 3 - refuses a second number to a venue that already holds one
+      ---
+      duration_ms: 0.2073
+      type: 'test'
+      ...
+    # Subtest: allows a paid founding venue with no number
+    ok 4 - allows a paid founding venue with no number
+      ---
+      duration_ms: 0.1899
+      type: 'test'
+      ...
+    1..4
+ok 301 - who may hold a number
+  ---
+  duration_ms: 1.4845
+  type: 'suite'
+  ...
+# Subtest: invitation states
+    # Subtest: covers exactly the seven states in the task title
+    ok 1 - covers exactly the seven states in the task title
+      ---
+      duration_ms: 3.3872
+      type: 'test'
+      ...
+    # Subtest: walks the happy path
+    ok 2 - walks the happy path
+      ---
+      duration_ms: 0.4743
+      type: 'test'
+      ...
+    # Subtest: tolerates a re-send and a re-open, because both are ordinary
+    ok 3 - tolerates a re-send and a re-open, because both are ordinary
+      ---
+      duration_ms: 0.2104
+      type: 'test'
+      ...
+    # Subtest: refuses to revoke a redeemed code
+    ok 4 - refuses to revoke a redeemed code
+      ---
+      duration_ms: 0.3364
+      type: 'test'
+      ...
+    # Subtest: lets a venue reissue against an expired or revoked code
+    ok 5 - lets a venue reissue against an expired or revoked code
+      ---
+      duration_ms: 0.1912
+      type: 'test'
+      ...
+    # Subtest: treats replaced as terminal
+    ok 6 - treats replaced as terminal
+      ---
+      duration_ms: 0.2275
+      type: 'test'
+      ...
+    1..6
+ok 302 - invitation states
+  ---
+  duration_ms: 7.0202
+  type: 'suite'
+  ...
+# Subtest: couple access states
+    # Subtest: has no separate post-wedding state
+    ok 1 - has no separate post-wedding state
+      ---
+      duration_ms: 0.4127
+      type: 'test'
+      ...
+    # Subtest: walks invited to keepsake
+    ok 2 - walks invited to keepsake
+      ---
+      duration_ms: 0.4855
+      type: 'test'
+      ...
+    # Subtest: never expires Keepsake on a clock
+    ok 3 - never expires Keepsake on a clock
+      ---
+      duration_ms: 0.3157
+      type: 'test'
+      ...
+    # Subtest: reaches deletion from every live state, and nothing from deletion
+    ok 4 - reaches deletion from every live state, and nothing from deletion
+      ---
+      duration_ms: 0.4734
+      type: 'test'
+      ...
+    1..4
+ok 303 - couple access states
+  ---
+  duration_ms: 2.3723
+  type: 'suite'
+  ...
+# Subtest: deriveCoupleAccessState
+    # Subtest: derives from the entitlement row rather than a stored state
+    ok 1 - derives from the entitlement row rather than a stored state
+      ---
+      duration_ms: 0.4269
+      type: 'test'
+      ...
+    # Subtest: treats an expiry exactly at now as ended, matching the access gate
+    ok 2 - treats an expiry exactly at now as ended, matching the access gate
+      ---
+      duration_ms: 0.1929
+      type: 'test'
+      ...
+    # Subtest: treats a null expiry as still active, never as ended
+    ok 3 - treats a null expiry as still active, never as ended
+      ---
+      duration_ms: 0.1848
+      type: 'test'
+      ...
+    # Subtest: erasure outranks everything
+    ok 4 - erasure outranks everything
+      ---
+      duration_ms: 0.2032
+      type: 'test'
+      ...
+    1..4
+ok 304 - deriveCoupleAccessState
+  ---
+  duration_ms: 1.3366
+  type: 'suite'
+  ...
+# Subtest: sponsorship states
+    # Subtest: issuance stops when the licence ends, and only issuance
+    ok 1 - issuance stops when the licence ends, and only issuance
+      ---
+      duration_ms: 0.3269
+      type: 'test'
+      ...
+    # Subtest: shows venue branding only on an active link
+    ok 2 - shows venue branding only on an active link
+      ---
+      duration_ms: 0.1817
+      type: 'test'
+      ...
+    # Subtest: gives branding removal a checkable 24-hour deadline
+    ok 3 - gives branding removal a checkable 24-hour deadline
+      ---
+      duration_ms: 0.1874
+      type: 'test'
+      ...
+    # Subtest: treats revocation as terminal
+    ok 4 - treats revocation as terminal
+      ---
+      duration_ms: 0.1659
+      type: 'test'
+      ...
+    1..4
+ok 305 - sponsorship states
+  ---
+  duration_ms: 1.0843
+  type: 'suite'
+  ...
+# Subtest: the survival invariant (D-020 point 2)
+    # Subtest: no sponsorship event moves the access state, for any combination
+    ok 1 - no sponsorship event moves the access state, for any combination
+      ---
+      duration_ms: 0.2818
+      type: 'test'
+      ...
+    # Subtest: a licence lapse leaves an active couple active
+    ok 2 - a licence lapse leaves an active couple active
+      ---
+      duration_ms: 0.2185
+      type: 'test'
+      ...
+    # Subtest: a release leaves the couple's content exactly where it was
+    ok 3 - a release leaves the couple's content exactly where it was
+      ---
+      duration_ms: 0.1392
+      type: 'test'
+      ...
+    1..3
+ok 306 - the survival invariant (D-020 point 2)
+  ---
+  duration_ms: 0.9085
+  type: 'suite'
+  ...
+# Subtest: lifecycle fixtures
+    # Subtest: covers every state on all three axes
+    ok 1 - covers every state on all three axes
+      ---
+      duration_ms: 0.387
+      type: 'test'
+      ...
+    # Subtest: has unique ids and a stated purpose on every fixture
+    ok 2 - has unique ids and a stated purpose on every fixture
+      ---
+      duration_ms: 0.2502
+      type: 'test'
+      ...
+    # Subtest: every fixture's declared access state matches its own data
+    ok 3 - every fixture's declared access state matches its own data
+      ---
+      duration_ms: 0.2175
+      type: 'test'
+      ...
+    # Subtest: is pinned to a fixed clock
+    ok 4 - is pinned to a fixed clock
+      ---
+      duration_ms: 0.1405
+      type: 'test'
+      ...
+    # Subtest: R-015: the long-lead fixture outlasts its own wedding
+    ok 5 - R-015: the long-lead fixture outlasts its own wedding
+      ---
+      duration_ms: 0.1799
+      type: 'test'
+      ...
+    # Subtest: carries a fixture where the licence ended and access did not
+    ok 6 - carries a fixture where the licence ended and access did not
+      ---
+      duration_ms: 0.1305
+      type: 'test'
+      ...
+    # Subtest: carries a fixture where the venue released and access did not move
+    ok 7 - carries a fixture where the venue released and access did not move
+      ---
+      duration_ms: 0.1289
+      type: 'test'
+      ...
+    1..7
+ok 307 - lifecycle fixtures
+  ---
+  duration_ms: 1.7277
+  type: 'suite'
+  ...
+# Subtest: Today assertion derives the signed subject and email
+ok 308 - Today assertion derives the signed subject and email
+  ---
+  duration_ms: 3.296
+  type: 'test'
+  ...
+# Subtest: Today assertion rejects tampering, wrong key, and expiry
+ok 309 - Today assertion rejects tampering, wrong key, and expiry
+  ---
+  duration_ms: 1.209
+  type: 'test'
+  ...
+# Subtest: greeting: 04:00–11:59 says good morning
+ok 310 - greeting: 04:00–11:59 says good morning
+  ---
+  duration_ms: 2.2174
+  type: 'test'
+  ...
+# Subtest: greeting: 12:00–18:59 says afternoon
+ok 311 - greeting: 12:00–18:59 says afternoon
+  ---
+  duration_ms: 0.2599
+  type: 'test'
+  ...
+# Subtest: greeting: 19:00–02:59 says evening
+ok 312 - greeting: 19:00–02:59 says evening
+  ---
+  duration_ms: 0.2695
+  type: 'test'
+  ...
+# Subtest: greeting: 03:00–03:59 is the up-late band
+ok 313 - greeting: 03:00–03:59 is the up-late band
+  ---
+  duration_ms: 0.1614
+  type: 'test'
+  ...
+# Subtest: greeting: blank name falls back to 'there'
+ok 314 - greeting: blank name falls back to 'there'
+  ---
+  duration_ms: 0.1533
+  type: 'test'
+  ...
+# Subtest: evening: visible 15:00–02:59, hidden otherwise
+ok 315 - evening: visible 15:00–02:59, hidden otherwise
+  ---
+  duration_ms: 0.2155
+  type: 'test'
+  ...
+# Subtest: anchor: prefers shipped-last-24h tasks when present
+ok 316 - anchor: prefers shipped-last-24h tasks when present
+  ---
+  duration_ms: 35.0913
+  type: 'test'
+  ...
+# Subtest: anchor: falls through to roadmap shipped-this-week
+ok 317 - anchor: falls through to roadmap shipped-this-week
+  ---
+  duration_ms: 0.7261
+  type: 'test'
+  ...
+# Subtest: anchor: falls through to in-your-court count
+ok 318 - anchor: falls through to in-your-court count
+  ---
+  duration_ms: 0.8234
+  type: 'test'
+  ...
+# Subtest: anchor: falls through to notes total
+ok 319 - anchor: falls through to notes total
+  ---
+  duration_ms: 0.8736
+  type: 'test'
+  ...
+# Subtest: anchor: 'welcome' state when no data anywhere
+ok 320 - anchor: 'welcome' state when no data anywhere
+  ---
+  duration_ms: 0.5066
+  type: 'test'
+  ...
+# Subtest: anchor: singular vs plural labels are correct
+ok 321 - anchor: singular vs plural labels are correct
+  ---
+  duration_ms: 0.5663
+  type: 'test'
+  ...
+# Subtest: sections: 'today' is always visible regardless of data
+ok 322 - sections: 'today' is always visible regardless of data
+  ---
+  duration_ms: 1.8117
+  type: 'test'
+  ...
+# Subtest: sections: 'today' items are workspace-level, with metadata
+ok 323 - sections: 'today' items are workspace-level, with metadata
+  ---
+  duration_ms: 1.1961
+  type: 'test'
+  ...
+# Subtest: sections: 'today' omits workspaces with zero court+blocked
+ok 324 - sections: 'today' omits workspaces with zero court+blocked
+  ---
+  duration_ms: 0.832
+  type: 'test'
+  ...
+# Subtest: sections: 'evening' tracks visibility per local hour
+ok 325 - sections: 'evening' tracks visibility per local hour
+  ---
+  duration_ms: 1.4604
+  type: 'test'
+  ...
+# Subtest: sections: 'upcoming' visible only with milestones
+ok 326 - sections: 'upcoming' visible only with milestones
+  ---
+  duration_ms: 1.4036
+  type: 'test'
+  ...
+# Subtest: sections: 'caught' surfaces only notes touched within 36h
+ok 327 - sections: 'caught' surfaces only notes touched within 36h
+  ---
+  duration_ms: 1.4425
+  type: 'test'
+  ...
+# Subtest: user: first name extraction from full name
+ok 328 - user: first name extraction from full name
+  ---
+  duration_ms: 0.9039
+  type: 'test'
+  ...
+# Subtest: user: falls back to email local-part stem when name missing
+ok 329 - user: falls back to email local-part stem when name missing
+  ---
+  duration_ms: 1.1169
+  type: 'test'
+  ...
+# Subtest: user: timezone falls back to analytics, then UTC
+ok 330 - user: timezone falls back to analytics, then UTC
+  ---
+  duration_ms: 1.0669
+  type: 'test'
+  ...
+# Subtest: meta: passes through reads health map
+ok 331 - meta: passes through reads health map
+  ---
+  duration_ms: 0.5459
+  type: 'test'
+  ...
+# Subtest: meta: lastUpdated and serverGeneratedAt are ISO strings
+ok 332 - meta: lastUpdated and serverGeneratedAt are ISO strings
+  ---
+  duration_ms: 0.5378
+  type: 'test'
+  ...
+1..332
+# tests 419
+# suites 25
+# pass 419
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8537.7705

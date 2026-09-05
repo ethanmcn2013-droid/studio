@@ -1,0 +1,615 @@
+{
+  "head": "d4a2c7ee16554c4ed9ab142482dbe3efb9e1a594",
+  "sourceDigest": "2713468ad563646a469399967fe57a671ae50166d4f72ec70498f6bacffde2d4",
+  "beforeHashes": {
+    "registry.json": "07e94a72a8ec8f01a18f65adf26753c883c6bc4d50f7b7b2640958648f2f6efb",
+    "overrides.json": "7e3373f18ae80de77a613d796758a5813ab8e58bb546f6d5018f42a2e825e0d9"
+  },
+  "outcomes": [
+    {
+      "id": "studio.page.hq",
+      "source": "studio/src/app/hq/page.tsx",
+      "manifest": "experience\\reviews\\january-layout-composition-attempt2-2026-09-05\\capture-manifest.json",
+      "manifestCheckoutHash": "65d38044962cdf58be762ad8c0acff6a0c557a6f28eb0a9121f236472a2c6383",
+      "before": {
+        "id": "studio.page.hq",
+        "product": "studio",
+        "experienceClass": "founder-operator",
+        "surfaceType": "page",
+        "route": "/hq",
+        "source": "studio/src/app/hq/page.tsx",
+        "parentJourney": "founder-operations",
+        "archetype": "dashboard-or-command-centre",
+        "primaryJob": "Understand and use hq.",
+        "primaryAction": "Complete the primary action on hq.",
+        "roles": [
+          "founder"
+        ],
+        "requiredStates": [
+          "empty",
+          "populated",
+          "partial-failure",
+          "error",
+          "restricted",
+          "dense",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "requiredBreakpoints": [
+          "mobile",
+          "tablet",
+          "desktop",
+          "wide"
+        ],
+        "componentDependencies": [],
+        "patternDependencies": [],
+        "reviewTier": "critical",
+        "designOwner": "product-taste-design-integrity",
+        "engineeringOwner": "engineering-systems-architecture",
+        "implementationStatus": "legacy",
+        "auditStatus": "registered",
+        "auditScore": null,
+        "openFindingIds": [],
+        "automatedTestCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "fixtureCoverage": "complete",
+        "lastReviewedAt": null,
+        "approvedBaselineReference": null,
+        "intentionalExceptions": [],
+        "materialityHash": "67d4aa07aae68ca5"
+      },
+      "update": {
+        "requiredStates": [
+          "empty",
+          "populated",
+          "partial-failure",
+          "error",
+          "restricted",
+          "dense",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "fixtureCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "automatedTestCoverage": "complete",
+        "materialityHash": "c5c8e8a50639d008"
+      }
+    },
+    {
+      "id": "studio.page.hq-blueprint",
+      "source": "studio/src/app/hq/blueprint/page.tsx",
+      "manifest": "experience\\reviews\\january-layout-composition-attempt2-2026-09-05\\capture-manifest.json",
+      "manifestCheckoutHash": "65d38044962cdf58be762ad8c0acff6a0c557a6f28eb0a9121f236472a2c6383",
+      "before": {
+        "id": "studio.page.hq-blueprint",
+        "product": "studio",
+        "experienceClass": "founder-operator",
+        "surfaceType": "page",
+        "route": "/hq/blueprint",
+        "source": "studio/src/app/hq/blueprint/page.tsx",
+        "parentJourney": "founder-operations",
+        "archetype": "editor-or-canvas",
+        "primaryJob": "Understand and use hq · blueprint.",
+        "primaryAction": "Complete the primary action on hq · blueprint.",
+        "roles": [
+          "founder"
+        ],
+        "requiredStates": [
+          "default",
+          "empty",
+          "partial-failure",
+          "error",
+          "restricted",
+          "disabled",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "requiredBreakpoints": [
+          "mobile",
+          "tablet",
+          "desktop",
+          "wide"
+        ],
+        "componentDependencies": [],
+        "patternDependencies": [],
+        "reviewTier": "core",
+        "designOwner": "product-taste-design-integrity",
+        "engineeringOwner": "engineering-systems-architecture",
+        "implementationStatus": "legacy",
+        "auditStatus": "registered",
+        "auditScore": null,
+        "openFindingIds": [],
+        "automatedTestCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "fixtureCoverage": "complete",
+        "lastReviewedAt": null,
+        "approvedBaselineReference": null,
+        "intentionalExceptions": [],
+        "materialityHash": "0354e5ecd4c1bec0"
+      },
+      "update": {
+        "requiredStates": [
+          "default",
+          "empty",
+          "partial-failure",
+          "error",
+          "restricted",
+          "disabled",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "fixtureCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "automatedTestCoverage": "complete",
+        "materialityHash": "237f825df3d2ce8a"
+      }
+    },
+    {
+      "id": "studio.page.hq-entitlements",
+      "source": "studio/src/app/hq/entitlements/page.tsx",
+      "manifest": "experience\\reviews\\january-layout-composition-attempt2-2026-09-05\\capture-manifest.json",
+      "manifestCheckoutHash": "65d38044962cdf58be762ad8c0acff6a0c557a6f28eb0a9121f236472a2c6383",
+      "before": {
+        "id": "studio.page.hq-entitlements",
+        "product": "studio",
+        "experienceClass": "founder-operator",
+        "surfaceType": "page",
+        "route": "/hq/entitlements",
+        "source": "studio/src/app/hq/entitlements/page.tsx",
+        "parentJourney": "founder-operations",
+        "archetype": "settings-and-administration",
+        "primaryJob": "Understand and use hq · entitlements.",
+        "primaryAction": "Complete the primary action on hq · entitlements.",
+        "roles": [
+          "founder"
+        ],
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "requiredBreakpoints": [
+          "mobile",
+          "tablet",
+          "desktop",
+          "wide"
+        ],
+        "componentDependencies": [],
+        "patternDependencies": [],
+        "reviewTier": "supporting",
+        "designOwner": "product-taste-design-integrity",
+        "engineeringOwner": "engineering-systems-architecture",
+        "implementationStatus": "legacy",
+        "auditStatus": "registered",
+        "auditScore": null,
+        "openFindingIds": [],
+        "automatedTestCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "fixtureCoverage": "complete",
+        "lastReviewedAt": "2026-08-03",
+        "approvedBaselineReference": null,
+        "intentionalExceptions": [],
+        "materialityHash": "f9e2e1393d0a7603"
+      },
+      "update": {
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "fixtureCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "automatedTestCoverage": "complete",
+        "materialityHash": "33793195c77b8255"
+      }
+    },
+    {
+      "id": "studio.page.hq-financial-model",
+      "source": "studio/src/app/hq/financial-model/page.tsx",
+      "manifest": "experience\\reviews\\january-layout-composition-attempt2-2026-09-05\\capture-manifest.json",
+      "manifestCheckoutHash": "65d38044962cdf58be762ad8c0acff6a0c557a6f28eb0a9121f236472a2c6383",
+      "before": {
+        "id": "studio.page.hq-financial-model",
+        "product": "studio",
+        "experienceClass": "founder-operator",
+        "surfaceType": "page",
+        "route": "/hq/financial-model",
+        "source": "studio/src/app/hq/financial-model/page.tsx",
+        "parentJourney": "founder-operations",
+        "archetype": "detail-or-record-view",
+        "primaryJob": "Understand and use hq · financial model.",
+        "primaryAction": "Complete the primary action on hq · financial model.",
+        "roles": [
+          "founder"
+        ],
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "requiredBreakpoints": [
+          "mobile",
+          "tablet",
+          "desktop",
+          "wide"
+        ],
+        "componentDependencies": [],
+        "patternDependencies": [],
+        "reviewTier": "supporting",
+        "designOwner": "product-taste-design-integrity",
+        "engineeringOwner": "engineering-systems-architecture",
+        "implementationStatus": "legacy",
+        "auditStatus": "registered",
+        "auditScore": null,
+        "openFindingIds": [],
+        "automatedTestCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "fixtureCoverage": "complete",
+        "lastReviewedAt": "2026-08-03",
+        "approvedBaselineReference": null,
+        "intentionalExceptions": [],
+        "materialityHash": "5a54dfb53b0fd300"
+      },
+      "update": {
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "fixtureCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "automatedTestCoverage": "complete",
+        "materialityHash": "98ba23e9baf717c3"
+      }
+    },
+    {
+      "id": "studio.page.hq-founders-circle",
+      "source": "studio/src/app/hq/founders-circle/page.tsx",
+      "manifest": "experience\\reviews\\january-layout-composition-attempt2-2026-09-05\\capture-manifest.json",
+      "manifestCheckoutHash": "65d38044962cdf58be762ad8c0acff6a0c557a6f28eb0a9121f236472a2c6383",
+      "before": {
+        "id": "studio.page.hq-founders-circle",
+        "product": "studio",
+        "experienceClass": "founder-operator",
+        "surfaceType": "page",
+        "route": "/hq/founders-circle",
+        "source": "studio/src/app/hq/founders-circle/page.tsx",
+        "parentJourney": "founder-operations",
+        "archetype": "detail-or-record-view",
+        "primaryJob": "Understand and use hq · founders circle.",
+        "primaryAction": "Complete the primary action on hq · founders circle.",
+        "roles": [
+          "founder"
+        ],
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "requiredBreakpoints": [
+          "mobile",
+          "tablet",
+          "desktop",
+          "wide"
+        ],
+        "componentDependencies": [],
+        "patternDependencies": [],
+        "reviewTier": "supporting",
+        "designOwner": "product-taste-design-integrity",
+        "engineeringOwner": "engineering-systems-architecture",
+        "implementationStatus": "legacy",
+        "auditStatus": "registered",
+        "auditScore": null,
+        "openFindingIds": [],
+        "automatedTestCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "fixtureCoverage": "complete",
+        "lastReviewedAt": null,
+        "approvedBaselineReference": null,
+        "intentionalExceptions": [],
+        "materialityHash": "fe4ef20a60084d12"
+      },
+      "update": {
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "fixtureCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "automatedTestCoverage": "complete",
+        "materialityHash": "6354b443663035d7"
+      }
+    },
+    {
+      "id": "studio.page.hq-reporting",
+      "source": "studio/src/app/hq/reporting/page.tsx",
+      "manifest": "experience\\reviews\\january-layout-composition-attempt2-2026-09-05\\capture-manifest.json",
+      "manifestCheckoutHash": "65d38044962cdf58be762ad8c0acff6a0c557a6f28eb0a9121f236472a2c6383",
+      "before": {
+        "id": "studio.page.hq-reporting",
+        "product": "studio",
+        "experienceClass": "founder-operator",
+        "surfaceType": "page",
+        "route": "/hq/reporting",
+        "source": "studio/src/app/hq/reporting/page.tsx",
+        "parentJourney": "founder-operations",
+        "archetype": "list-and-data-table",
+        "primaryJob": "Understand and use hq · reporting.",
+        "primaryAction": "Complete the primary action on hq · reporting.",
+        "roles": [
+          "founder"
+        ],
+        "requiredStates": [
+          "empty",
+          "populated",
+          "partial-failure",
+          "error",
+          "restricted",
+          "dense",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "requiredBreakpoints": [
+          "mobile",
+          "tablet",
+          "desktop",
+          "wide"
+        ],
+        "componentDependencies": [],
+        "patternDependencies": [],
+        "reviewTier": "supporting",
+        "designOwner": "product-taste-design-integrity",
+        "engineeringOwner": "engineering-systems-architecture",
+        "implementationStatus": "legacy",
+        "auditStatus": "registered",
+        "auditScore": null,
+        "openFindingIds": [],
+        "automatedTestCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "fixtureCoverage": "complete",
+        "lastReviewedAt": null,
+        "approvedBaselineReference": null,
+        "intentionalExceptions": [],
+        "materialityHash": "d505c2e220ee4e86"
+      },
+      "update": {
+        "requiredStates": [
+          "empty",
+          "populated",
+          "partial-failure",
+          "error",
+          "restricted",
+          "dense",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "fixtureCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "automatedTestCoverage": "complete",
+        "materialityHash": "e91c44746bbf38df"
+      }
+    },
+    {
+      "id": "studio.page.students",
+      "source": "studio/src/app/students/page.tsx",
+      "manifest": "experience\\reviews\\january-layout-composition-attempt2-2026-09-05\\capture-manifest.json",
+      "manifestCheckoutHash": "65d38044962cdf58be762ad8c0acff6a0c557a6f28eb0a9121f236472a2c6383",
+      "before": {
+        "id": "studio.page.students",
+        "product": "studio",
+        "experienceClass": "company-public",
+        "surfaceType": "page",
+        "route": "/students",
+        "source": "studio/src/app/students/page.tsx",
+        "parentJourney": "public-discovery-and-proof",
+        "archetype": "public-information-and-proof",
+        "primaryJob": "Understand and use students.",
+        "primaryAction": "Complete the primary action on students.",
+        "roles": [
+          "public"
+        ],
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "requiredBreakpoints": [
+          "mobile",
+          "tablet",
+          "desktop",
+          "wide"
+        ],
+        "componentDependencies": [],
+        "patternDependencies": [],
+        "reviewTier": "supporting",
+        "designOwner": "product-taste-design-integrity",
+        "engineeringOwner": "engineering-systems-architecture",
+        "implementationStatus": "legacy",
+        "auditStatus": "registered",
+        "auditScore": null,
+        "openFindingIds": [],
+        "automatedTestCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "fixtureCoverage": "complete",
+        "lastReviewedAt": "2026-08-12",
+        "approvedBaselineReference": null,
+        "intentionalExceptions": [],
+        "materialityHash": "8d51f625e73df46a"
+      },
+      "update": {
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "fixtureCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "automatedTestCoverage": "complete",
+        "materialityHash": "2c012f650a96d289"
+      }
+    },
+    {
+      "id": "studio.surface.hq-shell-navigation",
+      "source": "studio/src/components/hq/hq-shell.tsx",
+      "manifest": "experience\\reviews\\january-layout-composition-attempt2-2026-09-05\\capture-manifest.json",
+      "manifestCheckoutHash": "65d38044962cdf58be762ad8c0acff6a0c557a6f28eb0a9121f236472a2c6383",
+      "before": {
+        "id": "studio.surface.hq-shell-navigation",
+        "product": "studio",
+        "experienceClass": "founder-operator",
+        "surfaceType": "menu",
+        "trigger": "Use the persistent Signal HQ room navigation",
+        "source": "studio/src/components/hq/hq-shell.tsx",
+        "parentJourney": "founder-operations",
+        "archetype": "application-shell-and-navigation",
+        "primaryJob": "Know which private operating environment is active and reach the right HQ room.",
+        "primaryAction": "Open an HQ room or command palette.",
+        "roles": [
+          "founder"
+        ],
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "requiredBreakpoints": [
+          "mobile",
+          "tablet",
+          "desktop",
+          "wide"
+        ],
+        "componentDependencies": [],
+        "patternDependencies": [],
+        "reviewTier": "critical",
+        "designOwner": "product-taste-design-integrity",
+        "engineeringOwner": "engineering-systems-architecture",
+        "implementationStatus": "legacy",
+        "auditStatus": "baseline-captured",
+        "auditScore": null,
+        "openFindingIds": [],
+        "automatedTestCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "fixtureCoverage": "complete",
+        "lastReviewedAt": "2026-07-15",
+        "approvedBaselineReference": null,
+        "intentionalExceptions": [],
+        "materialityHash": "490f966afc0f4edf"
+      },
+      "update": {
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only"
+        ],
+        "fixtureCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "automatedTestCoverage": "complete",
+        "materialityHash": "b25db69a3b8e94f1"
+      }
+    },
+    {
+      "id": "studio.page.hq-venue-kit",
+      "source": "studio/src/app/hq/venue-kit/page.tsx",
+      "manifest": "experience\\reviews\\january-venue-kit-layout-composition-2026-09-05\\capture-manifest.json",
+      "manifestCheckoutHash": "ae2cbb845e8e195e400787180a88c0a0f9eb8bdfc5f5f3e5b6636a27ec0f4834",
+      "before": {
+        "id": "studio.page.hq-venue-kit",
+        "product": "studio",
+        "experienceClass": "founder-operator",
+        "surfaceType": "page",
+        "route": "/hq/venue-kit",
+        "source": "studio/src/app/hq/venue-kit/page.tsx",
+        "parentJourney": "founder-operations",
+        "archetype": "detail-or-record-view",
+        "primaryJob": "Review held venue collateral against current January terms and launch decisions.",
+        "primaryAction": "Read the current guidance and inspect retained local collateral specimens.",
+        "roles": [
+          "founder"
+        ],
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only",
+          "restricted"
+        ],
+        "requiredBreakpoints": [
+          "mobile",
+          "tablet",
+          "desktop",
+          "wide"
+        ],
+        "componentDependencies": [],
+        "patternDependencies": [],
+        "reviewTier": "supporting",
+        "designOwner": "product-taste-design-integrity",
+        "engineeringOwner": "engineering-systems-architecture",
+        "implementationStatus": "legacy",
+        "auditStatus": "registered",
+        "auditScore": null,
+        "openFindingIds": [],
+        "automatedTestCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "fixtureCoverage": "complete",
+        "lastReviewedAt": null,
+        "approvedBaselineReference": null,
+        "intentionalExceptions": [],
+        "materialityHash": "575a65d46316904f"
+      },
+      "update": {
+        "requiredStates": [
+          "default",
+          "long-content",
+          "reduced-motion",
+          "keyboard-only",
+          "restricted"
+        ],
+        "fixtureCoverage": "complete",
+        "screenshotCoverage": "complete",
+        "accessibilityCoverage": "complete",
+        "automatedTestCoverage": "complete",
+        "materialityHash": "d8c9a5a1cbee7e14"
+      }
+    }
+  ],
+  "limits": [
+    "Scripted coverage only. Human/council status, scores, dates, findings and approvals unchanged.",
+    "No Atlas, extension328 or Email Lab evidence adopted.",
+    "Original failed attempts and 314 cancelled Atlas RSC prefetch observations retained.",
+    "No build, browser, server or provider action performed by this adoption."
+  ]
+}

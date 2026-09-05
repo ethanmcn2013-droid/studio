@@ -1,0 +1,8 @@
+{
+  "sourceDigest": "2713468ad563646a469399967fe57a671ae50166d4f72ec70498f6bacffde2d4",
+  "buildId": "ei7Gvfak3jqnRMzteQ4ae",
+  "builtAt": "2026-09-05T08:46:08.341Z",
+  "node": "v24.19.0",
+  "command": "node scripts/experience/january/serve.mjs build",
+  "environment": "allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration"
+}

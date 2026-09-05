@@ -1,0 +1,17 @@
+{
+  "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+  "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+  "args": [
+    "--import",
+    "tsx",
+    "--test",
+    "src/emails/render.test.ts"
+  ],
+  "tag": "outreach-metadata-tests",
+  "startedAt": "2026-09-05T05:52:47.202Z",
+  "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+  "pid": 27736,
+  "exitCode": 0,
+  "signal": null,
+  "finishedAt": "2026-09-05T05:52:50.508Z"
+}

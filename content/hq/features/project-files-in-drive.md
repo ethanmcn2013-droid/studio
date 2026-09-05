@@ -3,7 +3,7 @@ id: project-files-in-drive
 title: Project files in the board owner's Google Drive
 product: tasks
 status: In Progress
-lastVerified: 2026-09-04
+lastVerified: 2026-09-05
 ---
 
 # Project files in the board owner's Google Drive
@@ -20,7 +20,11 @@ Founder decision 2026-08-27. Plan, decisions and status live in the app repo at
 
 ## Where it stands
 
-Current internal programme evidence, reviewed 2026-09-04. App PR #168 integrates the retained Drive PR #165; production remains held.
+Current qualification, 2026-09-05: App PR #171 contains the internal follow-ups to the integrated Drive work. Candidate3be4ea96 includes independently reviewed pre-consent custody wording and keyboard focus restoration and passes all three Linux workflows. Its76-case component matrix plus14 supplemental checks use explicit local action/provider adapters. Later candidates require their own checks; the programme acceptance register owns current command and release status. Provider, receiving and full design acceptance remain open.
+
+An actual-service/SQLite investigation at27af50c0 confirmed two reload gaps. The named-user permission notice is repaired in1ac3d233, with evidencece25e4ef integrated at3b771639. Fresh status distinguishes pending removals for current and previous project folders, including live-read failure, without replacing live permission labels. The26 actual SQLite/component tests, five independent controls and46 saved component cases pass. Personal credential disconnect still cannot durably distinguish a recorded provider response from an unconfirmed attempt; its receipt and lifecycle change remains open. The dated package table below remains historical evidence.
+
+Earlier internal programme evidence, reviewed 2026-09-04: App PR #168 integrates the retained Drive PR #165; production remains held.
 
 | WP | Package | Status |
 |---|---|---|
@@ -58,7 +62,7 @@ Drive-backed bytes use the named storage owner’s Google quota. Signal still in
 
 The current Drive intake enforces MAX_UPLOAD_BYTES = 50 MiB, displayed as 50 MB, in App src/lib/upload-limit.ts and src/server/connections/drive-uploads.ts. The previous prediction that the ceiling disappears is superseded; Google’s theoretical maximum is not Signal’s product limit. Signal-native free storage retains its lower per-file allowance.
 
-The interface distinguishes Signal membership from live Google access, identifies the current storage owner and explains quota, disconnection and handover consequences. Existing provider-owned files stay where they are when a future storage owner is chosen. Failed revocation remains pending. Account erasure must preserve a user’s provider-owned files while completing exact access cleanup. These are implemented invariants under validation, not a claim that the entire product lifecycle has been observed.
+The interface distinguishes Signal membership from live Google access, identifies the current storage owner and explains quota, disconnection and handover consequences. Existing provider-owned files stay where they are when a future storage owner is chosen. Failed named-user permission removal remains pending in the database and now stays visible after a fresh status read. Personal credential-disconnect revocation still lacks a durable response receipt; a disconnected local account does not prove that Google revoked it. That agent-owned repair remains necessary before Drive acceptance. Account erasure must preserve a user’s provider-owned files while completing exact access cleanup. The entire product lifecycle has not been observed.
 
 Google scope remains only drive.file. It is per-file access, including files created by or explicitly shared with the app; it is not a guarantee limited solely to newly created files. [Official scope guidance](https://developers.google.com/workspace/drive/api/guides/api-specific-auth), retrieved 2026-09-04.
 

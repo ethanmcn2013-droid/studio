@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import styles from "./email-lab.module.css";
 
 export type LabDirection = {
   id: string;
@@ -48,6 +49,14 @@ const label: React.CSSProperties = {
   letterSpacing: "0.08em",
   textTransform: "uppercase",
   color: INK_FAINT,
+};
+
+const controlGroup: React.CSSProperties = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 6,
+  alignItems: "center",
+  minWidth: 0,
 };
 
 function Chip({
@@ -131,7 +140,7 @@ export function EmailLabClient({
   const blocked = template.assumptions.some((a) => a.startsWith("BLOCKED"));
 
   return (
-    <div style={{ maxWidth: 1480, margin: "0 auto", padding: "32px 24px 80px", color: INK }}>
+    <div className={styles.lab} style={{ maxWidth: 1480, margin: "0 auto", padding: "32px 24px 80px", color: INK }}>
       {/* ── Title ── */}
       <p style={{ ...label, margin: "0 0 8px" }}>Make · Email Lab</p>
       <h1
@@ -181,7 +190,7 @@ export function EmailLabClient({
           marginBottom: 18,
         }}
       >
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+        <div style={controlGroup}>
           <span style={label}>Direction</span>
           <Chip active={directionId === "compare"} onClick={() => setDirectionId("compare")}>
             Compare all
@@ -192,7 +201,7 @@ export function EmailLabClient({
             </Chip>
           ))}
         </div>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+        <div style={controlGroup}>
           <span style={label}>Revision</span>
           <Chip active={rev === "v2"} onClick={() => setRev("v2")} title="Live templates, elevated in the v2 craft pass">
             v2
@@ -201,28 +210,28 @@ export function EmailLabClient({
             v1 archive
           </Chip>
         </div>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+        <div style={controlGroup}>
           <span style={label}>Width</span>
           <Chip active={width === "desktop"} onClick={() => setWidth("desktop")}>Desktop</Chip>
           <Chip active={width === "mobile"} onClick={() => setWidth("mobile")}>Mobile 390</Chip>
         </div>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+        <div style={controlGroup}>
           <span style={label}>Scheme</span>
           <Chip active={scheme === "light"} onClick={() => setScheme("light")}>Light</Chip>
           <Chip active={scheme === "dark"} onClick={() => setScheme("dark")}>Dark</Chip>
         </div>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+        <div style={controlGroup}>
           <span style={label}>Images</span>
           <Chip active={images === "on"} onClick={() => setImages("on")}>On</Chip>
           <Chip active={images === "off"} onClick={() => setImages("off")}>Blocked</Chip>
         </div>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+        <div style={controlGroup}>
           <span style={label}>View</span>
           <Chip active={view === "html"} onClick={() => setView("html")}>HTML</Chip>
           <Chip active={view === "text"} onClick={() => setView("text")}>Plain text</Chip>
         </div>
         {template.fixtures.length > 1 ? (
-          <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <div style={controlGroup}>
             <span style={label}>Fixture</span>
             {template.fixtures.map((f) => (
               <Chip key={f.id} active={f.id === fixture.id} onClick={() => setFixtureId(f.id)}>
@@ -241,7 +250,7 @@ export function EmailLabClient({
           padding: "16px 18px",
           marginBottom: 22,
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(260px, 100%), 1fr))",
           gap: "12px 28px",
         }}
       >
@@ -304,6 +313,10 @@ export function EmailLabClient({
 
       {/* ── Previews ── */}
       <div
+        className={styles.previews}
+        role="region"
+        aria-label="Email previews"
+        tabIndex={0}
         style={{
           display: "flex",
           gap: 18,

@@ -1,0 +1,15 @@
+@media (max-width: 640px) {
+  .kit {
+    --review-room-image-columns: minmax(0, 1fr);
+  }
+
+  .kit :global(.review-room-heading),
+  .kit :global(.review-room-details) {
+    flex-direction: column;
+  }
+
+  .kit p,
+  .kit figcaption {
+    overflow-wrap: anywhere;
+  }
+}

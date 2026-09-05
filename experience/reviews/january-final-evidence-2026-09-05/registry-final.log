@@ -1,0 +1,32 @@
+experience:validate:studio: clean
+{
+  "experiences": 107,
+  "stateVariants": 500,
+  "breakpointVariants": 428,
+  "products": {
+    "studio": 107
+  },
+  "experienceClasses": {
+    "customer-product": 0,
+    "company-public": 39,
+    "founder-operator": 68
+  },
+  "archetypes": {
+    "application-shell-and-navigation": 3,
+    "dashboard-or-command-centre": 1,
+    "detail-or-record-view": 41,
+    "editor-or-canvas": 4,
+    "feedback-interruption-and-exception": 2,
+    "list-and-data-table": 5,
+    "onboarding-and-authentication": 1,
+    "public-information-and-proof": 35,
+    "review-and-approval-workspace": 7,
+    "search-and-command-interface": 3,
+    "settings-and-administration": 5
+  },
+  "fixtureCoverage": 30,
+  "screenshotCoverage": 30,
+  "accessibilityCoverage": 30,
+  "passing": 0,
+  "underRemediation": 0
+}

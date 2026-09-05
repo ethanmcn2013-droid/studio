@@ -1,0 +1,56 @@
+{
+  "head": "50908e0620b3664eb23420919e1540cb98067235",
+  "node": "v22.23.2",
+  "startedAt": "2026-09-05T06:34:40.188Z",
+  "steps": [
+    {
+      "args": [
+        "--test",
+        "scripts/experience/january/receipt.test.mjs",
+        "scripts/experience/january/venue-kit.test.mjs",
+        "scripts/experience/january-extension/receipt.test.mjs",
+        "scripts/experience/january-extension-verify.test.mjs",
+        "scripts/experience/january-extension-build-inputs.test.mjs"
+      ],
+      "exitCode": 0,
+      "log": "C:\\Users\\ethan\\Documents\\Codex\\2026-09-04\\here-are-6-prompts-i-have-2\\work\\studio-final-capture-adoption\\1.log"
+    },
+    {
+      "args": [
+        "scripts/experience/january/attest.mjs"
+      ],
+      "exitCode": 0,
+      "log": "C:\\Users\\ethan\\Documents\\Codex\\2026-09-04\\here-are-6-prompts-i-have-2\\work\\studio-final-capture-adoption\\2.log"
+    },
+    {
+      "args": [
+        "scripts/experience/january/attest.mjs",
+        "--venue-kit"
+      ],
+      "exitCode": 0,
+      "log": "C:\\Users\\ethan\\Documents\\Codex\\2026-09-04\\here-are-6-prompts-i-have-2\\work\\studio-final-capture-adoption\\3.log"
+    },
+    {
+      "args": [
+        "scripts/experience/january-extension-verify.mjs",
+        "--manifest=experience/reviews/january-studio14-final-2026-09-05/capture-2026-09-05T06-14-36-024Z/manifest.json"
+      ],
+      "exitCode": 0,
+      "log": "C:\\Users\\ethan\\Documents\\Codex\\2026-09-04\\here-are-6-prompts-i-have-2\\work\\studio-final-capture-adoption\\4.log"
+    },
+    {
+      "args": [
+        "scripts/experience/validate.mjs",
+        "--product=studio"
+      ],
+      "exitCode": 0,
+      "log": "C:\\Users\\ethan\\Documents\\Codex\\2026-09-04\\here-are-6-prompts-i-have-2\\work\\studio-final-capture-adoption\\5.log"
+    }
+  ],
+  "limits": [
+    "Atlas16/36 current-source gate remains incomplete; this set is not full Design CI.",
+    "No rejected server start is retried or rerouted."
+  ],
+  "status": "passed",
+  "finishedAt": "2026-09-05T06:34:48.390Z"
+}

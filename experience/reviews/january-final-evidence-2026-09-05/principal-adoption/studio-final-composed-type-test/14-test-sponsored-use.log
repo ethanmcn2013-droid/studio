@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: usage additive migration applies fresh, proves no-op and rejects later index drift
+ok 1 - usage additive migration applies fresh, proves no-op and rejects later index drift
+  ---
+  duration_ms: 295.2946
+  type: 'test'
+  ...
+# Subtest: failure after the first usage table rolls back its SQL and receipt, then clean retry applies
+ok 2 - failure after the first usage table rolls back its SQL and receipt, then clean retry applies
+  ---
+  duration_ms: 324.1658
+  type: 'test'
+  ...
+# Subtest: actual canonical adapter binds exact code/project proof and preserves a later couple term after venue lapse
+ok 3 - actual canonical adapter binds exact code/project proof and preserves a later couple term after venue lapse
+  ---
+  duration_ms: 1888.6765
+  type: 'test'
+  ...
+# Subtest: pending canonical delivery blocks a complete population rather than hiding an unacknowledged issuance
+ok 4 - pending canonical delivery blocks a complete population rather than hiding an unacknowledged issuance
+  ---
+  duration_ms: 235.691
+  type: 'test'
+  ...
+# Subtest: bounded population rejects partial, duplicated, wrong scope and oversized authenticated App responses
+ok 5 - bounded population rejects partial, duplicated, wrong scope and oversized authenticated App responses
+  ---
+  duration_ms: 218.6985
+  type: 'test'
+  ...
+# Subtest: actual maintenance still expires raw data when enabled capture configuration is incomplete
+ok 6 - actual maintenance still expires raw data when enabled capture configuration is incomplete
+  ---
+  duration_ms: 284.9998
+  type: 'test'
+  ...
+# Subtest: signed ingest dedupes exact replay and conflicts on another body sharing its event id
+ok 7 - signed ingest dedupes exact replay and conflicts on another body sharing its event id
+  ---
+  duration_ms: 1515.12
+  type: 'test'
+  ...
+# Subtest: HQ action and exports disclose no equivalent activity metadata below cohort threshold 1
+ok 8 - HQ action and exports disclose no equivalent activity metadata below cohort threshold 1
+  ---
+  duration_ms: 565.0482
+  type: 'test'
+  ...
+# Subtest: HQ action and exports disclose no equivalent activity metadata below cohort threshold 2
+ok 9 - HQ action and exports disclose no equivalent activity metadata below cohort threshold 2
+  ---
+  duration_ms: 544.607
+  type: 'test'
+  ...
+# Subtest: parallel signed deliveries converge after retry without holding a writer during provenance
+ok 10 - parallel signed deliveries converge after retry without holding a writer during provenance
+  ---
+  duration_ms: 335.2579
+  type: 'test'
+  ...
+# Subtest: initial and repair enforce the same actor/project/digest/epoch/issuance/interval rules
+ok 11 - initial and repair enforce the same actor/project/digest/epoch/issuance/interval rules
+  ---
+  duration_ms: 431.5589
+  type: 'test'
+  ...
+# Subtest: App or canonical mirror outage returns generic503 without falsely acknowledging an event
+ok 12 - App or canonical mirror outage returns generic503 without falsely acknowledging an event
+  ---
+  duration_ms: 198.626
+  type: 'test'
+  ...
+# Subtest: only valid minute-rounded Tasks creation within35days is accepted by transport
+ok 13 - only valid minute-rounded Tasks creation within35days is accepted by transport
+  ---
+  duration_ms: 192.2557
+  type: 'test'
+  ...
+# Subtest: closed-day aggregate/lifecycle persistence is atomic and retryable after partial DB failure
+ok 14 - closed-day aggregate/lifecycle persistence is atomic and retryable after partial DB failure
+  ---
+  duration_ms: 278.9746
+  type: 'test'
+  ...
+# Subtest: erasure defeats a delivery already waiting on provenance and removes pseudonymous facts
+ok 15 - erasure defeats a delivery already waiting on provenance and removes pseudonymous facts
+  ---
+  duration_ms: 200.3186
+  type: 'test'
+  ...
+# Subtest: real erasure removes raw events/lifecycle/index, keeps anonymous aggregates, and is idempotent
+ok 16 - real erasure removes raw events/lifecycle/index, keeps anonymous aggregates, and is idempotent
+  ---
+  duration_ms: 269.1577
+  type: 'test'
+  ...
+# Subtest: raw35day and aggregate24month retention runs even if provenance repair is down
+ok 17 - raw35day and aggregate24month retention runs even if provenance repair is down
+  ---
+  duration_ms: 257.2252
+  type: 'test'
+  ...
+# Subtest: erasure between population lookup and commit removes its contribution and cannot recreate lifecycle
+ok 18 - erasure between population lookup and commit removes its contribution and cannot recreate lifecycle
+  ---
+  duration_ms: 238.1243
+  type: 'test'
+  ...
+# Subtest: exact historical replay does not rewrite verified sponsor facts after current claim revocation
+ok 19 - exact historical replay does not rewrite verified sponsor facts after current claim revocation
+  ---
+  duration_ms: 185.8905
+  type: 'test'
+  ...
+# Subtest: mixed salt epochs and unobserved closed days cannot become complete or fabricated quiet days
+ok 20 - mixed salt epochs and unobserved closed days cannot become complete or fabricated quiet days
+  ---
+  duration_ms: 290.0743
+  type: 'test'
+  ...
+# Subtest: a silent Tasks-only cohort closes as indeterminate without needing a later raw event
+ok 21 - a silent Tasks-only cohort closes as indeterminate without needing a later raw event
+  ---
+  duration_ms: 290.2267
+  type: 'test'
+  ...
+# Subtest: late delivery and rollup retries cannot outlive App's24-month erasure link
+ok 22 - late delivery and rollup retries cannot outlive App's24-month erasure link
+  ---
+  duration_ms: 291.1826
+  type: 'test'
+  ...
+# Subtest: private projection/export suppresses2 and measures3 with Tasks-only lower bounds; rates4/5
+ok 23 - private projection/export suppresses2 and measures3 with Tasks-only lower bounds; rates4/5
+  ---
+  duration_ms: 364.0712
+  type: 'test'
+  ...
+# Subtest: usage signature authenticates exact path, purpose, epoch and body
+ok 24 - usage signature authenticates exact path, purpose, epoch and body
+  ---
+  duration_ms: 37.5155
+  type: 'test'
+  ...
+# Subtest: streamed body bound is enforced without trusting Content-Length; missing config fails closed
+ok 25 - streamed body bound is enforced without trusting Content-Length; missing config fails closed
+  ---
+  duration_ms: 1.3201
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12748.3832

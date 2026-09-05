@@ -1,0 +1,434 @@
+TAP version 13
+# [access-anomaly] bulk_cap op-test mint refused for sp-capped: 1 requested, 0 remaining
+# [access-anomaly] bulk_cap op-test mint refused for sp-nullcap: 1 requested, 0 remaining
+# [access-anomaly] fair_use op-test sp-fairuse issuance 3 crosses its fair-use ceiling 2 this term. Issuing anyway — unlimited means unlimited.
+# [access-anomaly] invalid_terms - venue_edition code terms 'wedding/365'
+# [access-anomaly] invalid_terms - venue_edition code terms 'wedding/null'
+# [access-anomaly] invalid_terms - venue_edition code terms 'studio/548'
+# [access-anomaly] drift - sponsor sp-reserved: codes_issued=0 but 1 code rows
+# Subtest: mintLicenseCodes · retained non-Venue allotment
+    # Subtest: still refuses a limited sponsor with no headroom
+    ok 1 - still refuses a limited sponsor with no headroom
+      ---
+      duration_ms: 56.8001
+      type: 'test'
+      ...
+    # Subtest: still refuses a limited sponsor with a null allotment
+    ok 2 - still refuses a limited sponsor with a null allotment
+      ---
+      duration_ms: 9.6807
+      type: 'test'
+      ...
+    # Subtest: an unlimited sponsor mints past any cap, repeatedly
+    ok 3 - an unlimited sponsor mints past any cap, repeatedly
+      ---
+      duration_ms: 48.3546
+      type: 'test'
+      ...
+    # Subtest: D-020: crossing the fair-use ceiling alerts and still issues
+    ok 4 - D-020: crossing the fair-use ceiling alerts and still issues
+      ---
+      duration_ms: 25.9617
+      type: 'test'
+      ...
+    # Subtest: stays quiet below the ceiling
+    ok 5 - stays quiet below the ceiling
+      ---
+      duration_ms: 22.2036
+      type: 'test'
+      ...
+    1..5
+ok 1 - mintLicenseCodes · retained non-Venue allotment
+  ---
+  duration_ms: 1598.2346
+  type: 'suite'
+  ...
+# Subtest: mintLicenseCodes · Venue Edition terms
+    # Subtest: raw Venue issuance is closed even with valid longer terms
+    ok 1 - raw Venue issuance is closed even with valid longer terms
+      ---
+      duration_ms: 7.6229
+      type: 'test'
+      ...
+    # Subtest: refuses anything shorter than the ratified 548 days
+    ok 2 - refuses anything shorter than the ratified 548 days
+      ---
+      duration_ms: 7.426
+      type: 'test'
+      ...
+    # Subtest: refuses a null duration rather than granting perpetual access
+    ok 3 - refuses a null duration rather than granting perpetual access
+      ---
+      duration_ms: 6.8445
+      type: 'test'
+      ...
+    # Subtest: refuses the wrong tier
+    ok 4 - refuses the wrong tier
+      ---
+      duration_ms: 6.3247
+      type: 'test'
+      ...
+    1..4
+ok 2 - mintLicenseCodes · Venue Edition terms
+  ---
+  duration_ms: 28.8478
+  type: 'suite'
+  ...
+# Subtest: canonical Venue issuance has one grant authority
+    # Subtest: refuses reserved code or batch provenance through generic raw mint
+    ok 1 - refuses reserved code or batch provenance through generic raw mint
+      ---
+      duration_ms: 8.2377
+      type: 'test'
+      ...
+    # Subtest: shared redeem and orphan repair cannot infer a grant for App-owned issuance
+    ok 2 - shared redeem and orphan repair cannot infer a grant for App-owned issuance
+      ---
+      duration_ms: 23.3732
+      type: 'test'
+      ...
+    1..2
+ok 3 - canonical Venue issuance has one grant authority
+  ---
+  duration_ms: 31.9837
+  type: 'suite'
+  ...
+# Subtest: redeemLicenseCode · access term
+    # Subtest: R-015: a long-lead wedding survives to 90 days past the day
+    ok 1 - R-015: a long-lead wedding survives to 90 days past the day
+      ---
+      duration_ms: 22.4365
+      type: 'test'
+      ...
+    # Subtest: falls back to the 548-day floor when no date is given
+    ok 2 - falls back to the 548-day floor when no date is given
+      ---
+      duration_ms: 16.5895
+      type: 'test'
+      ...
+    # Subtest: keeps a longer minted duration when the couple gives no date
+    ok 3 - keeps a longer minted duration when the couple gives no date
+      ---
+      duration_ms: 17.4795
+      type: 'test'
+      ...
+    # Subtest: ignores an unparseable date rather than shortening the term
+    ok 4 - ignores an unparseable date rather than shortening the term
+      ---
+      duration_ms: 16.7165
+      type: 'test'
+      ...
+    1..4
+ok 4 - redeemLicenseCode · access term
+  ---
+  duration_ms: 73.5705
+  type: 'suite'
+  ...
+# Subtest: setCoupleWeddingDate
+    # Subtest: extends access when a date arrives after redemption
+    ok 1 - extends access when a date arrives after redemption
+      ---
+      duration_ms: 26.8246
+      type: 'test'
+      ...
+    # Subtest: extends on postponement
+    ok 2 - extends on postponement
+      ---
+      duration_ms: 28.5853
+      type: 'test'
+      ...
+    # Subtest: never shortens when the date moves earlier
+    ok 3 - never shortens when the date moves earlier
+      ---
+      duration_ms: 27.4268
+      type: 'test'
+      ...
+    # Subtest: never shortens when the date is cleared
+    ok 4 - never shortens when the date is cleared
+      ---
+      duration_ms: 34.8582
+      type: 'test'
+      ...
+    # Subtest: is idempotent
+    ok 5 - is idempotent
+      ---
+      duration_ms: 19.5257
+      type: 'test'
+      ...
+    # Subtest: writes an extend event that carries no wedding date
+    ok 6 - writes an extend event that carries no wedding date
+      ---
+      duration_ms: 25.6545
+      type: 'test'
+      ...
+    # Subtest: refuses a malformed date
+    ok 7 - refuses a malformed date
+      ---
+      duration_ms: 14.9812
+      type: 'test'
+      ...
+    # Subtest: refuses a non-sponsored entitlement
+    ok 8 - refuses a non-sponsored entitlement
+      ---
+      duration_ms: 9.4719
+      type: 'test'
+      ...
+    # Subtest: reports a missing entitlement rather than throwing
+    ok 9 - reports a missing entitlement rather than throwing
+      ---
+      duration_ms: 1.7243
+      type: 'test'
+      ...
+    1..9
+ok 5 - setCoupleWeddingDate
+  ---
+  duration_ms: 195.4018
+  type: 'suite'
+  ...
+# Subtest: assignFoundingNumber
+    # Subtest: gives the first paid founding venue 01/25
+    ok 1 - gives the first paid founding venue 01/25
+      ---
+      duration_ms: 44.0488
+      type: 'test'
+      ...
+    # Subtest: gives the next venue the next place
+    ok 2 - gives the next venue the next place
+      ---
+      duration_ms: 19.6121
+      type: 'test'
+      ...
+    # Subtest: refuses before the payment clears
+    ok 3 - refuses before the payment clears
+      ---
+      duration_ms: 10.7124
+      type: 'test'
+      ...
+    # Subtest: refuses a venue that is not on the founding plan
+    ok 4 - refuses a venue that is not on the founding plan
+      ---
+      duration_ms: 6.352
+      type: 'test'
+      ...
+    # Subtest: is idempotent — a second call returns the same number, not a second one
+    ok 5 - is idempotent — a second call returns the same number, not a second one
+      ---
+      duration_ms: 1.4126
+      type: 'test'
+      ...
+    # Subtest: skips a number already held and never reissues it
+    ok 6 - skips a number already held and never reissues it
+      ---
+      duration_ms: 28.4105
+      type: 'test'
+      ...
+    # Subtest: records the assignment in the audit ledger
+    ok 7 - records the assignment in the audit ledger
+      ---
+      duration_ms: 0.6802
+      type: 'test'
+      ...
+    1..7
+ok 6 - assignFoundingNumber
+  ---
+  duration_ms: 1547.6084
+  type: 'suite'
+  ...
+# Subtest: the unique index is the real guarantee
+    # Subtest: the database refuses a duplicate number outright
+    ok 1 - the database refuses a duplicate number outright
+      ---
+      duration_ms: 15.4155
+      type: 'test'
+      ...
+    # Subtest: any number of venues may hold no number at all
+    ok 2 - any number of venues may hold no number at all
+      ---
+      duration_ms: 12.2955
+      type: 'test'
+      ...
+    # Subtest: a run of assignments never repeats a number
+    ok 3 - a run of assignments never repeats a number
+      ---
+      duration_ms: 101.873
+      type: 'test'
+      ...
+    # Subtest: recognises the two recoverable failures through drizzle's wrapper
+    ok 4 - recognises the two recoverable failures through drizzle's wrapper
+      ---
+      duration_ms: 0.8206
+      type: 'test'
+      ...
+    1..4
+ok 7 - the unique index is the real guarantee
+  ---
+  duration_ms: 130.9847
+  type: 'suite'
+  ...
+# Subtest: withdrawFoundingNumber
+    # Subtest: returns the place to the pool on a reversed payment
+    ok 1 - returns the place to the pool on a reversed payment
+      ---
+      duration_ms: 22.6068
+      type: 'test'
+      ...
+    # Subtest: requires a reason, because the venue is told
+    ok 2 - requires a reason, because the venue is told
+      ---
+      duration_ms: 6.6637
+      type: 'test'
+      ...
+    # Subtest: records the withdrawal and its reason in the audit ledger
+    ok 3 - records the withdrawal and its reason in the audit ledger
+      ---
+      duration_ms: 1.0903
+      type: 'test'
+      ...
+    # Subtest: reports a venue that holds no number rather than throwing
+    ok 4 - reports a venue that holds no number rather than throwing
+      ---
+      duration_ms: 8.2241
+      type: 'test'
+      ...
+    1..4
+ok 8 - withdrawFoundingNumber
+  ---
+  duration_ms: 38.9902
+  type: 'suite'
+  ...
+# Subtest: programme status
+    # Subtest: reports places honestly, for scarcity claims
+    ok 1 - reports places honestly, for scarcity claims
+      ---
+      duration_ms: 1.8621
+      type: 'test'
+      ...
+    1..1
+ok 9 - programme status
+  ---
+  duration_ms: 2.0361
+  type: 'suite'
+  ...
+# Subtest: populated legacy paid rows and plan choices do not pass cash or paid proof
+ok 10 - populated legacy paid rows and plan choices do not pass cash or paid proof
+  ---
+  duration_ms: 541.4117
+  type: 'test'
+  ...
+# Subtest: real payment receipts feed exact cash through traction, proof and all report projections
+ok 11 - real payment receipts feed exact cash through traction, proof and all report projections
+  ---
+  duration_ms: 145.1367
+  type: 'test'
+  ...
+# Subtest: canonical receipt remains proof when the Studio mirror write fails
+ok 12 - canonical receipt remains proof when the Studio mirror write fails
+  ---
+  duration_ms: 100.5889
+  type: 'test'
+  ...
+# Subtest: superseded annual receipts count only the current financial record once
+ok 13 - superseded annual receipts count only the current financial record once
+  ---
+  duration_ms: 113.5822
+  type: 'test'
+  ...
+# Subtest: every current financial field must still match the payment receipt
+ok 14 - every current financial field must still match the payment receipt
+  ---
+  duration_ms: 171.8043
+  type: 'test'
+  ...
+# Subtest: malformed, misbound, future and corrupted receipts cannot verify a paid claim
+ok 15 - malformed, misbound, future and corrupted receipts cannot verify a paid claim
+  ---
+  duration_ms: 179.607
+  type: 'test'
+  ...
+# Subtest: an unread canonical audit cannot fall back to the populated Studio paid mirror
+ok 16 - an unread canonical audit cannot fall back to the populated Studio paid mirror
+  ---
+  duration_ms: 93.5141
+  type: 'test'
+  ...
+# Subtest: cash and populated January CRM contacts cannot start a clock or authorise outreach
+ok 17 - cash and populated January CRM contacts cannot start a clock or authorise outreach
+  ---
+  duration_ms: 131.8584
+  type: 'test'
+  ...
+# Subtest: selecting a paid plan creates no payment, and onboarding preserves paid financial history
+ok 18 - selecting a paid plan creates no payment, and onboarding preserves paid financial history
+  ---
+  duration_ms: 110.3966
+  type: 'test'
+  ...
+# Subtest: re-onboarding an unpaid venue remains unpaid and limited allotment deltas stay correct
+ok 19 - re-onboarding an unpaid venue remains unpaid and limited allotment deltas stay correct
+  ---
+  duration_ms: 96.2414
+  type: 'test'
+  ...
+# Subtest: cleared payment records exact retained terms and hash-chained evidence, then repeats without changes
+ok 20 - cleared payment records exact retained terms and hash-chained evidence, then repeats without changes
+  ---
+  duration_ms: 94.0135
+  type: 'test'
+  ...
+# Subtest: shared audit failure rolls back payment and leaves Studio untouched
+ok 21 - shared audit failure rolls back payment and leaves Studio untouched
+  ---
+  duration_ms: 99.8372
+  type: 'test'
+  ...
+# Subtest: mirror failure is explicit and the same receipt repairs it without a new payment or term
+ok 22 - mirror failure is explicit and the same receipt repairs it without a new payment or term
+  ---
+  duration_ms: 104.5609
+  type: 'test'
+  ...
+# Subtest: missing shared or Studio sponsors fail rather than reporting a zero-row mirror success
+ok 23 - missing shared or Studio sponsors fail rather than reporting a zero-row mirror success
+  ---
+  duration_ms: 79.2567
+  type: 'test'
+  ...
+# Subtest: reference conflicts, future payment, wrong amounts and anonymous operators cannot create evidence
+ok 24 - reference conflicts, future payment, wrong amounts and anonymous operators cannot create evidence
+  ---
+  duration_ms: 101.556
+  type: 'test'
+  ...
+# Subtest: old receipt cannot roll back a later payment, and continuous Founding rate is retained
+ok 25 - old receipt cannot roll back a later payment, and continuous Founding rate is retained
+  ---
+  duration_ms: 113.5098
+  type: 'test'
+  ...
+# Subtest: standard annual payment uses 150000 cents and no Founding lock
+ok 26 - standard annual payment uses 150000 cents and no Founding lock
+  ---
+  duration_ms: 86.0931
+  type: 'test'
+  ...
+# Subtest: CLI exits nonzero on a partial mirror and succeeds when the identical command repairs it
+ok 27 - CLI exits nonzero on a partial mirror and succeeds when the identical command repairs it
+  ---
+  duration_ms: 3811.0056
+  type: 'test'
+  ...
+# Subtest: concurrent identical receipts converge to one evidence event across independent SQLite connections
+ok 28 - concurrent identical receipts converge to one evidence event across independent SQLite connections
+  ---
+  duration_ms: 94.4204
+  type: 'test'
+  ...
+1..28
+# tests 59
+# suites 9
+# pass 59
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8757.9015

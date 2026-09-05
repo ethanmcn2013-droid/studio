@@ -1,5 +1,7 @@
 # January 2027 programme
 
+Source index: [17 capabilities and their authoritative code, policy and proof gaps](CAPABILITY_INDEX.md). This dated index preserves source hashes; current acceptance remains in this register.
+
 Updated 2026-09-05 by the principal integrator. Current phase: internal implementation, independent verification and integration. Commercial launch and first venue outreach target: **21 January 2027**. No earlier sends or commercial opening. The [January decision](../../../content/hq/decisions/january-2027-launch.md) records the user's authority and supersession.
 
 Current programme estimate: **approximately 60% complete**, including verification, recovery, stabilisation and release preparation. This is a principal planning assessment against the accepted scope, not a measured percentage, a count of passing tests or release authorization. S6 is closed; S1–S5 remain partial. Implemented candidate work receives no final acceptance credit until its independent and receiving gates pass. Live-provider proof, sustained internal use and final release exercises remain open; customer demand and human comprehension are separate postlaunch outcomes. This estimate is deliberately unchanged by individual follow-up test successes.
@@ -8,14 +10,90 @@ Current programme estimate: **approximately 60% complete**, including verificati
 
 | ID | State | Implemented evidence | Remaining acceptance / owner |
 |---|---|---|---|
-| S1 Truth | Partial; foundations established | Workspace40f7755, doctor0 failures/15 warnings; preserved Drive work; January policy and experiment clock; App receiving77d is Linux-green; current programme/acceptance and immutable paired gates. | Principal: final receiving reconciliation, capability/source-map completion and acceptance closure. |
-| S2 Commercial readiness | Partial; internal flow implemented | Verified payment evidence, exact recoverable issuance/readback, atomic claim and support packet. Actual three-store standard/Founding/pilot rehearsal24 checkpoints plus14 independent failure probes pass; repeated on the combined candidate. | Principal: final commercial surfaces/support rehearsal and receiving gates. Operator: designated Stripe test account and connector reauthentication. Event/Student offer limitations remain explicit; demand is unverified. |
-| S3 Drive | Partial; core implementation integrated | Backend, ownership/access UI and completed-upload recovery are in receivingfe4. Scoped UI security review and recovery81 authored plus39 independent cases pass. | Drive owner: final integrated experience and failure-state acceptance. Operator/provider: isolated OAuth/Clerk target and real two-account upload/revoke/reauth/handover/erasure lifecycle. Incomplete closed-tab bytes cannot resume. Production0028/0029 remain held. |
-| S4 Suite coherence | Partial; follow-up repairs integrated | Canonical template/caller retry, invitation arrival, navigation/contrast and Home scope fixes. Notesf04 independently passes198 checks/scenarios; combined App1829 passes132 critical cases plus27 Notes browser scenarios. Studio173 has complete scripted188/328/16 matrices and four supplemental Atlas renders. | Experience owner: final candidate/receiving gates, remaining design-lab findings, complete authenticated browser stories and human accessibility/comprehension. Scripted coverage does not approve design or human usability. |
-| S5 Collaboration | Partial; useful-action reporting implemented | Invitation B while A is active passes25 cases. Actual deliberate Tasks creation, atomic delivery intent, canonical attribution, closed-day report, suppression and account erasure are in the candidate; independent fix154 positive checks and actual three-store composition pass. | Collaboration owner: complete creator/recipient/role/revocation story and final receiving verification. Operator: actual provider/delivery configuration and maintained erasure processing. Capture defaults off; no real email or human first-minute success is claimed. |
+| S1 Truth | Partial; foundations established | Workspace40f7755, doctor0 failures/15 warnings; preserved Drive work; January policy and experiment clock; App receiving77d and Studio receiving4ed are Linux-green; current programme/acceptance, immutable paired gates and17-capability index with104 checked source hashes. | Principal: named contradiction disposition and final acceptance/operational evidence. The source index is complete as a dated snapshot, not proof of current runtime or production. |
+| S2 Commercial readiness | Partial; internal flow implemented | Verified payment evidence, exact recoverable issuance/readback, atomic claim and support packet. Actual three-store standard/Founding/pilot rehearsal24 checkpoints plus14 independent failure probes pass; repeated on the combined candidate. Held collateral and the eight-card fictional support walkthrough are composed. The preceding188/20 render matrices pass at source2713468a; HQ revocation corrections now require renewed source evidence. Older328 remains historical. | Principal/commercial: receiving sponsored-date acceptance, Event post-term closure, final contract parity and receiving gates. Operator: designated Stripe test account and connector reauthentication. Event/Student offer limitations remain explicit; demand is unverified. |
+| S3 Drive | Partial; core implementation integrated | Backend, ownership/access UI and completed-upload recovery are in receivingfe4. Scoped UI security review and recovery81 authored plus39 independent cases pass. The later1ac pending-removal notice is independently verified and composed ina8c. | Drive owner: durable personal-disconnect response receipts and reconnect safeguards, then final integrated experience and failure-state acceptance. Operator/provider: isolated OAuth/Clerk target and real two-account upload/revoke/reauth/handover/erasure lifecycle. Incomplete closed-tab bytes cannot resume. Production0028/0029 remain held. |
+| S4 Suite coherence | Partial; follow-up candidate implemented | Canonical template/caller retry, invitation arrival, navigation/contrast and Home scope fixes. Notesf04 independently passes198 checks/scenarios. App6eb composes project-calendar and independently repaired sponsored-date follow-ups; final internal browser, artifact and all three Linux gates pass. Receiving remains held. Preceding runtime509 and Studio source38ec retain their132/68/27 and188/328/20 captures; those are historical after current source changes. Floor calendar has16 component browser cases/196 assertions; My Work has four scoped render controls. | Experience owner: exact-candidate/receiving gates, incomplete Atlas renewal, remaining design-lab observations and final calendar composition, complete authenticated stories and human accessibility/comprehension. Scripted coverage does not approve design or human usability. |
+| S5 Collaboration | Partial; useful-action reporting integrated | Invitation B while A is active passes25 cases. Actual deliberate Tasks creation, atomic delivery intent, canonical attribution, closed-day report, suppression and account erasure are in receiving77d; independent fix154 positive checks and actual three-store composition pass. Studio's paired consumer is now in receiving4ed. | Collaboration owner: complete creator/recipient/role/revocation story and final follow-up receiving verification. Operator: actual provider/delivery configuration and maintained erasure processing. Capture defaults off; no real email or human first-minute success is claimed. |
 | S6 Instruments | Closed — no-build for January | Accepted delegated decision and [A–F opportunity comparison](INSTRUMENT_OPPORTUNITIES.md). Existing templates win the January scope decision. | Reopen only after the recorded postlaunch evidence trigger and a new scope decision. No guest schema, plus menu or speculative chooser added. |
 
 These verdicts distinguish implementation progress from release acceptance. The authoritative scenario register is [ACCEPTANCE.md](ACCEPTANCE.md). Component reports remain historical receipts; they cannot override a later failure.
+
+Latest complete Linux App checkpoint: `3be4ea96`, draft PR171. All three
+workflows pass: CI33961627091, Verify33961627087 and Design33961627079. Tested
+mergeb5a6cfa8 has exactly candidate tree323625ba; all logs, the132-case built
+artifact and source comparisons are preserved at4a70d3f4. This covers custody/
+focus8ae, not later Event or pending-removal changes.
+
+Current published App candidate `a8c225c7` composes Event80f and Drive1ac atcbf40.
+The pending-removal notice passes26 SQLite/SSR,5 independent controls and46
+saved component cases/52 screenshots. Principal99-test UI confirmation passes;
+its first native process failure remains retained. Event's36 tests,3 clock
+controls,66 migration tests, disposable fresh/no-op through0031, full type/lint,
+28 tenant/Stripe checks and ambient ratchet pass on the composition. Six archives
+preserve167 Event author/reviewer files and both original test defects. Event36+3
+is registered in the mandatory gate. Fresh Linux33991689111/33991689081/33991689089
+is running. Provider, human/council and receiving acceptance remain open.
+
+The final normal build `wnk1OREKC5EKuma6I3VoO` passes all132 built cases. Six
+separate browser commands pass3 React,68 route,80 geometry/contrast,16 calendar,
+16 date-readback and27 Notes cases. The owning date packet passes32 state/viewport
+and3 keyboard checks, with59 measured44px controls. Independent c1ab verification
+closes WDATE-01/02 with14 retained plus8 additional ordering controls and8 actual
+SQLite request-pair replays preserving revocation;4 old-source pairs reproduce
+conflict. Named identity/navigation/board/overview adapters remain explicit.
+
+The506-file composed checkpoint and475-file Linux checkpoint retain source hashes,
+screenshots, all command outcomes and original failures. Independent artifact
+review verifies their source bindings, all203 date entries and preservation of
+earlier packets. It finds only EI-01:16 cases were called16 source hashes. The
+README now correctly states two recorded component hashes. No coverage, approval
+or review-date inflation was found. The Linux council still says NOT CERTIFIED.
+
+The existing full gate caught five oversized spacing11 controls, repaired with
+explicit44px minima in054b, and an incomplete calendar fixture, repaired through
+the real constructor in8172. Typecheck/full lint and the228 unchanged assertions
+pass. Local catalog/billing native exits remain recorded; catalog's exact-command
+confirmation passes and billing prints40 passes before its native exit. Remaining
+declared commands pass. Later Linux success does not explain or erase those failures.
+
+Latest captured Studio product source is `e47507c8`, digest
+`2713468ad563646a469399967fe57a671ae50166d4f72ec70498f6bacffde2d4`.
+Its composed14 commands and188 January/20 Venue captures pass, with300 PNGs at four
+widths. Nine surfaces were adopted at2e263f55. Published9fa4e41e passes CI33958617225
+and Verify33958617231; Design33958617226 rejects the old extension build inputs.
+Studio41384571 passes CI33962227361 and Verify33962227364; Design33962227359
+fails the January source-freshness gate. Complete logs are preserved at618ef51b.
+The accepted permission-notice update now changes the HQ product digest to
+`e76d4b7ccdf2ab9e0de9e37d3e745fe89abb382da2ff099cad7926512524602c`.
+No captures are claimed at that new source. Prior188/20 evidence remains dated
+and intact; its freshness is now open alongside the unrenewed328 extension.
+The292-case proposal was not launched or merged because redirect exclusion is
+unproven; Atlas16/36 remains held. The original native capture failure and314
+canceled Atlas RSC prefetches remain visible. No further browser action is taken
+to evade that boundary. Email Lab's selected-browser error is still unattributed.
+
+Event foundationa59 and corrections93be/80f are independently verified and
+integrated ina8c. Original checkout/project/term/refund facts and anonymized
+surviving-project effects are implemented; no content adapter consumes the
+internal evaluator yet. Export and independent profile-download reachability
+are the active next slice. Recovery must precede private/Timeline/public/cache
+denial. No historical backfill, sales reopening or production migration occurred.
+
+The original27af twelve-control Drive investigation remains preserved. The
+named-permission notice is repaired in1ac; live Google labels remain independent.
+Personal token disconnect still needs durable local request and bounded provider
+response facts.0032_drive_token_revocation_receipts.sql is allocated to the Drive
+writer after inspecting64 worktrees and refreshedorigin/maina709. Its implementation
+starts fromcbf40, separate from the Event export lane. No old-token retry worker
+is authorized. A receipt alone does not serialize overlapping Google consent and
+revocation or prove immediate provider effects.
+
+Receiving branches remain App77d22a6b and Studio4ed9be64. The rejected Atlas server
+start and stopped RC-3 review are not retried or rerouted. Provider lifecycles,
+human/council acceptance, sustained use and release exercises remain open. Earlier
+wording is retained in Git9fa4e41e and the linked history records. None of this
+changes the approximately60% estimate or authorizes production, launch or outreach.
 
 ## Accepted allocations
 
@@ -39,7 +117,7 @@ Current code and machine contracts establish implemented behavior; approved deci
 
 - Root: ops/january-programme at 40f7755, also locally integrated into ops/design-capability-stack. User-owned Signal Studio.code-workspace remains untouched.
 - App receiving branch: release/january-2027 at77d22a6bdbe6764da53daf1159049eef58fc523d after verified [PR #169](https://github.com/ethanmcn2013-droid/app/pull/169) integration on5 September at01:21 UTC. Candidatee9f10184 passed independent evidence/config review plus CI33935140018, Verify33935140114 and Design33935140093. Receiving CI33935902852, Verify33935903012 and Design33935902871 all pass. Previous receivingfe4a2b60 from [#168](https://github.com/ethanmcn2013-droid/app/pull/168) passed all three Linux workflows. GitHub also marked ancestor Drive [#165](https://github.com/ethanmcn2013-droid/app/pull/165) and billing [#167](https://github.com/ethanmcn2013-droid/app/pull/167) merged; original worktrees remain preserved.
-- Studio receiving branch: release/january-2027 at 597509c before candidate integration. Draft [PR #176](https://github.com/ethanmcn2013-droid/studio/pull/176) contains January commercial/HQ/Atlas truth and paired gates.
+- Studio receiving branch: release/january-2027 at4ed9be64be4f351c5a3e7aa2b396e92d9be570bf after verified [PR #176](https://github.com/ethanmcn2013-droid/studio/pull/176) merged candidate009622ed on5 September at02:57 UTC. Candidate CI33940170313, Verify33940170317 and Design33940170311 pass. Receiving CI33940506439, Verify33940506448 and Design33940506431 also pass. The original feature branch and capture worktree remain preserved.
 - Verified dependency changes from App #164 (aa88c960) and Studio #173 (f01d436) are included in their release lineage. September 4 bounded patches ac9321a2 (App) and 17c5140 (Studio) reduce each candidate production audit to zero; full App Linux and Studio 484/typecheck/lint/build pass. Historical/default-branch alerts are not automatically candidate findings.
 - Git deployments are disabled for these internal candidates. Database targets must be isolated before any rehearsal write. No production migration or customer data operation was performed.
 
@@ -62,11 +140,12 @@ One principal integrator owns shared project identity, membership, schema, navig
 - Plan choice / paidAt / cash: plan selection no longer writes paidAt; populated HQ requires matching operator payment receipts. Payment, redemption and useful activity remain separate.
 - Paid-plan scope and revocation: App now scopes shared/local grants before ranking and respects local purchase tombstones; independent grants remain usable.
 - Drive not-started records: repaired to candidate implementation with incomplete product/provider acceptance. The existing 50 MB cap remains; neither limitless files nor zero storage cost is promised.
+- Drive pending-revocation claim: local12-case service/SQLite evidence falsifies complete reload visibility. HQ feature and custody risk now distinguish retained permission intent from missing token completion evidence. The Drive owner is repairing the projection; the principal owns the subsequent receipt/migration dependency. Historical passes remain scoped, and no provider observation is inferred.
 - Atlas four-product/separate-subdomain topology, obsolete prices and public-only Timeline: current entries now reflect Notes/Tasks/Timeline plus Home, unified App and deliberate narrow publication. Former entries are explicit history, and drift checks cover the repaired active surfaces.
 - Free .edu automatic grants versus paid verified Student policy: new automatic grants and email-only issuance disabled in App fc40f4ef; historical grants remain. New verified Student checkout remains unavailable until its actual policy is enforced.
 
 - Event offer versus access enforcement: delegated owner/funding policy recorded; App a10432dd refuses new Event sessions while existing settlement/refund recovery stays active. Full public/private access closure and historical designation remain assigned work.
-- Sponsored-use readiness: corrected the earlier claim that migration was the sole remaining step. The formerfe4 receiving baseline had a no-op sink. PR169 now integrates durable delivery and the independently verified actual three-store reporting composition into receiving77d; its receiving checks all pass. Studio's paired consumer remains a candidate and capture defaults off. This is not a deployed capability.
+- Sponsored-use readiness: corrected the earlier claim that migration was the sole remaining step. The formerfe4 receiving baseline had a no-op sink. PR169 now integrates durable delivery and the independently verified actual three-store reporting composition into receiving77d; its receiving checks all pass. Studio's paired consumer is integrated in receiving4ed through PR176; capture defaults off. This is not a deployed capability.
 - Template and redemption partial writes: 540933c0 request-bound application and b2e6f6fa atomic new comp fulfilment preserve retry identity and prevent partial starter/capacity writes. Historical partial grants require reconciliation.
 - Recovery evidence: a full App populated restore exposed a stale ongoing backfill count. 3d8a36e1 retains every execution proof and immutable migration checksum while restricting continuous proofs to durable invariants.
 
@@ -84,77 +163,7 @@ Active heartbeat january-maintenance-sync runs Mondays at 09:00 local time, quie
 
 Retained handoffs: [commercial implementation](COMMERCIAL_HANDOFF.md), [populated HQ correction](HQ_TRUTH_REPAIR.md), [instrument decision](INSTRUMENT_OPPORTUNITIES.md), [earlier component reports](history/programme-component-reports-20260904.md), and App docs/projects/project-drive/.
 
-## Current integration checkpoint — 4 September, late execution
-
-The following supersedes earlier component counts where the source has changed. App ca95830e combines the caller repair fd481617 with exact-project sponsored welcome and first-view marking. Forty-nine composed claim/onboarding/helper tests, typecheck and focused lint pass. A new venue claim requires project-management authority; a task-only editor cannot replace shared setup. First-view marking is not useful activity. Legacy experimental new-project sponsorship/date adoption remains unverified and is explicitly excluded from this closure.
-
-App e273e671 passed Linux CI 33924047821 and Verify Tasks 33924047847. Design run 33924047875 rejected stale materiality receipts after the redemption fixture contract changed; the final ca95830e built browser run and receipt regeneration are in progress. Earlier Windows full-test failures remain failed receipts; Linux success does not rewrite them. The receiving branch has not yet integrated this candidate.
-
-Studio e60d7b04, integrated into the candidate at f9c3d1d, has 188/188 final combined state/breakpoint captures plus four Atlas renders. The source-bound attestation, 491 tests, typecheck, lint and build pass. The three mobile layout findings are repaired. Fresh independent review and receiving paired CI remain pending. These results do not establish a quality-council verdict or human comprehension.
-
-Two internal gaps now have implementation owners and separate worktrees; neither is merely a credential blocker:
-
-- Commercial: recoverable issuance from the verified Studio commercial record through the shared ledger to actual App comp codes, same-request retries, readback/withdrawal and a support packet. Current narrow App provenance contract a84f48c1 has four SQLite tests; the complete issuance pipeline is still being implemented.
-- Collaboration: one deliberate Tasks mutation with atomic activity/queue intent, purpose-bound delivery, exact project-and-actor provenance, closed-day Tasks-only reporting, cohort suppression and erasure/retention. Existing no-op delivery is not credited as completed reporting.
-
-Shared Studio schema/migration ownership is centralized with the commercial lane: additive issuance 0001, usage 0002. App usage reserves 0030; an issuance migration would use 0031 only if needed. These are internal branch allocations, not executed production migrations. Service keys and target bindings remain purpose-separated. No new source-of-truth dashboard or generic event platform is authorized by this implementation detail.
-
-## Receiving integration — 4 September, 23:10 UTC
-
-App PR168 merged exact verified head 9105c81a into release/january-2027 as fe4a2b60. CI33927170658, Verify33927170636 and Design33927170606 all passed. Independent review executed 47 existing-project welcome/action checks against unchanged ca95830e runtime source and demonstrated no residual scoped P2 defect. The 132-case final browser receipt remains valid for that runtime. Receiving checks are a new observation, not assumed from the PR result.
-
-Studio candidate 69221eb has completed local 491-test/typecheck/lint/build verification, 188 state captures, four Atlas renders and independent 16-check source/capture review. Its paired Linux gates now use the integrated App release. Final Studio receiving integration remains pending.
-
-Two separate Notes/photo security leads were boundedly validated against ca95830e with eight isolated checks. The Notes Photo action retained authentication, rate and model guards; no missing-authorization defect was demonstrated. Calendar erasure reproduced deletion of retry custody before failed provider revocation; no current live-token writer/population or credential disclosure was established, so security severity is withheld. Owner: App principal; next action is a bounded erasure-order repair retaining exact token custody until revocation succeeds, with failure/retry and owner-isolation tests. This does not reopen or certify Drive provider behavior.
-
-Active follow-up implementation remains separately owned: Notes unsaved-writing/history and project navigation (experience lane), scoped aggregate Home links (principal), recoverable venue issuance (commercial lane), and Tasks-only sponsored-use delivery (collaboration lane). Their work is not covered by the baseline merge verdict.
-
-## Follow-up checkpoint — 5 September, internal candidates
-
-The App baseline above is integrated and receiving-green. Follow-up changes are isolated from it on feat/january-activation-integration and their owning branches. Author tests below are scoped observations, not independent or receiving acceptance.
-
-| Candidate | Observed implementation / checks | Next owner and proof |
-|---|---|---|
-| Home 6d428ffa (a16b2651 predecessor) | Aggregate observations open the same authorized reading scope; Home/footer retain explicit context. Fifteen Home tests plus demo regression pass. Independent review of a16 found an alternate analytics-engine fallback to saved A; 6d repairs dispatch and authorization selection. | Fresh reviewer: verify HOME-01 repair. Principal: final integrated Home/Briefing and navigation evidence. |
-| Notes 8963e919 | Writing retained before blur/history disposal; actor/project/note/version-bound recovery, pending-save race guards, authorized route context. Author observed 14 browser, 16 isolated server/page and 185 nearby checks. | Fresh reviewer: disprove recovery/privacy/context claims. Principal: integrated shell/remaining navigation consumers and full gates. |
-| Calendar erasure f809cfa8 | Revoke before deleting retry custody; short transaction rechecks complete observed token rows, failure blocks account deletion. Author observed 42 focused/adjacent checks. | Fresh reviewer: failure/retry/race and actual route verification. Live population remains unknown; no calendar feature is claimed. |
-| Venue issuance App 2dcd26ff + b96e61e7; Studio 1f77d0e | Recoverable canonical issuance/readback/withdrawal and operator support packet. Review found erased claims could block sibling-code withdrawal; b96 retains a non-identifying consumed-code erasure receipt. Author observed 87 repair/adjacent checks. | Fresh reviewer: verify S2-01 fix. Commercial owner: compose actual issuance, claim and committed task across isolated stores. |
-| Tasks sponsored use App 7c571a61; Studio ef648efe | Actual task creation, durable intent, signed routes, verified provenance, closed-day report, privacy suppression, erasure and retention. Author observed 57 App,115 Studio,9 paired scenarios. Capture defaults off; coverage is Tasks creation only. | Fresh reviewer: security/privacy/recovery challenge. Principal: migration/test registration, integration, full builds/Linux and exact paired rehearsal. |
-
-Studio's receiving integration exposed a real design-system gate failure at 9ee2bec: shared token overrides and an increased raw-colour count. The repair uses HQ-owned semantic colours and updates their actual consumers, without changing the grandfather ceiling. Final runtime4102b5c builds successfully; Atlas now passes all four rendered widths after two retained contrast failures identified additional global label consumers. The 188-case commercial recapture is running. Earlier e60 receipts remain history and do not certify these changed source inputs. Automated contrast checks do not close manual accessibility or human usability.
-
-App0030 and Studio additive0001/0002 remain local candidate migrations, not production receipts. No provider credentials or target identity have been supplied, and no deployment, live provider mutation, real message or commercial opening has occurred.
-
-Independent follow-up findings: S2-01 is verified fixed at App b96e61e7. The original 409 reproducer now receives200; two fresh actual account/project erasure sequences prove consumed-code custody, issue replay and unused-sibling withdrawal. Ten new,77 adjacent and5 reviewer controls pass; this is not combined S2/S5 acceptance. S5 review at App7c571a61/Studioef648efe validated S5-01: authenticated report DTO coverage.daysCovered reveals an activity-derived count withheld by the main metric for a one/two-workspace cohort. Owner: collaboration; repair the shared outgoing coverage envelope and re-test the entire returned object. A separate defensive transport improvement will require the exact bounded success acknowledgement before retiring event/erasure intents. No public exposure or authentication bypass was demonstrated, and the latter is hardening rather than a validated exploit.
-
-At runtime4102b5c the full188commercial cases and four Atlas cases passed, with ds-check, full lint and build successful. The final registry validator then identified14 additional source-changed pages lacking required complete coverage (not an invalid build/capture). The mechanical token consumer repair touched these pages, so the earlier188-case matrix is insufficient for integration. A separate experience-owned extension now covers their actual applicable states and four widths; hashes and review approvals remain unchanged. Studio PR176 stays unmerged until this gap is closed. The failed validator is retained as an observed gate, not a prose waiver.
-
-The current App follow-up is draft PR169 (feat/january-activation-integration), separate from receivingfe4. Home7479c7d4 passed fresh25-check independent verification, including four original comma/normalization repros refusing before policy, and is integrated atcbda6d4d. Calendarf809 is integrated with explicit Windows synthetic-fixture retention and export-error hygiene at768951fc:46serialchecks/type/module/focusedlint pass, fresh review assigned. Local/remote design validation truthfully rejects stale Home materiality until final rendered evidence is renewed; no hash-only refresh is accepted.
-
-Tasks reporting fixes are now App6822c1f1/Studio c53c42ca. The shared outgoing snapshot omits observed days/modules under suppression; invalid acknowledgements keep both event and erasure custody. Author132focusedchecks pass. The separately composed standard/Founding/explicitpilot scenarios each pass eight actual milestones from issuance through claim, deliberate task, report and account erasure/unused-code withdrawal. Fresh independent S5 fix verification and final combined gates remain open.
-
-Notes8963e919 remains unintegrated after fresh review validated three P2 recovery/context defects: sibling-project pending capture lost during retry, mixed grouped/loose catalog omission blocking exact capture, and a cold mobile subscriber recovering stale cached A after quota failure. Poincare owns these repairs. Chandra separately owns the Studio14 coverage extension from the paired Studio43bf371 candidate, with Confucius's source/state map. No unauthorized sharing was demonstrated; the Notes findings remain real correctness/data-recovery blockers.
-
-Fresh production-only package audits on Appb6c3eba5 and Studio04433b73 returned zero advisory entries and zero reported severities. Default-branch GitHub notices are a different dependency state. These registry results do not replace code security review or provider lifecycle acceptance.
-
-## Latest verification — 5 September
-
-App follow-up b6c3eba5 passed Linux CI33932238817 and Verify33932238755. Design33932238799 failed on stale Home materiality evidence, as expected from the observed source change; the failure remains an open gate. Fresh independent review of unchanged account/export runtime768951fc passed46 authored plus14 independent checks, with no scoped residual blocker. This confirms diagnostic suppression and preservation of available actor-scoped exports and Windows test assertions; deployed/provider behavior remains outside that verdict.
-
-Studio3efd649 passed Linux CI33932417722 and Verify33932417699. Design33932417663 failed on the14 additional pages requiring complete state/breakpoint evidence. Current runtime4102b5c has a successful single-invocation188-case capture and four Atlas renders, but those do not satisfy the additional coverage. PR176 remains a draft and unmerged.
-
-The actual paired commercial/use rehearsal is committed at Appda62317b and Studio43bf371. All three scenarios (standard Venue Edition, Founding25, explicit pilot) passed24 checkpoints through actual local issuance, claim, deliberately created task, attributed reporting, account erasure and unused-code withdrawal. App93 and Studio219 focused checks, paired term parity and both typechecks passed. The first expanded Studio run ended in a Windows native-process failure after assertions; that failure is retained separately from the successful repeated219-check run. Confucius owns independent S5 fix verification; Plato owns fresh review of the three-store composition. No real settlement, email, provider lifecycle, production migration or rollout is claimed.
-
-Those independent reviews are now complete: S5 acknowledgement/privacy154 positive checks and actual three-store composition24 checkpoints plus14 additional failure probes pass. Notesf04a766e independently passes198 checks/scenarios and88 source-input comparisons, closing the three P2 follow-up defects plus conflicting-destination retry. Principal App182935f7 integrates Home, account/calendar, venue issuance/reporting and Notes; the new default and browser gates preserve historical receipts and execute all five Notes fixture runners. Final132-case integrated browser verification is in progress.
-
-Studio1fa638a passed Linux CI33933578789 and Verify33933578866 with the new mandatory fulfilment/usage suites and installed immutable App peer. Appac9f40a9 Linux CI exposed unannotated entitlement reads: the reviewed correction documents global exact-code uniqueness, stored-object ownership and caller-scoped erasure using the existing per-statement contract. No predicate or detector was relaxed;24 sensitivity/read checks and fresh caller review pass. Fresh combined Linux gates remain pending. A separate gate review found the old main fallback could select a peer without the required fixture; every trigger now requires a reviewed compatible immutable counterpart. Final release promotion must re-pin and verify both actual receiving runtimes.
-
-## Current combined acceptance checkpoint — 5 September
-
-This checkpoint supersedes pending statements in the preceding historical verification sequence. Studio runtime17305479 (built artifact `m2n_Zi39DsiZ2z4nDWQGd`, preserved through2df4b135) passes328 extension cases,188 refreshed existing cases,16 independent Atlas filter component cases and four supplemental diagram renders. All share the same verified runtime source digest. The current Studio registry validator is clean after adopting only the four component machine-coverage fields. No review dates, materiality hashes, findings, approvals or scores were promoted by this adoption.
-
-The nine changed UI files received a separate source/PNG review from Kuhn with no introduced scoped blocker; actual mobile/desktop captures and the fixed Hero link occlusion remain documented in the Studio14 handoff. This does not approve native zoom, human comprehension, manual axe incompletes or the whole design programme. The principal verified the transferred Atlas archive using its original bytes,28 contract tests and exact16/36 receiving attestation on Node22.23.2. Extension CI verifies all328 states against explicit four-width requirements and39 contract checks; the reviewed three-file line-ending reconstruction still requires the exact original full build-input SHA. Binary or semantic changes are refused. The archive is extracted outside the checkout, and full Git ancestry/LFS hydration are required in CI.
-
-App local composition0cb13716 contains the five recipient/module fixes under independent review. Its unchanged continuous four-store golden story passes all10 persisted checkpoints and197 immutable input comparisons, including Home returning an exact B task while cookie A is active. It uses actual writers/queries with synthetic request and email boundaries; it is not a continuous Next/Clerk/browser or provider session. A separate actual legacy/null-lease Timeline sync race remains reproduced and assigned: after the inherited binding read, an in-flight sync can recreate a task following erasure. The recovery owner must close that writer boundary before account-erasure acceptance.
-
-PR176 remains a candidate until final Linux and receiving checks pass. App receiving77d remains the verified release baseline;0cb is not release-integrated. Overall programme estimate remains approximately60% because final provider, design, recovery, stabilisation and release work remains open.
+Earlier component and integration checkpoints through5 September are retained
+[verbatim in the dated history](history/programme-checkpoints-through-20260905.md).
+They describe prior candidates; current ownership and acceptance are above and in
+[the acceptance register](ACCEPTANCE.md).

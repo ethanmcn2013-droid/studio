@@ -2,8 +2,8 @@ import { existsSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
 
 export const root = process.cwd();
-export const scratch = path.join(root, 'experience/output/playwright-results/january-studio14');
-export const evidence = path.join(root, 'experience/reviews/january-studio14-2026-09-05');
+export const scratch = path.join(root, 'experience/output/playwright-results/january-studio14-final');
+export const evidence = path.join(root, 'experience/reviews/january-studio14-final-2026-09-05');
 export const baseURL = 'http://127.0.0.1:4416';
 export const unconfiguredURL = 'http://127.0.0.1:4417';
 export const fixturePassword = 'january-extension-disposable-fixture';

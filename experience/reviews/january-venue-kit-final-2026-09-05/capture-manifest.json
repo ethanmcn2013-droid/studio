@@ -1,0 +1,4512 @@
+{
+  "schemaVersion": "signal-experience-capture/1",
+  "capturedAt": "2026-09-05T06:01:38.543Z",
+  "commit": "ee0fb632ab63d73ad197911c823d0d4bf98584fa",
+  "buildId": "Q2eGZCiNLZijg0M_mBjah",
+  "approvedBy": null,
+  "review": "scripted only; human usability and council not performed",
+  "results": [
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/default/mobile.png",
+      "candidateHash": "59637513a07775ab1d1cbf336635819607d3f2a2f4bf1ffc5f156e6ce27f6419",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".signal-devbanner__text"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8062,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        }
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/default/tablet.png",
+      "candidateHash": "c3c238701ebb4f36763fef3b780e72856940bc54ed5016d755ca50fc35e77700",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".signal-devbanner__text"
+              ],
+              [
+                ".signal-devbanner__close"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8261,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        }
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/default/desktop.png",
+      "candidateHash": "9f7dc469d0353b0f9267c9859224bcd5cd4b0d888269436ae353ac77b90a496e",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                "a[title=\"Health\"] > .hqx-rail-text"
+              ],
+              [
+                ".signal-devbanner__text"
+              ],
+              [
+                ".signal-devbanner__close"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8163,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        }
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/default/wide.png",
+      "candidateHash": "310f74e28b38aa12c62a5e234b0394e9e753e4dbb7906f6d5a194fabcf85d900",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".signal-devbanner__text"
+              ],
+              [
+                ".signal-devbanner__close"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8203,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        }
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "dense",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/long-content/tablet.png",
+      "candidateHash": "2821269ea1fda45898545244b21b5096b076452b93c2b1c817f0e9e4d0ec1155",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".hqx-crumb-group"
+              ],
+              [
+                ".hqx-crumb-page"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8261,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "All seven actual collateral sections reached; no injected prose or fictional records",
+        "Scrolled every actual heading or labelled section into view; authored long content retained"
+      ],
+      "additionalScreenshots": [
+        {
+          "path": "screenshots/studio.page.hq-venue-kit/long-content/tablet-section-0.png",
+          "hash": "2dcddc02b0f35c2fd4f11d0d9057de3e044073018261f9867a13182dce287c68",
+          "heading": "directions"
+        },
+        {
+          "path": "screenshots/studio.page.hq-venue-kit/long-content/tablet-section-1.png",
+          "hash": "2821269ea1fda45898545244b21b5096b076452b93c2b1c817f0e9e4d0ec1155",
+          "heading": "how to decide"
+        }
+      ],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "dense",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/long-content/mobile.png",
+      "candidateHash": "7bdfddb36ceaabfaaceb920472b20a9cbe32f6719273df2e0e0688564e3e1403",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".hqx-crumb-group"
+              ],
+              [
+                ".hqx-crumb-page"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8062,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "All seven actual collateral sections reached; no injected prose or fictional records",
+        "Scrolled every actual heading or labelled section into view; authored long content retained"
+      ],
+      "additionalScreenshots": [
+        {
+          "path": "screenshots/studio.page.hq-venue-kit/long-content/mobile-section-0.png",
+          "hash": "b368c6b4908dd286a29abe8334e5f5a628bf013cbe751313ee9f0c5666923e1f",
+          "heading": "directions"
+        },
+        {
+          "path": "screenshots/studio.page.hq-venue-kit/long-content/mobile-section-1.png",
+          "hash": "7bdfddb36ceaabfaaceb920472b20a9cbe32f6719273df2e0e0688564e3e1403",
+          "heading": "how to decide"
+        }
+      ],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "dense",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/long-content/wide.png",
+      "candidateHash": "19a421905464e2c44229397f2b2ac3582669a8f93015732872d32f5e1dea21be",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".hqx-crumb-group"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8203,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "All seven actual collateral sections reached; no injected prose or fictional records",
+        "Scrolled every actual heading or labelled section into view; authored long content retained"
+      ],
+      "additionalScreenshots": [
+        {
+          "path": "screenshots/studio.page.hq-venue-kit/long-content/wide-section-0.png",
+          "hash": "6b36f23e00f01f326d29fde6216396501d129526efb2a694a9a8a5e97aee2e9d",
+          "heading": "directions"
+        },
+        {
+          "path": "screenshots/studio.page.hq-venue-kit/long-content/wide-section-1.png",
+          "hash": "19a421905464e2c44229397f2b2ac3582669a8f93015732872d32f5e1dea21be",
+          "heading": "how to decide"
+        }
+      ],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "dense",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/long-content/desktop.png",
+      "candidateHash": "5f1f3a63e3530a1d09655c8e4d6969dddd01ac5655852f5eca7abdd75753e97a",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                "a[title=\"Health\"] > .hqx-rail-text"
+              ],
+              [
+                ".hqx-crumb-group"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8163,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "All seven actual collateral sections reached; no injected prose or fictional records",
+        "Scrolled every actual heading or labelled section into view; authored long content retained"
+      ],
+      "additionalScreenshots": [
+        {
+          "path": "screenshots/studio.page.hq-venue-kit/long-content/desktop-section-0.png",
+          "hash": "ddce16b1538ba155cbca5e5908131ed349ae8b95ea306d10bf849a485fe721b4",
+          "heading": "directions"
+        },
+        {
+          "path": "screenshots/studio.page.hq-venue-kit/long-content/desktop-section-1.png",
+          "hash": "5f1f3a63e3530a1d09655c8e4d6969dddd01ac5655852f5eca7abdd75753e97a",
+          "heading": "how to decide"
+        }
+      ],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "reduced-motion",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/reduced-motion/tablet.png",
+      "candidateHash": "c3c238701ebb4f36763fef3b780e72856940bc54ed5016d755ca50fc35e77700",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".signal-devbanner__text"
+              ],
+              [
+                ".signal-devbanner__close"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8261,
+        "reducedMotion": true,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "Browser reduced-motion preference active; no running animations"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "reduced-motion",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/reduced-motion/mobile.png",
+      "candidateHash": "59637513a07775ab1d1cbf336635819607d3f2a2f4bf1ffc5f156e6ce27f6419",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".signal-devbanner__text"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8062,
+        "reducedMotion": true,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "Browser reduced-motion preference active; no running animations"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "reduced-motion",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/reduced-motion/wide.png",
+      "candidateHash": "310f74e28b38aa12c62a5e234b0394e9e753e4dbb7906f6d5a194fabcf85d900",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".signal-devbanner__text"
+              ],
+              [
+                ".signal-devbanner__close"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8203,
+        "reducedMotion": true,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "Browser reduced-motion preference active; no running animations"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "reduced-motion",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/reduced-motion/desktop.png",
+      "candidateHash": "9f7dc469d0353b0f9267c9859224bcd5cd4b0d888269436ae353ac77b90a496e",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                "a[title=\"Health\"] > .hqx-rail-text"
+              ],
+              [
+                ".signal-devbanner__text"
+              ],
+              [
+                ".signal-devbanner__close"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8163,
+        "reducedMotion": true,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "Browser reduced-motion preference active; no running animations"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "keyboard-only",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/keyboard-only/mobile.png",
+      "candidateHash": "57c3a7359b87e6f18ee466965c8a331020d8baed62b0f35072d032f64227daae",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".signal-devbanner__text"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8062,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "Native Tab/Enter opens the retained local text specimen; no outbound or form submission"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "keyboard-only",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/keyboard-only/tablet.png",
+      "candidateHash": "77e4728aeac88211b32e3f7eeb5a99b203bc614d4cbec9dd82a1e3fbe8e2a589",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".hqx-crumb-page"
+              ],
+              [
+                ".signal-devbanner__text"
+              ],
+              [
+                ".signal-devbanner__close"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8261,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "Native Tab/Enter opens the retained local text specimen; no outbound or form submission"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "keyboard-only",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/keyboard-only/desktop.png",
+      "candidateHash": "35ad23f89baf92432ac33517d2cda8812e449ea3922427ca11ce7ca29fec32dc",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                "a[title=\"Health\"] > .hqx-rail-text"
+              ],
+              [
+                ".hqx-crumb-group"
+              ],
+              [
+                ".signal-devbanner__text"
+              ],
+              [
+                ".signal-devbanner__close"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8163,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "Native Tab/Enter opens the retained local text specimen; no outbound or form submission"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "keyboard-only",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/venue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/keyboard-only/wide.png",
+      "candidateHash": "8dd5f2ee8e1f0e48f653089dc99f35402bfb83cf577d25dd4b278a4fe859a995",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".hqx-crumb-group"
+              ],
+              [
+                ".signal-devbanner__text"
+              ],
+              [
+                ".signal-devbanner__close"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Prepare the venue conversation.",
+        "pageHeight": 8203,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/org?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4466/hq?_rsc=dwWYydkN6LGYmMzB",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        {
+          "authoredSections": 7,
+          "decodedImages": [
+            {
+              "src": "/brand/collateral/venue/venue-deck-preview.png",
+              "alt": "Historical ten-slide venue deck specimen",
+              "width": 2026,
+              "height": 11860
+            },
+            {
+              "src": "/brand/collateral/venue/pricing-explainer-preview.png",
+              "alt": "Historical pricing explainer specimen",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/demo-script-preview.png",
+              "alt": "Demo script and objection sheet",
+              "width": 1694,
+              "height": 4702
+            },
+            {
+              "src": "/brand/collateral/venue/pilot-card-preview.png",
+              "alt": "Historical pilot-card specimen, not current offer terms",
+              "width": 1224,
+              "height": 1694
+            },
+            {
+              "src": "/brand/collateral/venue/venue-onepager-prepared-preview.png",
+              "alt": "One-pager prepared for a named venue",
+              "width": 1694,
+              "height": 2350
+            },
+            {
+              "src": "/brand/collateral/venue/permission-form-preview.png",
+              "alt": "Historical venue permission-form specimen",
+              "width": 1694,
+              "height": 2350
+            }
+          ],
+          "currentTermsAndHold": true
+        },
+        "Native Tab/Enter opens the retained local text specimen; no outbound or form submission"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "restricted",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/access?from=%2Fhq%2Fvenue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/restricted/mobile.png",
+      "candidateHash": "8aca0b6879b3add019098021f2708f433512742c402426556d70b9e6701132ca",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "pageHeight": 844,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        "Production guard redirected to password gate; no HQ content"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "restricted",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/access?from=%2Fhq%2Fvenue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/restricted/tablet.png",
+      "candidateHash": "1862a308e0bac07d961cd0e15a06a090216bb63accf6c5f56b1fd06651b20d98",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "pageHeight": 1024,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        "Production guard redirected to password gate; no HQ content"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "restricted",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/access?from=%2Fhq%2Fvenue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/restricted/desktop.png",
+      "candidateHash": "2cf928fb5a701df25f590efa13c79a2dcf64dbe1257f342bdcbcef6d5ae910c6",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "pageHeight": 900,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        "Production guard redirected to password gate; no HQ content"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    {
+      "experienceId": "studio.page.hq-venue-kit",
+      "product": "studio",
+      "state": "restricted",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:4466/hq/venue-kit",
+      "finalUrl": "http://127.0.0.1:4466/hq/access?from=%2Fhq%2Fvenue-kit",
+      "status": 200,
+      "materialityHash": "575a65d46316904f",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-venue-kit/restricted/wide.png",
+      "candidateHash": "750e92434622499e3e17a36e0a33e4b57d00d6ead373ea567e41899ee2fac2f9",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "pageHeight": 960,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        "Production guard redirected to password gate; no HQ content"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    }
+  ]
+}
