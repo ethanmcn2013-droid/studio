@@ -3599,7 +3599,9 @@
         "default",
         "long-content",
         "reduced-motion",
-        "keyboard-only"
+        "keyboard-only",
+        "error",
+        "disabled"
       ],
       "requiredBreakpoints": [
         "mobile",
@@ -3866,7 +3868,8 @@
         "default",
         "long-content",
         "reduced-motion",
-        "keyboard-only"
+        "keyboard-only",
+        "empty"
       ],
       "requiredBreakpoints": [
         "mobile",
@@ -4676,7 +4679,12 @@
         "default",
         "long-content",
         "reduced-motion",
-        "keyboard-only"
+        "keyboard-only",
+        "empty",
+        "error",
+        "read-only",
+        "disabled",
+        "restricted"
       ],
       "requiredBreakpoints": [
         "mobile",
@@ -4896,7 +4904,8 @@
         "default",
         "long-content",
         "reduced-motion",
-        "keyboard-only"
+        "keyboard-only",
+        "empty"
       ],
       "requiredBreakpoints": [
         "mobile",
@@ -5116,7 +5125,10 @@
         "default",
         "long-content",
         "reduced-motion",
-        "keyboard-only"
+        "keyboard-only",
+        "empty",
+        "error",
+        "populated"
       ],
       "requiredBreakpoints": [
         "mobile",
@@ -5464,23 +5476,18 @@
       "route": "/hq/org/[slug]",
       "source": "studio/src/app/hq/org/[slug]/page.tsx",
       "parentJourney": "founder-operations",
-      "archetype": "editor-or-canvas",
-      "primaryJob": "Understand and use hq · org · selected record.",
-      "primaryAction": "Complete the primary action on hq · org · selected record.",
+      "archetype": "detail-or-record-view",
+      "primaryJob": "Read a Director profile, responsibilities and operating remit.",
+      "primaryAction": "Read the profile and follow its related HQ links.",
       "roles": [
         "founder"
       ],
       "requiredStates": [
         "default",
-        "loading",
-        "error",
-        "success",
-        "disabled",
-        "saved",
-        "unsaved",
         "long-content",
         "reduced-motion",
-        "keyboard-only"
+        "keyboard-only",
+        "restricted"
       ],
       "requiredBreakpoints": [
         "mobile",
@@ -6186,17 +6193,14 @@
       "source": "studio/src/app/hq/waitlist/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "list-and-data-table",
-      "primaryJob": "Understand and use hq · waitlist.",
-      "primaryAction": "Complete the primary action on hq · waitlist.",
+      "primaryJob": "Read recorded waitlist entries and their source context.",
+      "primaryAction": "Inspect the entries returned by the single awaited waitlist read.",
       "roles": [
         "founder"
       ],
       "requiredStates": [
-        "first-use",
         "empty",
         "populated",
-        "loading",
-        "partial-failure",
         "error",
         "restricted",
         "dense",

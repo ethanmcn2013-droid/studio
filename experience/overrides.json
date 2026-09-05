@@ -365,6 +365,140 @@
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
       "automatedTestCoverage": "complete"
+    },
+    "studio.page.hq-access": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "error",
+        "disabled"
+      ]
+    },
+    "studio.page.hq-atlas": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "empty"
+      ]
+    },
+    "studio.page.hq-atlas-by-slug": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ]
+    },
+    "studio.page.hq-cards": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ]
+    },
+    "studio.page.hq-entitlements-by-lookup": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "empty",
+        "error",
+        "read-only",
+        "disabled",
+        "restricted"
+      ]
+    },
+    "studio.page.hq-experimentation-room": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ]
+    },
+    "studio.page.hq-health": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "empty"
+      ]
+    },
+    "studio.page.hq-marketing": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "empty",
+        "error",
+        "populated"
+      ]
+    },
+    "studio.page.hq-org-by-slug": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "restricted"
+      ],
+      "archetype": "detail-or-record-view",
+      "primaryJob": "Read a Director profile, responsibilities and operating remit.",
+      "primaryAction": "Read the profile and follow its related HQ links."
+    },
+    "studio.page.hq-platform-readiness": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ]
+    },
+    "studio.page.hq-product-hero-design-motion": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ]
+    },
+    "studio.page.hq-socials": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ]
+    },
+    "studio.page.hq-venues": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ]
+    },
+    "studio.page.hq-waitlist": {
+      "requiredStates": [
+        "empty",
+        "populated",
+        "error",
+        "restricted",
+        "dense",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "primaryJob": "Read recorded waitlist entries and their source context.",
+      "primaryAction": "Inspect the entries returned by the single awaited waitlist read."
     }
   }
 }

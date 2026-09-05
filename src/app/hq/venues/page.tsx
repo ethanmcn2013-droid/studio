@@ -246,7 +246,7 @@ export default async function VenuesPage() {
         <Link
           href="/hq"
           style={{ color: "var(--ink-soft)" }}
-          className="hover:opacity-70"
+          className="underline underline-offset-4 hover:opacity-70"
         >
           back to Signal HQ
         </Link>

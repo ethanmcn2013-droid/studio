@@ -193,8 +193,8 @@ const PRODUCTS: Product[] = [
 const BADGE_STYLE: Record<Badge, { fg: string; bg: string; bd: string }> = {
   PREFERRED: { fg: "var(--paper)", bg: "var(--accent)", bd: "var(--accent)" },
   REFERENCE: { fg: "var(--paper)", bg: "var(--ink)", bd: "var(--ink)" },
-  CANDIDATE: { fg: "var(--ink-faint)", bg: "transparent", bd: "var(--hairline)" },
-  ARCHIVE: { fg: "var(--ink-faint)", bg: "transparent", bd: "var(--hairline)" },
+  CANDIDATE: { fg: "var(--hqx-muted-ink, var(--ink-faint))", bg: "transparent", bd: "var(--hairline)" },
+  ARCHIVE: { fg: "var(--hqx-muted-ink, var(--ink-faint))", bg: "transparent", bd: "var(--hairline)" },
 };
 
 const REVIEW_GATES = [

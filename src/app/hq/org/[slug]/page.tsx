@@ -69,8 +69,8 @@ export default async function DirectorPage({
           style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
         >
           {d.shortName}
-          {d.autonomyLayer === 3 ? <span className="ml-3 opacity-70">· layer 3</span> : null}
-          {d.product ? <span className="ml-3 opacity-70">· {d.product}</span> : null}
+          {d.autonomyLayer === 3 ? <span className="ml-3">· layer 3</span> : null}
+          {d.product ? <span className="ml-3">· {d.product}</span> : null}
         </div>
 
         <h1 className="h-section mb-4 max-w-[720px] text-balance text-ink">
