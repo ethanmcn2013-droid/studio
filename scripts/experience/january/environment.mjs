@@ -4,8 +4,8 @@ import path from 'node:path';
 export const root = process.cwd();
 export const scratch = path.join(root, 'experience/output/playwright-results/january-commercial');
 export const evidence = path.join(root, process.argv.includes('--atlas')
-  ? 'experience/reviews/january-atlas-render-2026-09-04'
-  : 'experience/reviews/january-commercial-2026-09-04');
+  ? 'experience/reviews/january-atlas-render-2026-09-05'
+  : 'experience/reviews/january-commercial-2026-09-05');
 export const baseURL = 'http://127.0.0.1:4396';
 // This password is public, synthetic fixture data, never an operator credential.
 export const fixturePassword = 'january-disposable-experience-fixture';

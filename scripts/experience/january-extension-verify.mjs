@@ -7,7 +7,8 @@ import path from 'node:path';
 import { REQUIRED_BREAKPOINTS } from './lib.mjs';
 import { evidence } from './january-extension/environment.mjs';
 import { matrix, variantsFor } from './january-extension/matrix.mjs';
-import { coverageErrors, fileDigest, sourceDigest, buildInputsDigest, toolingDigest } from './january-extension/receipt.mjs';
+import { coverageErrors, fileDigest, sourceDigest, toolingDigest } from './january-extension/receipt.mjs';
+import { portableBuildInputsDigest as buildInputsDigest } from './january-extension-build-inputs.mjs';
 
 const args = process.argv.slice(2);
 assert.equal(args.length, 1, 'Pass the exact --manifest= path; no implicit receipt adoption');
@@ -22,7 +23,7 @@ const registry = read('experience/registry.json');
 const config = read('experience/config.json');
 assert.deepEqual(Object.keys(config.breakpoints).sort(), [...REQUIRED_BREAKPOINTS].sort(), 'All four declared breakpoints are required');
 const digest = sourceDigest();
-const identity = { buildId: build.buildId, buildInputsDigest: buildInputsDigest(), toolingDigest: toolingDigest() };
+const identity = { buildId: build.buildId, buildInputsDigest: buildInputsDigest(build.buildInputsDigest), toolingDigest: toolingDigest() };
 assert.ok(identity.buildId, 'Missing observed build identity');
 assert.equal(build.sourceDigest, digest, 'Build source changed');
 assert.equal(build.buildInputsDigest, identity.buildInputsDigest, 'Build assets changed');
