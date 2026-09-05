@@ -81,6 +81,7 @@ const CSS = `
   display: inline-flex;
   align-items: center;
   gap: 9px;
+  width: max-content;
   max-width: calc(100vw - 24px);
   padding: 7px 10px 7px 14px;
   border-radius: 999px;
@@ -107,11 +108,13 @@ const CSS = `
   animation: signal-devbanner-pulse 2.6s ease-in-out infinite;
 }
 .signal-devbanner__text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
 }
 .signal-devbanner__close {
+  flex: 0 0 auto;
   appearance: none;
   border: 0;
   background: transparent;

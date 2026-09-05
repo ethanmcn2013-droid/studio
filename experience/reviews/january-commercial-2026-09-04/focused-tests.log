@@ -1,0 +1,33 @@
+✔ capture plan state must be declared by the registry (3.5442ms)
+✔ capture execution reports every failed cell so CI cannot stay green (0.5696ms)
+✔ approval promotes the exact reviewed candidate and records per-result provenance (29.6888ms)
+✔ approval refuses a failed capture even when a review says approved (14.6523ms)
+✔ approval refuses console errors that the legacy pass flag did not include (8.0931ms)
+✔ approval refuses candidate bytes that do not match the manifest hash (14.3039ms)
+✔ approval refuses a review by a different actor (12.9762ms)
+✔ approved review history is structured and includes an approved entry (188.1383ms)
+✔ public captures need no credentials (1.8584ms)
+✔ authenticated captures fail closed without both protected credentials (1.0858ms)
+✔ authenticated captures resolve the isolated fixture without exposing it to source data (2.6804ms)
+✔ Clerk capture setup creates the testing token before any sign-in (0.6102ms)
+✔ Clerk capture setup fails closed before sign-in when either key is absent (0.6993ms)
+✔ unknown authentication kinds fail closed (0.318ms)
+✔ HQ captures use only the protected HQ password (0.3656ms)
+✔ Studio discovery uses the current checkout while preserving canonical source paths (117.5983ms)
+✔ complete requires all four states at all four exact breakpoints (3.8645ms)
+✔ a missing mobile keyboard render cannot be certified by other captures (0.5676ms)
+✔ duplicate copies cannot stand in for a required state (0.4968ms)
+✔ changed source and changed PNG each invalidate coverage (0.4739ms)
+✔ an invented data state, wrong width, or missing interaction is rejected (0.583ms)
+✔ runtime and accessibility faults cannot be hidden by pass:true (0.7144ms)
+✔ only canceled local RSC requests are classified as prefetch cancellation (0.9437ms)
+✔ reduced motion requires the actual browser preference (0.3788ms)
+✔ server environment never inherits operator, DB, payment or mail settings (2.7505ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1073.6067

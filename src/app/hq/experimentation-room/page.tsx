@@ -119,9 +119,9 @@ function Row({ x }: { x: Experiment }) {
     <>
       <span style={{ fontWeight: 600 }}>{x.name}</span>
       <span style={badgeStyle(x.state)}>{x.state}</span>
-      <span style={{ fontSize: "13.5px", lineHeight: 1.5, color: "var(--ink-faint)" }}>
+      <span className="experiment-description" style={{ fontSize: "13.5px", lineHeight: 1.5, color: "var(--hqx-muted-ink, var(--ink-faint))" }}>
         {x.note}
-        <span style={{ display: "block", marginTop: "4px", fontFamily: "var(--font-mono-stack)", fontSize: "10.5px", letterSpacing: "0.06em", color: "var(--ink-faint)", opacity: 0.8 }}>
+        <span style={{ display: "block", marginTop: "4px", fontFamily: "var(--font-mono-stack)", fontSize: "10.5px", letterSpacing: "0.06em", color: "var(--hqx-muted-ink, var(--ink-faint))" }}>
           {x.where}
         </span>
       </span>
@@ -129,7 +129,6 @@ function Row({ x }: { x: Experiment }) {
   );
   const rowStyle = {
     display: "grid",
-    gridTemplateColumns: "minmax(180px, 240px) 96px 1fr",
     gap: "16px",
     alignItems: "baseline" as const,
     padding: "14px 18px",
@@ -139,13 +138,13 @@ function Row({ x }: { x: Experiment }) {
   };
   if (x.external) {
     return (
-      <a href={x.href} target="_blank" rel="noreferrer" style={rowStyle}>
+      <a href={x.href} target="_blank" rel="noreferrer" className="experiment-row" style={rowStyle}>
         {inner}
       </a>
     );
   }
   return (
-    <Link href={x.href} style={rowStyle}>
+    <Link href={x.href} className="experiment-row" style={rowStyle}>
       {inner}
     </Link>
   );
@@ -176,17 +175,17 @@ export default async function ExperimentationRoomPage() {
         }
       />
 
-      <section aria-label="graduated to the front page" style={{ border: "1px solid var(--hairline)", borderRadius: "10px", overflow: "hidden", marginBottom: "32px" }}>
+      <section className="experiment-section" aria-label="graduated to the front page" style={{ border: "1px solid var(--hairline)", borderRadius: "10px", overflow: "hidden", marginBottom: "32px" }}>
         <SectionHeader>Graduated to the front page</SectionHeader>
         {SHIPPED.map((x) => <Row key={x.href} x={x} />)}
       </section>
 
-      <section aria-label="still in the lab" style={{ border: "1px solid var(--hairline)", borderRadius: "10px", overflow: "hidden", marginBottom: "32px" }}>
+      <section className="experiment-section" aria-label="still in the lab" style={{ border: "1px solid var(--hairline)", borderRadius: "10px", overflow: "hidden", marginBottom: "32px" }}>
         <SectionHeader>Still in the lab. Kept, not shipped</SectionHeader>
         {LAB.map((x) => <Row key={x.href} x={x} />)}
       </section>
 
-      <section aria-label="systems" style={{ border: "1px solid var(--hairline)", borderRadius: "10px", overflow: "hidden" }}>
+      <section className="experiment-section" aria-label="systems" style={{ border: "1px solid var(--hairline)", borderRadius: "10px", overflow: "hidden" }}>
         <SectionHeader>Systems, with their own room</SectionHeader>
         {SYSTEMS.map((x) => <Row key={x.href} x={x} />)}
       </section>
@@ -201,6 +200,16 @@ export default async function ExperimentationRoomPage() {
           stays intact and any runner-up can be brought back.
         </p>
       </section>
+      <style>{`
+        .experiment-section { container-type: inline-size; }
+        .experiment-row { grid-template-columns: minmax(180px, 240px) 96px minmax(0, 1fr); }
+        .experiment-row > span { min-width: 0; overflow-wrap: anywhere; }
+        .experiment-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+        @container (max-width: 600px) {
+          .experiment-row { grid-template-columns: minmax(0, 1fr) 96px; }
+          .experiment-description { grid-column: 1 / -1; }
+        }
+      `}</style>
     </main>
   );
 }

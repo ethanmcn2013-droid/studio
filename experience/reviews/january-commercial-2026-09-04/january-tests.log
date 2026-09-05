@@ -1,0 +1,30 @@
+
+> studio@0.1.0 experience:january:test C:\Users\ethan\signal-studio-workspace\worktrees\studio\fix-january-studio-experience-coverage
+> node --test scripts/experience/january/receipt.test.mjs && tsx --import ./src/test/register-server-only.mjs --test scripts/experience/january/fixture.test.ts
+
+✔ complete requires all four states at all four exact breakpoints (2.4746ms)
+✔ a missing mobile keyboard render cannot be certified by other captures (0.3168ms)
+✔ duplicate copies cannot stand in for a required state (0.3064ms)
+✔ changed source and changed PNG each invalidate coverage (0.2742ms)
+✔ an invented data state, wrong width, or missing interaction is rejected (0.2268ms)
+✔ runtime and accessibility faults cannot be hidden by pass:true (0.2754ms)
+✔ only canceled local RSC requests are classified as prefetch cancellation (0.5011ms)
+✔ reduced motion requires the actual browser preference (0.2066ms)
+✔ server environment never inherits operator, DB, payment or mail settings (1.744ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.3717
+✔ synthetic states distinguish empty, legacy claims, verified receipts and failed reads (5080.8281ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6656.3512

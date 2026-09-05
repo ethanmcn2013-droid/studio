@@ -32,7 +32,7 @@
 
 .eyebrow {
   margin: 0;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -53,7 +53,7 @@
 
 .sampleMark {
   margin: 0 0 18px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 9px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -80,7 +80,7 @@
 
 .period {
   margin: 0 0 18px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -123,7 +123,7 @@
 .metric span,
 .metric small {
   display: block;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
 }
 
@@ -212,7 +212,7 @@
 }
 
 .defs dt {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
 }
 
@@ -240,7 +240,7 @@
   align-items: center;
   gap: 8px;
   margin: 14px 0 0;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 

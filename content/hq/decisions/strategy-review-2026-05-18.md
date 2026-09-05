@@ -8,6 +8,14 @@ reviewDate: 2026-05-25
 relatedObjects: [docs/strategy/STRATEGY_REVIEW_2026_05_18.md, docs/strategy/BUSINESS_PARTNER_REVIEW_2026_05.md, docs/strategy/VENUE_EDITION_STRATEGY.md, business-strategy-frame-2026-05, Founding Venue Programme]
 ---
 
+## January supersession · 2026-09-04
+
+`january-2027-launch` supersedes this record's outreach dates, fixed expiry
+and blanket freeze for the approved January work. User launch and first
+outreach target 2027-01-21 with manual gates. The dated analysis below remains
+history; it does not prohibit delegated January implementation or authorise
+early outreach. Current acceptance: `docs/execution/january-2027/PROGRAMME.md`.
+
 ## Decision
 
 Not a re-strategy. The ratified frame (`BUSINESS_PARTNER_REVIEW_2026_05.md`) holds in full and is not reopened. This review records the gap between the frame and execution since 16 May, and the decisions that close it. Full analysis: `docs/strategy/STRATEGY_REVIEW_2026_05_18.md`.

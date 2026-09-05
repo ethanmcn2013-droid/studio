@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-ux-assurance-report/1",
-  "generatedAt": "2026-09-03T04:18:45.721Z",
+  "generatedAt": "2026-09-05T02:46:13.628Z",
   "modes": [
     {
       "id": "product-clarity",
@@ -74,10 +74,10 @@
   "captureAvailable": true,
   "coverage": {
     "experiences": 250,
-    "automatedComplete": 6,
-    "screenshotsComplete": 6,
-    "accessibilityComplete": 6,
-    "fixturesComplete": 6
+    "automatedComplete": 29,
+    "screenshotsComplete": 29,
+    "accessibilityComplete": 29,
+    "fixturesComplete": 29
   },
   "observations": [],
   "subjectiveReviewQueue": [

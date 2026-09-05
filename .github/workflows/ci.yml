@@ -49,8 +49,32 @@ jobs:
       - name: Design-system drift gate
         run: pnpm run ds:check
 
+      # Every trigger uses a reviewed compatible App runtime. A moving main
+      # fallback may lack the fixture required by the mandatory paired suites.
+      - name: Checkout paired App contracts
+        uses: actions/checkout@v4
+        with:
+          repository: ethanmcn2013-droid/app
+          ref: 182935f76b88398fae073f5f0f4e8ebbfb7353d2
+          path: app-contract-peer
+      - name: Install immutable paired App dependencies
+        working-directory: app-contract-peer
+        run: corepack pnpm install --frozen-lockfile
+      - name: Record paired App revision and compare contracts
+        run: |
+          git -C app-contract-peer rev-parse HEAD
+          pnpm contracts:check
+          node --test scripts/check-suite-contract-consumers.test.mjs
+        env:
+          APP_REPO_PATH: ${{ github.workspace }}/app-contract-peer
       - name: Test
         run: pnpm test
+        env:
+          APP_REPO_PATH: ${{ github.workspace }}/app-contract-peer
+          VENUE_APP_FIXTURE_ROOT: ${{ github.workspace }}/app-contract-peer
+      - name: Remove paired checkout before scanning or building Studio
+        if: always()
+        run: rm -rf app-contract-peer
 
       - name: Lint (informational — does not block)
         run: pnpm run lint

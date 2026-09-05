@@ -1,6 +1,10 @@
 import "server-only";
-import { count, eq, sql } from "drizzle-orm";
+import { and, count, eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
+import { entitlementsDb } from "@/lib/entitlements-db/client";
+import { sponsors as sharedSponsors, entitlementEvents } from "@/lib/entitlements-db/schema";
+import { matchesCurrentVenuePayment } from "@/lib/entitlements-db/venue-payment-proof";
+import { getCommercialClock } from "./commercial-clock";
 import {
   entitlements,
   licenseCodes,
@@ -8,127 +12,30 @@ import {
   sponsors,
 } from "@/lib/db/schema";
 
-/**
- * Traction, "are we actually winning?".
- *
- * Rebuilt 2026-05-16 for the paid Venue Edition model
- * (venue-editions-paid-tier). The earlier version multiplied COUPLE-side
- * `venue_edition` entitlements by the active €1.5k price, that counted
- * couples as if each were a paying venue, which over the paid model is
- * simply wrong. Revenue now comes from the sponsor ledger: a venue is
- * money only when its plan is founding|paid AND the prepay cash landed
- * (`paid_at`). Couples seeded are reported separately, they are
- * distribution, the thing the venue's money buys, never the revenue.
- *
- * Honesty contract (the plan's #1 success indicator is "zero brand-
- * integrity exceptions"): cash collected is exact, not a band, annual
- * prepay means the full year lands at signature. Signed-but-unpaid
- * venues are shown as pipeline, never as money. Workspace MRR is the
- * only annualised estimate and is labelled as one, kept out of the
- * headline goal %. If the DB is unreachable the section says so.
- */
-
-/** Ratified target, memory: marketing-plan-6mo-2026-05-16. Cash, not ARR. */
+/** Historical May cash target, retained for context, not ratified for January. */
 export const GOAL_EUR_6MO = 250_000;
-/** Workspace subscription, €12/mo → annualised (estimate only). */
 const WORKSPACE_YR = 12 * 12;
+export type Burndown = ReturnType<typeof getCommercialClock>;
 
-/**
- * The 6-month clock. Source: content/hq/decisions/venue-editions-paid-tier.md
- *, ratified by the founder 2026-05-16, €250k over six months, M3 gate
- * (≥10 paid venues) on 2026-08-16. These are the contract dates, not
- * derived, change them only if the decision file changes.
- */
-const CAMPAIGN_START = "2026-05-16";
-const CAMPAIGN_END = "2026-11-16";
-const CAMPAIGN_M3_GATE = "2026-08-16";
-
-/**
- * Burndown, the one temporal element on the one question that matters.
- * Converts a static integer ("€0 collected") into a verdict ("week 3 of
- * 26, €X behind the slope you'd need to land €250k"). Linear required
- * pace, no smoothing: required-to-date is exactly goal × fraction of the
- * window elapsed; the gap is exact arithmetic, never a projection dressed
- * as one. With €0 in, the honest reading is "the slope hasn't started."
- */
-export type Burndown = {
-  campaignStart: string;
-  campaignEnd: string;
-  m3Gate: string;
-  totalDays: number;
-  daysElapsed: number;
-  daysRemaining: number;
-  weeksElapsed: number;
-  totalWeeks: number;
-  /** 0..1, fraction of the six-month window spent. */
-  fractionElapsed: number;
-  /** goal × fractionElapsed, the cash you'd have if perfectly on pace. */
-  requiredToDateEur: number;
-  /** cashCollected − requiredToDate. Negative = behind the slope. */
-  paceDeltaEur: number;
-  /** (goal − cash) ÷ weeks left, the run-rate needed from here on. */
-  requiredWeeklyFromHereEur: number;
-  onPace: boolean;
-  /** Before the clock starts ticking meaningfully (day 0). */
-  notStarted: boolean;
-};
-
-function dayStartUtc(yyyymmdd: string): number {
-  return new Date(`${yyyymmdd}T00:00:00Z`).getTime();
-}
-
-export function computeBurndown(
-  cashCollectedEur: number,
-  goalEur: number,
-  now: number = Date.now(),
-): Burndown {
-  const startMs = dayStartUtc(CAMPAIGN_START);
-  const endMs = dayStartUtc(CAMPAIGN_END);
-  const DAY = 1000 * 60 * 60 * 24;
-  const totalDays = Math.round((endMs - startMs) / DAY);
-  const daysElapsed = Math.min(
-    totalDays,
-    Math.max(0, Math.floor((now - startMs) / DAY)),
-  );
-  const daysRemaining = Math.max(0, totalDays - daysElapsed);
-  const fractionElapsed = totalDays > 0 ? daysElapsed / totalDays : 0;
-  const requiredToDateEur = Math.round(goalEur * fractionElapsed);
-  const paceDeltaEur = cashCollectedEur - requiredToDateEur;
-  const weeksRemaining = Math.max(1, daysRemaining / 7);
-  const requiredWeeklyFromHereEur = Math.max(
-    0,
-    Math.round((goalEur - cashCollectedEur) / weeksRemaining),
-  );
-  return {
-    campaignStart: CAMPAIGN_START,
-    campaignEnd: CAMPAIGN_END,
-    m3Gate: CAMPAIGN_M3_GATE,
-    totalDays,
-    daysElapsed,
-    daysRemaining,
-    weeksElapsed: Math.floor(daysElapsed / 7),
-    totalWeeks: Math.round(totalDays / 7),
-    fractionElapsed,
-    requiredToDateEur,
-    paceDeltaEur,
-    requiredWeeklyFromHereEur,
-    onPace: paceDeltaEur >= 0,
-    notStarted: daysElapsed === 0,
-  };
+/** The old May pace is retired. Cash, a target date and CRM contacts cannot start a clock. */
+export function computeBurndown(_cashCollectedEur: number, _goalEur: number, now = Date.now()): Burndown {
+  return getCommercialClock(now);
 }
 
 export type TractionState =
   | { available: false; reason: string }
   | {
       available: true;
-      /** Exact prepay cash that has actually landed (founding+paid venues). */
+      /** Current annual amounts matched to canonical operator payment receipts. */
       cashCollectedEur: number;
-      /** Paid venues with cash in the door. The plan's #1 leading metric. */
+      /** Shared venues with a matching current venue_payment receipt, counted once. */
       paidVenues: number;
       /** Of those, the Founding 25 (€1,000, held on continuous renewal). */
       foundingVenues: number;
-      /** Signed founding|paid but `paid_at` still null, pipeline, not money. */
-      signedUnpaidVenues: number;
+      /** Founding|paid selection with null paid_at; neither signature nor cash evidence. */
+      selectedUnpaidVenues: number;
+      /** Legacy or mismatched paid claims, excluded from cash and paid proof. */
+      unverifiedPaidVenues: number;
       /** Free in-flight pilots (e.g. Lamb's Hill pre-conversion). */
       pilotVenues: number;
       /** Couple-side venue_edition entitlements, distribution, not revenue. */
@@ -147,19 +54,25 @@ export type TractionState =
       goalEur: number;
       /** Cash collected ÷ €250k. The honest number, no inflation. */
       goalPct: number;
-      /** The 6-month clock, required pace vs actual, days remaining. */
+      /** Inert until an authorised actual first-send source is connected. */
       burndown: Burndown;
     };
 
 async function countWhere(
+  store: typeof db,
   table: typeof entitlements | typeof redemptions | typeof sponsors,
 ): Promise<number> {
-  const rows = await db.select({ n: count() }).from(table);
+  const rows = await store.select({ n: count() }).from(table);
   return rows[0]?.n ?? 0;
 }
 
-export async function getTraction(): Promise<TractionState> {
+export async function getTraction(
+  stores?: { studio: typeof db; shared: ReturnType<typeof entitlementsDb> },
+  now = Date.now(),
+): Promise<TractionState> {
   try {
+    const studio = stores?.studio ?? db;
+    const shared = stores?.shared ?? entitlementsDb();
     const [
       activeRows,
       paidRows,
@@ -169,35 +82,44 @@ export async function getTraction(): Promise<TractionState> {
       codeRows,
       sponsorCount,
       venueRows,
+      mirrorRows,
     ] = await Promise.all([
-      db
+      studio
         .select({ n: count() })
         .from(entitlements)
         .where(eq(entitlements.status, "active")),
-      db
+      studio
         .select({ n: count() })
         .from(entitlements)
         .where(
           sql`${entitlements.status} = 'active' and ${entitlements.tier} <> 'free'`,
         ),
-      db
+      studio
         .select({ tier: entitlements.tier, n: count() })
         .from(entitlements)
         .where(eq(entitlements.status, "active"))
         .groupBy(entitlements.tier),
-      db
+      studio
         .select({ source: entitlements.source, n: count() })
         .from(entitlements)
         .where(eq(entitlements.status, "active"))
         .groupBy(entitlements.source),
-      countWhere(redemptions),
-      db
+      countWhere(studio, redemptions),
+      studio
         .select({ status: licenseCodes.status, n: count() })
         .from(licenseCodes)
         .groupBy(licenseCodes.status),
-      countWhere(sponsors),
-      db
+      countWhere(studio, sponsors),
+      // One shared SQL snapshot pairs the current ledger with its receipts.
+      shared.select({ venue: sharedSponsors, event: entitlementEvents })
+        .from(sharedSponsors)
+        .leftJoin(entitlementEvents, and(
+          eq(entitlementEvents.sponsorId, sharedSponsors.id),
+          eq(entitlementEvents.action, "venue_payment"),
+        )),
+      studio
         .select({
+          slug: sponsors.slug,
           venuePlan: sponsors.venuePlan,
           paidAt: sponsors.paidAt,
           foundingLocked: sponsors.foundingLocked,
@@ -222,25 +144,36 @@ export async function getTraction(): Promise<TractionState> {
     const codesMinted = codeMap.get("minted") ?? 0;
     const codesRedeemed = codeMap.get("redeemed") ?? 0;
 
-    // The sponsor ledger is the only source that may become revenue.
-    let paidVenues = 0;
+    const venues = new Map(venueRows.filter(({ venue }) => venue.kind === "venue")
+      .map(({ venue }) => [venue.id, venue]));
+    const verified = new Set(venueRows.filter(({ venue, event }) =>
+      matchesCurrentVenuePayment(venue, event, now)).map(({ venue }) => venue.id));
+    const verifiedSlugs = new Set([...venues.values()].filter(v => verified.has(v.id)).map(v => v.slug));
+    const unverifiedSlugs = new Set<string>();
     let foundingVenues = 0;
-    let signedUnpaidVenues = 0;
+    let selectedUnpaidVenues = 0;
     let pilotVenues = 0;
     let cashCents = 0;
-    for (const v of venueRows) {
-      const plan = String(v.venuePlan ?? "none");
-      const isPaidPlan = plan === "founding" || plan === "paid";
-      if (plan === "pilot") pilotVenues += 1;
-      if (isPaidPlan && v.paidAt != null) {
-        paidVenues += 1;
-        if (v.foundingLocked) foundingVenues += 1;
-        cashCents += v.annualAmountCents ?? 0;
+    for (const v of venues.values()) {
+      const isPaidPlan = v.venuePlan === "founding" || v.venuePlan === "paid";
+      if (v.venuePlan === "pilot") pilotVenues += 1;
+      if (verified.has(v.id)) {
+        if (v.venuePlan === "founding") foundingVenues += 1;
+        cashCents += v.annualAmountCents!;
       } else if (isPaidPlan && v.paidAt == null) {
-        signedUnpaidVenues += 1;
+        selectedUnpaidVenues += 1;
+      } else if (v.paidAt != null) {
+        unverifiedSlugs.add(v.slug);
       }
     }
-    const cashCollectedEur = Math.round(cashCents / 100);
+    // Studio is a mirror, never positive proof. Preserve legacy-only claims
+    // for reconciliation without counting a mirrored venue twice.
+    for (const v of mirrorRows) {
+      if (v.paidAt != null && !verifiedSlugs.has(v.slug)) unverifiedSlugs.add(v.slug);
+    }
+    const paidVenues = verified.size;
+    const unverifiedPaidVenues = unverifiedSlugs.size;
+    const cashCollectedEur = cashCents / 100;
     const workspaceAnnualisedEur = workspaceSubs * WORKSPACE_YR;
 
     return {
@@ -248,7 +181,8 @@ export async function getTraction(): Promise<TractionState> {
       cashCollectedEur,
       paidVenues,
       foundingVenues,
-      signedUnpaidVenues,
+      selectedUnpaidVenues,
+      unverifiedPaidVenues,
       pilotVenues,
       couplesSeeded,
       studentSignups,
@@ -263,23 +197,22 @@ export async function getTraction(): Promise<TractionState> {
       sponsors: sponsorCount,
       goalEur: GOAL_EUR_6MO,
       goalPct: Math.round((cashCollectedEur / GOAL_EUR_6MO) * 100),
-      burndown: computeBurndown(cashCollectedEur, GOAL_EUR_6MO),
+      burndown: computeBurndown(cashCollectedEur, GOAL_EUR_6MO, now),
     };
   } catch (err) {
     return {
       available: false,
       reason:
-        err instanceof Error && /STUDIO_DATABASE_URL/.test(err.message)
-          ? "Studio Turso not configured on this host."
-          : "Studio Turso unreachable, traction cannot be read.",
+        err instanceof Error && /(?:STUDIO|ENTITLEMENTS)_DATABASE_URL/.test(err.message)
+          ? "Studio or shared entitlements database is not configured on this host."
+          : "Studio or shared payment evidence is unavailable; traction cannot be verified.",
     };
   }
 }
 
-/** €1,234,567 → "€1.23m" / "€48k" / "€0". Honest, compact, no rounding-up. */
+/** Exact display: a €1,500 receipt must never round up to €2k. */
 export function formatEur(n: number): string {
-  if (n <= 0) return "€0";
-  if (n >= 1_000_000) return `€${(n / 1_000_000).toFixed(2)}m`;
-  if (n >= 1_000) return `€${Math.round(n / 1_000)}k`;
-  return `€${n}`;
+  return new Intl.NumberFormat("en-IE", {
+    style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 2,
+  }).format(n);
 }

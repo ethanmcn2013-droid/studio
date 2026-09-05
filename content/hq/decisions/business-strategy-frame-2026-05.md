@@ -8,6 +8,16 @@ reviewDate: 2026-06-16
 relatedObjects: [docs/strategy/BUSINESS_PARTNER_REVIEW_2026_05.md, docs/strategy/VENUE_EDITION_STRATEGY.md, docs/strategy/VENUE_EDITION_VIDEO_BRIEF.md, docs/MARKETING_PLAN_6MO.md, venue-editions-paid-tier, Founding Venue Programme]
 ---
 
+## Current amendments · 2026-09-04
+
+The venue wedge and positioning remain. `january-2027-launch` supersedes the
+30-day execution schedule with a 2027-01-21 user launch and first-outreach
+target, internal testing before then and separate manual gates. The Founding
+25 decision retains €1,500 standard / €1,000 Founding, VAT-inclusive. Cleared
+payment is proof of payment; a signed invoice is not. BRAND.md's August
+amendment names three products and Home. Earlier wording below is retained
+as dated history, not current scheduling, naming or payment authority.
+
 ## Decision
 
 The mission-control frame for the next cycle. Canonical detail in `docs/strategy/BUSINESS_PARTNER_REVIEW_2026_05.md`; this is the HQ-facing summary.

@@ -15,7 +15,6 @@ export function HqLaunchReadiness({ readiness }: { readiness: LaunchReadiness })
     readiness;
   const program = getRemediationProgram();
   const remediation = summarizeRemediation(program);
-  const commercialGate = gates.find((gate) => gate.key === "first-paid-venue");
 
   return (
     <section className="hq-launch" aria-labelledby="hq-launch-title">
@@ -39,20 +38,13 @@ export function HqLaunchReadiness({ readiness }: { readiness: LaunchReadiness })
           )}
         </span>
         <span className="hq-launch-gatecount" data-all-clear={remediation.openP0.length === 0 ? "true" : undefined}>
-          {remediation.calculatedCompletion}% program complete
+          {remediation.calculatedCompletion}% of existing remediation register complete · manual launch gates remain
         </span>
       </div>
 
       <ul className="hq-launch-gates" role="list">
         {[
-          ...(commercialGate ? [{
-            key: commercialGate.key,
-            label: commercialGate.label,
-            detail: commercialGate.detail,
-            state: commercialGate.state,
-            live: commercialGate.live,
-            href: commercialGate.href,
-          }] : []),
+          ...gates,
           ...remediation.openP0.slice(0, 6).map((item) => ({
             key: item.id,
             label: `${item.id} · ${item.title}`,
@@ -67,7 +59,7 @@ export function HqLaunchReadiness({ readiness }: { readiness: LaunchReadiness })
               <span className="hq-launch-gate-dot" data-state={g.state} aria-hidden="true" />
               <span className="hq-launch-gate-label">
                 {g.label}
-                {!g.live ? <span className="hq-launch-gate-manual" title="operator-confirmed, not live-read"> · manual</span> : null}
+                {!g.live ? <span className="hq-launch-gate-manual" title="Requires recorded evidence; not confirmed here"> · manual</span> : null}
               </span>
               <span className="hq-launch-gate-detail">{g.detail}</span>
             </>

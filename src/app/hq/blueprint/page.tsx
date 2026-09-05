@@ -20,7 +20,7 @@ import {
 import { CLUSTERS, directorsByCluster, formatCadence } from "@/lib/hq/elt";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { getTraction } from "@/lib/hq/traction";
-import { getProspects } from "@/lib/hq/crm-db";
+import { getProspectsWithSource } from "@/lib/hq/crm-db";
 import { normalizeSegment, PIPELINE_STAGES } from "@/lib/hq/crm-utils";
 import { getProductAnalytics } from "@/lib/hq/product-analytics";
 import { getModeledRunway } from "@/lib/hq/financial-model";
@@ -59,20 +59,18 @@ export default async function BlueprintPage() {
   const directorCount = directorClusters.reduce((n, c) => n + c.members.length, 0);
 
   // ── Live metrics ──────────────────────────────────────────────────────
-  // Read the Studio ledger (traction) + CRM (prospects) and overlay the four
-  // wired figures onto the metric catalog. Prospects fall back to seed when
-  // the table is absent, so venue pipeline is always readable; traction goes
-  // `null` (→ honest placeholder) when Studio Turso is unreachable.
+  // Only live ledger and CRM reads populate metrics. Committed examples
+  // cannot stand in for an unavailable source.
   const [traction, prospects, product] = await Promise.all([
     getTraction(),
-    getProspects(),
+    getProspectsWithSource(),
     getProductAnalytics(),
   ]);
-  const venuePipeline = prospects.filter(
+  const venuePipeline = prospects.source === "database" ? prospects.prospects.filter(
     (p) =>
       normalizeSegment(p.segment) === "venue" &&
       PIPELINE_STAGES.includes(p.stage),
-  ).length;
+  ).length : null;
   const metrics = resolveBlueprintMetrics({
     mrrEur: traction.available ? traction.workspaceSubs * 12 : null,
     activeGrants: traction.available ? traction.activeEntitlements : null,
@@ -189,12 +187,12 @@ export default async function BlueprintPage() {
                   <span className="bp-product-role">{p.role}</span>
                 </header>
                 <p className="bp-body">{p.purpose}</p>
-                <dl className="bp-io">
+                <div className="bp-io">
                   <Field label="inputs" items={p.inputs} />
                   <Field label="outputs" items={p.outputs} />
                   <Field label="key actions" items={p.keyActions} />
                   <Field label="success metrics" items={p.successMetrics} />
-                </dl>
+                </div>
                 <p className="bp-never"><span>never becomes</span> {p.neverBecome}</p>
               </article>
             ))}
@@ -347,7 +345,7 @@ export default async function BlueprintPage() {
               <div key={m.key} className="bp-metric" data-tone={m.tone} data-live={m.live ? "true" : undefined}>
                 <span className="bp-metric-value">
                   <CountUp value={m.display} />
-                  {m.live ? <span className="bp-metric-live" title="live from source" aria-label="live" /> : null}
+                  {m.live ? <span className="bp-metric-live" role="img" title="live from source" aria-label="live" /> : null}
                 </span>
                 <span className="bp-metric-label">{m.label}</span>
                 <span className="bp-metric-target">target · {m.target}</span>
@@ -436,14 +434,14 @@ function Section({
 
 function Field({ label, items, chips }: { label: string; items: string[]; chips?: boolean }) {
   return (
-    <div className="bp-field">
+    <dl className="bp-field">
       <dt className="bp-field-label">{label}</dt>
       <dd className={chips ? "bp-field-chips" : "bp-field-list"}>
         {chips
           ? items.map((it) => <span key={it} className="bp-chip bp-chip--sm">{it}</span>)
           : items.map((it) => <span key={it} className="bp-field-item">{it}</span>)}
       </dd>
-    </div>
+    </dl>
   );
 }
 

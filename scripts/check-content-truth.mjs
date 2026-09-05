@@ -138,8 +138,16 @@ for (const match of dateline.matchAll(/\b(SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSD
   }
 }
 
-if (contract.broadLaunchDate !== null) {
-  failures.push("commercial contract must not invent a broad launch date");
+if (contract.broadLaunchDate !== "2027-01-21" ||
+    contract.launchProgramme?.firstOutreachDate !== "2027-01-21") {
+  failures.push("commercial contract must retain the approved January 21 launch and first-outreach target");
+}
+if (contract.broadLaunchPolicy !== "manual_go_no_go_only" ||
+    contract.accessState !== "waitlist_first" ||
+    contract.launchProgramme?.automaticAccessOpening !== false ||
+    contract.launchProgramme?.prelaunchMode !== "internal_testing_only" ||
+    JSON.stringify(contract.launchProgramme?.manualGates) !== JSON.stringify(["user_launch", "first_outreach"])) {
+  failures.push("January target must keep internal testing and separate manual launch/outreach gates");
 }
 if (contract.plans.pro.annualAmountCents !== 12000) {
   failures.push("commercial contract must keep the ratified Pro annual price at EUR 120");
@@ -147,6 +155,22 @@ if (contract.plans.pro.annualAmountCents !== 12000) {
 if (contract.unresolved.length !== 0) {
   failures.push("commercial contract must not retain choices ratified on 2026-08-08");
 }
+
+// These active Atlas entries had repeatedly retained retired suite topology.
+// Dated snapshots live outside content/atlas and keep their original evidence.
+for (const file of [
+  "content/atlas/signal-studio-umbrella.md",
+  "content/atlas/five-products-as-a-system.md",
+  "content/atlas/pricing-and-entitlements.md",
+]) {
+  const current = source(studio, file);
+  if (!current || /\b(?:four|five) (?:shippable )?products\b|cardinality (?:at|is) four|No private workspaces in Timeline/i.test(current)) {
+    failures.push(file + ": active Atlas must not revive retired product or privacy topology");
+  }
+  requireText(file, "docs/execution/january-2027/PROGRAMME.md", "current evidence must resolve to the January programme");
+}
+forbid("content/hq/features/project-files-in-drive.md", "**The 50 MB ceiling disappears", "provider capacity is not the enforced App upload limit");
+forbid("content/hq/risks/drive-refresh-token-custody.md", "Not yet mitigated — the substrate does not exist", "implemented encryption must not be described as absent");
 
 if (failures.length) {
   console.error("[content-truth] failed");

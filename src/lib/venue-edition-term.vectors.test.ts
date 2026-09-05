@@ -14,7 +14,7 @@ import {
 
 /**
  * The access-term rule is implemented twice — here and in
- * `app/src/lib/venue-edition-term.ts` — because the production redemption
+ * `app/src/lib/venue-access-term.ts` — because the production redemption
  * write lives in the app repo while the shared entitlements store lives here.
  *
  * These vectors are the contract between the two copies. The same file exists

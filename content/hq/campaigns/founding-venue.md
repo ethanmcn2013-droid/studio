@@ -2,14 +2,36 @@
 id: founding-venue
 title: Founding Venue Programme
 segment: Wedding venues / hotels
-status: Ready for Ethan
-startDate: 2026-05-13
-endDate: 2026-06-30
-progress: 80
+status: Queued
+startDate: 2027-01-21
+endDate: ""
+progress: 0
 relatedLandingPage: /venues
 relatedMetric: Pilot participants
 assetsNeeded: [60 second demo render (script locked at docs/CYCLE_8_WEDDING_DEMO_SCRIPT.md)]
 ---
+
+## Current programme · 2026-09-04
+
+First outreach and user launch target 21 January 2027 under
+`january-2027-launch`. Internal testing only until then; separate manual
+go/no-go decisions remain open. The six acceptance states and evidence are
+indexed in `docs/execution/january-2027/PROGRAMME.md`. Progress is reset to zero
+for January acceptance; the previous campaign's 80% was preparation, not
+launch approval or measured commercial success.
+
+Use the retained €1,500 standard / €1,000 Founding 25 annual prices, both
+VAT-inclusive, and the contract's max(548 days, wedding + 90 days) access rule.
+No legal/tax approval is claimed. Reconcile final collateral and external
+readiness evidence before requesting the manual decisions.
+
+## Historical campaign record
+
+The sections below retain the May–August record, including the old deadlines,
+€1,500-only packet instructions and then-known provider/migration state. They
+are superseded operating instructions, not authority to send, migrate or
+deploy now. Original dates: 2026-05-13 through 2026-06-30; status: Ready for
+Ethan; progress: 80. Current external state has not been verified here.
 
 ## Goal
 

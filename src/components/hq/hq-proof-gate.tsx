@@ -1,20 +1,6 @@
 import type { MetricCell, ProofGate } from "@/lib/hq/proofgate";
 
-/**
- * HQ Proof Gate, has the only thing that matters moved?
- *
- * Built per the 2026-05-18 strategy review, decision #3 (the single
- * permitted measurement build). It sits directly under the masthead,
- * above everything else, because the review's finding is that product
- * work has been functioning as avoidance of this one scoreboard. The
- * operator should see "clock inert, N days to the deadline" before they
- * see anything they could comfortably build instead.
- *
- * Honesty contract: metrics 4 and 5 are shown dark, not zero, they are
- * structurally downstream of a paid pilot and instrumenting them now
- * would itself be the avoidance the review names. Prospect counts read
- * the committed CRM baseline; the label says so.
- */
+/** January proof: payment, access distribution and useful work stay distinct. */
 
 function MetricRow({ name, cell }: { name: string; cell: MetricCell }) {
   if (cell.kind === "dark") {
@@ -50,7 +36,9 @@ function MetricRow({ name, cell }: { name: string; cell: MetricCell }) {
 export function HqProofGate({ gate }: { gate: ProofGate }) {
   const m = gate.metrics;
   const stateLabel =
-    gate.clock.state === "inert"
+    gate.clock.state === "prelaunch"
+      ? "internal testing"
+      : gate.clock.state === "inert"
       ? "inert · not started"
       : gate.clock.state === "expired"
         ? "expired · §8 due"
@@ -60,12 +48,12 @@ export function HqProofGate({ gate }: { gate: ProofGate }) {
     <section className="hq-pg" aria-label="proof gate" data-state={gate.clock.state}>
       <div className="hq-pg-header">
         <span className="hq-pg-eyebrow">proof gate · has it moved</span>
-        <span className="hq-pg-stamp">kill clock · {stateLabel}</span>
+        <span className="hq-pg-stamp">January programme · {stateLabel}</span>
       </div>
 
       <p className="hq-pg-clock">{gate.clock.line}</p>
 
-      <ol className="hq-pg-rail" aria-label="kill-clock milestones">
+      <ol className="hq-pg-rail" aria-label="programme milestones">
         {gate.clock.milestones.map((ms) => (
           <li
             key={ms.label}
@@ -90,20 +78,21 @@ export function HqProofGate({ gate }: { gate: ProofGate }) {
         ))}
       </ol>
 
-      <ul className="hq-pg-metrics" aria-label="the five metrics">
+      <ul className="hq-pg-metrics" aria-label="commercial proof and access distribution">
         <MetricRow name="qualified replies" cell={m.qualifiedReplies} />
         <MetricRow name="booked calls" cell={m.bookedCalls} />
-        <MetricRow name="paid pilots" cell={m.paidPilots} />
-        <MetricRow name="couples activated" cell={m.couplesActivated} />
+        <MetricRow name="receipt-matched paid venues" cell={m.paidPilots} />
+        <MetricRow name="codes redeemed" cell={m.codesRedeemed} />
+        <MetricRow name="useful activation" cell={m.couplesActivated} />
         <MetricRow name="shared artifacts" cell={m.sharedArtifacts} />
       </ul>
 
       <p className="hq-pg-foot">
-        Replies and calls read the committed Outbound CRM baseline ({gate.sent}{" "}
-        send{gate.sent === 1 ? "" : "s"} logged
-        {gate.firstSendDay ? `, first ${gate.firstSendDay}` : ""}). Live edits
-        live in the browser CRM. Paid pilots read the real sponsors ledger.
-        Metrics four and five are dark by design, not by failure.
+        Replies and calls use eligible live venue CRM records ({gate.sent}{" "}
+        contact{gate.sent === 1 ? "" : "s"} recorded
+        {gate.firstSendDay ? `, earliest ${gate.firstSendDay}` : ""}).
+        Paid venues require a shared payment receipt matching the current venue record. Code redemptions describe access;
+        useful activation and actual sharing need separate verified evidence.
       </p>
     </section>
   );

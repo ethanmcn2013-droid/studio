@@ -1,114 +1,46 @@
 ---
-title: Pricing and entitlements — one DB, every product
+title: Pricing, payment evidence and access
 slug: pricing-and-entitlements
-lens: Processes
+lens: Products
 owner: Ethan
-lastVerified: 2026-07-31
-links: [signal-studio-umbrella, five-products-as-a-system, turso-databases-and-reads, log-cycle-cross-repo-writer]
-tags: [pricing, entitlements, Stripe, free, event, wedding, workspace, studio, Venue Edition, sponsors-ledger, entitlementsDb, signal-entitlements DB, entitlements-shared, resolveEntitlement, /api/checkout, STRIPE_SETUP, STUDIO_OPS_SECRET, ENTITLEMENTS_OPS]
-references: [signalstudio.ie/pricing, src/app/pricing/, src/app/hq/entitlements/, src/app/api/internal/entitlements/grant/, src/app/api/internal/entitlements/expire/, src/lib/entitlements-db/, src/lib/entitlements-db/client.ts, src/lib/entitlements-db/schema.ts, src/lib/entitlements-db/reads.ts, src/lib/entitlements-db/writes.ts, drizzle-entitlements/, drizzle-entitlements.config.ts, tasks/src/app/api/checkout/, tasks/src/app/api/webhooks/stripe/, tasks/src/lib/entitlements-shared/, timeline/src/lib/entitlements-shared/, signal/src/lib/entitlements-shared/, notes/src/lib/entitlements-shared/, docs/ENTITLEMENTS_OPS.md, tasks/docs/STRIPE_SETUP.md]
-summary: One pricing surface at signalstudio.ie/pricing. Five tiers, one shared signal-entitlements DB, copy-pasted resolver in every product. Tasks owns Stripe; Studio owns admin grants.
-status: complete
+lastVerified: 2026-09-04
+links: [signal-studio-umbrella, five-products-as-a-system, pricing-and-entitlements]
+tags: [January 2027, Notes, Tasks, Timeline, Home]
+references: [content/hq/decisions/three-products-home.md, docs/execution/january-2027/PROGRAMME.md, contracts/commercial-terms.v2.json]
+summary: Canonical offers, payment, fulfilment, redemption and useful activity are distinct states.
+status: partial
 pinned: false
-execWhat: One pricing page for the whole suite, one shared record of who has paid for what, five products that all read from the same source of truth.
-execMatters: Pricing honesty is the lever between the suite being a hobby and a business. Until 2026-05-14, only Tasks enforced the paywall — every other product was effectively free. Now every product gates against the same record, so paying customers get access everywhere within seconds, and non-paying readers hit the same gates everywhere.
-execRisk: If the shared payments record goes wrong, customers either lose access they paid for (refund risk, churn risk) or get access they didn't pay for (revenue leak). A daily reconciliation job is the safety net; reading these atlas pages is how the operator stays oriented when things drift.
+execWhat: Canonical offers, payment, fulfilment, redemption and useful activity are distinct states.
+execMatters: Current source and internal candidate evidence guide the January programme.
+execRisk: Candidate code, synthetic evidence and intended policy must not be mistaken for production or customer proof.
 ---
 
-## WHAT
+## Offer and measurement truth
 
-Pricing across the five products is unified at `signalstudio.ie/pricing`. Five tiers — `free`, `event`, `wedding`, `workspace`, `studio` — ranked 0–4. One shared `signal-entitlements` Turso DB carries every active grant. Every product reads from it via a copy-pasted `entitlements-shared` module — no monorepo, no shared package, just identical code in each repo. Tasks owns the Stripe wiring (webhook + checkout). Studio owns the admin surfaces (operator grants, HQ list, reconcile) and the writer-side library.
+Canonical policy: contracts/commercial-terms.v2.json and the January launch decision. Venue Edition is €1,500 annually; Founding 25 is €1,000 annually under its continuous-renewal terms. Both prices are VAT-inclusive. A founding number follows cleared-payment evidence. Policy is not proof that a provider charged or settled a payment.
 
-The entitlements sprint E-1 → E-8 closed this gap on 2026-05-14. Before the sprint, only Tasks enforced tiers; Timeline, Signal, and Notes were paid-tier-blind; Studio's `getEntitlement` was dead code. After the sprint, every product gates against the same DB.
+The remaining consumer ladder must be read from the contract, not copied from historical Atlas prices. Student eligibility must be enforced before new Student sales. Event remains outside the umbrella ladder; its approved €89 and twelve-calendar-month terms are intended policy with implementation required, not verified archive behavior. New Event sales are unavailable until project access closure.
 
-```mermaid
-flowchart LR
-  U[user on /pricing] --> CTA[Buy CTA]
-  CTA --> TC[tasks.signalstudio.ie/api/checkout]
-  TC --> ST[Stripe Checkout]
-  ST -->|webhook| TW[tasks /api/webhooks/stripe]
-  TW -->|dual-write| TL[(tasks local DB)]
-  TW -->|dual-write| SE[(signal-entitlements DB)]
-  SH[studio /hq/entitlements] -->|grant| SE
-  SO[studio /api/internal/entitlements/grant] -->|curl| SE
-  SE --> R1[tasks read]
-  SE --> R2[roadmap read]
-  SE --> R3[analytics read]
-  SE --> R4[notes read]
-  SE --> R5[studio read]
-```
+Studio 27016169 excludes plan labels, legacy paidAt rows and mismatched records from paid proof. A positive operator-attested venue_payment receipt must match the current financial row. Synthetic two-receipt rehearsal produced €2,500; that is fixture evidence, not actual revenue or independently observed provider settlement. See docs/execution/january-2027/HQ_TRUTH_REPAIR.md.
 
-## WHO
+Payment, fulfilment, redemption, useful couple activity and repeated use have separate owners and evidence. Small-cohort privacy suppression remains applicable; one venue payment does not authorize identifying a couple’s behavior.
 
-Ethan owns the pricing surface, the shared DB, the admin surfaces, and the tier vocabulary. Stripe handles payments; Vercel hosts the Webhook receiver. No third-party operators have grant authority.
+## Runtime and failure boundaries
 
-## WHERE
+App owns Stripe checkout and signed webhook reconciliation. Candidate fc40f4ef reads current subscription and exact paid-invoice truth, tracks one-time Event terms, binds portal customers to the actor, and retains failed shared updates for retry. Independent security review identified recovery edges being repaired; this is not provider acceptance.
 
-- **`signalstudio.ie/pricing`** (studio repo, `src/app/pricing/`) — the unified pricing surface. Per-product `/pricing` paths 308 to this one.
-- **Shared store** — `libsql://signal-entitlements-ethan387.aws-eu-west-1.turso.io`. Migrations in `drizzle-entitlements/`. Connection envs: `ENTITLEMENTS_DATABASE_URL` (required), `ENTITLEMENTS_AUTH_TOKEN` (required in prod). Tables: `entitlements`, `sponsors`, `license_codes`, `redemptions`, `processed_webhooks`.
-- **Copy-pasted resolver** — `src/lib/entitlements-shared/` in `tasks`, `roadmap`, `analytics`, `notes`. Exports `resolveEntitlement`, `resolveHighestTier`, `tierAtLeast`. The tier ranking (`free: 0` … `studio: 4`) lives in `tiers.ts` inside every repo's copy.
-- **Studio's writer side** — `src/lib/entitlements-db/`: `client.ts` (the lazy `entitlementsDb()` singleton — throws on first use, not at import, so Preview builds with no Turso envs don't crash; cached after first call), `schema.ts` (canonical Drizzle schema for all five tables + tier/source/status enums + `sponsors` paid-ledger + `isPaidVenue()`), `reads.ts` (`resolveEntitlement`/`resolveEntitlementOrThrow`/`listEntitlements`, free-default on any DB error), `writes.ts` (`writeSharedEntitlement` idempotent on `(userClerkId, source, sourceRef)` with 3-attempt backoff, `expireSharedEntitlement`), `tiers.ts` (`TIER_RANK` 0–4 + `tierAtLeast`). `entitlements-db/` is the *only* reader on the Studio side — the older `src/lib/entitlements/index.ts` (`getEntitlement` against Studio's *local* `@/lib/db`) was deleted S·57; it had zero importers but still compiled, so a stray future import would have silently resolved tier from the wrong database.
-- **Tasks Stripe wiring** — `tasks/src/app/api/checkout/` and `tasks/src/app/api/webhooks/stripe/`. The webhook dual-writes to Tasks's local DB and to the shared store, idempotently via `processed_webhooks`.
-- **Studio admin** — `src/app/hq/entitlements/` (UI, cookie-gated), `src/app/api/internal/entitlements/grant/` and `.../expire/` (curl path, Bearer `STUDIO_OPS_SECRET`). Off-Stripe grants carry `origin: studio-ops` or `origin: studio-hq` in metadata for audit grep.
-- **Operator runbooks** — `docs/ENTITLEMENTS_OPS.md` (grant, expire, reconcile, audit, troubleshooting), `tasks/docs/STRIPE_SETUP.md` (price IDs + webhook + envs).
+App 254cccc6 scopes grants before ranking, prevents an Event purchase in A from supplying paid storage in B, and honors local purchase revocation against its stale shared mirror. Independent valid grants and known historical account grants remain usable. Shared inventory and local raw export are not authorization results. Personal Pro benefits are distinct from another project’s resource tier.
 
-## HOW
+App a10432dd implements the accepted Event new-session hold in both checkout entry points and Settings. Existing settlement/refund recovery remains active. This candidate record does not verify deployed checkout, provider payment links or previously created sessions. The delegated owner-controlled policy and exact private/public/Timeline/cache closure boundary are indexed in `content/hq/decisions/event-project-funding-2026-09-04.md`; historical reference reconciliation is open in `content/hq/operator-todos/event-historical-purchase-reconciliation.md`. No retrospective project locks or paid archive claims follow from unknown designation.
 
-The resolve path (read side) is simple. The grant path (write side) is the part with invariants.
+Studio owns operator fulfilment and the shared sponsor/receipt boundary. Both repositories now verify matching contract consumers and canonical access-term vectors; the App candidate adds 0731ab91, Studio adds 004f9c9. The receiving App release must contain these contracts before Studio’s paired CI can pass.
 
-### Reading (every product, every request)
+## Open acceptance
 
-1. Server-side code calls `resolveEntitlement(userId)` from its local `entitlements-shared/reads.ts` (Studio uses `src/lib/entitlements-db/reads.ts`).
-2. The resolver queries the shared Turso DB for active entitlements (status `active`, not expired).
-3. If multiple entitlements exist, the highest by `TIER_RANK` wins.
-4. The gate uses `tierAtLeast(currentTier, "workspace")` (or similar) to decide whether to allow the action. Any DB error returns `free` — entitlements never take a product down. Callers needing to distinguish "user is free" from "DB unreachable" call `resolveEntitlementOrThrow`.
+Stripe connector reauthentication and designated test-mode account identity are missing. No real renewal, refund, cancellation or customer portal rehearsal is claimed. Event post-term read-only behavior and the sponsored wedding-date capture/update path need product verification. Selecting a paid plan, redeeming a code or loading a board cannot close these gaps.
 
-### Granting via Stripe (the happy path)
+January's experiment clock stays inert until actual authorized first-outreach evidence. Commercial opening remains held until 21 January 2027 and the separate release/outreach decisions.
 
-1. User clicks CTA on `signalstudio.ie/pricing`. The CTA deep-links to `tasks.signalstudio.ie/api/checkout?tier=workspace` (or `&interval=annual`, or `tier=event`).
-2. Tasks's checkout route mints a Stripe Checkout session and redirects.
-3. User pays. Stripe POSTs a webhook to Tasks's `/api/webhooks/stripe`.
-4. The webhook validates the signature, looks up the price → tier mapping, and **dual-writes** the entitlement: one row in Tasks's local DB (for Tasks's own historical reasons) and one in the shared `signal-entitlements` DB (the canonical store every product reads).
-5. The webhook records the Stripe event id in `processed_webhooks` so retries are idempotent.
-6. Within seconds, every product's next `resolveEntitlement` call sees the new tier.
+## Provenance
 
-### Granting off-Stripe (operator path)
-
-Two surfaces for support, pilot ops, and comp issuance:
-
-- **HQ UI** at `/hq/entitlements` — cookie-gated; list, grant, expire from a form.
-- **Internal API** at `/api/internal/entitlements/grant` and `/expire` — Bearer `STUDIO_OPS_SECRET`, timing-safe compared, curl-friendly, scriptable. Grant validates `tier` against `ENTITLEMENT_TIERS` and `source` against `ENTITLEMENT_SOURCES`, computes `expiresAt` from `durationDays`, and writes via `writeSharedEntitlement` (idempotent on `(userClerkId, source, sourceRef)` — re-running the same curl returns `created: false`). Off-Stripe grants carry `origin: studio-ops` (or `studio-hq`) plus an ISO `grantedAt` in metadata so audit grep can tell paid-Stripe from operator-issued. Expire matches by `stripeSubscriptionId` first, then `sourceRef`.
-
-### The sponsors paid-ledger (Venue Edition)
-
-The `sponsors` table carries the paid Venue Edition ledger. The active decision is `venue-edition-fixed-price-2026-07-11`: every new paid or founding venue is written at **€1,500 per venue/year, prepaid**. Additive, nullable columns remain: `venuePlan` (`none`/`pilot`/`founding`/`paid`), `annualAmountCents`, `foundingLocked`, `termStartsAt`, `termEndsAt`, `paidAt`, `codeAllotment`. `annualAmountCents` stays an exact cash ledger rather than a derived count so historical payments are never normalized. `foundingLocked` records the cohort's lifetime guarantee, not a lower current price. `isPaidVenue()` returns true only when `venuePlan` is `founding` or `paid` **and** `paidAt` is set — cash landing is the gate, not the plan label.
-
-### Reconcile sweep (the safety net)
-
-A daily reconcile sweep piggybacks on Tasks's existing digest cron. It walks Tasks's local entitlements and asks the shared writer to mirror anything missing, idempotently. `writeSharedEntitlement` retries transient errors with backoff (3 attempts, exponential). Drift between local and shared should be impossible in steady state; the sweep makes recovery from an outage automatic.
-
-## WHY
-
-The cheapest version of "five products, one paywall" is a monorepo. Rejected: each product would have to coordinate releases, and a bad migration anywhere would break entitlement checks everywhere. The expensive version is a separate billing service. Rejected: too much weight, too much SPOF.
-
-The shape that earned the build is the middle path — separate repos, separate local DBs, *one* shared store, copy-pasted resolver code. The duplication is the feature, not the cost: each repo can change its read shape without coordinating, and the resolver code is small enough (~80 lines) that drift between copies is rare and visible.
-
-The dual-write from Stripe webhook is the load-bearing detail. Without it, Tasks would be a special citizen — the one product whose local DB is canonical — and the other four would be downstream readers. With it, the shared DB is canonical, Tasks is just the writer (because Stripe needs *some* product to host the webhook), and any product could host the writer if Tasks ever stops being the right host.
-
-The five-tier vocabulary (free / event / wedding / workspace / studio) was chosen to match the audience archetypes in BRAND.md §2.1. Tiers that don't map to a real audience archetype don't get a name. The temptation to add a "team" tier was deliberately refused — see [[signal-studio-umbrella]] for the v1 refusal list. The paid Venue Edition is deliberately *not* a sixth tier — a venue's couples redeem to `wedding`-tier entitlements; "Venue Edition" lives in the `sponsors` ledger, not in `ENTITLEMENT_TIERS`, so the gate vocabulary stays at five.
-
-## WHEN — current state
-
-- E-1 through E-8 shipped 2026-05-14. All five products enforce tiers against the shared DB.
-- Stripe is sandbox-wired end-to-end. Live mode promotion is an operator action (see entitlements sprint operator action #1 in phase.md).
-- A `?status=checkout-offline` banner renders on `/pricing` if Stripe envs aren't yet set in production, so the umbrella never silently grants free upgrades during the configuration window.
-- 5 changelogs backfilled across the suite. 3 runbooks committed.
-- The tier vocabulary is canonical — any new tier requires editing `TIER_RANK` in every repo's `entitlements-shared/tiers.ts`. The copy-paste cost is the deliberate price for not having a monorepo.
-- S·26 (2026-05-14) made /pricing mobile-correct: Workspace promoted to top of stack ≤640px via `order-first md:order-none`, tier CTAs swap from inline-link to solid pill on mobile via a new `.pricing-tier-cta` class, comparison table `hidden md:block` (was 760w in 340w scroll parent). Tier model, prices, Stripe wiring, and entitlements DB all unchanged.
-- A·5 (2026-05-15, Signal code-review remediation) closed a gate bypass without touching the shared resolver or tier model: Signal's `sendTestBriefingAction` (the "send a test now" button) had no entitlement check, so a free user could spam test sends every 60s and bypass the `workspace`-tier gate the cron enforces. It now calls the same `resolveEntitlement` + `tierAtLeast("workspace")` path. `tiers.ts` also gained regression-test coverage (`tiers.test.ts`) — the ranking that decides who pays was previously untested. Contract, vocabulary, and DB shape unchanged.
-- T·50 (2026-05-15, code-review hardening) touched the Tasks read + webhook paths without changing the tier model, prices, or DB shape: (a) Tasks's `getEffectiveTier` now returns the **rank-max of the shared resolver and the local entitlements table**, not shared-first. The old shared-first short-circuit could silently downgrade a customer whose paid grant still lives only in Tasks's local DB during the E-3.2 writer cutover — rank-max is downgrade-proof and collapses back to a plain shared read once the local table empties. (b) The Stripe webhook's `processed_webhooks` dedup guard was repaired — `alreadyProcessed()` cast `db.run()` (a libSQL ResultSet) as a row array, so it always returned false and the dedup table never actually deduped; idempotency had been resting entirely on the `notes`-field compensator. The dual-write contract in the HOW section above is unchanged; this only fixed the guard that was supposed to make retries cheap.
-- S·37 (2026-05-16) shipped the paid Venue Edition: `/pricing` §6.5 surface, `sponsors` paid-ledger columns (`venuePlan`/`annualAmountCents`/`foundingLocked`/`termStartsAt`/`termEndsAt`/`paidAt`/`codeAllotment`), `isPaidVenue()`, and the Workspace `€120/yr` annual checkout link. The entitlement tier vocab (`free`/`event`/`wedding`/`workspace`/`studio`, `TIER_RANK` 0–4) is unchanged — a paid venue resolves to a `wedding`-tier entitlement per redeemed couple; "Venue Edition" is a sponsor-ledger plan, not a new entitlement tier.
-- S·42 (2026-05-16) made the shared-DB client lazy: `entitlementsDb()` throws on first use rather than at import, so Preview builds with no Turso envs no longer fail. Reader contract, tier model, and DB shape unchanged.
-- 2026-05-17 pricing-honesty re-verification: full read-only audit of all five products against what `/pricing` actually commits to (workspace count, editing guests, expiry — *not* per-feature gating; the page states "no feature is gated behind tier"). On the committed axes, enforcement was already real and server-side and fail-safe to `free`. Net changes this pass: **N·17** — Notes `app/api/capture/email/route.ts` now re-runs `notesProEnabled` at *delivery* (was allocation-only), so a workspace→free downgrade actually stops capture-by-email instead of leaving a live paid address until manual slug rotation; **S·57** — deleted the dead local-DB `src/lib/entitlements/index.ts` footgun (above). Open contradiction surfaced, not silently carried: Signal email-dispatch and Notes capture-by-email *are* workspace-gated, which conflicts with the `/pricing` line "No feature is gated behind tier" — operator decision is keep the gates, fix the copy (pricing-page edit owed; the file is under a live parallel HQ session, so flagged as a precise diff rather than blind-edited).
-- 2026-05-22 (S·U4 HQ v4 + S·67 templates) — Two studio commits touched paths the drift-trigger indexes under the `src/app/pricing/` reference. (1) S·U4 `63885fb` (HQ v4 proof-gate adoption) touched `src/app/hq/page.tsx` + new `proofgate.ts`/`hq-proof-gate.tsx`/`next-action.ts` — no pricing file changed; the `src/app/pricing/` flag was the drift-check's parent-dir wildcard catching adjacent app-router structural changes from the parallel HQ session, not a tier model change. (2) S·67 `e566c07` (`/templates` audience-pill row) added pages under `src/app/templates/`, mirrored a byte-identical pill primitive into `tasks/`, and bumped two HQ feature entries (`wedding-workspace`, `local-business-monthly-rhythm`) to "Built" with a `landingPageUrl` into `/templates`. Tier vocab (`free/event/wedding/workspace/studio`), `TIER_RANK` 0–4, the five-tier price ladder on `/pricing`, the `signal-entitlements` Turso shape, the Stripe dual-write contract, the `sponsors` paid-ledger, `isPaidVenue()`, and the per-repo `entitlements-shared/` resolver code are all unchanged. The pricing-honesty contradiction flagged 2026-05-17 (Signal + Notes workspace-gated features vs the "no feature is gated behind tier" copy line) is still open. CHANGELOG-and-adjacent-route drift only; the entitlements mechanism this entry documents is intact.
-- 2026-07-31 (data-layer reset, studio half) — the shared store's connection env vars dropped their Turso-branded prefix for the suite-wide `ENTITLEMENTS_DATABASE_URL` / `ENTITLEMENTS_AUTH_TOKEN` convention. `drizzle-entitlements/` was regenerated from the live 15-table `schema.ts` as a single fresh `0000` baseline (the old `0000_init.sql` had drifted from production reality via hand-run `migrate-*.mjs` scripts). Names and migration history only — the shared-store shape, resolver contract, and dual-write path are unchanged.
+The previous entry is preserved in docs/execution/january-2027/history/pricing-and-entitlements-before-20260904.md and Git 004f9c9. Its older topology, prices and readiness claims are superseded here. Status is partial because final integrated and provider acceptance remains open.

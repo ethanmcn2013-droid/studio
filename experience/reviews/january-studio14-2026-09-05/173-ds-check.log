@@ -1,0 +1,5 @@
+
+> studio@0.1.0 ds:check C:\Users\ethan\signal-studio-workspace\worktrees\studio\feat-january-studio14-coverage
+> node scripts/ds/ds-check.mjs
+
+ds-check: clean — no drift.

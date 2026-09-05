@@ -20,7 +20,7 @@ export function OrgListView() {
 
   return (
     <>
-      <p className="mb-12 max-w-[60ch] font-mono text-[12px] leading-[1.6] text-ink-quiet">
+      <p className="mb-12 max-w-[60ch] font-mono text-[12px] leading-[1.6] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
         {total} directors · {productLeads} on the product excellence council ·{" "}
         {layer3} at layer-3 default ·{" "}
         <span title={`source: ${ELT_SNAPSHOT.source} v${ELT_SNAPSHOT.sourceVersion}`}>

@@ -9,8 +9,8 @@ import {
 import { fairUseCeilingFor } from "@/lib/venue-allotment";
 
 const PLANS: Array<{ value: string; label: string }> = [
-  { value: "founding", label: "Founding (paid)" },
-  { value: "paid", label: "Paid" },
+  { value: "founding", label: "Founding agreement" },
+  { value: "paid", label: "Standard agreement" },
   { value: "pilot", label: "Pilot (no cash)" },
 ];
 
@@ -19,8 +19,7 @@ const MODES: Array<{ value: string; label: string }> = [
   { value: "limited", label: "Limited — fixed allotment" },
 ];
 
-/** Create a venue and record its payment, term, and issuance in one step —
- *  the no-terminal replacement for the venue CLI scripts.
+/** Provision a venue's intended plan, term and issuance. Payment is separate.
  *
  *  Issuance defaults to unlimited, which is the ratified Venue Edition
  *  entitlement (D-020). It used to be a required number defaulting to ten, so
@@ -130,11 +129,12 @@ export function OnboardVenueForm() {
         <span className="font-medium text-ink">Commercial terms</span>
         <div className="rounded border border-border-soft bg-bg px-2 py-2 text-[12.5px] text-ink-soft">
           Founding: €{VENUE_EDITION_FOUNDING_ANNUAL_PRICE_EUR.toLocaleString("en-IE")} / year ·
-          paid: €{VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")} / year · pilot: no cash.
+          standard: €{VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")} / year · pilot: no cash.
           Both prices include VAT at the prevailing rate.
+          Choosing a plan does not record payment. Record cleared payment separately.
         </div>
         {unlimited ? (
-          <p className="text-[11.5px] text-ink-quiet">
+          <p className="text-[11.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
             Fair-use ceiling {fairUseCeilingFor(parsedCount)} for this term. It alerts
             Signal HQ and keeps issuing. It never caps issuance, never sets the price,
             and never changes at renewal.
@@ -154,11 +154,11 @@ export function OnboardVenueForm() {
       {state && "ok" in state ? (
         <p className="text-[12px] text-ink-soft">
           {state.created ? "Created" : "Updated"} {state.slug}
-          {state.paid ? ", marked paid" : ""}
+          {state.paid ? ", previous payment retained" : ", no payment recorded"}
           {state.allotmentMode === "unlimited"
             ? `, unlimited issuance (fair-use ceiling ${state.fairUseCeiling})`
             : ""}
-          . Mint its codes below.
+          . Review its access below.
         </p>
       ) : state && "error" in state ? (
         <p className="text-[12px]" style={{ color: "var(--status-blocked)" }}>

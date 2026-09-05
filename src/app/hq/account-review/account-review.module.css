@@ -30,7 +30,7 @@
 }
 
 .reviewSummary span {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
 }
 
 .reviewSummary strong {
@@ -43,7 +43,7 @@
   border-radius: 6px;
   background: transparent;
   padding: 0 10px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
   cursor: pointer;
 }
@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -84,7 +84,7 @@
 .controlsNote,
 .liveStatus {
   margin: 0;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
   line-height: 1.45;
 }
@@ -157,7 +157,7 @@
   border-left: 1px solid var(--hairline);
   margin-left: 4px;
   padding-left: 12px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
 }
 
@@ -169,7 +169,7 @@
 
 .sampleChip {
   max-width: 240px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   letter-spacing: 0.02em;
 }
@@ -187,7 +187,7 @@
 }
 
 .account small {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 9px;
 }
 
@@ -219,7 +219,7 @@
   border-bottom: 2px solid transparent;
   background: transparent;
   padding: 0 14px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
   text-decoration: none;
   white-space: nowrap;

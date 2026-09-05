@@ -41,7 +41,7 @@ export default async function PersonPage({
     <main id="main" className="mx-auto w-full max-w-[920px] px-5 py-12 text-ink">
       <Link
         href="/hq/entitlements?tab=roster"
-        className="text-[12px] text-ink-quiet transition hover:text-ink"
+        className="text-[12px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))] transition hover:text-ink"
       >
         ← Roster
       </Link>
@@ -49,7 +49,7 @@ export default async function PersonPage({
       {!person.ok ? (
         <div className="mt-6 rounded-md border border-border-soft bg-bg-elev px-4 py-6">
           <div className="text-[13px] font-medium">Can&rsquo;t reach the entitlements DB.</div>
-          <p className="mt-1 text-[12px] text-ink-quiet">{person.error}</p>
+          <p className="mt-1 text-[12px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{person.error}</p>
         </div>
       ) : !person.data.found ? (
         <div className="mt-6">
@@ -119,10 +119,10 @@ function PersonBody({
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div className="text-[13px]">
                   <span className="font-semibold">{r.tierLabel}</span>
-                  <span className="ml-2 text-ink-quiet">{r.source}</span>
-                  <span className="ml-2 text-[11px] text-ink-quiet">{r.status}</span>
+                  <span className="ml-2 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{r.source}</span>
+                  <span className="ml-2 text-[11px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{r.status}</span>
                   {r.billingState && r.billingState !== "none" ? (
-                    <span className="ml-2 text-[11px] text-ink-quiet">{r.billingState}</span>
+                    <span className="ml-2 text-[11px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{r.billingState}</span>
                   ) : null}
                 </div>
                 {!readOnly && r.status === "active" ? (
@@ -134,7 +134,7 @@ function PersonBody({
                   />
                 ) : null}
               </div>
-              <div className="mt-1.5 flex flex-wrap gap-x-5 text-[11px] text-ink-quiet">
+              <div className="mt-1.5 flex flex-wrap gap-x-5 text-[11px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
                 <span>granted {fmt(r.grantedAt)}</span>
                 <span>expires {fmt(r.expiresAt)}</span>
                 {r.batchId ? <span>batch {r.batchId}</span> : null}
@@ -152,7 +152,7 @@ function PersonBody({
             {data.redemptions.map((r) => (
               <li key={r.codeId} className="flex justify-between px-3 py-2 text-[11.5px]">
                 <span className="font-mono">{r.codeId}</span>
-                <span className="text-ink-quiet">
+                <span className="text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
                   {r.entitlementId ? "linked" : "unlinked"} · {fmt(r.redeemedAt)}
                 </span>
               </li>
@@ -164,14 +164,14 @@ function PersonBody({
       <section className="mt-8">
         <h2 className="mb-3 text-[13px] font-semibold">History ({data.timeline.length})</h2>
         {data.timeline.length === 0 ? (
-          <p className="text-[12px] text-ink-quiet">No recorded events.</p>
+          <p className="text-[12px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">No recorded events.</p>
         ) : (
           <ol className="grid gap-1.5">
             {data.timeline.map((e) => (
               <li key={e.id} className="flex flex-wrap gap-x-3 text-[11.5px] text-ink-soft">
-                <span className="w-[110px] shrink-0 font-mono text-ink-quiet">{fmt(e.createdAt)}</span>
+                <span className="w-[110px] shrink-0 font-mono text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{fmt(e.createdAt)}</span>
                 <span className="w-[70px] shrink-0 font-medium text-ink">{e.action}</span>
-                <span className="text-ink-quiet">{e.actorName ?? "—"}</span>
+                <span className="text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{e.actorName ?? "—"}</span>
                 {e.reason ? <span className="text-ink-soft">· {e.reason}</span> : null}
               </li>
             ))}

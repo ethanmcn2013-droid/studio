@@ -77,18 +77,23 @@ export function projectVenueUsageSnapshot(
     definitionVersion: LIVE_USAGE_DEFINITION,
     sampleLabel: "LIVE ACCESS AND USAGE.",
     coverage: {
-      ...accessSnapshot.coverage,
       state: coverage.state,
       label: copy.label,
       detail: copy.detail,
       dataThrough: usage.dataThrough,
       periodStart: usage.window.start,
       periodEnd: usage.window.end,
+      periodLabel: accessSnapshot.coverage.periodLabel,
       definitionVersion: LIVE_USAGE_DEFINITION,
-      modulesCovered: coverage.modulesCovered,
       modulesExpected: coverage.modulesExpected,
-      daysCovered: coverage.daysCovered,
       daysExpected: coverage.daysExpected,
+      // Rows exist only on observed days. These counts are behavioural too:
+      // never copy them (including a stale access-overlay value) into a
+      // suppressed action response, export, or rendered snapshot.
+      ...(coverage.state === "suppressed" ? {} : {
+        modulesCovered: coverage.modulesCovered,
+        daysCovered: coverage.daysCovered,
+      }),
     },
     adoption: {
       // Access-derived figures stay exactly as the ledger reported them.

@@ -1,0 +1,831 @@
+{
+  "schemaVersion": "signal-experience-capture/1",
+  "capturedAt": "2026-09-05T02:37:52.451Z",
+  "commit": "2df4b135af26a03910782d1ea911b565c9f05fdc",
+  "buildId": "m2n_Zi39DsiZ2z4nDWQGd",
+  "approvedBy": null,
+  "review": "scripted only; human usability and council not performed",
+  "results": [
+    {
+      "experienceId": "studio.page.hq-atlas-by-slug",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
+      "finalUrl": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
+      "status": 200,
+      "materialityHash": "76fd95ec8677cf04",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-atlas-by-slug/default/tablet.png",
+      "candidateHash": "124f41925a91ab4cfa0e0eff490951afd047a222e95df616637a2685b64a945f",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Brand enforcement — BRAND.md as catch-net, drifted",
+        "pageHeight": 7157,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/five-products-as-a-system?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/plan-cycle?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/signal-studio-umbrella?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/data-room?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/decks?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/vault?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/assets?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/org?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/health?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/experience-quality?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/data-room?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/vault?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/assets?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/decks?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        "Actual checked-in Atlas Mermaid labels matched exactly: [\"cycle opens — copy work\",\"read BRAND.md §\",\"draft against rules\",\"catch-net second read\",\"stage + commit\",\"fix in place\"]",
+        "Real nested list hierarchy; no non-LI direct children",
+        "SVG rendered without fallback/error",
+        "Readable native diagram geometry: {\"containerWidth\":668,\"contentWidth\":1306,\"renderedLabelPx\":14.009336791404223}",
+        "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "9db08213c35fb5bfa6ac90f082dd8db81f7511602af0c2b662ea2cb06d7123c1"
+    },
+    {
+      "experienceId": "studio.page.hq-atlas-by-slug",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
+      "finalUrl": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
+      "status": 200,
+      "materialityHash": "76fd95ec8677cf04",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-atlas-by-slug/default/mobile.png",
+      "candidateHash": "48efc1f2d8478ac6092efb4cfec7eb2af6218d9f9fc550899faed3c5c87851cc",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+              ],
+              [
+                ".signal-devbanner__text"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Brand enforcement — BRAND.md as catch-net, drifted",
+        "pageHeight": 11183,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/data-room?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/data-room?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/vault?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/decks?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/org?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/experience-quality?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/health?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/experience-quality?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/health?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        "Actual checked-in Atlas Mermaid labels matched exactly: [\"cycle opens — copy work\",\"read BRAND.md §\",\"draft against rules\",\"catch-net second read\",\"stage + commit\",\"fix in place\"]",
+        "Real nested list hierarchy; no non-LI direct children",
+        "SVG rendered without fallback/error",
+        "Readable native diagram geometry: {\"containerWidth\":308,\"contentWidth\":1306,\"renderedLabelPx\":14.009336791404223}",
+        "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally",
+        "Touch gesture geometry: {\"box\":{\"x\":40,\"y\":323.515625,\"width\":310,\"height\":196.09375},\"touchBefore\":40,\"touchAfter\":205}",
+        "Native Chromium touch swipe scrolls the diagram without page overflow"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "9db08213c35fb5bfa6ac90f082dd8db81f7511602af0c2b662ea2cb06d7123c1"
+    },
+    {
+      "experienceId": "studio.page.hq-atlas-by-slug",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
+      "finalUrl": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
+      "status": 200,
+      "materialityHash": "76fd95ec8677cf04",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-atlas-by-slug/default/wide.png",
+      "candidateHash": "0defa164cd98b53083fe96558596aae4ccee0eed79ec249f4e5fd48caf58ca70",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".hqx-rail-group:nth-child(1) > .hqx-rail-label"
+              ],
+              [
+                "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Brand enforcement — BRAND.md as catch-net, drifted",
+        "pageHeight": 7382,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4396/?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/experience-quality?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/data-room?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/decks?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/vault?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/assets?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/data-room?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/decks?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/vault?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/org?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/assets?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/health?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/five-products-as-a-system?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/plan-cycle?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/five-products-as-a-system?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/plan-cycle?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/signal-studio-umbrella?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        "Actual checked-in Atlas Mermaid labels matched exactly: [\"cycle opens — copy work\",\"read BRAND.md §\",\"draft against rules\",\"catch-net second read\",\"stage + commit\",\"fix in place\"]",
+        "Real nested list hierarchy; no non-LI direct children",
+        "SVG rendered without fallback/error",
+        "Readable native diagram geometry: {\"containerWidth\":697,\"contentWidth\":1306,\"renderedLabelPx\":14.009336791404223}",
+        "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "9db08213c35fb5bfa6ac90f082dd8db81f7511602af0c2b662ea2cb06d7123c1"
+    },
+    {
+      "experienceId": "studio.page.hq-atlas-by-slug",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
+      "finalUrl": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
+      "status": 200,
+      "materialityHash": "76fd95ec8677cf04",
+      "fixture": {
+        "scenario": "populated",
+        "synthetic": true,
+        "providerCalls": 0,
+        "migrations": [
+          {
+            "id": "0001_venue_fulfilment",
+            "state": "applied"
+          },
+          {
+            "id": "0002_usage_delivery",
+            "state": "applied"
+          }
+        ],
+        "expectedCash": 2500,
+        "verifiedReceipts": 2
+      },
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio.page.hq-atlas-by-slug/default/desktop.png",
+      "candidateHash": "79d546a903bfdcaf914a6bbe4b685c4d73c4695b87fb28e25ead83edaef64f97",
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "details": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "targets": [
+              [
+                ".hqx-rail-group:nth-child(1) > .hqx-rail-label"
+              ],
+              [
+                "a[title=\"Today\"] > .hqx-rail-text"
+              ],
+              [
+                "a[title=\"Action Center\"] > .hqx-rail-text"
+              ],
+              [
+                "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+              ],
+              [
+                "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+              ]
+            ]
+          }
+        ]
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "heading": "Brand enforcement — BRAND.md as catch-net, drifted",
+        "pageHeight": 7379,
+        "reducedMotion": false,
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4396/?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/data-room?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/assets?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/org?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/vault?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/assets?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/org?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/health?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/experience-quality?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "httpErrors": [],
+        "blocked": []
+      },
+      "pass": true,
+      "interactions": [
+        "Actual checked-in Atlas Mermaid labels matched exactly: [\"cycle opens — copy work\",\"read BRAND.md §\",\"draft against rules\",\"catch-net second read\",\"stage + commit\",\"fix in place\"]",
+        "Real nested list hierarchy; no non-LI direct children",
+        "SVG rendered without fallback/error",
+        "Readable native diagram geometry: {\"containerWidth\":697,\"contentWidth\":1306,\"renderedLabelPx\":14.009336791404223}",
+        "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally"
+      ],
+      "additionalScreenshots": [],
+      "sourceDigest": "9db08213c35fb5bfa6ac90f082dd8db81f7511602af0c2b662ea2cb06d7123c1"
+    }
+  ]
+}

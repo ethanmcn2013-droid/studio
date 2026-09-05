@@ -1,0 +1,14 @@
+✔ the real Atlas Mermaid fence round-trips its Unicode labels exactly (4.6877ms)
+✔ Unicode transport preserves accents, non-Latin text and supplementary code points (0.217ms)
+✔ malformed Base64 or UTF-8 is rejected rather than producing corrupted labels (0.3851ms)
+✔ nested lists and wrapped prose stay inside their owning list item (0.2074ms)
+✔ list type changes and following prose close the previous list correctly (0.3071ms)
+✔ nested list text stays escaped and fences are not interpreted as list items (0.8097ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 345.7928

@@ -1,0 +1,286 @@
+[
+  {
+    "experienceId": "studio.page.hq-atlas-by-slug",
+    "state": "default",
+    "breakpoint": "tablet",
+    "sourceDigest": "a5166d555b270c3a673cbb071cba0b5a983f1cfdf54ee635478a968030af378e",
+    "accessibility": {
+      "violations": 1,
+      "blocking": 1,
+      "details": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(1) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(2) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(3) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-foot"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "experienceId": "studio.page.hq-atlas-by-slug",
+    "state": "default",
+    "breakpoint": "mobile",
+    "sourceDigest": "a5166d555b270c3a673cbb071cba0b5a983f1cfdf54ee635478a968030af378e",
+    "accessibility": {
+      "violations": 1,
+      "blocking": 1,
+      "details": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(1) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(2) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(3) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-foot"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "experienceId": "studio.page.hq-atlas-by-slug",
+    "state": "default",
+    "breakpoint": "desktop",
+    "sourceDigest": "a5166d555b270c3a673cbb071cba0b5a983f1cfdf54ee635478a968030af378e",
+    "accessibility": {
+      "violations": 1,
+      "blocking": 1,
+      "details": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(1) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(2) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(3) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-foot"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              ".hqx-rail-group:nth-child(1) > .hqx-rail-label"
+            ],
+            [
+              "a[title=\"Today\"] > .hqx-rail-text"
+            ],
+            [
+              "a[title=\"Action Center\"] > .hqx-rail-text"
+            ],
+            [
+              "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "experienceId": "studio.page.hq-atlas-by-slug",
+    "state": "default",
+    "breakpoint": "wide",
+    "sourceDigest": "a5166d555b270c3a673cbb071cba0b5a983f1cfdf54ee635478a968030af378e",
+    "accessibility": {
+      "violations": 1,
+      "blocking": 1,
+      "details": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(1) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(2) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-row:nth-child(3) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".atlas-exec-foot"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              ".hqx-rail-group:nth-child(1) > .hqx-rail-label"
+            ],
+            [
+              "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+            ]
+          ]
+        }
+      ]
+    }
+  }
+]

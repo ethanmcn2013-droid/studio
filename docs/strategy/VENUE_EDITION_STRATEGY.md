@@ -1,3 +1,11 @@
+# January programme amendment · 2026-09-04
+
+The [January programme](../execution/january-2027/PROGRAMME.md) governs current
+execution: internal testing, user launch and first outreach on 21 January
+2027 subject to manual go/no-go. Retain €1,500 standard / €1,000 Founding 25,
+both VAT-inclusive. Historical schedules below are superseded. No legal/tax
+approval follows from the retained prices.
+
 # Venue Edition Strategy
 
 Status: operating detail · 2026-05-16 · **commercial sections amended 2026-08-03**

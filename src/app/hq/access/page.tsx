@@ -29,7 +29,7 @@ export default async function HqAccessPage({
           <div className="mb-2 text-[24px] font-semibold tracking-[-0.045em]">
             signal hq<span style={{ color: "var(--accent)" }}>.</span>
           </div>
-          <p className="text-[14px] leading-6 text-ink-quiet">
+          <p className="text-[14px] leading-6 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
             Private operating dashboard for product, launch, growth, and decisions.
           </p>
         </div>

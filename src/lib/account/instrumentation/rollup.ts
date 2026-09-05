@@ -102,9 +102,7 @@ export function maskFor(products: readonly SponsoredProduct[]): number {
  * twice, not two actions.
  */
 export function rollupDaily(input: RollupInput): RollupOutput {
-  const covered = input.coveredProducts.length
-    ? [...input.coveredProducts]
-    : [...ALL_PRODUCTS];
+  const covered = [...input.coveredProducts];
   const expected = input.expectedProducts ? [...input.expectedProducts] : covered;
   const coverageMask = maskFor(covered);
   const expectedMask = maskFor(expected);

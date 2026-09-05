@@ -361,16 +361,15 @@ export function finEur(n: number): string {
 }
 
 /**
- * Runway for the blueprint metric. Modeled, but blends the one live input we
- * have, actual cash collected extends the modeled opening position.
- * Returns a capped month count + whether the plan is default-alive.
+ * Historical modeled runway for the blueprint. Current payment receipts
+ * cannot establish an opening cash balance or a self-funding business.
  */
-export function getModeledRunway(cashCollectedActualEur: number | null): {
+export function getModeledRunway(_cashCollectedActualEur: number | null): {
   months: number;
   defaultAlive: boolean;
 } {
   const summary = buildFinancialModel();
-  // A live cash inflow only ever helps runway; never let it shorten the plan.
-  const defaultAlive = summary.defaultAlive || (cashCollectedActualEur ?? 0) > 0;
+  // A payment receipt does not establish that the business funds itself.
+  const defaultAlive = summary.defaultAlive;
   return { months: summary.runwayMonths, defaultAlive };
 }

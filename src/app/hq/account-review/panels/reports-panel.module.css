@@ -26,7 +26,7 @@
 
 .parity {
   max-width: 42ch;
-  color: var(--ink-faint) !important;
+  color: var(--hqx-muted-ink, var(--ink-faint)) !important;
   font-size: 12px !important;
   line-height: 1.45;
 }
@@ -47,7 +47,7 @@
 .denial {
   margin: 0;
   max-width: 320px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
   line-height: 1.45;
   text-align: right;
@@ -93,7 +93,7 @@
 
 .list small {
   margin-top: 3px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
 }
 

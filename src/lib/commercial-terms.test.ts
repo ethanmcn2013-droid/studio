@@ -14,7 +14,7 @@ import {
   VENUE_EDITION_FOUNDING_ANNUAL_PRICE_CENTS,
 } from "./venue-edition";
 
-test("exports only verified consumer prices as usable amounts", () => {
+test("exports ratified amounts independently of offer availability", () => {
   assert.equal(formatEuroCents(requireVerifiedAmount("student")), "€9.99");
   assert.equal(formatEuroCents(requireVerifiedAmount("pro")), "€12");
   assert.equal(formatEuroCents(requireVerifiedAmount("event")), "€89");
@@ -41,8 +41,14 @@ test("encodes the founder-ratified commercial policy pack", () => {
   assert.equal(COMMERCIAL_TERMS.plans.event.refundAccess, "revoked");
   assert.equal(COMMERCIAL_TERMS.schools.availability, "manual_quote_pilot");
   assert.equal(COMMERCIAL_TERMS.trialPolicy.openPaidFeatureTrial, false);
-  assert.equal(COMMERCIAL_TERMS.broadLaunchDate, null);
+  assert.equal(COMMERCIAL_TERMS.broadLaunchDate, "2027-01-21");
   assert.equal(COMMERCIAL_TERMS.broadLaunchPolicy, "manual_go_no_go_only");
+  assert.equal(COMMERCIAL_TERMS.accessState, "waitlist_first");
+  assert.equal(COMMERCIAL_TERMS.launchProgramme.firstOutreachDate, "2027-01-21");
+  assert.equal(COMMERCIAL_TERMS.launchProgramme.prelaunchMode, "internal_testing_only");
+  assert.equal(COMMERCIAL_TERMS.launchProgramme.automaticAccessOpening, false);
+  assert.deepEqual(COMMERCIAL_TERMS.launchProgramme.manualGates, ["user_launch", "first_outreach"]);
+  assert.equal(COMMERCIAL_TERMS.launchProgramme.guestsAndSeating, "no_build_for_january");
   assert.deepEqual(COMMERCIAL_TERMS.unresolved, []);
 });
 
@@ -53,6 +59,23 @@ test("presents public consumer terms without converting cadence into permanence"
   assert.equal(pricing.plans.event.editingGuestLimit, "See terms before purchase");
   assert.equal(pricing.vatStatement, "All prices are inclusive of VAT at the prevailing rate.");
   assert.doesNotMatch(JSON.stringify(pricing), /forever|does not expire|lifetime/i);
+});
+
+test("a ratified Event amount and term do not become an available sale or archive claim", () => {
+  const event = COMMERCIAL_TERMS.plans.event;
+  const offer = getConsumerPricingPresentation().plans.event;
+  assert.equal(requireVerifiedAmount("event"), 8900);
+  assert.equal(event.cadence, "one_time");
+  assert.equal(event.activeWindowMonths, 12);
+  assert.equal(event.postWindow, "read_only");
+  assert.equal(event.refundAccess, "revoked");
+  assert.equal(event.status, "policy_ratified_implementation_required");
+  assert.equal(event.termsStatus, "intended_not_enforced");
+  assert.equal(event.availability, "unavailable_until_project_access_closure");
+  assert.equal(offer.availableForNewPurchase, false);
+  assert.equal(offer.price, "€89");
+  assert.equal(offer.access, "New Event purchases are currently unavailable.");
+  assert.doesNotMatch(JSON.stringify(offer), /then read.only|archive|forever|lifetime/i);
 });
 
 /**

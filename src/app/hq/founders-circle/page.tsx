@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { requireHqAccess } from "@/lib/hq/access-guard";
-import { getProspects } from "@/lib/hq/crm-db";
+import { getProspectsWithSource } from "@/lib/hq/crm-db";
 import {
   FOUNDER_CIRCLE_PACKS,
   getHqReport,
@@ -27,8 +27,8 @@ const METRIC_TONE: Record<string, string> = {
 export default async function FoundersCirclePage() {
   await requireHqAccess();
 
-  const [prospects, traction] = await Promise.all([getProspects(), getTraction()]);
-  const report = getHqReport(prospects, traction);
+  const [prospects, traction] = await Promise.all([getProspectsWithSource(), getTraction()]);
+  const report = getHqReport(prospects.source === "database" ? prospects.prospects : undefined, traction);
 
   return (
     <div className="hqx-page">
@@ -63,7 +63,8 @@ export default async function FoundersCirclePage() {
             <div key={metric.label} className="hqx-metric" data-tone={METRIC_TONE[metric.status] ?? "quiet"}>
               <span className="hqx-metric-label">{metric.label}</span>
               <span className="hqx-metric-value">{metric.value}</span>
-              <span className="hqx-metric-note">target {metric.target}</span>
+              <span className="hqx-metric-note">{metric.target}</span>
+              <span className="hqx-metric-note">{metric.source}</span>
             </div>
           ))}
         </div>
@@ -132,7 +133,7 @@ export default async function FoundersCirclePage() {
             {HQ_REVIEW_PRINCIPLES.map((p) => (
               <div key={p.role} className="hqx-summary-row">
                 <span className="hqx-summary-row-label">{p.role}</span>
-                <span className="hqx-summary-row-value" style={{ fontWeight: "var(--weight-regular)", color: "var(--ink-faint)", textAlign: "right", maxWidth: "60%" }}>{p.finding}</span>
+                <span className="hqx-summary-row-value" style={{ fontWeight: "var(--weight-regular)", color: "var(--hqx-muted-ink, var(--ink-faint))", textAlign: "right", maxWidth: "60%" }}>{p.finding}</span>
               </div>
             ))}
           </div>

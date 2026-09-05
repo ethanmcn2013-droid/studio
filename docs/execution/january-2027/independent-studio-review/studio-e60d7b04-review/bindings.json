@@ -1,0 +1,172 @@
+{
+  "head": "e60d7b04e1d80a0f84f0bb56fcc36c230aee4f64",
+  "base": "2a191a3479aa4cb3ce551e6e3ae629e39132e64e",
+  "digest": "2e56c88ec8951b9bbd190360b9547e9f974042452916b00f723c437942519565",
+  "sourceFiles": 994,
+  "buildId": "etkOKIYMHahiZKvqMPo-w",
+  "builtAt": "2026-09-04T22:07:25.236Z",
+  "commercialCapturedAt": "2026-09-04T22:18:33.182Z",
+  "atlasCapturedAt": "2026-09-04T22:21:10.194Z",
+  "commercialCases": 188,
+  "atlasCases": 4,
+  "verifiedImageReferences": 276,
+  "retainedCanceledRscRequests": 5170,
+  "incompleteAxeEntries": 257,
+  "registryOverridesAndStateMatrixUnchanged": true,
+  "atlas": [
+    {
+      "breakpoint": "tablet",
+      "interactions": [
+        "Actual checked-in Atlas Mermaid labels matched exactly: [\"cycle opens — copy work\",\"read BRAND.md §\",\"draft against rules\",\"catch-net second read\",\"stage + commit\",\"fix in place\"]",
+        "Real nested list hierarchy; no non-LI direct children",
+        "SVG rendered without fallback/error",
+        "Readable native diagram geometry: {\"containerWidth\":668,\"contentWidth\":1306,\"renderedLabelPx\":14.009336791404223}",
+        "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally"
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "breakpoint": "mobile",
+      "interactions": [
+        "Actual checked-in Atlas Mermaid labels matched exactly: [\"cycle opens — copy work\",\"read BRAND.md §\",\"draft against rules\",\"catch-net second read\",\"stage + commit\",\"fix in place\"]",
+        "Real nested list hierarchy; no non-LI direct children",
+        "SVG rendered without fallback/error",
+        "Readable native diagram geometry: {\"containerWidth\":308,\"contentWidth\":1306,\"renderedLabelPx\":14.009336791404223}",
+        "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally",
+        "Touch gesture geometry: {\"box\":{\"x\":40,\"y\":323.515625,\"width\":310,\"height\":196.09375},\"touchBefore\":40,\"touchAfter\":205}",
+        "Native Chromium touch swipe scrolls the diagram without page overflow"
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "breakpoint": "desktop",
+      "interactions": [
+        "Actual checked-in Atlas Mermaid labels matched exactly: [\"cycle opens — copy work\",\"read BRAND.md §\",\"draft against rules\",\"catch-net second read\",\"stage + commit\",\"fix in place\"]",
+        "Real nested list hierarchy; no non-LI direct children",
+        "SVG rendered without fallback/error",
+        "Readable native diagram geometry: {\"containerWidth\":697,\"contentWidth\":1306,\"renderedLabelPx\":14.009336791404223}",
+        "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally"
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              ".hqx-rail-group:nth-child(1) > .hqx-rail-label"
+            ],
+            [
+              "a[title=\"Today\"] > .hqx-rail-text"
+            ],
+            [
+              "a[title=\"Action Center\"] > .hqx-rail-text"
+            ],
+            [
+              "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "breakpoint": "wide",
+      "interactions": [
+        "Actual checked-in Atlas Mermaid labels matched exactly: [\"cycle opens — copy work\",\"read BRAND.md §\",\"draft against rules\",\"catch-net second read\",\"stage + commit\",\"fix in place\"]",
+        "Real nested list hierarchy; no non-LI direct children",
+        "SVG rendered without fallback/error",
+        "Readable native diagram geometry: {\"containerWidth\":697,\"contentWidth\":1306,\"renderedLabelPx\":14.009336791404223}",
+        "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally"
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "targets": [
+            [
+              ".hqx-rail-group:nth-child(1) > .hqx-rail-label"
+            ],
+            [
+              "foreignobject[width=\"162.28125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"113.875\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"117.234375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"144.53125\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"98.609375\"] > div > .nodeLabel > p"
+            ],
+            [
+              "foreignobject[width=\"69.5\"] > div > .nodeLabel > p"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -38,12 +38,14 @@
  * ────────────────────────────────────────────────────────────────────
  */
 
+import { COMMERCIAL_TERMS } from "../commercial-terms";
+
 export const BLUEPRINT_META = {
   title: "Founder Operating System",
   subtitle: "How Signal Studio works, grows, ships, thinks, and stays focused.",
   // LIVE DATA: set to the real freeze date when this map is reviewed.
   revisedOn: "2026-06-15",
-  hardLaunch: "2026-09-01",
+  hardLaunch: COMMERCIAL_TERMS.broadLaunchDate,
   initialWedge: "Wedding venues, Ireland, starting in Limerick",
   secondaryWedge: "Students, academic-year planning",
   expansion: "Ireland → UK → English-speaking → localized markets",
@@ -575,9 +577,9 @@ export type BlueprintMetric = {
 
 export const BLUEPRINT_METRICS: BlueprintMetric[] = [
   // Wired live from the Studio Turso ledger (see resolveBlueprintMetrics):
-  { key: "mrr", label: "MRR", value: "—", target: "first paid licence", source: "traction.ts", tone: "critical" },
-  { key: "active-users", label: "Active users", value: "—", target: "growing WoW", source: "entitlements", tone: "quiet" },
-  { key: "venue-pipeline", label: "Venue pipeline", value: "—", target: "10 by M3", source: "/hq/crm", tone: "accent" },
+  { key: "mrr", label: "Subscription estimate", value: "—", target: "first paid licence", source: "traction.ts", tone: "critical" },
+  { key: "active-users", label: "Active access grants", value: "—", target: "growing WoW", source: "entitlements", tone: "quiet" },
+  { key: "venue-pipeline", label: "Venue pipeline", value: "—", target: "No current dated target", source: "/hq/crm", tone: "accent" },
   { key: "student-signups", label: "Student signups", value: "—", target: "term-start cohort", source: "student_edu grants", tone: "quiet" },
   // Awaiting wiring, these live in the four product apps' analytics or the
   // finance model, not the Studio DB. Honest placeholders until connected.
@@ -662,7 +664,7 @@ export function resolveBlueprintMetrics(live: BlueprintLiveData): ResolvedMetric
       case "mrr":
         return live.mrrEur == null
           ? placeholder(m, UNREAD_NOTE)
-          : wired(m, `${eur(live.mrrEur)}/mo`, "workspace subscriptions");
+          : wired(m, `${eur(live.mrrEur)}/mo`, "subscription grants × €12, unverified billing");
       case "active-users":
         return live.activeGrants == null
           ? placeholder(m, UNREAD_NOTE)

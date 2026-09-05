@@ -1,0 +1,467 @@
+{
+  "runId": "chrome-2026-09-05T01-23-51-652Z",
+  "sourceDigest": "70d5c8ab8103961161fab24915b3d7eb6848301f95d253eba0fe3dfd3bfb8605",
+  "buildInputsDigest": "d5fde3ae84a07bc708c638d2f35002bde08a2d989371c5e46d2d5125f3fd6c3f",
+  "buildId": "S97SP1rht_oJJE76mifKq",
+  "builtAt": "2026-09-05T01:22:07.284Z",
+  "node": "v24.19.0",
+  "command": "node scripts/experience/january-extension/serve.mjs build",
+  "log": "build-2026-09-05T01-21-24-763Z.log",
+  "environment": "allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration",
+  "toolingDigest": "1a583af8ec58f7c92122210a181624c461d22d880eb9d859adf7528d098b1dde",
+  "nativeZoomVerified": false,
+  "results": [
+    {
+      "width": 320,
+      "route": "/hq/experimentation-room",
+      "effectiveCssWidth": 320,
+      "zoom": "none; 640 CSS px is the reflow equivalent of 1280 desktop at200%",
+      "overflow": 0,
+      "items": [
+        {
+          "selector": ".hqx-crumb-group",
+          "text": "Workspaces",
+          "width": 75.015625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".hqx-crumb-page",
+          "text": "Lab",
+          "width": 23.140625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".signal-devbanner__text",
+          "text": "In development, private preview with staged access.",
+          "width": 226.875,
+          "height": 36.375,
+          "clipped": false,
+          "outsideViewport": false
+        }
+      ],
+      "blocked": [],
+      "screenshot": "experimentation-room-320.png",
+      "hash": "f0e97bb64f9d931d0aa8aaec5572bc3dfd4b36037f2e6bbf56b38b0ffec7231d",
+      "keyboard": [
+        {
+          "label": "Open navigation",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Search everything",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Hide development notice",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        }
+      ],
+      "noticeDismissedLocally": true,
+      "pass": true
+    },
+    {
+      "width": 320,
+      "route": "/hq/product-hero-design-motion",
+      "effectiveCssWidth": 320,
+      "zoom": "none; 640 CSS px is the reflow equivalent of 1280 desktop at200%",
+      "overflow": 0,
+      "items": [
+        {
+          "selector": ".hqx-crumb-group",
+          "text": "Workspaces",
+          "width": 75.015625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".hqx-crumb-page",
+          "text": "Product heroes",
+          "width": 94.765625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".signal-devbanner__text",
+          "text": "In development, private preview with staged access.",
+          "width": 226.875,
+          "height": 36.375,
+          "clipped": false,
+          "outsideViewport": false
+        }
+      ],
+      "blocked": [],
+      "screenshot": "product-hero-design-motion-320.png",
+      "hash": "0d049bca4f0066c7fbb68fd5146f87707ba157156f9b122d2698b4bed4e7a280",
+      "keyboard": [
+        {
+          "label": "Open navigation",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Search everything",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Hide development notice",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        }
+      ],
+      "noticeDismissedLocally": true,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "route": "/hq/experimentation-room",
+      "effectiveCssWidth": 390,
+      "zoom": "none; 640 CSS px is the reflow equivalent of 1280 desktop at200%",
+      "overflow": 0,
+      "items": [
+        {
+          "selector": ".hqx-crumb-group",
+          "text": "Workspaces",
+          "width": 75.015625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".hqx-crumb-page",
+          "text": "Lab",
+          "width": 23.140625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".signal-devbanner__text",
+          "text": "In development, private preview with staged access.",
+          "width": 296.875,
+          "height": 36.375,
+          "clipped": false,
+          "outsideViewport": false
+        }
+      ],
+      "blocked": [],
+      "screenshot": "experimentation-room-390.png",
+      "hash": "63afaca1d26f180f6c02232bbb10dfc426f76ccdc9758fd04c22fc62681514d0",
+      "keyboard": [
+        {
+          "label": "Open navigation",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Search everything",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Hide development notice",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        }
+      ],
+      "noticeDismissedLocally": true,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "route": "/hq/product-hero-design-motion",
+      "effectiveCssWidth": 390,
+      "zoom": "none; 640 CSS px is the reflow equivalent of 1280 desktop at200%",
+      "overflow": 0,
+      "items": [
+        {
+          "selector": ".hqx-crumb-group",
+          "text": "Workspaces",
+          "width": 75.015625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".hqx-crumb-page",
+          "text": "Product heroes",
+          "width": 94.765625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".signal-devbanner__text",
+          "text": "In development, private preview with staged access.",
+          "width": 296.875,
+          "height": 36.375,
+          "clipped": false,
+          "outsideViewport": false
+        }
+      ],
+      "blocked": [],
+      "screenshot": "product-hero-design-motion-390.png",
+      "hash": "89e97b8d6e4b28652a197c4420bdcff1bde62a21dc5df22f7e22d5c3e9e6db71",
+      "keyboard": [
+        {
+          "label": "Open navigation",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Search everything",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Hide development notice",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        }
+      ],
+      "noticeDismissedLocally": true,
+      "pass": true
+    },
+    {
+      "width": 640,
+      "route": "/hq/experimentation-room",
+      "effectiveCssWidth": 640,
+      "zoom": "none; 640 CSS px is the reflow equivalent of 1280 desktop at200%",
+      "overflow": 0,
+      "items": [
+        {
+          "selector": ".hqx-crumb-group",
+          "text": "Workspaces",
+          "width": 75.015625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".hqx-crumb-page",
+          "text": "Lab",
+          "width": 23.140625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".signal-devbanner__text",
+          "text": "In development, private preview with staged access.",
+          "width": 310.03125,
+          "height": 18.1875,
+          "clipped": false,
+          "outsideViewport": false
+        }
+      ],
+      "blocked": [],
+      "screenshot": "experimentation-room-640.png",
+      "hash": "1a6ef5dd9c4e4cabcdc9aa35e9f0f66d8102b84a5e878fb5eea6b29c4ab5c706",
+      "keyboard": [
+        {
+          "label": "Open navigation",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Search everything",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Hide development notice",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        }
+      ],
+      "noticeDismissedLocally": true,
+      "pass": true
+    },
+    {
+      "width": 640,
+      "route": "/hq/product-hero-design-motion",
+      "effectiveCssWidth": 640,
+      "zoom": "none; 640 CSS px is the reflow equivalent of 1280 desktop at200%",
+      "overflow": 0,
+      "items": [
+        {
+          "selector": ".hqx-crumb-group",
+          "text": "Workspaces",
+          "width": 75.015625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".hqx-crumb-page",
+          "text": "Product heroes",
+          "width": 94.765625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".signal-devbanner__text",
+          "text": "In development, private preview with staged access.",
+          "width": 310.03125,
+          "height": 18.1875,
+          "clipped": false,
+          "outsideViewport": false
+        }
+      ],
+      "blocked": [],
+      "screenshot": "product-hero-design-motion-640.png",
+      "hash": "e0e4423b802d607f65361ba888514bcff93519d85dbc252ada0ad7c8b300e000",
+      "keyboard": [
+        {
+          "label": "Open navigation",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Search everything",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Hide development notice",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        }
+      ],
+      "noticeDismissedLocally": true,
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "route": "/hq/experimentation-room",
+      "effectiveCssWidth": 1280,
+      "zoom": "none; 640 CSS px is the reflow equivalent of 1280 desktop at200%",
+      "overflow": 0,
+      "items": [
+        {
+          "selector": ".hqx-crumb-group",
+          "text": "Workspaces",
+          "width": 75.015625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".hqx-crumb-page",
+          "text": "Lab",
+          "width": 23.140625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".signal-devbanner__text",
+          "text": "In development, private preview with staged access.",
+          "width": 310.03125,
+          "height": 18.1875,
+          "clipped": false,
+          "outsideViewport": false
+        }
+      ],
+      "blocked": [],
+      "screenshot": "experimentation-room-1280.png",
+      "hash": "10f5040e44ebdcd69f8d53a04a961a3356ed694635a3997e86b61c625cf70cc0",
+      "keyboard": [
+        {
+          "label": "Search everything",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Hide development notice",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        }
+      ],
+      "noticeDismissedLocally": true,
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "route": "/hq/product-hero-design-motion",
+      "effectiveCssWidth": 1280,
+      "zoom": "none; 640 CSS px is the reflow equivalent of 1280 desktop at200%",
+      "overflow": 0,
+      "items": [
+        {
+          "selector": ".hqx-crumb-group",
+          "text": "Workspaces",
+          "width": 75.015625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".hqx-crumb-page",
+          "text": "Product heroes",
+          "width": 94.765625,
+          "height": 19.5,
+          "clipped": false,
+          "outsideViewport": false
+        },
+        {
+          "selector": ".signal-devbanner__text",
+          "text": "In development, private preview with staged access.",
+          "width": 310.03125,
+          "height": 18.1875,
+          "clipped": false,
+          "outsideViewport": false
+        }
+      ],
+      "blocked": [],
+      "screenshot": "product-hero-design-motion-1280.png",
+      "hash": "462781d56cd2c89e4985231106dbfef1d1df3a9d80327b6001ca7246e7462682",
+      "keyboard": [
+        {
+          "label": "Search everything",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        },
+        {
+          "label": "Hide development notice",
+          "visible": true,
+          "outline": "solid",
+          "shadow": "none"
+        }
+      ],
+      "noticeDismissedLocally": true,
+      "pass": true
+    }
+  ]
+}

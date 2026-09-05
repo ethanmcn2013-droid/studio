@@ -1,5 +1,13 @@
 # Signal Studio · Vision
 
+> Current authority amendment, 2026-09-04: the
+> [January programme](execution/january-2027/PROGRAMME.md) sets a 21 January
+> 2027 user-launch and first-outreach target, with internal testing before
+> then and separate manual go/no-go decisions. This supersedes the unqualified
+> “no fixed go-live dates” rule below. BRAND.md's August amendment establishes
+> three products and authenticated Home; four-product wording below is history.
+> Guests & Seating is no-build for January.
+
 What this document is: the **strategic context** any agent needs to make sound judgment calls on this suite. BRAND.md handles voice, naming, visual register. VISION.md handles intent — where we're going, why, and what we're explicitly *not* building.
 
 Read this after BRAND.md, before touching code or copy.

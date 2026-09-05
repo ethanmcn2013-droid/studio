@@ -27,7 +27,7 @@ export function MintCodesForm({
     <form action={action} className="flex flex-wrap items-end gap-2">
       <input type="hidden" name="sponsorId" value={sponsorId} />
       <label className="grid gap-1 text-[11px]">
-        <span className="text-ink-quiet">Count</span>
+        <span className="text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">Count</span>
         <input
           name="count"
           type="number"
@@ -36,7 +36,7 @@ export function MintCodesForm({
           className="h-8 w-20 rounded border border-border-soft bg-bg px-2 text-[12px] outline-none focus:border-accent"
         />
       </label>
-      <span className="pb-2 text-[11px] text-ink-quiet">
+      <span className="pb-2 text-[11px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
         Wedding · 18 months
       </span>
       <button
@@ -53,9 +53,9 @@ export function MintCodesForm({
           {state.error}
         </span>
       ) : unlimited ? (
-        <span className="text-[11px] text-ink-quiet">Unlimited · every booked couple</span>
+        <span className="text-[11px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">Unlimited · every booked couple</span>
       ) : remaining != null ? (
-        <span className="text-[11px] text-ink-quiet">{remaining} of allotment remaining</span>
+        <span className="text-[11px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{remaining} of allotment remaining</span>
       ) : null}
     </form>
   );

@@ -85,7 +85,7 @@ export function ReviewRoom({
                   </span>
                 ) : null}
               </span>
-              <span style={{ color: "var(--ink-faint)" }}>{d.spec}</span>
+              <span style={{ color: "var(--hqx-muted-ink, var(--ink-faint))" }}>{d.spec}</span>
             </div>
             <div
               style={{
@@ -113,7 +113,7 @@ export function ReviewRoom({
                       boxShadow: "0 16px 40px rgba(10,10,11,0.12)",
                     }}
                   />
-                  <figcaption style={{ fontSize: "12.5px", color: "var(--ink-faint)", marginTop: "8px", lineHeight: 1.5 }}>
+                  <figcaption style={{ fontSize: "12.5px", color: "var(--hqx-muted-ink, var(--ink-faint))", marginTop: "8px", lineHeight: 1.5 }}>
                     {img.caption}
                   </figcaption>
                 </figure>

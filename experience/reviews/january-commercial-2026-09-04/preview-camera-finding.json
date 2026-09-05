@@ -1,0 +1,117 @@
+{
+  "experienceId": "studio.page.hq-blueprint",
+  "product": "studio",
+  "state": "disabled",
+  "breakpoint": "mobile",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "url": "http://127.0.0.1:4396/hq/blueprint",
+  "finalUrl": "http://127.0.0.1:4396/hq/blueprint",
+  "status": 200,
+  "materialityHash": "237f825df3d2ce8a",
+  "fixture": {
+    "scenario": "populated",
+    "synthetic": true,
+    "providerCalls": 0,
+    "expectedCash": 2500,
+    "verifiedReceipts": 2
+  },
+  "navigationError": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Zoom out', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" aria-label=\"Zoom out\">−</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"signal-devbanner__text\">In development, private preview with staged acces…</span> from <div role=\"status\" aria-live=\"polite\" class=\"signal-devbanner\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"signal-devbanner__text\">In development, private preview with staged acces…</span> from <div role=\"status\" aria-live=\"polite\" class=\"signal-devbanner\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    56 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"signal-devbanner__text\">In development, private preview with staged acces…</span> from <div role=\"status\" aria-live=\"polite\" class=\"signal-devbanner\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+  "candidateScreenshot": null,
+  "candidateHash": null,
+  "accessibility": null,
+  "runtime": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [
+      {
+        "url": "http://127.0.0.1:4396/?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/org?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/data-room?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/atlas?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/vault?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/assets?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/crm?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/action-center?_rsc=1gM_PcSFK9bcRBQo",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/org?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/data-room?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/vault?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/decks?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/reporting?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/action-center?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4396/hq/crm?_rsc=gYRl19odnCU4gqqi",
+        "error": "net::ERR_ABORTED"
+      }
+    ],
+    "httpErrors": [],
+    "blocked": []
+  },
+  "pass": false,
+  "interactions": [],
+  "additionalScreenshots": [],
+  "sourceDigest": "ea5404bf1314ef17652bec7955ac76a9315549e7b684d7ff6051d765b45f14d8"
+}

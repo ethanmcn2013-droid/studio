@@ -34,7 +34,7 @@
   border-left: 1px solid var(--hairline);
   margin-left: 4px;
   padding-left: 12px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .meta small {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .sectionHead span {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -108,7 +108,7 @@
 .journey span,
 .journey small {
   display: block;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
 }
 
@@ -154,7 +154,7 @@
 }
 
 .sample {
-  color: var(--ink-faint) !important;
+  color: var(--hqx-muted-ink, var(--ink-faint)) !important;
   font-size: 10px !important;
   letter-spacing: 0.06em;
   text-transform: uppercase;

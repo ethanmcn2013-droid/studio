@@ -1,0 +1,8 @@
+
+> studio@0.1.0 contracts:check C:\Users\ethan\signal-studio-workspace\worktrees\studio\feat-january-studio14-coverage
+> node scripts/check-suite-contract-consumers.mjs
+
+suite-contract-consumers: App source C:\Users\ethan\signal-studio-workspace\worktrees\app\feat-january-venue-usage-rehearsal
+suite-contract-consumers: ok (unified app, suite v1+v2, commercial v1+v2)
+tasks-read-contract-consumers: ok (2 consumers)
+suite-contract-consumers: ok (venue-meaningful-action v1)

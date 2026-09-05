@@ -56,7 +56,7 @@ export default async function DirectorPage({
   return (
     <main id="main" className="flex flex-1 flex-col">
       <section className="mx-auto w-full max-w-[920px] px-6 pb-28 pt-14 md:pt-20">
-        <div className="mb-10 font-mono text-[11px] uppercase tracking-wider text-ink-quiet">
+        <div className="mb-10 font-mono text-[11px] uppercase tracking-wider text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
           <Link href="/hq/org" className="hover:text-accent">
             ← org
           </Link>
@@ -69,8 +69,8 @@ export default async function DirectorPage({
           style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
         >
           {d.shortName}
-          {d.autonomyLayer === 3 ? <span className="ml-3 opacity-70">· layer 3</span> : null}
-          {d.product ? <span className="ml-3 opacity-70">· {d.product}</span> : null}
+          {d.autonomyLayer === 3 ? <span className="ml-3">· layer 3</span> : null}
+          {d.product ? <span className="ml-3">· {d.product}</span> : null}
         </div>
 
         <h1 className="h-section mb-4 max-w-[720px] text-balance text-ink">
@@ -84,7 +84,7 @@ export default async function DirectorPage({
           {d.oneLine}
         </p>
 
-        <p className="mb-12 font-mono text-[12px] leading-[1.6] text-ink-quiet">
+        <p className="mb-12 font-mono text-[12px] leading-[1.6] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
           persona · {d.persona} · cadence {formatCadence(d.cadence)} · autonomy layer{" "}
           {d.autonomyLayer}
         </p>
@@ -93,7 +93,7 @@ export default async function DirectorPage({
           <h2
             id="org-owns-title"
             className="mb-4 text-[11px] font-semibold uppercase"
-            style={{ color: "var(--ink-quiet)", letterSpacing: "var(--tracking-eyebrow)" }}
+            style={{ color: "var(--hqx-muted-ink, var(--ink-quiet))", letterSpacing: "var(--tracking-eyebrow)" }}
           >
             Portfolio
           </h2>
@@ -112,7 +112,7 @@ export default async function DirectorPage({
             <h2
               id="org-veto-title"
               className="mb-4 text-[11px] font-semibold uppercase"
-              style={{ color: "var(--ink-quiet)", letterSpacing: "var(--tracking-eyebrow)" }}
+              style={{ color: "var(--hqx-muted-ink, var(--ink-quiet))", letterSpacing: "var(--tracking-eyebrow)" }}
             >
               Veto authority
             </h2>
@@ -126,7 +126,7 @@ export default async function DirectorPage({
           <h2
             id="org-channels-title"
             className="mb-4 text-[11px] font-semibold uppercase"
-            style={{ color: "var(--ink-quiet)", letterSpacing: "var(--tracking-eyebrow)" }}
+            style={{ color: "var(--hqx-muted-ink, var(--ink-quiet))", letterSpacing: "var(--tracking-eyebrow)" }}
           >
             Channels
           </h2>
@@ -149,7 +149,7 @@ export default async function DirectorPage({
             <h2
               id="org-neighbours-title"
               className="mb-4 text-[11px] font-semibold uppercase"
-              style={{ color: "var(--ink-quiet)", letterSpacing: "var(--tracking-eyebrow)" }}
+              style={{ color: "var(--hqx-muted-ink, var(--ink-quiet))", letterSpacing: "var(--tracking-eyebrow)" }}
             >
               Also on {cluster?.label}
             </h2>

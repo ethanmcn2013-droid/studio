@@ -15,9 +15,8 @@
  *   [text](url)           → <a>
  *   blank line            → paragraph break
  *
- * Mermaid fences (```mermaid) render as a labeled code block in v1. A
- * future cycle can swap in a client-side renderer without changing the
- * source format.
+ * Mermaid fences retain an escaped fallback while the client renders SVG.
+ * Indented list items stay nested inside their parent list item.
  */
 
 function escapeHtml(s: string): string {
@@ -59,7 +58,7 @@ export function renderAtlasMarkdown(md: string): string {
   const out: string[] = [];
 
   let i = 0;
-  let inList: "ul" | "ol" | null = null;
+  const lists: { type: "ul" | "ol"; indent: number }[] = [];
   let paragraph: string[] = [];
 
   function flushParagraph() {
@@ -68,11 +67,13 @@ export function renderAtlasMarkdown(md: string): string {
     paragraph = [];
   }
 
+  function closeOneList() {
+    const list = lists.pop();
+    if (list) out.push(`</li></${list.type}>`);
+  }
+
   function closeList() {
-    if (inList) {
-      out.push(`</${inList}>`);
-      inList = null;
-    }
+    while (lists.length) closeOneList();
   }
 
   while (i < lines.length) {
@@ -99,7 +100,7 @@ export function renderAtlasMarkdown(md: string): string {
         const source = codeLines.join("\n");
         const encoded = Buffer.from(source, "utf8").toString("base64");
         out.push(
-          `<div class="atlas-mermaid" data-source="${encoded}"><pre class="atlas-mermaid-fallback"><code>${escapeHtml(source)}</code></pre></div>`,
+          `<figure class="atlas-diagram"><figcaption>Diagram · scroll horizontally to read</figcaption><div class="atlas-mermaid" data-source="${encoded}" role="region" aria-label="Diagram" tabindex="0"><pre class="atlas-mermaid-fallback"><code>${escapeHtml(source)}</code></pre></div></figure>`,
         );
         continue;
       }
@@ -134,27 +135,28 @@ export function renderAtlasMarkdown(md: string): string {
     }
 
     // Lists
-    const ul = line.match(/^[-*]\s+(.+)$/);
-    const ol = line.match(/^\d+\.\s+(.+)$/);
-    if (ul) {
+    const item = line.match(/^(\s*)([-*]|\d+\.)\s+(.+)$/);
+    if (item) {
       flushParagraph();
-      if (inList !== "ul") {
-        closeList();
-        out.push('<ul class="atlas-ul">');
-        inList = "ul";
+      const indent = item[1].replace(/\t/g, "    ").length;
+      const type = /^\d/.test(item[2]) ? "ol" : "ul";
+      while (lists.length && lists[lists.length - 1].indent > indent) closeOneList();
+      if (lists.length && lists[lists.length - 1].indent === indent && lists[lists.length - 1].type !== type) closeOneList();
+      if (lists.length && lists[lists.length - 1].indent === indent) {
+        out.push("</li>");
+      } else {
+        out.push(`<${type} class="atlas-${type}">`);
+        lists.push({ type, indent });
       }
-      out.push(`<li>${renderInline(ul[1].trim())}</li>`);
+      out.push(`<li>${renderInline(item[3].trim())}`);
       i += 1;
       continue;
     }
-    if (ol) {
-      flushParagraph();
-      if (inList !== "ol") {
-        closeList();
-        out.push('<ol class="atlas-ol">');
-        inList = "ol";
-      }
-      out.push(`<li>${renderInline(ol[1].trim())}</li>`);
+
+    // Wrapped item prose belongs inside the still-open li. Unindented prose
+    // below closes the list before opening a paragraph, never <ul><p>.
+    if (lists.length && /^\s+\S/.test(line)) {
+      out.push(` ${renderInline(line.trim())}`);
       i += 1;
       continue;
     }
@@ -168,6 +170,7 @@ export function renderAtlasMarkdown(md: string): string {
     }
 
     // Paragraph accumulation
+    closeList();
     paragraph.push(line.trim());
     i += 1;
   }

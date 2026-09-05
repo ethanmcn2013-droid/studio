@@ -114,9 +114,9 @@ export function HqShell({ children }: { children: React.ReactNode }) {
               <span className="hqx-rail-icon"><HqIcons.exit /></span>
               <span className="hqx-rail-text">signalstudio.ie</span>
             </Link>
-            <Link href="/hq/logout" className="hqx-account-signout hqx-rail-text">
-              Sign out
-            </Link>
+            <form action="/hq/logout" method="post">
+              <button type="submit" className="hqx-account-signout hqx-rail-text">Sign out</button>
+            </form>
           </div>
         </div>
       </nav>

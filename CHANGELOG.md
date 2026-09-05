@@ -8,6 +8,43 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-04 · S·172 · holds · Event waits for project access enforcement
+
+**The January contract marks new Event sales unavailable.** The approved €89
+one-time price and twelve-month term remain intended policy. The pricing adapter
+no longer turns that policy into an archive promise. HQ records the accepted App
+checkout hold, delegated owner designation and the historical reconciliation work.
+
+Existing grants and payment recovery remain intact. Candidate source does not
+prove that deployed checkout or provider payment links are disabled. Reopening
+requires project reads, writes, public artifacts and owner recovery to enforce
+the same policy. Production and outreach remain held.
+
+## 2026-09-04 · S·171 · tightens · HQ requires a matching payment receipt
+
+**Legacy paid dates no longer pass HQ cash or paid proof.** The January candidate
+counts shared payment receipts only when they match the current venue record.
+Unaudited claims stay visible for reconciliation. Reporting shows exact amounts
+and their source; useful work remains unverified without its own evidence.
+
+The old May clock and outreach instruction are retired. January dates and CRM
+contacts cannot start a commercial clock or clear a manual gate. Historical
+cash/model targets remain context. Populated local tests and the explicit App
+consumer gate support this internal correction; production and outreach stay held.
+
+## 2026-09-04 · S·170 · tightens · The January candidate separates plans, payments and useful work
+
+**Choosing a venue plan no longer records payment.** The January candidate
+preserves existing paid records, requires cleared-payment evidence for the
+payment command, and reports an incomplete Studio mirror as a failure that
+can be repaired with the same receipt. HQ separates code redemption from
+useful activation and leaves unverified use without an actual-use count.
+
+The programme records the accepted September–January allocations, six
+workstreams and six open acceptance states. Guests & Seating remains no-build
+for January. The 21 January launch and first-outreach target retains manual
+gates. These are internal candidate changes; production and outreach remain held.
+
 ## 2026-09-03 · S·169 · ships · The front door becomes the floor and the sheet
 
 **The home page is now the suite's own geometry: an ink floor, white sheets lifted off it, and the three products shown as scenes that play once as you reach them.**

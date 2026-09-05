@@ -8,6 +8,10 @@ reviewDate: 2026-11-27
 relatedObjects: [project-files-in-drive, drive-refresh-token-custody, tasks, Access]
 ---
 
+## September execution amendment
+
+The January programme supersedes the implementation pause for a separate founder design pick. A Custodian is a delegated internal implementation direction; full rendered/security/provider acceptance is still required. The feature and risk records now describe implemented encryption and UI. Current intake retains the 50 MB cap. Historical rationale below records the August decision, not a current rollout or cost claim. Production and first outreach remain held for 21 January 2027 and their release gates.
+
 ## Decision
 
 Two decisions taken the same day, one of which was not on the agenda.

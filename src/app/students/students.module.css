@@ -966,6 +966,12 @@
   }
 }
 
+/* The closing attribution must remain readable while keyboard navigation
+   leaves the scroll-driven reveal partway through its entry range. */
+.page :global(.reveal-closing.reveal) {
+  animation: none;
+}
+
 /* ── Responsive. Breakpoints match globals.css exactly. ────────── */
 @media (max-width: 880px) {
   .ledgerRow {

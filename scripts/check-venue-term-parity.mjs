@@ -4,7 +4,7 @@
  * twice on purpose:
  *
  *   studio/src/lib/venue-edition.ts        — the shared entitlements store
- *   app/src/lib/venue-edition-term.ts      — the production redemption write
+ *   app/src/lib/venue-access-term.ts      — the production redemption write
  *
  * A fix applied to only one of them changes nothing a couple experiences, or
  * worse, gives two different answers to "when does their access end". The
@@ -12,8 +12,8 @@
  * implementation against its own copy, and this check fails when the copies
  * drift apart.
  *
- * Skips cleanly when the app repo is not checked out beside studio, so CI in a
- * single-repo checkout stays green rather than failing on an absent sibling.
+ * APP_REPO_PATH selects the paired checkout. An explicit missing consumer or
+ * an unpaired CI run fails. Local single-repo reads retain an explicit skip.
  */
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
@@ -21,7 +21,13 @@ import path from "node:path";
 
 const root = process.cwd();
 const mine = path.join(root, "src/lib/venue-edition-term.vectors.json");
-const theirs = path.join(root, "../app/src/lib/venue-edition-term.vectors.json");
+const explicitApp = process.env.APP_REPO_PATH;
+if (explicitApp !== undefined && (!explicitApp || !path.isAbsolute(explicitApp))) {
+  console.error("[venue-term-parity] APP_REPO_PATH must be absolute");
+  process.exit(1);
+}
+const app = explicitApp ?? path.resolve(root, "../app");
+const theirs = path.join(app, "src/lib/venue-edition-term.vectors.json");
 
 const canonical = (file) =>
   createHash("sha256")
@@ -35,6 +41,10 @@ if (!existsSync(mine)) {
 }
 
 if (!existsSync(theirs)) {
+  if (explicitApp !== undefined || process.env.CI) {
+    console.error("[venue-term-parity] required App vectors are missing: " + theirs);
+    process.exit(1);
+  }
   console.log("[venue-term-parity] skipped — app repo not present beside studio");
   process.exit(0);
 }

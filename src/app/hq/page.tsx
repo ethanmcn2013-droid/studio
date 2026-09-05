@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CountUp } from "@/components/hq/count-up";
-import { HqForcingFunction } from "@/components/hq/hq-forcing-function";
 import { HqProofGate } from "@/components/hq/hq-proof-gate";
 import { HqPulse } from "@/components/hq/hq-pulse";
 import { HqTraction } from "@/components/hq/hq-traction";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { buildActionCenter } from "@/lib/hq/action-center";
-import { getProspects } from "@/lib/hq/crm-db";
+import { getProspectsWithSource } from "@/lib/hq/crm-db";
 import { getInboxData } from "@/lib/hq/inbox";
-import { getNextOutreachAction } from "@/lib/hq/next-action";
 import { getHqSnapshot } from "@/lib/hq/operating-system";
 import { getLaunchReadiness } from "@/lib/hq/launch";
 import { getOperatorTodos } from "@/lib/hq/operator-todos";
@@ -33,24 +31,24 @@ export const metadata: Metadata = {
  * The page answers "what's the state of the business?" in ten seconds:
  * verdict → the one critical thing → five numbers → workspace health, with
  * the Action Center and next action in the contextual rail. The proof spine
- * (proof gate / pulse / traction) is preserved verbatim below as the
- * commercial-truth section — the inert/running/expired state machine is
- * unchanged, only re-framed. Long queues now live in /hq/action-center.
+ * (proof gate / pulse / traction) uses shared payment receipts and the
+ * inert January clock. Long queues now live in /hq/action-center.
  */
 export default async function HqPage() {
   await requireHqAccess();
 
-  const [today, inbox, traction, prospects, operatorTodos] = await Promise.all([
+  const [today, inbox, traction, prospectRead, operatorTodos] = await Promise.all([
     getTodayData(),
     getInboxData(),
     getTraction(),
-    getProspects(),
+    getProspectsWithSource(),
     getOperatorTodos(),
   ]);
+  const prospects = prospectRead.prospects;
   const pulse = await getPulseState(today);
   const verdict = deriveVerdict({ inbox, pulse, traction });
-  const proofGate = getProofGate(traction, prospects);
-  const snapshot = getHqSnapshot(prospects, traction);
+  const proofGate = getProofGate(traction, prospectRead.source === "database" ? prospects : undefined);
+  const snapshot = getHqSnapshot(prospectRead.source === "database" ? prospects : undefined, traction);
   const readiness = getLaunchReadiness(traction.available ? traction.paidVenues : null);
   const actions = buildActionCenter(inbox, operatorTodos);
 
@@ -63,8 +61,8 @@ export default async function HqPage() {
     {
       name: "Sell",
       href: "/hq/crm",
-      value: `${snapshot.founderSends} sends`,
-      note: `${snapshot.dueToday} due or stale · ${snapshot.qualifiedReplies} replies`,
+      value: snapshot.crmAvailable ? `${snapshot.founderSends} recorded contacts` : "CRM unread",
+      note: snapshot.crmAvailable ? `${snapshot.dueToday} due or stale · ${snapshot.qualifiedReplies} replies` : "No example counts in live reporting",
       tone: snapshot.dueToday > 0 ? "flight" : snapshot.founderSends > 0 ? "done" : "blocked",
     },
     {
@@ -78,7 +76,7 @@ export default async function HqPage() {
       name: "Money",
       href: "/hq/reporting",
       value: snapshot.cashCollected,
-      note: snapshot.paidVenues === null ? "ledger unread" : `${snapshot.paidVenues} paid venues · 10 by M3`,
+      note: snapshot.paidVenues === null ? "ledger unread" : `${snapshot.paidVenues} receipt-matched venues`,
       tone: snapshot.paidVenues && snapshot.paidVenues > 0 ? "done" : "flight",
     },
     {
@@ -91,13 +89,7 @@ export default async function HqPage() {
   ];
 
   const commercialTruth =
-    proofGate.clock.state === "inert" ? (
-      <HqForcingFunction gate={proofGate} next={getNextOutreachAction(prospects)}>
-        <HqProofGate gate={proofGate} />
-        <HqPulse state={pulse} />
-        <HqTraction state={traction} />
-      </HqForcingFunction>
-    ) : (
+    (
       <>
         <HqProofGate gate={proofGate} />
         <HqPulse state={pulse} />
@@ -269,7 +261,7 @@ export default async function HqPage() {
 
           <div className="hqx-summary-card">
             <span className="hqx-summary-label">Launch · {readiness.launchLabel}</span>
-            <span className="hqx-h2">{readiness.launched ? "Launched" : `${readiness.daysRemaining} days`}</span>
+            <span className="hqx-h2">{readiness.daysRemaining > 0 ? `${readiness.daysRemaining} days to target` : "Awaiting manual decision"}</span>
             <p className="hqx-row-why" style={{ whiteSpace: "normal" }}>
               {readiness.cleared} of {readiness.total} gates clear.
             </p>
