@@ -11,65 +11,58 @@ Current programme estimate: **approximately 60% complete**, including verificati
 | ID | State | Implemented evidence | Remaining acceptance / owner |
 |---|---|---|---|
 | S1 Truth | Partial; foundations established | Workspace40f7755, doctor0 failures/15 warnings; preserved Drive work; January policy and experiment clock; App receiving77d and Studio receiving4ed are Linux-green; current programme/acceptance, immutable paired gates and17-capability index with104 checked source hashes. | Principal: named contradiction disposition and final acceptance/operational evidence. The source index is complete as a dated snapshot, not proof of current runtime or production. |
-| S2 Commercial readiness | Partial; internal flow implemented | Verified payment evidence, exact recoverable issuance/readback, atomic claim and support packet. Actual three-store standard/Founding/pilot rehearsal24 checkpoints plus14 independent failure probes pass; repeated on the combined candidate. Final held collateral, eight-card fictional support walkthrough and188/328/20 rendered matrices are composed. | Principal/commercial: sponsored-date capture/update, Event post-term closure, final contract parity and receiving gates. Operator: designated Stripe test account and connector reauthentication. Event/Student offer limitations remain explicit; demand is unverified. |
+| S2 Commercial readiness | Partial; internal flow implemented | Verified payment evidence, exact recoverable issuance/readback, atomic claim and support packet. Actual three-store standard/Founding/pilot rehearsal24 checkpoints plus14 independent failure probes pass; repeated on the combined candidate. Final held collateral, eight-card fictional support walkthrough and188/328/20 rendered matrices are composed. | Principal/commercial: final sponsored-date acceptance and WDATE-01 repair, Event post-term closure, final contract parity and receiving gates. Operator: designated Stripe test account and connector reauthentication. Event/Student offer limitations remain explicit; demand is unverified. |
 | S3 Drive | Partial; core implementation integrated | Backend, ownership/access UI and completed-upload recovery are in receivingfe4. Scoped UI security review and recovery81 authored plus39 independent cases pass. | Drive owner: final integrated experience and failure-state acceptance. Operator/provider: isolated OAuth/Clerk target and real two-account upload/revoke/reauth/handover/erasure lifecycle. Incomplete closed-tab bytes cannot resume. Production0028/0029 remain held. |
-| S4 Suite coherence | Partial; follow-up candidate implemented | Canonical template/caller retry, invitation arrival, navigation/contrast and Home scope fixes. Notesf04 independently passes198 checks/scenarios. Current App runtime509 passes132 built cases,68 recipient states,3 React cases and27 Notes browser scenarios. Studio source38ec has fresh188/328/20 matrices. Current Floor tooling passes80 checks and exact paired geometry locally. | Experience owner: exact-candidate/receiving gates, incomplete Atlas renewal, remaining design-lab and calendar observations, complete authenticated stories and human accessibility/comprehension. Scripted coverage does not approve design or human usability. |
+| S4 Suite coherence | Partial; follow-up candidate implemented | Canonical template/caller retry, invitation arrival, navigation/contrast and Home scope fixes. Notesf04 independently passes198 checks/scenarios. App8339 composes project-calendar and sponsored-date follow-ups with passing scoped gates. Preceding runtime509 and Studio source38ec retain their132/68/27 and188/328/20 captures; those are historical after current source changes. Floor calendar has16 component browser cases/196 assertions; My Work has four scoped render controls. | Experience owner: exact-candidate/receiving gates, incomplete Atlas renewal, remaining design-lab observations and final calendar composition, complete authenticated stories and human accessibility/comprehension. Scripted coverage does not approve design or human usability. |
 | S5 Collaboration | Partial; useful-action reporting integrated | Invitation B while A is active passes25 cases. Actual deliberate Tasks creation, atomic delivery intent, canonical attribution, closed-day report, suppression and account erasure are in receiving77d; independent fix154 positive checks and actual three-store composition pass. Studio's paired consumer is now in receiving4ed. | Collaboration owner: complete creator/recipient/role/revocation story and final follow-up receiving verification. Operator: actual provider/delivery configuration and maintained erasure processing. Capture defaults off; no real email or human first-minute success is claimed. |
 | S6 Instruments | Closed — no-build for January | Accepted delegated decision and [A–F opportunity comparison](INSTRUMENT_OPPORTUNITIES.md). Existing templates win the January scope decision. | Reopen only after the recorded postlaunch evidence trigger and a new scope decision. No guest schema, plus menu or speculative chooser added. |
 
 These verdicts distinguish implementation progress from release acceptance. The authoritative scenario register is [ACCEPTANCE.md](ACCEPTANCE.md). Component reports remain historical receipts; they cannot override a later failure.
 
-Current follow-up candidate: App `feat/january-final-journeys` at `07d25138`,
-with product runtime unchanged from `50918cdc`; draft PR171 targets the internal
-January branch. All three exact07d Linux workflows pass: CI33951498708,
-Verify33951498771 and Design33951498698. The preceding313
-Linux test/Verify workflows pass, but Design33950035915 failed a subpixel dock
-comparison against the original Windows capture. Repair2123 now renders the
-two pinned CSS versions in one browser and compares complete rectangles with
-strict equality. Principal0b9 passes all80 checks and exact geometry; a test-only
-one-pixel mutation fails. Evidence07d preserves149 files/33 verified source inputs
-and the original failures, without replacing either earlier checkpoint archive.
-Linux repeated the80 checks and exact paired comparison, plus132 built cases,
-the68-state recipient matrix,3 React cases, Notes recovery, locale hydration and
-Timeline switching. The council instrument explicitly reports NOT CERTIFIED;
-a healthy green reporting step is not a design-council approval. Receiving
-integration and the stopped independent RC-3 review remain open.
-The preceding built runtime `e2e4a0c8` passes 132 critical browser cases, 68
-actual-route states, 27 Notes browser scenarios, the 26-case recipient gate and
-ten-checkpoint persisted story, full Drive suite and 65 DB-contract checks.
-Its original artifacts and failures are preserved in App
-`experience/reviews/january-recipient-2026-09-05/`. Manual inspection nevertheless
-found dark-mode Floor and mobile project-label contrast defects. Their owning
-master, generator and project styles are repaired and integrated; six generator
-checks and 80 measured component checks pass. The known-name greeting correction
-at `c64b8cb3` passes six source-fixture tests and 17 desktop route states. My work
-completion controls at `485b3bc0` pass measured light/dark contrast and 44-pixel
-interaction checks at mobile and desktop, with no Open-task overlap. The combined
-gate exposed a billing-loader dependency missed by the isolated commercial copy
-checks; `50918cdc` separates the real copy module and aligns the Pro assertion.
-Forty billing and five redemption checks, typecheck and lint pass. The17-command
-continuation through full Drive and DB contracts passes, as do the normal build,
-132 built browser cases,68 recipient states,3 React context checks,27 Notes
-browser scenarios and the integrated80-check self-contained contrast command.
-The source-bound LFS checkpoint preserves371 files and286 checked source hashes.
-Registry/materiality checks validate without increasing design or human scores.
-The targeted independent RC-3 review was
-stopped by an automatic safety check, with no verdict, and is not being retried
-or rerouted. Independent and receiving acceptance remain open. Commercial
-offer/copy and support instructions are composed in Studio `a709b52c` and App
-`50918cdc`, with existing terms preserved. Studio's full tests/typecheck/build
-pass at preceding `a27025fe`; seven email tests and fresh normal builds pass for
-the metadata correction. Fresh188 January,328 extension and20 Venue Kit states
-now pass and are composed at `db840b00`. The product source digest remains
-`38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c`.
-The separate Atlas16/36 renewal is incomplete: automatic approval review rejected
-starting its isolated test server with only "blocked by policy". That action is
-not retried or rerouted, and the existing Atlas gate remains intact and failing
-on stale source. Scoped machine coverage does not imply full Studio CI success.
-The [capability source index](CAPABILITY_INDEX.md)
-is adopted with 104 verified hashes. It leaves retention ratification and
-Notes/Signal production migration adoption open. None of these follow-ups
-changes the programme percentage.
+Current App candidate: `feat/january-final-journeys` at `83393bdf`, draft
+PR171. It composes the Floor/My Work project-calendar fixes and the scoped
+sponsored-date editor, then retires both older project-creation extension calls.
+The new mandatory date gate passes43 cases at097d with the committed package;
+typecheck passes. After preserving the189-file historical packet in a verified
+LFS archive, all eight continuation commands pass at8339: unchanged full lint,
+calendar/theme checks,26 Floor calendar regressions,26 recipient checks and the
+ten-checkpoint persisted story. Actual route trees/bundle/CSS prepare successfully;
+final combined rendering and Linux verification have not yet run.
+
+Fresh scoped date review at2d1 passes36 retained tests and18 independent
+action/SQLite probes, without a validated unauthorized mutation. It reproduces
+P3 WDATE-01: grant-only refreshed props leave the mounted form's old access copy
+visible. The repair is assigned to the date owner and must preserve unsaved
+drafts. New revision/date and permission controls pass. The review's workbench
+recording stopped after an argument-schema error; no seal or retry is claimed.
+The local findings/report remain available. The legacy creation repair774 has
+seven actual caller/SQLite regressions; the same original source fails five.
+Deployed legacy flags and exposure remain unknown.
+
+The last fully Linux-verified App candidate is07d25138, with runtime50918cdc:
+CI33951498708, Verify33951498771 and Design33951498698 pass. Its132 built cases,
+68 route states, Notes/React and strict paired80-check Floor geometry remain
+historical evidence for that source. The council instrument says NOT CERTIFIED.
+The immutable archives, original Windows/Linux failures and one-pixel negative
+control remain intact; those results do not certify the newer8339 composition.
+
+Studio current source is6e74ed9e before the mobile-layout composition. Licensing
+authority and the actual sponsored-date source are reconciled, with both former
+records preserved as history. The last Linux candidatec1dd6221 passes
+CI33950346346 and Verify33950346311, but Design33950346443 fails the existing
+Atlas stale-source gate after188/328/20 attestors and28 preparation tests pass.
+Those captures'38ec product digest predates the current content changes. Layout
+candidate3b2451d1 passes scoped development/keyboard checks; an unattributed Email
+Lab MutationObserver error remains under ordinary built-browser investigation.
+Final combined188/328/20 evidence renewal remains required.
+
+Receiving branches remain App77d22a6b and Studio4ed9be64. The stopped independent
+RC-3 review and rejected Atlas server start are not retried or rerouted; both
+acceptance gates remain open. Native Windows exit/SQLite contention limits,
+design/human acceptance and actual provider lifecycles are not closed by local
+checks. The [preceding detailed checkpoint](history/programme-candidate-checkpoint-before-83393bdf.md)
+retains its original receipts and wording. None of these follow-ups changes the
+programme estimate or authorizes production, launch or outreach.
 
 ## Accepted allocations
 
