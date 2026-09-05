@@ -1,0 +1,16 @@
+experience:validate: 15 failure(s)
+  x studio.page.hq-access: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-atlas: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-atlas-by-slug: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-cards: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-entitlements-by-lookup: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-experimentation-room: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-health: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-marketing: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-org-by-slug: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-platform-readiness: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-product-hero-design-motion: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-socials: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-venues: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.hq-waitlist: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.surface.atlas-filter: changed experience lacks complete fixture, screenshot, and accessibility coverage

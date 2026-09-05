@@ -374,7 +374,11 @@
         "keyboard-only",
         "error",
         "disabled"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-atlas": {
       "requiredStates": [
@@ -383,7 +387,11 @@
         "reduced-motion",
         "keyboard-only",
         "empty"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-atlas-by-slug": {
       "requiredStates": [
@@ -391,7 +399,11 @@
         "long-content",
         "reduced-motion",
         "keyboard-only"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-cards": {
       "requiredStates": [
@@ -399,7 +411,11 @@
         "long-content",
         "reduced-motion",
         "keyboard-only"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-entitlements-by-lookup": {
       "requiredStates": [
@@ -412,7 +428,11 @@
         "read-only",
         "disabled",
         "restricted"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-experimentation-room": {
       "requiredStates": [
@@ -420,7 +440,11 @@
         "long-content",
         "reduced-motion",
         "keyboard-only"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-health": {
       "requiredStates": [
@@ -429,7 +453,11 @@
         "reduced-motion",
         "keyboard-only",
         "empty"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-marketing": {
       "requiredStates": [
@@ -440,7 +468,11 @@
         "empty",
         "error",
         "populated"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-org-by-slug": {
       "requiredStates": [
@@ -452,7 +484,11 @@
       ],
       "archetype": "detail-or-record-view",
       "primaryJob": "Read a Director profile, responsibilities and operating remit.",
-      "primaryAction": "Read the profile and follow its related HQ links."
+      "primaryAction": "Read the profile and follow its related HQ links.",
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-platform-readiness": {
       "requiredStates": [
@@ -460,7 +496,11 @@
         "long-content",
         "reduced-motion",
         "keyboard-only"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-product-hero-design-motion": {
       "requiredStates": [
@@ -468,7 +508,11 @@
         "long-content",
         "reduced-motion",
         "keyboard-only"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-socials": {
       "requiredStates": [
@@ -476,7 +520,11 @@
         "long-content",
         "reduced-motion",
         "keyboard-only"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-venues": {
       "requiredStates": [
@@ -484,7 +532,11 @@
         "long-content",
         "reduced-motion",
         "keyboard-only"
-      ]
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     },
     "studio.page.hq-waitlist": {
       "requiredStates": [
@@ -498,7 +550,11 @@
         "keyboard-only"
       ],
       "primaryJob": "Read recorded waitlist entries and their source context.",
-      "primaryAction": "Inspect the entries returned by the single awaited waitlist read."
+      "primaryAction": "Inspect the entries returned by the single awaited waitlist read.",
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     }
   }
 }

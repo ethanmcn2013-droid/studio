@@ -1,0 +1,515 @@
+{
+  "identity": {
+    "sourceDigest": "9db08213c35fb5bfa6ac90f082dd8db81f7511602af0c2b662ea2cb06d7123c1",
+    "buildInputsDigest": "d086fecd1edbe4e7dd42a4a31133abd003e1e1d675b2f48d9b49772315d9409f",
+    "buildId": "m2n_Zi39DsiZ2z4nDWQGd",
+    "builtAt": "2026-09-05T01:40:20.543Z",
+    "node": "v24.19.0",
+    "command": "node scripts/experience/january-extension/serve.mjs build",
+    "log": "build-2026-09-05T01-39-25-867Z.log",
+    "environment": "allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration",
+    "toolingDigest": "0d8f9f610e6fa11bd2eecbd6fb1a0d52565e5f1dd095ebee71f36295938be388"
+  },
+  "results": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "servedBuildId": "m2n_Zi39DsiZ2z4nDWQGd",
+      "scrollMarginProbe": false,
+      "samples": [
+        {
+          "delay": 0,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 33,
+            "y": 241.921875,
+            "width": 324,
+            "height": 279.859375,
+            "top": 241.921875,
+            "right": 357,
+            "bottom": 521.78125,
+            "left": 33
+          },
+          "scrollY": 1120,
+          "innerHeight": 844,
+          "innerWidth": 390,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 100,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 33,
+            "y": 241.921875,
+            "width": 324,
+            "height": 279.859375,
+            "top": 241.921875,
+            "right": 357,
+            "bottom": 521.78125,
+            "left": 33
+          },
+          "scrollY": 1120,
+          "innerHeight": 844,
+          "innerWidth": 390,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 500,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 33,
+            "y": 241.921875,
+            "width": 324,
+            "height": 279.859375,
+            "top": 241.921875,
+            "right": 357,
+            "bottom": 521.78125,
+            "left": 33
+          },
+          "scrollY": 1120,
+          "innerHeight": 844,
+          "innerWidth": 390,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 1000,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 33,
+            "y": 241.921875,
+            "width": 324,
+            "height": 279.859375,
+            "top": 241.921875,
+            "right": 357,
+            "bottom": 521.78125,
+            "left": 33
+          },
+          "scrollY": 1120,
+          "innerHeight": 844,
+          "innerWidth": 390,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        }
+      ],
+      "screenshots": [
+        {
+          "path": "390-0.png",
+          "hash": "a881e864432ba0b80536a3c2c7fb47674ca41340014f6044269972bb840ddeb7"
+        },
+        {
+          "path": "390-100.png",
+          "hash": "8ee00c646fd0d32ba7f2fdadf36237525c6732ef51fa78df786cddef0eef9b48"
+        },
+        {
+          "path": "390-500.png",
+          "hash": "37a566b73d374d6a3144a7f7e2a996b0d7562ed5e447085b07382df3d58b045c"
+        },
+        {
+          "path": "390-1000.png",
+          "hash": "b2a3160c8870d04a20388ccf6c584a42620ee5830febae0e5f46c4af05d334cc"
+        }
+      ],
+      "occlusion": {
+        "banner": {
+          "x": 12,
+          "y": 773.625,
+          "width": 366,
+          "height": 52.375,
+          "top": 773.625,
+          "right": 378,
+          "bottom": 826,
+          "left": 12
+        },
+        "intersections": []
+      }
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "servedBuildId": "m2n_Zi39DsiZ2z4nDWQGd",
+      "scrollMarginProbe": false,
+      "samples": [
+        {
+          "delay": 0,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 41,
+            "y": 738.84375,
+            "width": 686,
+            "height": 205.609375,
+            "top": 738.84375,
+            "right": 727,
+            "bottom": 944.453125,
+            "left": 41
+          },
+          "scrollY": 259,
+          "innerHeight": 1024,
+          "innerWidth": 768,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 100,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 41,
+            "y": 738.84375,
+            "width": 686,
+            "height": 205.609375,
+            "top": 738.84375,
+            "right": 727,
+            "bottom": 944.453125,
+            "left": 41
+          },
+          "scrollY": 259,
+          "innerHeight": 1024,
+          "innerWidth": 768,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 500,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 41,
+            "y": 738.84375,
+            "width": 686,
+            "height": 205.609375,
+            "top": 738.84375,
+            "right": 727,
+            "bottom": 944.453125,
+            "left": 41
+          },
+          "scrollY": 259,
+          "innerHeight": 1024,
+          "innerWidth": 768,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 1000,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 41,
+            "y": 738.84375,
+            "width": 686,
+            "height": 205.609375,
+            "top": 738.84375,
+            "right": 727,
+            "bottom": 944.453125,
+            "left": 41
+          },
+          "scrollY": 259,
+          "innerHeight": 1024,
+          "innerWidth": 768,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        }
+      ],
+      "screenshots": [
+        {
+          "path": "768-0.png",
+          "hash": "6ece1fc3423efb25f7363c9fd0a502dd70deb530ca703b1635836923c38b4811"
+        },
+        {
+          "path": "768-100.png",
+          "hash": "d71ae604808be0ed026694f16610e480871ae49d6e2d0bbfa3028451fd973b27"
+        },
+        {
+          "path": "768-500.png",
+          "hash": "8164c9b9fe9a854b2d76abdbe2242e066f3a2927d070fe97d0c781b3f433db2a"
+        },
+        {
+          "path": "768-1000.png",
+          "hash": "146aa2e55b4a4df121b46a533329cec421f12fd8f5e6321ab15191a88abc2ebb"
+        }
+      ],
+      "occlusion": {
+        "banner": {
+          "x": 194.421875,
+          "y": 970,
+          "width": 379.15625,
+          "height": 36,
+          "top": 970,
+          "right": 573.578125,
+          "bottom": 1006,
+          "left": 194.421875
+        },
+        "intersections": []
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "servedBuildId": "m2n_Zi39DsiZ2z4nDWQGd",
+      "scrollMarginProbe": false,
+      "samples": [
+        {
+          "delay": 0,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 327.390625,
+            "y": 673.171875,
+            "width": 889.21875,
+            "height": 147.265625,
+            "top": 673.171875,
+            "right": 1216.609375,
+            "bottom": 820.4375,
+            "left": 327.390625
+          },
+          "scrollY": 161,
+          "innerHeight": 900,
+          "innerWidth": 1280,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 100,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 327.390625,
+            "y": 673.171875,
+            "width": 889.21875,
+            "height": 147.265625,
+            "top": 673.171875,
+            "right": 1216.609375,
+            "bottom": 820.4375,
+            "left": 327.390625
+          },
+          "scrollY": 161,
+          "innerHeight": 900,
+          "innerWidth": 1280,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 500,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 327.390625,
+            "y": 673.171875,
+            "width": 889.21875,
+            "height": 147.265625,
+            "top": 673.171875,
+            "right": 1216.609375,
+            "bottom": 820.4375,
+            "left": 327.390625
+          },
+          "scrollY": 161,
+          "innerHeight": 900,
+          "innerWidth": 1280,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 1000,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 327.390625,
+            "y": 673.171875,
+            "width": 889.21875,
+            "height": 147.265625,
+            "top": 673.171875,
+            "right": 1216.609375,
+            "bottom": 820.4375,
+            "left": 327.390625
+          },
+          "scrollY": 161,
+          "innerHeight": 900,
+          "innerWidth": 1280,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        }
+      ],
+      "screenshots": [
+        {
+          "path": "1280-0.png",
+          "hash": "e19358e7ce9b3ee018a1810f8967f548e89848eb628e360e851ec977157ed56c"
+        },
+        {
+          "path": "1280-100.png",
+          "hash": "5d2f4bb7a0d2818df38691114a9075526358b78c9ef7c24acf4846a5d7cd3b4b"
+        },
+        {
+          "path": "1280-500.png",
+          "hash": "ef3b81c1375878a4f81bf0ccd5451960c2bdc5fd35c0fe228d71dc51f8527045"
+        },
+        {
+          "path": "1280-1000.png",
+          "hash": "cd0d1698cd02e5284a53c5dc6f81490ef1a5d83cb81e59a78f8ad9c5a03179bf"
+        }
+      ],
+      "occlusion": {
+        "banner": {
+          "x": 450.421875,
+          "y": 846,
+          "width": 379.15625,
+          "height": 36,
+          "top": 846,
+          "right": 829.578125,
+          "bottom": 882,
+          "left": 450.421875
+        },
+        "intersections": []
+      }
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "servedBuildId": "m2n_Zi39DsiZ2z4nDWQGd",
+      "scrollMarginProbe": false,
+      "samples": [
+        {
+          "delay": 0,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 329,
+            "y": 753.46875,
+            "width": 1046,
+            "height": 126.34375,
+            "top": 753.46875,
+            "right": 1375,
+            "bottom": 879.8125,
+            "left": 329
+          },
+          "scrollY": 86,
+          "innerHeight": 960,
+          "innerWidth": 1440,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 100,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 329,
+            "y": 753.46875,
+            "width": 1046,
+            "height": 126.34375,
+            "top": 753.46875,
+            "right": 1375,
+            "bottom": 879.8125,
+            "left": 329
+          },
+          "scrollY": 86,
+          "innerHeight": 960,
+          "innerWidth": 1440,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 500,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 329,
+            "y": 753.46875,
+            "width": 1046,
+            "height": 126.34375,
+            "top": 753.46875,
+            "right": 1375,
+            "bottom": 879.8125,
+            "left": 329
+          },
+          "scrollY": 86,
+          "innerHeight": 960,
+          "innerWidth": 1440,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        },
+        {
+          "delay": 1000,
+          "focused": true,
+          "tag": "A",
+          "text": "The Brief ↗REFERENCEIdea to philosophy to demonstration to clarity. Three spoken lines, the seed word chaos blooms into a noise pile, the mechanism reads and distils it into a real front page. SSR-settled, plays once, rests.gesture: tick · src/components/landing/the-brief-hero.tsxOpen rendered preview ↗",
+          "rect": {
+            "x": 329,
+            "y": 753.46875,
+            "width": 1046,
+            "height": 126.34375,
+            "top": 753.46875,
+            "right": 1375,
+            "bottom": 879.8125,
+            "left": 329
+          },
+          "scrollY": 86,
+          "innerHeight": 960,
+          "innerWidth": 1440,
+          "scrollBehavior": "auto",
+          "outline": "rgb(79, 70, 229) solid 2px"
+        }
+      ],
+      "screenshots": [
+        {
+          "path": "1440-0.png",
+          "hash": "9d6d54836b0c38f39913d34277f218b4e0a805107e21d58b69bdd61e65e54487"
+        },
+        {
+          "path": "1440-100.png",
+          "hash": "4495cf122f39f9362a7911a15911bdcbd694396f29346ccc8595013004bea8b9"
+        },
+        {
+          "path": "1440-500.png",
+          "hash": "eaaa77997f87407e568dc950dbf825d9a8f6d1da90b09fc776f9dd47a17fc372"
+        },
+        {
+          "path": "1440-1000.png",
+          "hash": "d9daa6dce877b190b1c6a86c21f279a23307693f3782d9baf8ec4ca378d82e51"
+        }
+      ],
+      "occlusion": {
+        "banner": {
+          "x": 530.421875,
+          "y": 906,
+          "width": 379.15625,
+          "height": 36,
+          "top": 906,
+          "right": 909.578125,
+          "bottom": 942,
+          "left": 530.421875
+        },
+        "intersections": []
+      }
+    }
+  ]
+}

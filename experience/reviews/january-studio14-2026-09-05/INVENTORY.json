@@ -1,0 +1,296 @@
+{
+  "worktree": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-studio14-coverage",
+  "branch": "feat/january-studio14-coverage",
+  "runtimeCommit": "17305479d47c3654102be7e84a382478ee3eead0",
+  "base": "43bf371029d712d3f41f2870703ab47103ff35a4",
+  "principalMerge": "24d028fc2e6bc5015dc126b5e0cb5077fa8a9e50",
+  "principalCandidate": "a54da59aae3611151791742cd9a2c99790fffd1c",
+  "build": {
+    "sourceDigest": "9db08213c35fb5bfa6ac90f082dd8db81f7511602af0c2b662ea2cb06d7123c1",
+    "buildInputsDigest": "d086fecd1edbe4e7dd42a4a31133abd003e1e1d675b2f48d9b49772315d9409f",
+    "buildId": "m2n_Zi39DsiZ2z4nDWQGd",
+    "builtAt": "2026-09-05T01:40:20.543Z",
+    "node": "v24.19.0",
+    "command": "node scripts/experience/january-extension/serve.mjs build",
+    "log": "build-2026-09-05T01-39-25-867Z.log",
+    "environment": "allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration"
+  },
+  "toolingDigest": "0d8f9f610e6fa11bd2eecbd6fb1a0d52565e5f1dd095ebee71f36295938be388",
+  "manifest": "experience/reviews/january-studio14-2026-09-05/capture-2026-09-05T01-41-27-920Z/manifest.json",
+  "manifestHash": "baba971ccc700898c26a7621d553ee7d5fc994dd6b5961ae9eeecc8a43867bd9",
+  "matrix": [
+    {
+      "id": "studio.page.hq-access",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "error",
+        "disabled"
+      ],
+      "cases": 24
+    },
+    {
+      "id": "studio.page.hq-atlas",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "empty"
+      ],
+      "cases": 20
+    },
+    {
+      "id": "studio.page.hq-atlas-by-slug",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "cases": 16
+    },
+    {
+      "id": "studio.page.hq-cards",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "cases": 16
+    },
+    {
+      "id": "studio.page.hq-entitlements-by-lookup",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "empty",
+        "error",
+        "read-only",
+        "disabled",
+        "restricted"
+      ],
+      "cases": 36
+    },
+    {
+      "id": "studio.page.hq-experimentation-room",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "cases": 16
+    },
+    {
+      "id": "studio.page.hq-health",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "empty"
+      ],
+      "cases": 36
+    },
+    {
+      "id": "studio.page.hq-marketing",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "empty",
+        "error",
+        "populated"
+      ],
+      "cases": 48
+    },
+    {
+      "id": "studio.page.hq-org-by-slug",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "restricted"
+      ],
+      "cases": 20
+    },
+    {
+      "id": "studio.page.hq-platform-readiness",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "cases": 16
+    },
+    {
+      "id": "studio.page.hq-product-hero-design-motion",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "cases": 16
+    },
+    {
+      "id": "studio.page.hq-socials",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "cases": 16
+    },
+    {
+      "id": "studio.page.hq-venues",
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "cases": 16
+    },
+    {
+      "id": "studio.page.hq-waitlist",
+      "states": [
+        "empty",
+        "populated",
+        "error",
+        "restricted",
+        "dense",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "cases": 32
+    }
+  ],
+  "sourceAndToolFiles": [
+    {
+      "path": "experience/overrides.json",
+      "sha256": "5eb68644f5b38f0fe11071c347cef678485b0940e9335280d90ec18c09bad18a"
+    },
+    {
+      "path": "experience/registry.json",
+      "sha256": "693572623a21ae660a8dee415dfb05d6b0cc4556ea08e7b266e45628fc23da6d"
+    },
+    {
+      "path": "scripts/experience/january-extension/applicability.mjs",
+      "sha256": "7acc5c80b9f017385fcccfbbe2e3acb64e0dbb245f70092dcb876d7e221538ab"
+    },
+    {
+      "path": "scripts/experience/january-extension/attest.mjs",
+      "sha256": "5c20e5a783bb8d8c14d3465c1a93deb086da6976a8f58c419cf8095dfe57a6b2"
+    },
+    {
+      "path": "scripts/experience/january-extension/boundaries.mjs",
+      "sha256": "cc2b6d7eaa2eee4f1f318d83c07f3b1b6e013e7c7573dd6c80b7bf019aab60c5"
+    },
+    {
+      "path": "scripts/experience/january-extension/capture.mjs",
+      "sha256": "569148e7b2b382b852b3c749e64596486c7a6580967ecc347594947e54fa8c2c"
+    },
+    {
+      "path": "scripts/experience/january-extension/chrome.mjs",
+      "sha256": "abbffe07b231e15e8b67d2eec9f473a442bdddc9d2aa6147883978fd773526dc"
+    },
+    {
+      "path": "scripts/experience/january-extension/environment.mjs",
+      "sha256": "a2596a5897a84cf64b60428669ec73d76d3119da1d0afd15ab6f178794dcae12"
+    },
+    {
+      "path": "scripts/experience/january-extension/fixture.test.ts",
+      "sha256": "8534d88ecc2db048e37f8c39825e04d699c155f891527831cd7780a12148fc0d"
+    },
+    {
+      "path": "scripts/experience/january-extension/fixture.ts",
+      "sha256": "cecd584b91c24267c220326c7f46e662f8e04324f4dc54196fb13403a497b410"
+    },
+    {
+      "path": "scripts/experience/january-extension/matrix.mjs",
+      "sha256": "784e619bd04b618c4bf99eff06d85adc51af0be885b86e51aab663e3cb522b40"
+    },
+    {
+      "path": "scripts/experience/january-extension/receipt.mjs",
+      "sha256": "96b44e2622144a24411740678beba762c1f6d21019cd32b35e360b1eb33b3b24"
+    },
+    {
+      "path": "scripts/experience/january-extension/receipt.test.mjs",
+      "sha256": "62cba8c673d45474bc7cad20fd03ab1f605b97e22010f2da56cebca68de4a5a9"
+    },
+    {
+      "path": "scripts/experience/january-extension/serve.mjs",
+      "sha256": "c5d82dd5749c96a5777c417bba5bc4ef6332b7a622cf6c79a3161a28a5d7b906"
+    },
+    {
+      "path": "scripts/experience/january-extension/states.mjs",
+      "sha256": "3bc957ad455993b9bdc34dd84f051cf5df750ffc108e20997993edf40973382d"
+    },
+    {
+      "path": "src/app/globals.css",
+      "sha256": "16358399d64aa74a1bac79119b97d42cd72d795271bcfcaca4839a9a6ff9c734"
+    },
+    {
+      "path": "src/app/hq/experimentation-room/page.tsx",
+      "sha256": "f10ed4cb1a32c93e266c45b6271062a4a7ffcabbf2d6e3b20210a9ef2b2f262a"
+    },
+    {
+      "path": "src/app/hq/hq-os.css",
+      "sha256": "dc7ee4cc5909594f6f1d7ce89ee557086b92290f40d3d7efa1871dcb239dae1c"
+    },
+    {
+      "path": "src/app/hq/org/[slug]/page.tsx",
+      "sha256": "b0654167c1122d0b2a7dc1b0eb25c27e1adec7dfafcbe8f6d2d641ef22222730"
+    },
+    {
+      "path": "src/app/hq/platform-readiness/page.tsx",
+      "sha256": "f9afc726ad191bad1cec681b2935c869f05a7b8c20384f14b6426878a2af0d5f"
+    },
+    {
+      "path": "src/app/hq/product-hero-design-motion/page.tsx",
+      "sha256": "26f804b900794fb3d7eb04f104ee10fb147e8623de9f8bb9150b05a0a9de7e27"
+    },
+    {
+      "path": "src/app/hq/venues/page.tsx",
+      "sha256": "e5b018c1bed80dcaaa86c78b7854a6f976a643e13f8799c8539248de0fa1bff9"
+    },
+    {
+      "path": "src/components/atlas/atlas-filter.tsx",
+      "sha256": "dd31d04ba472c0d74eeeeb227c2d40e7dc2b90ae14eb589d8234a49f3091c006"
+    },
+    {
+      "path": "src/components/dev-banner.tsx",
+      "sha256": "c8f56377502bf9326c545afeec1839c804ba36eab8ebcf7aafbc73df863daf5a"
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://127.0.0.1:4416",
+      "pid": 8616,
+      "session": 75150,
+      "configured": true
+    },
+    {
+      "url": "http://127.0.0.1:4417",
+      "pid": 8980,
+      "session": 26573,
+      "configured": false
+    }
+  ],
+  "appTestPair": "da62317b68da97bfc4bc4a8ec469a5c7c89030fa",
+  "externalStateVerified": false,
+  "humanReview": "pending",
+  "councilReview": "not performed"
+}

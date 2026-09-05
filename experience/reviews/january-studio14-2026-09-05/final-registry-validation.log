@@ -1,0 +1,2 @@
+experience:validate: 1 failure(s)
+  x studio.surface.atlas-filter: changed experience lacks complete fixture, screenshot, and accessibility coverage
