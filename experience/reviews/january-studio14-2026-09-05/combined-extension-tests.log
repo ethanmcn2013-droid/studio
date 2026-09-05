@@ -1,0 +1,15 @@
+✔ extension fixtures isolate real read states and exclude inherited provider configuration (2188.5104ms)
+✔ all eight waitlist branches require actual matching receipts (2.8274ms)
+✔ missing and duplicate cases cannot close coverage (0.8272ms)
+✔ source, viewport, route and screenshot must match (1.8205ms)
+✔ unobserved branch, unsafe fixture and motion failures are rejected (2.3922ms)
+✔ application faults remain failures; only canceled local RSC prefetch is nonblocking (1.2669ms)
+✔ only the 14 extension pages and all four declared widths are in scope (0.2941ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3418.5687

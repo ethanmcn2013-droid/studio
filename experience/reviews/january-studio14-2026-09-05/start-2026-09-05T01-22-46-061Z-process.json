@@ -1,0 +1,10 @@
+{
+  "pid": 5060,
+  "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\feat-january-studio14-coverage",
+  "node": "v24.19.0",
+  "sourceDigest": "70d5c8ab8103961161fab24915b3d7eb6848301f95d253eba0fe3dfd3bfb8605",
+  "buildInputsDigest": "d5fde3ae84a07bc708c638d2f35002bde08a2d989371c5e46d2d5125f3fd6c3f",
+  "mode": "start",
+  "url": "http://127.0.0.1:4416",
+  "startedAt": "2026-09-05T01:22:46.070Z"
+}

@@ -474,3 +474,12 @@ a.hqx-row:hover .hqx-row-arrow { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   .hqx-rail { transition: none; }
 }
+
+/* Keep the actual room name readable beside the existing mobile controls. */
+@media (max-width: 640px) {
+  .hqx-topbar { height: auto; min-height: var(--hqx-topbar-h); padding-block: var(--space-2); }
+  .hqx-topbar-left { flex: 1; }
+  .hqx-menu-btn, .hqx-topbar-right { flex-shrink: 0; }
+  .hqx-crumbs { flex-wrap: wrap; row-gap: var(--space-1); }
+  .hqx-crumb-page { white-space: normal; overflow-wrap: anywhere; }
+}

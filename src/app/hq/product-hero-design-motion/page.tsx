@@ -193,8 +193,8 @@ const PRODUCTS: Product[] = [
 const BADGE_STYLE: Record<Badge, { fg: string; bg: string; bd: string }> = {
   PREFERRED: { fg: "var(--paper)", bg: "var(--accent)", bd: "var(--accent)" },
   REFERENCE: { fg: "var(--paper)", bg: "var(--ink)", bd: "var(--ink)" },
-  CANDIDATE: { fg: "var(--ink-faint)", bg: "transparent", bd: "var(--hairline)" },
-  ARCHIVE: { fg: "var(--ink-faint)", bg: "transparent", bd: "var(--hairline)" },
+  CANDIDATE: { fg: "var(--hqx-muted-ink, var(--ink-faint))", bg: "transparent", bd: "var(--hairline)" },
+  ARCHIVE: { fg: "var(--hqx-muted-ink, var(--ink-faint))", bg: "transparent", bd: "var(--hairline)" },
 };
 
 const REVIEW_GATES = [
@@ -383,6 +383,7 @@ export default async function ProductHeroRoomPage() {
       <style>{`
         .hero-room-direction {
           grid-template-columns: minmax(150px, 210px) 110px 1fr;
+          scroll-margin-block-end: 80px;
           transition: background var(--motion-instant) var(--ease-out);
         }
 

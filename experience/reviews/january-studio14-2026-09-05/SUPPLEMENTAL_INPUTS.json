@@ -1,0 +1,629 @@
+{
+  "observedAt": "2026-09-05T01:50:20.005Z",
+  "items": [
+    {
+      "file": "docs/signal-studio-review/remediation-program.yaml",
+      "bytes": 17062,
+      "hash": "f1d1ce7a2a8282215fc83c4b92c5300be2e780bfbc984474153151b8bcf18cc6",
+      "lineEndingVariantAllowed": true
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-broadcast-back-preview.png",
+      "bytes": 15406,
+      "hash": "35457669ee1d2806c178cbcdf4464864ad0370807fd94f1490ba131dfc574306",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-broadcast-back-print.pdf",
+      "bytes": 39299,
+      "hash": "ba55d89abd2a5a5b00f44d101ca50c61916457c1d5074afdc0144a4b172bcae2",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-broadcast-front-preview.png",
+      "bytes": 7924,
+      "hash": "f1480a2317396b414da83e5b5dfd4d96b6171338b46e1b64c85714550a707994",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-broadcast-front-print.pdf",
+      "bytes": 4575,
+      "hash": "af2c7d67db2686c86e710fbbd1ce013f1359d60e657e09fabc856a80860d0a79",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-dot-back-preview.png",
+      "bytes": 15406,
+      "hash": "35457669ee1d2806c178cbcdf4464864ad0370807fd94f1490ba131dfc574306",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-dot-back-print.pdf",
+      "bytes": 39299,
+      "hash": "3d2cccc4d3128da6c4224e71e2f8dce6d80244704774598f9789f68cc0e3ac38",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-dot-front-preview.png",
+      "bytes": 3211,
+      "hash": "ef4f79b8010204d3e5ebd4fe5bd2797eb6678248d9791a312bb9ca4e93605d2e",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-dot-front-print.pdf",
+      "bytes": 1846,
+      "hash": "d6574ac32565fa3c8c3f3d5b17779621c3b92652f821eafc0a55585ad645fe75",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-duo-back-preview.png",
+      "bytes": 13685,
+      "hash": "126cb324268b1f907a40eea0ec7f473cc35df4e919745a7fa3181c58678a1396",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-duo-back-print.pdf",
+      "bytes": 31036,
+      "hash": "33854f9fd234ecf4a95e61412303bfa20bc1dbd565b2411eb67298fc6846fe93",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-duo-front-preview.png",
+      "bytes": 7818,
+      "hash": "75bc74b673d2a36a9c4db7579632e9265e377f559b8bdf736255d3e4910f4393",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-duo-front-print.pdf",
+      "bytes": 11827,
+      "hash": "28aabb534850172108b42e6b7d22bfa09546cc4a3b41127bd51468ec01e2e33b",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-indigo-back-preview.png",
+      "bytes": 13046,
+      "hash": "bcfd578ead05cc1e63fa34dfe167452a9b0fa2a70c2328f657fe8cd66a5c873e",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-indigo-back-print.pdf",
+      "bytes": 30909,
+      "hash": "b98f1507cd3b166bce9b0357e969a04db77fd3f6bf938faec11ff4ddffd3d31f",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-indigo-front-preview.png",
+      "bytes": 8070,
+      "hash": "729228fb8b52326ddfa75cc812596c77cca8e0e17d3da978aeb4c0db5f68e981",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-indigo-front-print.pdf",
+      "bytes": 11810,
+      "hash": "d27881db996013c56c89ab25c69fd2e6ee9ee0182387b88aea71d36c1bc7647b",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-ink-back-preview.png",
+      "bytes": 13046,
+      "hash": "bcfd578ead05cc1e63fa34dfe167452a9b0fa2a70c2328f657fe8cd66a5c873e",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-ink-back-print.pdf",
+      "bytes": 30909,
+      "hash": "96ec394d8465aab5de1ac470c503ae0eff07345f17cebdba04abfd49461fe605",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-ink-front-preview.png",
+      "bytes": 7818,
+      "hash": "75bc74b673d2a36a9c4db7579632e9265e377f559b8bdf736255d3e4910f4393",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-ink-front-print.pdf",
+      "bytes": 11827,
+      "hash": "a3fc1ac511228198e69fbdebef39b2d7a13b02262eccdb0785d06028b1f051a9",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-paper-back-preview.png",
+      "bytes": 13046,
+      "hash": "bcfd578ead05cc1e63fa34dfe167452a9b0fa2a70c2328f657fe8cd66a5c873e",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-paper-back-print.pdf",
+      "bytes": 30909,
+      "hash": "a06386566913ef745cfccd423a52dfb59a0c471c611ab6748756d264606c373e",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-paper-front-preview.png",
+      "bytes": 6975,
+      "hash": "2a350ff469d2b490612decc13e20f24824d1e7b2dfe7faf5fa91c6938267b651",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/cardx-paper-front-print.pdf",
+      "bytes": 9884,
+      "hash": "b2c6595a427b0c2bc1eca55557ff141c61166606a527013a33423707d6ffe6de",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/cards/proof-order-card-trio.zip",
+      "bytes": 75869,
+      "hash": "68b335ffc1a220f37ca34b637e6f5e5c54b0997e62cce615228de6aa1d24bee3",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/alt-text.txt",
+      "bytes": 2515,
+      "hash": "fcdd1e3364c2270ddfe130eccd9c749daac43785cc7e5e35f0233980cc8b9ac3",
+      "lineEndingVariantAllowed": true
+    },
+    {
+      "file": "public/brand/collateral/social/banner-default-li-company-banner.png",
+      "bytes": 7868,
+      "hash": "c3a545266dd34ef918ac255e3c8bbec7b6527584a25ede8dcda45e6d41fc2b71",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/banner-default-li-personal-banner.png",
+      "bytes": 33878,
+      "hash": "1d1471c26d65e59005e96f5efcb26c7b1e6639d471c316cd40b41720a65aba66",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/banner-default-x-header.png",
+      "bytes": 35598,
+      "hash": "e9dda54011fa08ffd60b37df3d97ab16bc36ecf592d167b0dbcd03dff1942443",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/index.html",
+      "bytes": 15038,
+      "hash": "153cb8740c45fcdf96151b35c98fb56c1c886f3fa63957a60332ecf396639485",
+      "lineEndingVariantAllowed": true
+    },
+    {
+      "file": "public/brand/collateral/social/s1-number-n01-ig-portrait.png",
+      "bytes": 68730,
+      "hash": "2b5482de36a9560a106a9519658d32bf678f119bb14751bee62d0d011214e7ba",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s1-number-n01-ig-square.png",
+      "bytes": 48233,
+      "hash": "8d5712dd6a2478ad6e8d2c6fff7836515d8e48a6476adc85d354b23c36e90083",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s1-number-n01-li-landscape.png",
+      "bytes": 46719,
+      "hash": "3bcd668ec1a49a3ba11e18ee9d25252c7925bff92f53a448347a14c725a17ea6",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s1-number-n02-ig-portrait.png",
+      "bytes": 60953,
+      "hash": "88306e2474d64e5a249771e38e5e3f19bf8f24c5eb3b42297743dc4dc746ac3f",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s1-number-n02-ig-square.png",
+      "bytes": 50261,
+      "hash": "6fe0f58c10ad04cab79a125a032e60b34a61e2e633f9d00767fd7ac63a470bf5",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s1-number-n02-li-landscape.png",
+      "bytes": 39362,
+      "hash": "ca954eb399383b926afd95dd0c7d71271c59c90773155b11ae11fbc85bb8a673",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s1-number-n03-ig-portrait.png",
+      "bytes": 47121,
+      "hash": "d029c5cf2b14d1e8a303bdf1f6f1e491e22cfab32f980df805cd0d825e56e12a",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s1-number-n03-ig-square.png",
+      "bytes": 38484,
+      "hash": "a92e8127651e9fcf0f84832968e78bbc47d59f441a06fda2e521708bc62c4b67",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s1-number-n03-li-landscape.png",
+      "bytes": 32101,
+      "hash": "4a9c6a8b264b6768b154e7e9510dfa4b149042b72ac4a8973aa0c2710f435ad9",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b00-ig-portrait.png",
+      "bytes": 49796,
+      "hash": "46707b8dea769ebc1f77d70b09ad57675061be74e25bea79c5c290c0c08d94ce",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b00-ig-square.png",
+      "bytes": 41099,
+      "hash": "94a48fca60fc36f95ddb5d45fe3193f941ba3daca0c3a24e6f353384d3fb98a3",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b00-li-landscape.png",
+      "bytes": 33689,
+      "hash": "4912389a0bba723a6f86c037914d274cc9224a931df6721f141b9fa3acf9cf19",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b01-ig-portrait.png",
+      "bytes": 53013,
+      "hash": "e65af59ebb45a17849957e55080dbc3c178b36bac175d40512d2fa81f74d7b67",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b01-ig-square.png",
+      "bytes": 46688,
+      "hash": "5b0b9381e54c8af6f0e38164815aa918e3f0019e6a1105ca604c2648da184d33",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b01-li-landscape.png",
+      "bytes": 38160,
+      "hash": "37fc2e00adf28712a4d1a61b8d9a082ab716be6da51e3dc8c683fef027899f44",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b02-ig-portrait.png",
+      "bytes": 40064,
+      "hash": "26e296d82353b82fbb3eac251de0d7731c81d0426fdc4dfce8260dd72fa3c09a",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b02-ig-square.png",
+      "bytes": 33125,
+      "hash": "687e7751d363d99266527e82d318464d49ba03dfedc8ba8c94b9fcdeec44f214",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b02-li-landscape.png",
+      "bytes": 24679,
+      "hash": "45106955e5a06e6bbab8a58b12dc51ca363669cfd1df9f5ccae4f45e183159e7",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b03-ig-portrait.png",
+      "bytes": 36172,
+      "hash": "f315dc2c8bf8ee94d3ba43581fd3f11cb8791527235b0217eb20b5530b2d845b",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b03-ig-square.png",
+      "bytes": 27833,
+      "hash": "c83a31f8b29a528e9fe0a634569a79e17f28037aa52b470e9f38b0a9c13462d4",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b03-li-landscape.png",
+      "bytes": 24230,
+      "hash": "cc1bdcabbdbff7cd1d355c4968be41ae47959499c6a84f1f24d3b9839b0f819d",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b04-ig-portrait.png",
+      "bytes": 49686,
+      "hash": "7cddfac4e307d89e73ae7886a98f4cf0792c9841768ea4ebb04a093b4c72bb2d",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b04-ig-square.png",
+      "bytes": 40717,
+      "hash": "08f48d572899936298134fabbafd5ed972525ee2b31884f21203fd5314c795a8",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b04-li-landscape.png",
+      "bytes": 33802,
+      "hash": "07d1f2392e78cb8675cea4b4d8102fae3380685a288ea934aaabe45cd3250f52",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b05-ig-portrait.png",
+      "bytes": 43650,
+      "hash": "7544180d03bc78722d0e12e24e8e5ea478ce48c58371f58ac8427523fdf6b649",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b05-ig-square.png",
+      "bytes": 39035,
+      "hash": "5fa5e54160412d6f223d5792b281f0e50b022d1fa0b4f69b7f6519a3a920053b",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b05-li-landscape.png",
+      "bytes": 33544,
+      "hash": "555d9930536296a37ef31fbcf487e432f40285b566cdb256c3f0a530c18fa58c",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b06-ig-portrait.png",
+      "bytes": 59866,
+      "hash": "7b948fe3ec6df2ffa4e6aafb8ec8c0c045cd0d00ab527c562c83943a956a8793",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b06-ig-square.png",
+      "bytes": 51352,
+      "hash": "2f08897c2b8f3656ed35dd8ec78a63f9cfd1846ac5a0509d62f2571810bb8255",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b06-li-landscape.png",
+      "bytes": 42218,
+      "hash": "651e0f8abe45585c9b7585a7168c415331eebf6b6133d07a20761908c04c2cff",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b07-ig-portrait.png",
+      "bytes": 49964,
+      "hash": "7c791e78282e8bc8b2180468bb8246ef49b54cf7033ef1ee86824d3b0c8749a1",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b07-ig-square.png",
+      "bytes": 43452,
+      "hash": "6469079266f6a58686fd72f76aa028a7af10b380587df9cc7dd8e1c7da5a7ee7",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b07-li-landscape.png",
+      "bytes": 32706,
+      "hash": "43871dca7190e21b35e80cad94c3fee5f37a9bf70d8294e9b7f83ff88047d214",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b08-ig-portrait.png",
+      "bytes": 44252,
+      "hash": "643482343084b93c92b8beee816177dabd6d1e694300ef5d9b56e1e1646df909",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b08-ig-square.png",
+      "bytes": 36096,
+      "hash": "c17b54a4dfcd6d43d0fd626d9a63673545fee3fa8efdcd87e53b7bfcc1c09e59",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b08-li-landscape.png",
+      "bytes": 30457,
+      "hash": "27b7dc1fbbddfc1df6cc089cdfe9fbf9d4618c9d47e3dcb1bb51a8ff6449d59d",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b09-ig-portrait.png",
+      "bytes": 53424,
+      "hash": "cbfc5c8823cf5728fa9f97b482dc501e0d8362cef2ec258a69813ffb58e0cd8b",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b09-ig-square.png",
+      "bytes": 45309,
+      "hash": "08147ade3095eebccb497e548998587c4df298c9a6cc9183eaeb92e575a8e0a0",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s2-belief-b09-li-landscape.png",
+      "bytes": 38992,
+      "hash": "a9440da4917c5dcae618bb5481ffc3e095846c7b15026d8ff850f4ed856c0882",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s3-beforeafter-owner-ig-portrait.png",
+      "bytes": 49517,
+      "hash": "cf4362c3924e86787b548629fcd076821099abb0fc57a5440ada3344ccad37d5",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s3-beforeafter-owner-ig-square.png",
+      "bytes": 46478,
+      "hash": "4b9b9a40c280e542a29229011b50431d67f98cdaf36ee6824932781bf6140846",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s3-beforeafter-owner-li-landscape.png",
+      "bytes": 37254,
+      "hash": "cccbb893018594b7b6862830a3a1f4dc80785b893818a1b6d7621352a48c0750",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s3-beforeafter-schedule-ig-portrait.png",
+      "bytes": 47050,
+      "hash": "6458cae0507a2e4705560e851df8b932832e26dfafa54abee1c442733da391ea",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s3-beforeafter-schedule-ig-square.png",
+      "bytes": 41068,
+      "hash": "c57056189d740ad2b9bab17a7c348150881bad354ce0e7531e5111839f69c421",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s3-beforeafter-schedule-li-landscape.png",
+      "bytes": 32123,
+      "hash": "8d16a29b97e258bcc1e0caea3ca061cccf4e2d3f35c24305ebbae63202c245dd",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s3-beforeafter-unread-ig-portrait.png",
+      "bytes": 44239,
+      "hash": "f85fc83d905c6d1789d131a04cf775ea4bf0eb4b670c47719ecf7584303b48b7",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s3-beforeafter-unread-ig-square.png",
+      "bytes": 39721,
+      "hash": "e6c97d77b2d9270c6eac7f4895cee65970aa1cef1fa7dd48c09623997d4b57ea",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s3-beforeafter-unread-li-landscape.png",
+      "bytes": 32940,
+      "hash": "2658bf6c9bbae9c441d24c25751ae3f6767302769a2a01bde1e475f6e3d595da",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s4-partner-sp01-ig-portrait.png",
+      "bytes": 72155,
+      "hash": "ffa65d91b7d1bedaaaa04f532c9a33bd9c0e8e031835a96cb1072c37cad9af11",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s4-partner-sp01-ig-square.png",
+      "bytes": 59981,
+      "hash": "74b1f4a5c5119cc1684150117a002cda9251f15df21969b90529cd19f3ba99ee",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s4-partner-sp01-ig-story.png",
+      "bytes": 93664,
+      "hash": "5035ff459d8bb81d07f211613a7535586cb40db80ce87b17f056c48f708639eb",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s4-partner-sp01-li-landscape.png",
+      "bytes": 52036,
+      "hash": "cba819f92ff359a71943f15c68e80ebe9ee875eabc82a2b92dab1a1062bd6e33",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s5-foundernote-quote01-ig-square.png",
+      "bytes": 69497,
+      "hash": "078f70800645080530acc4c08de8f2c7656b0c5bdce9acc007e5ece032b25b05",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s5-foundernote-quote01-li-landscape.png",
+      "bytes": 56828,
+      "hash": "8099c20949b98daf77c359cdddc0c3741bcdf371fa2f165ad523d60273ecb62a",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-notes-ig-square.png",
+      "bytes": 21472,
+      "hash": "8ef3716c3b0006b9bc01953ddf3d1b3c3f9bea48f0987dff7c169779fd79db77",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-notes-ig-story.png",
+      "bytes": 34657,
+      "hash": "1a63c5505148fb0f1207c49e7785dda895596dc94ba1c8556388350891113f16",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-notes-li-landscape.png",
+      "bytes": 17000,
+      "hash": "5a3485c7ca8786d84ac5a73f0c76fabb40f7ddecc3c96e56d057d2606da041fa",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-signal-ig-square.png",
+      "bytes": 22147,
+      "hash": "0a413e472579734f448f931169a39e95be21e6129dcd82db10fb9c1aa2e3a06f",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-signal-ig-story.png",
+      "bytes": 35240,
+      "hash": "cc72253a6292884a932ad29145689a1e57af1c11d0ed0aeaf5c77d777ebdf0b5",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-signal-li-landscape.png",
+      "bytes": 17487,
+      "hash": "1a2f425b67d85c266957c8cdcea9ce5012698b72c25c27bc2270280e2c914ea3",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-suite-ig-square.png",
+      "bytes": 26518,
+      "hash": "cb8714855790c993b8e7d1ccac5ad30e6050c6bc7b304e4549ae542b12f1a2f7",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-suite-ig-story.png",
+      "bytes": 41534,
+      "hash": "7032dacb4800317592a3db2664e9a1f13ee7820c0c842fe2987409f5c64e70e0",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-suite-li-landscape.png",
+      "bytes": 21429,
+      "hash": "3a1a072bb201486d032a9a11469f483367a5c39e614dc73a0565e44c331f909a",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-tasks-ig-square.png",
+      "bytes": 22379,
+      "hash": "ecd075b23f8fa6c1c4a2d0b00f9bad955e40054578566db79d747fc5424b1a44",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-tasks-ig-story.png",
+      "bytes": 35667,
+      "hash": "b949a70b7d47e6f423385987ae01d3c5d85d00583fca4b7b45ede6d4899f4593",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-tasks-li-landscape.png",
+      "bytes": 17692,
+      "hash": "ca8906c11cda047a6f60f73fd606adf3969124aa5f558f07653b1d6ffdd4ded3",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-timeline-ig-square.png",
+      "bytes": 21299,
+      "hash": "b6f2e28b770efde8d5623c160a5043edf0415aa379a4a3fa46431c64ea0b6c1e",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-timeline-ig-story.png",
+      "bytes": 34196,
+      "hash": "e6707aebe533ba36ace9ec2408e134f60b43641747d38e88592cca9dd515336a",
+      "lineEndingVariantAllowed": false
+    },
+    {
+      "file": "public/brand/collateral/social/s6-endcard-timeline-li-landscape.png",
+      "bytes": 15826,
+      "hash": "44d41b831d49e63c5c53d5aa57732b1cbe6bac409d480839b0464b651752c534",
+      "lineEndingVariantAllowed": false
+    }
+  ],
+  "variants": [
+    {
+      "file": "docs/signal-studio-review/remediation-program.yaml",
+      "lfHash": "9f2744404fa8c1393ed0cccc7adb48bc6ef0a1edaaf72f45e7900a2688d2d791",
+      "crlfHash": "f1d1ce7a2a8282215fc83c4b92c5300be2e780bfbc984474153151b8bcf18cc6",
+      "recordedHash": "f1d1ce7a2a8282215fc83c4b92c5300be2e780bfbc984474153151b8bcf18cc6",
+      "exactCrlfReconstruction": true
+    },
+    {
+      "file": "public/brand/collateral/social/alt-text.txt",
+      "lfHash": "afc45c532ad544c2b7ae04a37b56ec679e709f697c6460c81c58b0005c8b1d05",
+      "crlfHash": "fcdd1e3364c2270ddfe130eccd9c749daac43785cc7e5e35f0233980cc8b9ac3",
+      "recordedHash": "fcdd1e3364c2270ddfe130eccd9c749daac43785cc7e5e35f0233980cc8b9ac3",
+      "exactCrlfReconstruction": true
+    },
+    {
+      "file": "public/brand/collateral/social/index.html",
+      "lfHash": "11a545fdf83df3db649b5862a3ca62725385647e74e64d8afec00c19b7953c91",
+      "crlfHash": "153cb8740c45fcdf96151b35c98fb56c1c886f3fa63957a60332ecf396639485",
+      "recordedHash": "153cb8740c45fcdf96151b35c98fb56c1c886f3fa63957a60332ecf396639485",
+      "exactCrlfReconstruction": true
+    }
+  ],
+  "verifierOwner": "principal; outside extension tooling folder"
+}

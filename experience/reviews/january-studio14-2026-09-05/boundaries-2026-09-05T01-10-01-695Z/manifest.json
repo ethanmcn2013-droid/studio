@@ -1,0 +1,170 @@
+{
+  "runId": "boundaries-2026-09-05T01-10-01-695Z",
+  "sourceDigest": "874434f76d837ef7a7c6a901bc917f7bfd4af8e251d204444e1f897aaaf03f8f",
+  "buildId": "Md-ayjPsu447uoniTItVS",
+  "buildInputsDigest": "aece3c755bf7217b83d3b24d0338cca9dc1d4fa3e1143e0e22fc6e7cfaf927bf",
+  "toolingDigest": "1a583af8ec58f7c92122210a181624c461d22d880eb9d859adf7528d098b1dde",
+  "scriptedOnly": true,
+  "results": [
+    {
+      "route": "/hq/atlas/__fixture-missing__",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "blocked": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "status": 404,
+      "servedBuildId": "Md-ayjPsu447uoniTItVS",
+      "overflowPixels": 0,
+      "violations": [],
+      "screenshot": "atlas-mobile.png",
+      "hash": "ba5364329d99314803f002fe523b43e2fb6520a6d8319d6baded5eab3837b285"
+    },
+    {
+      "route": "/hq/atlas/__fixture-missing__",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "pass": true,
+      "blocked": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "status": 404,
+      "servedBuildId": "Md-ayjPsu447uoniTItVS",
+      "overflowPixels": 0,
+      "violations": [],
+      "screenshot": "atlas-tablet.png",
+      "hash": "91c60fa1c8424f5a949683b3623d9609cb6366d738d3df23722f321db58e6a98"
+    },
+    {
+      "route": "/hq/atlas/__fixture-missing__",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "pass": true,
+      "blocked": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "status": 404,
+      "servedBuildId": "Md-ayjPsu447uoniTItVS",
+      "overflowPixels": 0,
+      "violations": [],
+      "screenshot": "atlas-desktop.png",
+      "hash": "04fefc0d16b34112cdb5887da1665e632f4ac604c86900f3852b1186139aa9cb"
+    },
+    {
+      "route": "/hq/atlas/__fixture-missing__",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "pass": true,
+      "blocked": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "status": 404,
+      "servedBuildId": "Md-ayjPsu447uoniTItVS",
+      "overflowPixels": 0,
+      "violations": [],
+      "screenshot": "atlas-wide.png",
+      "hash": "140b2a248e85d1cac27198df33c20c515b486ddd3831555d014a0fa7c1af4d91"
+    },
+    {
+      "route": "/hq/org/__fixture-missing__",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "blocked": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "status": 404,
+      "servedBuildId": "Md-ayjPsu447uoniTItVS",
+      "overflowPixels": 0,
+      "violations": [],
+      "screenshot": "org-mobile.png",
+      "hash": "ba5364329d99314803f002fe523b43e2fb6520a6d8319d6baded5eab3837b285"
+    },
+    {
+      "route": "/hq/org/__fixture-missing__",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "pass": true,
+      "blocked": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "status": 404,
+      "servedBuildId": "Md-ayjPsu447uoniTItVS",
+      "overflowPixels": 0,
+      "violations": [],
+      "screenshot": "org-tablet.png",
+      "hash": "91c60fa1c8424f5a949683b3623d9609cb6366d738d3df23722f321db58e6a98"
+    },
+    {
+      "route": "/hq/org/__fixture-missing__",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "pass": true,
+      "blocked": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "status": 404,
+      "servedBuildId": "Md-ayjPsu447uoniTItVS",
+      "overflowPixels": 0,
+      "violations": [],
+      "screenshot": "org-desktop.png",
+      "hash": "04fefc0d16b34112cdb5887da1665e632f4ac604c86900f3852b1186139aa9cb"
+    },
+    {
+      "route": "/hq/org/__fixture-missing__",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "pass": true,
+      "blocked": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "status": 404,
+      "servedBuildId": "Md-ayjPsu447uoniTItVS",
+      "overflowPixels": 0,
+      "violations": [],
+      "screenshot": "org-wide.png",
+      "hash": "140b2a248e85d1cac27198df33c20c515b486ddd3831555d014a0fa7c1af4d91"
+    }
+  ]
+}

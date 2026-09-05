@@ -73,10 +73,11 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
       <div className="mb-12 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <input
           type="search"
+          aria-label="Search Atlas"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="search title, summary, tags…"
-          className="w-full max-w-[320px] border-b border-border-soft bg-transparent py-2 font-mono text-[12px] tracking-tight text-ink outline-none placeholder:text-ink-quiet focus:border-accent"
+          className="w-full max-w-[320px] border-b border-border-soft bg-transparent py-2 font-mono text-[12px] tracking-tight text-ink outline-none placeholder:text-[color:var(--hqx-muted-ink,var(--ink-quiet))] focus:border-accent"
         />
         <div className="flex gap-4 font-mono text-[11px] uppercase tracking-wider">
           {(["All", "Products", "Processes", "Data Flows"] as const).map((l) => {
@@ -84,12 +85,14 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
             return (
               <button
                 key={l}
+                type="button"
+                aria-pressed={active}
                 onClick={() => setLensFilter(l)}
                 className={
                   "transition-colors " +
                   (active
                     ? "text-ink underline decoration-accent underline-offset-[6px]"
-                    : "text-ink-quiet hover:text-ink")
+                    : "text-[color:var(--hqx-muted-ink,var(--ink-quiet))] hover:text-ink")
                 }
               >
                 {l === "Data Flows" ? "data" : l.toLowerCase()}
@@ -100,7 +103,7 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
       </div>
 
       {totalShown === 0 && (
-        <p className="py-12 font-mono text-[12px] text-ink-quiet">
+        <p className="py-12 font-mono text-[12px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
          , no entries match. clear the filter.
         </p>
       )}
@@ -110,7 +113,7 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
           g.entries.length === 0 ? null : (
             <section key={g.lens}>
               <h2
-                className="mb-2 text-[10.5px] font-semibold uppercase text-ink-quiet"
+                className="mb-2 text-[10.5px] font-semibold uppercase text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
                 style={{ letterSpacing: "var(--tracking-eyebrow)" }}
               >
                 {g.lens}
