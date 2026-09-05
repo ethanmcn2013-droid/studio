@@ -26,6 +26,8 @@ Raw event retention is35 days; daily/report aggregates expire24 months after the
 
 ## Local verification and lead-owned registration
 
+S5-01 suppression also applies to activity-derived coverage metadata. The shared outgoing snapshot omits both `daysCovered` and `modulesCovered` when suppressed; it never replaces them with0 or adds artificial quiet-day rows. Expected-window/configuration metadata remains. The privacy assertion rejects observed coverage fields reintroduced into a suppressed snapshot, including zero. Cohort1/2 regressions execute signed ingest, real SQLite closed-day persistence, the authenticated HQ action and actual CSV/HTML downloads: the complete outgoing DTO and both exports must remain identical as observed activity changes from one day to two. Eligible cohort3 still exposes truthful observed coverage.
+
 No provider, credentials, production mutation or browser is required. Use pinned dependencies and Node24:
 
 ```sh

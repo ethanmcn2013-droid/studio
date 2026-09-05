@@ -52,6 +52,14 @@ export function walkMetricValues(
 export function assertSnapshotPrivacy(snapshot: AccountSnapshot): string[] {
   const errors: string[] = [];
 
+  if (snapshot.coverage.state === "suppressed") {
+    for (const key of ["daysCovered", "modulesCovered"] as const) {
+      if (key in snapshot.coverage) {
+        errors.push(`coverage.${key}: suppressed observed coverage must be omitted`);
+      }
+    }
+  }
+
   walkMetricValues(snapshot, (metric, path) => {
     try {
       assertMetricHasNoHiddenValue(metric);

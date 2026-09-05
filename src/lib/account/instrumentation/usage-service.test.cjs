@@ -19,7 +19,7 @@ async function fixture(fn){
    eligible:async()=>Array.from({length:state.eligible},(_,i)=>({...proof,workspaceIdHash:i===0?proof.workspaceIdHash:String(i).padStart(32,"0")}))};
   const handlers=f.load("src/lib/account/instrumentation/usage-handlers.ts").usageHandlers(f.database,deps,{enabled:true,secret,epochs:[epoch],now});
   const request=(payload=event,path=transport.USAGE_PATHS.ingest)=>transport.signedUsageRequest("http://studio.test"+path,payload,secret,epoch,now);
-  await fn({...f,event,proof,state,deps,handlers,transport,request,job:()=>f.load("src/lib/account/instrumentation/usage-jobs.ts").closeUsageDays(f.database,deps,now)});
+  await fn({...f,hqState:f.state,event,proof,state,deps,handlers,transport,request,job:()=>f.load("src/lib/account/instrumentation/usage-jobs.ts").closeUsageDays(f.database,deps,now)});
  }finally{f.close();}
 }
 test("signed ingest dedupes exact replay and conflicts on another body sharing its event id",()=>fixture(async f=>{
@@ -27,6 +27,41 @@ test("signed ingest dedupes exact replay and conflicts on another body sharing i
  assert.equal((await f.handlers.ingest(f.request())).status,200);
  assert.equal((await f.handlers.ingest(f.request({...f.event,workspaceIdHash:"f".repeat(32)}))).status,409);
  const rows=await f.database.select().from(f.schema.sponsorUsageEvents);assert.equal(rows.length,1);assert.equal(rows[0].sponsorId,"synthetic-sponsor");
+}));
+
+for (const eligible of [1,2]) test("HQ action and exports disclose no equivalent activity metadata below cohort threshold "+eligible,()=>fixture(async f=>{
+ const prior={flag:process.env.SPONSOR_USAGE_EVENTS,password:process.env.SIGNAL_HQ_PASSWORD},clock=Date.now;
+ try {
+  process.env.SPONSOR_USAGE_EVENTS="1";process.env.SIGNAL_HQ_PASSWORD="synthetic-hq-suppression-regression";Date.now=()=>now;
+  // The test changes the observation count, holding reporting time/access fixed.
+  const action=f.load("src/app/hq/account-review/actions.ts").loadLiveVenueSnapshotAction;
+  const download=f.load("src/app/hq/account-review/download/route.ts").GET;
+  // Fixture's service population state is distinct from its framework identity state.
+  f.hqState.hqToken=await f.load("src/lib/hq/auth.ts").createHqAccessToken();
+  f.state.eligible=eligible;
+  const returned=[];
+  for(const offset of [1,0]) {
+   const event={...f.event,eventId:randomUUID(),occurredAt:occurredAt-offset*86400000};
+   f.state.proof=()=>({...f.proof,eventId:event.eventId,eventDigest:f.transport.digest(JSON.stringify(event))});
+   assert.equal((await f.handlers.ingest(f.request(event))).status,200);await f.job();
+   const dto=await action("synthetic");assert.equal(dto.ok,true);assert.equal(dto.snapshot.coverage.state,"suppressed");
+   assert.deepEqual(dto.snapshot.adoption.daysWithSponsoredUse,{state:"withheld",reason:"small_group"});
+   for(const key of ["daysCovered","modulesCovered"])assert.equal(Object.hasOwn(dto.snapshot.coverage,key),false,key+" must be omitted, never zero");
+   assert.deepEqual(f.load("src/lib/account/privacy.ts").assertSnapshotPrivacy(dto.snapshot),[]);
+   const exports={};
+   for(const format of ["csv","html"]) {
+    const response=await download(new Request("http://studio.test/hq/account-review/download?source=live&venue=synthetic&format="+format));
+    assert.equal(response.status,200);exports[format]=await response.text();
+   }
+   returned.push({dto,exports});
+  }
+  assert.equal((await f.database.select().from(f.schema.sponsorUsageDaily)).length,2,"two observed rows; no artificial quiet days");
+  assert.deepEqual(returned[1],returned[0],"the entire action DTO and CSV/HTML must not reveal one versus two active days");
+ } finally {
+  Date.now=clock;
+  for(const [key,value] of [["SPONSOR_USAGE_EVENTS",prior.flag],["SIGNAL_HQ_PASSWORD",prior.password]])
+   if(value===undefined)delete process.env[key];else process.env[key]=value;
+ }
 }));
 test("parallel signed deliveries converge after retry without holding a writer during provenance",()=>fixture(async f=>{
  const results=await Promise.all([f.handlers.ingest(f.request()),f.handlers.ingest(f.request())]);
