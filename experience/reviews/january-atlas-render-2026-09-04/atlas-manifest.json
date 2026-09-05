@@ -1,8 +1,8 @@
 {
   "schemaVersion": "signal-experience-capture/1",
-  "capturedAt": "2026-09-04T22:21:10.194Z",
-  "commit": "2a191a3479aa4cb3ce551e6e3ae629e39132e64e",
-  "buildId": "etkOKIYMHahiZKvqMPo-w",
+  "capturedAt": "2026-09-04T23:48:07.760Z",
+  "commit": "4102b5c524373f10ae74e3153eaa0da7bac914ed",
+  "buildId": "9paioZEdhaSy30PZA67hv",
   "approvedBy": null,
   "review": "scripted only; human usability and council not performed",
   "results": [
@@ -18,7 +18,7 @@
       "url": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
       "finalUrl": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
       "status": 200,
-      "materialityHash": "a81bb976b3b6bf10",
+      "materialityHash": "76fd95ec8677cf04",
       "fixture": {
         "scenario": "populated",
         "synthetic": true,
@@ -28,7 +28,7 @@
       },
       "navigationError": null,
       "candidateScreenshot": "screenshots/studio.page.hq-atlas-by-slug/default/tablet.png",
-      "candidateHash": "5acb85dbba8000de473b6fed4cf30b75c71060085e9712b54579e84dd0e0b163",
+      "candidateHash": "b78f2bd1dceeec6e87c846f11acce582abfa6012fce920897da3cbf07cd5b9d1",
       "accessibility": {
         "violations": 0,
         "blocking": 0,
@@ -84,15 +84,27 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/vault?_rsc=x_a0z_4rZU3eOeIx",
+            "url": "http://127.0.0.1:4396/?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/assets?_rsc=x_a0z_4rZU3eOeIx",
+            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/org?_rsc=x_a0z_4rZU3eOeIx",
+            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/data-room?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -136,15 +148,15 @@
             "error": "net::ERR_ABORTED"
           },
           {
+            "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
             "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
             "url": "http://127.0.0.1:4396/hq/data-room?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -164,7 +176,15 @@
             "error": "net::ERR_ABORTED"
           },
           {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
             "url": "http://127.0.0.1:4396/hq/reporting?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -172,15 +192,7 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
             "url": "http://127.0.0.1:4396/hq?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           }
         ],
@@ -196,7 +208,7 @@
         "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally"
       ],
       "additionalScreenshots": [],
-      "sourceDigest": "2e56c88ec8951b9bbd190360b9547e9f974042452916b00f723c437942519565"
+      "sourceDigest": "1d0e83ecb60d8b751f399653710a9be2d14d4080393c661dd90965a4fa60cd09"
     },
     {
       "experienceId": "studio.page.hq-atlas-by-slug",
@@ -210,7 +222,7 @@
       "url": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
       "finalUrl": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
       "status": 200,
-      "materialityHash": "a81bb976b3b6bf10",
+      "materialityHash": "76fd95ec8677cf04",
       "fixture": {
         "scenario": "populated",
         "synthetic": true,
@@ -220,7 +232,7 @@
       },
       "navigationError": null,
       "candidateScreenshot": "screenshots/studio.page.hq-atlas-by-slug/default/mobile.png",
-      "candidateHash": "0a86ca8f5ea66c11b09000e618ad222cd4bed523a55734ea3569c6ed56118d71",
+      "candidateHash": "c60e6f1f0c666503c9292432360b7a8a55d7aef962c3e90532df222293dee654",
       "accessibility": {
         "violations": 0,
         "blocking": 0,
@@ -288,15 +300,31 @@
             "error": "net::ERR_ABORTED"
           },
           {
+            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
             "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/assets?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/decks?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -304,7 +332,7 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/decks?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/assets?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -316,10 +344,6 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
             "url": "http://127.0.0.1:4396/hq/crm?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
@@ -328,39 +352,19 @@
             "error": "net::ERR_ABORTED"
           },
           {
+            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
             "url": "http://127.0.0.1:4396/hq?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/health?_rsc=x_a0z_4rZU3eOeIx",
+            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=x_a0z_4rZU3eOeIx",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/experience-quality?_rsc=x_a0z_4rZU3eOeIx",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=x_a0z_4rZU3eOeIx",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=x_a0z_4rZU3eOeIx",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/health?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/experience-quality?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           }
         ],
@@ -378,7 +382,7 @@
         "Native Chromium touch swipe scrolls the diagram without page overflow"
       ],
       "additionalScreenshots": [],
-      "sourceDigest": "2e56c88ec8951b9bbd190360b9547e9f974042452916b00f723c437942519565"
+      "sourceDigest": "1d0e83ecb60d8b751f399653710a9be2d14d4080393c661dd90965a4fa60cd09"
     },
     {
       "experienceId": "studio.page.hq-atlas-by-slug",
@@ -392,7 +396,7 @@
       "url": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
       "finalUrl": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
       "status": 200,
-      "materialityHash": "a81bb976b3b6bf10",
+      "materialityHash": "76fd95ec8677cf04",
       "fixture": {
         "scenario": "populated",
         "synthetic": true,
@@ -402,7 +406,7 @@
       },
       "navigationError": null,
       "candidateScreenshot": "screenshots/studio.page.hq-atlas-by-slug/default/desktop.png",
-      "candidateHash": "869d672a2330d9ebefaeabdd7b73246b81d6378abf424ad7d6adcc76063161bb",
+      "candidateHash": "432f7f643441266d9d7fbfeb7a4eb4527c4c81298485b467b3f71b2d2f10f402",
       "accessibility": {
         "violations": 0,
         "blocking": 0,
@@ -451,11 +455,11 @@
         "pageErrors": [],
         "failedRequests": [
           {
-            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=x_a0z_4rZU3eOeIx",
+            "url": "http://127.0.0.1:4396/?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/?_rsc=x_a0z_4rZU3eOeIx",
+            "url": "http://127.0.0.1:4396/hq/atlas?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -475,11 +479,15 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/action-center?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -487,15 +495,7 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
             "url": "http://127.0.0.1:4396/hq/founders-circle?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/decks?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -503,11 +503,15 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/assets?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/decks?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
             "url": "http://127.0.0.1:4396/hq/org?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/assets?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -531,35 +535,15 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=x_a0z_4rZU3eOeIx",
-            "error": "net::ERR_ABORTED"
-          },
-          {
             "url": "http://127.0.0.1:4396/hq/health?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
+            "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
             "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/health?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/experience-quality?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/atlas/five-products-as-a-system?_rsc=x_a0z_4rZU3eOeIx",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/atlas/plan-cycle?_rsc=x_a0z_4rZU3eOeIx",
-            "error": "net::ERR_ABORTED"
-          },
-          {
-            "url": "http://127.0.0.1:4396/hq/atlas/signal-studio-umbrella?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           }
         ],
@@ -575,7 +559,7 @@
         "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally"
       ],
       "additionalScreenshots": [],
-      "sourceDigest": "2e56c88ec8951b9bbd190360b9547e9f974042452916b00f723c437942519565"
+      "sourceDigest": "1d0e83ecb60d8b751f399653710a9be2d14d4080393c661dd90965a4fa60cd09"
     },
     {
       "experienceId": "studio.page.hq-atlas-by-slug",
@@ -589,7 +573,7 @@
       "url": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
       "finalUrl": "http://127.0.0.1:4396/hq/atlas/brand-enforcement",
       "status": 200,
-      "materialityHash": "a81bb976b3b6bf10",
+      "materialityHash": "76fd95ec8677cf04",
       "fixture": {
         "scenario": "populated",
         "synthetic": true,
@@ -599,7 +583,7 @@
       },
       "navigationError": null,
       "candidateScreenshot": "screenshots/studio.page.hq-atlas-by-slug/default/wide.png",
-      "candidateHash": "e5ef9aa2339c0f57746a92f749066cbb01033d57d73acf580cd6ebcb3de90038",
+      "candidateHash": "24c8dc706b61e3de789e9ac20ee99fc0faa9f248771686537883e35e1baaee42",
       "accessibility": {
         "violations": 0,
         "blocking": 0,
@@ -658,15 +642,27 @@
             "error": "net::ERR_ABORTED"
           },
           {
+            "url": "http://127.0.0.1:4396/hq/data-room?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
             "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/design-rooms?_rsc=x_a0z_4rZU3eOeIx",
+            "url": "http://127.0.0.1:4396/hq/vault?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/crm?_rsc=x_a0z_4rZU3eOeIx",
+            "url": "http://127.0.0.1:4396/hq/org?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/assets?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -674,11 +670,19 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/account-review?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
             "url": "http://127.0.0.1:4396/hq/entitlements?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/decks?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -690,10 +694,6 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/decks?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
             "url": "http://127.0.0.1:4396/hq/vault?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
@@ -702,11 +702,11 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/org?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/reporting?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/org?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -714,19 +714,19 @@
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/crm?_rsc=J5wi-4GuQhosz3Zl",
-            "error": "net::ERR_ABORTED"
-          },
-          {
             "url": "http://127.0.0.1:4396/hq/action-center?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/platform-readiness?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq/crm?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           },
           {
-            "url": "http://127.0.0.1:4396/hq/health?_rsc=J5wi-4GuQhosz3Zl",
+            "url": "http://127.0.0.1:4396/hq?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/health?_rsc=x_a0z_4rZU3eOeIx",
             "error": "net::ERR_ABORTED"
           },
           {
@@ -735,6 +735,14 @@
           },
           {
             "url": "http://127.0.0.1:4396/hq/atlas/plan-cycle?_rsc=x_a0z_4rZU3eOeIx",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/plan-cycle?_rsc=J5wi-4GuQhosz3Zl",
+            "error": "net::ERR_ABORTED"
+          },
+          {
+            "url": "http://127.0.0.1:4396/hq/atlas/signal-studio-umbrella?_rsc=J5wi-4GuQhosz3Zl",
             "error": "net::ERR_ABORTED"
           }
         ],
@@ -750,7 +758,7 @@
         "Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally"
       ],
       "additionalScreenshots": [],
-      "sourceDigest": "2e56c88ec8951b9bbd190360b9547e9f974042452916b00f723c437942519565"
+      "sourceDigest": "1d0e83ecb60d8b751f399653710a9be2d14d4080393c661dd90965a4fa60cd09"
     }
   ]
 }

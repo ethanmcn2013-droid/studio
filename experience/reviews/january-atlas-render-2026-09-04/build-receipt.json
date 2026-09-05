@@ -1,7 +1,7 @@
 {
-  "sourceDigest": "2e56c88ec8951b9bbd190360b9547e9f974042452916b00f723c437942519565",
-  "buildId": "etkOKIYMHahiZKvqMPo-w",
-  "builtAt": "2026-09-04T22:07:25.236Z",
+  "sourceDigest": "1d0e83ecb60d8b751f399653710a9be2d14d4080393c661dd90965a4fa60cd09",
+  "buildId": "9paioZEdhaSy30PZA67hv",
+  "builtAt": "2026-09-04T23:41:00.760Z",
   "node": "v24.19.0",
   "command": "node scripts/experience/january/serve.mjs build",
   "environment": "allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration"

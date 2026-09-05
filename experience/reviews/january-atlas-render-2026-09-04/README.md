@@ -1,5 +1,7 @@
 # Atlas Unicode, list and mobile readability repair
 
+Current evidence is recorded in “Current token-repair capture — 5 September” below. It supersedes earlier source/build/server identities; four default renders pass, with the extended registry state matrix still assigned.
+
 The Unicode/list repair was committed as `e53e57d6efe60b416a8ee49ab7ef5b7df533f0e7`. This follow-up merges the final lead candidate `2a191a3479aa4cb3ce551e6e3ae629e39132e64e`, including Event commercial changes and the package/CI test wiring, then fixes the demonstrated mobile readability limitation. Worktree: `C:/Users/ethan/signal-studio-workspace/worktrees/studio/fix-january-studio-experience-coverage`; branch `fix/january-studio-experience-coverage`. No Atlas content, Students source, commercial contracts, dependency files, workflows, programme documents or registry approval fields were authored in this follow-up.
 
 ## Repair and focused evidence
@@ -56,3 +58,9 @@ node scripts/experience/validate.mjs --product=studio
 The source digest uses tracked source/content/contracts and package/lock/workspace/Next-config inputs; generated evidence is excluded. The existing hash helper normalizes CRLF and bare CR to LF. The attestor rejects stale source, omitted cases, changed screenshots and runtime/accessibility faults. The lead owns package test scripts and CI wiring.
 
 The two other demonstrated gaps are repaired in this same bounded follow-up: notice-aware spacing keeps Blueprint's camera usable while the notice remains visible, and the Access expiry input fits its grid column. Their measured/pointer/keyboard checks are in the combined matrix. This does not claim Access mutation workflow acceptance.
+
+## Current token-repair capture — 5 September
+
+Runtime4102b5c524373f10ae74e3153eaa0da7bac914ed in feat-january-commercial-readiness supersedes the historical build/server identities above. Actual build9paioZEdhaSy30PZA67hv, digest1d0e83ecb60d8b751f399653710a9be2d14d4080393c661dd90965a4fa60cd09, passed four fresh Atlas default-state renders with existing Unicode, nested-list, keyboard, touch-scroll, contrast and runtime assertions. Build and ds-check pass; the matching188-case commercial matrix also passed. The scoped screenshot and manifest files here are from this exact artifact. Manual incomplete checks remain retained.
+
+The shared semantic-colour repair changed this route's source, so default-only Atlas proof does not complete its registry state matrix. The separate14-page coverage extension owns full required-state proof; no registry approval/hash was manufactured. Initial1382 and1b7a Atlas contrast failures are retained in the execution evidence. Original server80367/PID26652 is stopped; use the declared safe startup rather than a historical process ID.
