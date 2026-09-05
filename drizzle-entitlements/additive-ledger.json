@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "baseline": "0000_init",
+  "productionAuthorized": false,
+  "migrations": [
+    {
+      "id": "0001_venue_fulfilment",
+      "sql": "drizzle-entitlements/0001_venue_fulfilment.sql",
+      "sha256": "930455a3f86d457f98c8391a6079a47165cf3dedd5fc01d9087366b1c5e84b82",
+      "journalWhen": 1788559200000,
+      "policy": "additive-local-only",
+      "rollback": "Disable the issuance service and keep allocated requests/codes for exact retry. Do not drop delivered records or rewrite grants."
+    },
+    {
+      "id": "0002_usage_delivery",
+      "sql": "drizzle-entitlements/0002_usage_delivery.sql",
+      "sha256": "d8b6eb2c01d9890558bf77b7bbfc580b199e121e11688525cf5de02e8bbac441",
+      "journalWhen": 1788566400000,
+      "policy": "additive-local-only",
+      "rollback": "Disable positive usage capture/delivery; keep authenticated maintenance and erasure delivery running. Drain pending erasure controls before any separately reviewed data removal. No production application authorized."
+    }
+  ]
+}

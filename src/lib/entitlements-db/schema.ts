@@ -914,3 +914,30 @@ export const sponsorReportSnapshots = sqliteTable(
 
 export type SponsorReportSnapshot = typeof sponsorReportSnapshots.$inferSelect;
 export type NewSponsorReportSnapshot = typeof sponsorReportSnapshots.$inferInsert;
+
+/** Canonical Venue issuance reservation and recoverable App delivery.
+ * Raw bearer codes remain in license_codes, never this manifest or audit. */
+export const venueSponsorMirrors = sqliteTable("venue_sponsor_mirrors", {
+  sponsorId: text("sponsor_id").primaryKey().references(() => sponsors.id),
+  studioSponsorId: text("studio_sponsor_id").notNull().unique(),
+  sponsorSlug: text("sponsor_slug").notNull().unique(),
+  createdAt: integer("created_at").notNull(),
+});
+export const venueFulfilmentRequests = sqliteTable("venue_fulfilment_requests", {
+  id: text("id").primaryKey(),
+  sponsorId: text("sponsor_id").notNull().references(() => sponsors.id),
+  studioSponsorId: text("studio_sponsor_id").notNull(),
+  requestJson: text("request_json").notNull(),
+  manifestJson: text("manifest_json").notNull(),
+  manifestHash: text("manifest_hash").notNull(),
+  operatorId: text("operator_id").notNull(),
+  operatorName: text("operator_name").notNull(),
+  withdrawalsJson: text("withdrawals_json").notNull().default("[]"),
+  deliveryState: text("delivery_state").$type<"pending" | "fulfilled">().notNull().default("pending"),
+  revision: integer("revision").notNull().default(0),
+  fulfilledAt: integer("fulfilled_at"),
+  readbackJson: text("readback_json"),
+  lastError: text("last_error"),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
+}, (table) => [index("venue_fulfilment_sponsor_idx").on(table.sponsorId)]);

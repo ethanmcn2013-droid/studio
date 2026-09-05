@@ -337,9 +337,7 @@ export const VENUE_SUPPRESSED: AccountSnapshot = {
     periodEnd: "2026-07-24",
     periodLabel: "Last 30 days",
     definitionVersion: DEFINITION_VERSION,
-    modulesCovered: 4,
     modulesExpected: 4,
-    daysCovered: 30,
     daysExpected: 30,
   },
   access: {
