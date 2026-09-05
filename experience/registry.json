@@ -3579,7 +3579,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "67d4aa07aae68ca5"
+      "materialityHash": "c5c8e8a50639d008"
     },
     {
       "id": "studio.page.hq-access",
@@ -4036,7 +4036,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "0354e5ecd4c1bec0"
+      "materialityHash": "237f825df3d2ce8a"
     },
     {
       "id": "studio.page.hq-by-group",
@@ -4659,7 +4659,7 @@
       "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "f9e2e1393d0a7603"
+      "materialityHash": "33793195c77b8255"
     },
     {
       "id": "studio.page.hq-entitlements-by-lookup",
@@ -4840,7 +4840,7 @@
       "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "5a54dfb53b0fd300"
+      "materialityHash": "98ba23e9baf717c3"
     },
     {
       "id": "studio.page.hq-founders-circle",
@@ -4884,7 +4884,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "fe4ef20a60084d12"
+      "materialityHash": "6354b443663035d7"
     },
     {
       "id": "studio.page.hq-health",
@@ -5874,7 +5874,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "d505c2e220ee4e86"
+      "materialityHash": "e91c44746bbf38df"
     },
     {
       "id": "studio.page.hq-slide-30-review",
@@ -6095,7 +6095,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "575a65d46316904f"
+      "materialityHash": "d8c9a5a1cbee7e14"
     },
     {
       "id": "studio.page.hq-venue-portal-review",
@@ -6673,7 +6673,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "8d51f625e73df46a"
+      "materialityHash": "2c012f650a96d289"
     },
     {
       "id": "studio.page.tasks",
@@ -7167,7 +7167,7 @@
       "lastReviewedAt": "2026-07-15",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "490f966afc0f4edf"
+      "materialityHash": "b25db69a3b8e94f1"
     },
     {
       "id": "studio.surface.products-mega-panel",

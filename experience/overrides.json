@@ -109,7 +109,8 @@
         "long-content",
         "reduced-motion",
         "keyboard-only"
-      ]
+      ],
+      "materialityHash": "b25db69a3b8e94f1"
     },
     "studio.surface.site-navigation": {
       "auditStatus": "baseline-captured",
@@ -282,7 +283,8 @@
       "fixtureCoverage": "complete",
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
-      "automatedTestCoverage": "complete"
+      "automatedTestCoverage": "complete",
+      "materialityHash": "c5c8e8a50639d008"
     },
     "studio.page.hq-blueprint": {
       "requiredStates": [
@@ -299,7 +301,8 @@
       "fixtureCoverage": "complete",
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
-      "automatedTestCoverage": "complete"
+      "automatedTestCoverage": "complete",
+      "materialityHash": "237f825df3d2ce8a"
     },
     "studio.page.hq-entitlements": {
       "requiredStates": [
@@ -311,7 +314,8 @@
       "fixtureCoverage": "complete",
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
-      "automatedTestCoverage": "complete"
+      "automatedTestCoverage": "complete",
+      "materialityHash": "33793195c77b8255"
     },
     "studio.page.hq-financial-model": {
       "requiredStates": [
@@ -323,7 +327,8 @@
       "fixtureCoverage": "complete",
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
-      "automatedTestCoverage": "complete"
+      "automatedTestCoverage": "complete",
+      "materialityHash": "98ba23e9baf717c3"
     },
     "studio.page.hq-founders-circle": {
       "requiredStates": [
@@ -335,7 +340,8 @@
       "fixtureCoverage": "complete",
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
-      "automatedTestCoverage": "complete"
+      "automatedTestCoverage": "complete",
+      "materialityHash": "6354b443663035d7"
     },
     "studio.page.hq-reporting": {
       "requiredStates": [
@@ -352,7 +358,8 @@
       "fixtureCoverage": "complete",
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
-      "automatedTestCoverage": "complete"
+      "automatedTestCoverage": "complete",
+      "materialityHash": "e91c44746bbf38df"
     },
     "studio.page.students": {
       "requiredStates": [
@@ -364,7 +371,8 @@
       "fixtureCoverage": "complete",
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
-      "automatedTestCoverage": "complete"
+      "automatedTestCoverage": "complete",
+      "materialityHash": "2c012f650a96d289"
     },
     "studio.page.hq-access": {
       "requiredStates": [
@@ -574,7 +582,7 @@
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
       "automatedTestCoverage": "complete",
-      "materialityHash": "575a65d46316904f",
+      "materialityHash": "d8c9a5a1cbee7e14",
       "primaryJob": "Review held venue collateral against current January terms and launch decisions.",
       "primaryAction": "Read the current guidance and inspect retained local collateral specimens."
     }
