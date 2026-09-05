@@ -54,8 +54,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ethanmcn2013-droid/app
-          ref: ${{ (github.base_ref == 'release/january-2027' || github.ref_name == 'release/january-2027') && 'release/january-2027' || 'main' }}
+          ref: ${{ (github.base_ref == 'release/january-2027' || github.ref_name == 'release/january-2027') && 'f3240a74bff3b5a839f272f898cd44aceb00159a' || 'main' }}
           path: app-contract-peer
+      - name: Install immutable paired App dependencies
+        working-directory: app-contract-peer
+        run: corepack pnpm install --frozen-lockfile
       - name: Record paired App revision and compare contracts
         run: |
           git -C app-contract-peer rev-parse HEAD
@@ -67,6 +70,7 @@ jobs:
         run: pnpm test
         env:
           APP_REPO_PATH: ${{ github.workspace }}/app-contract-peer
+          VENUE_APP_FIXTURE_ROOT: ${{ github.workspace }}/app-contract-peer
       - name: Remove paired checkout before scanning or building Studio
         if: always()
         run: rm -rf app-contract-peer
