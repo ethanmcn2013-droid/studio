@@ -41,3 +41,26 @@ Retain €89 once, twelve calendar months, read-only after the term and revoked 
 Reopening requires verified designation under the project/account mutation fence plus consistent private reads, actual-object mutations, Tasks public board/share/OG/cache behavior, bound Timeline curation and public artifacts, honest UI, and owner export/deletion/security recovery. These independent surfaces cannot be closed by the entitlement reader or a mutation-only lock. The exact boundary and tests are in App docs/execution/january-2027/EVENT-ACCESS-CLOSURE.md at a10432dd. S2 Commercial remains partial.
 
 The historical inventory is the open operator item “Reconcile historical Event purchases before designating project access.” Unknown past designation must not silently lock an existing project or create an archive promise. Settlement of a session created before the candidate hold remains possible and does not itself verify project designation. This is an implementation/evidence gate under existing delegation, not another routine product-approval checkpoint.
+
+
+## Accepted internal prerequisites, 2026-09-05
+
+App80f3837b implements immutable checkout/settlement designation, original terms,
+refunds and anonymized surviving-project effects after purchaser erasure. Independent
+review corrected two test defects before acceptance; its composition0c93a5cb passes
+all three Linux workflows. The internal evaluator is not yet applied to content.
+
+Reviewed exportac7a913d, sealed6eba1335, is integrated asa6293a82. Purchasers can
+export their own facts after transfer/removal; current primary owners receive only
+project-term effects, without former-payer/reference fields. Profile downloads the
+existing authenticated account JSON independently of project-bound Tasks navigation.
+File contents are excluded and unavailable modules remain explicit. Principal27 export
+and24 tenant tests pass, followed by full typecheck and eight fresh component/actual-
+HTTP download/failure/retry cases on the composition. Native browser error-panel and
+full authenticated profile presentation remain unverified. Exact evidence lives in
+App experience/reviews/january-event-export-2026-09-05.
+
+This closes the bounded export prerequisite only. Project-specific owner recovery,
+all private/public/cache enforcement, provider rehearsal and receiving acceptance
+remain open. New Event sales stay unavailable; no production migration or historical
+designation has been applied. The canonical January programme owns current checks.

@@ -1,0 +1,2183 @@
+{
+  "kind": "read-only source indexing; no runtime/tests/providers executed",
+  "heads": {
+    "A": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+    "S": "a27025fe4654fd507f06c8cd60e53c3580985cb3"
+  },
+  "roots": {
+    "A": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys",
+    "S": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness",
+    "T": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2"
+  },
+  "rows": [
+    {
+      "id": "01",
+      "capability": "Home / Full Briefing",
+      "sources": [
+        {
+          "key": "A:src/app/app/home/home-data.ts",
+          "symbol": "loadHomeData"
+        },
+        {
+          "key": "A:src/modules/signal/lib/planning-periods/scope.ts",
+          "symbol": "listPlanningCatalogForUser"
+        },
+        {
+          "key": "A:src/modules/signal/app/signal-page-data.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:docs/adr/0001-canonical-project-identity.md",
+          "symbol": null
+        }
+      ],
+      "state": "Intended front door and labelled aggregate reading scope, never a fourth product or new authority. Candidate maps real Task links and includes authorized true-NULL loose projects; aggregate rows open scoped Full Briefing via BRIEFING_APP_PATH (destination: briefing); individual task rows use taskHref(item.id).",
+      "receipts": [
+        "T:outputs/recipient-project-work/composition-4e25e85f/receipt.json",
+        "T:outputs/recipient-project-work/composition-4e25e85f/immutable-source-proof-75cd4ff5.json"
+      ],
+      "proof": "10 persisted checkpoints; 199 inputs bound to75cd4ff5. Current final source is later.",
+      "next": "Final composed authenticated return through Home and exact link; receiving gates. No human usefulness inference.",
+      "owner": "Principal; Home + Poincaré module recovery.",
+      "correction": {
+        "date": "2026-09-05",
+        "note": "Principal source check corrected the index: aggregates navigate to scoped Full Briefing, not scoped Tasks. Individual task rows use taskHref. This is a source-map correction, not new acceptance evidence.",
+        "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+        "path": "src/app/app/home/home-data.ts",
+        "lines": {
+          "scopeConstruction": "124-133",
+          "destination": 137,
+          "hrefSelection": 143
+        },
+        "source": [
+          "133: const aggregateHref = `${BRIEFING_APP_PATH}?${scopeParams.toString()}`;",
+          "137: destination: aggregate ? \"briefing\" : \"task\",",
+          "143: href: aggregate ? aggregateHref : taskHref(item.id),"
+        ]
+      }
+    },
+    {
+      "id": "02",
+      "capability": "Notes capture / recovery / outward send",
+      "sources": [
+        {
+          "key": "A:src/modules/notes/server/actions/notes.ts",
+          "symbol": "createNoteIdempotent"
+        },
+        {
+          "key": "A:src/modules/notes/server/actions/notes.ts",
+          "symbol": "updateNoteWithVersion"
+        },
+        {
+          "key": "A:src/modules/notes/server/actions/notes.ts",
+          "symbol": "sendApprovedExtractToTasks"
+        },
+        {
+          "key": "A:src/modules/notes/app/workspace/use-notebook.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/modules/notes/lib/notes-recovery.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/modules/notes/server/tasks-personalization.ts",
+          "symbol": null
+        }
+      ],
+      "state": "Private actor-owned notes; Project is filing/destination metadata. Candidate has versioned saves, request-bound creation, session recovery and explicit approved Tasks delivery. Back/reload and project hints have bounded repairs; private content is not shared by membership.",
+      "receipts": [
+        "T:outputs/notes-f04a-independent-verification.md",
+        "A:experience/reviews/january-recipient-2026-09-05/README.md"
+      ],
+      "proof": "Retained f04 independent198 checks/scenarios; e2e4 records27 browser scenarios with adapters.",
+      "next": "Final composed browser/account-switch/recovery continuity; actual authenticated use. Speech/photo provider behavior is separate.",
+      "owner": "Principal / experience; Poincaré Notes owner."
+    },
+    {
+      "id": "03",
+      "capability": "Tasks / My work / room and archive",
+      "sources": [
+        {
+          "key": "A:src/lib/tasks/selectors.ts",
+          "symbol": "bucketMyWeek"
+        },
+        {
+          "key": "A:src/components/app/my-week/my-week-app.tsx",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/actions/tasks.ts",
+          "symbol": "addTaskAction"
+        },
+        {
+          "key": "A:src/server/actions/tasks.ts",
+          "symbol": "getTasksAction"
+        },
+        {
+          "key": "A:src/components/app/tasks-runtime-shell.tsx",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/actions/room.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/app/app/archived/page.tsx",
+          "symbol": null
+        }
+      ],
+      "state": "Candidate exposes undated/later assigned work, role-appropriate empty state and known-name greeting. Explicit proven Project controls Tasks/shell/room/archive; permitted writes persist activity. Contrast and context follow-ups are implemented, not final experience acceptance.",
+      "receipts": [
+        "A:experience/reviews/january-recipient-2026-09-05/README.md",
+        "T:outputs/recipient-project-work/composition-4e25e85f/receipt.json",
+        "T:outputs/recipient-project-work/floor-theme-repair/README.md"
+      ],
+      "proof": "e2e4:68 actual-route states +26 recipient cases; persisted10 checkpoints; da025:6 generator +80 component contrast checks.",
+      "next": "Final greeting/commercial/contrast combined capture and receiving gates; full Clerk continuity. Do not reuse structural passes as contrast approval.",
+      "owner": "Principal final capture; recipient lane runtime/style (frozen)."
+    },
+    {
+      "id": "04",
+      "capability": "Timeline / narrow public revocation",
+      "sources": [
+        {
+          "key": "A:docs/TIMELINE_OWNER_ARTIFACT_CONTRACT.md",
+          "symbol": null
+        },
+        {
+          "key": "A:src/modules/timeline/server/actions/workspaces.ts",
+          "symbol": "syncMilestonesAction"
+        },
+        {
+          "key": "A:src/modules/timeline/server/actions/audience-timeline.ts",
+          "symbol": "publishAudiencePublicationAction"
+        },
+        {
+          "key": "A:src/modules/timeline/server/actions/audience-timeline.ts",
+          "symbol": "revokeAudienceShareAction"
+        },
+        {
+          "key": "A:src/modules/timeline/server/audience-timeline.ts",
+          "symbol": "revokeAudienceShares"
+        },
+        {
+          "key": "A:src/modules/timeline/lib/audience-timeline.ts",
+          "symbol": "freezeAudienceItem"
+        }
+      ],
+      "state": "Live bound Timeline is subordinate to Tasks Project. Managers curate/publish an explicit frozen subset; revocation remains reachable. Candidate includes sync/erasure/preparation repairs. Public DTO is separate from live private Notes/Tasks.",
+      "receipts": [
+        "T:outputs/recipient-project-work/composition-4e25e85f/receipt.json",
+        "T:outputs/january-module-lifecycle/r1-7f1f48c8/HANDOFF.md"
+      ],
+      "proof": "Real initialize/sync/publish/outsider redaction/frozen update/revoke in10-checkpoint chain; separate7f1 R1 receipt.",
+      "next": "Final combined authenticated/public browser and operational cache/revocation proof; full erasure remains separately gated.",
+      "owner": "Principal; Poincaré module lifecycle."
+    },
+    {
+      "id": "05",
+      "capability": "Canonical Project identity",
+      "sources": [
+        {
+          "key": "A:docs/adr/0001-canonical-project-identity.md",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/projects/resolve.ts",
+          "symbol": "resolveActiveProjectForRouteWith"
+        },
+        {
+          "key": "A:src/server/actions/project-authz.ts",
+          "symbol": "authorizeProjectCandidate"
+        },
+        {
+          "key": "A:src/server/projects/active-project-cookie.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/lib/projects/project-url.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/actions/tasks-project-arrival.ts",
+          "symbol": "openTasksProjectAction"
+        }
+      ],
+      "state": "Canonical Project = Tasks workspaces.id. Explicit URL authorizes current membership; missing/forbidden is neutral, no substitution. Cookies are preferences. V3-off explicit Tasks arrival uses supported POST recovery; GET does not write preferences. Planning periods only widen labelled reads.",
+      "receipts": [
+        "A:experience/reviews/january-recipient-2026-09-05/README.md",
+        "T:outputs/recipient-project-work/archive-room/README.md"
+      ],
+      "proof": "Retained route/source/context fixtures; no new security verdict or complete Next session claim.",
+      "next": "Principal indexes final route/cookie/history composition; independent context acceptance carries existing recorded limitations.",
+      "owner": "Principal identity authority; recipient + module contributors."
+    },
+    {
+      "id": "06",
+      "capability": "Templates / onboarding / welcome",
+      "sources": [
+        {
+          "key": "A:src/server/db/apply-template.ts",
+          "symbol": "applyTemplateInTransaction"
+        },
+        {
+          "key": "A:src/server/actions/templates.ts",
+          "symbol": "applyTemplateAction"
+        },
+        {
+          "key": "A:src/server/onboarding-completion.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/actions/onboarding.ts",
+          "symbol": "completeOnboardingAction"
+        },
+        {
+          "key": "A:src/server/db/venue-welcome.ts",
+          "symbol": "detectVenueWelcome"
+        },
+        {
+          "key": "A:src/server/db/comp-redemption.ts",
+          "symbol": "claimCompEntitlement"
+        }
+      ],
+      "state": "Reproducible templates, atomic request-bound apply/remix and stable caller identity. Same request replays; intentional new requests remain additive. Existing-Project welcome stays explicit; new Venue setup requires manageProject. Unknown historical partial grants are reconciliation, not recreated content.",
+      "receipts": [
+        "T:outputs/p2-welcome-ca95830e-verification.md",
+        "T:outputs/venue-usage-composition-independent-review.md"
+      ],
+      "proof": "ca958:47 existing-Project route/action checks;3-store late starter-write rollback and replay proof.",
+      "next": "Legacy contextual new-Project sponsor/date flow remains explicitly unverified. Final welcome render and historical reconciliation procedure.",
+      "owner": "Principal; template lane + Confucius caller owner."
+    },
+    {
+      "id": "07",
+      "capability": "Member invitations / roles",
+      "sources": [
+        {
+          "key": "A:docs/COLLABORATION_LOOP.md",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/actions/settings.ts",
+          "symbol": "inviteMemberByEmailAction"
+        },
+        {
+          "key": "A:src/server/actions/settings.ts",
+          "symbol": "acceptInviteAction"
+        },
+        {
+          "key": "A:src/app/invite/[token]/page.tsx",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/projects/capabilities.ts",
+          "symbol": "resolveProjectRole"
+        },
+        {
+          "key": "A:src/server/projects/capabilities.ts",
+          "symbol": "projectCapabilities"
+        }
+      ],
+      "state": "Stored owner/member plus primary-owner identity produce actual capabilities. Co-owner manages/curates; primary owner retains permanent delete/transfer; active members edit shared tasks. Strategy labels guest/client/supplier/viewer do not establish extra stored roles or selected-task ACLs. Invite GET is non-consuming; authenticated acceptance binds B.",
+      "receipts": [
+        "A:src/server/invite-arrival.test.ts",
+        "T:outputs/recipient-project-work/composition-4e25e85f/receipt.json"
+      ],
+      "proof": "Programme retains25 invite cases; real local invite/accept/action/removal chain with email/request adapters.",
+      "next": "Designated real invitation/auth roundtrip, account switch and first useful action. No email deliverability or human first-minute success claim.",
+      "owner": "Principal / collaboration; invitation + recipient lanes."
+    },
+    {
+      "id": "08",
+      "capability": "Drive / native attachments",
+      "sources": [
+        {
+          "key": "A:docs/projects/project-drive/DECISIONS.md",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/connections/project-drive-access.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/connections/project-drive-operation-orchestrator.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/actions/drive-upload-recovery.ts",
+          "symbol": "recoverDriveUploadAction"
+        },
+        {
+          "key": "A:src/server/attachments/native-upload-custody.ts",
+          "symbol": "finalizeNativeUploadClaimInTransaction"
+        },
+        {
+          "key": "A:src/server/actions/attachment-uploads.ts",
+          "symbol": null
+        }
+      ],
+      "state": "Candidate drive.file, stored Project folder, named-user permissions, journaled upload/grant/erasure custody; native remains separate storage. Completed closed-tab uploads can be adopted by original uploader; incomplete lost-tab bytes cannot resume. Existing50MB cap, not limitless storage.",
+      "receipts": [
+        "T:outputs/drive-recovery-security-review.md",
+        "A:experience/reviews/january-recipient-2026-09-05/README.md"
+      ],
+      "proof": "3caf recovery81 authored +39 independent cases retained; e2e4 full Drive rerun passed after separately retained native-process failure.",
+      "next": "Operator-designated two-account Google/Clerk upload/revoke/reauth/handover/erasure and failure matrix; no real provider observation here.",
+      "owner": "Drive owner + principal; operator for provider configuration."
+    },
+    {
+      "id": "09",
+      "capability": "Pro / purchase and portal authority",
+      "sources": [
+        {
+          "key": "S:contracts/commercial-terms.v2.json",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/stripe-lifecycle.ts",
+          "symbol": "handleStripeLifecycle"
+        },
+        {
+          "key": "A:src/server/stripe-access.ts",
+          "symbol": "reconcileStripeAccessBatch"
+        },
+        {
+          "key": "A:src/server/actions/billing.ts",
+          "symbol": "createCheckoutSessionAction"
+        },
+        {
+          "key": "A:src/server/actions/plan.ts",
+          "symbol": "createBillingPortalSessionAction"
+        },
+        {
+          "key": "A:src/server/db/entitlements.ts",
+          "symbol": "getEffectiveTier"
+        },
+        {
+          "key": "A:src/lib/entitlements-shared/reads.ts",
+          "symbol": "sharedGrantScope"
+        },
+        {
+          "key": "A:src/components/app/settings/sections/billing.tsx",
+          "symbol": "TIER_META"
+        },
+        {
+          "key": "A:src/server/checkout-policy.ts",
+          "symbol": "checkoutModeFor"
+        }
+      ],
+      "state": "Commercial contract owns public offer; App owns actual checkout/settlement and effective scope. Positive access binds verified customer/reference/paid term; historical revocations precede retryable mirror errors. Portal uses durable customer binding, not email. Internal tier names are not a second public offer ladder. Settings explicitly maps public Pro to internal workspace tier; checkoutModeFor classifies it as subscription.",
+      "receipts": [
+        "T:outputs/billing-recovery-handoff.md",
+        "T:outputs/entitlement-scope-verification.md"
+      ],
+      "proof": "07a recovery and254 reader composition receipts; provider-stubbed/local SQLite, not real settlement.",
+      "next": "Exact final commercial-copy/provider price mapping and designated Stripe test-mode checkout/invoice/refund/portal rehearsal.",
+      "owner": "Principal commercial; billing writer and Chandra entitlement owner; operator Stripe."
+    },
+    {
+      "id": "10",
+      "capability": "Event fulfilment / post-window policy",
+      "sources": [
+        {
+          "key": "S:content/hq/decisions/event-project-funding-2026-09-04.md",
+          "symbol": null
+        },
+        {
+          "key": "S:contracts/commercial-terms.v2.json",
+          "symbol": null
+        },
+        {
+          "key": "A:docs/execution/january-2027/EVENT-ACCESS-CLOSURE.md",
+          "symbol": null
+        },
+        {
+          "key": "A:src/lib/billing-availability.ts",
+          "symbol": "checkoutAvailable"
+        },
+        {
+          "key": "A:src/app/api/checkout/route.ts",
+          "symbol": null
+        }
+      ],
+      "state": "Approved owner-designated Project funding policy and €89/12-calendar-month/read-only target exist. Current implemented fallback is NEW sales unavailable; settlement/refund recovery retained. Full private/public post-window enforcement and historical designation are not claimed implemented or released.",
+      "receipts": [
+        "S:docs/execution/january-2027/EVENT_COMMERCIAL_SYNC.md",
+        "S:docs/execution/january-2027/ACCEPTANCE.md"
+      ],
+      "proof": "Retained a104 hold/UI/contract checks and delegated decision; characterization failures remain unfinished policy implementation evidence.",
+      "next": "Complete recorded access-closure matrix and historical designation reconciliation before reopening sales.",
+      "owner": "Principal commercial + entitlement-policy owner; operator historical inventory."
+    },
+    {
+      "id": "11",
+      "capability": "Student fulfilment",
+      "sources": [
+        {
+          "key": "S:contracts/commercial-terms.v2.json",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/actions/comp.ts",
+          "symbol": "requestStudentCodeAction"
+        },
+        {
+          "key": "S:src/app/students/page.tsx",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/auth.ts",
+          "symbol": null
+        }
+      ],
+      "state": "Paid verified-student annual policy is canonical; candidate email-only request returns unavailable and new .edu auto-grant is disabled. Historical codes/grants remain. No implemented new verified Student checkout/annual reverification claim.",
+      "receipts": [
+        "S:docs/execution/january-2027/PROGRAMME.md",
+        "S:experience/reviews/january-commercial-2026-09-05/README.md"
+      ],
+      "proof": "Programme recordsfc40 hold; Studio188 retained matrix covers availability presentation, not eligibility fulfilment.",
+      "next": "Actual eligibility/reverification implementation and aligned paid path, then isolated provider proof; do not infer eligibility from email syntax.",
+      "owner": "Principal commercial / eligibility owner; operator external verification facts."
+    },
+    {
+      "id": "12",
+      "capability": "Venue / Founding fulfilment",
+      "sources": [
+        {
+          "key": "S:content/hq/decisions/january-venue-fulfilment.md",
+          "symbol": null
+        },
+        {
+          "key": "S:src/lib/entitlements-db/venue-payment.ts",
+          "symbol": "recordVenuePayment"
+        },
+        {
+          "key": "S:src/lib/entitlements-db/founding-numbers.ts",
+          "symbol": "assignFoundingNumber"
+        },
+        {
+          "key": "S:src/lib/venue-fulfilment/store.ts",
+          "symbol": "allocateVenueIssuance"
+        },
+        {
+          "key": "S:src/lib/venue-fulfilment/store.ts",
+          "symbol": "fulfilVenueRequest"
+        },
+        {
+          "key": "A:src/server/venue-issuance/store.ts",
+          "symbol": "executeVenueIssuance"
+        },
+        {
+          "key": "A:src/server/venue-issuance/canonical.ts",
+          "symbol": "readback"
+        },
+        {
+          "key": "A:src/server/db/comp-redemption.ts",
+          "symbol": "claimCompEntitlement"
+        }
+      ],
+      "state": "Studio owns receipt-attested payment, founding allocation, canonical issuance/manifest and App readback. App owns actual code availability/claim. New claim atomically consumes capacity,18 starter tasks and metadata; zero usage. Same claim returns original Project. Consumed erasure receipt allows unused sibling withdrawal without personal identity.",
+      "receipts": [
+        "T:outputs/venue-usage-composition-independent-review.md",
+        "S:docs/account/VENUE_USAGE_REHEARSAL.md"
+      ],
+      "proof": "Exact da623/43bf actual3 stores:3 offers/24 checkpoints plus14 independent failure probes. Operator payment record is not observed cleared cash.",
+      "next": "Final support packet/recovery rehearsal and receiving pair; real named payment/recipient configuration. Packet sending remains separate authorization.",
+      "owner": "Chandra issuance + principal commercial; operator payment evidence."
+    },
+    {
+      "id": "13",
+      "capability": "Useful-action reporting / privacy",
+      "sources": [
+        {
+          "key": "S:src/lib/account/instrumentation/event-schema.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/actions/tasks.ts",
+          "symbol": "addTaskAction"
+        },
+        {
+          "key": "A:src/server/sponsored-use/capture.ts",
+          "symbol": "captureTaskCreated"
+        },
+        {
+          "key": "A:src/server/sponsored-use/provenance.ts",
+          "symbol": "readUsageEventProof"
+        },
+        {
+          "key": "A:src/server/sponsored-use/delivery.ts",
+          "symbol": "deliverUsage"
+        },
+        {
+          "key": "S:src/lib/account/instrumentation/verified-ingest.ts",
+          "symbol": null
+        },
+        {
+          "key": "S:src/lib/account/instrumentation/usage-jobs.ts",
+          "symbol": "closeUsageDays"
+        },
+        {
+          "key": "S:src/lib/account/live/project-venue-usage.ts",
+          "symbol": "projectVenueUsageSnapshot"
+        },
+        {
+          "key": "S:src/app/hq/account-review/actions.ts",
+          "symbol": "loadLiveVenueSnapshotAction"
+        }
+      ],
+      "state": "Only deliberate Tasks creation is captured, atomically with task/activity. Seven-field minute-rounded event; purpose-separated signed provenance binds exact actor/Project/canonical issuance/interval/epoch. Closed observed days persist; private HQ/export suppress whole behavioral envelope below3, retention rates below5. Definitions for other products are not instrumentation.",
+      "receipts": [
+        "T:outputs/venue-usage-composition-independent-review.md",
+        "T:outputs/s5-privacy-ack-independent-verification.md"
+      ],
+      "proof": "Actual action→intent→signed routes→SQLite→closed-day→authenticated HQ/export→erasure chain; separate154-check privacy/ack fix receipt.",
+      "next": "Final receiving composition, maintained delivery/retention/erasure scheduling and configured epochs. No deployed capture, participant success or revenue inference.",
+      "owner": "S5 usage lane; Chandra canonical issuance; principal / operator scheduling."
+    },
+    {
+      "id": "14",
+      "capability": "Export / account and project erasure",
+      "sources": [
+        {
+          "key": "A:src/app/api/account/export/route.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/account-unified-export.ts",
+          "symbol": "exportUnifiedAccountDataWith"
+        },
+        {
+          "key": "A:src/server/account-unified-erasure.ts",
+          "symbol": "deleteUnifiedAccountDataWith"
+        },
+        {
+          "key": "A:src/server/account-deletion-lifecycle.ts",
+          "symbol": "beginAccountDeletionWith"
+        },
+        {
+          "key": "A:src/modules/notes/server/notes-gdpr.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/server/venue-issuance/erasure.ts",
+          "symbol": null
+        },
+        {
+          "key": "S:src/lib/account/instrumentation/usage-erasure.ts",
+          "symbol": "eraseUsageSubject"
+        }
+      ],
+      "state": "Unified export preserves available modules, safe module failure status and generic private/no-store host errors. Erasure establishes fence; calendar/provider custody survives failed revoke; module child/parent deletion and usage erasure are separate durable stages. Terminal consumed-code fact carries no actor/Project identity.",
+      "receipts": [
+        "T:outputs/account-export-768951-review/findings.md",
+        "T:outputs/venue-usage-composition-independent-review.md",
+        "T:outputs/january-module-lifecycle/r1-7f1f48c8/HANDOFF.md"
+      ],
+      "proof": "768 export60 authored/independent checks; actual3-store account eraser/consumed sibling proof; module lifecycle retained receipts.",
+      "next": "Complete provider/Clerk deletion and retry orchestration, operational retention and restored-state exercise. Partial failure must remain visible.",
+      "owner": "Principal erasure/export; Chandra calendar/issuance; Poincaré modules; S5 usage."
+    },
+    {
+      "id": "15",
+      "capability": "Migrations / restore / rollback",
+      "sources": [
+        {
+          "key": "A:DEPLOY.md",
+          "symbol": null
+        },
+        {
+          "key": "A:drizzle/MIGRATIONS.md",
+          "symbol": null
+        },
+        {
+          "key": "A:drizzle/migration-ledger.json",
+          "symbol": null
+        },
+        {
+          "key": "A:scripts/db/migration-ledger.mjs",
+          "symbol": null
+        },
+        {
+          "key": "A:scripts/db/backup.mjs",
+          "symbol": null
+        },
+        {
+          "key": "S:drizzle-entitlements/additive-ledger.json",
+          "symbol": null
+        },
+        {
+          "key": "S:scripts/migrate-venue-fulfilment.mjs",
+          "symbol": null
+        },
+        {
+          "key": "S:scripts/migrate-usage-delivery.mjs",
+          "symbol": null
+        }
+      ],
+      "state": "App owning receipt runner through0030; shared additive0001 issuance/0002 usage with local-only runners. Queue/erasure tables are required even with capture off. Restore evidence is quiescent per-store integrity/DDL plus replay, not distributed atomicity or production rollout.",
+      "receipts": [
+        "T:outputs/january-additive-three-store-recovery/HANDOFF.md",
+        "T:outputs/january-module-recovery-182935/HANDOFF.md",
+        "S:docs/execution/january-2027/ACCEPTANCE.md"
+      ],
+      "proof": "Retained12-checkpoint three-store restore +7 backup tests; separate30-table module recovery retained failures. App65 DB checks at e2e4.",
+      "next": "Target-bound production runner/adoption for Notes/Signal remains missing; production0028/29/30 and shared0001/2 held. Operator backup/key/rollback and receiving receipts required.",
+      "owner": "Principal operations; module/storage owners; operator production targets."
+    },
+    {
+      "id": "16",
+      "capability": "Flags / maintenance / safe disable",
+      "sources": [
+        {
+          "key": "A:src/lib/projects/flags.ts",
+          "symbol": "isActiveProjectV3Enabled"
+        },
+        {
+          "key": "A:src/lib/planning/flags.ts",
+          "symbol": "resolvePlanningFeatureFlags"
+        },
+        {
+          "key": "A:src/lib/project-drive-ui.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:src/app/api/cron/project-drive-grant-repair/route.ts",
+          "symbol": null
+        },
+        {
+          "key": "A:docs/SPONSORED_USE_DELIVERY.md",
+          "symbol": null
+        },
+        {
+          "key": "S:docs/account/TASKS_USAGE_DELIVERY.md",
+          "symbol": null
+        },
+        {
+          "key": "S:src/lib/venue-fulfilment/runtime-config.ts",
+          "symbol": null
+        },
+        {
+          "key": "S:src/app/api/cron/sponsored-use/route.ts",
+          "symbol": null
+        }
+      ],
+      "state": "V3 default off; planning flags default off in production/on outside it. Drive UI and individual repair flags are separate. Issuance and usage default off. Disable hides/gates new activity, not authorization or data removal; erasure delivery and retention must continue while capture is off.",
+      "receipts": [
+        "T:outputs/s5-privacy-ack-independent-verification.md",
+        "T:outputs/january-additive-three-store-recovery/HANDOFF.md",
+        "S:docs/guides/venue-fulfilment.md"
+      ],
+      "proof": "Retained collection-off erasure/retry/retention and restore checks; source declares config, not deployed settings.",
+      "next": "Operator configuration inventory, schedule evidence, salt/key rotation and disable/recovery rehearsal on designated targets.",
+      "owner": "Principal release/operations; Drive/S5/issuance owners; operator configuration."
+    },
+    {
+      "id": "17",
+      "capability": "Experience registry / acceptance authority",
+      "sources": [
+        {
+          "key": "A:experience/registry.json",
+          "symbol": null
+        },
+        {
+          "key": "A:experience/browser-contract.json",
+          "symbol": null
+        },
+        {
+          "key": "S:experience/registry.json",
+          "symbol": null
+        },
+        {
+          "key": "S:docs/execution/january-2027/PROGRAMME.md",
+          "symbol": null
+        },
+        {
+          "key": "S:docs/execution/january-2027/ACCEPTANCE.md",
+          "symbol": null
+        },
+        {
+          "key": "S:content/hq/decisions/january-2027-launch.md",
+          "symbol": null
+        },
+        {
+          "key": "A:package.json",
+          "symbol": null
+        },
+        {
+          "key": "S:package.json",
+          "symbol": null
+        }
+      ],
+      "state": "Code/registries establish implementation and material surfaces; approved decisions establish intended policy; PROGRAMME/ACCEPTANCE own status. Existing132 built/68 routes/27 Notes and Studio188/328/16 are named historical matrices, not full golden-story or human approval. Current contrast/greeting/commercial source needs final capture.",
+      "receipts": [
+        "A:experience/reviews/january-recipient-2026-09-05/README.md",
+        "S:experience/reviews/january-commercial-2026-09-05/README.md",
+        "S:experience/reviews/january-atlas-filter-2026-09-05/README.md",
+        "T:outputs/studio-experience-coverage/FINAL-COMBINED-HANDOFF.md"
+      ],
+      "proof": "Retained source-bound matrices with original failures and limits; user reports final generator/contrast registration now integrated.",
+      "next": "Principal adopt exact final capture hashes, receiving workflows and six acceptance states. Human comprehension, physical accessibility and final launch/outreach gates remain separate.",
+      "owner": "Principal S1 index + final capture/CI; experience reviewers; operator release."
+    }
+  ],
+  "sources": {
+    "A:src/app/app/home/home-data.ts": {
+      "repo": "A",
+      "path": "src/app/app/home/home-data.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/app/app/home/home-data.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "10cc1d209f406ffd9ebd143c0076dc86e0950c548fcfc4a782d9cf51c7ca10eb",
+      "symbols": {
+        "loadHomeData": {
+          "line": 105,
+          "declaration": "export async function loadHomeData(opts: {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/modules/signal/lib/planning-periods/scope.ts": {
+      "repo": "A",
+      "path": "src/modules/signal/lib/planning-periods/scope.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/signal/lib/planning-periods/scope.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "57eac3ee111f7ec97ec19be9189167ee102f4ecbc2cb3715ff0a8d70d4653d4d",
+      "symbols": {
+        "listPlanningCatalogForUser": {
+          "line": 83,
+          "declaration": "export async function listPlanningCatalogForUser("
+        }
+      },
+      "exists": true
+    },
+    "A:src/modules/signal/app/signal-page-data.ts": {
+      "repo": "A",
+      "path": "src/modules/signal/app/signal-page-data.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/signal/app/signal-page-data.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "2884ebf351f65cea3659c94ae3acf5ed8fe9f0c1d65a33b278e57fb1d8bff689",
+      "symbols": {},
+      "exists": true
+    },
+    "A:docs/adr/0001-canonical-project-identity.md": {
+      "repo": "A",
+      "path": "docs/adr/0001-canonical-project-identity.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/docs/adr/0001-canonical-project-identity.md",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "4e94669e532c8d9755f8a2f4f4ec1ffa6860893ae7f49a41b53e86396c9511b5",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/modules/notes/server/actions/notes.ts": {
+      "repo": "A",
+      "path": "src/modules/notes/server/actions/notes.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/notes/server/actions/notes.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "7045e38bbab34c5a2d274e073acadb4f8da8c02a5363f00fb3fb370306f6e4d2",
+      "symbols": {
+        "createNoteIdempotent": {
+          "line": 1289,
+          "declaration": "export async function createNoteIdempotent("
+        },
+        "updateNoteWithVersion": {
+          "line": 1377,
+          "declaration": "export async function updateNoteWithVersion("
+        },
+        "sendApprovedExtractToTasks": {
+          "line": 1668,
+          "declaration": "export async function sendApprovedExtractToTasks("
+        }
+      },
+      "exists": true
+    },
+    "A:src/modules/notes/app/workspace/use-notebook.ts": {
+      "repo": "A",
+      "path": "src/modules/notes/app/workspace/use-notebook.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/notes/app/workspace/use-notebook.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "6b46a66f03214f94a26e44fa9d37235171eb4702094eb72c97df28e3d9e466fb",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/modules/notes/lib/notes-recovery.ts": {
+      "repo": "A",
+      "path": "src/modules/notes/lib/notes-recovery.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/notes/lib/notes-recovery.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "2e36f414a5a3466201db9f73dbaf3fd078f8d0045e56eacd9d723fea0544325a",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/modules/notes/server/tasks-personalization.ts": {
+      "repo": "A",
+      "path": "src/modules/notes/server/tasks-personalization.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/notes/server/tasks-personalization.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "f00e887d34cc8896ea5779c35885236f5b535b8c516e89a512b1d637cebb164a",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/lib/tasks/selectors.ts": {
+      "repo": "A",
+      "path": "src/lib/tasks/selectors.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/lib/tasks/selectors.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "3464a09ed2f642cf6c76b6f46fe2acdf989f7e86df544f2a1a7659a4f968d1a5",
+      "symbols": {
+        "bucketMyWeek": {
+          "line": 119,
+          "declaration": "export function bucketMyWeek("
+        }
+      },
+      "exists": true
+    },
+    "A:src/components/app/my-week/my-week-app.tsx": {
+      "repo": "A",
+      "path": "src/components/app/my-week/my-week-app.tsx",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/components/app/my-week/my-week-app.tsx",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "9504f7a4af52aef5349fa57473b503affd8a0394e03f99acc264cbfb8e5c3399",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/actions/tasks.ts": {
+      "repo": "A",
+      "path": "src/server/actions/tasks.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/tasks.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "3dc77be56f48b66eb15832294885a8c52b10d8df902ea83f2c9f381720dd2fa9",
+      "symbols": {
+        "addTaskAction": {
+          "line": 559,
+          "declaration": "export async function addTaskAction(input: {"
+        },
+        "getTasksAction": {
+          "line": 58,
+          "declaration": "export async function getTasksAction(candidateProjectId: string): Promise<Task[]> {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/components/app/tasks-runtime-shell.tsx": {
+      "repo": "A",
+      "path": "src/components/app/tasks-runtime-shell.tsx",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/components/app/tasks-runtime-shell.tsx",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "fa1c0f02a3ced9ff4b3b3b7ce3289c06706b355bcb45cb8f3cdc2758c2291c51",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/actions/room.ts": {
+      "repo": "A",
+      "path": "src/server/actions/room.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/room.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "eb26165145528250c2f0e7eb7d4fa7e33a08d3cdeac29c285cf13fd9c591be7d",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/app/app/archived/page.tsx": {
+      "repo": "A",
+      "path": "src/app/app/archived/page.tsx",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/app/app/archived/page.tsx",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "f9c0e0551c39c96ca26ab97f3b482ca26bd7684f32eb6780fbf156b0ccc99c9a",
+      "symbols": {},
+      "exists": true
+    },
+    "A:docs/TIMELINE_OWNER_ARTIFACT_CONTRACT.md": {
+      "repo": "A",
+      "path": "docs/TIMELINE_OWNER_ARTIFACT_CONTRACT.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/docs/TIMELINE_OWNER_ARTIFACT_CONTRACT.md",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "0ea2f5f6cb135c948de4f3c5a19ca98174f98eaf85bfaa130f0783d3b2f10519",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/modules/timeline/server/actions/workspaces.ts": {
+      "repo": "A",
+      "path": "src/modules/timeline/server/actions/workspaces.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/timeline/server/actions/workspaces.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "016fa6d8b7ac4521b68064175d106dad4f4675c2a210fcf68c7dae8b057ddca1",
+      "symbols": {
+        "syncMilestonesAction": {
+          "line": 285,
+          "declaration": "export async function syncMilestonesAction("
+        }
+      },
+      "exists": true
+    },
+    "A:src/modules/timeline/server/actions/audience-timeline.ts": {
+      "repo": "A",
+      "path": "src/modules/timeline/server/actions/audience-timeline.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/timeline/server/actions/audience-timeline.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "049de1d97efdfe805a0c35731e6db29ec9e779acc46b6191487f7fdb916f6a96",
+      "symbols": {
+        "publishAudiencePublicationAction": {
+          "line": 267,
+          "declaration": "export async function publishAudiencePublicationAction("
+        },
+        "revokeAudienceShareAction": {
+          "line": 329,
+          "declaration": "export async function revokeAudienceShareAction("
+        }
+      },
+      "exists": true
+    },
+    "A:src/modules/timeline/server/audience-timeline.ts": {
+      "repo": "A",
+      "path": "src/modules/timeline/server/audience-timeline.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/timeline/server/audience-timeline.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "3ec871c6130d97d1a68d3c2d2cac29112cf597c1f572be3410e8505de9410de6",
+      "symbols": {
+        "revokeAudienceShares": {
+          "line": 596,
+          "declaration": "export async function revokeAudienceShares("
+        }
+      },
+      "exists": true
+    },
+    "A:src/modules/timeline/lib/audience-timeline.ts": {
+      "repo": "A",
+      "path": "src/modules/timeline/lib/audience-timeline.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/timeline/lib/audience-timeline.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "6dd2e64965f090b5b043d5e4aa72ff87ef0100a2fb9a0b2ff6827b0321258266",
+      "symbols": {
+        "freezeAudienceItem": {
+          "line": 399,
+          "declaration": "export function freezeAudienceItem("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/projects/resolve.ts": {
+      "repo": "A",
+      "path": "src/server/projects/resolve.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/projects/resolve.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "22a5761d80d9a6a0fd349c8a541a94c9f1ebaee1de05b5028868856059baff31",
+      "symbols": {
+        "resolveActiveProjectForRouteWith": {
+          "line": 212,
+          "declaration": "export async function resolveActiveProjectForRouteWith("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/actions/project-authz.ts": {
+      "repo": "A",
+      "path": "src/server/actions/project-authz.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/project-authz.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "ed10e4e252bb5e2f3a8fd52cdaca871ccae718b949023a677800a8321a9eb7c5",
+      "symbols": {
+        "authorizeProjectCandidate": {
+          "line": 228,
+          "declaration": "export async function authorizeProjectCandidate(input: {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/projects/active-project-cookie.ts": {
+      "repo": "A",
+      "path": "src/server/projects/active-project-cookie.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/projects/active-project-cookie.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "1bd4f4344e4a5e7aff96a0de8f174abb3728f87601a26ee7f481d8667d37a650",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/lib/projects/project-url.ts": {
+      "repo": "A",
+      "path": "src/lib/projects/project-url.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/lib/projects/project-url.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "34fc6f6932464565512704127969b5824dac5c204762b43f3e7d09c24339f485",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/actions/tasks-project-arrival.ts": {
+      "repo": "A",
+      "path": "src/server/actions/tasks-project-arrival.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/tasks-project-arrival.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "78dcd408d241956f6bcdcadfbe28075f1f9c7d6a1c3040215996b4da87543851",
+      "symbols": {
+        "openTasksProjectAction": {
+          "line": 17,
+          "declaration": "export async function openTasksProjectAction("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/db/apply-template.ts": {
+      "repo": "A",
+      "path": "src/server/db/apply-template.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/db/apply-template.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "e0e2b2bd74392e8ee3c64e59cdce3c33d3039b58fa762e5d1301339e9718b13c",
+      "symbols": {
+        "applyTemplateInTransaction": {
+          "line": 62,
+          "declaration": "export async function applyTemplateInTransaction("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/actions/templates.ts": {
+      "repo": "A",
+      "path": "src/server/actions/templates.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/templates.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "c1d665f8e4bb0219dba6e86ac9f7b1fcb9e3eb708e9bef28dfb776b1083acbf7",
+      "symbols": {
+        "applyTemplateAction": {
+          "line": 22,
+          "declaration": "export async function applyTemplateAction("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/onboarding-completion.ts": {
+      "repo": "A",
+      "path": "src/server/onboarding-completion.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/onboarding-completion.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "bb6473cc7f8b2fa260fdf79ce731c4e6cc5bb0c33d13873cbcc3e1dc3924e896",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/actions/onboarding.ts": {
+      "repo": "A",
+      "path": "src/server/actions/onboarding.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/onboarding.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "effc9e2d834231f2997a1e6e1601d132731c5991171c1133a74add32128a3f19",
+      "symbols": {
+        "completeOnboardingAction": {
+          "line": 18,
+          "declaration": "export async function completeOnboardingAction(input: CompleteOnboardingInput): Promise<void> {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/db/venue-welcome.ts": {
+      "repo": "A",
+      "path": "src/server/db/venue-welcome.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/db/venue-welcome.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "f25074a5b47fcbaf8aef399e514b721aaf4b5df3463287dc49a8cf0d8ad006a6",
+      "symbols": {
+        "detectVenueWelcome": {
+          "line": 35,
+          "declaration": "export async function detectVenueWelcome("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/db/comp-redemption.ts": {
+      "repo": "A",
+      "path": "src/server/db/comp-redemption.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/db/comp-redemption.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "c69549e4c13cf269cf58e1150f97aa008ce0213e275bcbe1f082bd7f68f077b5",
+      "symbols": {
+        "claimCompEntitlement": {
+          "line": 35,
+          "declaration": "export async function claimCompEntitlement(database: Database, input: {"
+        }
+      },
+      "exists": true
+    },
+    "A:docs/COLLABORATION_LOOP.md": {
+      "repo": "A",
+      "path": "docs/COLLABORATION_LOOP.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/docs/COLLABORATION_LOOP.md",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "cf3c7c73a846a4f0a3ca6f7d8e32c92d65cd514ad7f30755a240b084a8128b65",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/actions/settings.ts": {
+      "repo": "A",
+      "path": "src/server/actions/settings.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/settings.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "6a78297580540e528659439c2c56b27b6625d43e22108cef8b12495741294940",
+      "symbols": {
+        "inviteMemberByEmailAction": {
+          "line": 520,
+          "declaration": "export async function inviteMemberByEmailAction("
+        },
+        "acceptInviteAction": {
+          "line": 717,
+          "declaration": "export async function acceptInviteAction(token: string): Promise<{"
+        }
+      },
+      "exists": true
+    },
+    "A:src/app/invite/[token]/page.tsx": {
+      "repo": "A",
+      "path": "src/app/invite/[token]/page.tsx",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/app/invite/[token]/page.tsx",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "be59ad3c4caf2218676871e1493f7d8b6bf24f6b0185447d12ade454d03a14b5",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/projects/capabilities.ts": {
+      "repo": "A",
+      "path": "src/server/projects/capabilities.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/projects/capabilities.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "ce2f5beb8bb7439d158dc8bfeefa6116b0174c2f6fdbfcdccc3dd623e785af98",
+      "symbols": {
+        "resolveProjectRole": {
+          "line": 24,
+          "declaration": "export function resolveProjectRole(input: {"
+        },
+        "projectCapabilities": {
+          "line": 64,
+          "declaration": "export function projectCapabilities(input: {"
+        }
+      },
+      "exists": true
+    },
+    "A:docs/projects/project-drive/DECISIONS.md": {
+      "repo": "A",
+      "path": "docs/projects/project-drive/DECISIONS.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/docs/projects/project-drive/DECISIONS.md",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "007c8ced631ad291b1dccdd98c991f70a7ccfa8540c9081dcc1935e37d5b1a51",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/connections/project-drive-access.ts": {
+      "repo": "A",
+      "path": "src/server/connections/project-drive-access.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/connections/project-drive-access.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "9974f1ad8c1663b4f41124e931ce4fbce526d6e6471a7f60053a79bc7bd3b370",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/connections/project-drive-operation-orchestrator.ts": {
+      "repo": "A",
+      "path": "src/server/connections/project-drive-operation-orchestrator.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/connections/project-drive-operation-orchestrator.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "5c140d2c0076661f33dc70377e6fbebcf0b45283d505d01bf5d9d8e9be6634ee",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/actions/drive-upload-recovery.ts": {
+      "repo": "A",
+      "path": "src/server/actions/drive-upload-recovery.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/drive-upload-recovery.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "94a44efcbdf1bfb8b6388bd5f3a943b616a61dced79ea94f116108c3ea121ffb",
+      "symbols": {
+        "recoverDriveUploadAction": {
+          "line": 9,
+          "declaration": "export async function recoverDriveUploadAction(taskId: string, resourceId: string): Promise<DriveUploadRecoveryResult> {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/attachments/native-upload-custody.ts": {
+      "repo": "A",
+      "path": "src/server/attachments/native-upload-custody.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/attachments/native-upload-custody.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "0f793d40402487ab94f4a089ef603a4efc161354a08aef7b123ddb24f9bdfc80",
+      "symbols": {
+        "finalizeNativeUploadClaimInTransaction": {
+          "line": 1094,
+          "declaration": "export async function finalizeNativeUploadClaimInTransaction("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/actions/attachment-uploads.ts": {
+      "repo": "A",
+      "path": "src/server/actions/attachment-uploads.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/attachment-uploads.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "71ccd84553a060952de0f206a9b19dceaabbf74abc520ce197f1ad0f76c1cc6c",
+      "symbols": {},
+      "exists": true
+    },
+    "S:contracts/commercial-terms.v2.json": {
+      "repo": "S",
+      "path": "contracts/commercial-terms.v2.json",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/contracts/commercial-terms.v2.json",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "6e3553e5341564bae43554359288e0d6408e4fbcb1b1b84191f6845881f8e54a",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/stripe-lifecycle.ts": {
+      "repo": "A",
+      "path": "src/server/stripe-lifecycle.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/stripe-lifecycle.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "490d0a1d1d242672f0d68bc5b184b0977f29e390cc94a248509ded86a18131b2",
+      "symbols": {
+        "handleStripeLifecycle": {
+          "line": 33,
+          "declaration": "export async function handleStripeLifecycle("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/stripe-access.ts": {
+      "repo": "A",
+      "path": "src/server/stripe-access.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/stripe-access.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "99fb48270af8014a7de18f12a6ed68db404c787fa83a74813864b081d5b649b1",
+      "symbols": {
+        "reconcileStripeAccessBatch": {
+          "line": 52,
+          "declaration": "export async function reconcileStripeAccessBatch(inputs: readonly StripeAccess[], dependencies: AccessDependencies = {}): Promise<void> {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/actions/billing.ts": {
+      "repo": "A",
+      "path": "src/server/actions/billing.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/billing.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "f054bb9e6618edea90208d64f20d15294db45bdab5a7311e80511ccf466d5403",
+      "symbols": {
+        "createCheckoutSessionAction": {
+          "line": 36,
+          "declaration": "export async function createCheckoutSessionAction("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/actions/plan.ts": {
+      "repo": "A",
+      "path": "src/server/actions/plan.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/plan.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "1dd4b1482ad538ce9678486b1a3adf98b2e698e2ddd0cc3c315284a1507c541e",
+      "symbols": {
+        "createBillingPortalSessionAction": {
+          "line": 21,
+          "declaration": "export async function createBillingPortalSessionAction("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/db/entitlements.ts": {
+      "repo": "A",
+      "path": "src/server/db/entitlements.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/db/entitlements.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "424062873ff2f101cf0917de758532ea4c9a2acfca335c533236034a9d352865",
+      "symbols": {
+        "getEffectiveTier": {
+          "line": 22,
+          "declaration": "export async function getEffectiveTier("
+        }
+      },
+      "exists": true
+    },
+    "A:src/lib/entitlements-shared/reads.ts": {
+      "repo": "A",
+      "path": "src/lib/entitlements-shared/reads.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/lib/entitlements-shared/reads.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "edc09d2f915b8c1ae733b47debfe0ed8712b75c2d39d54dd0aa2520778df6f53",
+      "symbols": {
+        "sharedGrantScope": {
+          "line": 41,
+          "declaration": "export function sharedGrantScope(row: Entitlement): GrantScope {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/components/app/settings/sections/billing.tsx": {
+      "repo": "A",
+      "path": "src/components/app/settings/sections/billing.tsx",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/components/app/settings/sections/billing.tsx",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "3ce6802c686080b12db03a9eddd0d2d30791aa84860ee6e8c85197ca0bed8ec0",
+      "symbols": {
+        "TIER_META": {
+          "line": 32,
+          "declaration": "const TIER_META: TierMeta[] = ["
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/checkout-policy.ts": {
+      "repo": "A",
+      "path": "src/server/checkout-policy.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/checkout-policy.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "36048b31d684aab5d9af490a3d6b6b1538f0f3ddc5d6d90a1edf0b4fe3f0b1e6",
+      "symbols": {
+        "checkoutModeFor": {
+          "line": 7,
+          "declaration": "export function checkoutModeFor(tier: PaidTier): \"payment\" | \"subscription\" {"
+        }
+      },
+      "exists": true
+    },
+    "S:content/hq/decisions/event-project-funding-2026-09-04.md": {
+      "repo": "S",
+      "path": "content/hq/decisions/event-project-funding-2026-09-04.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/content/hq/decisions/event-project-funding-2026-09-04.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "226196886023c937a510ed98f0744fdb087f9422a9b31d078ec530a2000ae3fb",
+      "symbols": {},
+      "exists": true
+    },
+    "A:docs/execution/january-2027/EVENT-ACCESS-CLOSURE.md": {
+      "repo": "A",
+      "path": "docs/execution/january-2027/EVENT-ACCESS-CLOSURE.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/docs/execution/january-2027/EVENT-ACCESS-CLOSURE.md",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "20bd59c0dc42c84794cafd1fdb39aef83882fca64df7d3b744bf860709592856",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/lib/billing-availability.ts": {
+      "repo": "A",
+      "path": "src/lib/billing-availability.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/lib/billing-availability.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "106b3fb37070d45dce2cc2dfc5e97946f14f7fee451ca8d47ec399ea37b91cd5",
+      "symbols": {
+        "checkoutAvailable": {
+          "line": 13,
+          "declaration": "export function checkoutAvailable(tier: PaidTier): boolean {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/app/api/checkout/route.ts": {
+      "repo": "A",
+      "path": "src/app/api/checkout/route.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/app/api/checkout/route.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "7f8a48e6e5a4c06113ca9927b7541c15ff408bf32e4afa5a6c9a5e842ea4d913",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/actions/comp.ts": {
+      "repo": "A",
+      "path": "src/server/actions/comp.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/actions/comp.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "a2c0a459b1076aec1151d0bd429794b69649273105ae2700547b1769ec469661",
+      "symbols": {
+        "requestStudentCodeAction": {
+          "line": 257,
+          "declaration": "export async function requestStudentCodeAction(email: string): Promise<StudentVerifyResult> {"
+        }
+      },
+      "exists": true
+    },
+    "S:src/app/students/page.tsx": {
+      "repo": "S",
+      "path": "src/app/students/page.tsx",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/app/students/page.tsx",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "2c012f650a96d289c17dc6b8ab1d01eacf9f4bdde3decadfd570648ebb1e146b",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/auth.ts": {
+      "repo": "A",
+      "path": "src/server/auth.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/auth.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "8eccb91b23ba435acf13f31c972cae8045f4fa5b6fd4128691cd6afa690dae0a",
+      "symbols": {},
+      "exists": true
+    },
+    "S:content/hq/decisions/january-venue-fulfilment.md": {
+      "repo": "S",
+      "path": "content/hq/decisions/january-venue-fulfilment.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/content/hq/decisions/january-venue-fulfilment.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "b50a7296a8e7381f7e2d30ba5ff3738d71532b3b4ac7a52a3d782a05e11eec8b",
+      "symbols": {},
+      "exists": true
+    },
+    "S:src/lib/entitlements-db/venue-payment.ts": {
+      "repo": "S",
+      "path": "src/lib/entitlements-db/venue-payment.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/lib/entitlements-db/venue-payment.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "b75b0e64e53dc95af07cc786dde53e7815469e5432c40cfe67ba0cf82bf0cf38",
+      "symbols": {
+        "recordVenuePayment": {
+          "line": 39,
+          "declaration": "export async function recordVenuePayment(input: VenuePaymentInput, stores: Stores) {"
+        }
+      },
+      "exists": true
+    },
+    "S:src/lib/entitlements-db/founding-numbers.ts": {
+      "repo": "S",
+      "path": "src/lib/entitlements-db/founding-numbers.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/lib/entitlements-db/founding-numbers.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "795bd0cb83ffa98ba6044aac68128b7ace957b7dedac59e707e3436f34a3921d",
+      "symbols": {
+        "assignFoundingNumber": {
+          "line": 61,
+          "declaration": "export async function assignFoundingNumber(input: {"
+        }
+      },
+      "exists": true
+    },
+    "S:src/lib/venue-fulfilment/store.ts": {
+      "repo": "S",
+      "path": "src/lib/venue-fulfilment/store.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/lib/venue-fulfilment/store.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "0fa815cec816820c1acb9c52f97d66202391e9f42286e3f61d5bd6f3de879141",
+      "symbols": {
+        "allocateVenueIssuance": {
+          "line": 52,
+          "declaration": "export async function allocateVenueIssuance(stores: VenueStores, input: IssueVenueInput, environment: IssuanceEnvironment, now = Date.now()) {"
+        },
+        "fulfilVenueRequest": {
+          "line": 145,
+          "declaration": "export async function fulfilVenueRequest(stores: VenueStores, issuanceId: string, runtime: VenueRuntime, actor: VenueOperator): Promise<FulfilmentResult> {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/venue-issuance/store.ts": {
+      "repo": "A",
+      "path": "src/server/venue-issuance/store.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/venue-issuance/store.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "a26dc51e831f62860b7fecc7f17fdcbc0b66b022cfc8d4403c0155bcf215a7d5",
+      "symbols": {
+        "executeVenueIssuance": {
+          "line": 13,
+          "declaration": "export async function executeVenueIssuance(database: VenueIssuanceDb, raw: IssuanceCommand, environment: IssuanceEnvironment, now = Date.now()): Promise<IssuanceReadback> {"
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/venue-issuance/canonical.ts": {
+      "repo": "A",
+      "path": "src/server/venue-issuance/canonical.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/venue-issuance/canonical.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "4ed66ab798d2a8d23538a1f240eb1a126c90629a5c0b94435140d4a62ddff98e",
+      "symbols": {
+        "readback": {
+          "line": 56,
+          "declaration": "export async function readback(reader: Reader, manifest: IssuanceManifest, now: number): Promise<IssuanceReadback> {"
+        }
+      },
+      "exists": true
+    },
+    "S:src/lib/account/instrumentation/event-schema.ts": {
+      "repo": "S",
+      "path": "src/lib/account/instrumentation/event-schema.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/lib/account/instrumentation/event-schema.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "57bb371c0f799ab0536b54171b7ab2ca87a7bca82c5fc5227f97507fa1251b20",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/sponsored-use/capture.ts": {
+      "repo": "A",
+      "path": "src/server/sponsored-use/capture.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/sponsored-use/capture.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "7344dd3eba11579dc878cb458fc42c2ddee4c647cf136c8eb6ada4014b36cf95",
+      "symbols": {
+        "captureTaskCreated": {
+          "line": 20,
+          "declaration": "export async function captureTaskCreated(tx: UsageExecutor,"
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/sponsored-use/provenance.ts": {
+      "repo": "A",
+      "path": "src/server/sponsored-use/provenance.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/sponsored-use/provenance.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "905c45d85655428eb309705f2b77f5c697372fb7040e0c1bf7a7ae5085cf2022",
+      "symbols": {
+        "readUsageEventProof": {
+          "line": 38,
+          "declaration": "export async function readUsageEventProof(database: Reader, readClaim: CanonicalClaimReader,"
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/sponsored-use/delivery.ts": {
+      "repo": "A",
+      "path": "src/server/sponsored-use/delivery.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/sponsored-use/delivery.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "7968ee9b3db03341e92733d16b3ce808109a9c058ecbb6ce22b869b2413f94e0",
+      "symbols": {
+        "deliverUsage": {
+          "line": 50,
+          "declaration": "export async function deliverUsage(database: UsageExecutor, config: UsageDeliveryConfig) {"
+        }
+      },
+      "exists": true
+    },
+    "S:src/lib/account/instrumentation/verified-ingest.ts": {
+      "repo": "S",
+      "path": "src/lib/account/instrumentation/verified-ingest.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/lib/account/instrumentation/verified-ingest.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "7b205b7a24df05d821309e4b16ce15ffe9a93370dd10f3d37bed810477826a75",
+      "symbols": {},
+      "exists": true
+    },
+    "S:src/lib/account/instrumentation/usage-jobs.ts": {
+      "repo": "S",
+      "path": "src/lib/account/instrumentation/usage-jobs.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/lib/account/instrumentation/usage-jobs.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "ffbb8916b76993c9bd60065a3b021911c09a3dd970d915e6ef3c0a356c6666f0",
+      "symbols": {
+        "closeUsageDays": {
+          "line": 17,
+          "declaration": "export async function closeUsageDays(database: UsageDatabase, deps: JobDependencies, now: number) {"
+        }
+      },
+      "exists": true
+    },
+    "S:src/lib/account/live/project-venue-usage.ts": {
+      "repo": "S",
+      "path": "src/lib/account/live/project-venue-usage.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/lib/account/live/project-venue-usage.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "dd185387ecc74cea47092a2ed05eb9430947b51d8ae909db0f4f95814ab08d9e",
+      "symbols": {
+        "projectVenueUsageSnapshot": {
+          "line": 63,
+          "declaration": "export function projectVenueUsageSnapshot("
+        }
+      },
+      "exists": true
+    },
+    "S:src/app/hq/account-review/actions.ts": {
+      "repo": "S",
+      "path": "src/app/hq/account-review/actions.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/app/hq/account-review/actions.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "e1d35cb93138fa2ded2459da69a100a3f168f177b9112096d8dd2191af07ed52",
+      "symbols": {
+        "loadLiveVenueSnapshotAction": {
+          "line": 22,
+          "declaration": "export async function loadLiveVenueSnapshotAction("
+        }
+      },
+      "exists": true
+    },
+    "A:src/app/api/account/export/route.ts": {
+      "repo": "A",
+      "path": "src/app/api/account/export/route.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/app/api/account/export/route.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "fb5776030e9fcee2e815c6c6689c558b0bbf4d3bf64e865a169be379b9583fd7",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/account-unified-export.ts": {
+      "repo": "A",
+      "path": "src/server/account-unified-export.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/account-unified-export.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "43327ddd75ce87cd603f328f84e99d0e62c4d3e419b03f351e31032cf89b555a",
+      "symbols": {
+        "exportUnifiedAccountDataWith": {
+          "line": 48,
+          "declaration": "export async function exportUnifiedAccountDataWith("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/account-unified-erasure.ts": {
+      "repo": "A",
+      "path": "src/server/account-unified-erasure.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/account-unified-erasure.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "c2579bc5567db07e49b9da74381b6ef83b4a1eca455e2fac86d7db4d0435b30d",
+      "symbols": {
+        "deleteUnifiedAccountDataWith": {
+          "line": 107,
+          "declaration": "export async function deleteUnifiedAccountDataWith("
+        }
+      },
+      "exists": true
+    },
+    "A:src/server/account-deletion-lifecycle.ts": {
+      "repo": "A",
+      "path": "src/server/account-deletion-lifecycle.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/account-deletion-lifecycle.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "04428788a2d1d7c11222f2f2854c7acacebfbd804a0281fb5af48814c6031509",
+      "symbols": {
+        "beginAccountDeletionWith": {
+          "line": 56,
+          "declaration": "export async function beginAccountDeletionWith("
+        }
+      },
+      "exists": true
+    },
+    "A:src/modules/notes/server/notes-gdpr.ts": {
+      "repo": "A",
+      "path": "src/modules/notes/server/notes-gdpr.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/modules/notes/server/notes-gdpr.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "2ba41cfb46a9d749d6a065fdde1ccc89ec10f6429123976a75a3c22336472f85",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/venue-issuance/erasure.ts": {
+      "repo": "A",
+      "path": "src/server/venue-issuance/erasure.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/venue-issuance/erasure.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "b2f8d2f4f5f656be83433350fa34383de54f70d75125bbd396085e9b0fca2797",
+      "symbols": {},
+      "exists": true
+    },
+    "S:src/lib/account/instrumentation/usage-erasure.ts": {
+      "repo": "S",
+      "path": "src/lib/account/instrumentation/usage-erasure.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/lib/account/instrumentation/usage-erasure.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "a31dfbd4384e0d15de109231235fff3fd5dd9bd6e68a8c8743629b27f234dc2c",
+      "symbols": {
+        "eraseUsageSubject": {
+          "line": 8,
+          "declaration": "export async function eraseUsageSubject(database: UsageDatabase, epoch: string, subjectIdHash: string, now: number) {"
+        }
+      },
+      "exists": true
+    },
+    "A:DEPLOY.md": {
+      "repo": "A",
+      "path": "DEPLOY.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/DEPLOY.md",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "5dab57f81d67f92a55b52014475cbe92cfa2f91a4372f7e5ccfd761372d062bb",
+      "symbols": {},
+      "exists": true
+    },
+    "A:drizzle/MIGRATIONS.md": {
+      "repo": "A",
+      "path": "drizzle/MIGRATIONS.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/drizzle/MIGRATIONS.md",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "da3fb729c6473e853741d4c37e14f67a87bb22e783e0068390cf061e3a86a4bf",
+      "symbols": {},
+      "exists": true
+    },
+    "A:drizzle/migration-ledger.json": {
+      "repo": "A",
+      "path": "drizzle/migration-ledger.json",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/drizzle/migration-ledger.json",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "465c137e1010ad0c7d313ee71ff9c913f45870f8a796715d600c34746f23a845",
+      "symbols": {},
+      "exists": true
+    },
+    "A:scripts/db/migration-ledger.mjs": {
+      "repo": "A",
+      "path": "scripts/db/migration-ledger.mjs",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/scripts/db/migration-ledger.mjs",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "d545f20c58669b17ec0775967918da359e23ed568f896b068f44046d73049b99",
+      "symbols": {},
+      "exists": true
+    },
+    "A:scripts/db/backup.mjs": {
+      "repo": "A",
+      "path": "scripts/db/backup.mjs",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/scripts/db/backup.mjs",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "75a6333f38618f947843d910b721b79cd0ffe1f209927e8bb6058274c860247d",
+      "symbols": {},
+      "exists": true
+    },
+    "S:drizzle-entitlements/additive-ledger.json": {
+      "repo": "S",
+      "path": "drizzle-entitlements/additive-ledger.json",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/drizzle-entitlements/additive-ledger.json",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "d0227ddebcb0dd6d46f86b8845dbe469de070a2856a007d82260009100d57df4",
+      "symbols": {},
+      "exists": true
+    },
+    "S:scripts/migrate-venue-fulfilment.mjs": {
+      "repo": "S",
+      "path": "scripts/migrate-venue-fulfilment.mjs",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/scripts/migrate-venue-fulfilment.mjs",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "3713927e80aaf6baa488aeb3e519d5f67b7aa2d8be4377f23d7dbfe68914f922",
+      "symbols": {},
+      "exists": true
+    },
+    "S:scripts/migrate-usage-delivery.mjs": {
+      "repo": "S",
+      "path": "scripts/migrate-usage-delivery.mjs",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/scripts/migrate-usage-delivery.mjs",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "db00345a0eec1b85db78a4d50c9c252c0474a1fe6e54569d2873affe07ee77b7",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/lib/projects/flags.ts": {
+      "repo": "A",
+      "path": "src/lib/projects/flags.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/lib/projects/flags.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "a54a38bdd64bef47025d4b524bce9630b911b8f9585f7f287d5ce427633592e6",
+      "symbols": {
+        "isActiveProjectV3Enabled": {
+          "line": 18,
+          "declaration": "export function isActiveProjectV3Enabled("
+        }
+      },
+      "exists": true
+    },
+    "A:src/lib/planning/flags.ts": {
+      "repo": "A",
+      "path": "src/lib/planning/flags.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/lib/planning/flags.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "9c1c53e72df514cfd77aa5371feb524d97d548c53b11d2a9a25e3afe97a43191",
+      "symbols": {
+        "resolvePlanningFeatureFlags": {
+          "line": 30,
+          "declaration": "export function resolvePlanningFeatureFlags("
+        }
+      },
+      "exists": true
+    },
+    "A:src/lib/project-drive-ui.ts": {
+      "repo": "A",
+      "path": "src/lib/project-drive-ui.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/lib/project-drive-ui.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "785d3a9d1ba26170b148454c726254fe963f031bca422e2d6f94b47191ae0cd6",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/app/api/cron/project-drive-grant-repair/route.ts": {
+      "repo": "A",
+      "path": "src/app/api/cron/project-drive-grant-repair/route.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/app/api/cron/project-drive-grant-repair/route.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "3731e0908bf702ea0b7a953576c4aadb2df1e32e263bfa6e831209c838515ac9",
+      "symbols": {},
+      "exists": true
+    },
+    "A:docs/SPONSORED_USE_DELIVERY.md": {
+      "repo": "A",
+      "path": "docs/SPONSORED_USE_DELIVERY.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/docs/SPONSORED_USE_DELIVERY.md",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "c7d7993399b01f0978555d9cac92f7b970daf34591171d924e5f1a4b5a1304c2",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/account/TASKS_USAGE_DELIVERY.md": {
+      "repo": "S",
+      "path": "docs/account/TASKS_USAGE_DELIVERY.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/account/TASKS_USAGE_DELIVERY.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "79eae235b605c901d70e4034f409b9804c422e2e6d5457e01de26c479c2e14e1",
+      "symbols": {},
+      "exists": true
+    },
+    "S:src/lib/venue-fulfilment/runtime-config.ts": {
+      "repo": "S",
+      "path": "src/lib/venue-fulfilment/runtime-config.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/lib/venue-fulfilment/runtime-config.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "87e5ef4e3e98fbd6862c6feb5a616e547fd458d0b20d93b3db9ce1c695296374",
+      "symbols": {},
+      "exists": true
+    },
+    "S:src/app/api/cron/sponsored-use/route.ts": {
+      "repo": "S",
+      "path": "src/app/api/cron/sponsored-use/route.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/src/app/api/cron/sponsored-use/route.ts",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "5ed86682bf917f6603af1ce4db269cc99148c56b56b4edc2a06986c08759ec3c",
+      "symbols": {},
+      "exists": true
+    },
+    "A:experience/registry.json": {
+      "repo": "A",
+      "path": "experience/registry.json",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/experience/registry.json",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "fd387b22686d5a083b5d1a6f59d219340e3e8b1e78a85ac0db22153f1e6f93a8",
+      "symbols": {},
+      "exists": true
+    },
+    "A:experience/browser-contract.json": {
+      "repo": "A",
+      "path": "experience/browser-contract.json",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/experience/browser-contract.json",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "838e98594ed9b15cfa6386e15abea30ac0553727a42e77ade1badc31740870e1",
+      "symbols": {},
+      "exists": true
+    },
+    "S:experience/registry.json": {
+      "repo": "S",
+      "path": "experience/registry.json",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/experience/registry.json",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "e4fd367152901288e77e3a80c7da7fbdbae03539fe4fbaa11a399c417f23b8cb",
+      "symbols": {},
+      "exists": true
+    },
+    "S:content/hq/decisions/january-2027-launch.md": {
+      "repo": "S",
+      "path": "content/hq/decisions/january-2027-launch.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/content/hq/decisions/january-2027-launch.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "b3644c5b723b0a23aa22d767e506323f0ed83af22038f46b0f0e12b484b7fa5b",
+      "symbols": {},
+      "exists": true
+    },
+    "A:package.json": {
+      "repo": "A",
+      "path": "package.json",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/package.json",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "a5aa9d88ffa0e4994a18e08602160882c4541ecce320cf544c76b73cde2bf5bb",
+      "symbols": {},
+      "exists": true
+    },
+    "S:package.json": {
+      "repo": "S",
+      "path": "package.json",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/package.json",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "99653a86bc9ebdd67870844fe4c5d0d3706ef93f7b9856df59da1cc419e86241",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/security/data-retention.md": {
+      "repo": "S",
+      "path": "docs/security/data-retention.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/security/data-retention.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "1ffb00d032d5246c4cc7add95b73aac6a2580eff244e3ada09005245c780aa16",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/account/PRODUCT_CONTRACT.md": {
+      "repo": "S",
+      "path": "docs/account/PRODUCT_CONTRACT.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/account/PRODUCT_CONTRACT.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "571072a3df5de7d677297e62ed6c0f492aca7afa4912d5670a02761d5c9389e3",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/account/EVENT_SCHEMA_MEANINGFUL_ACTION_V1.md": {
+      "repo": "S",
+      "path": "docs/account/EVENT_SCHEMA_MEANINGFUL_ACTION_V1.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/account/EVENT_SCHEMA_MEANINGFUL_ACTION_V1.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "6fc66c0ad2b51899ae93b1174c09afedeb9649b494a84dd8eaf598cf5a117fd2",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/account/PHASE_B_INSTRUMENTATION_PLAN.md": {
+      "repo": "S",
+      "path": "docs/account/PHASE_B_INSTRUMENTATION_PLAN.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/account/PHASE_B_INSTRUMENTATION_PLAN.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "697fc15e9eeed76c3fa00990ff21a7b5df57d1cb938d5299868cdd11fa0c1753",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/execution/january-2027/PAIRED_CONTRACT_RECEIPT.md": {
+      "repo": "S",
+      "path": "docs/execution/january-2027/PAIRED_CONTRACT_RECEIPT.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/execution/january-2027/PAIRED_CONTRACT_RECEIPT.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "06423563626f937753d159647268af529979b3422f3ca64fbbff5965a642a2f8",
+      "symbols": {},
+      "exists": true
+    }
+  },
+  "receipts": {
+    "T:outputs/recipient-project-work/composition-4e25e85f/receipt.json": {
+      "repo": "T",
+      "path": "outputs/recipient-project-work/composition-4e25e85f/receipt.json",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/recipient-project-work/composition-4e25e85f/receipt.json",
+      "commit": null,
+      "sha256LF": "a83fd2c9c608579c6b57625b05d0de93f4c566634640f337500516a226028289",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/recipient-project-work/composition-4e25e85f/immutable-source-proof-75cd4ff5.json": {
+      "repo": "T",
+      "path": "outputs/recipient-project-work/composition-4e25e85f/immutable-source-proof-75cd4ff5.json",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/recipient-project-work/composition-4e25e85f/immutable-source-proof-75cd4ff5.json",
+      "commit": null,
+      "sha256LF": "38193b5984648c4b1f66af325753483e654a33af9be7b94fbe030bf020846201",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/notes-f04a-independent-verification.md": {
+      "repo": "T",
+      "path": "outputs/notes-f04a-independent-verification.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/notes-f04a-independent-verification.md",
+      "commit": null,
+      "sha256LF": "4ab0690adc4eceab3fad764da3ca04972f33473d4987bb957491a37d9aeaa7c2",
+      "symbols": {},
+      "exists": true
+    },
+    "A:experience/reviews/january-recipient-2026-09-05/README.md": {
+      "repo": "A",
+      "path": "experience/reviews/january-recipient-2026-09-05/README.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/experience/reviews/january-recipient-2026-09-05/README.md",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "9cf4a4ab8d447e46aa918cd6e59cf6819a874c2a908aaa97f4e5ea0487d50be5",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/recipient-project-work/floor-theme-repair/README.md": {
+      "repo": "T",
+      "path": "outputs/recipient-project-work/floor-theme-repair/README.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/recipient-project-work/floor-theme-repair/README.md",
+      "commit": null,
+      "sha256LF": "115307e7596da6b9dacad9ad27007789e8b1238267695eb8500d58c88dae5cd5",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/january-module-lifecycle/r1-7f1f48c8/HANDOFF.md": {
+      "repo": "T",
+      "path": "outputs/january-module-lifecycle/r1-7f1f48c8/HANDOFF.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/january-module-lifecycle/r1-7f1f48c8/HANDOFF.md",
+      "commit": null,
+      "sha256LF": "54ac77ba4d2961051d3a0dd89b785ef31e0c697c1c5d6f10b2d7374b13eab0b6",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/recipient-project-work/archive-room/README.md": {
+      "repo": "T",
+      "path": "outputs/recipient-project-work/archive-room/README.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/recipient-project-work/archive-room/README.md",
+      "commit": null,
+      "sha256LF": "ca423a817ab94c93e6bd501e51e71633fe4736d68476bb44f33a7d3328cbddf7",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/p2-welcome-ca95830e-verification.md": {
+      "repo": "T",
+      "path": "outputs/p2-welcome-ca95830e-verification.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/p2-welcome-ca95830e-verification.md",
+      "commit": null,
+      "sha256LF": "e6738c6848bf79f3201483bf72af8a23f70d86a702252ea6e291222d834867b8",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/venue-usage-composition-independent-review.md": {
+      "repo": "T",
+      "path": "outputs/venue-usage-composition-independent-review.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/venue-usage-composition-independent-review.md",
+      "commit": null,
+      "sha256LF": "f9245afaf388721be0ca8caa414706eed664234d2317f707b3c821727f53e1df",
+      "symbols": {},
+      "exists": true
+    },
+    "A:src/server/invite-arrival.test.ts": {
+      "repo": "A",
+      "path": "src/server/invite-arrival.test.ts",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/app/feat-january-final-journeys/src/server/invite-arrival.test.ts",
+      "commit": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "sha256LF": "c63604324d5be59285afc26924496a63554625888d0d852045577fba1330f298",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/drive-recovery-security-review.md": {
+      "repo": "T",
+      "path": "outputs/drive-recovery-security-review.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/drive-recovery-security-review.md",
+      "commit": null,
+      "sha256LF": "d37b2f7ed9f7a721e53a2a316f7b7cb1d1fbac0a1b9128bb83a08e3880eb376c",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/billing-recovery-handoff.md": {
+      "repo": "T",
+      "path": "outputs/billing-recovery-handoff.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/billing-recovery-handoff.md",
+      "commit": null,
+      "sha256LF": "3a3d34fb85da4c3a89eff527176c96bf8b5feb44d0b3b2255114dcd2481b32d1",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/entitlement-scope-verification.md": {
+      "repo": "T",
+      "path": "outputs/entitlement-scope-verification.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/entitlement-scope-verification.md",
+      "commit": null,
+      "sha256LF": "e89903d8b24ae4edd2973af46f737684fc581b188da47b57cdc1e3944f446c49",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/execution/january-2027/EVENT_COMMERCIAL_SYNC.md": {
+      "repo": "S",
+      "path": "docs/execution/january-2027/EVENT_COMMERCIAL_SYNC.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/execution/january-2027/EVENT_COMMERCIAL_SYNC.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "ef885bc4ecadc2185c867bd24ef5b84c38665596312251dfc67fe4d58897bbc6",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/execution/january-2027/ACCEPTANCE.md": {
+      "repo": "S",
+      "path": "docs/execution/january-2027/ACCEPTANCE.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/execution/january-2027/ACCEPTANCE.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "2f84b0943c220897dc8e5ac3c11b7d4364f90328e0f0272085e03520631ac59f",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/execution/january-2027/PROGRAMME.md": {
+      "repo": "S",
+      "path": "docs/execution/january-2027/PROGRAMME.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/execution/january-2027/PROGRAMME.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "7a24ba96bdc447f19bcf0ea62f70e8db9399ac195bcfc90b8d8df70981b558e7",
+      "symbols": {},
+      "exists": true
+    },
+    "S:experience/reviews/january-commercial-2026-09-05/README.md": {
+      "repo": "S",
+      "path": "experience/reviews/january-commercial-2026-09-05/README.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/experience/reviews/january-commercial-2026-09-05/README.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "02c71999403acded85ca3c2fd4eeab158cdb1f6d6f6cbccf1a551a7b92510ada",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/account/VENUE_USAGE_REHEARSAL.md": {
+      "repo": "S",
+      "path": "docs/account/VENUE_USAGE_REHEARSAL.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/account/VENUE_USAGE_REHEARSAL.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "c47ba8c8a202a61e260b50f5728225d7c85208d4abae0ef5d2bf15d0787da816",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/s5-privacy-ack-independent-verification.md": {
+      "repo": "T",
+      "path": "outputs/s5-privacy-ack-independent-verification.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/s5-privacy-ack-independent-verification.md",
+      "commit": null,
+      "sha256LF": "6db171f910bca5e203565db214d34bdb2f3a781ba94a69c6ad6c3530aabdad34",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/account-export-768951-review/findings.md": {
+      "repo": "T",
+      "path": "outputs/account-export-768951-review/findings.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/account-export-768951-review/findings.md",
+      "commit": null,
+      "sha256LF": "6e3467a57f1799b5add24d731fa400ed0b6340342ba1f7ecaf470120068fe6c4",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/january-additive-three-store-recovery/HANDOFF.md": {
+      "repo": "T",
+      "path": "outputs/january-additive-three-store-recovery/HANDOFF.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/january-additive-three-store-recovery/HANDOFF.md",
+      "commit": null,
+      "sha256LF": "8437626a56de862bb39186cbbeb4cf291b0fa527ad27b7e3255a237ad48b507b",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/january-module-recovery-182935/HANDOFF.md": {
+      "repo": "T",
+      "path": "outputs/january-module-recovery-182935/HANDOFF.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/january-module-recovery-182935/HANDOFF.md",
+      "commit": null,
+      "sha256LF": "67a0015aeef328b96a59f83fef81f17c504cff8b1737095695d309007686e0b7",
+      "symbols": {},
+      "exists": true
+    },
+    "S:docs/guides/venue-fulfilment.md": {
+      "repo": "S",
+      "path": "docs/guides/venue-fulfilment.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/docs/guides/venue-fulfilment.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "824cb789aea0684fe94bf65973b802bcbb0deeecf61a2a0a24bfa854c3de600a",
+      "symbols": {},
+      "exists": true
+    },
+    "S:experience/reviews/january-atlas-filter-2026-09-05/README.md": {
+      "repo": "S",
+      "path": "experience/reviews/january-atlas-filter-2026-09-05/README.md",
+      "absolutePath": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/experience/reviews/january-atlas-filter-2026-09-05/README.md",
+      "commit": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "sha256LF": "db55b852fd2c39027f9d73710a7a68c5135d5d2fa3f19a5ed428a3ba34a96d10",
+      "symbols": {},
+      "exists": true
+    },
+    "T:outputs/studio-experience-coverage/FINAL-COMBINED-HANDOFF.md": {
+      "repo": "T",
+      "path": "outputs/studio-experience-coverage/FINAL-COMBINED-HANDOFF.md",
+      "absolutePath": "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/outputs/studio-experience-coverage/FINAL-COMBINED-HANDOFF.md",
+      "commit": null,
+      "sha256LF": "764115a70d362120cb737e5724d653431b5755f7df659dfd33aef804daf8286d",
+      "symbols": {},
+      "exists": true
+    }
+  },
+  "errors": [],
+  "observedEnd": {
+    "A": {
+      "head": "485b3bc068a82d3ef63367e1b80b5830aed113e6",
+      "branch": "feat/january-final-journeys",
+      "status": [
+        "?? .githooks/post-checkout",
+        "?? .githooks/post-commit",
+        "?? .githooks/post-merge",
+        "?? .githooks/pre-push",
+        "?? work/"
+      ]
+    },
+    "S": {
+      "head": "a27025fe4654fd507f06c8cd60e53c3580985cb3",
+      "branch": "ops/january-receiving-acceptance",
+      "status": [
+        "?? .githooks/post-checkout",
+        "?? .githooks/post-commit",
+        "?? .githooks/post-merge",
+        "?? .githooks/pre-push"
+      ]
+    }
+  }
+}

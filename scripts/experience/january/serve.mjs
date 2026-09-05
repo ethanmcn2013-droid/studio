@@ -20,7 +20,7 @@ for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => child.kill(
 child.on('exit', (code) => {
   if (mode === 'build' && code === 0) {
     if (sourceDigest() !== digest) throw new Error('Source changed during build; do not attest this artifact');
-    writeFileSync(path.join(evidence, 'build-receipt.json'), JSON.stringify({ sourceDigest: digest, buildId: readFileSync('.next/BUILD_ID', 'utf8').trim(), builtAt: new Date().toISOString(), node: process.version, command: `node scripts/experience/january/serve.mjs build${process.argv.includes('--atlas') ? ' --atlas' : ''}`, environment: 'allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration' }, null, 2) + '\n');
+    writeFileSync(path.join(evidence, 'build-receipt.json'), JSON.stringify({ sourceDigest: digest, buildId: readFileSync('.next/BUILD_ID', 'utf8').trim(), builtAt: new Date().toISOString(), node: process.version, command: `node scripts/experience/january/serve.mjs build${process.argv.includes('--atlas') ? ' --atlas' : ''}${process.argv.includes('--venue-kit') ? ' --venue-kit' : ''}`, environment: 'allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration' }, null, 2) + '\n');
   }
   log.end(); process.exitCode = code ?? 1;
 });

@@ -1,195 +1,125 @@
 # Venue Outreach Sequence
 
-Status: held draft - 2026-05-26
+Status: held draft, updated 2026-09-05
 Owner: founder
-Boundary: do not send. These are working drafts for later founder approval after sales pack, motion/video, tracking, and ops rehearsal are ready.
+Boundary: internal preparation only until 21 January 2027. Separate recorded
+user-launch and first-outreach decisions are required. This file sends nothing.
 
-> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
-> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
-> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+## Delegated January cadence
 
----
+On 5 September 2026, the commercial-package owner selected the existing Venue
+Kit's low-volume cadence: one personal note, one follow-up ten days after its
+actual send if there is no reply or opt-out, then stop unless invited to continue.
+This is a delegated implementation choice, not a founder approval or a send.
 
-## Rule
+It replaces this file's older Day 0/5/14 three-touch sequence. The historical
+version remains in Git. Use at most the existing 10–12 first-touch subset of the
+first 25-venue cohort; a cohort is not a send batch or a claim that contacts are
+qualified. The founder selects and verifies the actual private batch later.
+No automation, LinkedIn follow-up or third email is part of this packet.
 
-No email is sent until the no-outreach gates in `VENUE_GTM_EXECUTION_PLAN.md` are complete.
+## Before completing a draft
 
-This sequence exists so the message can be refined now while the visual system, motion graphics, and demo material are being built.
+Use the exact founder packet in
+`content/hq/operator-todos/january-2027-go-no-go.md`.
+Verify the contact, one factual venue observation, current offer, proof URL and
+enclosure before substituting the slots below. Retain the final draft revision
+and private batch reference. Do not manufacture a pain point, endorsement,
+customer count, live deployment claim or scarcity statement.
 
----
+The offer remains €1,500 standard or €1,000 for a qualifying Founding 25 agreement,
+annually prepaid and VAT-inclusive. The founding rate is held on continuous
+renewal without lapse; the number follows cleared payment. The default path is
+paid fulfilment. An explicit pilot requires its current limited term, positive
+allotment and retained exception reference; this draft does not offer one.
 
-## Positioning
+## Email 1: founder introduction
 
-| Element | Decision |
-| --- | --- |
-| Sender | Founder. Plain text. No mail merge feel. |
-| Recipient | Owner/operator, GM, wedding director, or events lead with a credible path to the signer. |
-| Ask | A short venue conversation, not a product demo. |
-| Proof | One-page sales pack + 30-second video or `/venues/demo` link once approved. |
-| First batch | 10-12 venues maximum. Wave 1 only. |
-| Cadence | Day 0, Day 5, Day 14. Stop after three unless they engage. |
-| Tone | Calm, specific, not flattery-heavy. |
-
----
-
-## Personalization Slots
-
-Use these before sending. Never send a generic version.
-
-| Slot | Required | Example |
-| --- | --- | --- |
-| `[venue_name]` | Yes | Tankardstown House |
-| `[specific_observation]` | Yes | "Your Orangery/walled-garden wedding flow already reads like a planned journey." |
-| `[venue_pain_guess]` | Yes | "I imagine the last month before a wedding still creates repeated questions around timing, supplier access, and final numbers." |
-| `[proof_link]` | Yes, once ready | 30s video or `https://signalstudio.ie/venues/demo?...` |
-| `[pdf_link]` | Yes, once ready | One-page PDF |
-
----
-
-## Email 1 - Founder Introduction
-
-**Subject options**
-
-| Option | Use when |
-| --- | --- |
-| Signal Studio for [venue_name] couples | Most direct. |
-| A planning layer for [venue_name] couples | Slightly warmer. |
-| Fewer repeated planning questions | Use for wedding-led venues where coordinator pain is obvious. |
-
-**Body**
+**Selected subject:** `Signal Studio for [venue_name] couples`
 
 ```text
-Hi [first_name],
+Hello [first_name],
 
-I am building Signal Studio for premium wedding venues: a planning layer the venue gives every couple after booking.
+[One verified, specific observation about the venue.]
 
-The venue pays once a year. Each couple gets a code. They open a calm wedding workspace with the venue's name in a quiet line at the top.
+I'm Ethan, the founder of Signal Studio. Venue Edition gives your booked
+couples one place for their private notes, tasks and wedding timeline,
+with your venue's name on their workspace.
 
-The point is simple: fewer confused couples, fewer repetitive emails, and a planning experience that still feels like [venue_name] after the booking is signed.
+Your venue pays annually. We prepare the access codes and support the
+couples; your team passes on the invitation. The couple does not pay
+for the sponsored access.
 
-I was looking at [specific_observation]. It made me think [venue_name] is exactly the kind of venue where the planning year should feel as considered as the day itself.
+Venue Edition is €1,500 a year, prepaid and VAT-inclusive. A qualifying
+Founding 25 agreement is €1,000 a year on the same basis, held on
+continuous renewal without lapse.
 
-Here is the short version:
-[proof_link]
+Here is the short introduction:
+[verified_proof_link]
 
-And the one-page note:
-[pdf_link]
+I've attached the current one-page note:
+[verified_enclosure_name]
 
-Would it be worth a short conversation?
+Would a twenty-minute conversation be useful for [venue_name]?
 
 Ethan
-Signal Studio
+Founder, Signal Studio
+hello@signalstudio.ie
+
+If you would rather not hear from me again, reply and I'll stop.
 ```
 
----
+This is the selected plain-text first-touch source. The code-owned
+`src/emails/templates/venue-outreach.tsx` is a corresponding held email-lab
+specimen, not an alternate permission to send or a general complimentary offer.
+Select and retain the final exact message in the founder packet.
 
-## Email 2 - Practical Follow-Up
+## Email 2: one follow-up
 
-Send on Day 5 if no reply.
+Consider this only ten days after the **actual first send**, with the original
+permission still applicable, no reply and no opt-out. A reply starts a personal
+conversation; it does not justify sending a queued follow-up. No third email.
 
-**Subject**
-
-`Re: Signal Studio for [venue_name] couples`
-
-**Body**
+**Subject:** `Re: Signal Studio for [venue_name] couples`
 
 ```text
-Hi [first_name],
+Hello [first_name],
 
-Just following this once.
+One follow-up to my note about Signal Studio for [venue_name].
 
-The thing I am trying to solve is not "more wedding software." It is the admin that comes back to a venue when couples are planning through email, WhatsApp, spreadsheets, and old PDFs.
+Would it be useful to look at how a couple receives the invitation and
+opens their wedding workspace? I can also walk through the annual
+terms and how we handle support.
 
-For a venue, the operation is deliberately small:
-
-1. You pay once a year.
-2. You give each couple a code.
-3. The couple gets Signal Studio for eighteen months, or until three months after the wedding, whichever is later.
-4. Your team has nothing to run.
-
-The couple never sees a price.
-
-If this is not for [venue_name], no problem. If repeated planning questions are a real thing for your wedding team, I would value 20 minutes to show you the shape.
+If it isn't relevant, I'll leave it here.
 
 Ethan
+Founder, Signal Studio
+hello@signalstudio.ie
 ```
 
----
+## Replies and stopping rule
 
-## Email 3 - Close The Loop
+| Reply | Next action |
+|---|---|
+| No / opt-out | Acknowledge if appropriate and stop. Record the request in the existing private suppression/contact record; no automatic nurture. |
+| Interested / more information | Answer the specific question using the current reviewed enclosure and Atlas offer table. Do not send the no-response follow-up. |
+| Price / renewal / refund question | Give the settled €1,500/€1,000 annual VAT-inclusive terms. Use the payment support guide for the remaining policy question; do not invent a refund or grace promise. |
+| Ask for a free trial | Explain the normal paid path. Any pilot requires a separately retained, current limited exception; never promise a code from this draft. |
+| Who uses it / proof of results | Use only permissioned observed evidence. No fixture, prospect list or rehearsal is a customer or a case study. |
+| Later / busy | Respect the requested timing or stop. No scheduled sequence is created by this file. |
+| Code or account problem | Route to Signal Studio support and the original-account/request procedure; the venue is not a product-support queue. |
 
-Send on Day 14 if no reply.
+## Readiness and measurement
 
-**Subject**
+Current sources are `content/atlas/pricing-and-entitlements.md`,
+`docs/guides/venue-payment.md` and `docs/guides/venue-fulfilment.md`.
+Historical kit PDFs and text remain specimens until their claims/links are
+reconciled. No old asset signoff can override the January manual decisions.
 
-`Closing the loop`
-
-**Body**
-
-```text
-Hi [first_name],
-
-I will close the loop here.
-
-My guess may be wrong, but I suspect venues with the strongest service reputation are also the ones most exposed to planning noise between booking and wedding day.
-
-Signal Studio is my attempt to make that middle stretch calmer without asking the venue to run another system.
-
-If it becomes relevant later, the venue page is here:
-https://signalstudio.ie/venues
-
-All the best,
-Ethan
-```
-
----
-
-## LinkedIn Connection Note
-
-Use only if the person is clearly active on LinkedIn. Do not use as a mass channel.
-
-```text
-I am building Signal Studio for premium wedding venues: one planning layer a venue gives every couple after booking. Thought it might be relevant to [venue_name].
-```
-
----
-
-## Post-Reply Branches
-
-| Reply | Response |
-| --- | --- |
-| "Send more information" | Send the one-page PDF and ask one question: "Is repeated planning admin a live issue for your team, or is the current process already calm?" |
-| "We already have planners" | "That usually helps. The question is whether the planner, couple, suppliers, and venue are all working from one current picture. Signal Studio is for that shared picture." |
-| "We are too busy right now" | "Completely fair. Is there a better month to revisit, or should I leave it?" |
-| "What does it cost?" | "Venue Edition is EUR1,500 per venue/year, prepaid, VAT included. If you're one of the Founding 25, it's EUR1,000, five hundred less, for as long as you stay. The couple never sees a price." |
-| "Who else uses it?" | Be honest. "This is the founding cohort, so the early venues are shaping the motion before there is a case study." |
-| "Can we see a demo?" | Offer the setup ritual, not a feature demo: "The best version is 25 minutes with one real upcoming wedding from your side. I build the shape live, you see whether it is useful." |
-| "No thanks" | Thank them and stop. No nurture unless they explicitly invite it. |
-
----
-
-## First Batch Recommendation
-
-Start with 10-12 accounts from Wave 1.
-
-| Batch | Venues |
-| --- | --- |
-| A | Tankardstown House, Ballymagarvey Village, Clonabreany House, Boyne Hill House Estate |
-| B | The Millhouse, Rathsallagh House, Bellingham Castle, Darver Castle |
-| C | Markree Castle, Castle Leslie Estate, Cliff at Lyons, Kilkea Castle |
-
-Batch A is the most natural first send because it gives a tight Meath/North-East cluster plus venue styles that are premium but not impossibly corporate.
-
----
-
-## Send Readiness Checklist
-
-| Gate | State required before sending |
-| --- | --- |
-| Sales pack | One-page PDF designed and founder-approved. |
-| Proof link | 30-second video or polished `/venues/demo` proof approved. |
-| Tracking | Every link uses the tracking contract in `VENUE_TRACKING_AND_CONVERSION.md`. |
-| Ops | One test code redeemed end to end. |
-| Personalization | Every email has a specific venue observation. |
-| CRM/log | The send can be logged against venue, wave, touch, and response. |
+Record permission, actual send, reply and conversation separately in the
+existing private outreach record. Its first-send receipt proposal is in the
+Atlas. CRM creation dates, link clicks, signed plans, payment, code redemption
+and useful work are different observations. No commercial clock starts from
+this draft, and no send or customer demand is claimed.
 

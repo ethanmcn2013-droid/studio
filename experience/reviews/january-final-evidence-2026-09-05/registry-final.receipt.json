@@ -1,0 +1,15 @@
+{
+  "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+  "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+  "args": [
+    "scripts/experience/validate.mjs",
+    "--product=studio"
+  ],
+  "tag": "registry-final",
+  "startedAt": "2026-09-05T06:26:10.736Z",
+  "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+  "pid": 31868,
+  "exitCode": 0,
+  "signal": null,
+  "finishedAt": "2026-09-05T06:26:11.004Z"
+}

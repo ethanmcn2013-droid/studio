@@ -1,0 +1,16 @@
+{
+  "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+  "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+  "args": [
+    "scripts/experience/january-extension/attest.mjs",
+    "--manifest=experience/reviews/january-studio14-final-2026-09-05/capture-2026-09-05T06-14-36-024Z/manifest.json",
+    "--write"
+  ],
+  "tag": "extension-attest",
+  "startedAt": "2026-09-05T06:26:08.021Z",
+  "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+  "pid": 23484,
+  "exitCode": 0,
+  "signal": null,
+  "finishedAt": "2026-09-05T06:26:08.944Z"
+}

@@ -41,7 +41,9 @@ change it. Timeline had its own switcher with different behaviour. Home had none
   painting a remembered value. A remembered cookie is not a project name.
 - **Two projects with the same name stay listed and refuse selection**, saying why, rather
   than the app quietly picking one.
-- **An archived project opens read-only through its URL**, never through the switch.
+- **An archived project is intended to open read-only through its URL**, never
+  through the switch. January acceptance must reconcile remaining task-action
+  archive compatibility before treating that policy as universally enforced.
 
 ## Status
 
@@ -57,8 +59,15 @@ left its placeholder. Both halves of that defect are fixed — the resolver now 
 authorized project summary it had been discarding, and the snapshot is keyed by the route
 rather than by the resolved project, so a bare entry can verify at all.
 
-## Not yet
+## January follow-up — 5 September 2026
 
-Notes and Home resolve no project of their own, so on those two surfaces the control
-offers the choice without naming the current project. Closing that means giving both
-surfaces project resolution, which is not in any current lane.
+Project continuity is now an active January workstream. The receiving App includes
+independently verified Notes recovery and navigation-context repairs and exact Home
+task destinations. Home remains an aggregate front door; its observations lead to
+the owning object rather than implying that every observation belongs to one project.
+
+The combined candidate repairs direct task/archive arrivals, project-specific room
+content, route snapshot matching and realtime reconciliation. These are internal
+candidate results, not a deployed rollout or full journey verdict. Final browser,
+independent and receiving acceptance remain open. Exact scenarios and revisions
+live in `docs/execution/january-2027/ACCEPTANCE.md`.

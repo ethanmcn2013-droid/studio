@@ -7,6 +7,14 @@
 > before issuing live codes. Historical command examples below do not approve
 > production changes or outreach.
 
+> September 5 correction: the operational command/recovery authority is
+> [the current fulfilment guide](../guides/venue-fulfilment.md), including its
+> claimant support tabletop, alongside the payment guide. The historical
+> `issue:codes` examples and manual date-extension suggestion below are not
+> executable January instructions. New Venue requests use exact retained
+> allocation/delivery/readback; sponsored date capture/update acceptance remains
+> open. Preserve these older stages as history, not a second operating procedure.
+
 Status: founder-review draft - 2026-05-26
 Owner: founder
 Companion docs: `ENTITLEMENTS_OPS.md`, `VENUE_EDITION_EMAIL_TEMPLATE.md`, `VENUE_SETUP_RITUAL.md`

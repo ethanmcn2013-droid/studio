@@ -1,0 +1,22 @@
+[
+  {
+    "Suite": "January",
+    "Total": 5081,
+    "Errors": [
+      "net::ERR_ABORTED"
+    ],
+    "AtlasPrefetch": 278,
+    "EmailLabPrefetch": 0,
+    "AllHaveRsc": true
+  },
+  {
+    "Suite": "Venue Kit",
+    "Total": 600,
+    "Errors": [
+      "net::ERR_ABORTED"
+    ],
+    "AtlasPrefetch": 36,
+    "EmailLabPrefetch": 0,
+    "AllHaveRsc": true
+  }
+]

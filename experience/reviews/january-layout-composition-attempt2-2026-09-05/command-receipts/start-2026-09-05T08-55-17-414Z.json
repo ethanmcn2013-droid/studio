@@ -1,0 +1,16 @@
+{
+  "mode": "start",
+  "cwd": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/verify-january-layout-composition",
+  "command": [
+    "C:\\Users\\ethan\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "scripts/experience/january/serve.mjs",
+    "start"
+  ],
+  "startedAt": "2026-09-05T08:55:17.415Z",
+  "environment": "Allowlisted runtime plumbing. Repository fixture adds isolated file DBs and synthetic HQ session. No operational env values/files or provider configuration.",
+  "scope": "Existing January188 and VenueKit20 only. Extension held for no-Atlas conflict. No selected-browser control.",
+  "pid": 19988,
+  "exitCode": 4294967295,
+  "signal": null,
+  "finishedAt": "2026-09-05T09:03:03.180Z"
+}

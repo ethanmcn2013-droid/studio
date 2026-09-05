@@ -1,0 +1,84 @@
+{
+  "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c",
+  "buildId": "DANN7J8yQ7lTN4nVlbJjA",
+  "buildInputsDigest": "7439c2ada1d34952973310ec3585e9db5eae0df89b9ecccba51f4903f8af228d",
+  "toolingDigest": "e52dba76a48f59d9ba7b19b0968568ee463e210d14a74498e2365049ef246167",
+  "selected": [
+    "experience/reviews/january-studio14-final-2026-09-05/capture-2026-09-05T06-14-36-024Z/manifest.json"
+  ],
+  "scriptedOnly": true,
+  "humanReview": "pending",
+  "councilReview": "not performed",
+  "outcomes": [
+    {
+      "id": "studio.page.hq-access",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-atlas",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-atlas-by-slug",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-cards",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-entitlements-by-lookup",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-experimentation-room",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-health",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-marketing",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-org-by-slug",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-platform-readiness",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-product-hero-design-motion",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-socials",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-venues",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-waitlist",
+      "complete": true,
+      "errors": []
+    }
+  ]
+}

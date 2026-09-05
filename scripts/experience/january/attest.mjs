@@ -1,10 +1,13 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { evidence } from './environment.mjs';
-import { matrix } from './matrix.mjs';
+import { matrix as januaryMatrix } from './matrix.mjs';
+import { venueKitMatrix } from './venue-kit-matrix.mjs';
 import { coverageErrors, fileDigest, sourceDigest } from './receipt.mjs';
+import { hashFile } from '../lib.mjs';
 
 const read = file => JSON.parse(readFileSync(file, 'utf8'));
+const matrix = process.argv.includes('--venue-kit') ? venueKitMatrix : januaryMatrix;
 const registry = read('experience/registry.json');
 const overrides = read('experience/overrides.json');
 const config = read('experience/config.json');
@@ -17,13 +20,21 @@ const screenshotDigest = relative => {
 };
 const outcomes = [];
 for (const entry of registry.experiences.filter(entry => Object.hasOwn(matrix, entry.id))) {
-  const errors = coverageErrors({ entries: [entry], breakpoints: config.breakpoints, results: manifest.results, digest, screenshotDigest });
+  const errors = coverageErrors({ entries: [entry], breakpoints: config.breakpoints, results: manifest.results, digest, screenshotDigest, requiredMatrix: matrix });
   outcomes.push({ id: entry.id, complete: errors.length === 0, errors });
   if (process.argv.includes('--write')) {
     const coverage = errors.length === 0 ? 'complete' : 'partial';
     const update = { requiredStates: matrix[entry.id], fixtureCoverage: coverage, screenshotCoverage: coverage, accessibilityCoverage: coverage, automatedTestCoverage: coverage };
-    // Keep materialityHash, review dates, audit status, approval references and
-    // findings unchanged. Machine coverage is not human or council acceptance.
+    if (process.argv.includes('--venue-kit') && errors.length === 0) {
+      Object.assign(update, {
+        materialityHash: hashFile(entry.source.replace(/^studio\//, '')),
+        primaryJob: 'Review held venue collateral against current January terms and launch decisions.',
+        primaryAction: 'Read the current guidance and inspect retained local collateral specimens.',
+      });
+    }
+    // Venue materiality is adopted only after its fresh matrix passes. Keep
+    // review dates, audit status, approval references and findings unchanged.
+    // Machine coverage is not human or council acceptance.
     Object.assign(entry, update);
     overrides.experiences[entry.id] = { ...overrides.experiences[entry.id], ...update };
   }

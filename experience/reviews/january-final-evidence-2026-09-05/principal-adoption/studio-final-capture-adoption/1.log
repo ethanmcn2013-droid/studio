@@ -1,0 +1,316 @@
+TAP version 13
+# Subtest: identical observed input bytes remain exact
+ok 1 - identical observed input bytes remain exact
+  ---
+  duration_ms: 3.3366
+  type: 'test'
+  ...
+# Subtest: LF checkout reconstructs the original observed CRLF ledger bytes
+ok 2 - LF checkout reconstructs the original observed CRLF ledger bytes
+  ---
+  duration_ms: 1.0898
+  type: 'test'
+  ...
+# Subtest: CRLF checkout reconstructs the original observed LF ledger bytes
+ok 3 - CRLF checkout reconstructs the original observed LF ledger bytes
+  ---
+  duration_ms: 0.6671
+  type: 'test'
+  ...
+# Subtest: bare carriage returns remain byte-significant
+ok 4 - bare carriage returns remain byte-significant
+  ---
+  duration_ms: 2.1781
+  type: 'test'
+  ...
+# Subtest: semantic, string, formatting and missing-final-newline changes remain stale
+ok 5 - semantic, string, formatting and missing-final-newline changes remain stale
+  ---
+  duration_ms: 1.4706
+  type: 'test'
+  ...
+# Subtest: binary input, path and runtime-source changes remain stale
+ok 6 - binary input, path and runtime-source changes remain stale
+  ---
+  duration_ms: 0.7407
+  type: 'test'
+  ...
+# Subtest: no other input receives text normalization
+ok 7 - no other input receives text normalization
+  ---
+  duration_ms: 0.3822
+  type: 'test'
+  ...
+# Subtest: three explicit text inputs can have different observed newline encodings
+ok 8 - three explicit text inputs can have different observed newline encodings
+  ---
+  duration_ms: 1.5542
+  type: 'test'
+  ...
+# Subtest: complete328-case synthetic verifier fixture
+ok 9 - complete328-case synthetic verifier fixture
+  ---
+  duration_ms: 53.1104
+  type: 'test'
+  ...
+# Subtest: missing explicit manifest
+ok 10 - missing explicit manifest
+  ---
+  duration_ms: 17.3896
+  type: 'test'
+  ...
+# Subtest: multiple manifests
+ok 11 - multiple manifests
+  ---
+  duration_ms: 13.0717
+  type: 'test'
+  ...
+# Subtest: manifest outside owning capture directory
+ok 12 - manifest outside owning capture directory
+  ---
+  duration_ms: 13.6968
+  type: 'test'
+  ...
+# Subtest: pilot run
+ok 13 - pilot run
+  ---
+  duration_ms: 17.8586
+  type: 'test'
+  ...
+# Subtest: source mismatch
+ok 14 - source mismatch
+  ---
+  duration_ms: 20.4026
+  type: 'test'
+  ...
+# Subtest: finished source mismatch
+ok 15 - finished source mismatch
+  ---
+  duration_ms: 18.0318
+  type: 'test'
+  ...
+# Subtest: build receipt source mismatch
+ok 16 - build receipt source mismatch
+  ---
+  duration_ms: 20.6673
+  type: 'test'
+  ...
+# Subtest: build input mismatch
+ok 17 - build input mismatch
+  ---
+  duration_ms: 24.9136
+  type: 'test'
+  ...
+# Subtest: tooling mismatch
+ok 18 - tooling mismatch
+  ---
+  duration_ms: 26.2474
+  type: 'test'
+  ...
+# Subtest: inputs changed during capture
+ok 19 - inputs changed during capture
+  ---
+  duration_ms: 23.1967
+  type: 'test'
+  ...
+# Subtest: missing row
+ok 20 - missing row
+  ---
+  duration_ms: 21.9679
+  type: 'test'
+  ...
+# Subtest: duplicate replacing required row
+ok 21 - duplicate replacing required row
+  ---
+  duration_ms: 32.6302
+  type: 'test'
+  ...
+# Subtest: wrong served build
+ok 22 - wrong served build
+  ---
+  duration_ms: 30.0569
+  type: 'test'
+  ...
+# Subtest: wrong viewport
+ok 23 - wrong viewport
+  ---
+  duration_ms: 31.5283
+  type: 'test'
+  ...
+# Subtest: wrong material state
+ok 24 - wrong material state
+  ---
+  duration_ms: 29.0303
+  type: 'test'
+  ...
+# Subtest: wrong route
+ok 25 - wrong route
+  ---
+  duration_ms: 30.4198
+  type: 'test'
+  ...
+# Subtest: missing screenshot
+ok 26 - missing screenshot
+  ---
+  duration_ms: 27.5145
+  type: 'test'
+  ...
+# Subtest: changed screenshot bytes/hash
+ok 27 - changed screenshot bytes/hash
+  ---
+  duration_ms: 26.1463
+  type: 'test'
+  ...
+# Subtest: provider activity
+ok 28 - provider activity
+  ---
+  duration_ms: 33.7241
+  type: 'test'
+  ...
+# Subtest: wrong populated waitlist count
+ok 29 - wrong populated waitlist count
+  ---
+  duration_ms: 30.7048
+  type: 'test'
+  ...
+# Subtest: application exception
+ok 30 - application exception
+  ---
+  duration_ms: 36.6581
+  type: 'test'
+  ...
+# Subtest: reduced-motion filtering state absent
+ok 31 - reduced-motion filtering state absent
+  ---
+  duration_ms: 33.9756
+  type: 'test'
+  ...
+# Subtest: configuration loses wide while registry still requires it
+ok 32 - configuration loses wide while registry still requires it
+  ---
+  duration_ms: 18.1622
+  type: 'test'
+  ...
+# Subtest: one registered page loses a required width
+ok 33 - one registered page loses a required width
+  ---
+  duration_ms: 19.0357
+  type: 'test'
+  ...
+# Subtest: all eight waitlist branches require actual matching receipts
+ok 34 - all eight waitlist branches require actual matching receipts
+  ---
+  duration_ms: 3.6983
+  type: 'test'
+  ...
+# Subtest: missing and duplicate cases cannot close coverage
+ok 35 - missing and duplicate cases cannot close coverage
+  ---
+  duration_ms: 2.4557
+  type: 'test'
+  ...
+# Subtest: source, viewport, route and screenshot must match
+ok 36 - source, viewport, route and screenshot must match
+  ---
+  duration_ms: 2.9655
+  type: 'test'
+  ...
+# Subtest: unobserved branch, unsafe fixture and motion failures are rejected
+ok 37 - unobserved branch, unsafe fixture and motion failures are rejected
+  ---
+  duration_ms: 1.3272
+  type: 'test'
+  ...
+# Subtest: application faults remain failures; only canceled local RSC prefetch is nonblocking
+ok 38 - application faults remain failures; only canceled local RSC prefetch is nonblocking
+  ---
+  duration_ms: 1.8287
+  type: 'test'
+  ...
+# Subtest: only the 14 extension pages and all four declared widths are in scope
+ok 39 - only the 14 extension pages and all four declared widths are in scope
+  ---
+  duration_ms: 0.4496
+  type: 'test'
+  ...
+# Subtest: complete requires all four states at all four exact breakpoints
+ok 40 - complete requires all four states at all four exact breakpoints
+  ---
+  duration_ms: 4.4109
+  type: 'test'
+  ...
+# Subtest: a missing mobile keyboard render cannot be certified by other captures
+ok 41 - a missing mobile keyboard render cannot be certified by other captures
+  ---
+  duration_ms: 1.5616
+  type: 'test'
+  ...
+# Subtest: duplicate copies cannot stand in for a required state
+ok 42 - duplicate copies cannot stand in for a required state
+  ---
+  duration_ms: 2.4924
+  type: 'test'
+  ...
+# Subtest: changed source and changed PNG each invalidate coverage
+ok 43 - changed source and changed PNG each invalidate coverage
+  ---
+  duration_ms: 0.4461
+  type: 'test'
+  ...
+# Subtest: an invented data state, wrong width, or missing interaction is rejected
+ok 44 - an invented data state, wrong width, or missing interaction is rejected
+  ---
+  duration_ms: 0.3911
+  type: 'test'
+  ...
+# Subtest: runtime and accessibility faults cannot be hidden by pass:true
+ok 45 - runtime and accessibility faults cannot be hidden by pass:true
+  ---
+  duration_ms: 0.5044
+  type: 'test'
+  ...
+# Subtest: only canceled local RSC requests are classified as prefetch cancellation
+ok 46 - only canceled local RSC requests are classified as prefetch cancellation
+  ---
+  duration_ms: 0.9901
+  type: 'test'
+  ...
+# Subtest: reduced motion requires the actual browser preference
+ok 47 - reduced motion requires the actual browser preference
+  ---
+  duration_ms: 0.3463
+  type: 'test'
+  ...
+# Subtest: server environment never inherits operator, DB, payment or mail settings
+ok 48 - server environment never inherits operator, DB, payment or mail settings
+  ---
+  duration_ms: 3.536
+  type: 'test'
+  ...
+# Subtest: Venue kit requires real authored, motion, keyboard and access states at all four widths
+ok 49 - Venue kit requires real authored, motion, keyboard and access states at all four widths
+  ---
+  duration_ms: 3.855
+  type: 'test'
+  ...
+# Subtest: a missing access or keyboard case cannot be replaced by another screenshot
+ok 50 - a missing access or keyboard case cannot be replaced by another screenshot
+  ---
+  duration_ms: 0.7967
+  type: 'test'
+  ...
+# Subtest: stale copy, changed evidence, missing interaction and accessibility failures prevent adoption
+ok 51 - stale copy, changed evidence, missing interaction and accessibility failures prevent adoption
+  ---
+  duration_ms: 1.141
+  type: 'test'
+  ...
+1..51
+# tests 51
+# suites 0
+# pass 51
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 877.7006

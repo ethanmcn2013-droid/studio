@@ -1,0 +1,70 @@
+{
+  "candidate": "9f629e45b5b426aaaf0bde16ed8a8f8ebdd67474",
+  "sourceDigest": "e76d4b7ccdf2ab9e0de9e37d3e745fe89abb382da2ff099cad7926512524602c",
+  "runs": [
+    {
+      "id": 33991893477,
+      "name": "ci",
+      "headSha": "9f629e45b5b426aaaf0bde16ed8a8f8ebdd67474",
+      "conclusion": "success",
+      "url": "https://github.com/ethanmcn2013-droid/studio/actions/runs/33991893477",
+      "failedSteps": []
+    },
+    {
+      "id": 33991893484,
+      "name": "Verify Studio",
+      "headSha": "9f629e45b5b426aaaf0bde16ed8a8f8ebdd67474",
+      "conclusion": "success",
+      "url": "https://github.com/ethanmcn2013-droid/studio/actions/runs/33991893484",
+      "failedSteps": []
+    },
+    {
+      "id": 33991893534,
+      "name": "design-quality",
+      "headSha": "9f629e45b5b426aaaf0bde16ed8a8f8ebdd67474",
+      "conclusion": "failure",
+      "url": "https://github.com/ethanmcn2013-droid/studio/actions/runs/33991893534",
+      "failedSteps": [
+        "Verify January rendered coverage against this candidate"
+      ]
+    }
+  ],
+  "status": "CI/Verify pass; Design fails current-source freshness.",
+  "limits": [
+    "Earlier188/20 is dated;328 extension unrenewed; no current-source capture claimed.",
+    "Atlas/RC3 gates and receiving remain held; no alternate server/browser/redirect action."
+  ],
+  "files": {
+    "33991893477.json": {
+      "bytes": 5161,
+      "sha256": "70cacc4c8f496940610978f58703a99a93cb6486be8ae8202ff2713aee4bb59c"
+    },
+    "33991893477.log": {
+      "bytes": 360055,
+      "sha256": "efd4d0e0262018b76ce39e3fbcaad303729cb54a069dea9177202bd85cd6db24"
+    },
+    "33991893484.json": {
+      "bytes": 5509,
+      "sha256": "c0fd7e62e9e361d2cba9a5ff4e76d9d7ca1c8b8950fe701c2e85d3137ce84ec4"
+    },
+    "33991893484.log": {
+      "bytes": 339999,
+      "sha256": "fd91fa918e47e18b80c9bdfbfe0c3d4be0f2ced827caaa9a2b7c46382cf865dc"
+    },
+    "33991893534.json": {
+      "bytes": 6879,
+      "sha256": "2c412a02f2033a05805285a75f66b7bca8959a8329df527566f6f456af063a41"
+    },
+    "33991893534.log": {
+      "bytes": 134592,
+      "sha256": "1ff5865a0ecf2fe95e1d139da9a81bd29579260de8ef61d4995b70b6c8c7e087"
+    },
+    "runs.json": {
+      "bytes": 827,
+      "sha256": "1821633a670cee79fd3475493c07bb76a8b55cc3161d013e7ece03469541f6b8"
+    }
+  },
+  "archive": "linux-9f629e45.zip",
+  "archiveBytes": 136079,
+  "archiveSha256": "f73f7a67a896f32a413dfbada5ddb39e28c5f18ede9fe5fdd7678ccca62d02a6"
+}

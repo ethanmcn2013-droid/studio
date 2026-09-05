@@ -1,0 +1,70 @@
+{
+  "candidate": "41384571df3bf9908015180a02a2b7e1d9c8d676",
+  "sourceDigest": "781bd312562fcc6885588c7e73cc9c28bace67de0a6aef00b6c2e364889222ee",
+  "runs": [
+    {
+      "id": 33962227361,
+      "name": "ci",
+      "headSha": "41384571df3bf9908015180a02a2b7e1d9c8d676",
+      "conclusion": "success",
+      "url": "https://github.com/ethanmcn2013-droid/studio/actions/runs/33962227361",
+      "failedSteps": []
+    },
+    {
+      "id": 33962227364,
+      "name": "Verify Studio",
+      "headSha": "41384571df3bf9908015180a02a2b7e1d9c8d676",
+      "conclusion": "success",
+      "url": "https://github.com/ethanmcn2013-droid/studio/actions/runs/33962227364",
+      "failedSteps": []
+    },
+    {
+      "id": 33962227359,
+      "name": "design-quality",
+      "headSha": "41384571df3bf9908015180a02a2b7e1d9c8d676",
+      "conclusion": "failure",
+      "url": "https://github.com/ethanmcn2013-droid/studio/actions/runs/33962227359",
+      "failedSteps": [
+        "Verify January rendered coverage against this candidate"
+      ]
+    }
+  ],
+  "archive": "linux-41384571.zip",
+  "archiveBytes": 133509,
+  "archiveSha256": "a8329f0cf85d5c303b04b56f5db7fd44fd08d3492ff1a87fa3f395c2a0b334c7",
+  "files": {
+    "33962227359.json": {
+      "bytes": 6879,
+      "sha256": "8f312f0c8cd7c969c4bc8746badb7a7430bc013da29aa487573687fa2b101e11"
+    },
+    "33962227359.log": {
+      "bytes": 134589,
+      "sha256": "91299f80c42addfafe24edb3e4c98487b6950843f73fb5342731effdbfe429a0"
+    },
+    "33962227361.json": {
+      "bytes": 5161,
+      "sha256": "2023fb9f96f8559430fe7227948f3262e67f998812368e693e34a372b1b8168d"
+    },
+    "33962227361.log": {
+      "bytes": 364553,
+      "sha256": "fa22599a0a4273c2f7ac0eea29b37811f3da8b19b50040f8b4a3e8bd85d2072b"
+    },
+    "33962227364.json": {
+      "bytes": 5509,
+      "sha256": "c76f446b20306def1a1d7639f78d68ef99ac7abb7ab9ccbd766b73786bb20530"
+    },
+    "33962227364.log": {
+      "bytes": 335857,
+      "sha256": "f418d5c216d49c458c1a6e40e2d302ac79ccc7953a6e1bd8ca38b05c4c53bd76"
+    },
+    "runs.json": {
+      "bytes": 827,
+      "sha256": "318aad04a9f9f645631c2cc573a3681c22131e25a9de66258b0b0deb7354841f"
+    }
+  },
+  "limits": [
+    "CI and Verify pass; Design fails unchanged source-freshness validation.",
+    "No current-source188/20 or extension328 capture is claimed. Existing packets remain unchanged.",
+    "No Atlas/component server, redirect workaround, provider action or receiving integration."
+  ]
+}

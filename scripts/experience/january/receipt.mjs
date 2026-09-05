@@ -11,10 +11,10 @@ export function sourceDigest() {
   return createHash('sha256').update(paths.map(file => `${file}:${hashFile(file)}`).join('\n')).digest('hex');
 }
 
-export function coverageErrors({ entries, breakpoints, results, digest, screenshotDigest }) {
+export function coverageErrors({ entries, breakpoints, results, digest, screenshotDigest, requiredMatrix = matrix }) {
   const errors = [];
   for (const entry of entries) {
-    for (const state of matrix[entry.id]) {
+    for (const state of requiredMatrix[entry.id]) {
       for (const [breakpoint, viewport] of Object.entries(breakpoints)) {
         const key = `${entry.id}:${state}:${breakpoint}`;
         const rows = results.filter(row => row.experienceId === entry.id && row.state === state && row.breakpoint === breakpoint);

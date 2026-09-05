@@ -1,0 +1,24 @@
+.lab {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.previews {
+  max-width: 100%;
+  max-height: calc(100svh - 10rem);
+  scroll-margin-block: 5rem;
+}
+
+.previews:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* This long review page needs every line and control reachable. Keep the
+   existing notice and dismissal in document flow on this page only. */
+:global(body):has(.lab) :global(.signal-devbanner) {
+  position: static;
+  transform: none;
+  animation: none;
+  margin: 0 auto 18px;
+}

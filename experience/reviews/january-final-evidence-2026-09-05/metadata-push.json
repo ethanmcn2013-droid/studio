@@ -1,0 +1,5 @@
+{
+  "command": "git push origin ee0fb632ab63d73ad197911c823d0d4bf98584fa:refs/heads/fix/january-commercial-package",
+  "exitCode": 0,
+  "output": "remote: \r\nremote: GitHub found 60 vulnerabilities on ethanmcn2013-droid/studio's default branch (28 high, 25 moderate, 7 low). To find out more, visit:        \r\nremote:      https://github.com/ethanmcn2013-droid/studio/security/dependabot        \r\nremote: \r\nTo https://github.com/ethanmcn2013-droid/studio.git\r\n   385cd0be..ee0fb632  ee0fb632ab63d73ad197911c823d0d4bf98584fa -> fix/january-commercial-package\r\n"
+}

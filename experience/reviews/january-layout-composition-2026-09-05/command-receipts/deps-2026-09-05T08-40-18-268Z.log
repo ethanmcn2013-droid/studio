@@ -1,0 +1,68 @@
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +564
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 564, reused 166, downloaded 0, added 0
+Progress: resolved 564, reused 281, downloaded 0, added 0
+Progress: resolved 564, reused 558, downloaded 0, added 0
+Progress: resolved 564, reused 563, downloaded 0, added 47
+Progress: resolved 564, reused 563, downloaded 0, added 103
+Progress: resolved 564, reused 563, downloaded 0, added 144
+Progress: resolved 564, reused 564, downloaded 0, added 168
+Progress: resolved 564, reused 564, downloaded 0, added 201
+Progress: resolved 564, reused 564, downloaded 0, added 230
+Progress: resolved 564, reused 564, downloaded 0, added 240
+Progress: resolved 564, reused 564, downloaded 0, added 250
+Progress: resolved 564, reused 564, downloaded 0, added 292
+Progress: resolved 564, reused 564, downloaded 0, added 312
+Progress: resolved 564, reused 564, downloaded 0, added 385
+Progress: resolved 564, reused 564, downloaded 0, added 413
+Progress: resolved 564, reused 564, downloaded 0, added 441
+Progress: resolved 564, reused 564, downloaded 0, added 499
+Progress: resolved 564, reused 564, downloaded 0, added 531
+Progress: resolved 564, reused 564, downloaded 0, added 554
+Progress: resolved 564, reused 564, downloaded 0, added 558
+Progress: resolved 564, reused 564, downloaded 0, added 559
+Progress: resolved 564, reused 564, downloaded 0, added 560
+Progress: resolved 564, reused 564, downloaded 0, added 561
+Progress: resolved 564, reused 564, downloaded 0, added 562
+Progress: resolved 564, reused 564, downloaded 0, added 563
+Progress: resolved 564, reused 564, downloaded 0, added 564
+Progress: resolved 564, reused 564, downloaded 0, added 564, done
+
+dependencies:
++ @libsql/client 0.17.3
++ @react-email/components 1.0.12
++ @react-email/render 2.1.0
++ drizzle-orm 0.45.2
++ gsap 3.13.0
++ lenis 1.1.20
++ mermaid 11.16.1
++ motion 12.42.2
++ next 16.2.11
++ react 19.2.4
++ react-dom 19.2.4
++ signal-ds 2.1.0
+
+devDependencies:
++ @axe-core/playwright 4.12.1
++ @clerk/testing 2.2.9
++ @eslint/eslintrc 3.3.5
++ @playwright/test 1.61.1
++ @tailwindcss/postcss 4.2.4
++ @types/node 20.19.39
++ @types/react 19.2.14
++ @types/react-dom 19.2.3
++ ajv 8.20.0
++ ajv-formats 3.0.1
++ dotenv 17.4.2
++ drizzle-kit 0.31.10
++ eslint 9.39.5
++ eslint-config-next 16.2.11
++ pixelmatch 7.2.0
++ pngjs 7.0.0
++ tailwindcss 4.2.4
++ tsx 4.21.0
++ typescript 5.9.3
+
+Done in 36.2s using pnpm v10.33.4

@@ -172,6 +172,21 @@ for (const file of [
 forbid("content/hq/features/project-files-in-drive.md", "**The 50 MB ceiling disappears", "provider capacity is not the enforced App upload limit");
 forbid("content/hq/risks/drive-refresh-token-custody.md", "Not yet mitigated — the substrate does not exist", "implemented encryption must not be described as absent");
 
+// This active decision retained obsolete product topology and treated a July
+// build plan as readiness. Keep the original text as history while enforcing
+// an explicit current authority; do not scan the historical record as new copy.
+const licensingFile = "content/hq/decisions/licensing-access-architecture.md";
+const licensing = source(studio, licensingFile);
+const historicalBoundary = "## Historical decision — 9 July 2026";
+requireText(licensingFile, historicalBoundary, "the original licensing decision must remain explicitly historical");
+const currentLicensing = licensing.split(historicalBoundary)[0];
+for (const reference of ["./three-products-home.md", "./january-2027-launch.md", "../../../docs/execution/january-2027/ACCEPTANCE.md"]) {
+  if (!currentLicensing.includes(reference)) failures.push(licensingFile + ": current authority must link " + reference);
+}
+if (/all four products|four products already read|GDPR is no longer a launch blocker/i.test(currentLicensing)) {
+  failures.push(licensingFile + ": historical topology or unverified readiness cannot become current authority");
+}
+
 if (failures.length) {
   console.error("[content-truth] failed");
   for (const failure of failures) console.error("- " + failure);

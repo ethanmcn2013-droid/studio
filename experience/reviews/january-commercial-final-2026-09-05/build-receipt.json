@@ -1,0 +1,13 @@
+{
+  "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c",
+  "buildId": "Q2eGZCiNLZijg0M_mBjah",
+  "builtAt": "2026-09-05T05:58:10.973Z",
+  "node": "v24.19.0",
+  "command": "node scripts/experience/january/serve.mjs build --venue-kit",
+  "environment": "allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration",
+  "reuse": {
+    "originalReceipt": "experience/reviews/january-venue-kit-final-2026-09-05/build-receipt.json",
+    "originalSha256": "e6963263a34a6a3b145ba860df3c1d3926916d1a4a708c7ec5463565542001dc",
+    "reason": "Same freshly built Next artifact, same owning January fixture environment and isolated4466 server. Only evidence directory differs; original command/time retained."
+  }
+}

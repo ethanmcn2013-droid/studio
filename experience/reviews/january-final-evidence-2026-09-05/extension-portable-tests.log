@@ -1,0 +1,41 @@
+✔ identical observed input bytes remain exact (3.5829ms)
+✔ LF checkout reconstructs the original observed CRLF ledger bytes (0.8411ms)
+✔ CRLF checkout reconstructs the original observed LF ledger bytes (0.3503ms)
+✔ bare carriage returns remain byte-significant (0.4937ms)
+✔ semantic, string, formatting and missing-final-newline changes remain stale (0.8073ms)
+✔ binary input, path and runtime-source changes remain stale (0.6092ms)
+✔ no other input receives text normalization (0.3044ms)
+✔ three explicit text inputs can have different observed newline encodings (1.3377ms)
+✔ complete328-case synthetic verifier fixture (60.9127ms)
+✔ missing explicit manifest (12.5837ms)
+✔ multiple manifests (12.157ms)
+✔ manifest outside owning capture directory (14.8336ms)
+✔ pilot run (23.1014ms)
+✔ source mismatch (15.6665ms)
+✔ finished source mismatch (15.6489ms)
+✔ build receipt source mismatch (22.5118ms)
+✔ build input mismatch (19.7571ms)
+✔ tooling mismatch (23.0965ms)
+✔ inputs changed during capture (17.7496ms)
+✔ missing row (18.9646ms)
+✔ duplicate replacing required row (57.7817ms)
+✔ wrong served build (31.4371ms)
+✔ wrong viewport (29.1827ms)
+✔ wrong material state (33.4882ms)
+✔ wrong route (30.5623ms)
+✔ missing screenshot (29.992ms)
+✔ changed screenshot bytes/hash (36.2075ms)
+✔ provider activity (29.7781ms)
+✔ wrong populated waitlist count (32.78ms)
+✔ application exception (28.6421ms)
+✔ reduced-motion filtering state absent (30.6172ms)
+✔ configuration loses wide while registry still requires it (15.9166ms)
+✔ one registered page loses a required width (14.1948ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 867.5473

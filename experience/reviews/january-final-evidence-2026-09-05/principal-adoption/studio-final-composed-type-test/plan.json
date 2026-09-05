@@ -1,0 +1,193 @@
+{
+  "head": "50908e0620b3664eb23420919e1540cb98067235",
+  "dirty": "?? .githooks/post-checkout\n?? .githooks/post-commit\n?? .githooks/post-merge\n?? .githooks/pre-push",
+  "node": "v22.23.2",
+  "startedAt": "2026-09-05T06:33:46.817Z",
+  "packageHash": "99653a86bc9ebdd67870844fe4c5d0d3706ef93f7b9856df59da1cc419e86241",
+  "requested": [
+    "typecheck",
+    "test"
+  ],
+  "mode": "Direct execution of unchanged declared commands with the installed dependencies; no package-manager installation or dependency mutation.",
+  "steps": [],
+  "pairedApp": {
+    "root": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\app\\feat-january-final-journeys",
+    "head": "313fbc560d28e1833e7803992624f7d868d0a421",
+    "dependenciesPresent": true
+  },
+  "plan": [
+    {
+      "script": "typecheck",
+      "command": "tsc --noEmit",
+      "args": [
+        "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\feat-january-commercial-readiness\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "node scripts/check-product-marketing-contract.mjs",
+      "args": [
+        "scripts/check-product-marketing-contract.mjs"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "node scripts/check-suite-switcher-contract.mjs",
+      "args": [
+        "scripts/check-suite-switcher-contract.mjs"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "node scripts/check-chrome-contract.mjs",
+      "args": [
+        "scripts/check-chrome-contract.mjs"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "node scripts/check-loading-contract.mjs",
+      "args": [
+        "scripts/check-loading-contract.mjs"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "node scripts/check-venue-edition-contract.mjs",
+      "args": [
+        "scripts/check-venue-edition-contract.mjs"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "node scripts/check-venue-term-parity.mjs",
+      "args": [
+        "scripts/check-venue-term-parity.mjs"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "node scripts/check-content-truth.mjs",
+      "args": [
+        "scripts/check-content-truth.mjs"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "node --test scripts/migrate-venue-access-18-months.test.mjs scripts/migrate-access-sponsorship.test.mjs scripts/migrate-venue-edition-terms.test.mjs",
+      "args": [
+        "--test",
+        "scripts/migrate-venue-access-18-months.test.mjs",
+        "scripts/migrate-access-sponsorship.test.mjs",
+        "scripts/migrate-venue-edition-terms.test.mjs"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "node scripts/check-suiteloader-identity.mjs",
+      "args": [
+        "scripts/check-suiteloader-identity.mjs"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "tsx --test src/lib/hq/proofgate.test.ts src/lib/hq/operator-todos.test.ts src/lib/hq/rooms.test.ts src/lib/hq/hq-nav-active.test.ts src/lib/hq/markdown.test.ts src/lib/atlas/render.test.ts src/lib/hq/inbox.test.ts src/server/today/shape-native.test.ts src/lib/entitlements-db/pure.test.ts src/lib/entitlements-db/sponsorship-policy.test.ts src/lib/entitlements-db/webhook-lifecycle.test.ts src/lib/entitlements-db/requests.test.ts src/lib/product-urls.test.ts src/lib/suite/contracts.test.ts src/lib/suite/contracts-v2.test.ts src/lib/suite/identity-adapter.test.ts src/lib/suite/lifecycle-coordinator.test.ts src/lib/suite/journey-certification.test.ts src/lib/suite/platform-contract.test.ts src/server/auth/suite-assertion.test.ts src/lib/commercial-terms.test.ts src/app/pricing/pricing-contract.test.ts src/lib/ui-wave3-contract.test.ts src/lib/venue-edition.test.ts src/lib/venue-allotment.test.ts src/lib/venue-lifecycle.test.ts src/lib/venue-founding-number.test.ts src/lib/venue-edition-term.vectors.test.ts src/lib/account/fixtures.test.ts src/lib/account/csv.test.ts src/lib/account/roles.test.ts src/lib/account/samples.test.ts src/lib/account/live/project-venue-access.test.ts src/lib/account/instrumentation/local-date.test.ts src/lib/account/instrumentation/ingest.test.ts src/lib/account/instrumentation/rollup.test.ts src/lib/account/instrumentation/daily-metrics.test.ts src/lib/account/instrumentation/retention.test.ts src/lib/account/instrumentation/sealing.test.ts src/lib/account/instrumentation/freeze.test.ts src/lib/account/live/project-venue-usage.test.ts src/lib/account/live/delivery-state.test.ts src/lib/account/instrumentation/event-schema.test.ts src/lib/account/instrumentation/emitter.test.ts src/lib/account/instrumentation/attribution.test.ts src/lib/account/instrumentation/suppression.test.ts src/emails/render.test.ts",
+      "args": [
+        "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\feat-january-commercial-readiness\\node_modules\\tsx\\dist\\cli.mjs",
+        "--test",
+        "src/lib/hq/proofgate.test.ts",
+        "src/lib/hq/operator-todos.test.ts",
+        "src/lib/hq/rooms.test.ts",
+        "src/lib/hq/hq-nav-active.test.ts",
+        "src/lib/hq/markdown.test.ts",
+        "src/lib/atlas/render.test.ts",
+        "src/lib/hq/inbox.test.ts",
+        "src/server/today/shape-native.test.ts",
+        "src/lib/entitlements-db/pure.test.ts",
+        "src/lib/entitlements-db/sponsorship-policy.test.ts",
+        "src/lib/entitlements-db/webhook-lifecycle.test.ts",
+        "src/lib/entitlements-db/requests.test.ts",
+        "src/lib/product-urls.test.ts",
+        "src/lib/suite/contracts.test.ts",
+        "src/lib/suite/contracts-v2.test.ts",
+        "src/lib/suite/identity-adapter.test.ts",
+        "src/lib/suite/lifecycle-coordinator.test.ts",
+        "src/lib/suite/journey-certification.test.ts",
+        "src/lib/suite/platform-contract.test.ts",
+        "src/server/auth/suite-assertion.test.ts",
+        "src/lib/commercial-terms.test.ts",
+        "src/app/pricing/pricing-contract.test.ts",
+        "src/lib/ui-wave3-contract.test.ts",
+        "src/lib/venue-edition.test.ts",
+        "src/lib/venue-allotment.test.ts",
+        "src/lib/venue-lifecycle.test.ts",
+        "src/lib/venue-founding-number.test.ts",
+        "src/lib/venue-edition-term.vectors.test.ts",
+        "src/lib/account/fixtures.test.ts",
+        "src/lib/account/csv.test.ts",
+        "src/lib/account/roles.test.ts",
+        "src/lib/account/samples.test.ts",
+        "src/lib/account/live/project-venue-access.test.ts",
+        "src/lib/account/instrumentation/local-date.test.ts",
+        "src/lib/account/instrumentation/ingest.test.ts",
+        "src/lib/account/instrumentation/rollup.test.ts",
+        "src/lib/account/instrumentation/daily-metrics.test.ts",
+        "src/lib/account/instrumentation/retention.test.ts",
+        "src/lib/account/instrumentation/sealing.test.ts",
+        "src/lib/account/instrumentation/freeze.test.ts",
+        "src/lib/account/live/project-venue-usage.test.ts",
+        "src/lib/account/live/delivery-state.test.ts",
+        "src/lib/account/instrumentation/event-schema.test.ts",
+        "src/lib/account/instrumentation/emitter.test.ts",
+        "src/lib/account/instrumentation/attribution.test.ts",
+        "src/lib/account/instrumentation/suppression.test.ts",
+        "src/emails/render.test.ts"
+      ]
+    },
+    {
+      "script": "test",
+      "command": "tsx --import ./src/test/register-server-only.mjs --test src/lib/entitlements-db/codes.test.ts src/lib/entitlements-db/founding-numbers.test.ts src/lib/entitlements-db/venue-commercial.test.ts",
+      "args": [
+        "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\feat-january-commercial-readiness\\node_modules\\tsx\\dist\\cli.mjs",
+        "--import",
+        "./src/test/register-server-only.mjs",
+        "--test",
+        "src/lib/entitlements-db/codes.test.ts",
+        "src/lib/entitlements-db/founding-numbers.test.ts",
+        "src/lib/entitlements-db/venue-commercial.test.ts"
+      ]
+    },
+    {
+      "script": "test:venue-fulfilment",
+      "command": "node --import tsx --import ./src/test/register-server-only.mjs --test --test-concurrency=1 src/lib/venue-fulfilment/canonical.test.ts src/lib/venue-fulfilment/transport.test.ts src/lib/venue-fulfilment/store.test.ts",
+      "args": [
+        "--import",
+        "tsx",
+        "--import",
+        "./src/test/register-server-only.mjs",
+        "--test",
+        "--test-concurrency=1",
+        "src/lib/venue-fulfilment/canonical.test.ts",
+        "src/lib/venue-fulfilment/transport.test.ts",
+        "src/lib/venue-fulfilment/store.test.ts"
+      ]
+    },
+    {
+      "script": "test:sponsored-use",
+      "command": "node --import tsx --import ./src/test/register-server-only.mjs --test --test-concurrency=1 src/lib/sponsored-use/service-auth.test.ts src/lib/account/instrumentation/usage-service.test.cjs src/lib/account/instrumentation/usage-runtime.test.cjs scripts/migrate-usage-delivery.test.mjs",
+      "args": [
+        "--import",
+        "tsx",
+        "--import",
+        "./src/test/register-server-only.mjs",
+        "--test",
+        "--test-concurrency=1",
+        "src/lib/sponsored-use/service-auth.test.ts",
+        "src/lib/account/instrumentation/usage-service.test.cjs",
+        "src/lib/account/instrumentation/usage-runtime.test.cjs",
+        "scripts/migrate-usage-delivery.test.mjs"
+      ]
+    }
+  ]
+}

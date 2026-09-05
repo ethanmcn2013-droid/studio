@@ -1,0 +1,43 @@
+{
+  "capturedAt": "2026-09-05T06:12:04.180Z",
+  "scriptedOnly": true,
+  "syntheticSession": true,
+  "providerCalls": 0,
+  "humanUsability": "not performed",
+  "rows": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:4466/hq/email-lab",
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c",
+      "buildId": "Q2eGZCiNLZijg0M_mBjah",
+      "servedBuild": "Q2eGZCiNLZijg0M_mBjah",
+      "status": 200,
+      "screenshot": "desktop.png",
+      "sha256": "10b639dc1b97cc15bbf88be3a975ceb0599c9dbd15287d488af73437c1385296",
+      "blocked": [],
+      "pageErrors": [],
+      "assertions": "actual Lab selection, current subject/preheader/held-send assumption and annual-price specimen"
+    },
+    {
+      "name": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4466/hq/email-lab",
+      "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c",
+      "buildId": "Q2eGZCiNLZijg0M_mBjah",
+      "servedBuild": "Q2eGZCiNLZijg0M_mBjah",
+      "status": 200,
+      "screenshot": "mobile.png",
+      "sha256": "0542dc8a357681b1a323ddcfd3a00476cfc2ea8b9b44efb5d685136c2ebaeda9",
+      "blocked": [],
+      "pageErrors": [],
+      "assertions": "actual Lab selection, current subject/preheader/held-send assumption and annual-price specimen"
+    }
+  ]
+}

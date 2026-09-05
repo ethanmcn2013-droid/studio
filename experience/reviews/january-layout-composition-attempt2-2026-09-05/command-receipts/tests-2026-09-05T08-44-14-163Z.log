@@ -1,0 +1,21 @@
+✔ synthetic states distinguish empty, legacy claims, verified receipts and failed reads (2970.2993ms)
+✔ complete requires all four states at all four exact breakpoints (5.7301ms)
+✔ a missing mobile keyboard render cannot be certified by other captures (0.4645ms)
+✔ duplicate copies cannot stand in for a required state (0.4067ms)
+✔ changed source and changed PNG each invalidate coverage (0.3861ms)
+✔ an invented data state, wrong width, or missing interaction is rejected (0.5844ms)
+✔ runtime and accessibility faults cannot be hidden by pass:true (0.2768ms)
+✔ only canceled local RSC requests are classified as prefetch cancellation (0.5235ms)
+✔ reduced motion requires the actual browser preference (0.2079ms)
+✔ server environment never inherits operator, DB, payment or mail settings (2.3143ms)
+✔ Venue kit requires real authored, motion, keyboard and access states at all four widths (2.7493ms)
+✔ a missing access or keyboard case cannot be replaced by another screenshot (0.6355ms)
+✔ stale copy, changed evidence, missing interaction and accessibility failures prevent adoption (0.68ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5183.9998

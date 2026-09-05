@@ -1,0 +1,14 @@
+{
+  "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+  "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+  "args": [
+    "scripts/experience/january/capture.mjs"
+  ],
+  "tag": "january-capture",
+  "startedAt": "2026-09-05T06:02:29.460Z",
+  "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+  "pid": 9568,
+  "exitCode": 0,
+  "signal": null,
+  "finishedAt": "2026-09-05T06:10:46.402Z"
+}

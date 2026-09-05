@@ -1,0 +1,10 @@
+{
+  "pid": 32612,
+  "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+  "node": "v24.19.0",
+  "sourceDigest": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c",
+  "buildInputsDigest": "7439c2ada1d34952973310ec3585e9db5eae0df89b9ecccba51f4903f8af228d",
+  "mode": "start",
+  "url": "http://127.0.0.1:4416",
+  "startedAt": "2026-09-05T06:14:14.825Z"
+}

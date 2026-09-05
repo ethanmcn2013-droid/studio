@@ -8,10 +8,13 @@ import { chromium } from '@playwright/test';
 import { captureRunFailures } from '../capture-approval.mjs';
 import { hashFile, readJson } from '../lib.mjs';
 import { baseURL, evidence, fixtureEnvironment, fixturePassword, root } from './environment.mjs';
-import { matrix, scenarioFor } from './matrix.mjs';
+import { matrix as januaryMatrix, scenarioFor } from './matrix.mjs';
+import { venueKitMatrix } from './venue-kit-matrix.mjs';
 import { sourceDigest } from './receipt.mjs';
 
 const pilot = process.argv.includes('--pilot');
+const venueKit = process.argv.includes('--venue-kit');
+const matrix = venueKit ? venueKitMatrix : januaryMatrix;
 const config = readJson(path.join(root, 'experience/config.json'));
 const registry = readJson(path.join(root, 'experience/registry.json'));
 const ids = ['hq', 'hq-blueprint', 'hq-entitlements', 'hq-financial-model', 'hq-founders-circle', 'hq-reporting', 'students'];
@@ -21,7 +24,7 @@ const selectedId = process.argv.find(arg => arg.startsWith('--experience='))?.sl
 const selectedState = process.argv.find(arg => arg.startsWith('--state='))?.slice('--state='.length);
 const selectedWidth = process.argv.find(arg => arg.startsWith('--breakpoint='))?.slice('--breakpoint='.length);
 const atlas = process.argv.includes('--atlas');
-const selected = atlas ? [{ ...registry.experiences.find(e => e.source === 'studio/src/app/hq/atlas/[slug]/page.tsx'), route: '/hq/atlas/brand-enforcement' }] : entries.filter(e => !selectedId || e.id === selectedId);
+const selected = venueKit ? [registry.experiences.find(e => e.id === 'studio.page.hq-venue-kit')] : atlas ? [{ ...registry.experiences.find(e => e.source === 'studio/src/app/hq/atlas/[slug]/page.tsx'), route: '/hq/atlas/brand-enforcement' }] : entries.filter(e => !selectedId || e.id === selectedId);
 const runName = atlas ? 'atlas' : pilot ? 'pilot' : 'capture';
 const manifestFile = path.join(evidence, `${runName}-manifest.json`);
 const build = readJson(path.join(evidence, 'build-receipt.json'));
@@ -81,6 +84,23 @@ try {
           assert.equal(new URL(page.url()).pathname, expectedPath);
           await page.evaluate(() => document.fonts.ready);
           await page.waitForTimeout(600);
+          if (venueKit && state !== 'restricted') {
+            const content = await page.locator('#main').innerText();
+            assert.match(content, /21 January 2027/);
+            assert.match(content, /historical specimens/);
+            assert.match(content, /ten days after the actual send/);
+            assert.match(content, /€1,500 standard or €1,000/);
+            assert.match(content, /explicit pilot needs a current limited term/);
+            assert.match(content, /no message is sent from this room/i);
+            assert.equal(await page.locator('#main section[aria-label="directions"] article').count(), 7);
+            const images = await page.locator('#main img').evaluateAll(async images => {
+              for (const image of images) await image.decode();
+              return images.map(image => ({ src: image.getAttribute('src'), alt: image.alt, width: image.naturalWidth, height: image.naturalHeight }));
+            });
+            assert.equal(images.length, 6);
+            assert.ok(images.every(image => image.width > 0 && image.height > 0 && image.alt.trim()));
+            interactions.push({ authoredSections: 7, decodedImages: images, currentTermsAndHold: true });
+          }
           if (state === 'restricted') {
             assert.equal(await page.getByLabel('Password', { exact: true }).count(), 1);
             assert.equal(await page.locator('#hq-content').count(), 0, 'Restricted route must not expose HQ content');
@@ -233,6 +253,15 @@ try {
               await page.waitForTimeout(180);
               if (viewport.width === 390) assert.ok(await table.evaluate(el => el.scrollLeft) > before);
               interactions.push('Table is keyboard reachable; ArrowRight scrolls when overflowing');
+            } else if (venueKit) {
+              const target = page.locator('#main a[href="/brand/collateral/venue/outreach-email.txt"]');
+              await tabTo(target);
+              await page.keyboard.press('Enter');
+              await page.waitForURL('**/brand/collateral/venue/outreach-email.txt');
+              assert.match(await page.locator('body').innerText(), /venue/i);
+              interactions.push('Native Tab/Enter opens the retained local text specimen; no outbound or form submission');
+              await page.goBack({ waitUntil: 'networkidle' });
+              await page.locator('h1').waitFor();
             } else {
               const target = page.locator('#hq-content a[href="/hq/financial-model"], #hq-content a[href="/hq/reporting"]').first();
               await tabTo(target);
@@ -255,6 +284,13 @@ try {
           // Long-content proof uses the actual authored page, with every reveal
           // scrolled into view. No injected prose or substitute screenshots.
           if (state === 'long-content' && entry.id !== 'studio.surface.hq-shell-navigation') {
+            if (venueKit) {
+              for (const article of await page.locator('#main article').all()) {
+                await article.scrollIntoViewIfNeeded();
+                assert.equal(await article.isVisible(), true);
+              }
+              interactions.push('All seven actual collateral sections reached; no injected prose or fictional records');
+            }
             for (const heading of await page.locator('h2, section[aria-label]').all()) await heading.scrollIntoViewIfNeeded();
             if (entry.route === '/students') {
               const disclosure = page.getByRole('button', { name: /committee/i });

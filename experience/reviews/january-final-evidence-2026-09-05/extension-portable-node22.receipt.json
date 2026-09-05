@@ -1,0 +1,14 @@
+{
+  "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+  "executable": "C:/Users/ethan/AppData/Local/Programs/nodejs-v22/node-v22.23.2-win-x64/node.exe",
+  "args": [
+    "scripts/experience/january-extension-verify.mjs",
+    "--manifest=experience/reviews/january-studio14-final-2026-09-05/capture-2026-09-05T06-14-36-024Z/manifest.json"
+  ],
+  "startedAt": "2026-09-05T06:26:09.377Z",
+  "environment": "allowlisted process plumbing; no provider configuration inherited",
+  "pid": 28664,
+  "exitCode": 0,
+  "signal": null,
+  "finishedAt": "2026-09-05T06:26:10.339Z"
+}

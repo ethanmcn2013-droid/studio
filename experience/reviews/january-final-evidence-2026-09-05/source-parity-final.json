@@ -1,0 +1,129 @@
+{
+  "at": "2026-09-05T06:26:36.211Z",
+  "expectedPrincipal": "a709b52c217c343956b199b07d0db47cd8cb42c0",
+  "ownHead": {
+    "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+    "executable": "git",
+    "args": [
+      "rev-parse",
+      "HEAD"
+    ],
+    "exitCode": 0,
+    "stdout": "ee0fb632ab63d73ad197911c823d0d4bf98584fa"
+  },
+  "principalHead": {
+    "cwd": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness",
+    "executable": "git",
+    "args": [
+      "rev-parse",
+      "HEAD"
+    ],
+    "exitCode": 0,
+    "stdout": "fcb528f1dc364e55ab37f4148a2437f0e8c607a3"
+  },
+  "principalContainsExpected": {
+    "cwd": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness",
+    "executable": "git",
+    "args": [
+      "merge-base",
+      "--is-ancestor",
+      "a709b52c217c343956b199b07d0db47cd8cb42c0",
+      "HEAD"
+    ],
+    "exitCode": 0,
+    "stdout": ""
+  },
+  "own": {
+    "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+    "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+    "args": [
+      "--input-type=module",
+      "-e",
+      "import {sourceDigest} from './scripts/experience/january/receipt.mjs'; console.log(sourceDigest())"
+    ],
+    "exitCode": 0,
+    "stdout": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+  },
+  "parent": {
+    "cwd": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness",
+    "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+    "args": [
+      "--input-type=module",
+      "-e",
+      "import {sourceDigest} from './scripts/experience/january/receipt.mjs'; console.log(sourceDigest())"
+    ],
+    "exitCode": 0,
+    "stdout": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+  },
+  "parity": true,
+  "productDifference": {
+    "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+    "executable": "git",
+    "args": [
+      "diff",
+      "--name-only",
+      "a709b52c217c343956b199b07d0db47cd8cb42c0",
+      "HEAD",
+      "--",
+      "src",
+      "content",
+      "contracts",
+      "package.json",
+      "pnpm-lock.yaml",
+      "pnpm-workspace.yaml",
+      "next.config.ts"
+    ],
+    "exitCode": 0,
+    "stdout": ""
+  },
+  "extensionAssetDifference": {
+    "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+    "executable": "git",
+    "args": [
+      "diff",
+      "--name-only",
+      "fcb528f1dc364e55ab37f4148a2437f0e8c607a3",
+      "HEAD",
+      "--",
+      "public/brand/collateral/cards",
+      "public/brand/collateral/social",
+      "docs/signal-studio-review/remediation-program.yaml"
+    ],
+    "exitCode": 0,
+    "stdout": ""
+  },
+  "workingProductDifference": {
+    "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+    "executable": "git",
+    "args": [
+      "diff",
+      "--name-only",
+      "HEAD",
+      "--",
+      "src",
+      "content",
+      "contracts",
+      "package.json",
+      "pnpm-lock.yaml",
+      "pnpm-workspace.yaml",
+      "next.config.ts"
+    ],
+    "exitCode": 0,
+    "stdout": ""
+  },
+  "untrackedProduct": {
+    "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+    "executable": "git",
+    "args": [
+      "ls-files",
+      "--others",
+      "--exclude-standard",
+      "--",
+      "src",
+      "content",
+      "contracts"
+    ],
+    "exitCode": 0,
+    "stdout": ""
+  }
+}

@@ -1,0 +1,20 @@
+✔ complete requires all four states at all four exact breakpoints (2.4836ms)
+✔ a missing mobile keyboard render cannot be certified by other captures (0.4444ms)
+✔ duplicate copies cannot stand in for a required state (0.45ms)
+✔ changed source and changed PNG each invalidate coverage (0.3175ms)
+✔ an invented data state, wrong width, or missing interaction is rejected (0.253ms)
+✔ runtime and accessibility faults cannot be hidden by pass:true (0.2975ms)
+✔ only canceled local RSC requests are classified as prefetch cancellation (0.5702ms)
+✔ reduced motion requires the actual browser preference (0.2226ms)
+✔ server environment never inherits operator, DB, payment or mail settings (1.8425ms)
+✔ Venue kit requires real authored, motion, keyboard and access states at all four widths (3.9023ms)
+✔ a missing access or keyboard case cannot be replaced by another screenshot (0.8554ms)
+✔ stale copy, changed evidence, missing interaction and accessibility failures prevent adoption (0.7336ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 126.4476

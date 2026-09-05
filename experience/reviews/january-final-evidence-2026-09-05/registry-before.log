@@ -1,0 +1,2 @@
+experience:validate: 1 failure(s)
+  x studio.page.hq-venue-kit: changed experience lacks complete fixture, screenshot, and accessibility coverage
