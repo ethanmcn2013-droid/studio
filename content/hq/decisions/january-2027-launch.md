@@ -22,9 +22,10 @@ recorded in the programme index. Routine checkpoints need no renewed approval.
 delegated scope. Compare opportunities in writing;
 any later build needs postlaunch evidence and a new founder scope decision.
 
-The programme index is `docs/execution/january-2027/PROGRAMME.md`. Its six
-acceptance states remain open. Completed engineering milestones are evidence
-toward those states, not launch approval.
+The programme index is `docs/execution/january-2027/PROGRAMME.md`. It records the
+six current acceptance states: the instrument no-build decision is closed, while
+the other five workstreams remain partial. Completed engineering milestones are
+evidence toward those states, not launch approval.
 
 ## Retained commercial terms
 
