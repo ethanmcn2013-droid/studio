@@ -1,6 +1,8 @@
 # January 2027 programme
 
-Updated 2026-09-04 by the principal integrator. Current phase: internal implementation and baseline reconciliation. Commercial launch and first venue outreach target: **21 January 2027**. No earlier sends or commercial opening. The [January decision](../../../content/hq/decisions/january-2027-launch.md) records the user's authority and supersession.
+Updated 2026-09-05 by the principal integrator. Current phase: internal implementation, independent verification and integration. Commercial launch and first venue outreach target: **21 January 2027**. No earlier sends or commercial opening. The [January decision](../../../content/hq/decisions/january-2027-launch.md) records the user's authority and supersession.
+
+Current programme estimate: **approximately 60% complete**, including verification, recovery, stabilisation and release preparation. This is a principal planning assessment against the accepted scope, not a measured percentage, a count of passing tests or release authorization. S6 is closed; S1–S5 remain partial. Implemented candidate work receives no final acceptance credit until its independent and receiving gates pass. Live-provider proof, sustained internal use and final release exercises remain open; customer demand and human comprehension are separate postlaunch outcomes.
 
 ## Accountable workstreams
 
@@ -64,7 +66,7 @@ One principal integrator owns shared project identity, membership, schema, navig
 - Free .edu automatic grants versus paid verified Student policy: new automatic grants and email-only issuance disabled in App fc40f4ef; historical grants remain. New verified Student checkout remains unavailable until its actual policy is enforced.
 
 - Event offer versus access enforcement: delegated owner/funding policy recorded; App a10432dd refuses new Event sessions while existing settlement/refund recovery stays active. Full public/private access closure and historical designation remain assigned work.
-- Sponsored-use readiness: corrected the claim that migration was the sole remaining step. The App sink is still a no-op; durable delivery and actual end-to-end reporting remain open.
+- Sponsored-use readiness: corrected the earlier claim that migration was the sole remaining step. The receiving baseline still has the no-op sink. The separate paired candidate now implements durable delivery and actual end-to-end internal reporting, pending independent fix verification and receiving integration; it is not yet a deployed capability.
 - Template and redemption partial writes: 540933c0 request-bound application and b2e6f6fa atomic new comp fulfilment preserve retry identity and prevent partial starter/capacity writes. Historical partial grants require reconciliation.
 - Recovery evidence: a full App populated restore exposed a stale ongoing backfill count. 3d8a36e1 retains every execution proof and immutable migration checksum while restricting continuous proofs to durable invariants.
 
@@ -131,6 +133,14 @@ The current App follow-up is draft PR169 (feat/january-activation-integration), 
 
 Tasks reporting fixes are now App6822c1f1/Studio c53c42ca. The shared outgoing snapshot omits observed days/modules under suppression; invalid acknowledgements keep both event and erasure custody. Author132focusedchecks pass. The separately composed standard/Founding/explicitpilot scenarios each pass eight actual milestones from issuance through claim, deliberate task, report and account erasure/unused-code withdrawal. Fresh independent S5 fix verification and final combined gates remain open.
 
-Notes8963e919 remains unintegrated after fresh review validated three P2 recovery/context defects: sibling-project pending capture lost during retry, mixed grouped/loose catalog omission blocking exact capture, and a cold mobile subscriber recovering stale cached A after quota failure. Experience owner is repairing all three before the remaining Studio coverage extension. No unauthorized sharing was demonstrated; these remain real correctness/data-recovery blockers.
+Notes8963e919 remains unintegrated after fresh review validated three P2 recovery/context defects: sibling-project pending capture lost during retry, mixed grouped/loose catalog omission blocking exact capture, and a cold mobile subscriber recovering stale cached A after quota failure. Poincare owns these repairs. Chandra separately owns the Studio14 coverage extension from the paired Studio43bf371 candidate, with Confucius's source/state map. No unauthorized sharing was demonstrated; the Notes findings remain real correctness/data-recovery blockers.
 
 Fresh production-only package audits on Appb6c3eba5 and Studio04433b73 returned zero advisory entries and zero reported severities. Default-branch GitHub notices are a different dependency state. These registry results do not replace code security review or provider lifecycle acceptance.
+
+## Latest verification — 5 September
+
+App follow-up b6c3eba5 passed Linux CI33932238817 and Verify33932238755. Design33932238799 failed on stale Home materiality evidence, as expected from the observed source change; the failure remains an open gate. Fresh independent review of unchanged account/export runtime768951fc passed46 authored plus14 independent checks, with no scoped residual blocker. This confirms diagnostic suppression and preservation of available actor-scoped exports and Windows test assertions; deployed/provider behavior remains outside that verdict.
+
+Studio3efd649 passed Linux CI33932417722 and Verify33932417699. Design33932417663 failed on the14 additional pages requiring complete state/breakpoint evidence. Current runtime4102b5c has a successful single-invocation188-case capture and four Atlas renders, but those do not satisfy the additional coverage. PR176 remains a draft and unmerged.
+
+The actual paired commercial/use rehearsal is committed at Appda62317b and Studio43bf371. All three scenarios (standard Venue Edition, Founding25, explicit pilot) passed24 checkpoints through actual local issuance, claim, deliberately created task, attributed reporting, account erasure and unused-code withdrawal. App93 and Studio219 focused checks, paired term parity and both typechecks passed. The first expanded Studio run ended in a Windows native-process failure after assertions; that failure is retained separately from the successful repeated219-check run. Confucius owns independent S5 fix verification; Plato owns fresh review of the three-store composition. No real settlement, email, provider lifecycle, production migration or rollout is claimed.
