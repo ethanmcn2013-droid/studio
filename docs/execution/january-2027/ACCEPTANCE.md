@@ -177,3 +177,20 @@ Drive token-receipt runtimef1d7ce02 is authored, not accepted or integrated; ind
 lifecycle review is active. Event export/download recovery is the parallel next
 slice. Both receiving branches remain unchanged. A1–A6, RC3, provider,
 human/council and release acceptance stay open.
+
+
+## Export prerequisite and additional review hold — 5 September
+
+Event exportac7a/6eba is independently reviewed and integrated ata629: principal
+27 export/24 tenant tests and six composition commands pass, including full typecheck
+and eight fresh component/actual-HTTP browser cases. Purchaser/current-owner facts
+remain distinct; Profile export and account deletion remain reachable. Native download
+failure-panel presentation remains unverified. Project recovery and all post-term
+enforcement remain open. New serial export/browser gates are registered; fresh Linux
+for this later composition remains required.
+
+The distinct Drive f1d lifecycle review returned an automatic possible-cybersecurity-
+risk stop, not an acceptance verdict. Its requested erasure-ordering control is not
+retried or rerouted. Author sealinge311 retains failures and unresolved source-hash
+mismatch; f1d/0032 are not integrated. This is an additional hold, not closure of the
+older RC3 or Atlas gates. All receiving and final release states remain open.

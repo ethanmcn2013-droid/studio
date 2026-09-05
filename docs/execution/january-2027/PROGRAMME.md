@@ -78,9 +78,10 @@ fails the January source-freshness gate. Complete logs are preserved at618ef51b.
 Current9f629e45 likewise passes CI33991893477 and Verify33991893484; Design33991893534
 fails the unchanged January source-freshness gate. Its complete three-workflow
 logs are preserved as linux-9f629e45 in the owning revocation-truth packet.
-The accepted permission-notice update now changes the HQ product digest to
-`e76d4b7ccdf2ab9e0de9e37d3e745fe89abb382da2ff099cad7926512524602c`.
-No captures are claimed at that new source. Prior188/20 evidence remains dated
+The permission-notice update produced HQ sourcee76d4b7c. Recording the accepted
+Event export prerequisite now changes the current product digest to
+`c89cb383662475f036b31917fbe1ef39f67695a5ba656d23e2603039a28ca73f`.
+No captures are claimed at this new source. Prior188/20 evidence remains dated
 and intact; its freshness is now open alongside the unrenewed328 extension.
 The292-case proposal was not launched or merged because redirect exclusion is
 unproven; Atlas16/36 remains held. The original native capture failure and314
@@ -90,8 +91,10 @@ to evade that boundary. Email Lab's selected-browser error is still unattributed
 Event foundationa59 and corrections93be/80f are independently verified and
 integrated ina8c. Original checkout/project/term/refund facts and anonymized
 surviving-project effects are implemented; no content adapter consumes the
-internal evaluator yet. Export and independent profile-download reachability
-are the active next slice. Recovery must precede private/Timeline/public/cache
+internal evaluator yet. Export and independent profile-download reachability are accepted as a bounded
+prerequisite inac7a/6eba, integrated ata629. Principal27 export/24 tenant tests,
+full composition typecheck and eight fresh browser cases pass. Exact project recovery
+is the next slice; no content enforcement is enabled. Recovery must precede private/Timeline/public/cache
 denial. No historical backfill, sales reopening or production migration occurred.
 
 The original27af twelve-control Drive investigation remains preserved. The
@@ -99,8 +102,14 @@ named-permission notice is repaired in1ac; live Google labels remain independent
 Personal token disconnect still needs durable local request and bounded provider
 response facts.0032_drive_token_revocation_receipts.sql is allocated to the Drive
 writer after inspecting64 worktrees and refreshedorigin/maina709. Runtimef1d7ce02
-is committed in that isolated lane and under independent review; it is not yet
-integrated. Event export and download-failure recovery remain a separate writer. No old-token retry worker
+is committed in that isolated lane but its independent review was automatically
+stopped for possible cybersecurity risk. No verdict was returned; it is unaccepted
+and unintegrated. Author evidence is sealed ate311 with original failures and an
+unresolved source-hash mismatch. The review and erasure-ordering control are not
+retried or rerouted. Exact stop: App January drive-token-receipt-hold evidence.
+The principal issued that stop, not a separate user instruction. The separate
+operations lane now prepares Notes/Signal schema provenance using local files only;
+it does not supply any held Drive review acceptance. No old-token retry worker
 is authorized. A receipt alone does not serialize overlapping Google consent and
 revocation or prove immediate provider effects.
 
