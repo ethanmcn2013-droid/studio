@@ -4,7 +4,7 @@ Source index: [17 capabilities and their authoritative code, policy and proof ga
 
 Updated 2026-09-05 by the principal integrator. Current phase: internal implementation, independent verification and integration. Commercial launch and first venue outreach target: **21 January 2027**. No earlier sends or commercial opening. The [January decision](../../../content/hq/decisions/january-2027-launch.md) records the user's authority and supersession.
 
-Current programme estimate: **approximately 60% complete**, including verification, recovery, stabilisation and release preparation. This is a principal planning assessment against the accepted scope, not a measured percentage, a count of passing tests or release authorization. S6 is closed; S1â€“S5 remain partial. Implemented candidate work receives no final acceptance credit until its independent and receiving gates pass. Live-provider proof, sustained internal use and final release exercises remain open; customer demand and human comprehension are separate postlaunch outcomes. This estimate is deliberately unchanged by individual follow-up test successes.
+Current programme estimate: **approximately 60% complete**, including verification, recovery, stabilisation and release preparation. This is a principal planning assessment against the accepted scope, not a measured percentage, a count of passing tests or release authorization. S6 is closed; S1–S5 remain partial. Implemented candidate work receives no final acceptance credit until its independent and receiving gates pass. Live-provider proof, sustained internal use and final release exercises remain open; customer demand and human comprehension are separate postlaunch outcomes. This estimate is deliberately unchanged by individual follow-up test successes.
 
 ## Accountable workstreams
 
@@ -15,7 +15,7 @@ Current programme estimate: **approximately 60% complete**, including verificati
 | S3 Drive | Partial; core implementation integrated | Backend, ownership/access UI and completed-upload recovery are in receivingfe4. Scoped UI security review and recovery81 authored plus39 independent cases pass. The later1ac pending-removal notice is independently verified and composed ina8c. | Drive owner: durable personal-disconnect response receipts and reconnect safeguards, then final integrated experience and failure-state acceptance. Operator/provider: isolated OAuth/Clerk target and real two-account upload/revoke/reauth/handover/erasure lifecycle. Incomplete closed-tab bytes cannot resume. Production0028/0029 remain held. |
 | S4 Suite coherence | Partial; follow-up candidate implemented | Canonical template/caller retry, invitation arrival, navigation/contrast and Home scope fixes. Notesf04 independently passes198 checks/scenarios. App6eb composes project-calendar and independently repaired sponsored-date follow-ups; final internal browser, artifact and all three Linux gates pass. Receiving remains held. Preceding runtime509 and Studio source38ec retain their132/68/27 and188/328/20 captures; those are historical after current source changes. Floor calendar has16 component browser cases/196 assertions; My Work has four scoped render controls. | Experience owner: exact-candidate/receiving gates, incomplete Atlas renewal, remaining design-lab observations and final calendar composition, complete authenticated stories and human accessibility/comprehension. Scripted coverage does not approve design or human usability. |
 | S5 Collaboration | Partial; useful-action reporting integrated | Invitation B while A is active passes25 cases. Actual deliberate Tasks creation, atomic delivery intent, canonical attribution, closed-day report, suppression and account erasure are in receiving77d; independent fix154 positive checks and actual three-store composition pass. Studio's paired consumer is now in receiving4ed. | Collaboration owner: complete creator/recipient/role/revocation story and final follow-up receiving verification. Operator: actual provider/delivery configuration and maintained erasure processing. Capture defaults off; no real email or human first-minute success is claimed. |
-| S6 Instruments | Closed â€” no-build for January | Accepted delegated decision and [Aâ€“F opportunity comparison](INSTRUMENT_OPPORTUNITIES.md). Existing templates win the January scope decision. | Reopen only after the recorded postlaunch evidence trigger and a new scope decision. No guest schema, plus menu or speculative chooser added. |
+| S6 Instruments | Closed — no-build for January | Accepted delegated decision and [A–F opportunity comparison](INSTRUMENT_OPPORTUNITIES.md). Existing templates win the January scope decision. | Reopen only after the recorded postlaunch evidence trigger and a new scope decision. No guest schema, plus menu or speculative chooser added. |
 
 These verdicts distinguish implementation progress from release acceptance. The authoritative scenario register is [ACCEPTANCE.md](ACCEPTANCE.md). Component reports remain historical receipts; they cannot override a later failure.
 
@@ -99,14 +99,14 @@ changes the approximately60% estimate or authorizes production, launch or outrea
 
 | Window | Work / exit |
 |---|---|
-| 4â€“11 September | Truth, Drive takeover, workspace and internal verification environment. |
-| 14 Septemberâ€“9 October | Drive lifecycle and commercial test-mode preparation in parallel. |
-| 5â€“30 October | Project identity, collaboration, invitation arrival and reproducible templates. |
+| 4–11 September | Truth, Drive takeover, workspace and internal verification environment. |
+| 14 September–9 October | Drive lifecycle and commercial test-mode preparation in parallel. |
+| 5–30 October | Project identity, collaboration, invitation arrival and reproducible templates. |
 | By 16 October | Instrument decision; no-build is already recorded. |
-| 2â€“27 November | Integrated suite design and experience acceptance. |
-| 30 Novemberâ€“11 December | Commercial rehearsal, security, resilience and six verdicts; feature freeze on 11 December. |
-| 14 Decemberâ€“8 January | Stabilisation, internal use, maintenance and recovery. |
-| 11â€“20 January | Exact release revisions, migration/restore/rollback and operator rehearsal. |
+| 2–27 November | Integrated suite design and experience acceptance. |
+| 30 November–11 December | Commercial rehearsal, security, resilience and six verdicts; feature freeze on 11 December. |
+| 14 December–8 January | Stabilisation, internal use, maintenance and recovery. |
+| 11–20 January | Exact release revisions, migration/restore/rollback and operator rehearsal. |
 | 21 January | Controlled release checks, then commercial opening and separately authorized first outreach. |
 
 These are allocations, not evidence of completed future work. Reforecast from measured remaining effort. After freeze, new work must resolve an acceptance failure/material defect and state its schedule cost.
@@ -131,7 +131,7 @@ One principal integrator owns shared project identity, membership, schema, navig
 | App 50f16575, Linux 33916020920 and 33916020941 | CI and registry/browser/locale checks pass. | Fixture coverage does not certify all golden stories or human understanding. |
 | Built App 50f16575 + copy committed 450dda44; local Drive flag enabled | 132/132 critical browser cases; scoped owner confirmation and pending-state desktop/mobile review. | Fictional state; no DB/Google mutation or byte-resume claim. |
 | Scoped independent Drive UI review at 50f16575 | 38 UI tests plus 12 additional action-boundary tests; no new validated scoped security finding. | Not an exhaustive backend audit or live-provider acceptance. |
-| Studio 27016169 | 484 tests, typecheck/lint/build; populated synthetic HQ legacy-only claims excluded and two receipts total â‚¬2,500. | Operator-attested receipt logic, not actual settlement or revenue. |
+| Studio 27016169 | 484 tests, typecheck/lint/build; populated synthetic HQ legacy-only claims excluded and two receipts total €2,500. | Operator-attested receipt logic, not actual settlement or revenue. |
 | App 0731ab91 / Studio 004f9c9 | 30 App access-term/vector tests, 792 differential cases and four consumer CLI regressions pass locally. | Correct arithmetic is separate from capturing/updating the couple's wedding date. |
 
 ## Consequential contradictions repaired
