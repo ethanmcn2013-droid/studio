@@ -1,0 +1,77 @@
+{
+  "commit": "6989acd0946219d7b125c111d9c277e43d0135e0",
+  "deployment": "dpl_ARMpx7Mg1QG4NgCpX4JjQ6sELQQQ",
+  "desktop": [
+    {
+      "state": "start",
+      "height": 900.234375,
+      "inner": "rgb(255, 255, 255)",
+      "lastDateFits": false,
+      "outer": "rgb(255, 255, 255)",
+      "overflow": false,
+      "width": 1392,
+      "x": 16.5
+    },
+    {
+      "state": "across",
+      "height": 900.234375,
+      "inner": "rgb(255, 255, 255)",
+      "lastDateFits": false,
+      "outer": "rgb(255, 255, 255)",
+      "overflow": false,
+      "width": 1392,
+      "x": 16.5
+    },
+    {
+      "state": "down",
+      "height": 1095.234375,
+      "inner": "rgb(9, 9, 11)",
+      "lastDateFits": true,
+      "outer": "rgb(9, 9, 11)",
+      "overflow": false,
+      "width": 1392,
+      "x": 16.5
+    },
+    {
+      "state": "settled",
+      "height": 900.234375,
+      "inner": "rgb(255, 255, 255)",
+      "lastDateFits": false,
+      "outer": "rgb(255, 255, 255)",
+      "overflow": false,
+      "width": 1392,
+      "x": 16.5
+    }
+  ],
+  "mobile": [
+    {
+      "state": "across",
+      "height": 1099.359375,
+      "inner": "rgb(255, 255, 255)",
+      "lastDateFits": false,
+      "outer": "rgb(255, 255, 255)",
+      "overflow": false,
+      "width": 331,
+      "x": 22
+    },
+    {
+      "state": "down",
+      "height": 1432.359375,
+      "inner": "rgb(9, 9, 11)",
+      "lastDateFits": true,
+      "outer": "rgb(9, 9, 11)",
+      "overflow": false,
+      "width": 331,
+      "x": 22
+    }
+  ],
+  "footer": {
+    "brandSpan": "span 1 / span 1",
+    "columns": "312px 156px 156px 156px 156px",
+    "dotRunning": "true",
+    "height": 740,
+    "paused": true
+  },
+  "console": [],
+  "note": "lastDateFits applies only to Down; the vertical layer is hidden in Across."
+}
