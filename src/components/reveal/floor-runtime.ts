@@ -233,19 +233,18 @@ export function startFloor() {
       tlpage.classList.remove('built'); tltrack.classList.remove('draw'); ms.forEach(function(m){ m.classList.remove('in'); });
       tlacross.classList.remove('out'); tldown.classList.remove('in'); timeRoot.classList.remove('stage-wide', 'stage-tall', 'morphing'); tltop.classList.remove('night'); downItems.forEach(function(l){ l.classList.remove('in'); }); segTo(tlseg, 0); getlink.classList.remove('pulse'); fitStack(); tltoast.classList.remove('in');
     },
-    finish: function(){ tlnum.textContent = '79'; tlpage.classList.add('built'); tltrack.classList.add('draw'); ms.forEach(function(m){ m.classList.add('in'); }); timeRoot.classList.add('stage-wide'); setTimeout(fitStack, 50); },
+    finish: function(){ tlnum.textContent = '79'; tlpage.classList.add('built'); tltrack.classList.add('draw'); ms.forEach(function(m){ m.classList.add('in'); }); fitStack(); },
     steps: function(at, keep){
-      /* the frame springs wide for the across view */
-      at(0, function(){ shape(timeRoot, 'stage-wide'); });
+      /* The frame holds its width while the same dates change orientation. */
       countTo(at, keep, tlnum, 79, 500, 1500);
       at(1100, function(){ tlpage.classList.add('built'); });
       at(1700, function(){ tltrack.classList.add('draw'); });
       ms.forEach(function(m, i){ at(1800 + i * 170, function(){ m.classList.add('in'); }); });
       /* the same seven dates, down the page */
-      at(5200, function(){ shape(timeRoot, 'stage-tall'); segTo(tlseg, 1); tlacross.classList.add('out'); tldown.classList.add('in'); tltop.classList.add('night'); fitStack(); });
+      at(5200, function(){ segTo(tlseg, 1); tlacross.classList.add('out'); tldown.classList.add('in'); tltop.classList.add('night'); fitStack(); });
       downItems.forEach(function(l, i){ at(5400 + i * 110, function(){ l.classList.add('in'); }); });
       /* and back across, then the link is ready to share */
-      at(10400, function(){ shape(timeRoot, 'stage-wide'); segTo(tlseg, 0); tldown.classList.remove('in'); tlacross.classList.remove('out'); tltop.classList.remove('night'); fitStack(); });
+      at(10400, function(){ segTo(tlseg, 0); tldown.classList.remove('in'); tlacross.classList.remove('out'); tltop.classList.remove('night'); fitStack(); });
       at(11500, function(){ getlink.classList.add('pulse'); });
       at(11900, function(){ tltoast.classList.add('in'); });
       at(12300, function(){ getlink.classList.remove('pulse'); });

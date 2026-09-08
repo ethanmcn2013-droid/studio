@@ -49,7 +49,7 @@ export default async function Home() {
         <RevealClosing />
       </main>
       <div className="floor-footer">
-        <SiteFooter />
+        <SiteFooter showDot />
       </div>
     </>
   );

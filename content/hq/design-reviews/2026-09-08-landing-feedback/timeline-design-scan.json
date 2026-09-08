@@ -1,0 +1,152 @@
+[
+  {
+    "antipattern": "bounce-easing",
+    "name": "Bounce or elastic easing",
+    "description": "Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 29,
+    "snippet": "animation: var(--spring-glide)"
+  },
+  {
+    "antipattern": "bounce-easing",
+    "name": "Bounce or elastic easing",
+    "description": "Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 126,
+    "snippet": "animation: var(--spring-glide)"
+  },
+  {
+    "antipattern": "bounce-easing",
+    "name": "Bounce or elastic easing",
+    "description": "Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 214,
+    "snippet": "animation: var(--spring-glide)"
+  },
+  {
+    "antipattern": "bounce-easing",
+    "name": "Bounce or elastic easing",
+    "description": "Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 241,
+    "snippet": "animation: var(--spring-glide)"
+  },
+  {
+    "antipattern": "bounce-easing",
+    "name": "Bounce or elastic easing",
+    "description": "Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 392,
+    "snippet": "animation: var(--spring-glide)"
+  },
+  {
+    "antipattern": "bounce-easing",
+    "name": "Bounce or elastic easing",
+    "description": "Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 570,
+    "snippet": "animation: var(--spring-glide)"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 279,
+    "snippet": "transition: width"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 304,
+    "snippet": "transition: height"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 330,
+    "snippet": "transition: width"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 333,
+    "snippet": "transition: width, margin-left"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 336,
+    "snippet": "transition: height"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 339,
+    "snippet": "transition: width, margin-left"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 341,
+    "snippet": "transition: max-height, margin-top"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 343,
+    "snippet": "transition: padding"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-landing-timeline-dot-favicon\\src\\components\\reveal\\floor-and-sheet.css",
+    "line": 382,
+    "snippet": "transition: height"
+  }
+]

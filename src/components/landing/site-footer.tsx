@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 import { COMPANY_META } from "@/lib/hq/company";
+import { FooterDot } from "./footer-dot";
 
 type FooterLink = {
   href: string;
@@ -60,7 +61,13 @@ const SOCIALS = [
  */
 const REGISTRATION_LINE = `${COMPANY_META.legalName}. Registered in Ireland, company number ${COMPANY_META.croNumber}.`;
 
-export function SiteFooter({ compact = false }: { compact?: boolean }) {
+export function SiteFooter({
+  compact = false,
+  showDot = false,
+}: {
+  compact?: boolean;
+  showDot?: boolean;
+}) {
   const year = new Date().getFullYear();
 
   if (compact) {
@@ -73,7 +80,7 @@ export function SiteFooter({ compact = false }: { compact?: boolean }) {
       style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
     >
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-2 gap-x-6 gap-y-9 px-5 sm:px-6 lg:grid-cols-[1.35fr_repeat(4,1fr)] lg:gap-10">
-        <div className="col-span-2 lg:col-span-1">
+        <div className={showDot ? "col-span-2 lg:col-span-1 site-footer-brand-with-dot" : "col-span-2 lg:col-span-1"}>
           <Wordmark size="sm" animate={false} />
           <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-ink-soft">
             Notes. Tasks. Timeline. One clear system. Built for the work.
@@ -82,6 +89,7 @@ export function SiteFooter({ compact = false }: { compact?: boolean }) {
             Made by Signal Studio.
           </p>
           <SocialLinks />
+          {showDot && <FooterDot />}
         </div>
 
         <FooterCol

@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-08 · S·172 · tightens · The timeline holds its width
+
+**The landing page's timeline keeps its full width as the dates turn down the page and back across.**
+
+The frame grows with the content, then settles back without pulling its sides inward. A continuous surface carries the timeline through light and dark, with the grey inset removed. Dot animates in the footer's left corner, with a pause control and a still pose for reduced motion.
+
 ## 2026-09-08 · S·171 · ships · About and Pricing join the floor
 
 **The About and Pricing pages now share the front door's geometry: the ink floor, the white sheets lifted off it, and the products as the objects between them.**
