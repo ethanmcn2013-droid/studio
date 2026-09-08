@@ -1,0 +1,99 @@
+{
+  "desktop": {
+    "cro": true,
+    "dotRate": "1.4",
+    "overflow": false,
+    "sectionHeight": 1016.25,
+    "url": "https://signalstudio.ie/",
+    "viewport": 1440,
+    "words": [
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "sprint"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "backlog"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "epic"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "story points"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "velocity"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "burndown"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "stakeholder"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "workflow"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "dashboard"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "integration"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "onboarding"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "roadmap"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "OKR"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "Kanban"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "sync"
+      },
+      {
+        "colour": "color(srgb 0.492353 0.469412 0.880196)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "word": "bandwidth"
+      }
+    ]
+  },
+  "mobile": {
+    "colours": [
+      "color(srgb 0.492353 0.469412 0.880196)"
+    ],
+    "overflow": false,
+    "viewport": 390
+  }
+}
