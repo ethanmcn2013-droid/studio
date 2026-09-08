@@ -46,5 +46,29 @@ use this directory's existing Git LFS rules.
 - Source and measured values: `footer-cro-metrics.json`. Before/after PNGs
   have prefix `footer-cro-`; gate logs have the same prefix.
 
-Local production preview: PID 39092 at <http://127.0.0.1:3100/>. Production
-deployment is pending final required CI and a live verification.
+## Production verification
+
+All three required CI checks passed on source commit
+`45e292259a2ee6cfabcec61dec9b4175077ef4e0`: verify, typecheck/test and design
+quality. PR #182 was squash-merged through the normal protected workflow at
+19:35:46 UTC. Production commit: `9a0b406a568c1d52e100413c7b0f2dd673a93770`.
+
+Vercel deployment `dpl_B3YWBLUUVL5ivW65PVfTJFN4ryNj` became READY at
+19:39:49 UTC and owns the production `signalstudio.ie` alias. Immutable URL:
+<https://studio-f18f6yz9n-ethanmcn2013-1730s-projects.vercel.app>.
+
+The live browser confirms Dot's 120 × 129px stage and 85.71px visible circle,
+the explicit CRO number 823488, 13px medium registration text, five desktop
+columns and no horizontal overflow at desktop or mobile sizes. Dot is visibly
+animating. No console errors or warnings. Live evidence is retained in
+`footer-cro-live-metrics.json` and the `footer-cro-live-*.png` captures.
+
+Independent production smoke at 19:41:54 UTC: `/`, `/pricing`, `/about`,
+`/notes`, `/tasks`, `/timeline`, `/privacy`, `/terms`, `/security`, and
+`/accessibility` all return 200 and contain “CRO number: 823488.” in the
+actual `.site-footer`, with no framework-error markers. The served CSS chunk
+also confirms Dot's 120 × 129px dimensions.
+
+Rollback target remains the preceding deployment
+`dpl_ARMpx7Mg1QG4NgCpX4JjQ6sELQQQ` at `6989acd0`. No rollback was needed.
+The task-owned local preview (PID 39092) is stopped after live verification.
