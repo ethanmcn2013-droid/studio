@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-08 · S·173 · tightens · A clearer footer signature
+
+**Dot is half again as large in the landing footer, and the company record is easier to read.**
+
+The registration line now labels CRO number 823488 explicitly, with larger, stronger text in both footer layouts. Dot keeps the same motion and pause control.
+
 ## 2026-09-08 · S·172 · tightens · The timeline holds its width
 
 **The landing page's timeline keeps its full width as the dates turn down the page and back across.**

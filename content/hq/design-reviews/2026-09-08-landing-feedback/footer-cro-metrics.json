@@ -1,0 +1,95 @@
+{
+  "desktop": {
+    "columns": "312px 156px 156px 156px 156px",
+    "dotBox": {
+      "bottom": 1025.546875,
+      "height": 129,
+      "left": 102.5,
+      "right": 222.5,
+      "top": 896.546875,
+      "width": 120,
+      "x": 102.5,
+      "y": 896.546875
+    },
+    "dotCircle": {
+      "bottom": 1008.1897583007812,
+      "height": 85.71429443359375,
+      "left": 119.64285278320312,
+      "right": 205.35714721679688,
+      "top": 922.4754638671876,
+      "width": 85.71429443359375,
+      "x": 119.64285278320312,
+      "y": 922.4754638671876
+    },
+    "dotRunning": "true",
+    "font": "13px",
+    "footerHeight": 741.625,
+    "overflow": false,
+    "registrationBox": {
+      "bottom": 1163.671875,
+      "height": 21.125,
+      "left": 92.5,
+      "right": 1332.5,
+      "top": 1142.546875,
+      "width": 1240,
+      "x": 92.5,
+      "y": 1142.546875
+    },
+    "socialsBottom": 832.921875,
+    "text": "Signal Studio Limited. Registered in Ireland. CRO number: 823488.",
+    "viewport": 1440,
+    "weight": "500"
+  },
+  "mobile": {
+    "columns": "155.5px 155.5px",
+    "dotBox": {
+      "bottom": -206.734375,
+      "height": 129,
+      "left": 6,
+      "right": 126,
+      "top": -335.734375,
+      "width": 120,
+      "x": 6,
+      "y": -335.734375
+    },
+    "dotCircle": {
+      "bottom": -224.09152221679688,
+      "height": 85.71429443359375,
+      "left": 23.14285659790039,
+      "right": 108.85713577270508,
+      "top": -309.8058166503906,
+      "width": 85.71427917480469,
+      "x": 23.14285659790039,
+      "y": -309.8058166503906
+    },
+    "dotRunning": "false",
+    "font": "13px",
+    "footerHeight": 1514.125,
+    "overflow": false,
+    "registrationBox": {
+      "bottom": 681.515625,
+      "height": 42.25,
+      "left": 0,
+      "right": 375,
+      "top": 639.265625,
+      "width": 375,
+      "x": 0,
+      "y": 639.265625
+    },
+    "socialsBottom": -345.734375,
+    "text": "Signal Studio Limited. Registered in Ireland. CRO number: 823488.",
+    "viewport": 390,
+    "weight": "500"
+  },
+  "breakpoint": {
+    "dotTop": 497.28125,
+    "overflow": false,
+    "socialsBottom": 433.65625,
+    "width": 1024
+  },
+  "reducedMotion": {
+    "animation": "none",
+    "disabled": true,
+    "running": "false"
+  }
+}
