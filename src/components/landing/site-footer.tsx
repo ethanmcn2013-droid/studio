@@ -80,7 +80,7 @@ export function SiteFooter({
       style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
     >
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-2 gap-x-6 gap-y-9 px-5 sm:px-6 lg:grid-cols-[1.35fr_repeat(4,1fr)] lg:gap-10">
-        <div className={`col-span-2 lg:col-span-1${showDot ? " site-footer-brand-with-dot" : ""}`}>
+        <div className={showDot ? "col-span-2 lg:col-span-1 site-footer-brand-with-dot" : "col-span-2 lg:col-span-1"}>
           <Wordmark size="sm" animate={false} />
           <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-ink-soft">
             Notes. Tasks. Timeline. One clear system. Built for the work.
