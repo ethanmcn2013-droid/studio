@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/site-url";
 /**
  * The indexed public estate. Estate consolidation (2026-08-12) collapsed
  * every public surface onto this one domain: ten primary pages carrying
- * the commercial argument, and the eight background pages that must exist
- * and be findable without competing for attention. Eighteen in total.
+ * the commercial argument, and the seven background pages that must exist
+ * and be findable without competing for attention. Seventeen in total.
  *
  * Two standing rules for this file:
  * 1. Never list a path that redirects. `/brand` sat here for weeks while
@@ -34,7 +34,7 @@ const routes: Array<{
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
 
   // Background — must exist and be findable, not compete for attention.
-  { path: "/design", priority: 0.6, changeFrequency: "monthly" },
+  // /design left the public estate 2026-09-08 (archived; redirects here).
   { path: "/principles", priority: 0.7, changeFrequency: "monthly" },
   { path: "/press", priority: 0.6, changeFrequency: "monthly" },
   { path: "/dispatch", priority: 0.7, changeFrequency: "weekly" },

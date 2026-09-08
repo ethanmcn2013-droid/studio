@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
-import { ReadingProgress } from "@/components/reading-progress";
-import { APP_ORIGIN } from "@/lib/product-urls";
+import { FloorRise } from "@/components/reveal/floor-rise";
 import {
   formatTrackingRef,
   normalizeTrackingParams,
   type TrackingParamKey,
 } from "@/lib/tracking";
-import { TranslationSection } from "./translation";
-import styles from "./about.module.css";
+import "@/components/reveal/floor-and-sheet.css";
+import "./about.css";
 
 export const metadata: Metadata = {
   title: "About · Signal Studio",
@@ -32,8 +29,6 @@ export const metadata: Metadata = {
       "Three products. One system. Plain English. For the other 80%.",
   },
 };
-
-const rd = (ms: number) => ({ "--rd": `${ms}ms` }) as CSSProperties;
 
 const SUBJECT_EYEBROWS: Record<string, string> = {
   weddings: "Wedding planning enquiry",
@@ -103,8 +98,7 @@ const PRODUCTS = [
   {
     id: "notes",
     name: "notes",
-    mark: ".",
-    gesture: styles.gNotes,
+    label: "Notes",
     kind: "Capture clarity",
     desc: "Where ideas and decisions live while they take shape.",
     href: "/notes",
@@ -112,8 +106,7 @@ const PRODUCTS = [
   {
     id: "tasks",
     name: "tasks",
-    mark: "·",
-    gesture: styles.gTasks,
+    label: "Tasks",
     kind: "Execution clarity",
     desc: "What needs to happen next, clear enough to act on today.",
     href: "/tasks",
@@ -121,8 +114,7 @@ const PRODUCTS = [
   {
     id: "timeline",
     name: "timeline",
-    mark: "·",
-    gesture: styles.gTimeline,
+    label: "Timeline",
     kind: "Direction clarity",
     desc: "Where the work is going, written so a client can read it.",
     href: "/timeline",
@@ -158,27 +150,22 @@ const QUESTIONS = [
   "Where is the work going?",
 ] as const;
 
-const FACTS: {
-  label: string;
-  value: string;
-  href?: string;
-  links?: { label: string; href: string }[];
-}[] = [
+const FACTS = [
   { label: "Founded", value: "2025" },
   { label: "Based in", value: "Limerick, Ireland" },
-  {
-    label: "Products",
-    value: "",
-    links: [
-      { label: "Notes", href: "/notes" },
-      { label: "Tasks", href: "/tasks" },
-      { label: "Timeline", href: "/timeline" },
-    ],
-  },
+  { label: "Products", value: "Three" },
+  { label: "Setup", value: "Zero" },
   { label: "Built by", value: "Ethan McNamara" },
-  { label: "Voice", value: "Plain English, no exceptions" },
-];
+] as const;
 
+/**
+ * About, on the floor and the sheet (2026-09-08). The same geometry as the
+ * home page: an ink floor with white sheets lifted off it. One sheet holds
+ * the claim, the three products sit on the floor as small sheets, the
+ * founder's note is a ruled page with a turned corner, the refusals sit on
+ * the floor, and contact is the last sheet. Copy carries over from the
+ * six-movement brief; the translation table retired with this cut.
+ */
 export default async function AboutPage({
   searchParams,
 }: {
@@ -205,427 +192,193 @@ export default async function AboutPage({
   const trackingRef = formatTrackingRef(tracking);
   const mailtoHref = buildMailto(params.subject, contactEyebrow, tracking);
   const isEnterpriseContact = params.subject === "enterprise";
+
   return (
     <>
       <noscript>
-        <style>{`.about-r{opacity:1!important;transform:none!important}.titleInner,.closingInner{transform:none!important}.closingDot{transform:scale(1)!important}.creedFail::after,.sigRule::after{transform:scaleX(1)!important}`}</style>
+        <style>{".floor-page .rise{opacity:1!important;transform:none!important;transition:none!important}"}</style>
       </noscript>
-      <ReadingProgress />
-      <MarketingDelightController />
-      <main id="main" tabIndex={-1} className={styles.main}>
-        <div className={styles.canvasDark}>
-          <div className={styles.frame}>
-            <article className={styles.content}>
-              <header
-                id="claim"
-                className={`${styles.hero} ${styles.rv}`}
-                data-delight-once
-              >
-                <div className={`${styles.heroTop} about-r`} style={rd(0)}>
-                  <p className={styles.heroEyebrow}>
-                    <span className={styles.heroDot} aria-hidden />
-                    <span className={styles.eyebrowNum}>01</span>
-                    About · Signal Studio
-                  </p>
+      <FloorRise />
+      <main id="main" tabIndex={-1} className="floor-page about-floor">
+        <section className="sheet ab-hero" id="claim" aria-labelledby="about-title">
+          <div className="inner">
+            <span className="kicker">About · Signal Studio</span>
+            <h1 id="about-title" className="display">
+              Most productivity tools were built for the people who build them.
+            </h1>
+            <p className="ab-turn">
+              Signal Studio builds for <span className="hl-accent">the other 80%</span>.
+            </p>
+            <div className="ab-body">
+              <p>
+                Weddings, building sites, classrooms, client rosters, shop
+                floors. Real work with real deadlines and real money attached.
+                The people who run it never asked to become project managers.
+              </p>
+              <p>
+                The software asks anyway. Learn the vocabulary. Configure the
+                workspace. Sit the tutorial. Most people close the tab and
+                keep the notebook.
+              </p>
+            </div>
+            <dl className="ab-facts" aria-label="Company facts">
+              {FACTS.map((fact) => (
+                <div key={fact.label}>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
                 </div>
-                <h1 className={styles.title}>
-                  <span className={styles.titleMask}>
-                    <span className={styles.titleInner}>
-                      Most productivity tools were built for the people who
-                      build them.
-                    </span>
-                  </span>
-                </h1>
-                <p className={`${styles.turn} about-r`} style={rd(430)}>
-                  Signal Studio builds for{" "}
-                  <span className={styles.turnEm}>the other 80%</span>.
-                </p>
-                <div className={`${styles.heroBody} about-r`} style={rd(560)}>
-                  <p>
-                    Weddings, building sites, classrooms, client rosters, shop
-                    floors. Real work with real deadlines and real money
-                    attached. The people who run it never asked to become
-                    project managers.
-                  </p>
-                  <p>
-                    The software asks anyway. Learn the vocabulary. Configure
-                    the workspace. Sit the tutorial. Most people close the tab
-                    and keep the notebook.
-                  </p>
-                </div>
-                <div className={`${styles.heroFacts} about-r`} style={rd(700)}>
-                  <span className={styles.factInline}>
-                    EST. <b>2025</b>
-                  </span>
-                  <span className={styles.factInline}>
-                    LIMERICK <b>IRELAND</b>
-                  </span>
-                  <span className={styles.factInline}>
-                    SHIPPED <b>3 PRODUCTS</b>
-                  </span>
-                  <span className={styles.factInline}>
-                    SETUP <b>ZERO</b>
-                  </span>
-                </div>
-                <div className={styles.heroScroll} aria-hidden>
-                  <span>SCROLL</span>
-                </div>
-              </header>
+              ))}
+            </dl>
+          </div>
+        </section>
 
-              <section id="translation" className={styles.section}>
-                <div className={styles.rv} data-delight-once>
-                  <div className={`${styles.eyebrow} about-r`} style={rd(0)}>
-                    <span className={styles.eyebrowNum}>02</span>
-                    <span className={styles.eyebrowName}>The translation</span>
-                  </div>
-                  <h2 className={`${styles.h2} about-r`} style={rd(90)}>
-                    The industry has a dialect.
-                  </h2>
-                  <p className={`${styles.lead} about-r`} style={rd(190)}>
-                    Same project. Two languages. Only one of them asks you to
-                    become a project manager first.
-                  </p>
-                </div>
-                <div className={styles.rv} data-delight-once>
-                  <div className="about-r">
-                    <TranslationSection />
-                  </div>
-                  <p className={`${styles.tCaption} about-r`} style={rd(260)}>
-                    Real phrases from real tools. Toggle between the two.
-                  </p>
-                </div>
-              </section>
-            </article>
+        <div className="floor ab-system" id="system">
+          <div className="inner">
+            <div className="ab-band rise">
+              <h2 id="system-title">Three products. Each owns one kind of clarity.</h2>
+              <p>
+                Named so you don’t have to ask what they do. A note stays
+                private. The line you approve becomes a task with an owner.
+                The date the owner confirms is what the timeline shows.
+              </p>
+            </div>
+            <ul className="ab-products rise" aria-labelledby="system-title">
+              {PRODUCTS.map((product) => (
+                <li key={product.id}>
+                  <Link href={product.href} className="ab-product">
+                    <span className="ab-product-wm">
+                      {product.name}
+                      <i aria-hidden="true" />
+                    </span>
+                    <span className="kicker">{product.kind}</span>
+                    <p>{product.desc}</p>
+                    <span className="ab-product-go">
+                      Explore {product.label} <span aria-hidden="true">↗</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className={styles.canvasLight}>
-          <div className={styles.frame}>
-            <div className={styles.content}>
-              <section id="system" className={`${styles.section} ${styles.lightStart}`}>
-                <div className={styles.rv} data-delight-once>
-                  <div className={`${styles.eyebrow} about-r`} style={rd(0)}>
-                    <span className={styles.eyebrowNum}>03</span>
-                    <span className={styles.eyebrowName}>The system</span>
-                  </div>
-                  <h2 className={`${styles.h2} about-r`} style={rd(90)}>
-                    Three products. Each owns one kind of clarity.
-                  </h2>
-                </div>
-                <div className={`${styles.rv} about-r`} style={rd(120)} data-delight-once>
-                  <ul className={styles.sysList}>
-                  {PRODUCTS.map((product) => (
-                    <li key={product.id} className={styles.sysRow}>
-                      <Link href={product.href} className={styles.sysName}>
-                        {product.name}
-                        <span
-                          className={`${styles.dotChar} ${product.gesture}`}
-                          aria-hidden
-                        >
-                          {product.mark}
-                        </span>
-                      </Link>
-                      <span className={styles.sysKind}>{product.kind}</span>
-                      <p className={styles.sysDesc}>{product.desc}</p>
-                      <span className={styles.sysExit} aria-hidden>
-                        OPEN ↗
+        <section className="sheet ab-note" id="founder" aria-labelledby="founder-title">
+          <div className="ab-note-fold" aria-hidden="true" />
+          <div className="inner">
+            <div className="ab-note-head">
+              <span className="kicker">A note from the founder</span>
+              <span className="kicker">Limerick, Ireland</span>
+            </div>
+            <h2 id="founder-title" className="title">Built by one person.</h2>
+          </div>
+          <div className="ab-ruled">
+            <div className="inner">
+              <div className="ab-letter rise">
+                <p>
+                  I came to this from inside the profession. Years spent
+                  managing projects, improving processes and sitting inside
+                  systems that were supposed to make the work clearer.
+                </p>
+                <p>
+                  I watched careful people build spreadsheets around official
+                  trackers, because the trackers hid what they needed. I sat
+                  in meetings called to explain dashboards that were meant to
+                  make things clear. The workarounds were never a rejection of
+                  discipline. They were people recovering enough clarity to
+                  make the next decision.
+                </p>
+                <p>Across every project, three questions kept returning.</p>
+                <ol className="ab-questions">
+                  {QUESTIONS.map((question, index) => (
+                    <li key={question}>
+                      <span className="mono" aria-hidden="true">
+                        {String(index + 1).padStart(2, "0")}
                       </span>
-                      <Link
-                        href={product.href}
-                        className={styles.sysHit}
-                        tabIndex={-1}
-                        aria-hidden="true"
-                      />
+                      {question}
                     </li>
                   ))}
-                </ul>
-                </div>
-                <div className={`${styles.rv} about-r`} style={rd(120)} data-delight-once>
-                  <p className={styles.sysClose}>
-                    Named so you don’t have to ask what they do.
-                  </p>
-                </div>
-              </section>
-
-              <section id="founder" className={styles.section}>
-                <div className={styles.rv} data-delight-once>
-                  <div className={`${styles.eyebrow} about-r`} style={rd(0)}>
-                    <span className={styles.eyebrowNum}>04</span>
-                    <span className={styles.eyebrowName}>The founder</span>
-                  </div>
-                  <h2 className={`${styles.h2} about-r`} style={rd(90)}>
-                    Built by one person.
-                  </h2>
-                </div>
-                <div className={`${styles.rv} about-r`} style={rd(0)} data-delight-once>
-                  <div className={styles.letter}>
-                    <p>
-                      I came to this from inside the profession. Years spent
-                      managing projects, improving processes and sitting inside
-                      systems that were supposed to make the work clearer.
-                    </p>
-                    <p>
-                      I watched careful people build spreadsheets around official
-                      trackers, because the trackers hid what they needed. I sat
-                      in meetings called to explain dashboards that were meant
-                      to make things clear. The workarounds were never a
-                      rejection of discipline. They were people recovering
-                      enough clarity to make the next decision.
-                    </p>
-                    <p>Across every project, three questions kept returning.</p>
-                  </div>
-                </div>
-                <div className={`${styles.rv} about-r`} style={rd(60)} data-delight-once>
-                  <div className={styles.qLedger}>
-                    {QUESTIONS.map((question, index) => (
-                      <div key={question} className={styles.qRow}>
-                        <span className={styles.qNum}>
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <p className={styles.qText}>{question}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className={`${styles.rv} about-r`} style={rd(60)} data-delight-once>
-                  <div className={styles.letter}>
-                    <p>
-                      Signal Studio is my answer. Notes holds the thinking.
-                      Tasks runs the day. Timeline shows the direction. One
-                      person, building slowly, refusing anything that turns the
-                      customer into an operator of software.
-                    </p>
-                  </div>
-                </div>
-                <blockquote
-                  className={`${styles.pullquote} ${styles.rv}`}
-                  data-delight-once
-                >
-                  <span className="about-r">
+                </ol>
+                <p>
+                  Signal Studio is my answer. Notes holds the thinking. Tasks
+                  runs the day. Timeline shows the direction. One person,
+                  building slowly, refusing anything that turns the customer
+                  into an operator of software.
+                </p>
+                <p className="ab-pull">
+                  <span className="mark">
                     The product should feel calm even when the project is not.
                   </span>
-                </blockquote>
-                <div
-                  className={styles.signature}
-                  role="group"
-                  aria-label="Author"
-                  data-delight-once
-                >
-                  <div className={styles.sigRule} aria-hidden />
-                  <div className={styles.sigBody}>
-                    <span className={styles.sigDot} aria-hidden />
-                    <div className={styles.identity}>
-                      <p className={styles.founderName}>Ethan McNamara</p>
-                      <p>Founder, Signal Studio</p>
-                      <p>Limerick, Ireland</p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              <section id="refusals" className={styles.section}>
-                <div className={styles.rv} data-delight-once>
-                  <div className={`${styles.eyebrow} about-r`} style={rd(0)}>
-                    <span className={styles.eyebrowNum}>05</span>
-                    <span className={styles.eyebrowName}>The refusals</span>
-                  </div>
-                  <h2 className={`${styles.h2} about-r`} style={rd(90)}>
-                    You can measure a company by what it refuses.
-                  </h2>
-                </div>
-                <div className={`${styles.rv} about-r`} style={rd(0)} data-delight-once>
-                  <ul className={styles.refList}>
-                    {REFUSALS.map((refusal) => (
-                      <li key={refusal.term} className={styles.refItem}>
-                        <p className={styles.refTerm}>{refusal.term}</p>
-                        <p className={styles.refWhy}>{refusal.why}</p>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className={styles.refFoot}>
-                    <span>Five more run the whole suite.</span>
-                    <Link href="/principles" className={styles.endlink}>
-                      Read the principles
-                    </Link>
-                  </div>
-                </div>
-                <p className={`${styles.creed} ${styles.rv}`} data-delight-once>
-                  <span className="about-r">
-                    If the software becomes the work, we have{" "}
-                    <span className={styles.creedFail}>failed</span>.
-                  </span>
                 </p>
-              </section>
+                <div className="ab-sig" role="group" aria-label="Author">
+                  <span className="ab-sig-dot" aria-hidden="true" />
+                  <p>
+                    <b>Ethan McNamara</b>
+                    <br />
+                    Founder, Signal Studio
+                    <br />
+                    Limerick, Ireland
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className={styles.canvasDark}>
-          <div className={styles.frame}>
-            <article className={`${styles.finale} ${styles.content}`}>
-              <section id="record" className={styles.section}>
-                <div className={styles.rv} data-delight-once>
-                  <div className={`${styles.eyebrow} about-r`} style={rd(0)}>
-                    <span className={styles.eyebrowNum}>06</span>
-                    <span className={styles.eyebrowName}>The record</span>
-                  </div>
-                  <h2 className={`${styles.h2} about-r`} style={rd(90)}>
-                    Small, on purpose.
-                  </h2>
-                </div>
-                <div className={`${styles.rv} about-r`} style={rd(0)} data-delight-once>
-                  <dl className={styles.factsGrid}>
-                  {FACTS.map((fact) => (
-                    <div key={fact.label} className={styles.fact}>
-                      <dt className={styles.factLabel}>{fact.label}</dt>
-                      <dd className={styles.factValue}>
-                        {fact.links ? (
-                          fact.links.map((link, index) => (
-                            <span key={link.href}>
-                              {index > 0 && (
-                                <span className={styles.factSep}> · </span>
-                              )}
-                              <Link href={link.href} className={styles.factLink}>
-                                {link.label}
-                              </Link>
-                            </span>
-                          ))
-                        ) : fact.href ? (
-                          fact.href.startsWith("mailto:") ? (
-                            <a href={fact.href} className={styles.factLink}>
-                              {fact.value}
-                            </a>
-                          ) : (
-                            <Link href={fact.href} className={styles.factLink}>
-                              {fact.value}
-                            </Link>
-                          )
-                        ) : (
-                          fact.value
-                        )}
-                      </dd>
-                    </div>
-                  ))}
-                  <div className={styles.fact}>
-                    <dt className={styles.factLabel}>
-                      <span className={styles.factHead}>
-                        <span className={styles.swatch} aria-hidden />
-                        Accent
-                      </span>
-                    </dt>
-                    <dd className={styles.factValue}>One colour. Indigo.</dd>
-                  </div>
-                  </dl>
-                </div>
-                <div className={`${styles.rv} about-r`} style={rd(0)} data-delight-once>
-                  <div className={styles.recordBody}>
-                  <p>
-                    Signal Studio is still early. Three products are live today,
-                    and they improve as I learn more about the work people
-                    manage. The standard will not change. Plain words, small
-                    demands on attention, and software that never becomes the
-                    work.
-                  </p>
-                  <p>
-                    Everything shipped is written down in public, in plain
-                    English. The record is the receipt.
-                  </p>
-                  </div>
-                </div>
-                <div className={`${styles.rv} about-r`} style={rd(0)} data-delight-once>
-                  <div className={styles.endlinks}>
-                  <a
-                    href={APP_ORIGIN}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.endlink}
-                  >
-                    Open Signal Studio
-                    <span className={styles.endlinkGlyph} aria-hidden>↗</span>
-                  </a>
-                  <Link href="/dispatch" className={styles.endlink}>
-                    Read the record
-                  </Link>
-                  <a
-                    href="mailto:hello@signalstudio.ie"
-                    className={styles.endlink}
-                  >
-                    Say hello
-                    <span className={styles.endlinkGlyph} aria-hidden>↗</span>
-                  </a>
-                </div>
-                </div>
-                <p className={`${styles.closingLine} ${styles.rv}`} data-delight-once>
-                  <span className={styles.closingMask}>
-                    <span className={styles.closingInner}>
-                      Clarity, not configuration
-                      <span className={styles.closingDot} aria-hidden />
-                      <span className="sr-only">.</span>
-                    </span>
-                  </span>
-                </p>
-                <div className={`${styles.signoff} ${styles.rv}`} data-delight-once>
-                  <span className="about-r">
-                    <span>SIGNAL STUDIO · LIMERICK, IRELAND</span>
-                    <span className={styles.signoffRight}>
-                      <a href="mailto:hello@signalstudio.ie" className={styles.signoffLink}>
-                        hello@signalstudio.ie
-                      </a>
-                      <a href="#claim" className={styles.signoffLink}>
-                        TOP ↑
-                      </a>
-                    </span>
-                  </span>
-                </div>
-              </section>
-            </article>
+        <div className="floor" id="refusals">
+          <div className="inner ab-refusals rise">
+            <div>
+              <span className="kicker">The refusals</span>
+              <h2 className="section">You can measure a company by what it refuses.</h2>
+            </div>
+            <ul className="ab-ref-list">
+              {REFUSALS.map((refusal) => (
+                <li key={refusal.term}>
+                  <p className="ab-ref-term">{refusal.term}</p>
+                  <p className="ab-ref-why">{refusal.why}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="ab-ref-foot">
+              Five more run the whole suite.{" "}
+              <Link href="/principles">
+                Read the principles <span aria-hidden="true">→</span>
+              </Link>
+            </p>
+            <p className="ab-creed">
+              If the software becomes the work, we have{" "}
+              <span className="ab-creed-fail">failed</span>.
+            </p>
           </div>
         </div>
 
         <section
+          className="sheet ab-contact"
           id="contact"
-          className="scroll-mt-4 border-t border-border-soft bg-[var(--paper-soft)]"
           aria-labelledby="about-contact-heading"
         >
-          <div className="mx-auto w-full max-w-[980px] px-6 py-14 md:py-20">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-accent">
-              Contact
-            </p>
+          <div className="inner">
+            <span className="kicker">Contact</span>
             {contactEyebrow ? (
-              <p
-                className="mt-3 text-[13px] font-medium text-ink-quiet"
-                style={{ letterSpacing: "0.01em" }}
-              >
-                {contactEyebrow}
-              </p>
+              <p className="ab-contact-subject">{contactEyebrow}</p>
             ) : null}
-            <h2
-              id="about-contact-heading"
-              className="mt-3 max-w-[18ch] text-balance text-[clamp(1.8rem,1.5rem+1.1vw,2.8rem)] font-semibold tracking-[-0.045em] text-ink"
-            >
+            <h2 id="about-contact-heading" className="title">
               Write to a person, not a form.
             </h2>
-            <p className="mt-6 max-w-[58ch] text-[clamp(.98rem,.92rem+.25vw,1.08rem)] leading-[1.75] text-ink-soft">
-              Everything sent here is read by me, usually within a day or two. No form, no CRM,
-              no autoresponder pretending to be a person.
+            <p className="lede">
+              Everything sent here is read by me, usually within a day or two.
+              No form, no CRM, no autoresponder pretending to be a person.
             </p>
             {isEnterpriseContact ? (
-              <a
-                href={mailtoHref}
-                className="mt-8 inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-5 text-[14px] font-semibold text-white no-underline transition-colors hover:bg-[var(--accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              >
+              <a href={mailtoHref} className="btn btn-ink ab-contact-cta">
                 Email Ethan about Enterprise
               </a>
             ) : null}
-            <div className="mt-9 grid border-y border-border-soft sm:grid-cols-2">
-              <div className="border-b border-border-soft py-6 sm:border-b-0 sm:border-r sm:pr-5">
-                <div
-                  className="mb-3 font-mono text-[10.5px] font-semibold uppercase text-ink-quiet"
-                  style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-                >
+            <div className="ab-contact-grid">
+              <div>
+                <span className="kicker">
                   {isEnterpriseContact ? "Helpful to include" : "Best for"}
-                </div>
-                <ul className="space-y-2 text-[14.5px] leading-[1.6] text-ink-soft">
+                </span>
+                <ul>
                   {isEnterpriseContact ? (
                     <>
                       <li>Your working group.</li>
@@ -642,14 +395,9 @@ export default async function AboutPage({
                   )}
                 </ul>
               </div>
-              <div className="py-6 sm:pl-5">
-                <div
-                  className="mb-3 font-mono text-[10.5px] font-semibold uppercase text-ink-quiet"
-                  style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-                >
-                  Probably not for
-                </div>
-                <ul className="space-y-2 text-[14.5px] leading-[1.6] text-ink-faint">
+              <div>
+                <span className="kicker">Probably not for</span>
+                <ul>
                   <li>Press and analyst outreach.</li>
                   <li>Sales and vendor pitches.</li>
                   <li>Recruiting.</li>
@@ -657,23 +405,18 @@ export default async function AboutPage({
                 </ul>
               </div>
             </div>
-            <p className="mt-10 text-[clamp(.98rem,.92rem+.25vw,1.08rem)] leading-[1.75] text-ink-soft">
-              <a
-                href={mailtoHref}
-                className="inline-flex min-h-11 items-center text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
-              >
-                hello@signalstudio.ie
-              </a>
+            <p className="ab-contact-mail">
+              <a href={mailtoHref}>hello@signalstudio.ie</a>
             </p>
             {trackingRef && !isEnterpriseContact ? (
-              <p className="mt-5 max-w-[62ch] font-mono text-[11px] leading-[1.8] text-ink-faint">
-                Ref preserved: {trackingRef}
-              </p>
+              <p className="ab-contact-ref mono">Ref preserved: {trackingRef}</p>
             ) : null}
           </div>
         </section>
       </main>
-      <SiteFooter compact />
+      <div className="floor-footer">
+        <SiteFooter />
+      </div>
     </>
   );
 }

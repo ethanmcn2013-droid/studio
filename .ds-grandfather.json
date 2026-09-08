@@ -3,10 +3,6 @@
     "hex": 21,
     "ease": 0
   },
-  "src/app/design/page.tsx": {
-    "hex": 3,
-    "ease": 0
-  },
   "src/app/globals.css": {
     "hex": 114,
     "ease": 19
@@ -221,6 +217,10 @@
   },
   "src/lib/templates/wedding-planning-workspace/roadmap.ts": {
     "hex": 1,
+    "ease": 0
+  },
+  "src/app/%5F%5Fdesign-lab/design/page.tsx": {
+    "hex": 3,
     "ease": 0
   }
 }

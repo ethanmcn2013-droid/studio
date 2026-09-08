@@ -35,7 +35,7 @@ export default async function IncorporationPage() {
       <HqPageHeader
         slug="incorporation"
         title={`Incorporating ${COMPANY_META.legalName}.`}
-        standfirst={`The CRO runbook as a live checklist; filing is targeted ${COMPANY_META.incorporationTarget} and gates the €40k facility.`}
+        standfirst={`The CRO runbook as a live checklist. Incorporated ${COMPANY_META.incorporatedOn} under number ${COMPANY_META.croNumber}; the post-incorporation steps still gate the share issue.`}
         meta={
           <span className="hq-co-status" data-status={COMPANY_META.status}>
             {COMPANY_META.statusLabel} · {progress.done}/{progress.total} decisions confirmed

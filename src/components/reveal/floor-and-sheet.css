@@ -6,12 +6,16 @@
 @keyframes card-in{0%{opacity:0;transform:translateY(-14px) scale(.98)}60%{transform:translateY(2px) scale(1)}100%{opacity:1;transform:none}}
 @keyframes pulse{30%{transform:scale(1.05)}}
 
+/* element resets at zero specificity: the landing's own rules are nested under
+   .floor-page and win anyway, and page stylesheets that join the floor (About,
+   Pricing) keep their own margins, colours and paddings without a fight */
+:where(.floor-page) :where(h1,h2,h3,p,ul,ol,figure){margin:0}
+:where(.floor-page) :where(ul,ol){padding:0;list-style:none}
+:where(.floor-page) :where(a){color:inherit;text-decoration:none}
+:where(.floor-page) :where(button){font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+
 .floor-page{--x-radius-xl:14px;background:var(--ink);color:var(--ink);font-feature-settings:"ss01","cv11";-webkit-font-smoothing:antialiased;
   & *,& *::before,& *::after{box-sizing:border-box}
-  & h1,& h2,& h3,& p,& ul,& ol,& figure{margin:0}
-  & ul,& ol{padding:0;list-style:none}
-  & a{color:inherit;text-decoration:none}
-  & button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
   & .hl-accent{color:var(--accent)}
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
@@ -559,3 +563,15 @@ html:has(.floor-page) .site-nav .site-products-chevron{color:rgba(255,255,255,.7
 .floor-footer .site-footer *{border-color:rgba(255,255,255,.12)}
 .floor-footer .site-footer{margin-top:0 !important;border-top-color:rgba(255,255,255,.12) !important}
 .floor-footer{--paper:var(--zinc-950);--ink:var(--zinc-50);--ink-soft:var(--zinc-300);--ink-faint:var(--zinc-400);--ink-ghost:var(--zinc-700);--hairline:rgba(255,255,255,.12);--hairline-soft:rgba(255,255,255,.08)} /* ds-allow — floor footer inversion, umbrella home only: swaps paper and ink so the locked footer sits on the floor */
+/* the launch notice: one line on the floor, between the nav and the first sheet */
+.floor-page .floor-notice{max-width:1216px;margin:0 auto;padding:16px 48px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;color:rgba(255,255,255,.72);font-size:13.5px;line-height:1.5}
+.floor-page .floor-notice p{display:flex;align-items:center;gap:12px;margin:0;min-width:0}
+.floor-page .floor-notice b{color:var(--paper);font-weight:600}
+.floor-page .floor-notice .ui-dot{position:relative;flex:none;background:var(--accent)}
+.floor-page .floor-notice .ui-dot::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1.5px solid var(--accent);animation:wm-ring 2.6s var(--spring-glide) infinite}
+.floor-page .floor-notice a{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--paper);font-weight:500;white-space:nowrap}
+.floor-page .floor-notice a span{display:inline-block;transition:transform var(--motion-fast) var(--ease-out)}
+.floor-page .floor-notice a:hover span{transform:translateX(3px)}
+.floor-page .floor-notice a:focus-visible{outline:2px solid var(--paper);outline-offset:4px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){.floor-page .floor-notice .ui-dot::after{animation:none;display:none}}
+@media (max-width:600px){.floor-page .floor-notice{padding:10px 30px 12px;font-size:13px}}

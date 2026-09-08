@@ -1,7 +1,5 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import { headers } from "next/headers";
-import { notFound } from "next/navigation";
 import { Wordmark } from "@/components/brand/wordmark";
 import { MotionSpecimen } from "@/components/brand/motion-specimen";
 import { Dissolve } from "@/components/design/dissolve";
@@ -15,7 +13,7 @@ import { HeroSequence } from "@/components/brand-guidelines/hero-sequence";
 import { Moodboard } from "@/components/brand-guidelines/moodboard";
 import { MotionCurve } from "@/components/brand-guidelines/motion-curve";
 import { GUIDELINE_SECTIONS } from "@/lib/brand-guidelines/sections";
-import { getAccessMode } from "@/lib/access-mode";
+import { assertDesignLabAccess } from "@/lib/design-lab-gate";
 import type { GuidelineSectionId } from "@/lib/brand-guidelines/types";
 import "./guidelines.css";
 
@@ -106,32 +104,8 @@ function ChapterHead({ id }: { id: GuidelineSectionId }) {
   );
 }
 
-function hostname(value: string | null): string {
-  return (value ?? "")
-    .split(",")[0]
-    .trim()
-    .split(":")[0]
-    .toLowerCase();
-}
-
 export default async function BrandGuidelinesLabPage() {
-  const mode = getAccessMode();
-  const requestHeaders = await headers();
-  const host = hostname(
-    requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host"),
-  );
-  const isCanonicalProductionHost =
-    host === "signalstudio.ie" || host === "www.signalstudio.ie";
-  const isProductionDeployment = process.env.VERCEL_ENV === "production";
-  const isPreviewDeployment = process.env.VERCEL_ENV === "preview";
-
-  if (
-    isProductionDeployment ||
-    isCanonicalProductionHost ||
-    (!isPreviewDeployment && mode !== "development" && mode !== "review")
-  ) {
-    notFound();
-  }
+  await assertDesignLabAccess();
 
   return (
     <main id="main" className="guidelines-root">

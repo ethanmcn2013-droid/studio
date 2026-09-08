@@ -51,6 +51,7 @@ const structuredData = [
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Signal Studio",
+    legalName: "Signal Studio Limited",
     url: SITE_URL,
     email: "hello@signalstudio.ie",
     foundingDate: "2025",

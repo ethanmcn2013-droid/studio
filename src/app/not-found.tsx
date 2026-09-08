@@ -9,9 +9,9 @@ const ROUTES = [
     detail: "Start from the suite entrance.",
   },
   {
-    href: "/design",
-    label: "Design",
-    detail: "See the dot system behind this page.",
+    href: "/about",
+    label: "About",
+    detail: "Who builds this, and why.",
   },
   {
     href: "/waitlist?source=not_found&campaign=pre_access_waitlist&artifact=404_route&touch=site",

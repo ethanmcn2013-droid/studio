@@ -140,7 +140,7 @@ test.describe("public marketing delight contract", () => {
     expect(infinite).toBe(0);
   });
 
-  test("About presents one semantic page, six movements, and acknowledges arrival once", async ({
+  test("About presents one semantic page on the floor and settles each sheet once", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
@@ -156,11 +156,10 @@ test.describe("public marketing delight contract", () => {
     ).toBeVisible();
 
     const movements = [
-      ["translation", "The industry has a dialect."],
       ["system", "Three products. Each owns one kind of clarity."],
       ["founder", "Built by one person."],
       ["refusals", "You can measure a company by what it refuses."],
-      ["record", "Small, on purpose."],
+      ["contact", "Write to a person, not a form."],
     ] as const;
     for (const [id, heading] of movements) {
       await expect(
@@ -177,9 +176,9 @@ test.describe("public marketing delight contract", () => {
         .evaluateAll((anchors) => anchors.every((anchor) => Boolean(anchor.getAttribute("href")))),
     ).toBe(true);
 
-    const reveal = main.locator("[data-delight-once]").first();
+    const reveal = main.locator(".rise").first();
     await reveal.scrollIntoViewIfNeeded();
-    await expect(reveal).toHaveAttribute("data-delight-visible", "true");
+    await expect(reveal).toHaveClass(/is-in/);
   });
 
   test("reduced motion preserves state and removes authored travel", async ({
@@ -206,26 +205,32 @@ test.describe("public marketing delight contract", () => {
     ).toEqual({ animation: "none", opacity: "1", transform: "none" });
 
     await page.goto("/about");
-    const aboutReveal = page.locator("#system [data-delight-once]").first();
+    const aboutReveal = page.locator("#system .rise").first();
     await aboutReveal.scrollIntoViewIfNeeded();
-    await expect(aboutReveal).toHaveAttribute("data-delight-visible", "true");
+    await expect(aboutReveal).toHaveClass(/is-in/);
     const reducedNames = await page.evaluate(() => ({
       rows: Array.from(
-        document.querySelectorAll<HTMLElement>("#system li .about-r"),
+        document.querySelectorAll<HTMLElement>("#system li a"),
         (element) => getComputedStyle(element).animationName,
       ),
+      // the site-wide reduced-motion rule pins reveals to translateY(0),
+      // which computes as the identity matrix: no travel either way
       travel: Array.from(
-        document.querySelectorAll<HTMLElement>("#system .about-r"),
+        document.querySelectorAll<HTMLElement>(".floor-page .rise"),
         (element) => getComputedStyle(element).transform,
-      ).every((transform) => transform === "none"),
-      dot: getComputedStyle(
-        document.querySelector<HTMLElement>("[class*='closingDot']")!,
-        "::after",
-      ).animationName,
+      ).every(
+        (transform) => transform === "none" || transform === "matrix(1, 0, 0, 1, 0, 0)",
+      ),
+      underline: Number.parseFloat(
+        getComputedStyle(
+          document.querySelector<HTMLElement>(".ab-creed-fail")!,
+          "::after",
+        ).transitionDuration,
+      ),
     }));
     expect(reducedNames.rows.every((name) => name === "none")).toBe(true);
     expect(reducedNames.travel).toBe(true);
-    expect(reducedNames.dot).toBe("none");
+    expect(reducedNames.underline).toBeLessThan(0.01);
 
     await page.goto("/notes");
     await expect(page.locator(".pp-dot")).toHaveClass(/pp-dot-ready/);

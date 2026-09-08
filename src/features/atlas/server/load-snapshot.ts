@@ -174,7 +174,7 @@ export async function loadAtlasSnapshot(): Promise<AtlasSnapshot> {
     maturity: DOMAIN_MATURITY.design,
     launchReadiness: null,
     metrics: [
-      { label: "Documentation", value: "Complete", note: "BRAND.md, DESIGN.md, /design" },
+      { label: "Documentation", value: "Complete", note: "BRAND.md, DESIGN.md, /principles" },
       { label: "Design system", value: "SDS 2.0", note: "vendored tokens, one indigo" },
     ],
     risks: risksByDomain.design ?? [],

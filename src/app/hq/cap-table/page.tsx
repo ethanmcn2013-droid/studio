@@ -46,7 +46,7 @@ export default async function CapTablePage({
       <HqPageHeader
         slug="cap-table"
         title={COMPANY_META.legalName}
-        standfirst="The defined cap table from the constitution, not a live register; the company is pre-incorporation."
+        standfirst="The defined cap table from the constitution, not a live register; the company is incorporated and the shares are not yet issued."
         meta={
           <span className="hq-co-status" data-status={COMPANY_META.status}>
             {COMPANY_META.statusLabel}

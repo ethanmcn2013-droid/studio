@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { assertDesignLabAccess } from "@/lib/design-lab-gate";
 import { MotionSpecimen } from "@/components/brand/motion-specimen";
 import { ReadingProgress } from "@/components/reading-progress";
 import { Arrive } from "@/components/design/arrive";
@@ -10,8 +11,17 @@ import { FlipCard } from "@/components/design/flip-card";
 import { DotCharacter } from "@/components/design/dot/dot-character";
 import { LoadingCanon } from "@/components/design/loading-canon";
 
+/**
+ * Archived from the public estate on 2026-09-08 (founder decision): the
+ * page keeps living here, behind the design-lab gate, so the dot narrative,
+ * the motion canon and the print plates stay reviewable on previews and
+ * local builds while /design itself sends visitors to /principles.
+ */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Design · Signal Studio",
+  robots: { index: false, follow: false },
   description:
     "It starts with a dot. The Signal Studio design system, the dot's construction, Dot the character and its ten moods, the naming rule, the plain-language rule, five motion gestures, ten loading moments, one typeface, three colours, the printed work, and the room where the rest was cut.",
   openGraph: {
@@ -934,7 +944,9 @@ function Plate({
   );
 }
 
-export default function DesignPage() {
+export default async function DesignPage() {
+  await assertDesignLabAccess();
+
   return (
     <>
       <ReadingProgress />

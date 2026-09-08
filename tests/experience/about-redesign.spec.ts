@@ -4,12 +4,11 @@ import { expect, test, type Page } from "@playwright/test";
 const ABOUT_URL = "/about";
 const TITLE = "Most productivity tools were built for the people who build them.";
 
-const MOVEMENT_SECTIONS = [
-  { id: "translation", heading: "The industry has a dialect." },
+const SECTIONS = [
   { id: "system", heading: "Three products. Each owns one kind of clarity." },
   { id: "founder", heading: "Built by one person." },
   { id: "refusals", heading: "You can measure a company by what it refuses." },
-  { id: "record", heading: "Small, on purpose." },
+  { id: "contact", heading: "Write to a person, not a form." },
 ] as const;
 
 const VIEWPORTS = [
@@ -33,7 +32,7 @@ function collectPageErrors(page: Page): string[] {
   return errors;
 }
 
-test.describe("About six-movement production evidence", () => {
+test.describe("About on the floor and the sheet, production evidence", () => {
   test.describe.configure({ mode: "serial", timeout: 90_000 });
 
   for (const viewport of VIEWPORTS) {
@@ -46,14 +45,14 @@ test.describe("About six-movement production evidence", () => {
 
       const geometry = await page.evaluate(() => ({
         overflow: document.documentElement.scrollWidth - window.innerWidth,
-        missingSections: ["translation", "system", "founder", "refusals", "record"].filter(
+        missingSections: ["claim", "system", "founder", "refusals", "contact"].filter(
           (id) => !document.getElementById(id),
         ),
       }));
       expect(geometry.overflow).toBeLessThanOrEqual(1);
       expect(geometry.missingSections).toEqual([]);
 
-      for (const section of MOVEMENT_SECTIONS) {
+      for (const section of SECTIONS) {
         await expect(
           page
             .locator(`#${section.id}`)
@@ -74,8 +73,14 @@ test.describe("About six-movement production evidence", () => {
       const refusals = page.locator("#refusals li");
       expect(await refusals.count()).toBeGreaterThanOrEqual(5);
 
+      // The founder's note is written on the ruled page and signed.
+      await expect(page.locator("#founder .ab-letter")).toBeVisible();
       const author = page.locator("[role='group'][aria-label='Author']");
       await expect(author).toContainText("Ethan McNamara");
+
+      // The footer carries the company particulars on the floor.
+      await expect(page.locator("footer")).toContainText("Signal Studio Limited");
+      await expect(page.locator("footer")).toContainText("823488");
 
       await expect(page.locator("#main")).not.toContainText("Daily briefing");
       expect(errors).toEqual([]);
@@ -104,18 +109,27 @@ test.describe("About six-movement production evidence", () => {
       ),
     ).toEqual([]);
 
+    // Under reduced motion every sheet and band lands at once, with no travel.
     const motion = await page.evaluate(() =>
-      Array.from(
-        document.querySelectorAll<HTMLElement>("#system .about-r, #founder .about-r"),
-      )
-        .slice(0, 6)
-        .map((element) => {
+      Array.from(document.querySelectorAll<HTMLElement>(".floor-page .rise")).map(
+        (element) => {
           const style = getComputedStyle(element);
-          return { animation: style.animationName, transform: style.transform };
-        }),
+          return {
+            settled: element.classList.contains("is-in"),
+            opacity: style.opacity,
+            transform: style.transform,
+          };
+        },
+      ),
     );
+    // The site-wide reduced-motion rule pins reveal classes to translateY(0),
+    // which computes as the identity matrix: no travel either way.
+    const noTravel = (transform: string) =>
+      transform === "none" || transform === "matrix(1, 0, 0, 1, 0, 0)";
     expect(motion.length).toBeGreaterThan(0);
-    expect(motion.every((item) => item.animation === "none")).toBe(true);
+    expect(motion.every((item) => item.settled)).toBe(true);
+    expect(motion.every((item) => item.opacity === "1")).toBe(true);
+    expect(motion.every((item) => noTravel(item.transform))).toBe(true);
 
     for (const width of [640, 320]) {
       await page.setViewportSize({ width, height: 900 });
@@ -200,9 +214,17 @@ test.describe("About six-movement production evidence", () => {
     await page.goto(ABOUT_URL, { waitUntil: "load" });
 
     await expect(page.getByRole("heading", { level: 1, name: TITLE })).toBeVisible();
-    for (const section of MOVEMENT_SECTIONS) {
+    for (const section of SECTIONS) {
       await expect(page.locator(`#${section.id}`)).toBeVisible();
     }
+    // The noscript rule lands every sheet without the reveal runtime.
+    expect(
+      await page.evaluate(() =>
+        Array.from(document.querySelectorAll<HTMLElement>(".floor-page .rise")).every(
+          (element) => getComputedStyle(element).opacity === "1",
+        ),
+      ),
+    ).toBe(true);
     const fallback = page.getByRole("navigation", {
       name: "Site navigation without JavaScript",
     });

@@ -8,7 +8,6 @@ import { Wordmark } from "@/components/brand/wordmark";
 import { ProductsMegaPanel } from "@/components/layout/products-mega-panel";
 
 const NAV_LINKS = [
-  { href: "/design",  label: "Design"  },
   { href: "/pricing", label: "Pricing" },
   { href: "/about",   label: "About"   },
 ] as const;
@@ -162,14 +161,6 @@ export function SiteNav() {
           />
 
           {/* Desktop links, hidden below sm */}
-          <Link
-            href="/design"
-            aria-current={pathname === "/design" ? "page" : undefined}
-            className="marketing-nav-action hidden min-h-11 min-w-11 items-center justify-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
-            style={{ letterSpacing: "0.01em" }}
-          >
-            Design
-          </Link>
           <Link
             href="/pricing"
             aria-current={pathname === "/pricing" ? "page" : undefined}

@@ -12,7 +12,11 @@ export function RevealHero() {
   useEffect(() => { startFloor(); }, []);
   return (
     <>
-      <noscript><style>{".floor-page .rise{opacity:1;transform:none}.floor-page .pane{opacity:1;transform:none}"}</style></noscript>
+      <noscript><style>{".floor-page .rise,.floor-page .pane{opacity:1!important;transform:none!important;transition:none!important}"}</style></noscript>
+      <div className="floor-notice" role="note" aria-label="Launch date">
+        <p><span className="ui-dot" aria-hidden="true"></span><span><b>Launching January 2027.</b> Until then, wedding venues are in private preview and access opens in stages.</span></p>
+        <a href="/waitlist?source=home_notice&amp;campaign=pre_access_waitlist&amp;artifact=launch_notice&amp;touch=site">Join the waitlist <span aria-hidden="true">→</span></a>
+      </div>
       <section className="sheet hero" aria-labelledby="h1">
           <div className="inner">
             <div>
@@ -22,7 +26,7 @@ export function RevealHero() {
                 <a className="btn btn-ink" href="#system">See the system at work</a>
                 <a className="btn btn-line" href="/waitlist?source=home_hero&amp;campaign=pre_access_waitlist&amp;artifact=hero_cta&amp;touch=site">Join the waitlist</a>
               </div>
-              <p className="under"><span className="ui-dot" aria-hidden="true"></span> In private preview with wedding venues. Access opens in stages.</p>
+              <p className="under"><span className="ui-dot" aria-hidden="true"></span> In private preview with wedding venues. Launching for everyone in January 2027.</p>
             </div>
             <figure className="stage ui" id="hero-stage" aria-label="A note becomes a task, then a published moment on a timeline">
               <div className="pane" id="p-note">

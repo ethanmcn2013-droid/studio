@@ -33,16 +33,6 @@
       "automatedTestCoverage": "complete",
       "lastReviewedAt": "2026-08-09"
     },
-    "studio.page.design": {
-      "auditStatus": "baseline-captured",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-16",
-      "auditScore": 3.54,
-      "approvedBaselineReference": "experience/golden-set.json#/references/0"
-    },
     "studio.page.hq-asset-curator": {
       "parentJourney": "founder-operations",
       "archetype": "review-and-approval-workspace",
@@ -260,6 +250,16 @@
       "fixtureCoverage": "complete",
       "automatedTestCoverage": "complete",
       "lastReviewedAt": "2026-07-28"
+    },
+    "studio.page.design-lab-design": {
+      "auditStatus": "baseline-captured",
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "fixtureCoverage": "partial",
+      "automatedTestCoverage": "partial",
+      "lastReviewedAt": "2026-07-16",
+      "auditScore": 3.54,
+      "approvedBaselineReference": "experience/golden-set.json#/references/0"
     }
   }
 }

@@ -3401,16 +3401,16 @@
       "materialityHash": "c1e7df656e0f3162"
     },
     {
-      "id": "studio.page.design",
+      "id": "studio.page.design-lab-design",
       "product": "studio",
       "experienceClass": "company-public",
       "surfaceType": "page",
-      "route": "/design",
-      "source": "studio/src/app/design/page.tsx",
+      "route": "/__design-lab/design",
+      "source": "studio/src/app/%5F%5Fdesign-lab/design/page.tsx",
       "parentJourney": "public-discovery-and-proof",
-      "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use design.",
-      "primaryAction": "Complete the primary action on design.",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Understand and use __design lab · design.",
+      "primaryAction": "Complete the primary action on __design lab · design.",
       "roles": [
         "public"
       ],
@@ -3439,10 +3439,10 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-08-03",
+      "lastReviewedAt": "2026-07-16",
       "approvedBaselineReference": "experience/golden-set.json#/references/0",
       "intentionalExceptions": [],
-      "materialityHash": "d6abf1adc448156a"
+      "materialityHash": "c7969bd89692e239"
     },
     {
       "id": "studio.page.dispatch",
