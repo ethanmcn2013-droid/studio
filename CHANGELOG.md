@@ -8,6 +8,10 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-08 · S·175 · tightens · A softer line through the jargon
+
+**Muted indigo now crosses out the words you will not find in Signal Studio.**
+
 ## 2026-09-08 · S·174 · tightens · Dot's whole story
 
 **Dot plays the full film in the footer, five per cent larger and forty per cent faster.**
