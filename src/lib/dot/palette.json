@@ -1,0 +1,7 @@
+{
+  "body": { "indigo": "#4f46e5", "ink": "#111111", "paper": "#ffffff" },
+  "threads": ["#8880ee", "#62c8c7", "#be91dc", "#6c63d9", "#93d3b4", "#c498c9"],
+  "stage": { "night": "#1b1b28", "paper": "#f9f9fb" },
+  "shadow": { "night": "#000000", "paper": "#353146" },
+  "bead": "#62c8c7"
+}

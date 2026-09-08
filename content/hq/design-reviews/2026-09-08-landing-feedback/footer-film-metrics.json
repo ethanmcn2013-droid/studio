@@ -1,0 +1,35 @@
+{
+  "baseline": {
+    "stage": [
+      120,
+      129
+    ],
+    "diameter": 85.7142857,
+    "footerHeight": 741.625
+  },
+  "after": {
+    "stage": [
+      126,
+      135.4375
+    ],
+    "diameter": 90,
+    "footerHeight": 741.625
+  },
+  "viewports": [
+    1440,
+    1024,
+    390
+  ],
+  "horizontalOverflow": false,
+  "playbackRate": 1.3991776432741871,
+  "traceSamples": 300,
+  "stableStage": true,
+  "pauseStable": true,
+  "offscreenStable": true,
+  "reducedMotion": {
+    "disabled": true,
+    "running": false,
+    "diameter": 90
+  },
+  "cro": "823488"
+}

@@ -1,2 +1,3 @@
 content/hq/design-reviews/2026-09-08-landing-feedback/*.png filter=lfs diff=lfs merge=lfs -text
 content/hq/design-reviews/2026-09-08-landing-feedback/*.log filter=lfs diff=lfs merge=lfs -text
+content/hq/design-reviews/2026-09-08-landing-feedback/*-trace.json filter=lfs diff=lfs merge=lfs -text
