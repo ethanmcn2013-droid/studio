@@ -9,6 +9,7 @@ export function startFloor() {
   document.documentElement.dataset.floorScenes = "1";
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var played = {};
   var $ = function(s, r){ return (r||document).querySelector(s); };
   var $$ = function(s, r){ return [].slice.call((r||document).querySelectorAll(s)); };
   var EASE = 'cubic-bezier(0.23, 1, 0.32, 1)';
@@ -212,8 +213,21 @@ export function startFloor() {
   });
 
   /* ═══ timeline ═══ */
-  var timeRoot = $('#time-app'), tltop = $('.tl-top', timeRoot), tlpage = $('#tlpage'), tlnum = $('#tlnum'), tltrack = $('#tltrack'), tlacross = $('#tlacross'), tldown = $('#tldown'), tlseg = $('#tlseg'), getlink = $('#getlink'), tltoast = $('#tltoast');
+  var timeRoot = $('#time-app'), tltop = $('.tl-top', timeRoot), tlpage = $('#tlpage'), tlnum = $('#tlnum'), tltrack = $('#tltrack'), tlacross = $('#tlacross'), tldown = $('#tldown'), tlseg = $('#tlseg'), getlink = $('#getlink');
   var ms = $$('.ms', tltrack), downItems = $$('li', tldown), tlstack = $('.tl-stack', timeRoot);
+  var tlactivity = $('#tlactivity'), tlcountdown = $('#tlcountdown'), tlviewers = $('#tlviewers'), tlviewerToggle = $('#tlviewers-toggle');
+  function showViewers(open){
+    timeRoot.classList.toggle('viewers-open', open);
+    tlviewerToggle.setAttribute('aria-expanded', String(open));
+    $('.tl-viewer-action', tlviewerToggle).innerHTML = open ? 'Hide people <span aria-hidden="true">↙</span>' : 'See who viewed <span aria-hidden="true">↗</span>';
+    tlviewers.setAttribute('aria-hidden', String(!open)); tlviewers.inert = !open;
+  }
+  function showActivity(show){
+    timeRoot.classList.toggle('activity-shown', show);
+    tlactivity.setAttribute('aria-hidden', String(!show)); tlactivity.inert = !show;
+    tlcountdown.setAttribute('aria-hidden', String(show)); tlcountdown.inert = show;
+    if (!show) showViewers(false);
+  }
   function fitStack(){ var active = tldown.classList.contains('in') ? tldown : tlacross; tlstack.style.height = active.scrollHeight + 'px'; }
   function shape(el, cls){
     el.classList.remove('stage-wide', 'stage-tall', 'stage-list', 'stage-full'); if (cls) el.classList.add(cls);
@@ -229,11 +243,12 @@ export function startFloor() {
   var timelineScene = makeScene({
     root: timeRoot, length: 12400,
     reset: function(){
+      showActivity(false);
       if (tlnum.__raf) cancelAnimationFrame(tlnum.__raf); tlnum.textContent = '0';
       tlpage.classList.remove('built'); tltrack.classList.remove('draw'); ms.forEach(function(m){ m.classList.remove('in'); });
-      tlacross.classList.remove('out'); tldown.classList.remove('in'); timeRoot.classList.remove('stage-wide', 'stage-tall', 'morphing'); tltop.classList.remove('night'); downItems.forEach(function(l){ l.classList.remove('in'); }); segTo(tlseg, 0); getlink.classList.remove('pulse'); fitStack(); tltoast.classList.remove('in');
+      tlacross.classList.remove('out'); tldown.classList.remove('in'); timeRoot.classList.remove('stage-wide', 'stage-tall', 'morphing'); tltop.classList.remove('night'); downItems.forEach(function(l){ l.classList.remove('in'); }); segTo(tlseg, 0); getlink.classList.remove('pulse'); fitStack();
     },
-    finish: function(){ tlnum.textContent = '79'; tlpage.classList.add('built'); tltrack.classList.add('draw'); ms.forEach(function(m){ m.classList.add('in'); }); fitStack(); },
+    finish: function(){ tlnum.textContent = '79'; tlpage.classList.add('built'); tltrack.classList.add('draw'); ms.forEach(function(m){ m.classList.add('in'); }); showActivity(true); fitStack(); },
     steps: function(at, keep){
       /* The frame holds its width while the same dates change orientation. */
       countTo(at, keep, tlnum, 79, 500, 1500);
@@ -243,15 +258,17 @@ export function startFloor() {
       /* the same seven dates, down the page */
       at(5200, function(){ segTo(tlseg, 1); tlacross.classList.add('out'); tldown.classList.add('in'); tltop.classList.add('night'); fitStack(); });
       downItems.forEach(function(l, i){ at(5400 + i * 110, function(){ l.classList.add('in'); }); });
-      /* and back across, then the link is ready to share */
+      /* Back across, then sharing resolves into the illustrative activity preview. */
       at(10400, function(){ segTo(tlseg, 0); tldown.classList.remove('in'); tlacross.classList.remove('out'); tltop.classList.remove('night'); fitStack(); });
       at(11500, function(){ getlink.classList.add('pulse'); });
-      at(11900, function(){ tltoast.classList.add('in'); });
+      at(11900, function(){ showActivity(true); });
       at(12300, function(){ getlink.classList.remove('pulse'); });
-      at(14600, function(){ tltoast.classList.remove('in'); });
       return 12500;
     }
   });
+  $('#tlactivity-show').addEventListener('click', function(){ played.time = true; if (!timeRoot.classList.contains('activity-shown')) timelineScene.finish(); });
+  tlviewerToggle.addEventListener('click', function(){ showViewers(tlviewerToggle.getAttribute('aria-expanded') !== 'true'); });
+  tlactivity.addEventListener('keydown', function(e){ if (e.key === 'Escape' && tlviewerToggle.getAttribute('aria-expanded') === 'true'){ showViewers(false); tlviewerToggle.focus(); } });
 
   /* ═══ hero relay ═══ */
   var stage = $('#hero-stage'), pNote = $('#p-note'), pTask = $('#p-task'), pTime = $('#p-time'), c1 = $('#c1'), c2 = $('#c2'), hnum = $('#hnum'), hState = $('#h-state'), hSt = $('#h-st');
@@ -325,7 +342,6 @@ export function startFloor() {
   }
   var riseIO = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-in'); riseIO.unobserve(e.target); } }); }, { threshold: .12 });
   $$('.rise').forEach(function(el){ riseIO.observe(el); });
-  var played = {};
   var sceneIO = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if (!e.isIntersecting) return;

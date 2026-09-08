@@ -31,7 +31,8 @@ describe("Wave 3 public interface contracts", () => {
     const manifest = source("src", "app", "manifest.ts");
     assert.doesNotMatch(`${about}\n${hero}\n${relay}\n${layout}`, /daily briefing|daily signal|Inside Home/i);
     assert.doesNotMatch(relay, /key: "home"|number: "04"/);
-    assert.match(closing, /the 80%/);
+    // This is a copy contract: presentational spans must not change the words.
+    assert.match(closing.replace(/<[^>]+>/g, ""), /Built for the 80%/);
     assert.match(manifest, /Three products read as one system/);
     assert.doesNotMatch(manifest, /Four small tools/);
     const suite = footer.slice(footer.indexOf('heading="Suite"'));

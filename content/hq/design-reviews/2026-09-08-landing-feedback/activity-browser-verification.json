@@ -1,0 +1,32 @@
+{
+  "desktop": {
+    "activity": true,
+    "countdownInert": true,
+    "expanded": "true",
+    "frame": {
+      "bottom": 1441.390625,
+      "height": 1208.140625,
+      "left": 16.5,
+      "right": 1408.5,
+      "top": 233.25,
+      "width": 1392,
+      "x": 16.5,
+      "y": 233.25
+    },
+    "icons": [
+      "/favicon.ico?favicon.0j6h3037qn3gk.ico",
+      "/icon?v=transparent-dot-ring-20260908"
+    ],
+    "overflow": false,
+    "viewerInert": false,
+    "viewport": {
+      "height": 1300,
+      "width": 1440
+    }
+  },
+  "logs": [],
+  "reducedMotion": {
+    "staticActivity": true,
+    "buttonAndPanel": true
+  }
+}

@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-08 · S·176 · tightens · See who caught up
+
+**Timeline's landing demo now ends with an activity preview: 37 people viewed your timeline, with an example viewer list to open.**
+
+The closing 80% is larger and indigo. The browser icon returns to the indigo dot and ring, with a transparent background.
+
 ## 2026-09-08 · S·175 · tightens · A softer line through the jargon
 
 **Muted indigo now crosses out the words you will not find in Signal Studio.**
