@@ -1,0 +1,473 @@
+{
+  "desktop": {
+    "overflow": false,
+    "section": {
+      "bottom": 1081.109375,
+      "height": 1016.25,
+      "left": 12,
+      "right": 1413,
+      "top": 64.859375,
+      "width": 1401,
+      "x": 12,
+      "y": 64.859375
+    },
+    "viewport": 1440,
+    "words": [
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 512.140625,
+          "height": 72.59375,
+          "left": 267.40625,
+          "right": 423.078125,
+          "top": 439.546875,
+          "width": 155.671875,
+          "x": 267.40625,
+          "y": 439.546875
+        },
+        "text": "sprint",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 512.140625,
+          "height": 72.59375,
+          "left": 452.828125,
+          "right": 668.21875,
+          "top": 439.546875,
+          "width": 215.390625,
+          "x": 452.828125,
+          "y": 439.546875
+        },
+        "text": "backlog",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 512.140625,
+          "height": 72.59375,
+          "left": 697.96875,
+          "right": 813.015625,
+          "top": 439.546875,
+          "width": 115.046875,
+          "x": 697.96875,
+          "y": 439.546875
+        },
+        "text": "epic",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 512.140625,
+          "height": 72.59375,
+          "left": 842.765625,
+          "right": 1157.59375,
+          "top": 439.546875,
+          "width": 314.828125,
+          "x": 842.765625,
+          "y": 439.546875
+        },
+        "text": "story points",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 589.484375,
+          "height": 72.59375,
+          "left": 284.953125,
+          "right": 494.5625,
+          "top": 516.890625,
+          "width": 209.609375,
+          "x": 284.953125,
+          "y": 516.890625
+        },
+        "text": "velocity",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 589.484375,
+          "height": 72.59375,
+          "left": 524.3125,
+          "right": 793.15625,
+          "top": 516.890625,
+          "width": 268.84375,
+          "x": 524.3125,
+          "y": 516.890625
+        },
+        "text": "burndown",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 589.484375,
+          "height": 72.59375,
+          "left": 822.90625,
+          "right": 1140.03125,
+          "top": 516.890625,
+          "width": 317.125,
+          "x": 822.90625,
+          "y": 516.890625
+        },
+        "text": "stakeholder",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 666.828125,
+          "height": 72.59375,
+          "left": 272.03125,
+          "right": 521.78125,
+          "top": 594.234375,
+          "width": 249.75,
+          "x": 272.03125,
+          "y": 594.234375
+        },
+        "text": "workflow",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 666.828125,
+          "height": 72.59375,
+          "left": 551.53125,
+          "right": 836.578125,
+          "top": 594.234375,
+          "width": 285.046875,
+          "x": 551.53125,
+          "y": 594.234375
+        },
+        "text": "dashboard",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 666.828125,
+          "height": 72.59375,
+          "left": 866.328125,
+          "right": 1152.96875,
+          "top": 594.234375,
+          "width": 286.640625,
+          "x": 866.328125,
+          "y": 594.234375
+        },
+        "text": "integration",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 744.171875,
+          "height": 72.59375,
+          "left": 350.375,
+          "right": 652.96875,
+          "top": 671.578125,
+          "width": 302.59375,
+          "x": 350.375,
+          "y": 671.578125
+        },
+        "text": "onboarding",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 744.171875,
+          "height": 72.59375,
+          "left": 682.71875,
+          "right": 922.53125,
+          "top": 671.578125,
+          "width": 239.8125,
+          "x": 682.71875,
+          "y": 671.578125
+        },
+        "text": "roadmap",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 744.171875,
+          "height": 72.59375,
+          "left": 952.28125,
+          "right": 1074.625,
+          "top": 671.578125,
+          "width": 122.34375,
+          "x": 952.28125,
+          "y": 671.578125
+        },
+        "text": "OKR",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 821.515625,
+          "height": 72.59375,
+          "left": 374.0625,
+          "right": 579.375,
+          "top": 748.921875,
+          "width": 205.3125,
+          "x": 374.0625,
+          "y": 748.921875
+        },
+        "text": "Kanban",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 821.515625,
+          "height": 72.59375,
+          "left": 609.125,
+          "right": 736.609375,
+          "top": 748.921875,
+          "width": 127.484375,
+          "x": 609.125,
+          "y": 748.921875
+        },
+        "text": "sync",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      {
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "rect": {
+          "bottom": 821.515625,
+          "height": 72.59375,
+          "left": 766.359375,
+          "right": 1050.9375,
+          "top": 748.921875,
+          "width": 284.578125,
+          "x": 766.359375,
+          "y": 748.921875
+        },
+        "text": "bandwidth",
+        "textColor": "rgb(212, 212, 216)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ]
+  },
+  "mobile": {
+    "overflow": false,
+    "section": {
+      "bottom": 999.234375,
+      "height": 940.546875,
+      "left": 8,
+      "right": 367,
+      "top": 58.6875,
+      "width": 359,
+      "x": 8,
+      "y": 58.6875
+    },
+    "viewport": 390,
+    "words": [
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "sprint",
+        "width": 78.78125
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "backlog",
+        "width": 109
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "epic",
+        "width": 58.21875
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "story points",
+        "width": 159.328125
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "velocity",
+        "width": 106.078125
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "burndown",
+        "width": 136.0625
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "stakeholder",
+        "width": 160.484375
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "workflow",
+        "width": 126.390625
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "dashboard",
+        "width": 144.25
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "integration",
+        "width": 145.0625
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "onboarding",
+        "width": 153.140625
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "roadmap",
+        "width": 121.359375
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "OKR",
+        "width": 61.921875
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "Kanban",
+        "width": 103.90625
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "sync",
+        "width": 64.515625
+      },
+      {
+        "height": 36.75,
+        "line": "color(srgb 0.492353 0.469412 0.880196)",
+        "text": "bandwidth",
+        "width": 144.015625
+      }
+    ]
+  },
+  "hover": {
+    "line": "matrix(0, 0, 0, 1, 0, 0)",
+    "text": "rgb(17, 17, 17)"
+  },
+  "restored": "matrix(1, 0, 0, 1, 0, 0)",
+  "reduced": [
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "line": "color(srgb 0.492353 0.469412 0.880196)",
+      "struck": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    }
+  ]
+}

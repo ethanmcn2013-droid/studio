@@ -1,0 +1,32 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "cro": true,
+    "film": true
+  },
+  {
+    "route": "/pricing",
+    "status": 200,
+    "cro": true,
+    "film": false
+  },
+  {
+    "route": "/about",
+    "status": 200,
+    "cro": true,
+    "film": false
+  },
+  {
+    "route": "/notes",
+    "status": 200,
+    "cro": true,
+    "film": false
+  },
+  {
+    "route": "/privacy",
+    "status": 200,
+    "cro": true,
+    "film": false
+  }
+]

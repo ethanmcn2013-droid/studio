@@ -1,0 +1,68 @@
+{
+  "desktop": {
+    "body": {
+      "bottom": 1007.328125,
+      "height": 90,
+      "left": 119.5,
+      "right": 209.5,
+      "top": 917.328125,
+      "width": 90,
+      "x": 119.5,
+      "y": 917.328125
+    },
+    "cro": true,
+    "footerHeight": 741.625,
+    "overflow": false,
+    "playback": {
+      "filmTime": "0.504",
+      "playbackRate": "1.4",
+      "running": "true"
+    },
+    "stage": {
+      "bottom": 1025.546875,
+      "height": 135.4375,
+      "left": 101.5,
+      "right": 227.5,
+      "top": 890.109375,
+      "width": 126,
+      "x": 101.5,
+      "y": 890.109375
+    },
+    "url": "https://signalstudio.ie/",
+    "viewport": 1440
+  },
+  "mobile": {
+    "orbits": 13,
+    "overflow": false,
+    "rig": {
+      "bottom": 369.90142822265625,
+      "height": 126.69570922851562,
+      "left": 9.08780002593994,
+      "right": 126.91490268707275,
+      "top": 243.20571899414065,
+      "width": 117.8271026611328,
+      "x": 9.08780002593994,
+      "y": 243.20571899414065
+    },
+    "stage": {
+      "bottom": 375.171875,
+      "height": 135.4375,
+      "left": 5,
+      "right": 131,
+      "top": 239.734375,
+      "width": 126,
+      "x": 5,
+      "y": 239.734375
+    },
+    "time": "19.913",
+    "viewport": 390
+  },
+  "reduced": {
+    "diameter": 90,
+    "disabled": true,
+    "running": "false"
+  },
+  "rate": 1.4002467431988792,
+  "samples": 300,
+  "wraps": 1
+}

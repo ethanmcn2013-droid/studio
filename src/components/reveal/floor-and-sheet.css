@@ -451,7 +451,7 @@
     .words .lede{margin:24px auto 0;max-width:44ch}
     .nowords{margin:56px auto 0;max-width:960px;font-size:clamp(1.75rem,1.2rem + 2.8vw,3.75rem);line-height:1.22;letter-spacing:-.03em;font-weight:500;display:flex;flex-wrap:wrap;justify-content:center;column-gap:.5em;row-gap:.08em;padding:0 24px}
     .nowords span{position:relative;display:inline-block;padding:0 .04em;color:var(--ink);transition:color 500ms var(--ease-out)}
-    .nowords span::after{content:"";position:absolute;left:0;right:0;top:53%;height:.06em;min-height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left center;transition:transform 420ms var(--ease-out)}
+    .nowords span::after{content:"";position:absolute;left:0;right:0;top:53%;height:.06em;min-height:2px;background:color-mix(in srgb,var(--accent) 65%,var(--ink-ghost));transform:scaleX(0);transform-origin:left center;transition:transform 420ms var(--ease-out)}
     .nowords span.x{color:var(--ink-ghost)}
     .nowords span.x::after{transform:scaleX(1)}
     .nowords span.x:hover{color:var(--ink);transition-duration:200ms}
