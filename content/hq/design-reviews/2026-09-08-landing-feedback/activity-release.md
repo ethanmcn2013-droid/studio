@@ -89,4 +89,32 @@ and all three static links. `experience:validate -- --product=studio`
 passes after the three-hash-only registry update.
 
 Before/after and live evidence use the `activity-` prefix and the directory's
-existing Git LFS rules. Required CI and live-production verification remain pending.
+existing Git LFS rules.
+
+## Live release
+
+[PR #185](https://github.com/ethanmcn2013-droid/studio/pull/185) merged
+after every required check passed on head
+`2f15573723202bc5cd63afc26326bf66be67486e`: Verify Studio, typecheck/test,
+design quality and the triggered deck verifier. Main commit
+`6b0e41e224d0a2bf8290b8caaf57ce65f86617a0` deployed through Git integration
+as `dpl_AxBdtSxHpQtkS9Gt2AvkR7yWjWAN` and became READY on
+8 September 2026 at 21:10:20.291 UTC. The deployment owns
+<https://signalstudio.ie/> and the existing Studio aliases. All main CI
+workflows, including documents-decks-sync, also passed.
+
+Live browser verification repeated the complete animation and opened the
+viewer list on desktop and mobile. Desktop retains 1392px frame width;
+mobile retains 331px at a 390px viewport with no horizontal page overflow.
+The closing percentage computes to 144px / 100px and rgb(79, 70, 229).
+CRO 823488 remains present. The fresh review tab reports zero console
+errors or warnings. Live screenshots and metrics use `activity-live-`.
+
+The live browser selects the fingerprinted ICO and versioned transparent
+PNG, with no opaque maskable browser candidate. Downloaded production ICO
+is byte-identical to the committed source, and the PNG is byte-identical
+to the inspected local production render (SHA256
+`f27829141f000538080d7066603e9aa0cb32a0fa7c06371964e6b05b524f3e46`).
+The preview server was stopped and temporary browser viewport overrides
+were reset. Rollback remains the prior production deployment recorded at
+the top of this receipt; no rollback was needed.

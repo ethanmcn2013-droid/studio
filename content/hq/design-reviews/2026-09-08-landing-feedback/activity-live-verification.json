@@ -1,0 +1,42 @@
+{
+  "desktop": {
+    "activity": true,
+    "cro": true,
+    "expanded": "true",
+    "frame": {
+      "bottom": 1441.390625,
+      "height": 1208.140625,
+      "left": 16.5,
+      "right": 1408.5,
+      "top": 233.25,
+      "width": 1392,
+      "x": 16.5,
+      "y": 233.25
+    },
+    "icons": [
+      "/favicon.ico?favicon.0j6h3037qn3gk.ico",
+      "/icon?v=transparent-dot-ring-20260908"
+    ],
+    "overflow": false,
+    "percent": {
+      "color": "rgb(79, 70, 229)",
+      "size": "144px",
+      "text": "80%."
+    },
+    "viewport": {
+      "height": 1300,
+      "width": 1440
+    }
+  },
+  "mobile": {
+    "frameWidth": 331,
+    "overflow": false,
+    "percentageColor": "rgb(79, 70, 229)",
+    "percentageSize": "100px",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  "logs": []
+}
