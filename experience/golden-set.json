@@ -10,7 +10,7 @@
   "scoredAt": "2026-07-16",
   "scoringSource": "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md",
   "experienceIds": [
-    "studio.page.design",
+    "studio.page.design-lab-design",
     "tasks.page.app-board",
     "timeline.page.the-wedding",
     "signal.page.demo",
@@ -18,25 +18,25 @@
   ],
   "references": [
     {
-      "experienceId": "studio.page.design",
+      "experienceId": "studio.page.design-lab-design",
       "state": "default",
       "baselineScreenshots": {
-        "mobile": "experience/baselines/studio-page-design/default/mobile.png",
-        "tablet": "experience/baselines/studio-page-design/default/tablet.png",
-        "desktop": "experience/baselines/studio-page-design/default/desktop.png",
-        "wide": "experience/baselines/studio-page-design/default/wide.png"
+        "mobile": "experience/baselines/studio-page-design-lab-design/default/mobile.png",
+        "tablet": "experience/baselines/studio-page-design-lab-design/default/tablet.png",
+        "desktop": "experience/baselines/studio-page-design-lab-design/default/desktop.png",
+        "wide": "experience/baselines/studio-page-design-lab-design/default/wide.png"
       },
       "reviewIds": {
-        "mobile": "review-founder-baseline-studio-page-design-default-mobile-47802b9bd811",
-        "tablet": "review-founder-baseline-studio-page-design-default-tablet-616d934d037b",
-        "desktop": "review-founder-baseline-studio-page-design-default-desktop-6f6e54e5c480",
-        "wide": "review-founder-baseline-studio-page-design-default-wide-9a609166c871"
+        "mobile": "review-founder-baseline-studio-page-design-lab-design-default-mobile-47802b9bd811",
+        "tablet": "review-founder-baseline-studio-page-design-lab-design-default-tablet-616d934d037b",
+        "desktop": "review-founder-baseline-studio-page-design-lab-design-default-desktop-6f6e54e5c480",
+        "wide": "review-founder-baseline-studio-page-design-lab-design-default-wide-9a609166c871"
       },
       "auditIds": {
-        "mobile": "audit-golden-studio-page-design-default-mobile",
-        "tablet": "audit-golden-studio-page-design-default-tablet",
-        "desktop": "audit-golden-studio-page-design-default-desktop",
-        "wide": "audit-golden-studio-page-design-default-wide"
+        "mobile": "audit-golden-studio-page-design-lab-design-default-mobile",
+        "tablet": "audit-golden-studio-page-design-lab-design-default-tablet",
+        "desktop": "audit-golden-studio-page-design-lab-design-default-desktop",
+        "wide": "audit-golden-studio-page-design-lab-design-default-wide"
       }
     },
     {

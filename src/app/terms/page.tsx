@@ -18,7 +18,7 @@ const SECTIONS = [
     heading: "What Signal Studio is",
     body: [
       "Signal Studio is a small suite of three products: Signal Notes, Signal Tasks and Signal Timeline. Each one is a separate web application. Each one stores the work you create and lets you share it with people you invite.",
-      "The suite is operated by Ethan McNamara, a sole trader registered in Ireland.",
+      "The suite is operated by Signal Studio Limited, a private company limited by shares registered in Ireland under company number 823488, with its registered office at 320 Glantann, Castletroy, Limerick, V94 RTP1.",
     ],
   },
   {
@@ -104,7 +104,7 @@ const SECTIONS = [
   {
     heading: "Contact",
     body: [
-      "Questions about these terms: hello@signalstudio.ie. Signal Studio is operated by Ethan McNamara, Limerick, Ireland.",
+      "Questions about these terms: hello@signalstudio.ie. Signal Studio is operated by Signal Studio Limited, Limerick, Ireland, company number 823488.",
     ],
   },
 ] as const;
@@ -121,7 +121,7 @@ export default function TermsPage() {
           to.
         </>
       }
-      updated="2026-08-12"
+      updated="2026-09-08"
       sections={SECTIONS}
     />
   );

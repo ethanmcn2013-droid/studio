@@ -3,9 +3,9 @@
   "findings": [
     {
       "id": "dq-studio-design-contrast",
-      "experienceId": "studio.page.design",
+      "experienceId": "studio.page.design-lab-design",
       "product": "studio",
-      "surface": "/design",
+      "surface": "/__design-lab/design",
       "state": "default",
       "breakpoint": "mobile",
       "dimension": "accessibility",
@@ -21,7 +21,7 @@
       "owner": "studio-engineering",
       "status": "resolved",
       "resolutionEvidence": [
-        "experience/output/capture-manifest.json records studio.page.design passing at mobile, tablet, desktop, and wide with zero blocking accessibility violations and zero runtime errors."
+        "experience/output/capture-manifest.json records studio.page.design-lab-design passing at mobile, tablet, desktop, and wide with zero blocking accessibility violations and zero runtime errors."
       ],
       "source": "deterministic",
       "createdAt": "2026-07-15",

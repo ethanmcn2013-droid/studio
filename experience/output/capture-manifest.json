@@ -19,7 +19,7 @@
   },
   "results": [
     {
-      "experienceId": "studio.page.design",
+      "experienceId": "studio.page.design-lab-design",
       "product": "studio",
       "state": "default",
       "breakpoint": "mobile",
@@ -27,11 +27,11 @@
         "width": 390,
         "height": 844
       },
-      "url": "https://signalstudio.ie/design",
+      "url": "https://signalstudio.ie/__design-lab/design",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-design/default/mobile.png",
-      "baselineScreenshot": "baselines/studio-page-design/default/mobile.png",
+      "candidateScreenshot": "screenshots/studio-page-design-lab-design/default/mobile.png",
+      "baselineScreenshot": "baselines/studio-page-design-lab-design/default/mobile.png",
       "diffScreenshot": null,
       "candidateHash": "47802b9bd81147b02c20e42cc40c3ea2a59ba6eb84f4e814ff9dabf2b117d825",
       "visual": {
@@ -62,7 +62,7 @@
       "approvedCandidateHash": "47802b9bd81147b02c20e42cc40c3ea2a59ba6eb84f4e814ff9dabf2b117d825"
     },
     {
-      "experienceId": "studio.page.design",
+      "experienceId": "studio.page.design-lab-design",
       "product": "studio",
       "state": "default",
       "breakpoint": "tablet",
@@ -70,11 +70,11 @@
         "width": 768,
         "height": 1024
       },
-      "url": "https://signalstudio.ie/design",
+      "url": "https://signalstudio.ie/__design-lab/design",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-design/default/tablet.png",
-      "baselineScreenshot": "baselines/studio-page-design/default/tablet.png",
+      "candidateScreenshot": "screenshots/studio-page-design-lab-design/default/tablet.png",
+      "baselineScreenshot": "baselines/studio-page-design-lab-design/default/tablet.png",
       "diffScreenshot": null,
       "candidateHash": "616d934d037bfccfbdd13fefe3f7607a7e08fde4b5242fd415942267d1bb7549",
       "visual": {
@@ -105,7 +105,7 @@
       "approvedCandidateHash": "616d934d037bfccfbdd13fefe3f7607a7e08fde4b5242fd415942267d1bb7549"
     },
     {
-      "experienceId": "studio.page.design",
+      "experienceId": "studio.page.design-lab-design",
       "product": "studio",
       "state": "default",
       "breakpoint": "desktop",
@@ -113,11 +113,11 @@
         "width": 1280,
         "height": 900
       },
-      "url": "https://signalstudio.ie/design",
+      "url": "https://signalstudio.ie/__design-lab/design",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-design/default/desktop.png",
-      "baselineScreenshot": "baselines/studio-page-design/default/desktop.png",
+      "candidateScreenshot": "screenshots/studio-page-design-lab-design/default/desktop.png",
+      "baselineScreenshot": "baselines/studio-page-design-lab-design/default/desktop.png",
       "diffScreenshot": null,
       "candidateHash": "6f6e54e5c4801a05bd9f09392b4a5b0f2847907dfcdc9e5a1bec12c0e54b0a77",
       "visual": {
@@ -148,7 +148,7 @@
       "approvedCandidateHash": "6f6e54e5c4801a05bd9f09392b4a5b0f2847907dfcdc9e5a1bec12c0e54b0a77"
     },
     {
-      "experienceId": "studio.page.design",
+      "experienceId": "studio.page.design-lab-design",
       "product": "studio",
       "state": "default",
       "breakpoint": "wide",
@@ -156,11 +156,11 @@
         "width": 1440,
         "height": 960
       },
-      "url": "https://signalstudio.ie/design",
+      "url": "https://signalstudio.ie/__design-lab/design",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-design/default/wide.png",
-      "baselineScreenshot": "baselines/studio-page-design/default/wide.png",
+      "candidateScreenshot": "screenshots/studio-page-design-lab-design/default/wide.png",
+      "baselineScreenshot": "baselines/studio-page-design-lab-design/default/wide.png",
       "diffScreenshot": null,
       "candidateHash": "9a609166c87150238af0ddb901c5d5e33081ad68a286ee597dcaeb29151676a5",
       "visual": {

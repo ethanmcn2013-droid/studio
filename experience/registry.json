@@ -3310,7 +3310,7 @@
       "lastReviewedAt": "2026-08-23",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "c43e5b80157c62c5"
+      "materialityHash": "3b512f29e490990e"
     },
     {
       "id": "studio.page.accessibility",
@@ -3486,7 +3486,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "0ab04436cf8321ba"
+      "materialityHash": "589e3d2dcc76c3f4"
     },
     {
       "id": "studio.page.features-daily-briefing",
@@ -4168,7 +4168,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "389ee7fa6193548a"
+      "materialityHash": "c320899e1eaff172"
     },
     {
       "id": "studio.page.hq-cards",
@@ -4967,7 +4967,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "5f9c8a713c82e83a"
+      "materialityHash": "a3e4655335c8ec9e"
     },
     {
       "id": "studio.page.hq-loading-review",
@@ -6319,7 +6319,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "945299f92811796f"
+      "materialityHash": "de378d3dc2ae2d6c"
     },
     {
       "id": "studio.page.pricing",
@@ -6363,7 +6363,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1651da728db4b885"
+      "materialityHash": "de65f7a096f55a77"
     },
     {
       "id": "studio.page.principles",
@@ -6451,7 +6451,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "2b72e964ac67778c"
+      "materialityHash": "b706e3cddb4c1e34"
     },
     {
       "id": "studio.page.redeem-by-code",
@@ -6541,7 +6541,7 @@
       "lastReviewedAt": "2026-08-09",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b00539fb463cbd83"
+      "materialityHash": "4ec4bcc80439b247"
     },
     {
       "id": "studio.page.security",
@@ -6761,7 +6761,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "da89a7b679f321d5"
+      "materialityHash": "cfc4fd3da0eadd93"
     },
     {
       "id": "studio.page.timeline",
@@ -6984,7 +6984,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "f2a94911e0f8b3ea"
+      "materialityHash": "77b4997c6f87ba41"
     },
     {
       "id": "studio.surface.atlas-filter",
@@ -7211,7 +7211,7 @@
       "lastReviewedAt": "2026-08-09",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1922e7c34b596f93"
+      "materialityHash": "bad7e4e4b7b63751"
     },
     {
       "id": "studio.surface.site-navigation",
@@ -7256,7 +7256,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "823611d9eaee6f5e"
+      "materialityHash": "06d375d13e38aabb"
     },
     {
       "id": "tasks.page.about",
@@ -11298,7 +11298,7 @@
       "lastReviewedAt": "2026-07-28",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "41daf3feb8d73a32"
+      "materialityHash": "4fc0e7a55067840f"
     },
     {
       "id": "studio.page.hq-gallery",

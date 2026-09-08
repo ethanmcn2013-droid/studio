@@ -1,7 +1,7 @@
 ---
 id: legal-docs-incorporated-entity
 title: Revise Terms and Privacy to name Signal Studio Limited as the operator
-status: open
+status: done
 priority: P1
 effort: involved
 blocking: false
@@ -10,6 +10,10 @@ why: Every footer now states the company particulars (Signal Studio Limited, CRO
 href: /terms
 date: 2026-09-08
 ---
+
+## Completion note
+
+Done 2026-09-08 on the founder's instruction ("correct the sole trader issue"). Terms now names Signal Studio Limited as the operator with its company number and registered office, and Privacy names it as the data controller. The registered office joins the legal documents; the footer keeps the name, place of registration and number.
 
 ## What changed
 
