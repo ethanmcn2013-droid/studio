@@ -79,8 +79,8 @@ export function FooterDot() {
     >
       <svg viewBox="-70 -80 140 150" aria-hidden="true" focusable="false">
         <g className="footer-dot-body">
-          <circle r="50" fill="var(--accent, #4f46e5)" />
-          <g className="footer-dot-gaze" fill="#ffffff">
+          <circle r="50" fill="var(--accent)" />
+          <g className="footer-dot-gaze" fill="var(--ink-0)">
             <g transform="translate(-4 -17) rotate(-14)">
               <g className="footer-dot-eye">
                 <rect x="-3.65" y="-9" width="7.3" height="18" rx="3.65" />

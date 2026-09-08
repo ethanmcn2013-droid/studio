@@ -1,16 +1,17 @@
 # Landing feedback · 8 September 2026
 
 Task branch: `fix/landing-timeline-dot-favicon`, based on Studio `e1589703`.
-The paired App favicon change is `d840b869` in draft PR
-<https://github.com/ethanmcn2013-droid/app/pull/173>.
-This is an internal implementation and review, with no production deployment.
+The user authorized production deployment of the timeline and footer, then
+removed favicon work from scope. Commit `33a9a188` reverts the Studio favicon
+changes. The paired App draft PR #173 is held and is not part of this release.
+Deployment and final verification are recorded in [release.md](release.md).
 
 ## Requested changes
 
 The timeline frame should be longer and remain at full width as its content
 changes orientation. Dot Studio should animate in the footer's lower-left
-gap. Browser favicons should agree across the product system and have a
-regression guard.
+gap. The follow-up removes the grey inset around the timeline content.
+Favicon work was explicitly dropped from the release by the user.
 
 The timeline now uses one centered width, capped at 1680px with 48px viewport
 gutters, and the existing content width below 1024px. Its entrance does not
@@ -19,6 +20,11 @@ changing frame width, horizontal position, or shadow. The vertical layer has
 natural height instead of stretching to the old stack height. Mobile header
 controls wrap inside the panel. Reduced motion renders the completed scene
 with no decorative ring pulse.
+
+The final refinement gives `.tl-top` and `.tl-page` the same paper background
+and matching transition, producing one continuous surface in both themes.
+Padding, frame dimensions and scene timings remain intact. Dot uses the
+shared color and easing tokens required by the design-system drift gate.
 
 The footer uses Dot Studio v2's existing rigid circle and asymmetric eyes
 from `feat/dot-studio` at `c2ee2fd8`. Its small CSS performance includes gaze,
@@ -59,21 +65,11 @@ notice that reduced motion was enabled during the preference check. The
 favicon, browser icon, install icon, Apple icon, and mirrored static ICO
 each returned HTTP 200 with the expected image content type.
 
-## Favicon scope and remaining reference
+## Superseded favicon work
 
-Both repositories contained the legacy Next triangle in `favicon.ico`
-despite branded generated icon routes. The fallback now renders the same
-existing SuiteMark as those routes. Static brand pages use a relative copy
-that also works in the deck publisher's independent hosts. The default test
-gate checks the artwork seal, actual generated image responses, all ICO
-sizes, and static copies. It was verified to reject the old triangle.
-
-The user referenced `C:/Users/mcnamet/Desktop/ceo1.html#changed`; this machine
-has the Ethan workspace, and that file and browser tab were unavailable.
-No exact visual match to that reference is claimed. The current committed
-indigo dot and ring is preserved pending the user's clarification. A fresh
-unmerged App branch with different artwork was found and left untouched.
-See [the favicon contract](../../../../docs/FAVICONS.md).
+Earlier evidence includes favicon checks from the original request. Those
+changes were reverted after the user said to forget the favicon. They are
+historical evidence only; no icon changes are included in this release.
 
 ## Checks and preview
 

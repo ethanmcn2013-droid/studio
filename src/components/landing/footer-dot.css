@@ -23,7 +23,7 @@
 }
 
 .footer-dot:focus-visible {
-  outline: 2px solid var(--accent, #4f46e5);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -32,11 +32,11 @@
 }
 
 .footer-dot-body {
-  animation: footer-dot-hop 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: footer-dot-hop 10s var(--ease-in-out) infinite;
 }
 
 .footer-dot-gaze {
-  animation: footer-dot-look 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: footer-dot-look 10s var(--ease-in-out) infinite;
 }
 
 .footer-dot-eye {

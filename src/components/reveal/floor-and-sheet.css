@@ -350,7 +350,7 @@
     /* One full-width frame throughout: only the contents and their height change. */
     #time-app{--x-stage-w:min(calc(100vw - 48px),1680px);width:var(--x-stage-w);margin-left:calc((100% - var(--x-stage-w)) / 2);transform:none;transition:opacity 500ms var(--ease-out)}
     @media (prefers-reduced-motion:reduce){#time-app,#time-app *,#time-app *::before,#time-app *::after{animation:none;transition:none}}
-    .tl-top{background:var(--paper-deep);padding:22px 22px 0;margin:0}
+    .tl-top{background:var(--paper);padding:22px 22px 0;margin:0}
     .tl-top .ui-wm{font-size:17px}
     .tl-page{background:var(--paper);margin:14px 0 0;padding:26px 30px 40px;position:relative}
     .tl-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--hairline);flex-wrap:wrap}

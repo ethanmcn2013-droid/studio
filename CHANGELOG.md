@@ -12,7 +12,7 @@ entries before 2026-05-22; the vocabulary starts at the next pass.
 
 **The landing page's timeline keeps its full width as the dates turn down the page and back across.**
 
-The frame grows with the content, then settles back without pulling its sides inward. Dot animates in the footer's left corner, with a pause control and a still pose for reduced motion. Browser icons now share the existing Signal artwork, including the older fallback and standalone brand pages.
+The frame grows with the content, then settles back without pulling its sides inward. A continuous surface carries the timeline through light and dark, with the grey inset removed. Dot animates in the footer's left corner, with a pause control and a still pose for reduced motion.
 
 ## 2026-09-08 · S·171 · ships · About and Pricing join the floor
 
