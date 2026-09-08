@@ -1,0 +1,35 @@
+{
+  "commit": "9a0b406a568c1d52e100413c7b0f2dd673a93770",
+  "deployment": "dpl_B3YWBLUUVL5ivW65PVfTJFN4ryNj",
+  "desktop": {
+    "circleWidth": 85.71429443359375,
+    "columns": "312px 156px 156px 156px 156px",
+    "dotHeight": 129,
+    "dotWidth": 120,
+    "font": "13px",
+    "footerHeight": 741.625,
+    "overflow": false,
+    "running": "true",
+    "text": "Signal Studio Limited. Registered in Ireland. CRO number: 823488.",
+    "viewport": 1440,
+    "weight": "500"
+  },
+  "mobile": {
+    "dotHeight": 129,
+    "dotWidth": 120,
+    "overflow": false,
+    "registrationBox": {
+      "bottom": 707.546875,
+      "height": 42.25,
+      "left": 0,
+      "right": 375,
+      "top": 665.296875,
+      "width": 375,
+      "x": 0,
+      "y": 665.296875
+    },
+    "text": "Signal Studio Limited. Registered in Ireland. CRO number: 823488.",
+    "viewport": 390
+  },
+  "console": []
+}
