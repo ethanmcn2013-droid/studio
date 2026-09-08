@@ -6,6 +6,7 @@ import { SiteNav } from "@/components/layout/site-nav";
 import { DevBanner } from "@/components/dev-banner";
 import { SITE_URL } from "@/lib/site-url";
 import { COMMERCIAL_TERMS } from "@/lib/commercial-terms";
+import { STUDIO_BROWSER_ICONS } from "@/lib/brand/browser-icons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export const metadata: Metadata = {
     SITE_URL
   ),
   manifest: "/manifest.webmanifest",
+  icons: STUDIO_BROWSER_ICONS,
   openGraph: {
     title: "Signal Studio · Project management for people not in tech.",
     description:
