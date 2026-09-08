@@ -49,4 +49,28 @@ finishes at 79 with no ring animation. Browser console: no errors or warnings
 observed during the normal-motion final build checks. Scoped ESLint passed.
 
 Final local production preview: PID 28472, <http://127.0.0.1:3100/>.
-Deployment is pending required CI for the final commit and production checks.
+## Production result
+
+PR #181 merged after all required checks passed on
+`1b91ba88e5c490d867f362962fcda53f066a22d4`: verify, typecheck/test and design
+quality (including the automated visual/accessibility harness). Vercel preview
+also succeeded. The Git integration deployed squash commit
+`6989acd0946219d7b125c111d9c277e43d0135e0` to production.
+
+- Deployment: `dpl_ARMpx7Mg1QG4NgCpX4JjQ6sELQQQ`.
+- Immutable URL: <https://studio-akl46adv9-ethanmcn2013-1730s-projects.vercel.app>.
+- Live target: <https://signalstudio.ie/>; Vercel confirms the production alias
+  points to this exact revision, READY at 19:20:44 UTC on 8 September 2026.
+- HTTP smoke at 19:21:50 UTC: `/`, `/notes`, `/tasks`, `/timeline`, `/pricing`
+  and `/about` return 200 HTML without framework-error markers. `/signal`
+  redirects 308 to `/features/daily-briefing`, which returns 200.
+- Live browser: same desktop/mobile widths, height transitions and matching
+  light/dark surfaces as the local build. Every vertical date fits in Down.
+  Footer remains 740px with five columns; Dot animates and pauses on demand.
+  No browser console errors or warnings. See `live-verification.json` and
+  the `live-*.png` captures, retained through Git LFS.
+
+No favicon, data, migration, or environment change shipped. The original
+production deployment above remains the rollback target; the documented
+command is `vercel rollback dpl_r7CQ2GEQuupuaRGwUNWSt76NSWKc --scope ethanmcn2013-1730s-projects --yes`.
+Rollback was not needed or executed.
