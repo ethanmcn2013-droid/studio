@@ -4,9 +4,9 @@
 
 .footer-dot {
   display: block;
-  width: 120px;
-  height: 129px;
-  margin: 10px 0 -8px -14px;
+  width: 126px;
+  height: 135.45px;
+  margin: 10px 0 -8px -15px;
   padding: 0;
   border: 0;
   border-radius: 8px;
@@ -31,71 +31,12 @@
   cursor: default;
 }
 
-.footer-dot-body {
-  animation: footer-dot-hop 10s var(--ease-in-out) infinite;
-}
-
-.footer-dot-gaze {
-  animation: footer-dot-look 10s var(--ease-in-out) infinite;
-}
-
-.footer-dot-eye {
-  animation: footer-dot-blink 10s linear infinite;
-}
-
-.footer-dot-eye-right {
-  animation-name: footer-dot-wink;
-}
-
-.footer-dot-body,
-.footer-dot-gaze,
-.footer-dot-eye {
-  animation-play-state: paused;
-}
-
-.footer-dot[data-running="true"] .footer-dot-body,
-.footer-dot[data-running="true"] .footer-dot-gaze,
-.footer-dot[data-running="true"] .footer-dot-eye {
-  animation-play-state: running;
-}
-
-@keyframes footer-dot-hop {
-  0%, 48%, 62%, 100% { transform: translateY(0); }
-  54% { transform: translateY(-9px); }
-  58% { transform: translateY(-2px); }
-}
-
-@keyframes footer-dot-look {
-  0%, 12%, 45%, 100% { transform: translate(0, 0); }
-  22%, 34% { transform: translate(6px, -2px); }
-  65%, 76% { transform: translate(-7px, 2px); }
-  87%, 94% { transform: translate(-3px, 0); }
-}
-
-@keyframes footer-dot-blink {
-  0%, 7%, 9.2%, 39%, 41.2%, 100% { transform: scaleY(1); }
-  7.7%, 8.3%, 39.7%, 40.3% { transform: scaleY(0.08); }
-}
-
-@keyframes footer-dot-wink {
-  0%, 7%, 9.2%, 39%, 41.2%, 86%, 91%, 100% { transform: scaleY(1); }
-  7.7%, 8.3%, 39.7%, 40.3%, 87.5%, 89% { transform: scaleY(0.08); }
-}
-
 /* The brand column already has this space beneath its social links on desktop. */
 @media (min-width: 1024px) {
   .footer-dot {
     position: absolute;
-    left: -14px;
+    left: -15px;
     bottom: -30px;
     margin: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .footer-dot-body,
-  .footer-dot-gaze,
-  .footer-dot-eye {
-    animation: none;
   }
 }
