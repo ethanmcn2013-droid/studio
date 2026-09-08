@@ -1,0 +1,41 @@
+TAP version 13
+# Subtest: Wave 3 public interface contracts
+    # Subtest: uses one versioned review story across landing proof components
+    ok 1 - uses one versioned review story across landing proof components
+      ---
+      duration_ms: 14.6735
+      type: 'test'
+      ...
+    # Subtest: keeps the public story to the three-product suite
+    ok 2 - keeps the public story to the three-product suite
+      ---
+      duration_ms: 2.5963
+      type: 'test'
+      ...
+    # Subtest: arms landing proof motion only after hydration, consent and intersection
+    ok 3 - arms landing proof motion only after hydration, consent and intersection
+      ---
+      duration_ms: 1.5402
+      type: 'test'
+      ...
+    # Subtest: shows plain priority names and no raw project slug in the Tasks proof
+    ok 4 - shows plain priority names and no raw project slug in the Tasks proof
+      ---
+      duration_ms: 1.4523
+      type: 'test'
+      ...
+    1..4
+ok 1 - Wave 3 public interface contracts
+  ---
+  duration_ms: 21.5725
+  type: 'suite'
+  ...
+1..1
+# tests 4
+# suites 1
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 654.7778

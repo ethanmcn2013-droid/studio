@@ -1,0 +1,27 @@
+{
+  "count": "79",
+  "dotAnimation": "none",
+  "dotDisabled": true,
+  "icons": [
+    {
+      "href": "/favicon.ico?favicon.14~sxfqoaud.-.ico",
+      "rel": "icon"
+    },
+    {
+      "href": "/icon?e99a66519efb51f3",
+      "rel": "icon"
+    },
+    {
+      "href": "/icon1?7e82e15064c053fa",
+      "rel": "icon"
+    },
+    {
+      "href": "/apple-icon?7e1937ae399182ea",
+      "rel": "apple-touch-icon"
+    }
+  ],
+  "ringAnimation": "none",
+  "stackTransition": "1e-05s",
+  "timelineDone": true,
+  "width": 331
+}

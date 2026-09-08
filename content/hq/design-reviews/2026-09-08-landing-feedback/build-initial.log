@@ -1,0 +1,20 @@
+
+> studio@0.1.0 build C:\Users\ethan\signal-studio-workspace\worktrees\studio\fix-landing-timeline-dot-favicon
+> next build
+
+▲ Next.js 16.2.5 (Turbopack)
+- Experiments (use with caution):
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 23.5s
+  Running TypeScript ...
+
+> Build error occurred
+Error: spawn UNKNOWN
+    at ignore-listed frames {
+  errno: -4094,
+  code: 'UNKNOWN',
+  syscall: 'spawn'
+}
+ ELIFECYCLE  Command failed with exit code 1.

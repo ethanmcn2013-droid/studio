@@ -1,0 +1,5 @@
+[env] missing recommended production variables (HQ / entitlements degraded):
+  - STUDIO_DATABASE_URL, Studio / HQ database
+  - STUDIO_AUTH_TOKEN, Studio / HQ database auth token
+  - ENTITLEMENTS_DATABASE_URL, shared tier entitlements
+  - ENTITLEMENTS_AUTH_TOKEN, shared tier entitlements auth token

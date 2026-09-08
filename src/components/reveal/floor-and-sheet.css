@@ -347,11 +347,9 @@
     .app.morphing{box-shadow:0 12px 24px rgba(17,17,17,.12),0 40px 90px rgba(17,17,17,.22)}
     @media (prefers-reduced-motion:reduce){#tasks-app,#notes-app,#notes-app .nlist{transition:none}}
     /* ── timeline screen (the public artefact) ────────────────────── */
-    #time-app{--x-stage-w:100%;width:var(--x-stage-w);margin-left:calc((100% - var(--x-stage-w)) / 2);transition:width 950ms var(--spring-soft),margin-left 950ms var(--spring-soft),box-shadow 600ms var(--ease-out),transform 600ms var(--ease-out)}
-    #time-app.stage-wide{--x-stage-w:min(calc(100vw - 56px),1560px)}
-    #time-app.stage-tall{--x-stage-w:min(100%,820px)}
-    #time-app.morphing{box-shadow:0 8px 16px rgba(0,0,0,.25),0 40px 90px rgba(0,0,0,.45)}
-    @media (prefers-reduced-motion:reduce){#time-app{transition:none}}
+    /* One full-width frame throughout: only the contents and their height change. */
+    #time-app{--x-stage-w:min(calc(100vw - 48px),1680px);width:var(--x-stage-w);margin-left:calc((100% - var(--x-stage-w)) / 2);transform:none;transition:opacity 500ms var(--ease-out)}
+    @media (prefers-reduced-motion:reduce){#time-app,#time-app *,#time-app *::before,#time-app *::after{animation:none;transition:none}}
     .tl-top{background:var(--paper-deep);padding:22px 22px 0;margin:0}
     .tl-top .ui-wm{font-size:17px}
     .tl-page{background:var(--paper);margin:14px 0 0;padding:26px 30px 40px;position:relative}
@@ -413,7 +411,7 @@
     .ms.end .lbl{left:auto;right:0;transform:none;text-align:right}
     .ms.end i{left:auto;right:-4.5px;transform:none}
     /* down the page: a centred spine, dates alternating either side, the whole width in use */
-    .tl-down{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity var(--motion-slow) var(--ease-out)}
+    .tl-down{position:absolute;top:0;left:0;right:0;opacity:0;pointer-events:none;transition:opacity var(--motion-slow) var(--ease-out)}
     .tl-down.in{opacity:1}
     .tl-down ol{position:relative;max-width:900px;margin:0 auto;padding:6px 0 0}
     .tl-down ol::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--ink-ghost);transform:scaleY(0);transform-origin:top;transition:transform 900ms var(--ease-in-out)}
@@ -499,8 +497,7 @@
     @media (max-width:1024px){
       .product.split .app{width:100%}
       .product.wide .app{width:100%;margin-left:0}
-      #time-app.stage-wide{--x-stage-w:100%}
-      #time-app.stage-tall{--x-stage-w:100%}
+      #time-app{--x-stage-w:100%}
       #tasks-app{--x-stage-w:100%} #tasks-app.stage-wide{--x-stage-w:100%} #tasks-app.stage-list{--x-stage-w:100%}
       .lhead,.lrow{grid-template-columns:18px minmax(0,1fr) 128px 64px}
       .lrow .f,.lrow .p,.lhead span:nth-child(3),.lhead span:nth-child(5){display:none}
@@ -533,7 +530,9 @@
       .col + .col{margin-top:18px}
       .lrow{grid-template-columns:16px minmax(0,1fr) 60px}
       .lrow .o{display:none}
+      .tl-top{padding:16px 8px 0}
       .tl-page{padding:20px 16px 32px}
+      .tl-head .btns{flex-wrap:wrap;gap:6px}
       .tl-head .btns span{height:30px;padding:0 10px;font-size:12px}
       .tl-across{padding:80px 0 80px}
       .tl-down li{grid-template-columns:1fr 36px 1fr}
