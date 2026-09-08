@@ -311,6 +311,7 @@ export type DotPreset = {
   stage: StageColor;
   speed: number;
   effects: boolean;
+  face: boolean;
 };
 export function parsePreset(value: unknown): DotPreset {
   if (!value || typeof value !== "object")
@@ -338,6 +339,8 @@ export function parsePreset(value: unknown): DotPreset {
     throw new Error("This preset has unsupported playback settings.");
   if (typeof p.name !== "string" || !p.name.trim() || p.name.length > 60)
     throw new Error("Give the preset a name of 1–60 characters.");
+  if (p.face !== undefined && typeof p.face !== "boolean")
+    throw new Error("This preset has an unsupported face setting.");
   return {
     version: DOT_VERSION,
     name: p.name.trim(),
@@ -347,5 +350,6 @@ export function parsePreset(value: unknown): DotPreset {
     stage: p.stage,
     speed: p.speed,
     effects: p.effects,
+    face: p.face === undefined ? true : p.face,
   };
 }

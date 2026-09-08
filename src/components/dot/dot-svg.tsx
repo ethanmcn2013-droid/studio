@@ -23,7 +23,8 @@ export const DotSpecimen = memo(function DotSpecimen({
         __html: renderContents(evaluateClip(clip, clipInfo(clip).poster), {
           color,
           stage: "transparent",
-          effects: clip === "orbit" || clip === "notice",
+          effects:
+            clip === "orbit" || clip === "notice" || clip === "satellites",
           grounded: false,
         }),
       }}

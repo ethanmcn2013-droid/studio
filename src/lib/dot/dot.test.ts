@@ -210,6 +210,7 @@ test("preset round trip validates the complete schema and discards unknown field
     stage: "paper",
     speed: 1,
     effects: true,
+    face: true,
   };
   assert.deepEqual(parsePreset({ ...p, script: "ignored" }), p);
   for (const patch of [

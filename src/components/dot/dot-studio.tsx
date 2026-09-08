@@ -49,6 +49,11 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
     [speed, setSpeed] = useState(1),
     [seed, setSeed] = useState(7);
   const [revision, setRevision] = useState(0);
+  const [guides, setGuides] = useState(false);
+  const [face, setFace] = useState(true);
+  const inspectorFrameRef = useRef<HTMLOutputElement>(null);
+  const referenceVideoRef = useRef<HTMLVideoElement>(null);
+  const comparisonSvgRef = useRef<SVGSVGElement>(null);
   const [inspectionPlayer, setInspectionPlayer] = useState<DotPlayer | null>(
     null,
   );
@@ -74,6 +79,7 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
     moved: boolean;
   } | null>(null);
   const lastPaint = useRef("");
+  const hitDiameter = useRef(232);
   const player = () => {
     if (!playerRef.current) playerRef.current = new DotPlayer();
     return playerRef.current;
@@ -94,11 +100,34 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
       rangeRef.current.value = String(Math.round(p.time * FPS));
     if (timeRef.current)
       timeRef.current.value = `${p.time.toFixed(2)} / ${p.duration.toFixed(2)}`;
+    if (inspectorFrameRef.current)
+      inspectorFrameRef.current.value = `F${String(Math.round(p.time * FPS)).padStart(4, "0")} / ${Math.round(p.duration * FPS)}`;
+    if (!p.playing) {
+      const reference = referenceVideoRef.current;
+      if (
+        reference &&
+        reference.readyState >= 1 &&
+        Number.isFinite(reference.duration)
+      ) {
+        const t = Math.min(p.time, Math.max(0, reference.duration - 1 / FPS));
+        if (Math.abs(reference.currentTime - t) > 0.001)
+          reference.currentTime = t;
+      }
+      if (comparisonSvgRef.current)
+        comparisonSvgRef.current.innerHTML = renderContents(pose, {
+          ...renderRef.current,
+          grounded: false,
+        });
+    }
     if (chapterRef.current)
       chapterRef.current.textContent =
         p.clip === "film" ? chapterAt(p.time).name : clipInfo(p.clip).name;
     if (targetRef.current) {
-      targetRef.current.style.transform = `translate(-50%, -50%) translate(${(pose.x / 190) * 100}cqh, ${(pose.y / 190) * 100}cqh) scale(${pose.scale})`;
+      const hitScale = Math.max(
+        pose.scale,
+        44 / Math.max(1, hitDiameter.current),
+      );
+      targetRef.current.style.transform = `translate(-50%, -50%) translate(${(pose.x / 190) * 100}cqh, ${(pose.y / 190) * 100}cqh) scale(${hitScale})`;
     }
   }, []);
   const wake = useCallback(() => {
@@ -148,6 +177,12 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
       { threshold: 0.1 },
     );
     if (stageRef.current) io.observe(stageRef.current);
+    const ro = new ResizeObserver((entries) => {
+      hitDiameter.current =
+        ((entries[0]?.contentRect.width ?? 440) * 100) / 190;
+      paint();
+    });
+    if (svgRef.current) ro.observe(svgRef.current);
     mq.addEventListener("change", motion);
     document.addEventListener("visibilitychange", visible);
     motion();
@@ -177,14 +212,15 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
       cancelAnimationFrame(frameRef.current);
       frameRef.current = 0;
       io.disconnect();
+      ro.disconnect();
       mq.removeEventListener("change", motion);
       document.removeEventListener("visibilitychange", visible);
     };
   }, [paint, wake]);
   useEffect(() => {
-    renderRef.current = { color, stage, effects };
+    renderRef.current = { color, stage, effects, face };
     paint();
-  }, [color, stage, effects, paint]);
+  }, [color, stage, effects, face, paint]);
 
   const select = (id: ClipId) => {
     const p = player();
@@ -237,6 +273,7 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
     stage,
     speed,
     effects,
+    face,
   });
   const download = (text: string, type: string, filename: string) => {
     const url = URL.createObjectURL(new Blob([text], { type }));
@@ -257,6 +294,7 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
       setColor(take.color);
       setStage(take.stage);
       setEffects(take.effects);
+      setFace(take.face);
       setTakeName(take.name);
       select(take.clip);
       setNote(`Loaded ${take.name}.`);
@@ -338,6 +376,7 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
             ref={stageRef}
             className="dot-stage"
             data-theme={stage}
+            data-guides={guides}
             onPointerMove={(e) => {
               const p = player();
               if (!p.playing || p.reduced || pointer.current || film) return;
@@ -542,6 +581,34 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
       </div>
       {inspect && authoring && inspectionPlayer && (
         <DotInspector
+          face={face}
+          setFace={setFace}
+          guides={guides}
+          setGuides={setGuides}
+          attachFrame={(node) => {
+            inspectorFrameRef.current = node;
+            paint();
+          }}
+          attachReference={(node) => {
+            referenceVideoRef.current = node;
+          }}
+          attachComparison={(node) => {
+            comparisonSvgRef.current = node;
+            paint();
+          }}
+          onReference={() => {
+            select("film");
+            seek(0);
+          }}
+          onReset={() => {
+            setFace(true);
+            const p = player();
+            p.reset();
+            setClip("idle");
+            setPlaying(false);
+            setRevision((r) => r + 1);
+            paint();
+          }}
           player={inspectionPlayer}
           revision={revision}
           seek={seek}
@@ -574,6 +641,7 @@ export function DotStudio({ authoring = false }: { authoring?: boolean }) {
                 stage: "transparent",
                 effects,
                 size: 1024,
+                face,
               }),
               "image/svg+xml",
               `dot-${clip}-f${Math.round(player().time * 60)}.svg`,

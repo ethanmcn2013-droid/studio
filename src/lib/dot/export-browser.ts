@@ -112,10 +112,20 @@ export async function exportSequence(options: {
   size: number;
   color: DotColor;
   effects: boolean;
+  face?: boolean;
   signal: AbortSignal;
   progress: (done: number, total: number) => void;
 }) {
-  const { clip, seed, size, color, effects, signal, progress } = options;
+  const {
+    clip,
+    seed,
+    size,
+    color,
+    effects,
+    face = true,
+    signal,
+    progress,
+  } = options;
   const frames = Math.round(clipInfo(clip).duration * FPS),
     files: { name: string; bytes: Uint8Array }[] = [],
     canvas = document.createElement("canvas");
@@ -125,6 +135,7 @@ export async function exportSequence(options: {
       size,
       color,
       effects,
+      face,
       stage: "transparent",
     });
     const png = await svgPng(svg, size, canvas);
@@ -146,6 +157,7 @@ export async function exportSequence(options: {
           size,
           color,
           effects,
+          face,
           fps: FPS,
           frames,
           duration: frames / FPS,

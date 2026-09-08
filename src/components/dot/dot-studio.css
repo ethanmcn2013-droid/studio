@@ -902,3 +902,151 @@
   font-size: 11px;
   margin-top: 5px;
 }
+/* Review corrections: every control keeps a 44 px hit area. */
+.dot-stage-toolbar {
+  height: 64px;
+}
+.dot-icon-button,
+.dot-play {
+  width: 44px;
+  height: 44px;
+}
+.dot-tabs button,
+.dot-text-button,
+.dot-mood,
+.dot-import,
+.dot-search-label input {
+  min-height: 44px;
+}
+.dot-control-row .dot-secondary {
+  min-width: 44px;
+}
+.dot-color-options button {
+  width: 44px;
+  height: 44px;
+}
+.dot-checkbox {
+  min-height: 44px;
+  margin-bottom: 4px;
+}
+.dot-transport input[type="range"] {
+  height: 44px;
+  appearance: none;
+  background: transparent;
+}
+.dot-transport input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #dedde8;
+  border-radius: 4px;
+}
+.dot-transport input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #4f46e5;
+  margin-top: -5px;
+}
+.dot-transport input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: #dedde8;
+  border-radius: 4px;
+}
+.dot-transport input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: #4f46e5;
+}
+.dot-stage[data-guides="true"] .dot-stage-inner::after {
+  content: "";
+  position: absolute;
+  inset: 5%;
+  border: 1px dashed #8a83c0;
+  pointer-events: none;
+}
+.dot-frame-number {
+  display: block;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 550;
+  margin: 0 0 14px;
+}
+.dot-reference-panel {
+  border-top: 1px solid var(--dot-line);
+  padding-top: 24px;
+  margin-top: 24px;
+}
+.dot-reference-panel h3 {
+  font-size: 15px;
+  font-weight: 550;
+  letter-spacing: -0.025em;
+  margin: 0 0 8px;
+}
+.dot-reference-name {
+  font-size: 11px;
+  color: var(--dot-muted);
+  overflow-wrap: anywhere;
+}
+.dot-reference-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.dot-reference-pair figure {
+  margin: 0;
+  min-width: 0;
+}
+.dot-reference-pair video,
+.dot-reference-pair svg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #f9f9fb;
+  border: 1px solid var(--dot-line);
+  border-radius: 8px;
+}
+.dot-reference-pair figcaption {
+  font-size: 12px;
+  color: var(--dot-muted);
+  margin-top: 10px;
+}
+.dot-inspector .dot-export-actions select {
+  width: auto;
+  margin: 0;
+}
+.dot-inspector select {
+  min-height: 44px;
+}
+@media (max-width: 720px) {
+  .dot-stage-toolbar {
+    height: 60px;
+  }
+  .dot-tabs button[aria-pressed="true"]:after {
+    bottom: -9px;
+  }
+  .dot-reference-panel .dot-section-heading {
+    display: block;
+  }
+  .dot-reference-panel .dot-import {
+    display: inline-block;
+    margin-top: 12px;
+  }
+  .dot-reference-pair {
+    gap: 10px;
+  }
+  .dot-export-actions .dot-primary {
+    white-space: normal;
+  }
+  .dot-inspector-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .dot-reactions {
+    grid-template-columns: 1fr;
+  }
+  .dot-transport output {
+    min-width: 70px;
+  }
+}

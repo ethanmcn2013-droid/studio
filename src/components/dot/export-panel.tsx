@@ -9,11 +9,13 @@ export function DotExportPanel({
   player,
   color,
   effects,
+  face,
   onPause,
 }: {
   player: DotPlayer;
   color: DotColor;
   effects: boolean;
+  face: boolean;
   onPause: () => void;
 }) {
   const [size, setSize] = useState(1080),
@@ -58,11 +60,18 @@ export function DotExportPanel({
             size,
             color,
             effects,
+            face,
             signal: controller.signal,
             progress: (done, total) => setProgress({ done, total }),
           })
         : await svgPng(
-            renderSvg(pose, { size, color, effects, stage: "transparent" }),
+            renderSvg(pose, {
+              size,
+              color,
+              effects,
+              face,
+              stage: "transparent",
+            }),
             size,
           );
       controller.signal.throwIfAborted();

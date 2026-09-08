@@ -1,0 +1,19 @@
+{
+  "measuredAt": "2026-09-08T03:15:29.758Z",
+  "node": "v22.23.2",
+  "frames": 1845,
+  "allTimelineFrames": 6549,
+  "p95EvaluatorAndSvgMs": 0.32200000000000273,
+  "maxMs": 0.9302999999999884,
+  "independentCoreEntryGzipBytes": [
+    {
+      "file": "player.js",
+      "bytes": 4616
+    },
+    {
+      "file": "render.js",
+      "bytes": 1527
+    }
+  ],
+  "scope": "Node benchmark of pose evaluation plus SVG string generation. Excludes browser DOM, layout, paint, React, network and device throttling; not a browser frame-time or deployed bundle claim."
+}
