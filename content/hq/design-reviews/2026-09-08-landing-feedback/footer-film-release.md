@@ -61,5 +61,33 @@ framing: Dot's resting diameter grows from 85.714px to exactly 90px.
   shows a static 90px Dot. Offscreen suspension and resumption also passed.
 - No browser errors or warnings were recorded.
 
-Required CI and live verification remain pending. Gate logs and before/after
-screenshots use the `footer-film-` prefix and this directory's Git LFS rules.
+All required CI checks passed on `8338acaa710d85c036619af1e08b4d8b4231f9d2`:
+typecheck/test (1m18s), verify (1m36s), and design quality (2m18s, including
+the accessibility/visual harness). The Vercel preview also succeeded.
+PR #183 was squash-merged through the protected workflow at 20:04:40 UTC as
+`388c849d813374269a37e89b94ab5d68d78b42b7`.
+
+Production deployment `dpl_2U3BPZCj2qi55vmg3GbEenZE4Dyf` became READY at
+20:07:00.551 UTC with that exact merge commit and the `signalstudio.ie`
+production alias. Immutable URL:
+<https://studio-gp64soqpy-ethanmcn2013-1730s-projects.vercel.app>.
+
+The live browser confirms the 90px resting body, 126 × 135.4375px stage,
+unchanged 741.625px desktop footer height, and explicit CRO number 823488.
+A second complete-loop observation collected 300 samples over 24 seconds,
+measuring 1.40025× playback with one loop return and fixed stage dimensions.
+The orbital climax is visible without clipping at desktop and 390px mobile.
+Reduced motion displays a static 90px Dot; restoring motion and resuming the
+film works. No browser errors or warnings, or horizontal overflow, appeared.
+
+Live HTTP checks return 200 and retain CRO number 823488 on the landing,
+pricing, about, notes and privacy routes. The landing contains the full-film
+playback rate marker. The task-owned local preview was stopped after use.
+
+Gate logs and before/after/live screenshots use the `footer-film-` prefix
+and this directory's Git LFS rules. Live measurements are in
+`footer-film-live-metrics.json` and `footer-film-live-trace.json`.
+
+Rollback target, if required: baseline deployment
+`dpl_B3YWBLUUVL5ivW65PVfTJFN4ryNj`, source
+`9a0b406a568c1d52e100413c7b0f2dd673a93770`. No rollback was needed.
