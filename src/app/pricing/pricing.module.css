@@ -1,27 +1,26 @@
+/* Pricing · on the floor and the sheet (2026-09-08).
+   The ink floor and white sheets from the home page carry the plan ledger,
+   the comparison and the answers; the Notes to Tasks to Timeline proof sits
+   on the floor as white panes. Selection, keyboard and reflow behaviour are
+   unchanged from the ledger that cleared its gate. */
+
 .page {
   overflow: clip;
-  background: var(--paper);
-  color: var(--ink);
 }
 
 .shell {
-  width: min(calc(100% - 48px), var(--container));
+  width: 100%;
+  max-width: 1216px;
   margin-inline: auto;
+  padding-inline: 48px;
 }
 
 .hero {
-  padding-block: 80px 76px;
+  padding-block: clamp(56px, 7vw, 96px) clamp(40px, 5vw, 60px);
 }
 
 .eyebrow {
   margin: 0 0 24px;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-label);
-  line-height: 1;
-  text-transform: uppercase;
 }
 
 .hero h1 {
@@ -46,42 +45,39 @@
   line-height: 1.62;
 }
 
-.commitmentBand {
-  border-block: 1px solid var(--hairline);
-  background: var(--paper-soft);
-}
-
-.commitmentBand ul {
+/* The three commitments, a ledger row under the claim. */
+.commitments {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-block: 0;
-  padding-block: 0;
+  margin: clamp(40px, 5vw, 56px) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--hairline);
   list-style: none;
 }
 
-.commitmentBand li {
+.commitments li {
   display: flex;
   min-width: 0;
-  min-height: 76px;
+  min-height: 72px;
   flex-direction: column;
   justify-content: center;
-  padding: 16px 28px;
+  padding: 18px 28px 2px;
   border-left: 1px solid var(--hairline);
 }
 
-.commitmentBand li:first-child {
+.commitments li:first-child {
   padding-left: 0;
   border-left: 0;
 }
 
-.commitmentBand strong {
+.commitments strong {
   color: var(--ink);
   font-size: var(--text-body-sm);
   font-weight: var(--weight-semibold);
   line-height: 1.4;
 }
 
-.commitmentBand span {
+.commitments span {
   margin-top: 2px;
   color: var(--ink-faint);
   font-size: 0.8125rem;
@@ -91,7 +87,7 @@
 .plansSection,
 .comparisonSection,
 .answersSection {
-  padding-block: var(--section-gap);
+  padding-block: clamp(56px, 7vw, 96px);
 }
 
 .sectionHeader {
@@ -310,6 +306,10 @@
   outline-offset: 2px;
 }
 
+.closing a:focus-visible {
+  outline-color: var(--paper);
+}
+
 .planRow:focus-visible {
   position: relative;
   z-index: 3;
@@ -326,7 +326,7 @@
   background: color-mix(in srgb, var(--accent-tint) 46%, var(--paper));
 }
 
-/* Registration ticks — the panel reads as a machined instrument. */
+/* Registration ticks: the panel reads as a machined instrument. */
 .planPanel::before,
 .planPanel::after {
   content: "";
@@ -350,7 +350,7 @@
   bottom: -7px;
 }
 
-/* Access-window rail — the plan's term, drawn as a row of periods. */
+/* Access-window rail: the plan's term, drawn as a row of periods. */
 .windowRail {
   grid-column: 1 / -1;
   margin-top: 4px;
@@ -493,8 +493,8 @@
   justify-content: center;
   margin-top: 24px;
   padding: 0 20px;
-  border-radius: var(--radius-md);
-  background: var(--accent);
+  border-radius: var(--radius-pill);
+  background: var(--ink);
   color: var(--paper);
   font-size: var(--text-body-sm);
   font-weight: var(--weight-semibold);
@@ -550,16 +550,29 @@
   color: var(--ink-soft);
 }
 
+.noScriptPlans a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .vatLine {
   margin: 28px 0 0;
   text-align: right;
   overflow-wrap: anywhere;
 }
 
+/* The proof, on the floor: three white panes and the published receipt. */
 .proofSection {
-  padding-block: var(--section-gap);
-  border-block: 1px solid var(--hairline);
-  background: var(--paper-soft);
+  padding-block: clamp(64px, 8vw, 112px);
+  color: var(--paper);
+}
+
+.proofSection .sectionHeader h2 {
+  color: var(--paper);
+}
+
+.proofSection .sectionHeader p {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .signalProof {
@@ -601,7 +614,7 @@
   left: 50%;
   width: 15px;
   height: 15px;
-  border: 4px solid var(--paper-soft);
+  border: 4px solid var(--ink);
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 1px var(--accent);
@@ -617,12 +630,13 @@
 }
 
 .proofStepHead > :first-child {
+  color: var(--paper);
   font-size: 1.35rem;
   font-weight: var(--weight-semibold);
 }
 
 .proofStepHead > span:last-child {
-  color: var(--ink-faint);
+  color: rgba(255, 255, 255, 0.62);
   font-size: 0.875rem;
   font-weight: var(--weight-medium);
   line-height: 1.4;
@@ -633,9 +647,10 @@
   min-height: 268px;
   padding: 28px;
   border: 1px solid var(--hairline);
-  border-radius: var(--radius-lg);
+  border-radius: 14px;
   background: var(--paper);
-  box-shadow: 0 18px 50px -42px rgba(15, 23, 42, 0.58);
+  color: var(--ink);
+  box-shadow: var(--shadow-modal);
 }
 
 .proofObjectLabel {
@@ -679,8 +694,10 @@
   margin-top: 24px;
   padding: 28px;
   border: 1px solid var(--hairline);
-  border-radius: var(--radius-lg);
+  border-radius: 14px;
   background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-modal);
 }
 
 .timelineReceiptHeader {
@@ -778,8 +795,8 @@
 }
 
 .signalProof figcaption {
-  margin-top: 16px;
-  color: var(--ink-faint);
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.55);
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -970,7 +987,7 @@
   overflow-wrap: anywhere;
 }
 
-.answersSection {
+.answersShell {
   max-width: 860px;
 }
 
@@ -1019,9 +1036,10 @@
   line-height: 1.7;
 }
 
+/* The closing, on the floor. */
 .closing {
-  border-block: 1px solid var(--hairline);
-  background: var(--accent-tint);
+  padding-block: clamp(64px, 8vw, 112px);
+  color: var(--paper);
 }
 
 .closingInner {
@@ -1029,13 +1047,12 @@
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 64px;
   align-items: end;
-  padding-block: 72px;
 }
 
 .closing h2 {
   max-width: 18ch;
   margin: 0;
-  color: var(--ink);
+  color: var(--paper);
   font-size: var(--text-section);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-section);
@@ -1047,7 +1064,7 @@
   align-items: center;
   gap: 10px;
   margin: 0 0 14px;
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.62);
   font-family: var(--font-mono);
   font-size: var(--text-label);
   font-weight: var(--weight-semibold);
@@ -1060,7 +1077,7 @@
   width: 9px;
   height: 9px;
   flex: 0 0 auto;
-  border: 2px solid var(--accent-tint);
+  border: 2px solid var(--ink);
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 1px var(--accent);
@@ -1070,15 +1087,14 @@
 .closingEyebrow::after {
   width: 56px;
   height: 1px;
-  background: var(--accent);
+  background: rgba(255, 255, 255, 0.3);
   content: "";
-  opacity: 0.6;
 }
 
 .closing p {
   max-width: 58ch;
   margin: 18px 0 0;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.7);
   font-size: var(--text-body);
   line-height: 1.65;
 }
@@ -1088,10 +1104,10 @@
   min-height: 48px;
   align-items: center;
   justify-content: center;
-  padding: 0 20px;
-  border: 1px solid var(--ink);
-  border-radius: var(--radius-md);
-  color: var(--ink);
+  padding: 0 22px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius-pill);
+  color: var(--paper);
   font-size: var(--text-body-sm);
   font-weight: var(--weight-semibold);
   text-decoration: none;
@@ -1105,16 +1121,17 @@
   gap: 10px;
 }
 
-.closingActions .closingPrimary {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--paper);
+/* Three classes deep on purpose: the floor's own links inherit paper. */
+.closing .closingActions .closingPrimary {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
 }
 
-.closingActions .closingSecondary {
+.closing .closingActions .closingSecondary {
   min-height: 44px;
-  border-color: transparent;
-  color: var(--ink-soft);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1135,20 +1152,19 @@
   }
 
   .planCta:hover {
-    background: var(--accent-hover);
+    background: var(--accent);
     transform: translateY(-1px);
   }
 
-  .closingSecondary:hover {
-    background: var(--paper);
-    border-color: var(--accent);
-    color: var(--accent-hover);
+  .closing .closingActions .closingSecondary:hover {
+    border-color: var(--paper);
+    color: var(--paper);
   }
 
-  .closingActions .closingPrimary:hover {
-    border-color: var(--accent-hover);
-    background: var(--accent-hover);
-    color: var(--paper);
+  .closing .closingActions .closingPrimary:hover {
+    border-color: var(--paper-deep);
+    background: var(--paper-deep);
+    color: var(--ink);
   }
 }
 
@@ -1300,27 +1316,26 @@
     margin-top: 0;
     text-align: right;
   }
-
 }
 
 @media (max-width: 799px) {
   .hero {
-    padding-block: 64px;
+    padding-block: 56px 48px;
   }
 
-  .commitmentBand ul {
+  .commitments {
     grid-template-columns: 1fr;
   }
 
-  .commitmentBand li,
-  .commitmentBand li:first-child {
-    min-height: 64px;
+  .commitments li,
+  .commitments li:first-child {
+    min-height: 60px;
     padding: 14px 0;
     border-left: 0;
     border-bottom: 1px solid var(--hairline);
   }
 
-  .commitmentBand li:last-child {
+  .commitments li:last-child {
     border-bottom: 0;
   }
 
@@ -1454,8 +1469,12 @@
 @media (max-width: 639px) {
   .plansSection,
   .comparisonSection,
-  .answersSection,
-  .proofSection {
+  .answersSection {
+    padding-block: 56px;
+  }
+
+  .proofSection,
+  .closing {
     padding-block: 72px;
   }
 
@@ -1558,10 +1577,6 @@
     padding-right: 0;
     font-size: var(--text-body-sm);
   }
-
-  .closingInner {
-    padding-block: 64px;
-  }
 }
 
 @keyframes proof-trace-arrive-mobile {
@@ -1576,9 +1591,15 @@
   }
 }
 
+@media (max-width: 600px) {
+  .shell {
+    padding-inline: 22px;
+  }
+}
+
 @media (max-width: 430px) {
   .hero {
-    padding-block: 56px 60px;
+    padding-block: 48px 44px;
   }
 
   .hero h1 {
@@ -1672,16 +1693,10 @@
   }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 360px) {
   .hero h1 {
-    font-size: 2.125rem;
+    font-size: 1.9375rem;
     letter-spacing: -0.055em;
-  }
-}
-
-@media (min-width: 1024px) {
-  .shell {
-    width: min(calc(100% - 96px), var(--container));
   }
 }
 

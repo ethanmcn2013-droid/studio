@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
+import { COMPANY_META } from "@/lib/hq/company";
 
 type FooterLink = {
   href: string;
@@ -51,6 +52,14 @@ const SOCIALS = [
   },
 ] as const;
 
+/**
+ * The company particulars, on every public page (Companies Act 2014 §151):
+ * the registered name, the place of registration and the CRO number.
+ * The number is transcribed from the Certificate of Incorporation and held
+ * once, in the company record.
+ */
+const REGISTRATION_LINE = `${COMPANY_META.legalName}. Registered in Ireland, company number ${COMPANY_META.croNumber}.`;
+
 export function SiteFooter({ compact = false }: { compact?: boolean }) {
   const year = new Date().getFullYear();
 
@@ -97,7 +106,7 @@ export function SiteFooter({ compact = false }: { compact?: boolean }) {
           heading="Resources"
           links={[
             { href: "/dispatch", label: "Dispatch" },
-            { href: "/design", label: "Design" },
+            { href: "/features/daily-briefing", label: "Daily briefing" },
           ]}
         />
         <FooterCol
@@ -114,6 +123,9 @@ export function SiteFooter({ compact = false }: { compact?: boolean }) {
         <span>&copy; {year} Signal Studio. Made by Signal Studio.</span>
         <span>Clarity, not configuration.</span>
       </div>
+      <p className="site-footer-registration mx-auto mt-2 w-full max-w-[1240px] px-5 text-[12px] leading-relaxed text-ink-quiet sm:px-6">
+        {REGISTRATION_LINE}
+      </p>
       <LegalLinks />
     </footer>
   );
@@ -163,6 +175,9 @@ function CompactFooter({ year }: { year: number }) {
           Contact
         </Link>
       </div>
+      <p className="site-footer-registration mx-auto mt-1 w-full max-w-[874px] px-6 text-[12px] leading-relaxed text-ink-soft">
+        {REGISTRATION_LINE}
+      </p>
       <LegalLinks compact />
     </footer>
   );

@@ -8488,6 +8488,7 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
   border: 1px solid var(--border-soft); border-radius: var(--r-pill, 999px);
 }
 .hq-co-status[data-status="pre-incorporation"] { color: #92400e; background: #fef3c7; border-color: #fde68a; }
+.hq-co-status[data-status="incorporated"] { color: var(--status-done); background: var(--status-done-bg); border-color: var(--status-done-bg); }
 
 /* Ownership bar */
 .hq-co-ownerbar { display: flex; gap: 2px; margin: 2rem 0; height: 64px; border-radius: var(--r-3); overflow: hidden; }

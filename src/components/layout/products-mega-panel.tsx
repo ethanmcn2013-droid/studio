@@ -366,8 +366,8 @@ export function ProductsMegaPanel({ open, onClose, triggerRef }: Props) {
             })}
           </div>
 
-          <a href="/design" onClick={onClose} className="mpanel-foot">
-            <span>One system behind all three, see the design</span>
+          <a href="/principles" onClick={onClose} className="mpanel-foot">
+            <span>One system behind all three, read the principles</span>
             <svg width="9" height="9" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2.4"
               strokeLinecap="round" strokeLinejoin="round" aria-hidden>

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-design-quality-report/1",
-  "generatedAt": "2026-09-04T22:23:01.487Z",
+  "generatedAt": "2026-09-08T13:34:44.200Z",
   "status": "baseline-held",
   "readiness": {
     "status": "not-certified",
@@ -54,8 +54,8 @@
       "feedback-interruption-and-exception": 29,
       "list-and-data-table": 12,
       "onboarding-and-authentication": 14,
-      "public-information-and-proof": 83,
-      "review-and-approval-workspace": 15,
+      "public-information-and-proof": 82,
+      "review-and-approval-workspace": 16,
       "search-and-command-interface": 4,
       "settings-and-administration": 14
     },
@@ -225,12 +225,12 @@
         "averageScore": null
       },
       "public-information-and-proof": {
-        "audits": 16,
-        "averageScore": 3.6
+        "audits": 12,
+        "averageScore": 3.62
       },
       "review-and-approval-workspace": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.54
       },
       "search-and-command-interface": {
         "audits": 0,

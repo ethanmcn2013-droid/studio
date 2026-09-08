@@ -25,9 +25,9 @@
       "url": "https://signalstudio.ie/pricing"
     },
     {
-      "experienceId": "studio.page.design",
+      "experienceId": "studio.page.design-lab-design",
       "state": "default",
-      "url": "https://signalstudio.ie/design"
+      "url": "https://signalstudio.ie/__design-lab/design"
     },
     {
       "experienceId": "studio.page.privacy",

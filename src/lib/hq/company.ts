@@ -8,10 +8,12 @@
  *   - tax / gift valuation      → content/vault/legal-tax-valuation.md
  *   - shareholders' agreement   → content/vault/legal-agreement.md
  *
- * Honesty contract: the company is PRE-INCORPORATION. The structure is
- * defined and decisions confirmed, but no shares are issued yet and there is
- * no CRO number. Every surface says so plainly, a defined cap table is not a
- * live one. Pure + client-safe (no server-only import).
+ * Honesty contract: the company was INCORPORATED on 17 August 2026 as
+ * Signal Studio Limited, CRO number 823488 (Certificate of Incorporation,
+ * transcribed 2026-09-08). Post-incorporation steps (share issue, the gift
+ * transfer, registers, RBO) are recorded here only once each is genuinely
+ * done, a defined cap table is not a live register until the shares issue.
+ * Pure + client-safe (no server-only import).
  *
  * Statutory references carry a Jan-2026 cutoff, verify against cro.ie /
  * revenue.ie at filing. This is a working blueprint, not regulated advice.
@@ -20,15 +22,18 @@
 export const COMPANY_META = {
   legalName: "Signal Studio Limited",
   type: "Private Company Limited by Shares (LTD) · Companies Act 2014",
-  status: "pre-incorporation" as const,
-  statusLabel: "Pre-incorporation · structure defined, shares not yet issued",
+  status: "incorporated" as const,
+  statusLabel: "Incorporated 17 August 2026 · CRO 823488 · shares not yet issued",
+  /** From the Certificate of Incorporation, Companies Registration Office. */
+  croNumber: "823488",
+  incorporatedOn: "2026-08-17",
   incorporationTarget: "July 2026",
   registeredOffice: "320 Glantann, Castletroy, Limerick, V94 RTP1",
   director: "Ethan McNamara (sole director · EEA-resident, no §137 bond)",
   secretary: "Sheauveen McCallig (company secretary, required for a sole director)",
   nominalPerShare: "€0.001",
   giftModel: "Model B, Ethan subscribes for all 1,000,000, then gift-transfers 100,000 Class B to the Founding Member",
-  revisedOn: "2026-06-19",
+  revisedOn: "2026-09-08",
   // The vault holds the binding documents; this is the read-out.
   sources: [
     { label: "Constitution & share structure", href: "/hq/vault/legal-constitution-shares" },
@@ -117,28 +122,28 @@ export const INCORPORATION_PHASES: IncorpPhase[] = [
     title: "Phase 1 · Pre-filing decisions",
     blurb: "Confirmed 2026-06-01. The structural calls are made.",
     steps: [
-      { label: "Company name · Signal Studio Limited", status: "done", note: "still check availability on CORE" },
+      { label: "Company name · Signal Studio Limited", status: "done", note: "registered 17 August 2026" },
       { label: "Registered office, Castletroy, Limerick", status: "done" },
       { label: "Director, Ethan McNamara (no §137 bond)", status: "done" },
       { label: "Company secretary, Sheauveen McCallig", status: "done" },
       { label: "Nominal value, €0.001/share", status: "done" },
       { label: "Gift model, Model B", status: "done" },
       { label: "Execution as a deed", status: "done" },
-      { label: "Constitution drafted with Class A/B structure", status: "todo" },
-      { label: "Director/secretary identity verification (PPSN/IPN) ready", status: "todo" },
+      { label: "Constitution drafted with Class A/B structure", status: "done", note: "filed with the A1" },
+      { label: "Director/secretary identity verification (PPSN/IPN) ready", status: "done" },
     ],
   },
   {
     id: "incorporate",
     title: "Phase 2 · Incorporate (CORE / Form A1)",
-    blurb: "Targeted July 2026. Produces the Certificate of Incorporation + CRO number.",
+    blurb: "Done. Incorporated Monday 17 August 2026; the Certificate of Incorporation carries CRO number 823488.",
     steps: [
-      { label: "Register a CORE account (core.cro.ie)", status: "todo" },
-      { label: "Complete Form A1 (name, type, office, officers, capital, subscribers)", status: "todo" },
-      { label: "Upload the constitution", status: "todo" },
-      { label: "Subscribers, Ethan subscribes for all 1,000,000 (Model B)", status: "todo" },
-      { label: "Pay the fee (~€50, verify) and submit", status: "todo" },
-      { label: "Receive Certificate of Incorporation + CRO number", status: "todo", note: "unblocks the €40k facility" },
+      { label: "Register a CORE account (core.cro.ie)", status: "done" },
+      { label: "Complete Form A1 (name, type, office, officers, capital, subscribers)", status: "done" },
+      { label: "Upload the constitution", status: "done" },
+      { label: "Subscribers, Ethan subscribes for all 1,000,000 (Model B)", status: "done" },
+      { label: "Pay the fee (~€50, verify) and submit", status: "done" },
+      { label: "Receive Certificate of Incorporation + CRO number", status: "done", note: "CRO 823488, 17 August 2026; the facility gate is met" },
     ],
   },
   {
@@ -179,7 +184,7 @@ export const INCORPORATION_PHASES: IncorpPhase[] = [
 ];
 
 export const INCORP_TIMELINE: Array<{ milestone: string; target: string; gates: string }> = [
-  { milestone: "Incorporate Signal Studio Limited", target: "July 2026", gates: "must exist before shares can issue; unblocks the facility" },
+  { milestone: "Incorporate Signal Studio Limited", target: "Done · 17 August 2026", gates: "CRO 823488; shares can now issue, the facility gate is met" },
   { milestone: "Issue shares + gift-transfer + sign agreement", target: "Late July 2026", gates: "gift must land while value is ~nominal (tax)" },
   { milestone: "Founder Circle artifacts to print", target: "~1 August 2026", gates: "2-week print + delivery runway" },
   { milestone: "Full launch + Founder Circle send", target: "1 September 2026", gates: "the fixed date" },

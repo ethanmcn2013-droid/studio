@@ -26,7 +26,7 @@ test("the review route is hidden from canonical production hosts", async ({
   expect(forwardedResponse.status()).toBe(404);
 });
 
-test("the review lab owns its shell while public design keeps site navigation", async ({
+test("the review lab owns its shell while public principles keep site navigation", async ({
   page,
 }) => {
   await page.goto(LAB_PATH);
@@ -34,7 +34,7 @@ test("the review lab owns its shell while public design keeps site navigation", 
     page.getByRole("navigation", { name: "Site navigation" }),
   ).toHaveCount(0);
 
-  await page.goto("/design");
+  await page.goto("/principles");
   await expect(
     page.getByRole("navigation", { name: "Site navigation" }),
   ).toBeVisible();

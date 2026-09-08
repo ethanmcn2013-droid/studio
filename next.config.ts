@@ -74,12 +74,21 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        // The brand page retired 2026-07-06; /design carries the system now.
+        // The brand page retired 2026-07-06 and the design page left the
+        // public estate 2026-09-08 (archived behind the design-lab gate).
+        // Both land on /principles, the public statement of the system.
         // Exact-path match only — /brand/* static assets (kit, collateral,
         // loader.html) keep serving from public/brand/.
         source: "/brand",
-        destination: "/design",
+        destination: "/principles",
         permanent: true,
+      },
+      {
+        // Archived, not deleted: the page lives at /__design-lab/design for
+        // previews. Temporary so the decision stays easy to reverse.
+        source: "/design",
+        destination: "/principles",
+        permanent: false,
       },
       {
         // Signal Review is a private founder-operator instrument. Retire the

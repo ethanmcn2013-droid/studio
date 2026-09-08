@@ -85,8 +85,8 @@ const domains: AtlasObject[] = [
     position: { x: 0.18, y: 0.26 },
     lensPriority: { design: 3, investor: 2, product: 2 },
     links: [
-      { label: "Design", href: "/design", hint: "live" },
       { label: "Principles", href: "/principles", hint: "live" },
+      { label: "Design page", href: "/__design-lab/design", hint: "archived" },
       { label: "Design system", href: "/hq/atlas/signal-studio-umbrella", hint: "registry" },
     ],
     evidence: ["DESIGN.md", "BRAND.md", "src/ds/tokens.css"],

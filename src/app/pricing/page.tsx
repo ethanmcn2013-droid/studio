@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
 import { HOMEPAGE_RELAY_TIMELINE_FIXTURE } from "@/components/marketing/heroes/timeline/fixture";
+import { FloorRise } from "@/components/reveal/floor-rise";
 import { ProductSignatureWordmark } from "@/components/reveal/product-signature-wordmark";
 import {
   COMMERCIAL_TERMS,
@@ -18,6 +19,7 @@ import {
   PricingClosing,
   PricingSelectionProvider,
 } from "./pricing-selection";
+import "@/components/reveal/floor-and-sheet.css";
 import styles from "./pricing.module.css";
 
 const PRICING = getConsumerPricingPresentation();
@@ -267,232 +269,256 @@ const FAQ = [
   },
 ] as const;
 
+/**
+ * Pricing, on the floor and the sheet (2026-09-08). The same geometry as
+ * the home page: the claim and the three commitments on the first sheet,
+ * the plan ledger and the comparison on sheets of their own, the Notes to
+ * Tasks to Timeline proof as white panes on the floor, straight answers on
+ * the last sheet, and the closing on the floor. The plan model, selection
+ * and the contract test are untouched.
+ */
 export default function PricingPage() {
   return (
     <>
-      <main className={styles.page} id="main" tabIndex={-1}>
+      <noscript>
+        <style>{".floor-page .rise{opacity:1!important;transform:none!important;transition:none!important}"}</style>
+      </noscript>
+      <FloorRise />
+      <main className={`floor-page ${styles.page}`} id="main" tabIndex={-1}>
         <MarketingDelightController />
-        <header className={`${styles.hero} ${styles.shell}`}>
-          <p className={styles.eyebrow}>Pricing</p>
-          <h1>
-            <span>One clear system.</span>
-            <span>Four ways in.</span>
-          </h1>
-          <p className={styles.heroLede}>
-            Start free, pay less while studying, move to Pro for ongoing work,
-            or shape an Enterprise start with Ethan.
-          </p>
+        <header className={`sheet ${styles.hero}`}>
+          <div className={styles.shell}>
+            <p className={`kicker ${styles.eyebrow}`}>Pricing</p>
+            <h1>
+              <span>One clear system.</span>
+              <span>Four ways in.</span>
+            </h1>
+            <p className={styles.heroLede}>
+              Start free, pay less while studying, move to Pro for ongoing work,
+              or shape an Enterprise start with Ethan.
+            </p>
+            <ul className={styles.commitments} aria-label="Pricing commitments">
+              <li>
+                <strong>No charge</strong>
+                <span>on the waitlist</span>
+              </li>
+              <li>
+                <strong>VAT included</strong>
+                <span>at the prevailing rate</span>
+              </li>
+              <li>
+                <strong>Terms repeated</strong>
+                <span>before purchase</span>
+              </li>
+            </ul>
+          </div>
         </header>
 
-        <section
-          aria-label="Pricing commitments"
-          className={styles.commitmentBand}
-        >
-          <ul className={styles.shell}>
-            <li>
-              <strong>No charge</strong>
-              <span>on the waitlist</span>
-            </li>
-            <li>
-              <strong>VAT included</strong>
-              <span>at the prevailing rate</span>
-            </li>
-            <li>
-              <strong>Terms repeated</strong>
-              <span>before purchase</span>
-            </li>
-          </ul>
-        </section>
+        <div className="floor">
+          <div className="band rise">
+            <p className="big">One clear system on every plan.</p>
+            <p className="small">
+              What changes is the workspace count, the editing guests and the
+              terms. Compare them below. Anything unresolved is named plainly.
+            </p>
+          </div>
+        </div>
 
         <PricingSelectionProvider>
           <section
             aria-labelledby="plans-title"
-            className={`${styles.plansSection} ${styles.shell}`}
+            className={`sheet ${styles.plansSection}`}
             id="plans"
           >
-            <div className={styles.sectionHeader}>
-            <h2 id="plans-title">Choose by the work in front of you.</h2>
-            <p>
-              Compare the price, workspace limit and the terms settled today.
-              Anything unresolved is named plainly.
-            </p>
-            </div>
-
-            <PlanPicker plans={PLANS} />
-
-            <p className={styles.vatLine}>{PRICING.vatStatement}</p>
-          </section>
-
-        <section
-          aria-labelledby="comparison-title"
-          className={`${styles.comparisonSection} ${styles.shell}`}
-        >
-          <div className={styles.sectionHeader}>
-            <h2 id="comparison-title">Only what changes.</h2>
-            <p>
-              No feature maze. These are the commercial differences confirmed
-              today.
-            </p>
-          </div>
-
-          <div className={styles.desktopComparison}>
-            <table>
-              <caption className="sr-only">
-                Signal Studio plan comparison
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">What changes</th>
-                  {PLANS.map((plan) => (
-                    <th key={plan.id} scope="col">
-                      <span>{plan.name}</span>
-                      <strong>{plan.price}</strong>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON_ROWS.map((row) => (
-                  <tr key={row.key}>
-                    <th scope="row">{row.label}</th>
-                    {PLANS.map((plan) => (
-                      <td key={plan.id}>{plan.comparison[row.key]}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className={styles.mobileComparison}>
-            {PLANS.map((plan) => (
-              <details key={plan.id} name="pricing-comparison">
-                <summary>
-                  <span className={styles.mobileComparisonPlan}>
-                    <strong>{plan.name}</strong>
-                    <span>{plan.mobileSummary}</span>
-                  </span>
-                  <span className={styles.mobileComparisonMeta}>
-                    <strong>{plan.price}</strong>
-                    <span className={styles.mobileComparisonState}>
-                      <span className={styles.comparisonClosed}>View</span>
-                      <span className={styles.comparisonOpen}>Open</span>
-                      <span aria-hidden="true" className={styles.disclosureChevron} />
-                    </span>
-                  </span>
-                </summary>
-                <dl>
-                  {COMPARISON_ROWS.map((row) => (
-                    <div key={row.key}>
-                      <dt>{row.label}</dt>
-                      <dd>{plan.comparison[row.key]}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        <section
-          aria-labelledby="proof-title"
-          className={styles.proofSection}
-        >
-          <div className={styles.shell}>
-            <div className={styles.sectionHeader}>
-              <h2 id="proof-title">The same work, without starting again.</h2>
-              <p>
-                One verified line of work moves from a private note to an
-                approved task and a published Timeline. It is fixed product
-                evidence, not live customer data.
-              </p>
-            </div>
-
-            <figure
-              className={styles.signalProof}
-              data-delight="pricing-proof"
-              data-delight-once
-            >
-              <ol
-                aria-label="A first-party product handoff from Notes to Tasks to Timeline"
-                className={styles.proofSteps}
-              >
-                {PROOF_STEPS.map((step) => (
-                  <li key={step.id}>
-                    <span className={styles.proofNode} aria-hidden="true" />
-                    <div className={styles.proofStepHead}>
-                      <ProductSignatureWordmark
-                        product={step.product}
-                        staticPresentation
-                        suppressMark={step.product === "tasks"}
-                      />
-                      <span>{step.state}</span>
-                    </div>
-                    <div className={styles.proofReceipt}>
-                      <p className={styles.proofObjectLabel}>{step.label}</p>
-                      <h3>{step.title}</h3>
-                      <p>{step.body}</p>
-                      <span>{step.meta}</span>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-
-              <div className={styles.timelineReceipt}>
-                <div className={styles.timelineReceiptHeader}>
-                  <div>
-                    <span>Published Timeline</span>
-                    <strong>{PUBLISHED_TIMELINE.label}</strong>
-                  </div>
-                  <span>{PUBLISHED_TIMELINE.ownerDisplayLabel}</span>
-                </div>
-                <div className={styles.timelineTrack} aria-hidden="true">
-                  <span />
-                  <span className={styles.timelineCurrent} />
-                  <span />
-                </div>
-                <div className={styles.timelineLabels}>
-                  <span>The Orchard reserved</span>
-                  <strong>Menu tasting · 1 Aug</strong>
-                  <span>Wedding day · 3 Oct</span>
-                </div>
+            <div className={styles.shell}>
+              <div className={styles.sectionHeader}>
+                <h2 id="plans-title">Choose by the work in front of you.</h2>
+                <p>
+                  Pick a row to see its limits, its billing and what is still
+                  to be confirmed before access.
+                </p>
               </div>
 
-              <figcaption>
-                Deterministic product fixture. Mara &amp; Finn. The Orchard,
-                events. No controls, no invented fields.
-              </figcaption>
-            </figure>
-          </div>
-        </section>
+              <PlanPicker plans={PLANS} />
 
-        <section
-          aria-labelledby="answers-title"
-          className={`${styles.answersSection} ${styles.shell}`}
-        >
-          <div className={styles.sectionHeader}>
-            <h2 id="answers-title">Straight answers.</h2>
-          </div>
+              <p className={styles.vatLine}>{PRICING.vatStatement}</p>
+            </div>
+          </section>
 
-          <div className={styles.answers}>
-            {FAQ.map((item) => (
-              <details key={item.question}>
-                <summary>
-                  <span>{item.question}</span>
-                  <span aria-hidden="true" className={styles.answerMark}>
-                    +
-                  </span>
-                </summary>
-                <p>{item.answer}</p>
-              </details>
-            ))}
-          </div>
-        </section>
+          <section
+            aria-labelledby="comparison-title"
+            className={`sheet ${styles.comparisonSection}`}
+          >
+            <div className={styles.shell}>
+              <div className={styles.sectionHeader}>
+                <h2 id="comparison-title">Only what changes.</h2>
+                <p>
+                  No feature maze. These are the commercial differences
+                  confirmed today.
+                </p>
+              </div>
+
+              <div className={styles.desktopComparison}>
+                <table>
+                  <caption className="sr-only">
+                    Signal Studio plan comparison
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">What changes</th>
+                      {PLANS.map((plan) => (
+                        <th key={plan.id} scope="col">
+                          <span>{plan.name}</span>
+                          <strong>{plan.price}</strong>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {COMPARISON_ROWS.map((row) => (
+                      <tr key={row.key}>
+                        <th scope="row">{row.label}</th>
+                        {PLANS.map((plan) => (
+                          <td key={plan.id}>{plan.comparison[row.key]}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className={styles.mobileComparison}>
+                {PLANS.map((plan) => (
+                  <details key={plan.id} name="pricing-comparison">
+                    <summary>
+                      <span className={styles.mobileComparisonPlan}>
+                        <strong>{plan.name}</strong>
+                        <span>{plan.mobileSummary}</span>
+                      </span>
+                      <span className={styles.mobileComparisonMeta}>
+                        <strong>{plan.price}</strong>
+                        <span className={styles.mobileComparisonState}>
+                          <span className={styles.comparisonClosed}>View</span>
+                          <span className={styles.comparisonOpen}>Open</span>
+                          <span aria-hidden="true" className={styles.disclosureChevron} />
+                        </span>
+                      </span>
+                    </summary>
+                    <dl>
+                      {COMPARISON_ROWS.map((row) => (
+                        <div key={row.key}>
+                          <dt>{row.label}</dt>
+                          <dd>{plan.comparison[row.key]}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section
+            aria-labelledby="proof-title"
+            className={`floor ${styles.proofSection}`}
+          >
+            <div className={styles.shell}>
+              <div className={`${styles.sectionHeader} rise`}>
+                <h2 id="proof-title">The same work, without starting again.</h2>
+                <p>
+                  One verified line of work moves from a private note to an
+                  approved task and a published Timeline. It is fixed product
+                  evidence, not live customer data.
+                </p>
+              </div>
+
+              <figure
+                className={`${styles.signalProof} rise`}
+                data-delight="pricing-proof"
+                data-delight-once
+              >
+                <ol
+                  aria-label="A first-party product handoff from Notes to Tasks to Timeline"
+                  className={styles.proofSteps}
+                >
+                  {PROOF_STEPS.map((step) => (
+                    <li key={step.id}>
+                      <span className={styles.proofNode} aria-hidden="true" />
+                      <div className={styles.proofStepHead}>
+                        <ProductSignatureWordmark
+                          product={step.product}
+                          staticPresentation
+                          suppressMark={step.product === "tasks"}
+                        />
+                        <span>{step.state}</span>
+                      </div>
+                      <div className={styles.proofReceipt}>
+                        <p className={styles.proofObjectLabel}>{step.label}</p>
+                        <h3>{step.title}</h3>
+                        <p>{step.body}</p>
+                        <span>{step.meta}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+
+                <div className={styles.timelineReceipt}>
+                  <div className={styles.timelineReceiptHeader}>
+                    <div>
+                      <span>Published Timeline</span>
+                      <strong>{PUBLISHED_TIMELINE.label}</strong>
+                    </div>
+                    <span>{PUBLISHED_TIMELINE.ownerDisplayLabel}</span>
+                  </div>
+                  <div className={styles.timelineTrack} aria-hidden="true">
+                    <span />
+                    <span className={styles.timelineCurrent} />
+                    <span />
+                  </div>
+                  <div className={styles.timelineLabels}>
+                    <span>The Orchard reserved</span>
+                    <strong>Menu tasting · 1 Aug</strong>
+                    <span>Wedding day · 3 Oct</span>
+                  </div>
+                </div>
+
+                <figcaption>
+                  Deterministic product fixture. Mara &amp; Finn. The Orchard,
+                  events. No controls, no invented fields.
+                </figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section
+            aria-labelledby="answers-title"
+            className={`sheet ${styles.answersSection}`}
+          >
+            <div className={`${styles.shell} ${styles.answersShell}`}>
+              <div className={styles.sectionHeader}>
+                <h2 id="answers-title">Straight answers.</h2>
+              </div>
+
+              <div className={styles.answers}>
+                {FAQ.map((item) => (
+                  <details key={item.question}>
+                    <summary>
+                      <span>{item.question}</span>
+                      <span aria-hidden="true" className={styles.answerMark}>
+                        +
+                      </span>
+                    </summary>
+                    <p>{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
 
           <PricingClosing plans={PLANS} />
         </PricingSelectionProvider>
       </main>
-      <div className={styles.pricingFooter}>
+      <div className={`floor-footer ${styles.pricingFooter}`}>
         <SiteFooter />
       </div>
     </>

@@ -92,7 +92,7 @@ const SECTIONS = [
     heading: "Contact",
     body: [
       "Questions, complaints, data requests: hello@signalstudio.ie. The address is read by a person.",
-      "The data controller is Ethan McNamara, Limerick, Ireland.",
+      "The data controller is Signal Studio Limited, company number 823488, registered office 320 Glantann, Castletroy, Limerick, V94 RTP1, Ireland.",
     ],
   },
 ] as const;
@@ -109,7 +109,7 @@ export default function PrivacyPage() {
           what we hold, who else touches it, and how to take it back.
         </>
       }
-      updated="2026-08-12"
+      updated="2026-09-08"
       sections={SECTIONS}
       footnote={
         <>

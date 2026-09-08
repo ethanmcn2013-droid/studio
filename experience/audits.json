@@ -2,8 +2,8 @@
   "schemaVersion": "signal-experience-audits/1",
   "audits": [
     {
-      "id": "audit-golden-studio-page-design-default-mobile",
-      "experienceId": "studio.page.design",
+      "id": "audit-golden-studio-page-design-lab-design-default-mobile",
+      "experienceId": "studio.page.design-lab-design",
       "state": "default",
       "breakpoint": "mobile",
       "scores": {
@@ -23,8 +23,8 @@
       },
       "overallScore": 3.54,
       "evidence": [
-        "experience/baselines/studio-page-design/default/mobile.png#sha256=47802b9bd81147b02c20e42cc40c3ea2a59ba6eb84f4e814ff9dabf2b117d825",
-        "experience/reviews.json#review-founder-baseline-studio-page-design-default-mobile-47802b9bd811",
+        "experience/baselines/studio-page-design-lab-design/default/mobile.png#sha256=47802b9bd81147b02c20e42cc40c3ea2a59ba6eb84f4e814ff9dabf2b117d825",
+        "experience/reviews.json#review-founder-baseline-studio-page-design-lab-design-default-mobile-47802b9bd811",
         "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
       ],
       "reviewer": "Codex Experience Quality Review",
@@ -32,8 +32,8 @@
       "pass": true
     },
     {
-      "id": "audit-golden-studio-page-design-default-tablet",
-      "experienceId": "studio.page.design",
+      "id": "audit-golden-studio-page-design-lab-design-default-tablet",
+      "experienceId": "studio.page.design-lab-design",
       "state": "default",
       "breakpoint": "tablet",
       "scores": {
@@ -53,8 +53,8 @@
       },
       "overallScore": 3.54,
       "evidence": [
-        "experience/baselines/studio-page-design/default/tablet.png#sha256=616d934d037bfccfbdd13fefe3f7607a7e08fde4b5242fd415942267d1bb7549",
-        "experience/reviews.json#review-founder-baseline-studio-page-design-default-tablet-616d934d037b",
+        "experience/baselines/studio-page-design-lab-design/default/tablet.png#sha256=616d934d037bfccfbdd13fefe3f7607a7e08fde4b5242fd415942267d1bb7549",
+        "experience/reviews.json#review-founder-baseline-studio-page-design-lab-design-default-tablet-616d934d037b",
         "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
       ],
       "reviewer": "Codex Experience Quality Review",
@@ -62,8 +62,8 @@
       "pass": true
     },
     {
-      "id": "audit-golden-studio-page-design-default-desktop",
-      "experienceId": "studio.page.design",
+      "id": "audit-golden-studio-page-design-lab-design-default-desktop",
+      "experienceId": "studio.page.design-lab-design",
       "state": "default",
       "breakpoint": "desktop",
       "scores": {
@@ -83,8 +83,8 @@
       },
       "overallScore": 3.54,
       "evidence": [
-        "experience/baselines/studio-page-design/default/desktop.png#sha256=6f6e54e5c4801a05bd9f09392b4a5b0f2847907dfcdc9e5a1bec12c0e54b0a77",
-        "experience/reviews.json#review-founder-baseline-studio-page-design-default-desktop-6f6e54e5c480",
+        "experience/baselines/studio-page-design-lab-design/default/desktop.png#sha256=6f6e54e5c4801a05bd9f09392b4a5b0f2847907dfcdc9e5a1bec12c0e54b0a77",
+        "experience/reviews.json#review-founder-baseline-studio-page-design-lab-design-default-desktop-6f6e54e5c480",
         "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
       ],
       "reviewer": "Codex Experience Quality Review",
@@ -92,8 +92,8 @@
       "pass": true
     },
     {
-      "id": "audit-golden-studio-page-design-default-wide",
-      "experienceId": "studio.page.design",
+      "id": "audit-golden-studio-page-design-lab-design-default-wide",
+      "experienceId": "studio.page.design-lab-design",
       "state": "default",
       "breakpoint": "wide",
       "scores": {
@@ -113,8 +113,8 @@
       },
       "overallScore": 3.54,
       "evidence": [
-        "experience/baselines/studio-page-design/default/wide.png#sha256=9a609166c87150238af0ddb901c5d5e33081ad68a286ee597dcaeb29151676a5",
-        "experience/reviews.json#review-founder-baseline-studio-page-design-default-wide-9a609166c871",
+        "experience/baselines/studio-page-design-lab-design/default/wide.png#sha256=9a609166c87150238af0ddb901c5d5e33081ad68a286ee597dcaeb29151676a5",
+        "experience/reviews.json#review-founder-baseline-studio-page-design-lab-design-default-wide-9a609166c871",
         "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
       ],
       "reviewer": "Codex Experience Quality Review",

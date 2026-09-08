@@ -8,7 +8,7 @@
   },
   "reviewSelections": [
     { "experienceId": "studio.page.root", "state": "default" },
-    { "experienceId": "studio.page.design", "state": "default" },
+    { "experienceId": "studio.page.design-lab-design", "state": "default" },
     { "experienceId": "studio.page.privacy", "state": "long-content" },
     { "experienceId": "studio.page.security", "state": "long-content" },
     { "experienceId": "studio.page.terms", "state": "long-content" },
@@ -25,7 +25,7 @@
     "scoringSource": "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md",
     "references": [
       {
-        "experienceId": "studio.page.design",
+        "experienceId": "studio.page.design-lab-design",
         "state": "default",
         "scoresByBreakpoint": {
           "mobile": { "purpose-and-task-clarity": 4, "information-architecture": 3, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },

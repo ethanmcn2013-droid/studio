@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-08 · S·171 · ships · About and Pricing join the floor
+
+**The About and Pricing pages now share the front door's geometry: the ink floor, the white sheets lifted off it, and the products as the objects between them.**
+
+About is one sheet for the claim, the three products on the floor, a founder's note written on a ruled page with its corner turned, the refusals, and the contact sheet; the translation table retired with the cut. Pricing keeps its ledger, comparison and straight answers on sheets and sets the note-to-task-to-timeline proof on the floor as white panes. The home page carries a launch notice, January 2027, and every footer now states the company particulars: Signal Studio Limited, company number 823488; the terms and the privacy policy name the company as operator and data controller. The public design page has left the estate and is held in the design lab for now; its old address sends people to the principles.
+
 ## 2026-09-04 · S·170 · ships · Every asset, in one place
 
 Signal HQ gains **the Gallery** — one room holding every graphic the studio

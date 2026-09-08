@@ -134,9 +134,9 @@ export default function PressPage() {
                 </ExternalLink>
                 . Product access is staged through the waitlist; screenshots
                 are available on request until the access window opens. The
-                design system itself is at{" "}
-                <ExternalLink href="https://signalstudio.ie/design">
-                  signalstudio.ie/design
+                principles behind the system are at{" "}
+                <ExternalLink href="https://signalstudio.ie/principles">
+                  signalstudio.ie/principles
                 </ExternalLink>
                 .
               </p>

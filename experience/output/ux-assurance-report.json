@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-ux-assurance-report/1",
-  "generatedAt": "2026-09-04T22:23:07.012Z",
+  "generatedAt": "2026-09-08T13:34:50.300Z",
   "modes": [
     {
       "id": "product-clarity",
@@ -82,7 +82,7 @@
   "observations": [],
   "subjectiveReviewQueue": [
     {
-      "experienceId": "studio.page.design",
+      "experienceId": "studio.page.design-lab-design",
       "status": "human-review-required",
       "dimensions": [
         "purpose-and-task-clarity",
