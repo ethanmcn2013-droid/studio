@@ -29,6 +29,21 @@ section height remains 1016.25px and neither viewport has horizontal overflow.
 Hover retracts the line, then restores it; reduced motion shows all sixteen
 strikes. Browser logs contain no errors or warnings.
 
-Required CI and production verification remain pending. Evidence uses the
+All required CI checks passed on `caa042166a3bc8c7c4f329ceabe0764c9067909a`:
+typecheck/test (1m19s), verify (1m10s), and design quality (2m15s, including
+the accessibility/visual harness). PR #184 was squash-merged through the
+protected workflow at 20:26:02 UTC as
+`eec24eda2a7c431f6d442c2b9d0c0dbda8df66ef`.
+
+Production deployment `dpl_9TXaSLWp75MPvmULpPshn8w6Lds9` became READY at
+20:29:06.187 UTC with that exact merge commit and the production domain.
+Immutable URL: <https://studio-itmkrd1ac-ethanmcn2013-1730s-projects.vercel.app>.
+
+Live desktop and mobile browser checks confirmed the muted indigo on all
+sixteen strikes, the 1016.25px desktop section height, no horizontal overflow
+and no console errors or warnings. Dot retains its 1.4x full-film marker and
+CRO number 823488 remains present. Live screenshots and DOM measurements
+are retained with the `words-indigo-live-` prefix. The task-owned
+local preview was stopped after verification. Evidence uses the
 `words-indigo-` prefix and this directory's Git LFS rules for screenshots
 and logs.

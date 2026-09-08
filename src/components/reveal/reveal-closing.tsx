@@ -5,7 +5,7 @@ export function RevealClosing() {
         <div className="inner rise">
           <div>
             <span className="kicker">Who it is for</span>
-            <h2 id="who-h" className="title" style={{ marginTop: "18px" }}>Built for the 80%.</h2>
+            <h2 id="who-h" className="title" style={{ marginTop: "18px" }}>Built for the <span className="who-percent">80%.</span></h2>
           </div>
           <div>
             <p className="lede">Most people with work to manage do not work in tech. They run venues, sites, classrooms and small studios. They were handed tools built for engineering teams and told to adapt.</p>

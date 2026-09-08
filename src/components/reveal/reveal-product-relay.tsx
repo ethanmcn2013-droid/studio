@@ -166,7 +166,7 @@ export function RevealProductRelay() {
                   <a className="more" href={PRODUCT_MARKETING_URLS.timeline}>Explore Timeline <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
-              <figure className="app ui rise" id="time-app" aria-label="Timeline. The couple’s own page for Mara and Finn: 79 days to go, seven dates across a line, then the same dates down the page at night.">
+              <figure className="app ui rise" id="time-app" aria-label="Timeline demo. Mara and Finn’s dates turn across and down, followed by an illustrative activity preview with 37 people and example viewers.">
                 <div className="rail" aria-hidden="true">
                   <span className="dotmark"></span><span className="sep"></span>
                   <span className="it"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h6M9 16h6"/></svg>Notes</span>
@@ -179,14 +179,40 @@ export function RevealProductRelay() {
                     <div className="tl-page" id="tlpage">
                       <div className="tl-head">
                         <div className="l"><span className="ui-kicker" style={{ fontSize: "11.5px" }}>The Orchard, events</span><b>Mara & Finn</b><span className="ui-kicker">One of three</span></div>
-                        <div className="btns"><span>Add a moment</span><span>Preview</span><span className="ink" id="getlink">Get the link</span></div>
+                        <div className="btns"><span>Add a moment</span><button type="button" id="tlactivity-show">View activity</button><span className="ink" id="getlink">Get the link</span></div>
                       </div>
                       <div className="tl-live">Live since 15 July · anyone with the link can read it</div>
                       <span className="ui-kicker" style={{ fontSize: "11.5px", letterSpacing: ".14em" }}>Mara & Finn</span>
-                      <div className="tl-hero">
+                      <div className="tl-countdown-fold" id="tlcountdown"><div className="tl-fold-inner"><div className="tl-hero">
                         <div className="tl-num"><span id="tlnum">0</span><small>days</small></div>
                         <div className="tl-date">Saturday 3 October 2026<span className="sub">Wedding day</span><div className="rule"></div><span className="today">Today is 16 July</span><span className="np">Nothing is planned until 1 August.</span></div>
-                      </div>
+                      </div></div></div>
+                      <div className="tl-activity-fold" id="tlactivity" aria-hidden="true" inert><div className="tl-fold-inner">
+                        <div className="tl-activity-hero">
+                          <div className="tl-num tl-view-count"><span>37</span><small>people</small></div>
+                          <div className="tl-activity-copy">
+                            <span className="ui-kicker">Activity preview</span>
+                            <h3>Viewed your timeline.</h3>
+                            <p>Your dates. Their attention.<br />See who has caught up.</p>
+                            <button className="tl-viewer-toggle" id="tlviewers-toggle" type="button" aria-expanded="false" aria-controls="tlviewers">
+                              <span className="tl-viewer-avatars" aria-hidden="true"><i>CO</i><i>RK</i><i>AM</i><i>+34</i></span>
+                              <span className="tl-viewer-action">See who viewed <span aria-hidden="true">↗</span></span>
+                            </button>
+                          </div>
+                        </div>
+                        <div className="tl-viewer-fold" id="tlviewers" aria-hidden="true" inert><div className="tl-fold-inner">
+                          <div className="tl-viewer-panel">
+                            <div className="tl-viewer-heading"><h4>People who caught up</h4><span>4 of 37 · Example viewers</span></div>
+                            <ul>
+                              <li><i aria-hidden="true">CO</i><span><b>Ciara O’Brien</b><small>Family</small></span><span className="tl-viewed">Viewed</span></li>
+                              <li><i aria-hidden="true">RK</i><span><b>Rory Kelly</b><small>Guest</small></span><span className="tl-viewed">Viewed</span></li>
+                              <li><i aria-hidden="true">AM</i><span><b>Aoife Murphy</b><small>Florist</small></span><span className="tl-viewed">Viewed</span></li>
+                              <li><i aria-hidden="true">DW</i><span><b>Daniel Walsh</b><small>Photographer</small></span><span className="tl-viewed">Viewed</span></li>
+                            </ul>
+                            <p className="tl-viewer-note">Illustrative preview. Names and activity shown are examples.</p>
+                          </div>
+                        </div></div>
+                      </div></div>
                       <div className="tl-mode"><span className="ui-kicker" style={{ fontSize: "11.5px", letterSpacing: ".14em" }}>Days away</span><span className="seg2" id="tlseg"><span className="ind"></span><span className="on">Across</span><span>Down</span></span></div>
                       <div className="tl-stack">
                         <div className="tl-across" id="tlacross">
@@ -216,7 +242,6 @@ export function RevealProductRelay() {
                       </div>
                     </div>
                   </div>
-                  <div className="toast" id="tltoast" aria-hidden="true"><i></i>Link copied. Anyone with it can read the timeline.</div>
                 </div>
                 <button className="replay" type="button" data-scene="timeline"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7"/><path d="M4 4v5h5"/></svg>Play again</button>
               </figure>
