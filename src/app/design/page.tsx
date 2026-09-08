@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { MotionSpecimen } from "@/components/brand/motion-specimen";
 import { ReadingProgress } from "@/components/reading-progress";
@@ -1039,6 +1040,8 @@ export default function DesignPage() {
           </SectionHead>
 
           <DotCharacter />
+
+          <p className="mt-8 text-center text-sm"><Link href="/design/dot" className="text-[#4f46e5] underline underline-offset-4">Explore Dot Studio</Link></p>
 
           <SpecLine>
             transform only · volume held · the shadow is computed, never drawn · rotation only in the air

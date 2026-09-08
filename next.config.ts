@@ -36,6 +36,8 @@ const csp = [
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com ${clerkHosts} ${turnstile}`,
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' data: blob: https:`,
+  // Local Dot reference files are browser object URLs; authoring is dev-only.
+  ...(isDev ? [`media-src 'self' blob:`] : []),
   `font-src 'self' data:`,
   `connect-src 'self' https://va.vercel-scripts.com ${clerkHosts}`,
   `frame-src 'self' ${turnstile}`,

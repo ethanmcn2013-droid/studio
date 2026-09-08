@@ -1,0 +1,98 @@
+
+> studio@0.1.0 dot:test C:\Users\ethan\signal-studio-workspace\worktrees\studio\feat-dot-studio
+> tsx --test src/lib/dot/dot.test.ts
+
+TAP version 13
+# Subtest: every frame of all 18 timelines has finite, contained geometry and one circular body
+ok 1 - every frame of all 18 timelines has finite, contained geometry and one circular body
+  ---
+  duration_ms: 603.0661
+  type: 'test'
+  ...
+# Subtest: the 1,845-frame film closes with an identical pose and no duplicate-frame export
+ok 2 - the 1,845-frame film closes with an identical pose and no duplicate-frame export
+  ---
+  duration_ms: 2.0054
+  type: 'test'
+  ...
+# Subtest: every mood and performance returns to the same visible loop pose
+ok 3 - every mood and performance returns to the same visible loop pose
+  ---
+  duration_ms: 2.0415
+  type: 'test'
+  ...
+# Subtest: all 90 mood switches preserve the interrupted pose at early, middle and late times
+ok 4 - all 90 mood switches preserve the interrupted pose at early, middle and late times
+  ---
+  duration_ms: 90.4013
+  type: 'test'
+  ...
+# Subtest: pause freezes all channels, including a reaction and spring release
+ok 5 - pause freezes all channels, including a reaction and spring release
+  ---
+  duration_ms: 0.5578
+  type: 'test'
+  ...
+# Subtest: an interrupted spin takes the shortest recovery arc
+ok 6 - an interrupted spin takes the shortest recovery arc
+  ---
+  duration_ms: 0.158
+  type: 'test'
+  ...
+# Subtest: reduced motion preserves the selected face without any moving body or active clock
+ok 7 - reduced motion preserves the selected face without any moving body or active clock
+  ---
+  duration_ms: 0.6796
+  type: 'test'
+  ...
+# Subtest: hidden stages stop and resume without catching up elapsed wall time
+ok 8 - hidden stages stop and resume without catching up elapsed wall time
+  ---
+  duration_ms: 0.1545
+  type: 'test'
+  ...
+# Subtest: rapid pokes never queue, and drag stays bounded and circular
+ok 9 - rapid pokes never queue, and drag stays bounded and circular
+  ---
+  duration_ms: 0.5908
+  type: 'test'
+  ...
+# Subtest: all eight gestures settle and remain within the circular rig
+ok 10 - all eight gestures settle and remain within the circular rig
+  ---
+  duration_ms: 6.1254
+  type: 'test'
+  ...
+# Subtest: pointer tracking cannot push a wide expression beyond the circular face
+ok 11 - pointer tracking cannot push a wide expression beyond the circular face
+  ---
+  duration_ms: 24.5601
+  type: 'test'
+  ...
+# Subtest: seeded motion and SVG export are deterministic and transparent
+ok 12 - seeded motion and SVG export are deterministic and transparent
+  ---
+  duration_ms: 0.7706
+  type: 'test'
+  ...
+# Subtest: loop ranges reject empty, reversed, infinite and out-of-bounds ranges
+ok 13 - loop ranges reject empty, reversed, infinite and out-of-bounds ranges
+  ---
+  duration_ms: 0.9166
+  type: 'test'
+  ...
+# Subtest: preset round trip validates the complete schema and discards unknown fields
+ok 14 - preset round trip validates the complete schema and discards unknown fields
+  ---
+  duration_ms: 0.9974
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1473.3225
