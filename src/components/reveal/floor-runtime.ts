@@ -215,18 +215,13 @@ export function startFloor() {
   /* ═══ timeline ═══ */
   var timeRoot = $('#time-app'), tltop = $('.tl-top', timeRoot), tlpage = $('#tlpage'), tlnum = $('#tlnum'), tltrack = $('#tltrack'), tlacross = $('#tlacross'), tldown = $('#tldown'), tlseg = $('#tlseg'), getlink = $('#getlink');
   var ms = $$('.ms', tltrack), downItems = $$('li', tldown), tlstack = $('.tl-stack', timeRoot);
-  var tlactivity = $('#tlactivity'), tlcountdown = $('#tlcountdown'), tlviewers = $('#tlviewers'), tlviewerToggle = $('#tlviewers-toggle');
-  function showViewers(open){
-    timeRoot.classList.toggle('viewers-open', open);
-    tlviewerToggle.setAttribute('aria-expanded', String(open));
-    $('.tl-viewer-action', tlviewerToggle).innerHTML = open ? 'Hide people <span aria-hidden="true">↙</span>' : 'See who viewed <span aria-hidden="true">↗</span>';
-    tlviewers.setAttribute('aria-hidden', String(!open)); tlviewers.inert = !open;
-  }
+  var tlactivity = $('#tlactivity'), tlcountdown = $('#tlcountdown');
+  /* The ending swaps the countdown for the people who have caught up. The
+     list is open from the start; there is no number and nothing to toggle. */
   function showActivity(show){
     timeRoot.classList.toggle('activity-shown', show);
     tlactivity.setAttribute('aria-hidden', String(!show)); tlactivity.inert = !show;
     tlcountdown.setAttribute('aria-hidden', String(show)); tlcountdown.inert = show;
-    if (!show) showViewers(false);
   }
   function fitStack(){ var active = tldown.classList.contains('in') ? tldown : tlacross; tlstack.style.height = active.scrollHeight + 'px'; }
   function shape(el, cls){
@@ -258,7 +253,7 @@ export function startFloor() {
       /* the same seven dates, down the page */
       at(5200, function(){ segTo(tlseg, 1); tlacross.classList.add('out'); tldown.classList.add('in'); tltop.classList.add('night'); fitStack(); });
       downItems.forEach(function(l, i){ at(5400 + i * 110, function(){ l.classList.add('in'); }); });
-      /* Back across, then sharing resolves into the illustrative activity preview. */
+      /* Back across, then sharing resolves into who has caught up. */
       at(10400, function(){ segTo(tlseg, 0); tldown.classList.remove('in'); tlacross.classList.remove('out'); tltop.classList.remove('night'); fitStack(); });
       at(11500, function(){ getlink.classList.add('pulse'); });
       at(11900, function(){ showActivity(true); });
@@ -267,8 +262,6 @@ export function startFloor() {
     }
   });
   $('#tlactivity-show').addEventListener('click', function(){ played.time = true; if (!timeRoot.classList.contains('activity-shown')) timelineScene.finish(); });
-  tlviewerToggle.addEventListener('click', function(){ showViewers(tlviewerToggle.getAttribute('aria-expanded') !== 'true'); });
-  tlactivity.addEventListener('keydown', function(e){ if (e.key === 'Escape' && tlviewerToggle.getAttribute('aria-expanded') === 'true'){ showViewers(false); tlviewerToggle.focus(); } });
 
   /* ═══ hero relay ═══ */
   var stage = $('#hero-stage'), pNote = $('#p-note'), pTask = $('#p-task'), pTime = $('#p-time'), c1 = $('#c1'), c2 = $('#c2'), hnum = $('#hnum'), hState = $('#h-state'), hSt = $('#h-st');

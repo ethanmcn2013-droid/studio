@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-09 · S·177 · tightens · The people, not the number
+
+**The Timeline scene's activity ending no longer opens on a count. It opens on Ciara, who caught up this morning, and the list of who else has, in view from the start.**
+
+The invented 37 is gone from the number, the avatar stack and the "4 of 37" heading, and with it the toggle that hid the list. The rows arrive one after another as the fold opens; reduced motion shows them settled. "View activity" still jumps to the ending and Play again still resets it. The illustrative-preview note stays: the names are examples, and the app records qualified viewing sessions, not identified people.
+
 ## 2026-09-08 · S·176 · tightens · See who caught up
 
 **Timeline's landing demo now ends with an activity preview: 37 people viewed your timeline, with an example viewer list to open.**
