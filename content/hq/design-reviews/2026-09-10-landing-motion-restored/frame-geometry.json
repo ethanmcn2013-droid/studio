@@ -1,0 +1,208 @@
+{
+  "capturedAt": "2026-09-10T08:51:01.575Z",
+  "source": "http://127.0.0.1:3100/",
+  "viewports": {
+    "desktop-1440x900": {
+      "notes": {
+        "distinctWidths": [
+          601,
+          707,
+          738,
+          739
+        ],
+        "distinctLefts": [
+          561,
+          562,
+          577,
+          630
+        ],
+        "distinctHeights": [
+          248,
+          253,
+          277,
+          627,
+          628,
+          700
+        ],
+        "stagesSeen": [
+          "(none)",
+          "stage-full"
+        ],
+        "morphObserved": true,
+        "settled": true
+      },
+      "tasks": {
+        "distinctWidths": [
+          980,
+          1020,
+          1216,
+          1368,
+          1376,
+          1384
+        ],
+        "distinctLefts": [
+          28,
+          32,
+          36,
+          112,
+          210,
+          230
+        ],
+        "distinctHeights": [
+          707,
+          737,
+          739,
+          773,
+          828,
+          852,
+          895,
+          901
+        ],
+        "stagesSeen": [
+          "(none)",
+          "stage-wide",
+          "stage-list"
+        ],
+        "morphObserved": true,
+        "settled": true
+      },
+      "timeline": {
+        "distinctWidths": [
+          820,
+          821,
+          889,
+          1097,
+          1120,
+          1371,
+          1377,
+          1384
+        ],
+        "distinctLefts": [
+          28,
+          31,
+          34,
+          160,
+          172,
+          275,
+          309,
+          310
+        ],
+        "distinctHeights": [
+          900,
+          933,
+          942,
+          1081,
+          1174
+        ],
+        "stagesSeen": [
+          "(none)",
+          "stage-wide",
+          "stage-tall"
+        ],
+        "morphObserved": true,
+        "settled": true
+      },
+      "footerDot": {
+        "found": true,
+        "running": "true",
+        "tag": "button"
+      }
+    },
+    "mobile-390x844": {
+      "notes": {
+        "distinctWidths": [
+          330
+        ],
+        "distinctLefts": [
+          30
+        ],
+        "distinctHeights": [
+          347,
+          366,
+          390,
+          414,
+          438,
+          981,
+          995,
+          1014,
+          1062,
+          1123
+        ],
+        "stagesSeen": [
+          "(none)",
+          "stage-full"
+        ],
+        "morphObserved": true,
+        "settled": true
+      },
+      "tasks": {
+        "distinctWidths": [
+          330
+        ],
+        "distinctLefts": [
+          30
+        ],
+        "distinctHeights": [
+          1002,
+          1123,
+          1127,
+          1129,
+          1424,
+          1437
+        ],
+        "stagesSeen": [
+          "(none)",
+          "stage-wide",
+          "stage-list"
+        ],
+        "morphObserved": true,
+        "settled": true
+      },
+      "timeline": {
+        "distinctWidths": [
+          346
+        ],
+        "distinctLefts": [
+          22
+        ],
+        "distinctHeights": [
+          1073,
+          1098,
+          1105,
+          1311,
+          1332
+        ],
+        "stagesSeen": [
+          "(none)",
+          "stage-wide",
+          "stage-tall"
+        ],
+        "morphObserved": true,
+        "settled": true
+      },
+      "footerDot": {
+        "found": true,
+        "running": "false",
+        "tag": "button"
+      }
+    }
+  },
+  "reducedMotion": {
+    "notes-app": {
+      "classes": "app ui rise is-in stage-full done",
+      "width": 739,
+      "transition": "none"
+    },
+    "tasks-app": {
+      "classes": "app ui rise is-in stage-wide done",
+      "width": 1384,
+      "transition": "none"
+    },
+    "time-app": {
+      "classes": "app ui rise is-in activity-shown stage-wide done",
+      "width": 1384,
+      "transition": "none"
+    }
+  },
+  "consoleErrors": []
+}

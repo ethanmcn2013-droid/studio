@@ -8,6 +8,15 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-10 · S·177 · tightens · The timeline frame moves with its content again
+
+**On the landing page, the timeline demo expands and draws in as its dates turn, the same way the Notes and Tasks demos do.**
+
+Locking the frame to one width left the timeline still while the other two
+moved, so the three stopped reading as one system. It now springs wide for
+the dates across, draws in for the same dates down the page, then opens back
+out. Dot's footer film is untouched.
+
 ## 2026-09-08 · S·176 · tightens · See who caught up
 
 **Timeline's landing demo now ends with an activity preview: 37 people viewed your timeline, with an example viewer list to open.**
