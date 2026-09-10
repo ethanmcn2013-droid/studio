@@ -248,18 +248,19 @@ export function startFloor() {
       tlpage.classList.remove('built'); tltrack.classList.remove('draw'); ms.forEach(function(m){ m.classList.remove('in'); });
       tlacross.classList.remove('out'); tldown.classList.remove('in'); timeRoot.classList.remove('stage-wide', 'stage-tall', 'morphing'); tltop.classList.remove('night'); downItems.forEach(function(l){ l.classList.remove('in'); }); segTo(tlseg, 0); getlink.classList.remove('pulse'); fitStack();
     },
-    finish: function(){ tlnum.textContent = '79'; tlpage.classList.add('built'); tltrack.classList.add('draw'); ms.forEach(function(m){ m.classList.add('in'); }); showActivity(true); fitStack(); },
+    finish: function(){ tlnum.textContent = '79'; tlpage.classList.add('built'); tltrack.classList.add('draw'); ms.forEach(function(m){ m.classList.add('in'); }); showActivity(true); timeRoot.classList.add('stage-wide'); fitStack(); setTimeout(fitStack, 50); },
     steps: function(at, keep){
-      /* The frame holds its width while the same dates change orientation. */
+      /* the frame springs wide for the across view */
+      at(0, function(){ shape(timeRoot, 'stage-wide'); });
       countTo(at, keep, tlnum, 79, 500, 1500);
       at(1100, function(){ tlpage.classList.add('built'); });
       at(1700, function(){ tltrack.classList.add('draw'); });
       ms.forEach(function(m, i){ at(1800 + i * 170, function(){ m.classList.add('in'); }); });
       /* the same seven dates, down the page */
-      at(5200, function(){ segTo(tlseg, 1); tlacross.classList.add('out'); tldown.classList.add('in'); tltop.classList.add('night'); fitStack(); });
+      at(5200, function(){ shape(timeRoot, 'stage-tall'); segTo(tlseg, 1); tlacross.classList.add('out'); tldown.classList.add('in'); tltop.classList.add('night'); fitStack(); });
       downItems.forEach(function(l, i){ at(5400 + i * 110, function(){ l.classList.add('in'); }); });
-      /* Back across, then sharing resolves into the illustrative activity preview. */
-      at(10400, function(){ segTo(tlseg, 0); tldown.classList.remove('in'); tlacross.classList.remove('out'); tltop.classList.remove('night'); fitStack(); });
+      /* and back across, then sharing resolves into the illustrative activity preview */
+      at(10400, function(){ shape(timeRoot, 'stage-wide'); segTo(tlseg, 0); tldown.classList.remove('in'); tlacross.classList.remove('out'); tltop.classList.remove('night'); fitStack(); });
       at(11500, function(){ getlink.classList.add('pulse'); });
       at(11900, function(){ showActivity(true); });
       at(12300, function(){ getlink.classList.remove('pulse'); });
