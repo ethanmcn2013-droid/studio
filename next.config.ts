@@ -67,13 +67,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        // /students is now a first-class route on the suite design system.
-        // Forward the old static file path for any links that point at it.
-        source: "/students.html",
-        destination: "/students",
-        permanent: true,
-      },
-      {
         // The brand page retired 2026-07-06 and the design page left the
         // public estate 2026-09-08 (archived behind the design-lab gate).
         // Both land on /principles, the public statement of the system.
@@ -113,7 +106,7 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "notes.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/notes",
+        destination: "https://signalstudio.ie",
         permanent: true,
       },
       {
@@ -128,7 +121,7 @@ const nextConfig: NextConfig = {
         source:
           "/:path((?!s(?:/|$)|the-wedding(?:/|$)|_next(?:/|$)).*)",
         has: [{ type: "host", value: "timeline.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/timeline",
+        destination: "https://signalstudio.ie",
         permanent: true,
       },
       {
@@ -140,7 +133,7 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "signal.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/signal",
+        destination: "https://signalstudio.ie",
         permanent: true,
       },
       // Legacy pre-rename domains (roadmap→timeline, analytics→signal). Same
@@ -155,7 +148,7 @@ const nextConfig: NextConfig = {
         source:
           "/:path((?!s(?:/|$)|the-wedding(?:/|$)|_next(?:/|$)).*)",
         has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/timeline",
+        destination: "https://signalstudio.ie",
         permanent: true,
       },
       {
@@ -167,7 +160,7 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "analytics.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/signal",
+        destination: "https://signalstudio.ie",
         permanent: true,
       },
       // ── Estate consolidation (2026-08-12) ─────────────────────────────
@@ -175,49 +168,53 @@ const nextConfig: NextConfig = {
       // pages. These rules MUST stay below the retired-domain block above:
       // redirects are first-match-wins, so an unscoped rule placed earlier
       // would catch notes/timeline/signal hosts and chain through them.
-      // Every source below is an exact path, so functional siblings
-      // (/venues, /embed/[slug]) are untouched.
-      { source: "/proof", destination: "/venues", permanent: true },
+      // Every source below is an exact path.
+      //
+      // ── the 2026-09-11 estate cut ──────────────────────────────────
+      // Twelve route directories moved to archive/marketing-pages/ so the
+      // public estate is the eight pages in sitemap.ts and nothing else.
+      // Two kinds of rule come out of that, and the status code is the
+      // difference that matters:
+      //
+      //   307 — the page is coming back. A 308 tells a crawler the URL is
+      //         permanently gone, and re-launching at the same path after
+      //         that is an uphill fight. Everything held back for launch
+      //         is temporary, deliberately.
+      //   308 — the page is genuinely retired and the URL is not returning.
+      { source: "/notes", destination: "/", permanent: false },
+      { source: "/tasks", destination: "/", permanent: false },
+      { source: "/timeline", destination: "/", permanent: false },
+      { source: "/venues", destination: "/", permanent: false },
+      { source: "/venues/:path*", destination: "/", permanent: false },
+      { source: "/students", destination: "/", permanent: false },
+      { source: "/dispatch", destination: "/", permanent: false },
+      { source: "/dispatch/:path*", destination: "/", permanent: false },
+      { source: "/changelog.rss", destination: "/", permanent: false },
+      { source: "/features/:path*", destination: "/", permanent: false },
+      { source: "/security", destination: "/", permanent: false },
+      { source: "/accessibility", destination: "/", permanent: false },
+
+      // These two were redirect stubs inside src/app rather than rules.
+      // Their destinations are archived now, so they land at the root and
+      // the machinery lives in one file instead of two.
+      { source: "/changelog", destination: "/", permanent: false },
+      { source: "/signal", destination: "/", permanent: false },
+
+      // ── older retired paths ────────────────────────────────────────
+      // Re-pointed in the same pass: each of these used to land on a page
+      // that is now archived, and a redirect into a redirect is a dead
+      // link with extra steps.
+      { source: "/proof", destination: "/", permanent: true },
       { source: "/work", destination: "/about", permanent: true },
       { source: "/ios", destination: "/", permanent: true },
-      { source: "/teachers", destination: "/students", permanent: true },
+      { source: "/teachers", destination: "/", permanent: true },
       // D5. Contact is now an anchored section on /about, machinery intact.
-      // The Founding 25 CTA points straight at /about#contact, so no
-      // conversion path rides this hop; it exists for links already sent.
       { source: "/contact", destination: "/about#contact", permanent: true },
-      // The wedding self-serve surface folds into the venue motion. It
-      // carried the superseded flat access-term copy; its replacement is
-      // chartered as E12.01.
-      { source: "/weddings", destination: "/venues", permanent: true },
-      // Query strings survive the hop, so the per-venue tracked demo links
-      // already sent in outreach keep resolving.
-      { source: "/venues/demo", destination: "/venues", permanent: true },
-      { source: "/templates", destination: "/tasks", permanent: true },
-      {
-        source: "/compare/aisle-planner-alternative-ireland",
-        destination: "/venues",
-        permanent: true,
-      },
-      {
-        source: "/compare/wedding-planning-workspace-for-venues",
-        destination: "/venues",
-        permanent: true,
-      },
-      {
-        source: "/compare/notion-alternative-wedding-planners",
-        destination: "/venues",
-        permanent: true,
-      },
-      {
-        source: "/compare/trello-alternative-builders",
-        destination: "/tasks",
-        permanent: true,
-      },
-      {
-        source: "/compare/project-management-students-no-sprints",
-        destination: "/students",
-        permanent: true,
-      },
+      { source: "/weddings", destination: "/", permanent: true },
+      { source: "/venues/demo", destination: "/", permanent: true },
+      { source: "/templates", destination: "/", permanent: true },
+      { source: "/students.html", destination: "/", permanent: true },
+      { source: "/compare/:path*", destination: "/", permanent: true },
     ];
   },
   async rewrites() {

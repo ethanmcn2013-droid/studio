@@ -94,6 +94,9 @@ function buildMailto(
   return `${base}?${query.toString()}`;
 }
 
+/* No hrefs. The three product pages are archived until launch
+   (archive/marketing-pages/), so these describe the system rather than
+   linking to pages that would only bounce back to the home page. */
 const PRODUCTS = [
   {
     id: "notes",
@@ -101,7 +104,6 @@ const PRODUCTS = [
     label: "Notes",
     kind: "Capture clarity",
     desc: "Where ideas and decisions live while they take shape.",
-    href: "/notes",
   },
   {
     id: "tasks",
@@ -109,7 +111,6 @@ const PRODUCTS = [
     label: "Tasks",
     kind: "Execution clarity",
     desc: "What needs to happen next, clear enough to act on today.",
-    href: "/tasks",
   },
   {
     id: "timeline",
@@ -117,7 +118,6 @@ const PRODUCTS = [
     label: "Timeline",
     kind: "Direction clarity",
     desc: "Where the work is going, written so a client can read it.",
-    href: "/timeline",
   },
 ] as const;
 
@@ -245,17 +245,14 @@ export default async function AboutPage({
             <ul className="ab-products rise" aria-labelledby="system-title">
               {PRODUCTS.map((product) => (
                 <li key={product.id}>
-                  <Link href={product.href} className="ab-product">
+                  <div className="ab-product">
                     <span className="ab-product-wm">
                       {product.name}
                       <i aria-hidden="true" />
                     </span>
                     <span className="kicker">{product.kind}</span>
                     <p>{product.desc}</p>
-                    <span className="ab-product-go">
-                      Explore {product.label} <span aria-hidden="true">↗</span>
-                    </span>
-                  </Link>
+                  </div>
                 </li>
               ))}
             </ul>

@@ -68,14 +68,15 @@ async function hqGate(request: NextRequest): Promise<NextResponse | null> {
 //   C = Content    → never redirected (/brand and assets)
 //   X = Excluded   → never touched (/hq, /api, og, sitemap, robots)
 
+// Trimmed with the 2026-09-11 estate cut: /dispatch, /notes, /tasks,
+// /timeline and /signal are archived, so listing them here only described
+// routes that no longer exist.
 const MARKETING_PATHS = new Set([
   "/",
   "/about",
-  "/dispatch",
-  "/notes",
-  "/tasks",
-  "/timeline",
-  "/signal",
+  "/waitlist",
+  "/principles",
+  "/press",
 ]);
 
 // Pricing is deliberately absent from MARKETING_PATHS. Signed-in people still
@@ -156,11 +157,9 @@ export const config = {
     "/",
     "/about",
     "/pricing",
-    "/dispatch",
-    "/notes",
-    "/tasks",
-    "/timeline",
-    "/signal",
+    "/waitlist",
+    "/principles",
+    "/press",
     // Exclude _next internals and static assets
     "/((?!_next|.*\\.(?:svg|png|jpg|jpeg|gif|webp|woff2?|ttf|eot|ico|css|js)$).*)",
   ],

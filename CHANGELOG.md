@@ -8,6 +8,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-11 · S·177 · cuts · Eight pages, and every one of them true
+
+**The public site is now the home page, Waitlist, Pricing, About, Principles, Press, Privacy and Terms. Twelve routes are archived until launch.**
+
+The three product pages, the venue and student wedges, the dispatch and the daily-briefing page all came out. Everything held for launch redirects temporarily, so the URLs come back to the same addresses.
+
+The nav is Pricing, About, Waitlist. The footer is two columns instead of four.
+
 ## 2026-09-08 · S·176 · tightens · See who caught up
 
 **Timeline's landing demo now ends with an activity preview: 37 people viewed your timeline, with an example viewer list to open.**

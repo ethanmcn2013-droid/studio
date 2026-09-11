@@ -1,29 +1,26 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Wordmark } from "@/components/brand/wordmark";
-import { ProductsMegaPanel } from "@/components/layout/products-mega-panel";
 
 const NAV_LINKS = [
-  { href: "/pricing", label: "Pricing" },
-  { href: "/about",   label: "About"   },
+  { href: "/pricing",  label: "Pricing"  },
+  { href: "/about",    label: "About"    },
+  // Access is the only thing to ask for before launch, so it earns the
+  // third slot in the rail now that Products is gone.
+  { href: "/waitlist", label: "Waitlist" },
 ] as const;
 
 export function SiteNav() {
   const [intro, setIntro] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
   const reducedMotion = useReducedMotion();
   const pathname = usePathname();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  const productsTriggerRef = useRef<HTMLButtonElement>(null);
-  const productsWrapRef = useRef<HTMLElement>(null);
-
-  const closeProducts = useCallback(() => setProductsOpen(false), []);
 
   // House wordmark: broadcast once on DOM ready, then quiet. Skipped
   // under reduced motion; the wordmark just sits there, which is right.
@@ -46,33 +43,18 @@ export function SiteNav() {
     return () => document.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
-  // Outside-click dismissal for products panel.
-  useEffect(() => {
-    if (!productsOpen) return;
-    function onDocClick(e: MouseEvent) {
-      if (
-        productsWrapRef.current &&
-        !productsWrapRef.current.contains(e.target as Node)
-      ) {
-        setProductsOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", onDocClick);
-    return () => document.removeEventListener("mousedown", onDocClick);
-  }, [productsOpen]);
-
-  // Keep the page fixed while an overlay menu is open. Without this, the
+  // Keep the page fixed while the mobile menu is open. Without this, the
   // underlying About copy can scroll and peek beneath the panel on short
   // mobile viewports, which reads as a broken section boundary.
   useEffect(() => {
-    if (!mobileOpen && !productsOpen) return;
+    if (!mobileOpen) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = previousOverflow;
     };
-  }, [mobileOpen, productsOpen]);
+  }, [mobileOpen]);
 
   if (
     pathname?.startsWith("/hq") ||
@@ -83,7 +65,6 @@ export function SiteNav() {
 
   return (
     <header
-      ref={productsWrapRef}
       className="site-nav sticky top-0 z-40 w-full"
       style={{
         background: "var(--bg)",
@@ -102,64 +83,6 @@ export function SiteNav() {
         </Link>
 
         <nav aria-label="Site navigation" className="flex items-center gap-2 sm:gap-5">
-          {/* Products trigger, opens the full-width mega-panel */}
-          <button
-            ref={productsTriggerRef}
-            type="button"
-            aria-expanded={productsOpen}
-            aria-controls={productsOpen ? "products-mega-panel" : undefined}
-            onClick={() => {
-              setMobileOpen(false);
-              setProductsOpen((open) => !open);
-            }}
-            onKeyDown={(event) => {
-              if (event.key !== "ArrowDown") return;
-              event.preventDefault();
-              setMobileOpen(false);
-              setProductsOpen(true);
-              window.requestAnimationFrame(() => {
-                window.requestAnimationFrame(() => {
-                  document
-                    .querySelector<HTMLAnchorElement>(
-                      "#products-mega-panel .mpanel-card",
-                    )
-                    ?.focus();
-                });
-              });
-            }}
-            className="marketing-nav-action inline-flex min-h-[44px] items-center gap-1 text-[13px] transition-colors sm:min-h-11"
-            style={{
-              letterSpacing: "0.01em",
-              color: productsOpen ? "var(--ink)" : "var(--ink-quiet)",
-            }}
-          >
-            Products
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="site-products-chevron"
-              style={{
-                transition: "transform 200ms var(--ease-out)",
-                transform: productsOpen ? "rotate(180deg)" : "rotate(0deg)",
-              }}
-              aria-hidden
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </button>
-
-          <ProductsMegaPanel
-            open={productsOpen}
-            onClose={closeProducts}
-            triggerRef={productsTriggerRef}
-          />
-
           {/* Desktop links, hidden below sm */}
           <Link
             href="/pricing"
@@ -178,6 +101,15 @@ export function SiteNav() {
             About
           </Link>
 
+          <Link
+            href="/waitlist"
+            aria-current={pathname === "/waitlist" ? "page" : undefined}
+            className="marketing-nav-action hidden min-h-11 min-w-11 items-center justify-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            Waitlist
+          </Link>
+
           {/* Mobile menu trigger, visible below sm only */}
           <button
             ref={triggerRef}
@@ -186,7 +118,6 @@ export function SiteNav() {
             aria-controls={mobileOpen ? "mobile-nav-panel" : undefined}
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
             onClick={() => {
-              setProductsOpen(false);
               setMobileOpen((open) => !open);
             }}
             className="marketing-nav-action inline-flex h-[44px] w-[44px] items-center justify-center text-ink-quiet transition-colors sm:hidden"
@@ -273,9 +204,6 @@ export function SiteNav() {
           aria-label="Site navigation without JavaScript"
           className="mx-auto flex min-h-14 w-full max-w-[1240px] flex-wrap items-center gap-x-6 border-t border-border-soft px-6 py-2 text-[13px] text-ink-quiet"
         >
-          <Link href="/notes" className="inline-flex min-h-11 items-center">Notes</Link>
-          <Link href="/tasks" className="inline-flex min-h-11 items-center">Tasks</Link>
-          <Link href="/timeline" className="inline-flex min-h-11 items-center">Timeline</Link>
           {NAV_LINKS.map(({ href, label }) => (
             <Link key={href} href={href} className="inline-flex min-h-11 items-center">
               {label}
