@@ -1,11 +1,11 @@
 {
   "schemaVersion": "signal-design-quality-report/1",
-  "generatedAt": "2026-09-08T13:34:44.200Z",
+  "generatedAt": "2026-09-11T09:05:25.018Z",
   "status": "baseline-held",
   "readiness": {
     "status": "not-certified",
     "reasons": [
-      "20/4876 required state/breakpoint audit cells pass",
+      "20/4700 required state/breakpoint audit cells pass",
       "24 visual baselines await approval"
     ]
   },
@@ -29,20 +29,20 @@
     "overallMinimum": 3.5
   },
   "inventory": {
-    "experiences": 251,
-    "stateVariants": 1219,
-    "breakpointVariants": 1004,
+    "experiences": 240,
+    "stateVariants": 1175,
+    "breakpointVariants": 960,
     "products": {
       "notes": 20,
       "signal": 31,
       "signal-review": 4,
-      "studio": 108,
+      "studio": 97,
       "tasks": 59,
       "timeline": 29
     },
     "experienceClasses": {
       "customer-product": 139,
-      "company-public": 39,
+      "company-public": 28,
       "founder-operator": 73
     },
     "archetypes": {
@@ -54,10 +54,10 @@
       "feedback-interruption-and-exception": 29,
       "list-and-data-table": 12,
       "onboarding-and-authentication": 14,
-      "public-information-and-proof": 82,
+      "public-information-and-proof": 72,
       "review-and-approval-workspace": 16,
       "search-and-command-interface": 4,
-      "settings-and-administration": 14
+      "settings-and-administration": 13
     },
     "fixtureCoverage": 6,
     "screenshotCoverage": 6,
@@ -75,8 +75,8 @@
       "releaseBlocking": 0
     },
     "company-public": {
-      "experiences": 39,
-      "critical": 9,
+      "experiences": 28,
+      "critical": 8,
       "passing": 0,
       "openFindings": 0,
       "releaseBlocking": 0
@@ -112,8 +112,8 @@
       "releaseBlocking": 0
     },
     "studio": {
-      "experiences": 108,
-      "critical": 14,
+      "experiences": 97,
+      "critical": 13,
       "passing": 0,
       "openFindings": 0,
       "releaseBlocking": 0
@@ -145,10 +145,10 @@
   },
   "audits": {
     "total": 20,
-    "requiredCells": 4876,
+    "requiredCells": 4700,
     "passing": 20,
-    "failing": 4856,
-    "missing": 4856,
+    "failing": 4680,
+    "missing": 4680,
     "duplicate": 0,
     "falsePassingExperienceIds": [],
     "byProduct": {
@@ -244,17 +244,17 @@
   },
   "coverage": {
     "registry": {
-      "registered": 251,
+      "registered": 240,
       "validationErrors": 0
     },
     "states": {
       "capturedVariants": 16,
-      "requiredVariants": 1219,
+      "requiredVariants": 1175,
       "completeFixtureExperiences": 6
     },
     "breakpoints": {
       "capturedVariants": 64,
-      "requiredVariants": 1004,
+      "requiredVariants": 960,
       "completeScreenshotExperiences": 6
     },
     "accessibility": {
@@ -285,12 +285,12 @@
   },
   "governance": {
     "underRemediation": 0,
-    "legacyExperiences": 249,
+    "legacyExperiences": 238,
     "acceptedExceptions": 0,
     "validAcceptedExceptions": 0,
     "activeExceptions": 0,
     "expiredExceptions": 0,
-    "notReviewedSinceMaterialChange": 212
+    "notReviewedSinceMaterialChange": 204
   },
   "goldenSet": {
     "status": "approved",

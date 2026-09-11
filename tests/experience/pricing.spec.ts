@@ -478,13 +478,15 @@ test.describe("Signal Ledger pricing page", () => {
   test("keeps site navigation operable from pricing", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/pricing");
-    const products = page.getByRole("button", { name: "Products" });
-    await products.focus();
-    await products.press("ArrowDown");
-    await expect(products).toHaveAttribute("aria-expanded", "true");
-    await expect(page.locator("#products-mega-panel")).toBeVisible();
-    await page.keyboard.press("Escape");
-    await expect(products).toHaveAttribute("aria-expanded", "false");
+
+    // The Products disclosure left the rail with the 2026-09-11 estate cut,
+    // so on wide viewports the rail is three plain links and there is nothing
+    // to open. The mobile menu below is the only header control that still
+    // has open and closed states.
+    await expect(page.getByRole("button", { name: "Products" })).toHaveCount(0);
+    const rail = page.locator("header.site-nav nav[aria-label='Site navigation']");
+    await expect(rail.getByRole("link", { name: "Pricing" })).toBeVisible();
+    await expect(rail.getByRole("link", { name: "Waitlist" })).toBeVisible();
 
     await page.setViewportSize({ width: 390, height: 844 });
     const mobile = page.getByRole("button", { name: "Open navigation" });

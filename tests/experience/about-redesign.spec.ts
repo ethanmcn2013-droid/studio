@@ -60,15 +60,16 @@ test.describe("About on the floor and the sheet, production evidence", () => {
         ).toBeVisible();
       }
 
+      // Three cards, and pre-launch they are descriptions rather than links.
+      // The product pages are archived until launch, so a card reading
+      // "Explore Notes" that redirected to the home page would be worse than
+      // a card that does not offer. This assertion is the other half of that
+      // decision: restore the product pages and this test fails, which is the
+      // reminder to make the cards links again.
       const products = page.locator("#system li");
       await expect(products).toHaveCount(3);
-      const productLinks = products.locator("a");
-      await expect(productLinks.first()).toHaveAttribute("href", /./);
-      expect(
-        await productLinks.evaluateAll((anchors) =>
-          anchors.every((anchor) => Boolean(anchor.getAttribute("href"))),
-        ),
-      ).toBe(true);
+      await expect(products.locator("a")).toHaveCount(0);
+      await expect(products.first()).toContainText("Capture clarity");
 
       const refusals = page.locator("#refusals li");
       expect(await refusals.count()).toBeGreaterThanOrEqual(5);
@@ -156,20 +157,24 @@ test.describe("About on the floor and the sheet, production evidence", () => {
   }) => {
     const errors = collectPageErrors(page);
 
+    // The Products mega-panel left the rail with the 2026-09-11 estate cut:
+    // it existed to open the three product pages, and those are archived
+    // until launch. What is asserted here is the rail that remains — three
+    // links, no disclosure widget — and the mobile menu, which is unchanged
+    // and is now the only thing in the header that opens and closes.
     await page.setViewportSize({ width: 1440, height: 667 });
     await page.goto(ABOUT_URL, { waitUntil: "networkidle" });
-    const productsButton = page.getByRole("button", { name: "Products" });
-    await expect(productsButton).not.toHaveAttribute("aria-controls");
-    await productsButton.click();
-    await expect(productsButton).toHaveAttribute("aria-controls", "products-mega-panel");
-    await expect(page.locator("#products-mega-panel")).toBeVisible();
-    await expect.poll(() => page.evaluate(() => getComputedStyle(document.body).overflow)).toBe("hidden");
-    await page.keyboard.press("Escape");
-    await expect(productsButton).toBeFocused();
-    await expect(productsButton).not.toHaveAttribute("aria-controls");
-    await expect
-      .poll(() => page.evaluate(() => getComputedStyle(document.body).overflow))
-      .not.toBe("hidden");
+    await expect(page.getByRole("button", { name: "Products" })).toHaveCount(0);
+    await expect(page.locator("#products-mega-panel")).toHaveCount(0);
+
+    const rail = page.locator("header.site-nav nav[aria-label='Site navigation']");
+    for (const [name, href] of [
+      ["Pricing", "/pricing"],
+      ["About", "/about"],
+      ["Waitlist", "/waitlist"],
+    ] as const) {
+      await expect(rail.getByRole("link", { name })).toHaveAttribute("href", href);
+    }
 
     await page.setViewportSize({ width: 375, height: 667 });
     await page.reload({ waitUntil: "networkidle" });
@@ -186,22 +191,6 @@ test.describe("About on the floor and the sheet, production evidence", () => {
       .poll(() => page.evaluate(() => getComputedStyle(document.body).overflow))
       .not.toBe("hidden");
 
-    await productsButton.click();
-    const productsPanel = page.locator("#products-mega-panel");
-    const panelGeometry = await productsPanel.evaluate((element) => {
-      const style = getComputedStyle(element);
-      const rect = element.getBoundingClientRect();
-      return {
-        bottom: rect.bottom,
-        clientHeight: element.clientHeight,
-        scrollHeight: element.scrollHeight,
-        overflowY: style.overflowY,
-      };
-    });
-    expect(panelGeometry.bottom).toBeLessThanOrEqual(667.5);
-    expect(panelGeometry.clientHeight).toBeLessThanOrEqual(611);
-    expect(panelGeometry.scrollHeight).toBeGreaterThan(panelGeometry.clientHeight);
-    expect(panelGeometry.overflowY).toBe("auto");
     expect(errors).toEqual([]);
   });
 
@@ -229,8 +218,11 @@ test.describe("About on the floor and the sheet, production evidence", () => {
       name: "Site navigation without JavaScript",
     });
     await expect(fallback).toBeVisible();
-    await expect(fallback.getByRole("link", { name: "Notes" })).toBeVisible();
-    await expect(fallback.getByRole("link", { name: "Timeline" })).toBeVisible();
+    // The no-JS rail mirrors NAV_LINKS. Notes and Timeline left it with the
+    // estate cut; what has to survive without JavaScript is the route to
+    // pricing and the route to asking for access.
+    await expect(fallback.getByRole("link", { name: "Pricing" })).toBeVisible();
+    await expect(fallback.getByRole("link", { name: "Waitlist" })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
 
     await context.close();
