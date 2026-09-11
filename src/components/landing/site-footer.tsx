@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
-import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 import { COMPANY_META } from "@/lib/hq/company";
 import { FooterDot } from "./footer-dot";
 
@@ -79,7 +78,7 @@ export function SiteFooter({
       className="site-footer mt-20 w-full border-t border-hairline-soft pb-8 pt-10 md:mt-32 md:pb-10 md:pt-16"
       style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
     >
-      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-2 gap-x-6 gap-y-9 px-5 sm:px-6 lg:grid-cols-[1.35fr_repeat(4,1fr)] lg:gap-10">
+      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-2 gap-x-6 gap-y-9 px-5 sm:px-6 lg:grid-cols-[1.35fr_repeat(2,1fr)] lg:gap-10">
         <div className={showDot ? "col-span-2 lg:col-span-1 site-footer-brand-with-dot" : "col-span-2 lg:col-span-1"}>
           <Wordmark size="sm" animate={false} />
           <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-ink-soft">
@@ -97,8 +96,6 @@ export function SiteFooter({
           links={[
             { href: "/waitlist", label: "Waitlist" },
             { href: "/pricing", label: "Pricing" },
-            { href: "/venues", label: "Venues" },
-            { href: "/students", label: "Students" },
           ]}
         />
         <FooterCol
@@ -108,21 +105,6 @@ export function SiteFooter({
             { href: "/principles", label: "Principles" },
             { href: "/press", label: "Press" },
             { href: "/about#contact", label: "Contact" },
-          ]}
-        />
-        <FooterCol
-          heading="Resources"
-          links={[
-            { href: "/dispatch", label: "Dispatch" },
-            { href: "/features/daily-briefing", label: "Daily briefing" },
-          ]}
-        />
-        <FooterCol
-          heading="Suite"
-          links={[
-            { href: PRODUCT_MARKETING_URLS.notes, label: "Notes" },
-            { href: PRODUCT_MARKETING_URLS.tasks, label: "Tasks" },
-            { href: PRODUCT_MARKETING_URLS.timeline, label: "Timeline" },
           ]}
         />
       </div>
@@ -140,12 +122,6 @@ export function SiteFooter({
 }
 
 function CompactFooter({ year }: { year: number }) {
-  const suiteLinks = [
-    { href: PRODUCT_MARKETING_URLS.notes, label: "Notes" },
-    { href: PRODUCT_MARKETING_URLS.tasks, label: "Tasks" },
-    { href: PRODUCT_MARKETING_URLS.timeline, label: "Timeline" },
-  ];
-
   return (
     <footer
       className="site-footer mt-14 w-full border-t border-hairline-soft pb-8 pt-9 md:mt-24 md:pb-10 md:pt-12"
@@ -158,9 +134,13 @@ function CompactFooter({ year }: { year: number }) {
             Notes. Tasks. Timeline. One clear system. Built for the work.
           </p>
         </div>
-        <nav aria-label="Suite">
-          <ul className="grid grid-cols-3 gap-x-4 text-[13.5px] text-ink-soft md:flex md:flex-wrap md:gap-x-5 md:gap-y-1">
-            {suiteLinks.map((link) => (
+        <nav aria-label="Signal Studio">
+          <ul className="flex flex-wrap gap-x-5 gap-y-1 text-[13.5px] text-ink-soft">
+            {[
+              { href: "/waitlist", label: "Waitlist" },
+              { href: "/pricing", label: "Pricing" },
+              { href: "/about", label: "About" },
+            ].map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -264,8 +244,6 @@ function LegalLinks({ compact = false }: { compact?: boolean }) {
     { href: "/privacy", label: "Privacy" },
     { href: "/privacy#your-rights", label: "GDPR" },
     { href: "/terms", label: "Terms" },
-    { href: "/security", label: "Security" },
-    { href: "/accessibility", label: "Accessibility" },
   ];
 
   return (

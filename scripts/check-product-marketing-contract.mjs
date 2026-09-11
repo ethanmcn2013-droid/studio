@@ -91,8 +91,12 @@ for (const product of ["tasks", "timeline", "notes"]) {
 }
 
 // ── Footer stays compact on mobile ─────────────────────────────────────────
+// Two columns on wide, not four. The 2026-09-11 estate cut archived every
+// page the Resources and Suite columns pointed at, and a track count that no
+// longer matches the columns leaves dead space rather than a layout. The
+// mobile pair is unchanged, which is what this clause was written to protect.
 assert.match(footer, /grid-cols-2/);
-assert.match(footer, /lg:grid-cols-\[1\.35fr_repeat\(4,1fr\)\]/);
+assert.match(footer, /lg:grid-cols-\[1\.35fr_repeat\(2,1fr\)\]/);
 
 console.log(
   "[product-marketing-contract] ok (three-product handoff + Home close, legacy Signal hero retained, compact mobile footer)",

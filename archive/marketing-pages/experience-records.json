@@ -1,0 +1,191 @@
+{
+  "note": "Experience records for pages archived by the 2026-09-11 estate cut. Nothing here is deleted; restoring a page means moving its records back into experience/. See archive/marketing-pages/README.md.",
+  "archivedOn": "2026-09-11",
+  "records": {
+    "studio.page.security": {
+      "route": "/security",
+      "overridesEntry": {
+        "auditStatus": "baseline-captured",
+        "screenshotCoverage": "partial",
+        "accessibilityCoverage": "partial",
+        "fixtureCoverage": "partial",
+        "automatedTestCoverage": "partial",
+        "lastReviewedAt": "2026-07-15"
+      },
+      "reviews": [
+        {
+          "schemaVersion": "signal-review/2",
+          "id": "review-founder-baseline-studio-page-security-long-content-mobile-7b3fa5353d47",
+          "experienceId": "studio.page.security",
+          "product": "studio",
+          "routeOrTrigger": "/security",
+          "state": "long-content",
+          "breakpoint": "mobile",
+          "baselineScreenshot": "baselines/studio-page-security/long-content/mobile.png",
+          "candidateScreenshot": "screenshots/studio-page-security/long-content/mobile.png",
+          "diffScreenshot": null,
+          "scoreBefore": null,
+          "scoreAfter": null,
+          "findingIds": [],
+          "annotations": [
+            "Founder-authorized review of the exact captured candidate.",
+            "Candidate SHA-256: 7b3fa5353d47e9777b89d97fdbcfc9703736ce227f05f53c752e1418ae58261b",
+            "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+          ],
+          "severity": null,
+          "owner": "product-taste-design-integrity",
+          "approvalHistory": [
+            {
+              "status": "approved",
+              "actor": "Ethan McNamara",
+              "at": "2026-07-16T00:34:00.000Z",
+              "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+            }
+          ],
+          "resolutionEvidence": [
+            "experience/output/screenshots/studio-page-security/long-content/mobile.png"
+          ],
+          "status": "approved",
+          "designSystemReferences": [
+            "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+          ],
+          "codeReferences": [
+            "studio/src/app/security/page.tsx"
+          ],
+          "changeReferences": [
+            "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+          ]
+        },
+        {
+          "schemaVersion": "signal-review/2",
+          "id": "review-founder-baseline-studio-page-security-long-content-tablet-68d54a86cf2a",
+          "experienceId": "studio.page.security",
+          "product": "studio",
+          "routeOrTrigger": "/security",
+          "state": "long-content",
+          "breakpoint": "tablet",
+          "baselineScreenshot": "baselines/studio-page-security/long-content/tablet.png",
+          "candidateScreenshot": "screenshots/studio-page-security/long-content/tablet.png",
+          "diffScreenshot": null,
+          "scoreBefore": null,
+          "scoreAfter": null,
+          "findingIds": [],
+          "annotations": [
+            "Founder-authorized review of the exact captured candidate.",
+            "Candidate SHA-256: 68d54a86cf2ac2ab6e242aa280d0b624551083bc1d53da3bb140cace1763c7f1",
+            "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+          ],
+          "severity": null,
+          "owner": "product-taste-design-integrity",
+          "approvalHistory": [
+            {
+              "status": "approved",
+              "actor": "Ethan McNamara",
+              "at": "2026-07-16T00:34:00.000Z",
+              "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+            }
+          ],
+          "resolutionEvidence": [
+            "experience/output/screenshots/studio-page-security/long-content/tablet.png"
+          ],
+          "status": "approved",
+          "designSystemReferences": [
+            "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+          ],
+          "codeReferences": [
+            "studio/src/app/security/page.tsx"
+          ],
+          "changeReferences": [
+            "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+          ]
+        },
+        {
+          "schemaVersion": "signal-review/2",
+          "id": "review-founder-baseline-studio-page-security-long-content-desktop-c52e74362289",
+          "experienceId": "studio.page.security",
+          "product": "studio",
+          "routeOrTrigger": "/security",
+          "state": "long-content",
+          "breakpoint": "desktop",
+          "baselineScreenshot": "baselines/studio-page-security/long-content/desktop.png",
+          "candidateScreenshot": "screenshots/studio-page-security/long-content/desktop.png",
+          "diffScreenshot": null,
+          "scoreBefore": null,
+          "scoreAfter": null,
+          "findingIds": [],
+          "annotations": [
+            "Founder-authorized review of the exact captured candidate.",
+            "Candidate SHA-256: c52e743622890489b85df36d6af56fdbd10ac43072ad2ae6cd95749dcb35d13a",
+            "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+          ],
+          "severity": null,
+          "owner": "product-taste-design-integrity",
+          "approvalHistory": [
+            {
+              "status": "approved",
+              "actor": "Ethan McNamara",
+              "at": "2026-07-16T00:34:00.000Z",
+              "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+            }
+          ],
+          "resolutionEvidence": [
+            "experience/output/screenshots/studio-page-security/long-content/desktop.png"
+          ],
+          "status": "approved",
+          "designSystemReferences": [
+            "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+          ],
+          "codeReferences": [
+            "studio/src/app/security/page.tsx"
+          ],
+          "changeReferences": [
+            "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+          ]
+        },
+        {
+          "schemaVersion": "signal-review/2",
+          "id": "review-founder-baseline-studio-page-security-long-content-wide-5c7ace1a65ff",
+          "experienceId": "studio.page.security",
+          "product": "studio",
+          "routeOrTrigger": "/security",
+          "state": "long-content",
+          "breakpoint": "wide",
+          "baselineScreenshot": "baselines/studio-page-security/long-content/wide.png",
+          "candidateScreenshot": "screenshots/studio-page-security/long-content/wide.png",
+          "diffScreenshot": null,
+          "scoreBefore": null,
+          "scoreAfter": null,
+          "findingIds": [],
+          "annotations": [
+            "Founder-authorized review of the exact captured candidate.",
+            "Candidate SHA-256: 5c7ace1a65ff4e9473b711afc1b92052296371b5c9d2ccb7930f6c0fb4fca731",
+            "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+          ],
+          "severity": null,
+          "owner": "product-taste-design-integrity",
+          "approvalHistory": [
+            {
+              "status": "approved",
+              "actor": "Ethan McNamara",
+              "at": "2026-07-16T00:34:00.000Z",
+              "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+            }
+          ],
+          "resolutionEvidence": [
+            "experience/output/screenshots/studio-page-security/long-content/wide.png"
+          ],
+          "status": "approved",
+          "designSystemReferences": [
+            "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+          ],
+          "codeReferences": [
+            "studio/src/app/security/page.tsx"
+          ],
+          "changeReferences": [
+            "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+          ]
+        }
+      ]
+    }
+  }
+}

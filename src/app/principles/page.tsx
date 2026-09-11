@@ -165,12 +165,6 @@ export default function PrinciplesPage() {
               >
                 Read the manifesto
               </Link>
-              <Link
-                href="/dispatch"
-                className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
-              >
-                Follow what we ship
-              </Link>
             </div>
           </div>
         </section>

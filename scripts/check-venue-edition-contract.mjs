@@ -1,13 +1,33 @@
 #!/usr/bin/env node
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
 const failures = [];
 
+/**
+ * Reads a tracked source, following it into the archive if it has been
+ * pulled out of the route tree.
+ *
+ * The 2026-09-11 estate cut moved src/app/venues (and eleven siblings) to
+ * archive/marketing-pages/ ahead of launch. Skipping those files would have
+ * been the easy fix and the wrong one: the Venue Edition terminology gate
+ * exists so retired pricing and retired cohort language cannot reappear, and
+ * a page parked for a few months is exactly where that rot goes unnoticed.
+ * Following the move keeps the gate honest while the page is away, and means
+ * it needs no edit at all when the page comes back.
+ */
 function read(file) {
-  return readFileSync(path.join(root, file), "utf8");
+  const live = path.join(root, file);
+  if (existsSync(live)) return readFileSync(live, "utf8");
+
+  const archived = file.startsWith("src/app/")
+    ? path.join(root, "archive/marketing-pages", file.slice("src/app/".length))
+    : null;
+  if (archived && existsSync(archived)) return readFileSync(archived, "utf8");
+
+  return readFileSync(live, "utf8"); // throw with the real path
 }
 
 function requireText(file, needle, reason) {

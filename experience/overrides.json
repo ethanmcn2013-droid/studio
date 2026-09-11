@@ -63,14 +63,6 @@
       "automatedTestCoverage": "partial",
       "lastReviewedAt": "2026-07-15"
     },
-    "studio.page.security": {
-      "auditStatus": "baseline-captured",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
-    },
     "studio.page.terms": {
       "auditStatus": "baseline-captured",
       "screenshotCoverage": "partial",

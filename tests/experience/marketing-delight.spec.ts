@@ -1,107 +1,18 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const MARKETING_ROUTES = [
-  "/notes",
-  "/tasks",
-  "/timeline",
-  "/pricing",
-  "/about",
-] as const;
+// The survivors of the original list after the 2026-09-11 cut: /notes,
+// /tasks and /timeline are archived. Deliberately not widened to the rest of
+// the estate here. Auditing the home page at an arbitrary moment measures the
+// hero mid-scene, which is a timing test dressed up as an accessibility one;
+// covering it properly needs a settled-state hook this spec does not have.
+const MARKETING_ROUTES = ["/pricing", "/about"] as const;
 
 test.describe("public marketing delight contract", () => {
   test.describe.configure({ mode: "serial", timeout: 60_000 });
 
   test.beforeEach(async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "no-preference" });
-  });
-
-  test("product switcher begins at the active product and follows intent", async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width: 1280, height: 720 });
-    await page.goto("/notes");
-
-    const dot = page.locator(".pp-dot");
-    const current = page.locator(".pp-current");
-    await expect(dot).toHaveClass(/pp-dot-ready/);
-
-    await expect
-      .poll(async () => {
-        const [dotBox, currentBox] = await Promise.all([
-          dot.boundingBox(),
-          current.boundingBox(),
-        ]);
-        if (!dotBox || !currentBox) return Number.POSITIVE_INFINITY;
-        return Math.abs(
-          dotBox.x +
-            dotBox.width / 2 -
-            (currentBox.x + currentBox.width / 2),
-        );
-      })
-      .toBeLessThanOrEqual(2);
-
-    const tasks = page.locator(".pp-pill").filter({ hasText: "tasks" });
-    await tasks.hover();
-    await expect
-      .poll(async () => {
-        const [nextDot, taskBox] = await Promise.all([
-          dot.boundingBox(),
-          tasks.boundingBox(),
-        ]);
-        if (!nextDot || !taskBox) return Number.POSITIVE_INFINITY;
-        return Math.abs(
-          nextDot.x +
-            nextDot.width / 2 -
-            (taskBox.x + taskBox.width / 2),
-        );
-      })
-      .toBeLessThanOrEqual(2);
-
-    await expect(tasks).toHaveAttribute("href", "https://signalstudio.ie/tasks");
-  });
-
-  test("Products panel has keyboard entry, bounded gestures, and a real exit", async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width: 1280, height: 720 });
-    await page.goto("/notes");
-
-    const trigger = page.getByRole("button", { name: "Products" });
-    const panel = page.locator("#products-mega-panel");
-    const firstCard = page.locator(".mpanel-card").first();
-
-    await trigger.focus();
-    await trigger.press("ArrowDown");
-    await expect(panel).toBeVisible();
-    await expect(firstCard).toBeFocused();
-
-    const gestures = await page.locator(".mpanel-card").evaluateAll((cards) =>
-      cards.map((card) => {
-        const animated = card.querySelector<HTMLElement>("svg [class]");
-        const style = animated ? getComputedStyle(animated) : null;
-        return {
-          name: style?.animationName ?? "none",
-          iterations: style?.animationIterationCount ?? "1",
-        };
-      }),
-    );
-    expect(gestures.every((gesture) => gesture.name === "none")).toBe(true);
-    expect(
-      gestures.every((gesture) => !gesture.iterations.includes("infinite")),
-    ).toBe(true);
-
-    await page.keyboard.press("Escape");
-    await expect(trigger).toBeFocused();
-    await expect(panel).toBeHidden();
-
-    await trigger.click();
-    await expect(panel).toBeVisible();
-    await trigger.click();
-    await page.waitForTimeout(45);
-    await expect(panel).toBeVisible();
-    await page.waitForTimeout(260);
-    await expect(panel).toBeHidden();
   });
 
   test("Pricing uses finite state motion and keeps the decision legible", async ({ page }) => {
@@ -232,13 +143,8 @@ test.describe("public marketing delight contract", () => {
     expect(reducedNames.travel).toBe(true);
     expect(reducedNames.underline).toBeLessThan(0.01);
 
-    await page.goto("/notes");
-    await expect(page.locator(".pp-dot")).toHaveClass(/pp-dot-ready/);
-    expect(
-      await page
-        .locator(".pp-dot")
-        .evaluate((element) => getComputedStyle(element).transitionProperty),
-    ).toBe("opacity");
+    // The product-page switcher's reduced-motion behaviour is parked with its
+    // page in archive/marketing-pages/tests/.
   });
 
   test("all current pages remain contained at the mobile viewport", async ({
@@ -283,21 +189,8 @@ test.describe("public marketing delight contract", () => {
         "wcag2aa",
         "wcag21aa",
       ]);
-      if (
-        route === "/notes" ||
-        route === "/tasks" ||
-        route === "/timeline"
-      ) {
-        // Product heroes are accepted, self-contained systems with their own
-        // contract. This release changes the shell, switcher, handoff, close
-        // and footer, so the regression gate owns those exact surfaces.
-        audit = audit
-          .include("header")
-          .include("nav.pp")
-          .include("[data-product-handoff]")
-          .include("[aria-label='Join the waitlist']")
-          .include("footer");
-      }
+      // Both routes are audited whole. The narrowing that stood here existed
+      // for the product heroes, which are archived with their pages.
       const result = await audit.analyze();
       expect(
         result.violations.filter(

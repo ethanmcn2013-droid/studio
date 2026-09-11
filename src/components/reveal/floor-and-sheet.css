@@ -589,7 +589,6 @@ html:has(.floor-page) .site-nav .marketing-nav-action{color:rgba(255,255,255,.72
 html:has(.floor-page) .site-nav .marketing-nav-action:hover{color:var(--paper) !important}
 html:has(.floor-page) .site-nav .wordmark-hover{color:var(--paper)}
 html:has(.floor-page) .site-nav .brand-mark .word{color:var(--paper)}
-html:has(.floor-page) .site-nav .site-products-chevron{color:rgba(255,255,255,.72)}
 .floor-footer .brand-mark .word{color:var(--zinc-50)}
 /* the umbrella footer, inverted onto the floor */
 .floor-footer{background:var(--zinc-950);padding-top:12px;color:var(--zinc-200)}

@@ -12,9 +12,32 @@ const contract = JSON.parse(
 );
 const failures = [];
 
+/**
+ * Reads a tracked source, following it into the archive if it has been
+ * pulled out of the route tree.
+ *
+ * The 2026-09-11 estate cut moved src/app/students (and eleven siblings) to
+ * archive/marketing-pages/ ahead of launch. This gate exists to stop a price
+ * or a claim drifting away from contracts/commercial-terms.v2.json, and a
+ * page parked for months is precisely where that drift would go unnoticed —
+ * so it follows the move rather than reading the file as empty.
+ *
+ * A file this repo genuinely does not have still reads as "", which is what
+ * the sibling-repo lookups above rely on.
+ */
 function source(root, relative) {
   const file = path.join(root, relative);
-  return fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+  if (fs.existsSync(file)) return fs.readFileSync(file, "utf8");
+
+  if (relative.startsWith("src/app/")) {
+    const archived = path.join(
+      root,
+      "archive/marketing-pages",
+      relative.slice("src/app/".length),
+    );
+    if (fs.existsSync(archived)) return fs.readFileSync(archived, "utf8");
+  }
+  return "";
 }
 
 function forbid(file, text, reason) {
