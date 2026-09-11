@@ -351,6 +351,20 @@ test.describe("Signal Ledger pricing page", () => {
     ]) {
       await page.setViewportSize(viewport);
       await page.goto("/pricing");
+      // Arrival animations compose opacity onto the ink floor, so a caption
+      // set in rgba(255,255,255,0.55) reads as #7b7b7b at 150ms and #949494
+      // once settled - 4.46:1 against 6.2:1. Auditing before they finish
+      // measures a frame that never ships. These pages carry no infinite
+      // animation. The dev banner pulses forever under the harness's
+      // review mode, so infinite animations are exempted rather than
+      // waited on - otherwise this never settles.
+      await page.waitForFunction(() =>
+        document.getAnimations().every(
+          (animation) =>
+            animation.playState !== "running" ||
+            animation.effect?.getTiming?.().iterations === Infinity,
+        ),
+      );
       const results = await new AxeBuilder({ page })
         .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
         .analyze();
