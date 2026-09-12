@@ -18,7 +18,7 @@ public, is not linked from navigation, and stays `noindex`.
 
 ## The Signal HQ rule (canonical, rewritten HQ-6c.4, 2026-05-14)
 
-Signal HQ is the internal source of truth for product, brand, GTM, marketing, outreach, launch readiness, decisions, risks, metrics, and next actions. **HQ reads from source files; it is not the source itself.** When you change strategic HQ content, you change the source — HQ picks it up on the next render.
+Signal HQ is the internal reading surface for product, brand, GTM, marketing, outreach, launch readiness, decisions, risks, metrics, and operating context. **HQ reads from source files; it is not the source itself.** When you change strategic HQ content, you change the source — HQ picks it up on the next render. Current delivery priority, assignee, workflow status, and next proof live in the delivery tracker linked from authenticated HQ.
 
 The sources, by section:
 
@@ -40,13 +40,13 @@ The sources, by section:
 | voice, naming, banned words, visual register                       | `BRAND.md`                                           |
 | the active cycle / phase line                                      | `CHANGELOG.md` — the newest dispatch is the cycle    |
 | something shipped that users or leadership should know about       | `CHANGELOG.md` — dispatch shape per BRAND.md §6.5    |
-| a founder/operator-gated task (API key, account, prod env var, legal doc, cost limit, policy) | `content/hq/operator-todos/<id>.md` |
+| the source record and rationale for a historical founder/operator gate | `content/hq/operator-todos/<id>.md` |
 
-**Live operator surfaces** (browser-edited, localStorage-backed, no markdown source): `prospects` (CRM), `feedback`, `weeklyRhythm`, `nextActions` stay editable at runtime — don't migrate them without cause.
+Runtime storage is surface-specific. Inspect the direct implementation before changing a surface; HQ currently includes database-backed, file-backed, derived, and browser-local state. These surfaces preserve operating facts, but they do not own the current delivery priority, assignee, workflow status, or next proof.
 
-## Operator to-do rule (codified 2026-06-23)
+## Operator source-ledger rule (cut over 2026-09-12)
 
-Any founder/operator-gated task — provision an account, get an API key, set a production env var, publish a legal/privacy doc, approve a cost limit, decide a policy — must be logged as a file in `content/hq/operator-todos/<id>.md` (file shape in that folder's `README.md`), never left in a chat message or a buried doc. It renders on `/hq` via `HqOperatorTodos`. Mark `status: done` only when genuinely complete — never optimistically. Applies to work surfaced in **any** Signal product repo, not just Studio.
+`content/hq/operator-todos/` is the retained source ledger for founder/operator gates recorded before the delivery-tracker cutover. Keep the files and their recorded status intact unless direct evidence supports a correction. Current priority, assignee, workflow status, and next proof live in the delivery tracker linked from authenticated HQ. New delivery actions go there; source context stays in the relevant HQ file.
 
 ## Room registry rule (codified 2026-07-12)
 

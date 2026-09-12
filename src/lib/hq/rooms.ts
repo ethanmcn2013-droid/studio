@@ -591,7 +591,7 @@ export const HQ_SYSTEM_ROUTES = [
   "status", // JSON verdict endpoint for the nav dot
   "partners", // legacy redirect → /hq/entitlements?tab=venues
   "api", // guarded HQ endpoints (search index)
-  "action-center", // cross-cutting "needs me" queue (redesign)
+  "action-center", // source-derived risks, reviews, follow-ups, and checks
 ] as const;
 
 /** Group landing route segments (all served by src/app/hq/[group]). */

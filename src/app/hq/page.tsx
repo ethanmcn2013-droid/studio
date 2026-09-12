@@ -31,11 +31,11 @@ export const metadata: Metadata = {
  * Signal HQ · Today / Mission Control (redesign v6).
  *
  * The page answers "what's the state of the business?" in ten seconds:
- * verdict → the one critical thing → five numbers → workspace health, with
- * the Action Center and next action in the contextual rail. The proof spine
+ * verdict → the leading source signal → five numbers → workspace health, with
+ * the source ledger and CRM signal in the contextual rail. The proof spine
  * (proof gate / pulse / traction) is preserved verbatim below as the
  * commercial-truth section — the inert/running/expired state machine is
- * unchanged, only re-framed. Long queues now live in /hq/action-center.
+ * unchanged, only re-framed. Current delivery state lives in the linked tracker.
  */
 export default async function HqPage() {
   await requireHqAccess();
@@ -52,7 +52,7 @@ export default async function HqPage() {
   const proofGate = getProofGate(traction, prospects);
   const snapshot = getHqSnapshot(prospects, traction);
   const readiness = getLaunchReadiness(traction.available ? traction.paidVenues : null);
-  const actions = buildActionCenter(inbox, operatorTodos);
+  const actions = buildActionCenter(inbox);
 
   const generated = new Date(snapshot.generatedAt).toLocaleTimeString("en-IE", {
     hour: "2-digit",
@@ -84,9 +84,9 @@ export default async function HqPage() {
     {
       name: "Company",
       href: "/hq/org",
-      value: `${operatorTodos.openCount} to-dos`,
-      note: `${operatorTodos.blockingCount} blocking · 17 directors`,
-      tone: operatorTodos.blockingCount > 0 ? "blocked" : "done",
+      value: `${operatorTodos.total} source records`,
+      note: `${operatorTodos.openCount} recorded open · ${operatorTodos.doneCount} recorded done`,
+      tone: "quiet",
     },
   ];
 
@@ -122,13 +122,13 @@ export default async function HqPage() {
         <p className="hqx-lede">{verdict.headline}</p>
       </header>
 
-      {/* The one thing */}
+      {/* Leading source signal; current delivery priority lives in the tracker. */}
       {actions.top ? (
         <div className="hqx-banner" data-tone={actions.top.priority === "critical" ? "critical" : "accent"}>
           <span className="hqx-banner-mark" />
           <div className="hqx-banner-body">
             <span className="hqx-banner-kicker">
-              {actions.top.priority === "critical" ? "Needs you now" : "Next action"} · {actions.top.workspace}
+              Source signal · {actions.top.workspace}
             </span>
             <span className="hqx-banner-title">{actions.top.title}</span>
             <span className="hqx-banner-text">{actions.top.why}</span>
@@ -162,7 +162,7 @@ export default async function HqPage() {
           <section className="hqx-section">
             <div className="hqx-section-head">
               <h2 className="hqx-section-title">Workspaces</h2>
-              <Link href="/hq/action-center" className="hqx-section-action">Action Center →</Link>
+              <Link href="/hq/action-center" className="hqx-section-action">Source ledger →</Link>
             </div>
             <div className="hqx-health-grid">
               {workspaceHealth.map((w) => (
@@ -178,45 +178,28 @@ export default async function HqPage() {
             </div>
           </section>
 
-          {/* Founder to-dos — only the founder can move these */}
+          {/* Retained operator records; execution authority has moved to the tracker. */}
           <section className="hqx-section">
             <div className="hqx-section-head">
-              <h2 className="hqx-section-title">Only you can move these</h2>
-              <Link href="/hq/action-center" className="hqx-section-action">
-                {operatorTodos.openCount} founder to-dos · {operatorTodos.blockingCount} blocking →
-              </Link>
+              <h2 className="hqx-section-title">Operator source ledger</h2>
+              <a
+                href="https://github.com/users/ethanmcn2013-droid/projects/1"
+                className="hqx-section-action"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open delivery tracker ↗
+              </a>
             </div>
-            {operatorTodos.openCount === 0 ? (
-              <div className="hqx-empty">
-                <span className="hqx-empty-title">Nothing gated on you</span>
-                <span>No open founder to-dos. Every blocker is cleared.</span>
-              </div>
-            ) : (
-              <div className="hqx-rows">
-                {operatorTodos.todos
-                  .filter((t) => t.status === "open")
-                  .slice(0, 6)
-                  .map((todo) => (
-                    <Link
-                      key={todo.id}
-                      href={todo.href ?? "/hq/action-center"}
-                      className="hqx-row"
-                      data-priority={todo.priority === "P0" ? "critical" : todo.priority === "P1" ? "due" : "queued"}
-                    >
-                      <span className="hqx-row-lead"><span className="hqx-row-marker" /></span>
-                      <span className="hqx-row-body">
-                        <span className="hqx-row-title">{todo.title}</span>
-                        <span className="hqx-row-why">{todo.why}</span>
-                      </span>
-                      <span className="hqx-row-meta">
-                        {todo.blocking ? <span className="hqx-pill" data-tone="blocked">blocking</span> : null}
-                        <span className="hqx-ac-metatext">{todo.priority}</span>
-                        <span className="hqx-row-arrow" aria-hidden="true">→</span>
-                      </span>
-                    </Link>
-                  ))}
-              </div>
-            )}
+            <div className="hqx-empty">
+              <span className="hqx-empty-title">
+                {operatorTodos.total} retained records · {operatorTodos.openCount} recorded open · {operatorTodos.doneCount} recorded done
+              </span>
+              <span>
+                These files preserve source facts and rationale. Their recorded status does not assert current priority;
+                use the delivery tracker for active ownership, workflow state, and next proof.
+              </span>
+            </div>
           </section>
 
           {/* Commercial truth — the preserved proof spine */}
@@ -234,37 +217,33 @@ export default async function HqPage() {
         {/* Contextual rail */}
         <aside className="hqx-aside">
           <div className="hqx-summary-card">
-            <span className="hqx-summary-label">Next action</span>
+            <span className="hqx-summary-label">CRM signal</span>
             <Link href={snapshot.leadHref} className="hqx-h2" style={{ textDecoration: "none", color: "var(--ink)" }}>
               {snapshot.leadAction}
             </Link>
             <p className="hqx-row-why" style={{ whiteSpace: "normal" }}>{snapshot.leadContext}</p>
             <Link href={snapshot.leadHref} className="hqx-btn hqx-btn--ghost" style={{ marginTop: "var(--space-2)" }}>
-              Go →
+              Open source →
             </Link>
           </div>
 
           <div className="hqx-summary-card">
-            <span className="hqx-summary-label">Action Center · {actions.total} open</span>
+            <span className="hqx-summary-label">Source ledger · {actions.total} signals</span>
             <div>
               <div className="hqx-summary-row">
-                <span className="hqx-summary-row-label"><span className="hqx-dot" style={{ background: "var(--status-blocked)" }} />Critical</span>
-                <span className="hqx-summary-row-value">{actions.counts.critical}</span>
-              </div>
-              <div className="hqx-summary-row">
-                <span className="hqx-summary-row-label"><span className="hqx-dot" style={{ background: "var(--status-flight)" }} />Due now</span>
+                <span className="hqx-summary-row-label"><span className="hqx-dot" style={{ background: "var(--status-flight)" }} />High</span>
                 <span className="hqx-summary-row-value">{actions.counts.due}</span>
               </div>
               <div className="hqx-summary-row">
-                <span className="hqx-summary-row-label"><span className="hqx-dot" style={{ background: "var(--ink-faint)" }} />Going stale</span>
+                <span className="hqx-summary-row-label"><span className="hqx-dot" style={{ background: "var(--ink-faint)" }} />Attention</span>
                 <span className="hqx-summary-row-value">{actions.counts.stale}</span>
               </div>
               <div className="hqx-summary-row">
-                <span className="hqx-summary-row-label"><span className="hqx-dot" style={{ background: "var(--ink-ghost)" }} />Queued</span>
+                <span className="hqx-summary-row-label"><span className="hqx-dot" style={{ background: "var(--ink-ghost)" }} />Review</span>
                 <span className="hqx-summary-row-value">{actions.counts.queued}</span>
               </div>
             </div>
-            <Link href="/hq/action-center" className="hqx-btn hqx-btn--ghost">Open Action Center →</Link>
+            <Link href="/hq/action-center" className="hqx-btn hqx-btn--ghost">Review source ledger →</Link>
           </div>
 
           <div className="hqx-summary-card">

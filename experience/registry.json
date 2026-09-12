@@ -3399,13 +3399,13 @@
       "auditScore": null,
       "openFindingIds": [],
       "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "fixtureCoverage": "partial",
+      "lastReviewedAt": "2026-09-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "67d4aa07aae68ca5"
+      "materialityHash": "e015c6df3fc582c5"
     },
     {
       "id": "studio.page.hq-access",
@@ -3531,13 +3531,13 @@
       "auditScore": null,
       "openFindingIds": [],
       "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "fixtureCoverage": "partial",
+      "lastReviewedAt": "2026-09-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "cf235b45a29c3fc4"
+      "materialityHash": "e64f1bf4ddbae875"
     },
     {
       "id": "studio.page.hq-asset-command",

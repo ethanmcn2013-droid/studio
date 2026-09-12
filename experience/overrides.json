@@ -25,6 +25,18 @@
       "automatedTestCoverage": "complete",
       "lastReviewedAt": "2026-08-12"
     },
+    "studio.page.hq": {
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "fixtureCoverage": "partial",
+      "lastReviewedAt": "2026-09-12"
+    },
+    "studio.page.hq-action-center": {
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "fixtureCoverage": "partial",
+      "lastReviewedAt": "2026-09-12"
+    },
     "studio.surface.products-mega-panel": {
       "auditStatus": "baseline-captured",
       "screenshotCoverage": "complete",

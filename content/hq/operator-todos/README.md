@@ -1,23 +1,19 @@
-# Operator to-do ledger
+# Operator source ledger
 
-This folder is the standing list of every **founder/operator-gated** task
-across Signal Studio. It renders on the HQ main page (`/hq`) via
-`HqOperatorTodos` -> `getOperatorTodos()` -> `readHqSection("operator-todos")`.
+This folder retains the source records and rationale for founder/operator gates
+captured before the delivery-tracker cutover. Authenticated HQ reads the files
+through `getOperatorTodos()` and reports their recorded state as historical
+context.
 
 ## The rule (codified 2026-06-23)
 
-When any cycle surfaces work that **only the founder/operator can do** —
-provision an account, get an API key, set a production env var, publish a
-legal doc, approve a cost limit, decide a policy — it does **not** live in a
-chat message or a buried doc. It becomes a file here, so the founder has one
-place to see exactly what they are blocking, and the agent has one place to
-record what is still gating the work.
+Keep each retained record and its status intact unless direct evidence supports
+a correction. An `open` value describes the last state recorded in that source
+file; it does not assert that the item remains a current priority or blocker.
 
-Routine engineering, migrations, evidence gathering, and provider work that an
-agent can complete do **not** belong here. They go in the current execution
-plan. A task leaves this ledger when the founder decision is settled or when an
-audit proves that no founder action is required; transferring unfinished work
-to an agent queue must be recorded in the task's completion note.
+Current delivery priority, assignee, workflow status, and next proof live in the
+delivery tracker linked from authenticated HQ. New delivery actions go there.
+This folder remains useful for source context; it is not the execution queue.
 
 ## File shape
 
@@ -41,7 +37,7 @@ date: 2026-06-23
 2. ...
 ```
 
-- `status`: `open` or `done`. Mark done only when it is genuinely done — never optimistically.
+- `status`: `open` or `done`. Preserve the recorded value unless direct evidence supports changing it; never infer completion from the cutover.
 - `priority`: `P0` (launch blocker) / `P1` (before scale) / `P2` (nice-to-have).
 - `effort`: `quick` (short decision/dashboard action) or `involved` (considered review, external process, or purchase). Required on every open item.
 - `blocking`: `true` when engineering work is gated until this lands.
