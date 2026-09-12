@@ -2,57 +2,46 @@ import Link from "next/link";
 import type { OperatorTodo, OperatorTodoBoard } from "@/lib/hq/operator-todos";
 
 /**
- * HqOperatorTodos, the founder's standing accountability ledger.
+ * HqOperatorTodos, the retained founder/operator source ledger.
  *
- * Every founder/operator-gated task in the suite (provision an account,
- * get an API key, set a prod env var, publish a legal doc, approve a
- * cost limit) lands here as a `content/hq/operator-todos/*.md` file so
- * the founder has one place to see exactly what they are blocking, and
- * the agent has one place to record what is still gating the work.
+ * The source files preserve the state recorded before the delivery-tracker
+ * cutover. This component reports those values as historical context; it does
+ * not present them as the current execution queue.
  *
- * Calm register, matched to the launch-readiness card: open blockers
- * read loud (P0 + blocking), done tasks sink and grey out. Each row
- * discloses its step-by-step on demand so the spine stays scannable.
+ * Each row discloses its original steps on demand so the source context stays
+ * available without implying a current priority or owner.
  *
  * Server component, the page loads the board and hands it in.
  */
 export function HqOperatorTodos({ board }: { board: OperatorTodoBoard }) {
-  const { todos, openCount, doneCount, blockingCount, quickCount, involvedCount } = board;
+  const { todos, openCount, doneCount } = board;
 
   if (todos.length === 0) return null;
 
   return (
     <section className="hq-optodo" aria-labelledby="hq-optodo-title">
       <div className="hq-optodo-head">
-        <span className="hq-os-eyebrow">operator to-do</span>
+        <span className="hq-os-eyebrow">operator source</span>
         <h2 id="hq-optodo-title" className="hq-optodo-title">
-          What only you can unblock
+          Retained founder/operator records
         </h2>
         <p className="hq-optodo-sub">
-          Only actions that genuinely need the founder live here. Engineering,
-          migrations, and routine operator work sit in the agent execution queue.
+          These records preserve source facts and rationale from before the cutover.
+          Check the delivery tracker for current priority, ownership, and next proof.
         </p>
-        <span className="hq-optodo-count" data-clear={openCount === 0 ? "true" : undefined}>
-          {openCount} open
-          {openCount > 0 ? ` · ${quickCount} quick · ${involvedCount} involved` : ""}
-          {blockingCount > 0 ? ` · ${blockingCount} blocking` : ""}
-          {doneCount > 0 ? ` · ${doneCount} done` : ""}
+        <span className="hq-optodo-count">
+          {todos.length} records · {openCount} recorded open · {doneCount} recorded done
         </span>
       </div>
 
       <OperatorTodoGroup
-        title="Quick wins"
-        note="A short decision, approval, or dashboard action."
-        todos={todos.filter((todo) => todo.status === "open" && todo.effort === "quick")}
-      />
-      <OperatorTodoGroup
-        title="Longer calls"
-        note="Needs a considered review, external process, or purchase."
-        todos={todos.filter((todo) => todo.status === "open" && todo.effort === "involved")}
+        title="Recorded open"
+        note="Source-file status only; verify current state in the delivery tracker before acting."
+        todos={todos.filter((todo) => todo.status === "open")}
       />
       {doneCount > 0 ? (
         <details className="hq-optodo-archive">
-          <summary>Cleared · {doneCount}</summary>
+          <summary>Recorded done · {doneCount}</summary>
           <ul className="hq-optodo-list" role="list">
             {todos.filter((todo) => todo.status === "done").map((todo) => (
               <OperatorTodoRow key={todo.id} todo={todo} />
@@ -111,7 +100,7 @@ function OperatorTodoRow({ todo }: { todo: OperatorTodo }) {
               <span className="hq-optodo-tag hq-optodo-tag--effort">{todo.effort}</span>
             ) : null}
             {todo.blocking && !done ? (
-              <span className="hq-optodo-tag hq-optodo-tag--block">blocking</span>
+              <span className="hq-optodo-tag hq-optodo-tag--block">recorded blocking</span>
             ) : null}
             {todo.phase ? (
               <span className="hq-optodo-tag hq-optodo-tag--phase">{todo.phase}</span>

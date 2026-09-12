@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-12 · S·178 · tightens · HQ separates source records from delivery
+
+**Signal HQ now keeps recorded founder/operator files as source context and points current delivery status to one tracker.**
+
+Today reports the recorded open and done counts without treating them as current blockers. The source ledger continues to show risks, reviews, follow-ups, and operational checks without mixing them with the old operator queue.
+
 ## 2026-09-11 · S·177 · cuts · Eight pages, and every one of them true
 
 **The public site is now the home page, Waitlist, Pricing, About, Principles, Press, Privacy and Terms. Twelve routes are archived until launch.**

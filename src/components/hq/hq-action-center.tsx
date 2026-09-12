@@ -2,21 +2,14 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import type { ActionCenter, ActionEffort, ActionItem, ActionPriority } from "@/lib/hq/action-center";
+import type { ActionCenter, ActionItem, ActionPriority } from "@/lib/hq/action-center";
 import { PRIORITY_LABEL } from "@/lib/hq/action-center";
 
 const FILTERS: Array<{ key: "all" | ActionPriority; label: string }> = [
   { key: "all", label: "All" },
-  { key: "critical", label: "Critical" },
-  { key: "due", label: "Due now" },
-  { key: "stale", label: "Stale" },
-  { key: "queued", label: "Queued" },
-];
-
-const EFFORT_FILTERS: Array<{ key: "all" | Exclude<ActionEffort, "none">; label: string }> = [
-  { key: "all", label: "All effort" },
-  { key: "quick", label: "Quick wins" },
-  { key: "involved", label: "Longer calls" },
+  { key: "due", label: "High" },
+  { key: "stale", label: "Attention" },
+  { key: "queued", label: "Review" },
 ];
 
 function Row({ item }: { item: ActionItem }) {
@@ -47,9 +40,8 @@ function Row({ item }: { item: ActionItem }) {
   );
 }
 
-export function HqActionCenter({ data }: { data: ActionCenter }) {
+export function HqActionCenter({ data, trackerHref }: { data: ActionCenter; trackerHref: string }) {
   const [filter, setFilter] = useState<"all" | ActionPriority>("all");
-  const [effort, setEffort] = useState<"all" | Exclude<ActionEffort, "none">>("all");
   const [workspace, setWorkspace] = useState<string>("all");
   const [showAll, setShowAll] = useState(false);
 
@@ -62,10 +54,9 @@ export function HqActionCenter({ data }: { data: ActionCenter }) {
     return data.items.filter(
       (i) =>
         (filter === "all" || i.priority === filter) &&
-        (effort === "all" || i.effort === effort) &&
         (workspace === "all" || i.workspace === workspace),
     );
-  }, [data.items, effort, filter, workspace]);
+  }, [data.items, filter, workspace]);
 
   const COLLAPSE_AT = 6;
   const visible = showAll ? filtered : filtered.slice(0, COLLAPSE_AT);
@@ -74,18 +65,21 @@ export function HqActionCenter({ data }: { data: ActionCenter }) {
   return (
     <div className="hqx-page">
       <header className="hqx-page-header">
-        <span className="hqx-eyebrow">Action Center</span>
+        <span className="hqx-eyebrow">Source ledger</span>
         <div className="hqx-page-header-row">
-          <h1 className="hqx-title">Everything that needs you</h1>
-          <span className="hqx-status" data-tone={data.counts.critical > 0 ? "blocked" : "done"}>
+          <h1 className="hqx-title">What the source files are signalling</h1>
+          <span className="hqx-status" data-tone="quiet">
             <span className="hqx-dot" />
-            {data.total} open · {data.counts.critical} critical
+            {data.total} signals
           </span>
         </div>
         <p className="hqx-lede">
-          One queue for blockers, decisions, risks, and follow-ups — drawn from the operator ledger and
-          the live inbox. Critical work is loud; the rest stays calm until you want it.
+          This view reads risks, reviews, follow-ups, and operational checks from HQ sources. It preserves
+          context; current priority, assignee, workflow status, and next proof live in the delivery tracker.
         </p>
+        <a href={trackerHref} className="hqx-section-action" target="_blank" rel="noreferrer">
+          Open delivery tracker ↗
+        </a>
       </header>
 
       {data.critical.length > 0 ? (
@@ -127,27 +121,6 @@ export function HqActionCenter({ data }: { data: ActionCenter }) {
               );
             })}
           </div>
-          <div className="hqx-segmented" role="tablist" aria-label="Filter founder tasks by effort">
-            {EFFORT_FILTERS.map((option) => {
-              const count = option.key === "all"
-                ? data.items.length
-                : data.items.filter((item) => item.effort === option.key).length;
-              return (
-                <button
-                  key={option.key}
-                  type="button"
-                  role="tab"
-                  aria-selected={effort === option.key}
-                  className="hqx-segmented-btn"
-                  data-active={effort === option.key || undefined}
-                  onClick={() => { setEffort(option.key); setShowAll(false); }}
-                >
-                  {option.label}
-                  <span className="hqx-seg-count">{count}</span>
-                </button>
-              );
-            })}
-          </div>
           <label className="hqx-select-wrap">
             <span className="hqx-select-label">Workspace</span>
             <select
@@ -165,8 +138,8 @@ export function HqActionCenter({ data }: { data: ActionCenter }) {
 
         {filtered.length === 0 ? (
           <div className="hqx-empty">
-            <span className="hqx-empty-title">Nothing here</span>
-            <span>No {filter === "all" ? "" : PRIORITY_LABEL[filter as ActionPriority].toLowerCase() + " "}items{workspace === "all" ? "" : ` in ${workspace}`}. That is the goal.</span>
+            <span className="hqx-empty-title">No matching source signals</span>
+            <span>No {filter === "all" ? "" : PRIORITY_LABEL[filter as ActionPriority].toLowerCase() + " "}records{workspace === "all" ? "" : ` in ${workspace}`}.</span>
           </div>
         ) : (
           <>

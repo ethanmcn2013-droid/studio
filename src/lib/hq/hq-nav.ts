@@ -26,7 +26,7 @@ export const HQ_NAV: HqNavGroup[] = [
     label: "Today",
     items: [
       { href: "/hq", icon: "today", label: "Today", hint: "Mission control — the state of the business" },
-      { href: "/hq/action-center", icon: "action", label: "Action Center", hint: "Everything that needs you, prioritized" },
+      { href: "/hq/action-center", icon: "action", label: "Source ledger", hint: "Risks, reviews, follow-ups, and operational source signals" },
     ],
   },
   {
@@ -81,7 +81,7 @@ export const HQ_BOARD_NAV: HqNavGroup[] = [
 /** Human labels for routes that aren't first-class rail items (for breadcrumbs). */
 const PAGE_TITLES: Record<string, string> = {
   "/hq": "Today",
-  "/hq/action-center": "Action Center",
+  "/hq/action-center": "Source ledger",
   "/hq/crm": "Sell",
   "/hq/marketing": "Marketing engine",
   "/hq/market-entry": "Market entry",

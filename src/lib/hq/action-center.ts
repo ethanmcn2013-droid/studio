@@ -1,12 +1,11 @@
 import type { InboxData } from "@/lib/hq/inbox";
 import type { InboxItem } from "@/lib/hq/inbox-pure";
-import type { OperatorTodo, OperatorTodoBoard } from "@/lib/hq/operator-todos";
 import { resolveHqLocation } from "@/lib/hq/hq-nav";
 
 /**
- * The Action Center model — one normalized queue for everything that needs the
- * founder, drawn from the real sources (operator to-dos + the derived inbox),
- * so nothing is invented and nothing is lost. See
+ * The source-ledger model: a normalized view of risks, reviews, follow-ups,
+ * and operational checks derived from HQ sources. It preserves context but is
+ * not the current delivery queue. See
  * docs/hq-redesign/information-architecture.md § Action Center.
  */
 
@@ -40,35 +39,15 @@ export type ActionCenter = {
 const PRIORITY_RANK: Record<ActionPriority, number> = { critical: 0, due: 1, stale: 2, queued: 3 };
 
 export const PRIORITY_LABEL: Record<ActionPriority, string> = {
-  critical: "Critical",
-  due: "Due now",
-  stale: "Going stale",
-  queued: "Queued",
+  critical: "High",
+  due: "High",
+  stale: "Attention",
+  queued: "Review",
 };
 
 function workspaceFor(href?: string): string {
   if (!href || !href.startsWith("/hq")) return "Signal HQ";
   return resolveHqLocation(href).group;
-}
-
-function fromTodo(todo: OperatorTodo): ActionItem {
-  const priority: ActionPriority =
-    todo.priority === "P0" ? "critical" : todo.priority === "P1" ? "due" : "queued";
-  return {
-    id: `todo:${todo.id}`,
-    priority,
-    kind: todo.blocking ? "blocker" : "task",
-    effort: todo.effort,
-    title: todo.title,
-    why: todo.why,
-    owner: "Founder",
-    meta: todo.blocking
-      ? `${todo.effort === "quick" ? "Quick win" : "Longer call"} · Blocking downstream work`
-      : `${todo.effort === "quick" ? "Quick win" : "Longer call"}${todo.phase ? ` · ${todo.phase}` : ""}`,
-    workspace: workspaceFor(todo.href),
-    href: todo.href,
-    source: "Operator to-do",
-  };
 }
 
 function fromInbox(item: InboxItem): ActionItem {
@@ -87,15 +66,12 @@ function fromInbox(item: InboxItem): ActionItem {
     meta: item.date ? `since ${item.date}` : undefined,
     workspace: workspaceFor(item.href),
     href: item.href,
-    source: "Inbox",
+    source: "HQ source",
   };
 }
 
-export function buildActionCenter(inbox: InboxData, todos: OperatorTodoBoard): ActionCenter {
-  const items: ActionItem[] = [
-    ...todos.todos.filter((t) => t.status === "open").map(fromTodo),
-    ...inbox.items.map(fromInbox),
-  ].sort((a, b) => {
+export function buildActionCenter(inbox: InboxData): ActionCenter {
+  const items: ActionItem[] = inbox.items.map(fromInbox).sort((a, b) => {
     if (PRIORITY_RANK[a.priority] !== PRIORITY_RANK[b.priority]) {
       return PRIORITY_RANK[a.priority] - PRIORITY_RANK[b.priority];
     }
