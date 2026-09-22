@@ -1,6 +1,6 @@
 ---
 id: app-production-security-release-gates-2026-09-22
-title: App security fixes still need release verification.
+title: App security fixes are deployed; dependency and lifecycle risks remain.
 category: Infrastructure
 likelihood: Medium
 impact: High
@@ -22,8 +22,12 @@ present, but exploitability through these routes and any compromise have not
 been demonstrated. The upgrade addresses the vulnerable version exposure; it
 does not establish that the production system was exploited or compromised.
 
-The candidate has not completed final release verification. Final CI and
-rendered-production checks remain pending. The post-upgrade production
+The narrow App patch is deployed at main `6ae877710c49c4b8a69c0de7e068442c3af4eb23`,
+Vercel production `dpl_9b8RBUDt1XZTjzjpWpJfgYPY57qe`, READY with the canonical
+App alias. All candidate CI gates passed. Live `/app/home` returns the rendered
+Clerk sign-in form; the patched `/icon` route returns a PNG successfully.
+Those smoke checks do not certify authenticated task workflows or the larger
+production sprint. No database or environment configuration changed. The post-upgrade production
 dependency audit reports six remaining findings: three moderate `undici`, one
 moderate `@opentelemetry/core`, one low `@babel/core`, and one low
 `@ai-sdk/provider-utils`. This is not a zero-findings result.
@@ -42,8 +46,8 @@ founder. Reassess the exception after the security release is integrated.
 - Official advisory: [Next.js Security Update, September 22, 2026](https://nextjs.org/blog/nextjs-security-update-september-22-2026).
 - Five Node `ImageResponse` route inputs were statically reviewed; all render
   local JSX. This is a bounded source inspection, not a production exploit test.
-- Candidate verification must finish CI and rendered-production checks before
-  the release is considered complete. Preserve the six remaining audit findings
+- All candidate CI checks and the scoped rendered-production smoke checks passed.
+  Preserve the six remaining audit findings
   in follow-up; do not describe the dependency audit as clean.
 
 ## Related integration risk
