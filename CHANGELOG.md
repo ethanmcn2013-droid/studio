@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-23 · S·179 · tightens · Studio prepares a Next.js security update
+
+**The site has a security update candidate ready for verification; the live site stays on its current release until that review is complete.**
+
+This candidate updates the framework and its matching lint configuration. The release is still pending final CI and rendered verification.
+
 ## 2026-09-12 · S·178 · tightens · HQ separates source records from delivery
 
 **Signal HQ now keeps recorded founder/operator files as source context and points current delivery status to one tracker.**
