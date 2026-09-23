@@ -36,11 +36,12 @@ historical count as the integrated candidate's audit or as a zero-findings
 result.
 
 The current integrated App candidate is
-`4cdc2b069a3e91490e2a6fa1a7681fa93c51f0f9` in isolated Preview
-`dpl_BZEjdbg36hkScLpyMx4Pv5bCT4HN`. Its source CI checks passed: typecheck/tests
-run `35845465570`, Design quality `35845465597`, and Verify Tasks
-`35845465638`. The separate `prod migrations current` check failed as expected
-because production Tasks remains at `0027`; that check remains a release gate.
+`b164100a19880cb8ab1b9461bc6c4031c9aede5b` in isolated Preview
+`dpl_DaKstaURXDtbYBZUTi27mwFn8DZc`. Its source CI checks passed:
+typecheck/tests run `35893623372`, Design quality `35893623377`, and Verify
+Tasks `35893623361`. The separate `prod migrations current` run `35893623363`
+failed as expected because production Tasks remains at `0027`, eleven entries
+behind the candidate; that check remains a release gate.
 Preview Tasks has applied migrations 0037 and 0038, preserved all 46
 application tables, passed integrity and foreign-key checks, and passed an
 actual second-run no-op. The applied migration bytes are unchanged from the
@@ -58,9 +59,9 @@ six high, two moderate, and two low findings; nine are development-only through
 `js-yaml`, `brace-expansion`, and `esbuild`, while the remaining low is the
 runtime finding above. This bounded assessment is not a zero-vulnerability
 claim. The saved JSON audit files identify their snapshot as `4cbe33aa`; the
-dependency manifests and lockfile are unchanged at `4cdc`. The candidate audit
+dependency manifests and lockfile are unchanged at `b164`. The candidate audit
 graph differs from the production `c65` graph; do not apply its counts to the
-deployed revision before promotion. App PR #182 carries the exact `4cdc` source.
+deployed revision before promotion. App PR #182 carries the exact `b164` source.
 
 The App's largest-chunk performance ceiling has a narrow, temporary exception
 for the security patch: the measured gzip chunk is 64,571 bytes (63.0576 KiB),
@@ -95,27 +96,28 @@ with 18 exact starter Tasks and the template receipt removed while Project B
 remained unchanged.
 
 The founder-only amendment of 23 September defers newcomer and conversation-
-comprehension cohorts to a possible wider release. Participant sessions remain
-zero and controlled accounts are not human-study evidence. J13 attention is
-still in progress under private workspace issue #31. The required Drive
-lifecycle is still in progress under issue #32; a same-owner reconnect recovery
-gap was identified and is being handled in that lane. Neither is accepted as
-complete or deployed to production. Direct messages remain disabled. Refresh
-these facts only from exact-source receiving evidence; do not infer completion
-or deployment from an implementation branch.
+comprehension cohorts to a possible wider release. No participant session is
+claimed; controlled accounts are not human-study evidence. The finite J13
+attention packet was accepted at Preview source `96df1e1c`, and private
+workspace issue #31 is Done. Drive lifecycle issue #32 remains in progress;
+neither feature is deployed to production. Direct messages remain disabled.
+Refresh these facts only from exact-source receiving evidence; do not infer
+completion or deployment from an implementation branch.
 
-The isolated 4cdc Preview has produced bounded, real Drive provider evidence.
-An OAuth identity mismatch was refused; a provider read showed the Drive root
-private and correctly reported no member coverage for that mismatch. Two
-separately requested UI disconnects were confirmed by Google, with no pending
-or active revocation attempts and no current credential at the subsequent
-read. A matched-identity provider read at 10:26:31 UTC showed the root private
-and member coverage true. These results do not establish the full recovery or
-Drive lifecycle: after a same-owner reconnect created a new credential, the
-existing Project store still reported `needs_reauth`. Upload, access, reconnect
-recovery, erasure, and final lifecycle acceptance remain open. Two controlled
-development identities accepted visible invitations; email delivery was
-unavailable and no email was sent.
+Isolated Preview produced bounded, real Drive provider evidence. An OAuth
+identity mismatch was refused; a provider read showed the Drive root private
+and correctly reported no member coverage for that mismatch. The aligned owner
+and member then proved exact folder sharing and file access, provider-confirmed
+disconnect, same-account reconnect with explicit store restore, member removal
+and return, and one interactive storage-owner handover. At `96df1e1c`, a direct
+Google and database read confirmed the historical four resource identities,
+folder and grants were preserved, with one active successor generation. The
+`b164` candidate adds same-claim recovery after an ambiguous browser upload
+acknowledgment; a controlled 150-byte Preview upload completed without manual
+retry or a second data PUT. The separate 50 MiB receiving upload, exact provider
+byte readback, scoped cleanup and final Drive lifecycle acceptance remain open.
+Two controlled development identities accepted visible invitations; email
+delivery was unavailable and no email was sent.
 
 App PR #181 replaces the raw database-artifact workflow with encrypted custody.
 The old workflow remains disabled. Backup-only run `35802251897` at current main

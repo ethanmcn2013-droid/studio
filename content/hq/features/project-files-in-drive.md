@@ -1,74 +1,70 @@
 ---
 id: project-files-in-drive
-title: Project files in the board owner's Google Drive
+title: Project files in the storage owner's Google Drive
 product: tasks
 status: In Progress
-lastVerified: 2026-08-27
+lastVerified: 2026-09-23
 ---
 
-# Project files in the board owner's Google Drive
+# Project files in the storage owner's Google Drive
 
-A board nominates a **storage owner** — a member who connects their Google
-Drive. Signal Studio creates one folder per board inside a `Signal Studio`
-folder in their My Drive and shares *that folder only* with that board's
-members. Every upload is written with the storage owner's credential, and the
-browser sends the bytes straight to Google. Members never see a consent screen.
-We hold the metadata and the relationship; Google holds the bytes.
+A Project can name a **storage owner**: a member who connects Google Drive.
+Signal Studio creates a Project folder inside that person's private `Signal
+Studio` root and grants the Project's other members access to that folder. The
+storage owner's credential writes the files; members do not each connect Drive.
+Signal Studio keeps resource records and access relationships, while Google
+holds the Drive file bytes. The connection requests only `drive.file`.
 
-Founder decision 2026-08-27. Plan, decisions and status live in the app repo at
-`docs/projects/project-drive/`.
+The App implementation is in candidate `b164100a19880cb8ab1b9461bc6c4031c9aede5b`,
+PR #182, with CI, Verify Tasks and Design quality checks passing. Isolated
+Preview `dpl_DaKstaURXDtbYBZUTi27mwFn8DZc` is READY. **It is not a production
+release.** Production still serves App `c65cb2d5` with Tasks schema through
+`0027`; the eleven pending Tasks migrations and capability activation remain
+release gates. Current delivery status and next proof are in private workspace
+issue #32.
 
-## Where it stands
+## What Preview has proved
 
-| WP | Package | Status |
-|---|---|---|
-| 0 | Fix the floor | **Done** — app PR #159 |
-| 1 | Spike the Drive chain | Blocked on Google Cloud credentials |
-| 2–8 | Secrets, schema, connection, sharing, upload, surfaces, resilience | Not started |
+Controlled, aligned owner and member accounts connected Drive, received exact
+named-user folder access, uploaded and opened files, and kept the parent root
+private. The lifecycle included provider-confirmed disconnect, same-account
+reconnect and explicit restore, member removal with both Google and App refusal,
+member return, promotion and an explicit storage-owner handover. A post-handover
+database and direct Google read at source `96df1e1c` proved the four existing
+resource identities, historical folder and grants survived; one new active
+generation belonged to the successor. These were isolated Preview checks with
+controlled accounts, not production or human-study proof.
 
-## WP-0 found two things worth knowing outside the repo
+Candidate `b164100a` adds one same-claim server check when the browser loses
+Google's final upload acknowledgment. A controlled 150-byte upload completed
+in Preview without a manual retry or second data PUT. The separate 50 MiB
+candidate upload and exact provider-byte verification remain open. Historical
+50 MiB provider evidence predates this acknowledgment correction and does not
+substitute for that receiving check. Project deletion and eventual release are
+separate gates.
 
-**Settings was telling every customer that uploads did not work.** The line
-"File uploads are not yet active on this workspace" rendered unconditionally,
-with no demo-mode branch, above a usage bar that was quietly counting real
-files. `BLOB_READ_WRITE_TOKEN` had been provisioned for twenty-four days.
-Uploads worked the whole time. Anyone who read that panel and decided not to
-try attaching a file was turned away by copy, not by a limit.
+The browser sends configured Drive and Signal-native Blob bytes directly to
+storage; application functions handle bounded metadata. The product's current
+upload ceiling is 50 MiB, displayed as 50 MB. It is a limit, not a promise of
+unlimited Drive storage or of Google's maximum file size. Files count against
+the named storage owner's Google quota. Signal-native storage remains the
+fallback when Drive is unavailable before delegation; an uncertain Drive claim
+stays pending for reconciliation rather than silently creating a second copy.
 
-**The advertised file size was unreachable, and so were the other three.**
-Vercel refuses any function request body over 4.5 MB before the framework sees
-it. The app's own settings said 8 MB, 50 MB, 10 MB and 50 MB in four places;
-all four sat above the platform's line. A 5 MB PDF could not be attached at
-all, and failed with an error the app never saw.
+## Custody and limits
 
-Both are fixed. Uploads now go from the browser straight to storage, so 50 MB
-is a number we can keep, and the four numbers derive from one constant that CI
-will not let drift.
-
-## What this changes commercially
-
-- **Storage stops being a cost line that scales with customers.** Files sit in
-  a member's own Drive and count against their quota, not ours.
-- **The 50 MB ceiling disappears for Drive-backed boards** at WP-6. Against
-  Drive's own documented 5 TB per-file maximum, "how big a file can I attach"
-  stops being a question we have to answer.
-- **It is a real reason to connect an account**, which is a different product
-  posture from a tool that only holds its own data.
-
-## What has to be said out loud, not buried
-
-Files live in a named person's personal Drive. That person can see everything
-anyone attaches to that board, the files count against their quota, and if they
-leave or revoke, the board loses its store. The product states this on screen
-and names the storage owner permanently; it is not a detail to discover later.
-
-It also changes what we tell customers about where their files are, and it
-constrains account deletion: we can delete our rows, but we must not delete
-files that now belong to somebody else. Founder decisions, tracked as Q6 in the
-project's status board.
+The storage owner can see Project files and bears the Google quota. Losing
+access, disconnecting or handing over requires explicit status and repair; an
+owner change does not move historical Google files into the successor's Drive.
+Signal Studio must preserve the old generation's resource identity and grants
+until exact cleanup is authorized and proved. The feature is intended for
+founder-only internal use at this checkpoint. No customer-wide availability,
+unlimited capacity, production migration or physical-phone acceptance is
+claimed here.
 
 ## Related
 
-- Decision: `content/hq/decisions/project-files-in-drive-2026-08-27.md`
-- Risk: `content/hq/risks/drive-refresh-token-custody.md`
-- App dispatch: T·153, 2026-08-27
+- App source: `docs/projects/project-drive/` and PR #182.
+- Founder decision: `content/hq/decisions/project-files-in-drive-2026-08-27.md`.
+- Delivery tracker: private workspace issue #32; production cutover is separate
+  issue #23.
