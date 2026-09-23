@@ -4,7 +4,7 @@ title: Core workflows
 score: 63
 weight: 10
 status: Needs attention
-blockers: [Notes is not yet a full product.]
+blockers: [The live Notes-to-Tasks handoff and production receiving remain unverified.]
 nextAction: Complete the live extract-to-Task journey and production receiving for the built Notes-to-Tasks candidate.
 ---
 
