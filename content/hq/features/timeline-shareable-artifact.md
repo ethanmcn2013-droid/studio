@@ -54,8 +54,18 @@ share token, IP address, referrer, or user-agent.
 - Studio PR #90: exact branded wedding path repair and production smoke.
 
 The owner workspace now opens on this component and preserves the publication
-boundary. The Timeline marketing page also uses this artifact contract as its
+boundary. The retired Timeline marketing page used this artifact contract as its
 product proof.
+
+## Tasks date-source repair (App candidate, 23 September 2026)
+
+The integration candidate reads raw Tasks `due_at` as SQLite seconds when
+reconciling Task milestones, yielding the intended UTC calendar date instead
+of interpreting seconds as JavaScript milliseconds. Local SQLite fixtures
+cover UTC day boundaries, Dublin daylight saving transitions, undated values
+and a genuine pre-1970 date. A controlled isolated Preview readback also
+confirmed a Kiritimati boundary case. This does not change the published
+artifact contract or establish production reconciliation on the new source.
 
 ## World-class pass (Tasks dispatch T·107, 2026-07-29)
 

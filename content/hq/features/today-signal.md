@@ -17,6 +17,14 @@ relatedMetric: Weekly active workspaces
 
 The ecosystem's daily state of work. The live Briefing remains Signal's default and keeps its hard three-item discipline. The separate `signal-progressive-depth` feature adds Overview, Trends, and Evidence beneath it behind a production-off flag; it does not replace this artifact.
 
+### Tasks due-date source repair (App candidate, 23 September 2026)
+
+The integration candidate converts raw Tasks `due_at` SQLite seconds to the
+millisecond clock used by the briefing engine. Focused source tests cover
+missing, zero, negative and invalid values. This corrects candidate reads; it
+does not show that the production briefing cron has run or that this source
+revision is deployed.
+
 ### The read shows its working (Tasks T·111, 30 July 2026)
 
 The Briefing now publishes what it examined, not only what it surfaced. Every read carries four numbers that reconcile in front of the reader: items read, items that crossed a rule, items shown, and items cleared, with read equal to flagged plus cleared exactly. Work held back by the three-item cap is never counted as cleared, and synthetic cluster rows are never counted as source items, because they are readings of work already counted. The presentation contract enforces those invariants itself rather than trusting its callers, after two of them broke it.
