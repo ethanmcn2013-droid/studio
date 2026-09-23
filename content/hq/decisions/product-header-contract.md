@@ -42,6 +42,12 @@ four-product geometry below remains provenance for how the shell was built,
 not the current navigation contract. Product-local navigation, view controls,
 filters, progress, and milestones stay out of the bar.
 
+The 2026-09-23 `three-products-home` navigation amendment supersedes that
+destination order for the signed-in app: Home, Projects, Tasks, Timeline are
+primary; private Notes and existing utilities sit under More. Projects is a
+work context, not another product. App PR 183 implements this as an unshipped
+integration candidate. Public marketing header rules above are unchanged.
+
 ### Consolidation amendment · 2026-07-26
 
 The migration is complete in topology. Notes, Tasks, Timeline, and Signal now
@@ -50,6 +56,9 @@ chrome into a standalone repository. The shared frame owns account identity,
 suite search, authorized context, the Studio bar, and the product rail in the
 fixed order Notes, Tasks, Timeline, Signal. Product modules own their local
 canvas and controls.
+
+That July order records the consolidation step, not the current signed-in
+navigation decision; see the 2026-09-23 amendment above.
 
 The current implementation must isolate module data failures. Loading Tasks
 must not be a prerequisite for Notes capture, the Timeline owner artifact, or
@@ -82,9 +91,9 @@ quoted in the sections above describe intent, not measured output: the bar's
 height. The contract's stated geometry and the rendered geometry should be
 reconciled against measured values in a following pass, and the checker taught
 to assert measured height. Second, floating chrome yields to the docked rail.
-The in-development notice measures the mobile product rail and sits above it
-rather than across the Notes, Tasks, Timeline, and Signal tabs, inside the
-device safe area.
+The in-development notice measures the mobile rail and sits above it, inside
+the device safe area. The named tabs in the July implementation are historical;
+the approved current order is recorded above.
 
 ## Risks
 
