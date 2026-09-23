@@ -53,8 +53,9 @@ candidate and Preview receipts, not a production release claim.
 - Projects: `/app/project` (a work context, not a product).
 - Full Briefing: `/app/home/briefing`.
 - Historical briefing story: `/features/daily-briefing` is retired from the current public site.
-- `/app/signal*` and `/signal` are compatibility inputs that permanently
-  redirect to the Home/briefing destinations. New UI and copy never emit them.
+- `/app/signal*` is a compatibility input that permanently
+  redirects to `/app/home/briefing`. Public Studio `/signal` currently redirects
+  temporarily to `/`. New UI and copy use the canonical destinations.
 
 ## Supersedes
 
