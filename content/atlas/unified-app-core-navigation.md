@@ -66,13 +66,13 @@ does not grant that state.
 
 Atlas `status: complete` describes this entry's documentation sections, not
 the App's release state. App commit `bd805961` passed independent review and
-was received by the draft integration branch at `34d4c92a`. It is not in App
-main or production. Its optimized local demo build and browser review covered
-1440×900, 390×844 and 320×720, including Home to More to Notes to Projects to
-Tasks and keyboard focus return. That evidence does not prove a real signed-in
-no-Project account, provider behavior, production deploy or final design
-acceptance. The App PR
-and its receiving checks remain the release boundary.
+was received by the integration candidate, now `a19ab291`; it is not in App
+main or production. Its local build and browser review covered 1440×900,
+390×844 and 320×720, including Home to More to Notes to Projects to Tasks and
+keyboard focus return. Later controlled isolated Preview journeys covered a
+real signed-in Project chooser and context-aware core routes. Those receipts
+do not establish production behavior or final design acceptance. The App PR,
+receiving checks and release gates remain the boundary.
 
 ## WHY
 

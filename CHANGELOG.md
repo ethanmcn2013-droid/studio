@@ -8,6 +8,10 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-23 · S·180 · reads · HQ separates App candidate proof from production
+
+**HQ now records the September App candidate without calling it a production release.** The monthly starter is a separate, owned Tasks Project with unset dates, while the four-layer source pack remains broader than that control. Notes recovery and recipient account deletion have bounded, isolated Preview proof; the full live extract journey and production lifecycle remain release gates. Timeline and Home Signal source-date repairs are recorded at their actual test scope. The navigation record points to the current integration candidate and keeps the production boundary explicit.
+
 ## 2026-09-23 · S·179 · tightens · Studio prepares a Next.js security update
 
 **The site has a security update candidate ready for verification; the live site stays on its current release until that review is complete.**

@@ -38,10 +38,12 @@ Project gets a setup path; an unavailable Project link keeps its own error
 state. This follows `contextual-links-are-navigation` rather than weakening it.
 
 This is the approved navigation direction. [App PR 183](https://github.com/ethanmcn2013-droid/app/pull/183)
-at `bd805961` was independently reviewed and received by the draft integration
-branch at `34d4c92a`; it has not been merged to main or deployed. Local demo
-browser evidence covers desktop and phone routes, More, and keyboard return.
-It does not establish a real-account no-Project journey.
+at `bd805961` was independently reviewed and received by the integration
+candidate, now at `a19ab291`; that candidate has not been merged to App main
+or deployed to production. Controlled isolated Preview journeys subsequently
+covered real-account Project selection and core routing, while local and
+deployed checks covered desktop, phone, More and keyboard return. These are
+candidate and Preview receipts, not a production release claim.
 
 ## Canonical routes
 

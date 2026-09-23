@@ -59,6 +59,9 @@ rather than by the resolved project, so a bare entry can verify at all.
 
 ## Not yet
 
-Notes and Home resolve no project of their own, so on those two surfaces the control
-offers the choice without naming the current project. Closing that means giving both
-surfaces project resolution, which is not in any current lane.
+The September App candidate now resolves Home's Project context through an
+authorized route snapshot; an isolated Preview creator journey selected a
+different Project and followed the corresponding core route. This does not
+make the candidate a production release. Notes still requires its own full
+project-context and private-content receiving proof before this record can
+claim suite-wide completion.

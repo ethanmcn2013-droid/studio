@@ -53,11 +53,14 @@ founder. Reassess the exception after the security release is integrated.
 
 ## Related integration risk
 
-Conversation export/erasure fixes are in the separate integration candidate;
-they are not yet deployed or accepted as a complete remote lifecycle. Direct messages remain
-deferred and off. No live privacy approval or completed export/erasure proof is
-claimed here. Treat those as separate integration gates and require evidence
-before enabling the affected data path.
+Conversation export/erasure fixes are in the separate integration candidate,
+not production. On 23 September, an isolated Preview recipient exported and
+deleted its account: stale access was refused, its authored conversation
+content was absent or reduced to content-free tombstones, and surviving
+creator-owned records remained intact. That is a controlled Preview lifecycle
+proof, not production erasure acceptance or approval to enable every data path.
+Direct messages remain deferred and off; production lifecycle and release gates
+stay open.
 
 App PR #181 replaces the raw database-artifact workflow with encrypted custody.
 The old workflow remains disabled. Backup-only run `35802251897` at current main

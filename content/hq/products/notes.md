@@ -13,8 +13,8 @@ launchReadiness: not-scored
 qualityGate: not-certified
 scoreBasis: current-route-council-evidence-required
 majorFeatures: ["Canonical unified route: https://app.signalstudio.ie/app/notes","Notes Hybrid: calm private capture, flat notebook, deliberate note detail, and explicit user-approved promotion to Tasks","Private-by-default boundary: raw note bodies remain in Notes and only approved task wording may cross","Shared Signal Studio frame and project context"]
-blockers: ["No current authenticated state-by-viewport council ledger proves the 50/52 release threshold for the consolidated Notes route.","The unified Notes-to-Tasks handoff still needs production-like evidence for payload minimization, ownership, idempotency, lineage, and failure recovery.","Executable Studio quality tooling still enforces the legacy general mean, not the active 50/52 per-cell product gate."]
-nextActions: ["Finish and verify the Notes Hybrid capture, search, selection, edit, delete, and explicit promote-to-Tasks journeys in the unified app.","Prove that promotion sends only approved wording, records source lineage, remains idempotent, and never exposes the raw private note.","Capture normal, empty, loading, and error states at 360px, 768px, and 1440px and repeat council review until every required cell reaches 50/52."]
+blockers: ["No current authenticated state-by-viewport council ledger proves the 50/52 release threshold for the consolidated Notes route.","Controlled isolated Preview proves capture, reload, interrupted retry and recipient denial, but the complete live Notes-to-Tasks extract journey and production receiving remain open.","Executable Studio quality tooling still enforces the legacy general mean, not the active 50/52 per-cell product gate."]
+nextActions: ["Finish and verify the Notes Hybrid capture, search, selection, edit, delete, and explicit promote-to-Tasks journeys in the unified app.","Prove the live handoff sends only approved wording, records source lineage, remains idempotent, and never exposes the raw private note.","Capture normal, empty, loading, and error states at 360px, 768px, and 1440px and repeat council review until every required cell reaches 50/52."]
 ---
 
 ## Role
@@ -24,6 +24,13 @@ What was said, decided, learned, captured, and turned into work.
 ## Notes
 
 > **2026-07-26 consolidation note.** Current authority is the single Signal Studio app at `https://app.signalstudio.ie/app/notes`, using the Notes Hybrid archetype. The dated entries below are retained as provenance from the former standalone implementation; they do not certify the current unified route, launch readiness, retired hosts, or retired interfaces.
+
+**2026-09-23 candidate evidence.** Controlled isolated Preview covered Notes
+capture, reload and interrupted retry, with recipient access to a private Note
+refused. The integration candidate contains bounded error handling so private
+database parameters and framework diagnostics do not reach the observed
+capture or extract failure surfaces. This is narrower than a complete live
+extract-to-Task journey or a production release.
 
 2026-06-09 — product-excellence pass (Notes side, suite-wide today). Three commits on `notes` main (`a1b5239`, `739b341`, `f5b95dd`): capture textarea `rows={3}` → `rows={6}` so the capture surface earns the largest weight on first paint per PRODUCT.md §4; the misfire toast and its `MISFIRE_TOAST_KEY` are gone (advertised an unbound `⌘↵` shortcut in a product whose stance is no-tutorial); the open-note corner-arrow Send is gone, leaving the explicit Send-as-is / drafted-extract Send as the single Send-to-Tasks shape. The companion landing-page gesture fix shipped on the studio repo as S·70 the same day (Notes wordmark on signalstudio.ie now blinks as a caret from the start — the dot→caret morph wasn't replaying on reveal). Deferred to founder-gate: replacing the 617-line marketing hero + 577-line `/anatomy` with the actual `Notebook` as the hero (PRODUCT.md §2.2 demo-vs-reality move). Typecheck + build clean.
 

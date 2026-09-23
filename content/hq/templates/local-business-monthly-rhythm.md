@@ -4,7 +4,7 @@ title: Local business monthly rhythm workspace
 targetSegment: Small-business operators (café, dental practice, local florist, salon)
 status: Built
 includedProducts: [Tasks, Notes, Timeline, Signal]
-landingPageUrl: /templates?audience=marketing
+landingPageUrl: ""
 relatedCampaign: TBD
 activationGoal: Operator runs one real month through the workspace.
 ---
@@ -15,4 +15,6 @@ Four lanes — invoices, orders, admin, marketing — the actual monthly job of 
 
 ## Notes
 
-Anchor template #5. Swapped from `small-business-marketing-month` 2026-05-12 — marketing-month is project-manager voice (category claim); monthly-rhythm is operator-real. Canonical four-layer artefact lives at `studio/src/lib/templates/local-business-monthly-rhythm/` (18 task seeds + notes + timeline + signal hints) and is synced into Tasks via `pnpm sync:templates`. Now surfaced on signalstudio.ie/templates under the "Small business" pill as an "All 4 products" anchor card (S·67, 2026-05-22).
+Anchor template #5. Swapped from `small-business-marketing-month` 2026-05-12 — marketing-month is project-manager voice (category claim); monthly-rhythm is operator-real. The canonical four-layer source artefact lives at `studio/src/lib/templates/local-business-monthly-rhythm/` (18 task seeds plus Notes, Timeline and Signal hints) and is synced into the App via `pnpm sync:templates`.
+
+The September App candidate offers **Start with Monthly business rhythm** inside Add project. It creates a separate, owned Project with 18 Tasks; dates remain unset for the person to choose. An uncertain reply retains the same request so retry opens the same Project. This control does not create Notes, Timeline or Signal content, publish a share, or invite anyone. Local backend and phone interaction checks passed; the real remote starter journey and production release are still pending. The former `/templates` marketing card was retired with the public estate; there is no current public landing page for this pack.
