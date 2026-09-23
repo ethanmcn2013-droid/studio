@@ -53,13 +53,48 @@ test("all nine chapters navigate in both directions and preserve hash history", 
   });
   await expect(rail.getByRole("link")).toHaveCount(10);
 
+  const expectChapterAtTop = async (id: string, expectedTops: number[]) => {
+    let stableSince: number | undefined;
+    await expect
+      .poll(async () => {
+        const chapterTop = await page
+          .locator(`#${id}`)
+          .evaluate((chapter) => chapter.getBoundingClientRect().top);
+        const atAnchor =
+          Math.min(...expectedTops.map((expectedTop) => Math.abs(chapterTop - expectedTop))) <= 4;
+        if (!atAnchor) {
+          stableSince = undefined;
+          return false;
+        }
+        stableSince ??= Date.now();
+        return Date.now() - stableSince >= 750;
+      })
+      .toBe(true);
+  };
+
   await rail.getByRole("link", { name: /07 Moodboard/ }).click();
+  await expectChapterAtTop("moodboard", [0, 20]);
   await expect(page).toHaveURL(/#moodboard$/);
   await expect(
     rail.getByRole("link", { name: /07 Moodboard/ }),
   ).toHaveAttribute("aria-current", "location");
 
   await rail.getByRole("link", { name: /01 Introduction/ }).click();
+  await expectChapterAtTop("introduction", [0, 20]);
+  await expect(page).toHaveURL(/#introduction$/);
+  await expect(
+    rail.getByRole("link", { name: /01 Introduction/ }),
+  ).toHaveAttribute("aria-current", "location");
+
+  await page.goBack();
+  await expectChapterAtTop("moodboard", [0, 20]);
+  await expect(page).toHaveURL(/#moodboard$/);
+  await expect(
+    rail.getByRole("link", { name: /07 Moodboard/ }),
+  ).toHaveAttribute("aria-current", "location");
+
+  await page.goForward();
+  await expectChapterAtTop("introduction", [0, 20]);
   await expect(page).toHaveURL(/#introduction$/);
   await expect(
     rail.getByRole("link", { name: /01 Introduction/ }),
