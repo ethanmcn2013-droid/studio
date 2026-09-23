@@ -12,7 +12,7 @@ entries before 2026-05-22; the vocabulary starts at the next pass.
 
 **The site has a security update candidate ready for verification; the live site stays on its current release until that review is complete.**
 
-This candidate updates the framework and its matching lint configuration. The release is still pending final CI and rendered verification.
+This candidate updates the framework and its matching lint configuration, then pins two dependencies to patched releases. The local production audit no longer reports the three high advisories. Final CI and rendered verification are still pending.
 
 ## 2026-09-12 · S·178 · tightens · HQ separates source records from delivery
 

@@ -10,6 +10,12 @@ allowBuilds:
   sharp: true
   unrs-resolver: set this to true or false
 
+# Exact patched versions for the remaining high production advisories.
+# Remove each override when all supported consumers no longer resolve an affected version.
+overrides:
+  browserslist: 4.28.8 # GHSA-c83g-rgw3-j3cx and GHSA-73wf-gq98-2v4g; patched in 4.28.7+
+  ws: 8.21.3 # GHSA-96hv-2xvq-fx4p; patched in 8.21.0+
+
 # Temporary exact-version exceptions for the 2026-09-22 critical Next.js fix.
 # Remove each entry once its version has aged past the effective minimum-age policy.
 minimumReleaseAgeExclude:
