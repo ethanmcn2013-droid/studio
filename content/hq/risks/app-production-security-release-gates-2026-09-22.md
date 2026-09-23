@@ -35,9 +35,10 @@ low `@babel/core`, and one low `@ai-sdk/provider-utils`. Do not treat that
 historical count as the integrated candidate's audit or as a zero-findings
 result.
 
-The current integrated App candidate is
+The founder-only #22 candidate is
 `b164100a19880cb8ab1b9461bc6c4031c9aede5b` in isolated Preview
-`dpl_DaKstaURXDtbYBZUTi27mwFn8DZc`. Its source CI checks passed:
+`dpl_DaKstaURXDtbYBZUTi27mwFn8DZc`; its independent receiving review accepted
+it for that candidate scope. Its source CI checks passed:
 typecheck/tests run `35893623372`, Design quality `35893623377`, and Verify
 Tasks `35893623361`. The separate `prod migrations current` run `35893623363`
 failed as expected because production Tasks remains at `0027`, eleven entries
@@ -99,25 +100,28 @@ The founder-only amendment of 23 September defers newcomer and conversation-
 comprehension cohorts to a possible wider release. No participant session is
 claimed; controlled accounts are not human-study evidence. The finite J13
 attention packet was accepted at Preview source `96df1e1c`, and private
-workspace issue #31 is Done. Drive lifecycle issue #32 remains in progress;
-neither feature is deployed to production. Direct messages remain disabled.
-Refresh these facts only from exact-source receiving evidence; do not infer
-completion or deployment from an implementation branch.
+workspace issue #31 is Done. Direct messages remain disabled.
 
-Isolated Preview produced bounded, real Drive provider evidence. An OAuth
-identity mismatch was refused; a provider read showed the Drive root private
-and correctly reported no member coverage for that mismatch. The aligned owner
-and member then proved exact folder sharing and file access, provider-confirmed
-disconnect, same-account reconnect with explicit store restore, member removal
-and return, and one interactive storage-owner handover. At `96df1e1c`, a direct
-Google and database read confirmed the historical four resource identities,
-folder and grants were preserved, with one active successor generation. The
-`b164` candidate adds same-claim recovery after an ambiguous browser upload
-acknowledgment; a controlled 150-byte Preview upload completed without manual
-retry or a second data PUT. The separate 50 MiB receiving upload, exact provider
-byte readback, scoped cleanup and final Drive lifecycle acceptance remain open.
-Two controlled development identities accepted visible invitations; email
-delivery was unavailable and no email was sent.
+Drive lifecycle issue #32 is Done at exact Preview source `b164100a`. The
+candidate's ambiguous-ack receiving checks completed for both a 150-byte file
+and a supported 50 MiB file; read-only provider verification checked each new
+body SHA-256 and the unchanged four historical rows. Scoped Project deletion
+then removed Project rows, grants and the exact native-Blob cleanup receipt
+while retaining all six Drive files and their folders, owner-only ACLs, and the
+two users' connection records. The historical 50 MiB body was compared with
+its previously pinned provider MD5; the new SHA-256 is recorded as an
+observation, not as an earlier claim. The exact source review and read-only
+receipt are `work/final-acceptance-b164.md` and
+`work/drive-project-after-delete-b164.json`.
+
+This acceptance is for the founder-only candidate, not production. Production
+still serves App `c65cb2d5` with Tasks schema `0027`; issue #23 owns the
+controlled cutover and its five-store runtime, backup, migration, and allowed
+or refused production smoke. The #22 candidate acceptance does not satisfy
+that cutover. Issue #24 owns the real next-day return and 24–48-hour elapsed-use
+observation after release; that evidence is still pending. Two controlled
+development identities accepted visible invitations; email delivery was
+unavailable and no email was sent.
 
 App PR #181 replaces the raw database-artifact workflow with encrypted custody.
 The old workflow remains disabled. Backup-only run `35802251897` at current main

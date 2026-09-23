@@ -15,33 +15,38 @@ storage owner's credential writes the files; members do not each connect Drive.
 Signal Studio keeps resource records and access relationships, while Google
 holds the Drive file bytes. The connection requests only `drive.file`.
 
-The App implementation is in candidate `b164100a19880cb8ab1b9461bc6c4031c9aede5b`,
-PR #182, with CI, Verify Tasks and Design quality checks passing. Isolated
-Preview `dpl_DaKstaURXDtbYBZUTi27mwFn8DZc` is READY. **It is not a production
-release.** Production still serves App `c65cb2d5` with Tasks schema through
-`0027`; the eleven pending Tasks migrations and capability activation remain
-release gates. Current delivery status and next proof are in private workspace
-issue #32.
+The founder-only candidate is App source `b164100a19880cb8ab1b9461bc6c4031c9aede5b`,
+isolated Preview `dpl_DaKstaURXDtbYBZUTi27mwFn8DZc`. Independent receiving
+review accepted it for the founder-only #22 candidate scope. This is not a
+production release. Production remains App `c65cb2d5` with Tasks schema through
+`0027`; the controlled production sequence is #23. The 24-hour/next-day and
+24–48-hour observation belongs to #24 after release. Delivery issue #32, the
+bounded Drive lifecycle and cleanup acceptance, is Done; it does not close
+production cutover.
 
 ## What Preview has proved
 
-Controlled, aligned owner and member accounts connected Drive, received exact
-named-user folder access, uploaded and opened files, and kept the parent root
-private. The lifecycle included provider-confirmed disconnect, same-account
-reconnect and explicit restore, member removal with both Google and App refusal,
-member return, promotion and an explicit storage-owner handover. A post-handover
-database and direct Google read at source `96df1e1c` proved the four existing
-resource identities, historical folder and grants survived; one new active
-generation belonged to the successor. These were isolated Preview checks with
-controlled accounts, not production or human-study proof.
+Controlled owner and member accounts connected Drive, received exact named-user
+folder access, uploaded and opened files, and kept each personal root private.
+The lifecycle included provider-confirmed disconnect, same-account reconnect
+and explicit restore, member removal with Google and App refusal, member return,
+promotion and a storage-owner handover. At b164, a 150-byte upload and a
+supported 50 MiB upload both completed after ambiguous browser acknowledgments
+through the same saved claim. The 50 MiB upload used resumable chunks, not one
+PUT. A source-pinned, read-only Google GET/Tasks SELECT receipt verified both
+new bodies by SHA-256, their owner/folder/generation, and unchanged historical
+rows.
 
-Candidate `b164100a` adds one same-claim server check when the browser loses
-Google's final upload acknowledgment. A controlled 150-byte upload completed
-in Preview without a manual retry or second data PUT. The separate 50 MiB
-candidate upload and exact provider-byte verification remain open. Historical
-50 MiB provider evidence predates this acknowledgment correction and does not
-substitute for that receiving check. Project deletion and eventual release are
-separate gates.
+The controlled Project was then deleted through the App. Exact reconciliation
+found six Drive files still present with their expected contents, both folders
+retained with owner-only ACLs, and personal roots still unshared. Project-scoped
+rows and grants were gone; the native 104-byte private Blob cleanup receipt was
+consumed and the Blob was no longer readable. Both users' Google connection
+records remained. Five files were checked against previously recorded SHA-256
+values; the historical 50 MiB file was checked against its previously pinned
+Google MD5, with a fresh SHA-256 recorded as a new observation. This is the
+bounded #32 cleanup acceptance on isolated Preview, not production or
+human-study proof.
 
 The browser sends configured Drive and Signal-native Blob bytes directly to
 storage; application functions handle bounded metadata. The product's current
@@ -66,5 +71,5 @@ claimed here.
 
 - App source: `docs/projects/project-drive/` and PR #182.
 - Founder decision: `content/hq/decisions/project-files-in-drive-2026-08-27.md`.
-- Delivery tracker: private workspace issue #32; production cutover is separate
-  issue #23.
+- Delivery tracker: private workspace issue #32 is Done; production cutover is
+  separate issue #23, and elapsed-use observation is #24.
