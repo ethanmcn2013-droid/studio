@@ -23,11 +23,12 @@ been demonstrated. The upgrade addresses the vulnerable version exposure; it
 does not establish that the production system was exploited or compromised.
 
 The narrow App patch was released at main `6ae877710c49c4b8a69c0de7e068442c3af4eb23`.
-It remains included in current main `c65cb2d5d5616b50b4988fc3ba19f1f42bad9756`,
-Vercel production `dpl_9nQWBjBFavmXeiA1YpErboU2gXit`, READY with the canonical
-App aliases. All security candidate CI gates passed. Live `/app/home` returns the rendered
-Clerk sign-in form; the patched `/icon` route returns a PNG successfully.
-Those smoke checks do not certify authenticated task workflows or the larger
+At that earlier checkpoint it was included in main
+`c65cb2d5d5616b50b4988fc3ba19f1f42bad9756` and production
+`dpl_9nQWBjBFavmXeiA1YpErboU2gXit`. That deployment is historical: production
+has since resumed on main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` and
+deployment `dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`. The earlier `/app/home` and
+`/icon` smoke checks do not certify authenticated workflows or the larger
 production sprint. The security release changed no database or environment
 configuration. Its recorded audit reported six lower-severity findings in that
 release graph: three moderate `undici`, one moderate `@opentelemetry/core`, one
@@ -53,12 +54,28 @@ schema and backup checkpoint, not completion of all runtime gates.
 
 The founder's existing production Tasks board (11 tasks) and Timeline (four
 milestones) were read after resume. Three intended cron schedules were
-restored and read back. Production conversations and Drive remain disabled;
-provider keys and runtime activation are still outstanding. Issue #23 remains
-In Progress with 10 of 12 accepted packets. Issue #24 still requires an actual
-next-day/24–48-hour elapsed-use observation after release. The earlier
+restored and read back. The same c057 main revision is now promoted to
+deployment `dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`; all six aliases resolve to it and
+Standard Protection covers 24 generated hosts and 48 scoped path checks; the
+three intended cron schedules are enabled. Founder-only
+messaging and Drive are activated. Drive receiving includes the limited
+`drive.file` consent, canonical callback, connected-account UI, Project-folder
+setup, exact 88-byte native fallback download, and exact 87-byte Drive UI and
+download match. The download-event wait timed out and was reconciled without
+resubmission. Unlisted signup and wrong-account invitation were refused; a
+limited one-day test invitation was issued. These are not positive second-user
+Drive access or lifecycle proof. Messaging was exercised by the founder in
+separate controlled Task Discussion and Project-room journeys, not by two
+independent production actors. A second controlled actor is now registered,
+Google-verified, and has accepted a canary Project invitation with read-only
+Tasks access observed; the conversation allowlist configuration is still
+underway and has not been deployed. Direct messages, external delivery, and
+four repair-only flags remain off. Public launch is not claimed. The Drive
+resource UI showed the uploader as “Someone” on both files; this is a minor
+unresolved display label, not identity or authorization evidence. The earlier
 `prod migrations current` failure at Tasks `0027` is historical and superseded
-by the successful c057 migration and drift receipts above.
+by the successful c057 migration and drift receipts above. A real
+next-day/24–48-hour elapsed-use observation remains outstanding.
 
 The saved production-only audit for the integrated candidate's dependency
 snapshot reports zero critical, high, or moderate findings and one low runtime
@@ -110,9 +127,11 @@ remained unchanged.
 The founder-only amendment of 23 September defers newcomer and conversation-
 comprehension cohorts to a possible wider release. No participant session is
 claimed; controlled accounts are not human-study evidence. The finite J13
-attention packet was accepted at Preview source `96df1e1c`, and private
-workspace issue #31 is Done. Conversations remain disabled in production;
-direct messages are disabled.
+attention packet was accepted at Preview source `96df1e1c`. Production
+messaging is currently founder-only; direct messages and external delivery are
+disabled. The controlled second actor's conversation allowlist update has not
+yet been deployed, so no independent two-actor production conversation proof
+is claimed.
 
 Drive lifecycle issue #32 is Done at exact Preview source `b164100a`. The
 candidate's ambiguous-ack receiving checks completed for both a 150-byte file
@@ -127,16 +146,18 @@ receipt are `work/final-acceptance-b164.md` and
 `work/drive-project-after-delete-b164.json`.
 
 The #32 acceptance remains the bounded Drive lifecycle proof on isolated
-Preview; it does not establish production Drive readiness. Production now
-serves App main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` with Notes `0001`,
-Timeline adoption `0001`, and Tasks `0028`–`0038` applied, but conversations and
-Drive are still off while provider keys and runtime activation are completed.
-Issue #23 remains In Progress (10 of 12 accepted packets); its remaining
-runtime and production smoke evidence must be received before it closes. Issue
-#24 owns the real next-day return and 24–48-hour elapsed-use observation after
-release; that evidence is pending. Two controlled development identities
-accepted visible invitations; email delivery was unavailable and no email was
-sent.
+Preview; it does not establish complete production Drive lifecycle readiness.
+Production now serves App main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`
+with Notes `0001`, Timeline adoption `0001`, and Tasks `0028`–`0038` applied.
+Founder-only Drive is activated with the limited consent and file-receiving
+checks above. Positive member access/removal, reconnect, and lifecycle proof
+remain outstanding. A controlled second actor has registered, verified Google,
+and accepted a canary Project invitation; this does not replace Drive member
+authorization checks. Current production receiving details are archived in
+workspace evidence commit `de6f6fe5b85c5578f00dd5386be1f41fe0f2323c`. A real
+next-day return and 24–48-hour elapsed-use observation remains pending. Email
+delivery was unavailable in the earlier development invitation rehearsal; no
+email was sent in that rehearsal.
 
 App PR #181 replaces the raw database-artifact workflow with encrypted custody.
 The old workflow remains disabled. Backup-only run `35802251897` at current main

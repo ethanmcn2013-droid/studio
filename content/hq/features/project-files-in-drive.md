@@ -17,19 +17,34 @@ holds the Drive file bytes. The connection requests only `drive.file`.
 
 The founder-only candidate was App source
 `b164100a19880cb8ab1b9461bc6c4031c9aede5b`; independent receiving review
-accepted it for #22. Production has since resumed on App main
+accepted it for that candidate scope. Production has since resumed on App main
 `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`, deployment
-`dpl_65msoCrXoErhwZRMr47cfn9ekTSb`, at 19:43:45 UTC on 23 September. All six
-production aliases resolve to that deployment. Notes migration `0001`, Timeline
-adoption `0001`, and Tasks migrations `0028`–`0038` are applied and current;
-original rows were preserved, integrity and foreign-key checks passed, and a
-second migration run was a no-op. The founder's existing Tasks board and four
-Timeline milestones were read in the resumed production app. This does not
-mean Drive is enabled: Drive and conversations remain off while provider keys
-and runtime activation are outstanding. Issue #23 remains In Progress (10 of
-12 accepted packets); #24 still needs a real next-day/24–48-hour observation.
-Issue #32, the bounded Drive lifecycle and cleanup acceptance, is Done, but
-does not close those remaining release gates.
+`dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`, at 20:19 UTC on 23 September. All six
+production aliases resolve to that deployment, scheduled jobs are enabled,
+and Standard Protection covers 24 generated hosts and 48 scoped path checks.
+Notes migration `0001`, Timeline adoption `0001`, and Tasks migrations
+`0028`–`0038` are applied and current; original rows were preserved, integrity
+and foreign-key checks passed, and a second migration run was a no-op. The
+founder's existing Tasks board and four Timeline milestones were read after
+resumption.
+
+Production Drive is now activated for founder-only use. The founder completed
+the narrow `drive.file` consent and canonical callback, connected the account,
+confirmed Project-folder setup while preserving the existing native file, and
+verified exact downloaded bytes for an 88-byte native fallback file and an
+87-byte Google Drive file. A delayed download event was reconciled without a
+second upload. Unlisted signup and wrong-account invitation were refused; a
+limited test invitation was issued. A controlled second actor has since
+registered, verified Google, and accepted a canary Project invitation, with
+read-only Tasks access observed. No positive Drive member-access/removal or
+reconnect proof is claimed. Messaging is currently founder-only; there is no
+independent two-actor conversation proof. Public launch is not claimed; direct
+messages, external delivery, and the four repair-only flags remain off. The
+uploader avatar displayed “Someone” on both files; this is an unresolved UI
+label observation, not evidence about identity or access authority. A real
+next-day/24–48-hour elapsed-use observation is still outstanding. The
+production receiving source is recorded in workspace evidence commit
+`de6f6fe5b85c5578f00dd5386be1f41fe0f2323c`.
 
 ## What Preview has proved
 
@@ -71,8 +86,9 @@ owner change does not move historical Google files into the successor's Drive.
 Signal Studio must preserve the old generation's resource identity and grants
 until exact cleanup is authorized and proved. The feature is intended for
 founder-only internal use at this checkpoint. No customer-wide availability,
-unlimited capacity, production migration or physical-phone acceptance is
-claimed here.
+unlimited capacity, or physical-phone acceptance is claimed here. Production
+migrations are current, but this does not establish member Drive access, a
+complete production lifecycle, or elapsed-use evidence.
 
 ## Related
 
