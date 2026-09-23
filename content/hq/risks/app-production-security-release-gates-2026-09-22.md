@@ -33,6 +33,11 @@ dependency audit reports six remaining findings: three moderate `undici`, one
 moderate `@opentelemetry/core`, one low `@babel/core`, and one low
 `@ai-sdk/provider-utils`. This is not a zero-findings result.
 
+As of 23 September, the separate production-sprint receiving Preview is App
+`07ffb173b5f7904d762b051eebf52f4ef953185b`; canonical production remains at
+`c65cb2d5`. The Preview is not promoted. This is a dated source and environment
+readback, not a general claim that every sprint workflow is accepted.
+
 The App's largest-chunk performance ceiling has a narrow, temporary exception
 for the security patch: the measured gzip chunk is 64,571 bytes (63.0576 KiB),
 59 bytes above the previous 63 KiB ceiling. The ceiling is 63.1 KiB; the target
@@ -53,19 +58,43 @@ founder. Reassess the exception after the security release is integrated.
 
 ## Related integration risk
 
-Conversation export/erasure fixes are in the separate integration candidate,
-not production. On 23 September, an isolated Preview recipient exported and
-deleted its account: stale access was refused, its authored conversation
-content was absent or reduced to content-free tombstones, and surviving
-creator-owned records remained intact. That is a controlled Preview lifecycle
-proof, not production erasure acceptance or approval to enable every data path.
-Direct messages remain deferred and off; production lifecycle and release gates
-stay open.
+On 23 September, a controlled recipient exported and deleted its account in
+Preview source `f7816d07621445016ae2f5f7fcf953df08df3325`. The exact owned
+Note appeared in the recipient's export; after deletion, the identity and
+recipient-owned footprint were absent or tombstoned, stale export was refused,
+and selected creator-owned rows and Project B remained unchanged. This is one
+source-labelled Preview lifecycle proof. It does not prove production erasure,
+all account shapes, or deletion of populated recipient data in Timeline and
+Signal, which were empty for that actor. Controlled Project deletion also
+passed separately at Preview source `a19ab2918a25bf4c4dd9dae110917cf66b54ef1f`,
+with 18 exact starter Tasks and the template receipt removed while Project B
+remained unchanged.
+
+The founder-only amendment of 23 September defers newcomer and conversation-
+comprehension cohorts to a possible wider release. Participant sessions remain
+zero and controlled accounts are not human-study evidence. J13 attention is
+still in progress under private workspace issue #31, and the required Drive
+lifecycle is still in progress under issue #32. Neither feature is included in
+the accepted `07ff` Preview, and neither is deployed to production. Direct
+messages remain disabled. Refresh this source pin and these statuses only when
+the final integrated candidate has exact-source receiving evidence; do not
+infer completion or deployment from an implementation branch.
 
 App PR #181 replaces the raw database-artifact workflow with encrypted custody.
 The old workflow remains disabled. Backup-only run `35802251897` at current main
 uploaded only encrypted data and a sanitized receipt. Independent download,
 decryption, and fresh local restore passed for 25 tables and 488 rows on
-September 23. This does not establish independent recovery-key escrow or resolve
-whether an earlier public raw artifact was accessed before its deletion. The
-private delivery tracker retains those separate risks and their evidence.
+September 23. A later independent five-store hosted recovery drill passed at
+workspace source `fd6d10e249bf06fd698541c47427a70efc6d1ee8` in run
+`35838321983`: all five restored local copies matched their recorded row hashes
+and DDL, passed SQLite integrity and foreign-key checks, and runner plaintext
+cleanup passed. The recovery identity was available only to the private
+workspace repository's `recovery-key-custody` GitHub Actions environment on
+`main`; the public App repository's Actions workflows do not receive it. This
+demonstrates recovery after loss of the Windows machine/account for the
+historical backups. The shared GitHub repository/account remains a trust
+boundary; the drill does not prove recovery after its loss, live-provider
+restore, cross-store atomicity, or a fresh quiescent cutover backup. The
+historical snapshot was nonquiescent, and whether an earlier public raw artifact
+was accessed before deletion remains unresolved. The private delivery tracker
+retains the separate evidence and limits.
