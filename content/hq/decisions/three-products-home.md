@@ -1,6 +1,6 @@
 ---
 id: three-products-home
-title: Three products, with the daily signal inside Home
+title: Core work, with the daily signal inside Home
 status: Active
 date: 2026-08-04
 reviewDate: 2027-02-04
@@ -11,7 +11,8 @@ relatedObjects: [Signal Notes, Signal Tasks, Signal Timeline, Home, Projects, Fu
 
 ## Decision
 
-Signal Studio is one application with three products in this order:
+The 2026-08-04 product-line taxonomy described one application with three
+products in this order:
 
 `Signal Notes -> Signal Tasks -> Signal Timeline`
 
@@ -22,11 +23,12 @@ brand, and outcome the system produces.
 ## Core navigation amendment · 2026-09-23
 
 The signed-in primary navigation follows the work people do: **Home, Projects,
-Tasks, Timeline**, in that order. Projects is the explicit place to understand
-and choose a project; it is not a fourth product. Notes remains a private
-product, reached from **More** with the existing work and account utilities.
-Moving Notes out of the primary row changes its placement, not its privacy,
-canonical route, or the deliberate Notes-to-Tasks handoff.
+Tasks, Timeline**, in that order. Home orients the person; Projects, Tasks and
+Timeline form the core work path. Projects is the explicit place to understand
+and choose a project, not a fourth product. Notes is a private tool under
+**More** with the existing work and account utilities. Moving Notes out of the
+primary row changes its placement, not its privacy, canonical route, or the
+deliberate Notes-to-Tasks handoff.
 
 The same four destinations apply to the shared desktop and phone navigation,
 the Tasks runtime, and the standalone Tasks Floor. A contextual link may carry
@@ -43,7 +45,8 @@ It does not establish a real-account no-Project journey.
 
 ## Canonical routes
 
-- Products: `/app/notes`, `/app/tasks`, `/app/timeline`.
+- Private Notes tool: `/app/notes`.
+- Core work routes: `/app/tasks`, `/app/timeline`.
 - Home: `/app/home`.
 - Projects: `/app/project` (a work context, not a product).
 - Full Briefing: `/app/home/briefing`.

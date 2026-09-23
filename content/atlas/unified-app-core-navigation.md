@@ -7,10 +7,10 @@ lastVerified: 2026-09-23
 links: [timeline-shareable-artifact, signal-progressive-analytics]
 tags: [Home, Projects, Tasks, Timeline, Notes, More, app.signalstudio.ie, project context]
 references: [content/hq/decisions/three-products-home.md, content/hq/decisions/contextual-links-are-navigation.md, app/src/lib/core-navigation.ts, app/src/components/studio-bar/studio-rail.tsx, app/src/components/app/mobile-suite-nav.tsx, app/src/components/app/sidebar.tsx, app/src/components/floor/floor-workspace.tsx]
-summary: The signed-in app puts Home, Projects, Tasks and Timeline first; private Notes remains in More.
+summary: Candidate signed-in navigation puts Home, Projects, Tasks and Timeline first; the private Notes tool sits in More.
 status: complete
 pinned: false
-execWhat: Four everyday destinations lead the signed-in app, while private Notes and existing utilities remain one step away in More.
+execWhat: Four everyday destinations lead the signed-in app, while the private Notes tool and existing utilities remain one step away in More.
 execMatters: People can find their project and the work tied to it without treating Notes as a required first step.
 execRisk: A rail or contextual link that loses the active Project can show the right tool with the wrong work.
 ---
@@ -18,11 +18,12 @@ execRisk: A rail or contextual link that loses the active Project can show the r
 ## WHAT
 
 The approved signed-in navigation order is **Home, Projects, Tasks, Timeline**.
-Home contains the daily signal and briefing. Projects is an explicit work
-context, not another product. Notes remains a private product at `/app/notes`
-and moves to More in navigation; its content and promotion boundary do not
-change. Existing Inbox, account, settings, support and enabled Messages paths
-remain available outside the primary row.
+Home contains the daily signal and briefing and orients the person. Projects,
+Tasks and Timeline form the core work path; Projects is an explicit context,
+not another product. Notes is a private tool at `/app/notes` under More; its
+content and promotion boundary do not change. Existing Inbox, account,
+settings, support and enabled Messages paths remain available outside the
+primary row.
 
 ## WHO
 
@@ -63,12 +64,14 @@ does not grant that state.
 
 ## WHEN — current state
 
-The source at App commit `bd805961` passed independent review and was received
-by the draft integration branch at `34d4c92a`. It is not in App main or
-production. Its optimized local demo build and browser review covered 1440×900, 390×844
-and 320×720, including Home to More to Notes to Projects to Tasks and keyboard
-focus return. That evidence does not prove a real signed-in no-Project account,
-provider behavior, production deploy or final design acceptance. The App PR
+Atlas `status: complete` describes this entry's documentation sections, not
+the App's release state. App commit `bd805961` passed independent review and
+was received by the draft integration branch at `34d4c92a`. It is not in App
+main or production. Its optimized local demo build and browser review covered
+1440×900, 390×844 and 320×720, including Home to More to Notes to Projects to
+Tasks and keyboard focus return. That evidence does not prove a real signed-in
+no-Project account, provider behavior, production deploy or final design
+acceptance. The App PR
 and its receiving checks remain the release boundary.
 
 ## WHY

@@ -44,7 +44,7 @@ filters, progress, and milestones stay out of the bar.
 
 The 2026-09-23 `three-products-home` navigation amendment supersedes that
 destination order for the signed-in app: Home, Projects, Tasks, Timeline are
-primary; private Notes and existing utilities sit under More. Projects is a
+primary; the private Notes tool and existing utilities sit under More. Projects is a
 work context, not another product. App PR 183 implements this as an unshipped
 integration candidate. Public marketing header rules above are unchanged.
 
