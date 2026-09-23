@@ -66,7 +66,7 @@ does not grant that state.
 
 Atlas `status: complete` describes this entry's documentation sections, not
 the App's release state. App commit `bd805961` passed independent review and
-was received by the integration candidate, now `a19ab291`; it is not in App
+was received by the integration candidate, now `07ffb173`; it is not in App
 main or production. Its local build and browser review covered 1440×900,
 390×844 and 320×720, including Home to More to Notes to Projects to Tasks and
 keyboard focus return. Later controlled isolated Preview journeys covered a
