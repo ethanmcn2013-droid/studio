@@ -32,7 +32,9 @@ export function GuidelinesEngine({
     if (!target) return;
 
     navigatingRef.current = true;
-    const timer = window.setTimeout(() => {
+    // A chapter click supersedes the initial fragment scroll. Keep this timer
+    // in the same slot as explicit navigation so it cannot later undo a click.
+    navigationTimerRef.current = setTimeout(() => {
       setActive(target.id);
       document.getElementById(target.id)?.scrollIntoView({
         behavior: "auto",
@@ -40,7 +42,9 @@ export function GuidelinesEngine({
       });
       navigatingRef.current = false;
     }, 120);
-    return () => window.clearTimeout(timer);
+    return () => {
+      if (navigationTimerRef.current) clearTimeout(navigationTimerRef.current);
+    };
   }, [sections]);
 
   useEffect(() => {
