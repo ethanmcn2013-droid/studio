@@ -37,9 +37,15 @@ The founder completed
 the narrow `drive.file` consent and canonical callback, connected the account,
 confirmed Project-folder setup while preserving the existing native file, and
 verified exact downloaded bytes for an 88-byte native fallback file and an
-87-byte Google Drive file on the prior dpl51 checkpoint; no fresh member Drive
-read is claimed for dpl3r7. A delayed download event was reconciled without a
-second upload. Earlier dpl51 checks covered the initial Clerk signup
+87-byte Google Drive file on the prior dpl51 checkpoint. On dpl3r7, the
+controlled work account became storage owner, uploaded a 96-byte Drive file,
+and verified its downloaded bytes; Google showed the work account as owner and
+the founder as editor. Separately, after the founder disconnected Drive, the
+work account reopened the original founder-owned 87-byte file and it rendered.
+This is a current member-access observation for that existing file; it does
+not change the earlier dpl51 receipt's source attribution. The founder has not
+downloaded the new 96-byte file. A delayed download event was reconciled
+without a second upload. Earlier dpl51 checks covered the initial Clerk signup
 restriction, the private App gate for a registered but unlisted user, and
 refusal of a wrong-account Project invitation; a limited test invitation was
 issued. A controlled second actor registered,

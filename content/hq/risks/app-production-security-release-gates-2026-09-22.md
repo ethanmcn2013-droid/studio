@@ -64,8 +64,14 @@ inventory covers 25 hosts total (six aliases and 19 generated hosts) and 50
 path observations with zero network errors. Three intended cron schedules are
 enabled. Founder Drive consent, callback, connection, folder setup, exact
 88-byte native fallback download, and exact 87-byte Drive download match were
-verified on the prior dpl51 checkpoint; no fresh member Drive read is claimed
-for dpl3r7. Earlier dpl51 checks covered the initial Clerk signup restriction,
+verified on the prior dpl51 checkpoint. On dpl3r7, the controlled work account
+became storage owner, uploaded and byte-verified a 96-byte Drive file, and the
+provider showed the work account as owner and the founder as editor. Separately,
+after the founder disconnected Drive, the work account reopened the original
+founder-owned 87-byte file and it rendered. This is a current member-access
+observation for that existing file; it does not change the earlier dpl51
+receipt's source attribution. The founder has not downloaded the new 96-byte
+file. Earlier dpl51 checks covered the initial Clerk signup restriction,
 the private App gate for a registered but unlisted user, and refusal of a
 wrong-account Project invitation; a limited one-day test invitation was
 issued. On dpl3r7, the controlled founder and work account
@@ -155,11 +161,15 @@ it does not establish complete production Drive lifecycle readiness. Production
 serves App main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` with Notes `0001`,
 Timeline adoption `0001`, and Tasks `0028`–`0038` applied. Founder Drive consent
 and exact file checks were recorded on dpl51. A controlled member opened the
-matched Drive file on dpl51 and a separate native attachment receipt records
-matching bytes; no fresh member Drive read is claimed on dpl3r7. Controlled
-production reconnect, restore, and owner-handover checks have since been
-reported; final member-removal and lifecycle closeout remain pending the
-detailed receiving record. The controlled
+matched Drive file on dpl51; separately, on dpl3r7, the work storage owner
+reopened the original founder-owned 87-byte Drive file after the founder
+disconnected and it rendered. A different 96-byte file uploaded by the work
+owner had exact bytes verified, with the provider showing work as owner and
+founder as editor; the founder has not downloaded that file. These results
+separate current member access to the historical file from owner-side upload
+and download of the new file. Controlled production reconnect, restore, and
+owner-handover checks have since been reported; final member-removal and
+lifecycle closeout remain pending the detailed receiving record. The controlled
 second actor is registered, verified Google, and has accepted a canary Project
 invitation; production Task Discussion and Project-room receiving was observed
 on dpl3r7. These controlled-account checks do not constitute a human study or
