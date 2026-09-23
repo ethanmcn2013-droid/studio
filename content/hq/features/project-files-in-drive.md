@@ -17,33 +17,45 @@ holds the Drive file bytes. The connection requests only `drive.file`.
 
 The founder-only candidate was App source
 `b164100a19880cb8ab1b9461bc6c4031c9aede5b`; independent receiving review
-accepted it for that candidate scope. Production has since resumed on App main
-`c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`, deployment
-`dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`, at 20:19 UTC on 23 September. All six
-production aliases resolve to that deployment, scheduled jobs are enabled,
-and Standard Protection covers 24 generated hosts and 48 scoped path checks.
+accepted it for that candidate scope. At the 20:19 UTC checkpoint on 23
+September, production had resumed on App
+main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`, deployment
+`dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`. The current checkpoint is the same App
+source on deployment `dpl_3r7x5j88kecBCATCUTGzr9biPPzR` (20:55 UTC, 23
+September). All six production aliases resolve to the current deployment;
+three intended scheduled jobs are enabled. The protection inventory covers
+25 hosts in total (six aliases and 19 generated hosts) and records 50 path
+observations with no network errors.
 Notes migration `0001`, Timeline adoption `0001`, and Tasks migrations
 `0028`–`0038` are applied and current; original rows were preserved, integrity
 and foreign-key checks passed, and a second migration run was a no-op. The
 founder's existing Tasks board and four Timeline milestones were read after
 resumption.
 
-Production Drive is now activated for founder-only use. The founder completed
+Production Drive is activated for bounded founder-controlled internal use.
+The founder completed
 the narrow `drive.file` consent and canonical callback, connected the account,
 confirmed Project-folder setup while preserving the existing native file, and
 verified exact downloaded bytes for an 88-byte native fallback file and an
-87-byte Google Drive file. A delayed download event was reconciled without a
-second upload. Unlisted signup and wrong-account invitation were refused; a
-limited test invitation was issued. A controlled second actor has since
-registered, verified Google, and accepted a canary Project invitation, with
-read-only Tasks access observed. No positive Drive member-access/removal or
-reconnect proof is claimed. Messaging is currently founder-only; there is no
-independent two-actor conversation proof. Public launch is not claimed; direct
-messages, external delivery, and the four repair-only flags remain off. The
-uploader avatar displayed “Someone” on both files; this is an unresolved UI
-label observation, not evidence about identity or access authority. A real
-next-day/24–48-hour elapsed-use observation is still outstanding. The
-production receiving source is recorded in workspace evidence commit
+87-byte Google Drive file on the prior dpl51 checkpoint; no fresh member Drive
+read is claimed for dpl3r7. A delayed download event was reconciled without a
+second upload. Earlier dpl51 checks covered the initial Clerk signup
+restriction, the private App gate for a registered but unlisted user, and
+refusal of a wrong-account Project invitation; a limited test invitation was
+issued. A controlled second actor registered,
+verified Google, and accepted a canary Project invitation. On dpl3r7, the
+founder and that controlled actor exchanged messages in a Task Discussion and
+Project room; the founder opened the exact new task comment from Inbox and
+sent a room reply. This is a controlled two-account
+production observation, not a wider-user study. The uploader avatar displayed
+“Someone” on both files; this is an unresolved UI label observation, not
+evidence about identity or access authority. Controlled production reconnect,
+restore, and owner-handover checks have since been reported; final membership
+removal and lifecycle closeout remain pending the detailed receiving record.
+Public launch is not claimed;
+direct messages, external delivery, and the four repair-only flags remain off.
+A real next-day/24–48-hour elapsed-use observation is still outstanding.
+Production receiving evidence is archived in workspace commit
 `de6f6fe5b85c5578f00dd5386be1f41fe0f2323c`.
 
 ## What Preview has proved

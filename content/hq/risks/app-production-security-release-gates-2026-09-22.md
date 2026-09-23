@@ -23,11 +23,12 @@ been demonstrated. The upgrade addresses the vulnerable version exposure; it
 does not establish that the production system was exploited or compromised.
 
 The narrow App patch was released at main `6ae877710c49c4b8a69c0de7e068442c3af4eb23`.
-At that earlier checkpoint it was included in main
+At the 23 September pre-release inventory checkpoint, it was included in main
 `c65cb2d5d5616b50b4988fc3ba19f1f42bad9756` and production
-`dpl_9nQWBjBFavmXeiA1YpErboU2gXit`. That deployment is historical: production
-has since resumed on main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` and
-deployment `dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`. The earlier `/app/home` and
+`dpl_9nQWBjBFavmXeiA1YpErboU2gXit`. Those are historical revisions. Production
+later resumed on main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`; the current
+configuration-only deployment is `dpl_3r7x5j88kecBCATCUTGzr9biPPzR` (23
+September, 20:55 UTC). The earlier `/app/home` and
 `/icon` smoke checks do not certify authenticated workflows or the larger
 production sprint. The security release changed no database or environment
 configuration. Its recorded audit reported six lower-severity findings in that
@@ -39,11 +40,14 @@ result.
 The founder-only #22 candidate was
 `b164100a19880cb8ab1b9461bc6c4031c9aede5b` in isolated Preview
 `dpl_DaKstaURXDtbYBZUTi27mwFn8DZc`; its independent receiving review accepted
-it for that candidate scope. Production has since resumed at App main
+it for that candidate scope. At 19:43:45 UTC on 23 September, production
+resumed at App main
 `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`, deployment
-`dpl_65msoCrXoErhwZRMr47cfn9ekTSb`, at 19:43:45 UTC on 23 September. Main is
-tree-identical to the accepted candidate. All six production aliases resolve
-to this deployment. Notes migration `0001`, Timeline adoption `0001`, and
+`dpl_65msoCrXoErhwZRMr47cfn9ekTSb`. This deployment is historical; production
+later moved to dpl51 and then to the current configuration-only dpl3r7
+deployment described below. Main is tree-identical to the accepted candidate.
+At that checkpoint, all six production aliases resolved to this deployment.
+Notes migration `0001`, Timeline adoption `0001`, and
 Tasks migrations `0028`–`0038` are applied and current; original rows were
 preserved, integrity and foreign-key checks passed, and an actual second-run
 no-op passed. The migration bytes match the reviewed candidate source. Tasks
@@ -53,29 +57,28 @@ private release download and decryption verification. This is a production
 schema and backup checkpoint, not completion of all runtime gates.
 
 The founder's existing production Tasks board (11 tasks) and Timeline (four
-milestones) were read after resume. Three intended cron schedules were
-restored and read back. The same c057 main revision is now promoted to
-deployment `dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`; all six aliases resolve to it and
-Standard Protection covers 24 generated hosts and 48 scoped path checks; the
-three intended cron schedules are enabled. Founder-only
-messaging and Drive are activated. Drive receiving includes the limited
-`drive.file` consent, canonical callback, connected-account UI, Project-folder
-setup, exact 88-byte native fallback download, and exact 87-byte Drive UI and
-download match. The download-event wait timed out and was reconciled without
-resubmission. Unlisted signup and wrong-account invitation were refused; a
-limited one-day test invitation was issued. These are not positive second-user
-Drive access or lifecycle proof. Messaging was exercised by the founder in
-separate controlled Task Discussion and Project-room journeys, not by two
-independent production actors. A second controlled actor is now registered,
-Google-verified, and has accepted a canary Project invitation with read-only
-Tasks access observed; the conversation allowlist configuration is still
-underway and has not been deployed. Direct messages, external delivery, and
-four repair-only flags remain off. Public launch is not claimed. The Drive
-resource UI showed the uploader as “Someone” on both files; this is a minor
-unresolved display label, not identity or authorization evidence. The earlier
-`prod migrations current` failure at Tasks `0027` is historical and superseded
-by the successful c057 migration and drift receipts above. A real
-next-day/24–48-hour elapsed-use observation remains outstanding.
+milestones) were read after resume. The same c057 main revision was promoted
+again as configuration-only deployment `dpl_3r7x5j88kecBCATCUTGzr9biPPzR` at
+20:55 UTC on 23 September. All six aliases resolve to it. The protection
+inventory covers 25 hosts total (six aliases and 19 generated hosts) and 50
+path observations with zero network errors. Three intended cron schedules are
+enabled. Founder Drive consent, callback, connection, folder setup, exact
+88-byte native fallback download, and exact 87-byte Drive download match were
+verified on the prior dpl51 checkpoint; no fresh member Drive read is claimed
+for dpl3r7. Earlier dpl51 checks covered the initial Clerk signup restriction,
+the private App gate for a registered but unlisted user, and refusal of a
+wrong-account Project invitation; a limited one-day test invitation was
+issued. On dpl3r7, the controlled founder and work account
+exchanged messages in Task Discussion and a Project room. The founder opened
+the exact new task comment from Inbox and sent a room reply. These are
+controlled two-account production observations, not a human
+study. Direct messages, external delivery, and four repair-only flags remain
+off. Public launch is not claimed. The Drive resource UI showed the uploader
+as “Someone” on both files; this is a minor unresolved display label, not
+identity or authorization evidence. The earlier `prod migrations current`
+failure at Tasks `0027` is historical and superseded by the successful c057
+migration and drift receipts above. A real next-day/24–48-hour elapsed-use
+observation remains outstanding.
 
 The saved production-only audit for the integrated candidate's dependency
 snapshot reports zero critical, high, or moderate findings and one low runtime
@@ -127,11 +130,13 @@ remained unchanged.
 The founder-only amendment of 23 September defers newcomer and conversation-
 comprehension cohorts to a possible wider release. No participant session is
 claimed; controlled accounts are not human-study evidence. The finite J13
-attention packet was accepted at Preview source `96df1e1c`. Production
-messaging is currently founder-only; direct messages and external delivery are
-disabled. The controlled second actor's conversation allowlist update has not
-yet been deployed, so no independent two-actor production conversation proof
-is claimed.
+attention packet was accepted at Preview source `96df1e1c`. On production
+source c057, the controlled work account was added through a configuration-only
+conversation allowlist update. Task Discussion and Project-room exchanges,
+founder Inbox links, and the exact task-comment destination were observed on
+dpl3r7. This is bounded controlled-account receiving evidence, not cohort
+comprehension or broad release acceptance. Direct messages and external
+delivery remain disabled.
 
 Drive lifecycle issue #32 is Done at exact Preview source `b164100a`. The
 candidate's ambiguous-ack receiving checks completed for both a 150-byte file
@@ -145,15 +150,20 @@ observation, not as an earlier claim. The exact source review and read-only
 receipt are `work/final-acceptance-b164.md` and
 `work/drive-project-after-delete-b164.json`.
 
-The #32 acceptance remains the bounded Drive lifecycle proof on isolated
-Preview; it does not establish complete production Drive lifecycle readiness.
-Production now serves App main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`
-with Notes `0001`, Timeline adoption `0001`, and Tasks `0028`–`0038` applied.
-Founder-only Drive is activated with the limited consent and file-receiving
-checks above. Positive member access/removal, reconnect, and lifecycle proof
-remain outstanding. A controlled second actor has registered, verified Google,
-and accepted a canary Project invitation; this does not replace Drive member
-authorization checks. Current production receiving details are archived in
+The #32 acceptance is the bounded Drive lifecycle proof on isolated Preview;
+it does not establish complete production Drive lifecycle readiness. Production
+serves App main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` with Notes `0001`,
+Timeline adoption `0001`, and Tasks `0028`–`0038` applied. Founder Drive consent
+and exact file checks were recorded on dpl51. A controlled member opened the
+matched Drive file on dpl51 and a separate native attachment receipt records
+matching bytes; no fresh member Drive read is claimed on dpl3r7. Controlled
+production reconnect, restore, and owner-handover checks have since been
+reported; final member-removal and lifecycle closeout remain pending the
+detailed receiving record. The controlled
+second actor is registered, verified Google, and has accepted a canary Project
+invitation; production Task Discussion and Project-room receiving was observed
+on dpl3r7. These controlled-account checks do not constitute a human study or
+complete lifecycle proof. Current production receiving details are archived in
 workspace evidence commit `de6f6fe5b85c5578f00dd5386be1f41fe0f2323c`. A real
 next-day return and 24–48-hour elapsed-use observation remains pending. Email
 delivery was unavailable in the earlier development invitation rehearsal; no
