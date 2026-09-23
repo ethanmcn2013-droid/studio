@@ -39,7 +39,7 @@ state. This follows `contextual-links-are-navigation` rather than weakening it.
 
 This is the approved navigation direction. [App PR 183](https://github.com/ethanmcn2013-droid/app/pull/183)
 at `bd805961` was independently reviewed and received by the integration
-candidate, now at `a19ab291`; that candidate has not been merged to App main
+candidate, now at `07ffb173`; that candidate has not been merged to App main
 or deployed to production. Controlled isolated Preview journeys subsequently
 covered real-account Project selection and core routing, while local and
 deployed checks covered desktop, phone, More and keyboard return. These are
