@@ -54,7 +54,7 @@ share token, IP address, referrer, or user-agent.
 - Studio PR #90: exact branded wedding path repair and production smoke.
 
 The owner workspace now opens on this component and preserves the publication
-boundary. The Timeline marketing page also uses this artifact contract as its
+boundary. The retired Timeline marketing page used this artifact contract as its
 product proof.
 
 ## Tasks date-source repair (App candidate, 23 September 2026)
