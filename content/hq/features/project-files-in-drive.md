@@ -15,14 +15,21 @@ storage owner's credential writes the files; members do not each connect Drive.
 Signal Studio keeps resource records and access relationships, while Google
 holds the Drive file bytes. The connection requests only `drive.file`.
 
-The founder-only candidate is App source `b164100a19880cb8ab1b9461bc6c4031c9aede5b`,
-isolated Preview `dpl_DaKstaURXDtbYBZUTi27mwFn8DZc`. Independent receiving
-review accepted it for the founder-only #22 candidate scope. This is not a
-production release. Production remains App `c65cb2d5` with Tasks schema through
-`0027`; the controlled production sequence is #23. The 24-hour/next-day and
-24–48-hour observation belongs to #24 after release. Delivery issue #32, the
-bounded Drive lifecycle and cleanup acceptance, is Done; it does not close
-production cutover.
+The founder-only candidate was App source
+`b164100a19880cb8ab1b9461bc6c4031c9aede5b`; independent receiving review
+accepted it for #22. Production has since resumed on App main
+`c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`, deployment
+`dpl_65msoCrXoErhwZRMr47cfn9ekTSb`, at 19:43:45 UTC on 23 September. All six
+production aliases resolve to that deployment. Notes migration `0001`, Timeline
+adoption `0001`, and Tasks migrations `0028`–`0038` are applied and current;
+original rows were preserved, integrity and foreign-key checks passed, and a
+second migration run was a no-op. The founder's existing Tasks board and four
+Timeline milestones were read in the resumed production app. This does not
+mean Drive is enabled: Drive and conversations remain off while provider keys
+and runtime activation are outstanding. Issue #23 remains In Progress (10 of
+12 accepted packets); #24 still needs a real next-day/24–48-hour observation.
+Issue #32, the bounded Drive lifecycle and cleanup acceptance, is Done, but
+does not close those remaining release gates.
 
 ## What Preview has proved
 

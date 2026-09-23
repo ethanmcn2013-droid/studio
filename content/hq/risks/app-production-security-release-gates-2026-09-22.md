@@ -1,6 +1,6 @@
 ---
 id: app-production-security-release-gates-2026-09-22
-title: App security patch is deployed; production cutover and lifecycle risks remain.
+title: App security patch and database migrations are deployed; runtime gates remain.
 category: Infrastructure
 likelihood: Medium
 impact: High
@@ -35,19 +35,30 @@ low `@babel/core`, and one low `@ai-sdk/provider-utils`. Do not treat that
 historical count as the integrated candidate's audit or as a zero-findings
 result.
 
-The founder-only #22 candidate is
+The founder-only #22 candidate was
 `b164100a19880cb8ab1b9461bc6c4031c9aede5b` in isolated Preview
 `dpl_DaKstaURXDtbYBZUTi27mwFn8DZc`; its independent receiving review accepted
-it for that candidate scope. Its source CI checks passed:
-typecheck/tests run `35893623372`, Design quality `35893623377`, and Verify
-Tasks `35893623361`. The separate `prod migrations current` run `35893623363`
-failed as expected because production Tasks remains at `0027`, eleven entries
-behind the candidate; that check remains a release gate.
-Preview Tasks has applied migrations 0037 and 0038, preserved all 46
-application tables, passed integrity and foreign-key checks, and passed an
-actual second-run no-op. The applied migration bytes are unchanged from the
-reviewed 8f3dc source. Canonical production remains App `c65cb2d5`, Tasks
-`0027`; candidate Preview is not promoted.
+it for that candidate scope. Production has since resumed at App main
+`c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`, deployment
+`dpl_65msoCrXoErhwZRMr47cfn9ekTSb`, at 19:43:45 UTC on 23 September. Main is
+tree-identical to the accepted candidate. All six production aliases resolve
+to this deployment. Notes migration `0001`, Timeline adoption `0001`, and
+Tasks migrations `0028`–`0038` are applied and current; original rows were
+preserved, integrity and foreign-key checks passed, and an actual second-run
+no-op passed. The migration bytes match the reviewed candidate source. Tasks
+workflow run `35909383620` and post-migration drift check `35909894779` passed.
+The fresh 19:17 backup restored locally, and the encrypted artifact passed
+private release download and decryption verification. This is a production
+schema and backup checkpoint, not completion of all runtime gates.
+
+The founder's existing production Tasks board (11 tasks) and Timeline (four
+milestones) were read after resume. Three intended cron schedules were
+restored and read back. Production conversations and Drive remain disabled;
+provider keys and runtime activation are still outstanding. Issue #23 remains
+In Progress with 10 of 12 accepted packets. Issue #24 still requires an actual
+next-day/24–48-hour elapsed-use observation after release. The earlier
+`prod migrations current` failure at Tasks `0027` is historical and superseded
+by the successful c057 migration and drift receipts above.
 
 The saved production-only audit for the integrated candidate's dependency
 snapshot reports zero critical, high, or moderate findings and one low runtime
@@ -100,7 +111,8 @@ The founder-only amendment of 23 September defers newcomer and conversation-
 comprehension cohorts to a possible wider release. No participant session is
 claimed; controlled accounts are not human-study evidence. The finite J13
 attention packet was accepted at Preview source `96df1e1c`, and private
-workspace issue #31 is Done. Direct messages remain disabled.
+workspace issue #31 is Done. Conversations remain disabled in production;
+direct messages are disabled.
 
 Drive lifecycle issue #32 is Done at exact Preview source `b164100a`. The
 candidate's ambiguous-ack receiving checks completed for both a 150-byte file
@@ -114,14 +126,17 @@ observation, not as an earlier claim. The exact source review and read-only
 receipt are `work/final-acceptance-b164.md` and
 `work/drive-project-after-delete-b164.json`.
 
-This acceptance is for the founder-only candidate, not production. Production
-still serves App `c65cb2d5` with Tasks schema `0027`; issue #23 owns the
-controlled cutover and its five-store runtime, backup, migration, and allowed
-or refused production smoke. The #22 candidate acceptance does not satisfy
-that cutover. Issue #24 owns the real next-day return and 24–48-hour elapsed-use
-observation after release; that evidence is still pending. Two controlled
-development identities accepted visible invitations; email delivery was
-unavailable and no email was sent.
+The #32 acceptance remains the bounded Drive lifecycle proof on isolated
+Preview; it does not establish production Drive readiness. Production now
+serves App main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` with Notes `0001`,
+Timeline adoption `0001`, and Tasks `0028`–`0038` applied, but conversations and
+Drive are still off while provider keys and runtime activation are completed.
+Issue #23 remains In Progress (10 of 12 accepted packets); its remaining
+runtime and production smoke evidence must be received before it closes. Issue
+#24 owns the real next-day return and 24–48-hour elapsed-use observation after
+release; that evidence is pending. Two controlled development identities
+accepted visible invitations; email delivery was unavailable and no email was
+sent.
 
 App PR #181 replaces the raw database-artifact workflow with encrypted custody.
 The old workflow remains disabled. Backup-only run `35802251897` at current main
