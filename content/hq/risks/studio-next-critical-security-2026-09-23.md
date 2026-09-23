@@ -7,7 +7,7 @@ likelihood: Possible
 status: Needs attention
 owner: Ethan
 reviewDate: 2026-09-23
-relatedObjects: [Studio PR 192, Studio production deployment aaf87116, Next.js GHSA-vcvr-r3jv-pc5j]
+relatedObjects: [Studio PR 192, Studio production commit aaf87116, Next.js GHSA-vcvr-r3jv-pc5j]
 ---
 
 ## Current state
