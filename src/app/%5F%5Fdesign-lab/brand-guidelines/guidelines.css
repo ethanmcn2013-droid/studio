@@ -54,10 +54,8 @@
   overflow: clip;
 }
 
-.guidelines-chapter:not(.guidelines-introduction) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 1800px;
-}
+/* Chapter anchors need stable document geometry. Deferred intrinsic section
+   heights changed during long navigation and landed on the previous chapter. */
 
 .guidelines-chapter:nth-of-type(even) {
   background: var(--paper-soft);
