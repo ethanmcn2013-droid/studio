@@ -20,10 +20,14 @@ The founder-only candidate was App source
 accepted it for that candidate scope. At the 20:19 UTC checkpoint on 23
 September, production had resumed on App
 main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`, deployment
-`dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`. The current checkpoint is the same App
-source on deployment `dpl_3r7x5j88kecBCATCUTGzr9biPPzR` (20:55 UTC, 23
-September). All six production aliases resolve to the current deployment;
-three intended scheduled jobs are enabled. The protection inventory covers
+`dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`, and later moved to the same source on
+`dpl_3r7x5j88kecBCATCUTGzr9biPPzR` (20:55 UTC, 23 September). Since 00:09 UTC
+on 24 September, production serves source-only successor App main
+`06dace82eb2ef0c0006b603f6e6010d6cffc80ec` on
+`dpl_DpqiYicAAdmQtKJwe5jBX9fZ5tLY`. It passed runtime database-binding
+attestation before promotion; there was no migration or data write. All six
+production aliases resolve to it, and the three intended scheduled jobs are
+enabled. The protection inventory below was recorded on dpl3r7. The protection inventory covers
 25 hosts in total (six aliases and 19 generated hosts) and records 50 path
 observations with no network errors.
 Notes migration `0001`, Timeline adoption `0001`, and Tasks migrations
@@ -53,16 +57,23 @@ verified Google, and accepted a canary Project invitation. On dpl3r7, the
 founder and that controlled actor exchanged messages in a Task Discussion and
 Project room; the founder opened the exact new task comment from Inbox and
 sent a room reply. This is a controlled two-account
-production observation, not a wider-user study. The uploader avatar displayed
-“Someone” on both files; this is an unresolved UI label observation, not
-evidence about identity or access authority. Controlled production reconnect,
-restore, and owner-handover checks have since been reported; final membership
-removal and lifecycle closeout remain pending the detailed receiving record.
+production observation, not a wider-user study. On dpl3r7 the uploader avatar
+displayed “Someone” on both files. Release `06dace82` resolves the label, and
+Resources now names the authorized contributor on native and Drive files. A
+display name is not evidence about identity or access authority. Controlled
+production reconnect, restore and owner-handover checks passed. The work
+account was removed from the canary Project at about 21:27 UTC on 23 September.
+Its grants were removed from both founder Drive generations, and there are
+zero pending operations. The removed account was denied the old Project, Task,
+room and the founder's Drive file. Future storage is owned by the founder;
+historical files keep their original owners.
 Public launch is not claimed;
 direct messages, external delivery, and the four repair-only flags remain off.
 A real next-day/24–48-hour elapsed-use observation is still outstanding.
 Production receiving evidence is archived in workspace commit
-`de6f6fe5b85c5578f00dd5386be1f41fe0f2323c`.
+`de6f6fe5b85c5578f00dd5386be1f41fe0f2323c`. The 06dace82 release and receiving
+evidence is in the private workspace folder
+`docs/execution/production-sprint-2026-09/timeline-context-release-06dace/`.
 
 ## What Preview has proved
 

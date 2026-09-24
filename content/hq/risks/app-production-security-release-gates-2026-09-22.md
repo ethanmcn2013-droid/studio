@@ -6,7 +6,7 @@ likelihood: Medium
 impact: High
 status: Needs attention
 owner: Ethan
-reviewDate: 2026-09-23
+reviewDate: 2026-09-24
 ---
 
 ## The risk
@@ -26,9 +26,12 @@ The narrow App patch was released at main `6ae877710c49c4b8a69c0de7e068442c3af4e
 At the 23 September pre-release inventory checkpoint, it was included in main
 `c65cb2d5d5616b50b4988fc3ba19f1f42bad9756` and production
 `dpl_9nQWBjBFavmXeiA1YpErboU2gXit`. Those are historical revisions. Production
-later resumed on main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`; the current
-configuration-only deployment is `dpl_3r7x5j88kecBCATCUTGzr9biPPzR` (23
-September, 20:55 UTC). The earlier `/app/home` and
+later resumed on main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` as
+configuration-only deployment `dpl_3r7x5j88kecBCATCUTGzr9biPPzR` (23
+September, 20:55 UTC). Since 00:09 UTC on 24 September, production serves
+`dpl_DpqiYicAAdmQtKJwe5jBX9fZ5tLY` at main
+`06dace82eb2ef0c0006b603f6e6010d6cffc80ec`; see the current release section
+below. The earlier `/app/home` and
 `/icon` smoke checks do not certify authenticated workflows or the larger
 production sprint. The security release changed no database or environment
 configuration. Its recorded audit reported six lower-severity findings in that
@@ -79,9 +82,10 @@ exchanged messages in Task Discussion and a Project room. The founder opened
 the exact new task comment from Inbox and sent a room reply. These are
 controlled two-account production observations, not a human
 study. Direct messages, external delivery, and four repair-only flags remain
-off. Public launch is not claimed. The Drive resource UI showed the uploader
-as “Someone” on both files; this is a minor unresolved display label, not
-identity or authorization evidence. The earlier `prod migrations current`
+off. Public launch is not claimed. On dpl3r7 the Drive resource UI showed the
+uploader as “Someone” on both files. Release `06dace82` resolves this: Resources
+now shows the authorized contributor's name on native and Drive files. A
+display name is not identity or authorization evidence. The earlier `prod migrations current`
 failure at Tasks `0027` is historical and superseded by the successful c057
 migration and drift receipts above. A real next-day/24–48-hour elapsed-use
 observation remains outstanding.
@@ -107,6 +111,45 @@ for the security patch: the measured gzip chunk is 64,571 bytes (63.0576 KiB),
 remains 63 KiB. No other budget changed. This was a delegated sprint decision
 under the user's execution authority, not a numeric choice attributed to the
 founder. Reassess the exception after the security release is integrated.
+
+## Current production release (24 September)
+
+At 00:09 UTC on 24 September, App main
+`06dace82eb2ef0c0006b603f6e6010d6cffc80ec` was promoted as
+`dpl_DpqiYicAAdmQtKJwe5jBX9fZ5tLY`. It is source-only, with no migration and
+no direct data write, and combines two changes:
+- App PR #191: the rolling digest reads "Due in the next 24 hours", and Inbox and Resources show contributor names.
+- App PR #192: the Timeline "Open shared page" link keeps its Project context. It previously returned 404 for a Project that was not the owner's primary one.
+
+Before promotion:
+- The exact staged build passed runtime binding attestation: all five literal database URL fingerprints matched.
+- The temporary attestation keys were removed.
+
+Post-promotion readback:
+- All six aliases resolve to the new deployment.
+- Deployment protection and the three cron schedules are preserved.
+- A bounded anonymous probe of six hosts saw no 5xx.
+
+Founder receiving confirmed:
+- Inbox shows the new label.
+- Populated Resources show contributor names.
+- The Timeline draft opens from the manager.
+
+The earlier eec057 stage `dpl_5gmqycxmrDNKgRori6hAXaMxRrys` and a refused worktree-built stage `dpl_4ADBTGCyamFVxmz9hdF6dP55XUoo` were never promoted. The previous deployment `dpl_3r7x…` remains the safe fallback; pre-0035 writers remain unsafe.
+
+On the synthetic canary Timeline, the owner published one milestone, read it anonymously and revoked it:
+- The published page returned no-store and noindex headers and exposed only the chosen milestone, dated 24 September 2026 in America/New_York.
+- After revocation the link returned a content-free page. It is a soft 404: the status is 200.
+
+Two small follow-ups:
+- App PR #193: arming a share confirm button no longer moves the adjacent destructive control.
+- The revoked-link status code.
+
+Scheduled job executions and 24–48-hour daily use are still unobserved (tracker packet P10).
+
+Evidence: private workspace
+`docs/execution/production-sprint-2026-09/timeline-context-release-06dace/` and
+`timeline-audience-production-c057/`.
 
 ## Evidence and release gate
 
@@ -158,7 +201,8 @@ receipt are `work/final-acceptance-b164.md` and
 
 The #32 acceptance is the bounded Drive lifecycle proof on isolated Preview;
 it does not establish complete production Drive lifecycle readiness. Production
-serves App main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` with Notes `0001`,
+served App main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` until 24 September
+and now serves source-only successor `06dace82`, both with Notes `0001`,
 Timeline adoption `0001`, and Tasks `0028`–`0038` applied. Founder Drive consent
 and exact file checks were recorded on dpl51. A controlled member opened the
 matched Drive file on dpl51; separately, on dpl3r7, the work storage owner
@@ -168,8 +212,11 @@ owner had exact bytes verified, with the provider showing work as owner and
 founder as editor; the founder has not downloaded that file. These results
 separate current member access to the historical file from owner-side upload
 and download of the new file. Controlled production reconnect, restore, and
-owner-handover checks have since been reported; final member-removal and
-lifecycle closeout remain pending the detailed receiving record. The controlled
+owner-handover checks passed. The work account was removed from the canary
+Project at about 21:27 UTC on 23 September. The Project is now founder-only,
+work grants were removed from both founder Drive generations, and there are
+zero pending operations. The removed account was then denied the old Project,
+Task, room and founder Drive file. The controlled
 second actor is registered, verified Google, and has accepted a canary Project
 invitation; production Task Discussion and Project-room receiving was observed
 on dpl3r7. These controlled-account checks do not constitute a human study or
