@@ -28,9 +28,11 @@ At the 23 September pre-release inventory checkpoint, it was included in main
 `dpl_9nQWBjBFavmXeiA1YpErboU2gXit`. Those are historical revisions. Production
 later resumed on main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` as
 configuration-only deployment `dpl_3r7x5j88kecBCATCUTGzr9biPPzR` (23
-September, 20:55 UTC). Since 00:09 UTC on 24 September, production serves
+September, 20:55 UTC). On 24 September production moved to
 `dpl_DpqiYicAAdmQtKJwe5jBX9fZ5tLY` at main
-`06dace82eb2ef0c0006b603f6e6010d6cffc80ec`; see the current release section
+`06dace82eb2ef0c0006b603f6e6010d6cffc80ec` (00:09 UTC). Since 10:23 UTC it
+serves `dpl_HtZTpbstJrxbpasBwcm3TV7qrf7f` at main
+`be61bc9e986efc002ca998f0d20acf02a4641229`; see the current release section
 below. The earlier `/app/home` and
 `/icon` smoke checks do not certify authenticated workflows or the larger
 production sprint. The security release changed no database or environment
@@ -145,7 +147,16 @@ Two small follow-ups:
 - App PR #193: arming a share confirm button no longer moves the adjacent destructive control.
 - The revoked-link status code.
 
-Scheduled job executions and 24–48-hour daily use are still unobserved (tracker packet P10).
+On 24 September the same guarded chain shipped two owner-UI follow-ups: `8820feb3` (App
+PRs #193 and #194, `dpl_Dix2gCxoopMY7TepGv372vhkkJeE`, 09:44 UTC) and
+`be61bc9e` (App PR #195, `dpl_HtZTpbstJrxbpasBwcm3TV7qrf7f`, 10:23 UTC). #195
+stops the artifact studio from saying "Link live" after every link was
+revoked. Each release:
+- passed the same five-binding runtime attestation and temporary-key cleanup;
+- kept all six aliases, protection and crons;
+- changed no data path, migration or job.
+
+Tracker packet P09 is accepted; P10 elapsed-use observation is in progress. The 09:00 digest job ran at 09:47 UTC on 24 September; the Hobby plan fires crons within the scheduled hour. The Studio heartbeat was received with a 200. The digest intentionally sends no email for an impersonal scheduled run. The App's analytics and Drive-repair jobs leave no durable run record beyond about an hour of logs. HQ's "analytics daily cron" alarm tracks the retired standalone Signal briefing job, not an App job.
 
 Evidence: private workspace
 `docs/execution/production-sprint-2026-09/timeline-context-release-06dace/` and
