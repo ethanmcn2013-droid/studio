@@ -22,9 +22,11 @@ September, production had resumed on App
 main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd`, deployment
 `dpl_51aShrWTDHpVxNxBkGza1VSHWeC5`, and later moved to the same source on
 `dpl_3r7x5j88kecBCATCUTGzr9biPPzR` (20:55 UTC, 23 September). Since 00:09 UTC
-on 24 September, production serves source-only successor App main
+on 24 September, production moved to source-only successor App main
 `06dace82eb2ef0c0006b603f6e6010d6cffc80ec` on
-`dpl_DpqiYicAAdmQtKJwe5jBX9fZ5tLY`. It passed runtime database-binding
+`dpl_DpqiYicAAdmQtKJwe5jBX9fZ5tLY`, followed the same day by two owner-UI
+Timeline releases. It currently serves `be61bc9e` on
+`dpl_HtZTpbstJrxbpasBwcm3TV7qrf7f`, with no Drive change. Each release passed runtime database-binding
 attestation before promotion; there was no migration or data write. All six
 production aliases resolve to it, and the three intended scheduled jobs are
 enabled. The protection inventory below was recorded on dpl3r7. The protection inventory covers
