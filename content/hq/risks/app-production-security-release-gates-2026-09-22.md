@@ -30,9 +30,9 @@ later resumed on main `c0573fdbcb6e8eb938f6754143c57d289eeb3ccd` as
 configuration-only deployment `dpl_3r7x5j88kecBCATCUTGzr9biPPzR` (23
 September, 20:55 UTC). On 24 September production moved to
 `dpl_DpqiYicAAdmQtKJwe5jBX9fZ5tLY` at main
-`06dace82eb2ef0c0006b603f6e6010d6cffc80ec` (00:09 UTC). Since 10:23 UTC it
-serves `dpl_HtZTpbstJrxbpasBwcm3TV7qrf7f` at main
-`be61bc9e986efc002ca998f0d20acf02a4641229`; see the current release section
+`06dace82eb2ef0c0006b603f6e6010d6cffc80ec` (00:09 UTC). Since 11:13 UTC it
+serves `dpl_EqEq1iAP9tYYuzB9FspJfPDaESn6` at main
+`64210b1e5aa200d952ba8c8010e324506e74587f`; see the current release section
 below. The earlier `/app/home` and
 `/icon` smoke checks do not certify authenticated workflows or the larger
 production sprint. The security release changed no database or environment
@@ -156,7 +156,7 @@ revoked. Each release:
 - kept all six aliases, protection and crons;
 - changed no data path, migration or job.
 
-Tracker packet P09 is accepted; P10 elapsed-use observation is in progress. The 09:00 digest job ran at 09:47 UTC on 24 September; the Hobby plan fires crons within the scheduled hour. The Studio heartbeat was received with a 200. The digest intentionally sends no email for an impersonal scheduled run. The App's analytics and Drive-repair jobs leave no durable run record beyond about an hour of logs. HQ's "analytics daily cron" alarm tracks the retired standalone Signal briefing job, not an App job.
+Tracker packet P09 is accepted; P10 elapsed-use observation is in progress. The 09:00 digest job ran at 09:47 UTC on 24 September; the Hobby plan fires crons within the scheduled hour. The Studio heartbeat was received with a 200. The digest intentionally sends no email for an impersonal scheduled run. At 11:13 UTC `64210b1e` (App PR #196, `dpl_EqEq1iAP9tYYuzB9FspJfPDaESn6`) made the App's analytics-snapshots and Drive grant-repair jobs report the same fail-silent heartbeat. Studio PR #198 accepts those sources and monitors all three App jobs in HQ Today and Pulse. It also retires the stale "analytics daily cron" alarm, which tracked the standalone Signal briefing job. Unauthorised calls to the cron routes still return 401 and write no heartbeat.
 
 Evidence: private workspace
 `docs/execution/production-sprint-2026-09/timeline-context-release-06dace/` and
