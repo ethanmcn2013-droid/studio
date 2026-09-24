@@ -4,7 +4,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
 import { cache } from "react";
-import { getCronHealth, type CronHealth } from "@/lib/cron/runs";
+import { getCronHealth, MONITORED_CRON_JOBS, type CronHealth } from "@/lib/cron/runs";
 import { readHqSection } from "@/lib/hq/markdown";
 import {
   readDriftSidecarCached,
@@ -235,10 +235,9 @@ async function readSessionPulse(): Promise<SessionPulse> {
 
 async function readCron(): Promise<CronHealth[]> {
   try {
-    return await Promise.all([
-      getCronHealthCached("analytics_daily"),
-      getCronHealthCached("tasks_digest"),
-    ]);
+    return await Promise.all(
+      MONITORED_CRON_JOBS.map((job) => getCronHealthCached(job.source)),
+    );
   } catch {
     return [];
   }

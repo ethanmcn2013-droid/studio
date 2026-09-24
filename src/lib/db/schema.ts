@@ -276,7 +276,15 @@ export type NewDbProspect = typeof prospectsTable.$inferInsert;
 
 // ── Cron runs ─────────────────────────────────────────────────────────────────
 
-export const CRON_RUN_SOURCES = ["analytics_daily", "tasks_digest"] as const;
+// `analytics_daily` was the standalone Signal 06:00 briefing job, retired when
+// Signal moved into the App (last run 2026-07-22). It stays accepted so old
+// rows remain typed, but nothing monitors it. The App jobs report the rest.
+export const CRON_RUN_SOURCES = [
+  "analytics_daily",
+  "tasks_digest",
+  "app_analytics_snapshots",
+  "app_drive_grant_repair",
+] as const;
 export type CronRunSource = (typeof CRON_RUN_SOURCES)[number];
 
 export const cronRuns = sqliteTable(

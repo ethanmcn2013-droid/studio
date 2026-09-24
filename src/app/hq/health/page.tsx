@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
-import { getCronHealth, type CronHealth } from "@/lib/cron/runs";
+import { getCronHealth, MONITORED_CRON_JOBS, type CronHealth } from "@/lib/cron/runs";
 
 export const dynamic = "force-dynamic";
 
@@ -19,10 +19,16 @@ export default async function HealthPage() {
   const valid = token ? await verifyHqToken(token) : false;
   if (!valid) redirect("/hq/access");
 
-  let analyticsDaily: CronHealth | null = null;
+  let jobs: Array<{ label: string; schedule: string; health: CronHealth }> = [];
   let loadError: string | null = null;
   try {
-    analyticsDaily = await getCronHealth("analytics_daily");
+    jobs = await Promise.all(
+      MONITORED_CRON_JOBS.map(async (job) => ({
+        label: job.label,
+        schedule: job.schedule,
+        health: await getCronHealth(job.source),
+      })),
+    );
   } catch (err) {
     loadError = err instanceof Error ? err.message : "Unknown error";
   }
@@ -39,13 +45,16 @@ export default async function HealthPage() {
 
       {loadError ? (
         <ErrorPanel message={loadError} />
-      ) : analyticsDaily ? (
+      ) : jobs.length > 0 ? (
         <div className="grid gap-4">
-          <CronRow
-            label="Signal · daily briefings"
-            schedule="06:00 UTC daily"
-            health={analyticsDaily}
-          />
+          {jobs.map((job) => (
+            <CronRow
+              key={job.health.source}
+              label={job.label}
+              schedule={job.schedule}
+              health={job.health}
+            />
+          ))}
         </div>
       ) : (
         <EmptyState />
