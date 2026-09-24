@@ -16,7 +16,23 @@ export interface CronHealth {
 const EXPECTED_CADENCE_HOURS: Record<CronRunSource, number> = {
   analytics_daily: 24,
   tasks_digest: 24,
+  app_analytics_snapshots: 24,
+  app_drive_grant_repair: 24,
 };
+
+/**
+ * The scheduled jobs HQ monitors: the App's three Vercel crons. The plan is
+ * Hobby, so each fires at some point within its scheduled hour.
+ */
+export const MONITORED_CRON_JOBS: ReadonlyArray<{
+  source: CronRunSource;
+  label: string;
+  schedule: string;
+}> = [
+  { source: "app_analytics_snapshots", label: "App · analytics snapshots", schedule: "02:30 UTC daily, within the hour" },
+  { source: "app_drive_grant_repair", label: "App · Drive grant repair", schedule: "03:15 UTC daily, within the hour" },
+  { source: "tasks_digest", label: "App · daily digest", schedule: "09:00 UTC daily, within the hour" },
+];
 
 const AMBER_AFTER_HOURS = 12;
 const RED_AFTER_HOURS = 26;

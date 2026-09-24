@@ -93,11 +93,10 @@ export async function getPulseState(today: TodayData): Promise<PulseState> {
       href: "/hq/health",
     });
   }
-  // The Tasks 09:00 UTC digest is no longer a structural blind spot:
-  // it pings Studio's cron_runs as `tasks_digest`, so the data-driven
-  // loop above now monitors it like analytics_daily. Until the Tasks
-  // side's STUDIO_CRON_PING env is set it reads honestly as `never`,
-  // not a hardcoded nag, and self-heals to green on the first ping.
+  // The loop above monitors MONITORED_CRON_JOBS: the App's three Vercel
+  // crons, each pinging Studio's cron_runs. A job that has not reported
+  // reads honestly as `never` and self-heals to green on its first ping.
+  // The retired standalone Signal `analytics_daily` job is not monitored.
 
   // Risks deliberately do NOT appear here. HQ v3 (2026-05-16) made the
   // Inbox/Pulse contract exclusive: a risk needs a *human decision*
