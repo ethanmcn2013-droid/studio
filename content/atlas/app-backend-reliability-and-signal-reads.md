@@ -3,21 +3,21 @@ title: App backend reliability and Signal reads
 slug: app-backend-reliability-and-signal-reads
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-09-27
+lastVerified: 2026-09-28
 links: [turso-databases-and-reads, signal-progressive-analytics]
 tags: [App, Tasks, Signal, recovery, authorization, briefing, coverage]
 references: [app/src/modules/signal/lib/data/source.ts, app/src/modules/signal/server/briefing/signal-build-for-user.ts, app/src/modules/signal/server/analytics/providers/tasks.ts, app/scripts/reliability/]
-summary: "Current unified App read paths and bounded recovery evidence; hosted acceptance and intelligence repairs remain unaccepted."
+summary: "Source-pinned lifecycle improvement and bounded recovery evidence; broader factual quality and hosted acceptance remain open."
 status: complete
 pinned: false
 execWhat: Home and Full Briefing read authorized task facts through different server paths. Recovery checks restore five isolated stores and verify their contents and relationships.
 execMatters: Accurate lifecycle facts prevent old or finished work from being presented as a new problem. Verified recovery protects work when a dependency fails.
-execRisk: Local checks do not establish hosted performance. Confirmed lifecycle, priority, date and coverage losses remain in the measured intelligence baseline.
+execRisk: Local checks do not establish hosted performance. Priority, date, critical selection and false all-clear failures still prevent intelligence acceptance.
 ---
 
 ## Current source and proof boundary
 
-This entry describes unified App source `6bb1013a78a2ee3abefdaca58bda6dc0708ebb07` in [draft App PR 204](https://github.com/ethanmcn2013-droid/app/pull/204). It is a reviewed development candidate, not a production release receipt. The older linked Atlas entries retain historical separate-repository architecture; use this source-pinned entry for the paths below.
+This entry compares unified App baseline `6bb1013a78a2ee3abefdaca58bda6dc0708ebb07` with the backend work in [draft App PR 204](https://github.com/ethanmcn2013-droid/app/pull/204). Original product candidate `7ebb502b` and test-registration revision `cd5689e8` have preserved independent results. Current follow-up revision `87d8bef7df892830000f8921ac5fefb864e31a10` adds dependency resolution and positive comment-recency evidence. None is a production release receipt. The older linked Atlas entries retain historical separate-repository architecture; use this source-pinned entry for the paths below.
 
 The private [programme evidence](https://github.com/ethanmcn2013-droid/signal-studio-workspace/pull/39) holds source manifests, receipts and the active-path map. Current delivery claims and next proof belong to private issues [37](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/37) and [38](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/38), not this content record.
 
@@ -37,7 +37,17 @@ Six persisted synthetic cases execute the actual source, scope, orchestrator and
 
 Priority also has a consumer coupling: restoring its canonical numeric value exposes an opposite-direction comparator in the protected Home presentation model. The backend programme does not authorize a frontend edit or false compensating value. Any coupled repair needs a concrete handoff.
 
-The quality programme freezes independent scenario labels before tuning and keeps held-out answers separate from implementation. No intelligence repair or blind improvement claim has been accepted at this checkpoint.
+The candidate preserves configured completion/review, excludes archived/child work from active legacy reads, uses durable or unambiguous latest-event completion evidence and rejects incomplete source enumeration. Progressive analytics retains archived historical completions while excluding archived open work. The declared catalog bound is 200 workspaces; exceeding it returns unavailable rather than a silently truncated healthy result.
+
+Independent frozen development comparison covers 40 families, 41 variants and 45 reads: five lifecycle wins, 34 ties, no losses and one unchanged unscored injected outage. Public unsupported assertions fall from 135 to 114 under the final symmetric lane adjudication; useful precision rises from 85.58% to 88.33% across equally weighted contexts. Personal precision remains 6/8 (75%), four critical families fail, and overall factual acceptance remains false. The restored 51st-workspace invoice exposes two existing incorrect priority values within an already-failing family; the absence of a new failing family must not conceal those new field occurrences.
+
+The original twenty-family blind protocol aborted after six measurement attempts. Separately frozen diagnostic continuations completed all forty distinct attempts without retries. The diagnostic lifecycle comparison records two wins, sixteen ties, no losses and two unavailable/unscored families. Unsupported claims fall from 63 to 53 under the final symmetric lane adjudication, but one new critical omission and two unsupported certainty occurrences reject acceptance. The original blind result remains inconclusive; diagnostic completion does not replace it.
+
+The follow-up clears only confirmed completed prerequisites within the exact workspace and configured terminal policy. Archived/child prerequisites may resolve an edge without becoming visible work. Unknown open-task references yield explicit unavailability, which may reduce availability and earns no quality credit. Valid recorded comment creation can advance the existing activity proxy; it cannot certify complete history or distinguish all metadata-only edits. Eighteen independent receiving nodes pass at `87d8bef7`, including the previously failing completed edge and unchanged-store checks. Final changed-file lint and clean typecheck pass. The broader 498-test suite passed at the preceding `70c9d58c` draft; final required Linux Verify Tasks passed at `87d8bef7` ([run 36354897360](https://github.com/ethanmcn2013-droid/app/actions/runs/36354897360)). Final nonblind regression at `87d8bef7` covers all 60 families, 61 mutations and 66 reads. Against the original baseline: seven lifecycle wins, 46 ties, zero losses and seven unavailable/unscored families; only 53 families have produced pairs. There are 141 unsupported claims among 3,197 audited claims, six critical-failing families, seven critical-incomplete families and one newly critical-failing family versus baseline. Four additional families become unavailable (three venue/event and one personal), affecting four essential obligations. Missing outputs earn no improvement credit. Whole quality acceptance is false.
+
+The final development result is 99 unsupported claims among 2,183 audited; retired regression is 42/1,014. Personal development usefulness remains 6/8 (75%). Baseline and first-candidate lane claims were re-adjudicated symmetrically; earlier factual totals remain preserved but are superseded for comparison. Ranking cannot pass because no required pair remains evaluable. Four truth-failing families and one critical-failing family become unscored through unavailability; this is not a repair.
+
+The original held-out set is now retired to regression evidence because the product changed after feedback. A renewed blind claim requires fresh independent families after development correctness justifies it. Human relevance is not established.
 
 ## Reliability evidence and remaining gates
 
@@ -47,4 +57,4 @@ A ten-session local polling run at earlier source `5e186588` completed 355 scope
 
 Exact-source Linux Verify Tasks [36340055465](https://github.com/ethanmcn2013-droid/app/actions/runs/36340055465) passed full tests, migration checks, production build, recovery rehearsals, journey coverage and performance budgets. Separate design validation still fails three inherited frontend materiality hashes. Prior Windows native-process failures remain recorded.
 
-The isolated hosted Tasks credential returns 401; hosted three-run performance and final receiving acceptance remain unverified. No production data or credentials changed. Local Home baseline at `6bb1013a` used five warmup and thirty measured authenticated reads with p95 1889.4ms, unchanged Tasks/Signal contents and confirmed session cleanup. It does not replace hosted acceptance.
+The isolated hosted credentials fail read-only connectivity checks; hosted three-run performance and final receiving acceptance remain unverified. No production data or credentials changed. Matched local Home measurement on D: uses five warmup and thirty measured authenticated reads per revision: baseline p95 2004.71ms, original candidate 1829.28ms and follow-up `87d8bef7` 1990.42ms. Tasks/Signal contents stay unchanged and each owned session is revoked. The earlier baseline on C: was 1889.4ms and remains separately recorded. These are development-server results, not hosted acceptance.
