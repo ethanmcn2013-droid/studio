@@ -15,6 +15,12 @@ relatedMetric: Weekly active workspaces
 
 ## Notes
 
+### Backend truth checkpoint, 27 September 2026
+
+The source-pinned investigation at App `6bb1013a` confirms that mounted Home still uses the legacy briefing path; explicit planning-period Full Briefing also retains it with V1 enabled. Persisted synthetic cases reproduce lifecycle, priority, date and incomplete-scope errors reaching that consumer. The independent quality programme is preparing reviewed scenario labels and a frozen baseline before repair. No intelligence improvement has been accepted or released. The current interface remains unchanged.
+
+See [App backend reliability and Signal reads](../../atlas/app-backend-reliability-and-signal-reads.md) for the exact source paths, evidence limits and private delivery links. The historical design record below is not evidence that these backend quality gates passed.
+
 The ecosystem's daily state of work. The live Briefing remains Signal's default and keeps its hard three-item discipline. The separate `signal-progressive-depth` feature adds Overview, Trends, and Evidence beneath it behind a production-off flag; it does not replace this artifact.
 
 ### Tasks due-date source repair (App candidate, 23 September 2026)

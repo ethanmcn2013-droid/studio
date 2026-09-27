@@ -23,4 +23,12 @@ Preferences stay inside the existing account export and erasure paths. The prosp
 
 ## Notes
 
+### Unified App evidence, 27 September 2026
+
+The risk also applies to the mounted legacy Home path, which the progressive feature flag does not replace. At source `6bb1013a`, actual persisted cases reproduce false recent completion, flattened configured status, archived/child work counted as open, lost priority/date detail and a healthy empty period after silently reading only 50 of 51 projects. These findings remain open; a narrower lifecycle gain cannot excuse unrelated factual or scope failures.
+
+Controlled Clerk test sessions now support authenticated local evidence and are revoked after each bounded run. The older statement below that no Clerk staging credentials exist is historical, not the current local-auth capability. Isolated hosted Tasks access still returns 401. Local authentication and provider-only tests do not close hosted coverage, snapshot or final receiving gates. See [current source-pinned evidence](../../atlas/app-backend-reliability-and-signal-reads.md).
+
+### Earlier progressive release record
+
 Open while the built feature remains release-gated. Synthetic current-head proof now covers unauthorized scope, stale provider, failed provider, insufficient history, Evidence pagination, keyboard focus, and responsive/accessibility behavior. It does not close the risk: both Signal Preview database pairs currently return HTTP 401, all available product-provider Preview tokens are read/write, and no Clerk staging credentials exist. Close only after repaired least-privilege credentials support the additive migration, two live test identities prove allowed and denied projects, real source actions open permitted records, and manual plus scheduled snapshot receipts succeed. A green branch, synthetic fixture, or feature flag is not sufficient evidence.
