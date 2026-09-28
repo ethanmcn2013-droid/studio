@@ -9,6 +9,17 @@ owner: Ethan
 reviewDate: 2026-09-29
 ---
 
+## Resumed nonvisual repairs, 28 September 2026
+
+Ethan authorized necessary nonvisual client logic while preserving Opus's design. App `b577b1a9b4c7a88339e336fb7430d00c51af0500` binds all nine Board configuration writes to the displayed project, reauthorizes inside each transaction and prevents cross-project optimistic rollback. Full Verify Tasks CI 36493523674 passes. Normal browser receiving with two owned projects verified creation, movement to Waiting, deletion of Waiting into Done and task removal in displayed project B while ambient project A stayed fingerprint-identical. Every accepted checkpoint has four independent actor/project reads and scoped SQL checks. The task, all observer/browser sessions, two projects, four memberships and three recognized metadata rows are cleaned; all 23 scoped tables in each project are empty. Original observation failures remain preserved beside separate read-only reconciliations. V3 captured a database connect timeout; all successful V4 observations used zero SELECT retries. The historical isolated Personal configuration remains unreconciled because its original value is unknown; this new receiving proof does not erase that earlier failure.
+
+The partial b577 response-phase diagnostic failed at a later database-read boundary after three successful task operations. Its original cause is unclassified. Separate reviewed cleanup removed its one task, four activities, two memberships and one project, verifying zero residue across 23 scoped tables and 11 task-reference tables. One sample per action is neither p95 nor browser promise timing, and the failed probe provides no acceptance result.
+
+App `34486352` reuses one fresh identity and membership list within each Tasks render and runs the existing edition read alongside dependent reads. It introduces no authentication cache, removes no invalidation and preserves the JSX return tree. Independent persisted reuse 6/6, boundary/security 21/21 and existing provisioning 9/9 pass. Its CI exposed a stale moved-source assertion, corrected at `306d1d8c`; that follow-up's CI then exposed two test-fixture alias mocks missing the extracted reader. These CI failures remain recorded, and final correction/CI is pending. No new hosted latency benefit is claimed. The unchanged 800 ms gate, representative workload and final-candidate receiving remain open. The same three inherited design-materiality failures have not been refreshed.
+
+Both programmes remain unaccepted. Earlier closeout statements below are historical; the explicit nonvisual scope amendment and this evidence supersede their current execution status.
+
+
 ## Mitigation
 
 Keep hosted performance, authenticated browser behaviour and exact receiving acceptance as separate gates. Verify isolated target identity before any hosted workload. Preserve all failed attempts, operation reconciliation and owned-session cleanup. A local success or green CI run cannot close a gate that did not run.

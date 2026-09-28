@@ -9,6 +9,13 @@ owner: Ethan
 reviewDate: 2026-09-29
 ---
 
+## Authorized fidelity continuation, 28 September 2026
+
+Ethan authorized necessary nonvisual client logic while preserving Opus's JSX, styles, layout and animation. Source review maps the remaining fidelity gaps through persisted Tasks, legacy Signal, Home and the ledger: canonical priority is dropped before ranking; deadline instants are flattened into dates; date-picker writers also store date-only labels plus a compatibility instant; meaningful-activity coverage remains unproven; missing dependencies can discard known urgent facts. The legacy consumer does not automatically inherit the progressive provider's partial-coverage contract. Its all-clear claims therefore require explicit coverage handling before unknown values can be retained safely.
+
+No new intelligence implementation, evaluation result or quality gain follows from this preparation. Required receiving tests cover actual persisted writer-to-consumer priority ordering, date-only versus timed deadlines across offsets and DST, honest unknown activity/dependencies, exact urgent items, unchanged read-state writes and scope isolation. Development absolute gates must pass before fresh independent blind families are frozen. Retired holdout evidence remains nonblind regression evidence. The latest 60-family result below is unchanged and does not establish acceptance.
+
+
 ## Mitigation
 
 Keep the release behind the centralized production-off feature flag until three boundaries are proven with live staging data:
