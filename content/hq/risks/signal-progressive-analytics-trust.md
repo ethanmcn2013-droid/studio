@@ -6,7 +6,7 @@ likelihood: Medium
 impact: High
 status: Needs attention
 owner: Ethan
-reviewDate: 2026-08-13
+reviewDate: 2026-09-29
 ---
 
 ## Mitigation
@@ -38,6 +38,8 @@ Candidate `df605cd731716e28f25975c3a5e0fb472a6b883a` keeps missing meaningful ac
 The frozen development run returned all 41 attempts and 45 reads, but batch integrity is incomplete because two known unavailable mutations fail its integrity gate; the frozen comparator was not run. A separate reviewed, read-only post-abort diagnostic compared existing results, not newly produced ones: 42 paired outputs, two known unavailable reads and one expected injected failure without a pair. It found zero public legacy/Home/ledger outcome changes and zero availability transitions. Its 43 supplemental differences are raw provider outcomes; membership timing and query metadata may contribute, so they are not semantic gains. Neither the diagnostic nor passing CI establishes overall intelligence acceptance.
 
 This correction reduces supported capability and confidence; it is not whole quality acceptance. The frozen development benchmark scores legacy Home and ledger paths, which do not call this progressive metric/service. Legacy priority, calendar meaning and unknown-history/all-clear consumer contracts remain unresolved. No flag, frontend, public DTO, wording or ranking policy changed.
+
+Completed isolated Preview ordinary-task runs at baseline `90991e61` and candidate `df605cd7` each produced 200 measured actions per create, edit and complete class after five warmups, zero request failures and full synthetic task, project and session cleanup. Candidate p95 improved descriptively to 1,449.7544 ms for create, 1,637.6358 ms for edit and 1,523.0561 ms for complete, but all exceed the 800 ms target; sequential separate-deployment runs do not prove causality. Private custody [v20 at `9132ce7`](https://github.com/ethanmcn2013-droid/signal-studio-workspace/commit/9132ce7d23ec8cf053b3250326cde1561bd6624f) retains the 266-entry evidence manifest. The independently reviewed identity-stage timing diagnostic at `782d7dc7543e3f47f7cd12cb1685dd441676b4c3` has 72 passing focused checks and completed a short isolated Preview probe with 38 identity calls and full controlled cleanup. Its overlapping numeric timings are not a p95 or request-attribution verdict. Full CI at that revision failed an operational-log ratchet. Correction `2c768d281f8e666d0df7b272127e6f6d8505e5c1` uses the existing scrubbed logger and passes 78 focused checks plus four logger tests; full CI and an exact-source hosted probe are pending. It provides no quality gain, public frontend change or evidence that the protected Home and progressive consumer contracts are fixed. Both intelligence and reliability acceptance remain open.
 
 ### Earlier progressive release record
 
