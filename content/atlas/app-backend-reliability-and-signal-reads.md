@@ -3,7 +3,7 @@ title: App backend reliability and Signal reads
 slug: app-backend-reliability-and-signal-reads
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-09-28
+lastVerified: 2026-09-29
 links: [turso-databases-and-reads, signal-progressive-analytics]
 tags: [App, Tasks, Signal, recovery, authorization, briefing, coverage]
 references: [app/src/modules/signal/lib/data/source.ts, app/src/modules/signal/server/briefing/signal-build-for-user.ts, app/src/modules/signal/server/analytics/providers/tasks.ts, app/scripts/reliability/]
@@ -15,13 +15,23 @@ execMatters: Accurate lifecycle facts prevent old or finished work from being pr
 execRisk: Completed hosted ordinary-task runs miss the 800 ms p95 target. Priority, date, critical selection and false all-clear failures still prevent intelligence acceptance.
 ---
 
+## Completed 5ec performance comparison, 29 September 2026
+
+App `5ec4be8fee5fd6785a67c01856c92914e6516a67` passes [full Verify Tasks 36500000404](https://github.com/ethanmcn2013-droid/app/actions/runs/36500000404). The earlier moved-source assertion and diagnostic mock failures are corrected; their failed runs remain preserved. The separate three inherited design-materiality failures remain unchanged. The isolated Preview passed exact-source runtime attestation and a separate ordinary task lifecycle with cleanup.
+
+Its unchanged ordinary benchmark completed five warmups and 200 measured samples each for create, edit and complete: 820 domain operations, 1,468 App requests including attestation and zero unexpected failures. All 205 tasks were deleted, both owned sessions revoked, and the project/two memberships removed with zero residue across 12 declared tables. Independent review reproduced the frozen comparison and verified the source, runtime, tool, sample and cleanup bindings.
+
+Create/edit/complete p95 is **1,066.8472 / 1,240.0833 / 1,121.6322 ms**. All classes fail the unchanged 800 ms target. The fixed `df605cd7` baseline comparison is descriptively 24–26% lower, not a causal experiment. Against the separately recorded `a93c26fb` result, edit p95 is 141.2184 ms (12.8513%) higher; that observation requires investigation and a repeat before acceptance. No material benefit is established for the latest render-read reuse alone. Representative ten-session load remains gated, and final combined receiving is still required.
+
+Premeasurement custody is committed at private `47a04a0167fcb5730e779043ec4635fddd734d58`; Luna independently verified all 621 listed Git blobs and unchanged predecessor evidence. This establishes custody, not performance acceptance. Both programmes remain unaccepted. Earlier sections are historical evidence and do not supersede this result.
+
 ## Resumed nonvisual repairs, 28 September 2026
 
 Ethan authorized necessary nonvisual client logic while preserving Opus's design. App `b577b1a9b4c7a88339e336fb7430d00c51af0500` binds all nine Board configuration writes to the displayed project, reauthorizes inside each transaction and prevents cross-project optimistic rollback. Full Verify Tasks CI 36493523674 passes. Normal browser receiving with two owned projects verified creation, movement to Waiting, deletion of Waiting into Done and task removal in displayed project B while ambient project A stayed fingerprint-identical. Every accepted checkpoint has four independent actor/project reads and scoped SQL checks. The task, all observer/browser sessions, two projects, four memberships and three recognized metadata rows are cleaned; all 23 scoped tables in each project are empty. Original observation failures remain preserved beside separate read-only reconciliations. V3 captured a database connect timeout; all successful V4 observations used zero SELECT retries. The historical isolated Personal configuration remains unreconciled because its original value is unknown; this new receiving proof does not erase that earlier failure.
 
 The partial b577 response-phase diagnostic failed at a later database-read boundary after three successful task operations. Its original cause is unclassified. Separate reviewed cleanup removed its one task, four activities, two memberships and one project, verifying zero residue across 23 scoped tables and 11 task-reference tables. One sample per action is neither p95 nor browser promise timing, and the failed probe provides no acceptance result.
 
-App `34486352` reuses one fresh identity and membership list within each Tasks render and runs the existing edition read alongside dependent reads. It introduces no authentication cache, removes no invalidation and preserves the JSX return tree. Independent persisted reuse 6/6, boundary/security 21/21 and existing provisioning 9/9 pass. Its CI exposed a stale moved-source assertion, corrected at `306d1d8c`; that follow-up's CI then exposed two test-fixture alias mocks missing the extracted reader. These CI failures remain recorded, and final correction/CI is pending. No new hosted latency benefit is claimed. The unchanged 800 ms gate, representative workload and final-candidate receiving remain open. The same three inherited design-materiality failures have not been refreshed.
+App `34486352` reuses one fresh identity and membership list within each Tasks render and runs the existing edition read alongside dependent reads. It introduces no authentication cache, removes no invalidation and preserves the JSX return tree. Independent persisted reuse 6/6, boundary/security 21/21 and existing provisioning 9/9 pass. Its CI exposed a stale moved-source assertion, corrected at `306d1d8c`; that follow-up's CI then exposed two test-fixture alias mocks missing the extracted reader. These CI failures remain recorded; the final correction and full CI passed at `5ec4be8f`, whose completed performance result is recorded above. No causal hosted latency benefit is claimed. The unchanged 800 ms gate, representative workload and final-candidate receiving remain open. The same three inherited design-materiality failures have not been refreshed.
 
 Both programmes remain unaccepted. Earlier closeout statements below are historical; the explicit nonvisual scope amendment and this evidence supersede their current execution status.
 

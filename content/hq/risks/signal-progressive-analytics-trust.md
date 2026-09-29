@@ -9,6 +9,12 @@ owner: Ethan
 reviewDate: 2026-09-29
 ---
 
+## Combined receiving boundary, 29 September 2026
+
+Necessary nonvisual source and consumer repairs are authorized while Opus’s visual design is preserved. The latest reliability candidate `5ec4be8f` passes full backend CI and its ordinary protocol/cleanup checks, but all three mutation classes still miss the 800 ms p95 target. Those results do not change intelligence quality or establish combined acceptance.
+
+The reviewed priority, deadline and activity/dependency uncertainty repairs still need persisted Home/legacy-ledger receiving and a fresh development evaluation. The new execution must isolate the fixed 40-family development corpus from the retired 20-family holdout and preserve historical fixed-output evaluators. Missing or unavailable outputs earn no quality credit. Fresh independently authored blind families remain conditional on passing development gates; the prior nonblind quality verdict below is unchanged.
+
 ## Authorized fidelity continuation, 28 September 2026
 
 Ethan authorized necessary nonvisual client logic while preserving Opus's JSX, styles, layout and animation. Source review maps the remaining fidelity gaps through persisted Tasks, legacy Signal, Home and the ledger: canonical priority is dropped before ranking; deadline instants are flattened into dates; date-picker writers also store date-only labels plus a compatibility instant; meaningful-activity coverage remains unproven; missing dependencies can discard known urgent facts. The legacy consumer does not automatically inherit the progressive provider's partial-coverage contract. Its all-clear claims therefore require explicit coverage handling before unknown values can be retained safely.
