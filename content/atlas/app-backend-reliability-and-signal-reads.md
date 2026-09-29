@@ -15,6 +15,14 @@ execMatters: Accurate lifecycle facts prevent old or finished work from being pr
 execRisk: Completed hosted ordinary-task runs miss the 800 ms p95 target. Priority, date, critical selection and false all-clear failures still prevent intelligence acceptance.
 ---
 
+## d1cc development and response diagnostic, 29 September 2026
+
+App `d1cc331807a839a2df9d51d7b1ccadd7596e13e2` passes [full Verify Tasks 36508794451](https://github.com/ethanmcn2013-droid/app/actions/runs/36508794451). The frozen public development collection completed 40 families, 41 mutations and 45 reads. Independent review and challenge are committed at private `569ae63`; the unchanged calculation and next semantic policy are committed at `a07d8c7`. Actual surfaced assertions contain zero identified unsupported statements and two ambiguous date-coverage claims. Three essential suggestions are missing; the calculator represents these separately as synthesized unsupported omission records. The primary comparison is five wins, 31 ties, zero losses and four unscored families. Useful actionable rows are venue 13/13, team 9/9 and personal 7/7. No ranking pairs apply. Neither complete quality acceptance nor blind evidence follows.
+
+The remaining relevance intervention concerns current dependency state without invented inactivity duration. The supporting Home correction qualifies counts and reassurance as saved-date facts. These require new implementation and receiving evidence. The declared cycle-capability exclusion and SQL outage remain visible; missing output is not success.
+
+A separate short isolated d1cc Preview diagnostic completed and cleaned its task, fixture and two owned sessions. Its three action responses match exact platform POST rows. Full-response create/edit/complete samples were 1,124.174 / 901.323 / 809.810 ms; internal action spans were 377.218 / 413.943 / 337.116 ms. Nested identity spans cannot be summed as independent work, and earlier Node action-model decoding is not browser promise resolution or paint. These three samples direct further performance investigation; they are not an ordinary p95 benchmark or representative-load acceptance. The historical 5ec failed benchmark below remains the latest complete ordinary comparison.
+
 ## Completed 5ec performance comparison, 29 September 2026
 
 App `5ec4be8fee5fd6785a67c01856c92914e6516a67` passes [full Verify Tasks 36500000404](https://github.com/ethanmcn2013-droid/app/actions/runs/36500000404). The earlier moved-source assertion and diagnostic mock failures are corrected; their failed runs remain preserved. The separate three inherited design-materiality failures remain unchanged. The isolated Preview passed exact-source runtime attestation and a separate ordinary task lifecycle with cleanup.
