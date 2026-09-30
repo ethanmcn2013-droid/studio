@@ -15,6 +15,12 @@ App `c7c31600` passes [full Verify Tasks CI 36647415846](https://github.com/etha
 
 The unchanged calculation reports five lifecycle wins, 33 ties, zero losses and two unscored families. Its `wholeQualityAcceptance:false` and incomplete absolute gates remain published. The predeclared cycle-specific selection exclusion and injected SQL outage are not counted as quality successes; ordinary factual, access and false-all-clear obligations still apply. This development result does not supply a fresh independently authored twenty-family blind comparison or exact combined Home/briefing receiving. The feature remains release-gated and this risk remains open. The [source-pinned architecture record](../../atlas/app-backend-reliability-and-signal-reads.md) separates the current result from historical d1cc and sixty-family diagnostics.
 
+## Separate reliability checkpoint, 30 September 2026
+
+The completed c7 ordinary performance comparison reports 200 post-warm-up samples each and create/edit/complete p95 of **1,249.341 / 1,284.678 / 1,145.499 ms**, all above the frozen `<= 800 ms` target. It records 820 domain operations, 1,468 App requests, zero errors, cleanup of all 205 tasks and both sessions, and zero residue across 12 fixture tables. This is descriptive reliability evidence; it does not change the development quality result or establish fresh blind or combined acceptance. Private custody `d73e6f1` is committed and pushed.
+
+The supplemental recovery record at private evidence commit `9ab3035` uses a separately rebuilt SQLite fixture and does not establish browser UI recovery or original-connection continuity. The original quality disposition remains unscored. The next backend repair is committed at App `15fd5448` after independent review; full checks and hosted measurement remain pending, and Opus's design remains protected.
+
 ## Combined receiving boundary, 29 September 2026
 
 Necessary nonvisual source and consumer repairs are authorized while Opus’s visual design is preserved. The latest reliability candidate `5ec4be8f` passes full backend CI and its ordinary protocol/cleanup checks, but all three mutation classes still miss the 800 ms p95 target. Those results do not change intelligence quality or establish combined acceptance.
