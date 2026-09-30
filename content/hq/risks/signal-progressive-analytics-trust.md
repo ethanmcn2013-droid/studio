@@ -6,8 +6,14 @@ likelihood: Medium
 impact: High
 status: Needs attention
 owner: Ethan
-reviewDate: 2026-09-29
+reviewDate: 2026-09-30
 ---
+
+## Current development truth boundary, 30 September 2026
+
+App `c7c31600` passes [full Verify Tasks CI 36647415846](https://github.com/ethanmcn2013-droid/app/actions/runs/36647415846). In the unchanged frozen development suite, 40 families, 41 mutations and 45 reads produced 44 Home/public-ledger pairs plus one declared SQL-fault no-DTO read. Independent review found **1,900 supported, zero unsupported and zero ungradable actual assertions**. All 32 selected Home observations were checked against kind, authorized scope, represented source and current facts. The former reader-attribution sentence about high priority was corrected to a neutral saved-priority claim. Current open blocker and completed-prerequisite observations now satisfy the three previously missing supported essentials; open tasks without saved dates keep incomplete date coverage and no positive all-clear.
+
+The unchanged calculation reports five lifecycle wins, 33 ties, zero losses and two unscored families. Its `wholeQualityAcceptance:false` and incomplete absolute gates remain published. The predeclared cycle-specific selection exclusion and injected SQL outage are not counted as quality successes; ordinary factual, access and false-all-clear obligations still apply. This development result does not supply a fresh independently authored twenty-family blind comparison or exact combined Home/briefing receiving. The feature remains release-gated and this risk remains open. The [source-pinned architecture record](../../atlas/app-backend-reliability-and-signal-reads.md) separates the current result from historical d1cc and sixty-family diagnostics.
 
 ## Combined receiving boundary, 29 September 2026
 

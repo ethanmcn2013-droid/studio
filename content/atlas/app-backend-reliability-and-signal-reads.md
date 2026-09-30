@@ -3,17 +3,25 @@ title: App backend reliability and Signal reads
 slug: app-backend-reliability-and-signal-reads
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-09-29
+lastVerified: 2026-09-30
 links: [turso-databases-and-reads, signal-progressive-analytics]
 tags: [App, Tasks, Signal, recovery, authorization, briefing, coverage]
 references: [app/src/modules/signal/lib/data/source.ts, app/src/modules/signal/server/briefing/signal-build-for-user.ts, app/src/modules/signal/server/analytics/providers/tasks.ts, app/scripts/reliability/]
-summary: "Source-pinned lifecycle and recovery evidence; completed hosted ordinary-task runs still miss the latency target and acceptance remains open."
+summary: "Current development Signal claims are grounded; hosted reliability, fresh blind quality and combined receiving remain open."
 status: complete
 pinned: false
 execWhat: Home and Full Briefing read authorized task facts through different server paths. Recovery checks restore five isolated stores and verify their contents and relationships.
 execMatters: Accurate lifecycle facts prevent old or finished work from being presented as a new problem. Verified recovery protects work when a dependency fails.
-execRisk: Completed hosted ordinary-task runs miss the 800 ms p95 target. Priority, date, critical selection and false all-clear failures still prevent intelligence acceptance.
+execRisk: The latest complete ordinary-task p95 comparison still misses 800 ms. Signal's public development result is bounded by unscored cycle and fault cases; fresh blind, combined receiving and performance proof remain open.
 ---
+
+## Current development and hosted lifecycle evidence, 30 September 2026
+
+App `c7c316005b0f9a19dcee3f041007ceb486517393` passes [full Verify Tasks CI 36647415846](https://github.com/ethanmcn2013-droid/app/actions/runs/36647415846) in 26 steps. Its frozen public development run covers 40 families, 41 mutations and 45 reads. Forty-four reads returned Home and public ledger output; the declared SQL-fault read returned no public DTO. Independent atomic review of the returned output found **1,900 supported assertions, zero unsupported and zero ungradable**. The prior unsupported “You marked this high priority” attribution is replaced with a neutral current-priority statement supported by saved `p0`/`p1` values. Current open blockers, completed prerequisites and incomplete saved-date coverage are reviewed against their frozen task facts, not inferred from trigger names.
+
+The unchanged development calculation records five lifecycle wins, 33 ties, zero losses and two predeclared unscored families. It reports `complete:false`, `absoluteGatesPassed:false` and `wholeQualityAcceptance:false` because cycle-specific selection and the injected no-DTO fault remain incomplete in the whole-suite accounting. These cells are not quality passes. The result corrects the applicable supported development omissions and assertions; it is not fresh blind acceptance or a complete capability claim. The frozen v7 review and calculation are held in private [programme evidence](https://github.com/ethanmcn2013-droid/signal-studio-workspace/pull/39).
+
+For reliability, full legacy exact-configuration proof has been prepared. A separate six-operation ordinary hosted task lifecycle now passes after a read-only reconciliation of an earlier failure before mutation intent; its owned task, fixture and sessions were cleaned. This bounded lifecycle does not measure representative latency. The latest **complete** ordinary performance comparison remains the historical `5ec4be8f` result below, where create/edit/complete p95 all exceeded 800 ms. The inherited Opus visual design is unchanged, including an unresolved 4.41:1 contrast finding. Fresh twenty-family blind evaluation, exact combined receiving and representative hosted performance remain outstanding; neither programme is accepted.
 
 ## d1cc development and response diagnostic, 29 September 2026
 
@@ -50,9 +58,9 @@ Ethan authorized necessary nonvisual client logic while preserving Opus's JSX, s
 No new intelligence implementation, evaluation result or quality gain follows from this preparation. Required receiving tests cover actual persisted writer-to-consumer priority ordering, date-only versus timed deadlines across offsets and DST, honest unknown activity/dependencies, exact urgent items, unchanged read-state writes and scope isolation. Development absolute gates must pass before fresh independent blind families are frozen. Retired holdout evidence remains nonblind regression evidence. The latest 60-family result below is unchanged and does not establish acceptance.
 
 
-## Current source and proof boundary
+## Earlier source and proof boundary, 27 September 2026
 
-This entry compares unified App baseline `6bb1013a78a2ee3abefdaca58bda6dc0708ebb07` with the backend work in [draft App PR 204](https://github.com/ethanmcn2013-droid/app/pull/204). Original product candidate `7ebb502b` and test-registration revision `cd5689e8` have preserved independent results. Current follow-up revision `87d8bef7df892830000f8921ac5fefb864e31a10` adds dependency resolution and positive comment-recency evidence. None is a production release receipt. The older linked Atlas entries retain historical separate-repository architecture; use this source-pinned entry for the paths below.
+This earlier checkpoint compares unified App baseline `6bb1013a78a2ee3abefdaca58bda6dc0708ebb07` with the backend work in [draft App PR 204](https://github.com/ethanmcn2013-droid/app/pull/204). Original product candidate `7ebb502b` and test-registration revision `cd5689e8` have preserved independent results. The 27 September follow-up revision `87d8bef7df892830000f8921ac5fefb864e31a10` adds dependency resolution and positive comment-recency evidence. None is a production release receipt. The older linked Atlas entries retain historical separate-repository architecture; use this source-pinned entry for the paths below.
 
 The private [programme evidence](https://github.com/ethanmcn2013-droid/signal-studio-workspace/pull/39) holds source manifests, receipts and the active-path map. Current delivery claims and next proof belong to private issues [37](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/37) and [38](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/38), not this content record.
 

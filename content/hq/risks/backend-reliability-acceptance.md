@@ -6,8 +6,14 @@ likelihood: Medium
 impact: High
 status: Needs attention
 owner: Ethan
-reviewDate: 2026-09-29
+reviewDate: 2026-09-30
 ---
+
+## Current proof boundary, 30 September 2026
+
+App `c7c316005b0f9a19dcee3f041007ceb486517393` passes [full Verify Tasks CI 36647415846](https://github.com/ethanmcn2013-droid/app/actions/runs/36647415846) in 26 steps. Full legacy exact-configuration proof is prepared. A new six-operation ordinary hosted task lifecycle passes with task, fixture and owned-session cleanup after a separate read-only reconciliation of an earlier failure before mutation intent. This establishes that bounded path and cleanup at the tested source; it does not establish a performance or recovery benchmark.
+
+The latest complete ordinary-task performance comparison remains the historical `5ec4be8f` result below: create/edit/complete p95 of 1,066.8472 / 1,240.0833 / 1,121.6322 ms, all above the unchanged 800 ms gate. No representative current-candidate performance result is available yet. The inherited Opus presentation remains unchanged; its 4.41:1 contrast finding is pending. Exact combined receiving, representative hosted performance and the separate intelligence programme's fresh blind acceptance remain open. Neither programme is accepted.
 
 ## Completed 5ec performance comparison, 29 September 2026
 
