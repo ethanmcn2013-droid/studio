@@ -9,6 +9,16 @@ owner: Ethan
 reviewDate: 2026-10-01
 ---
 
+## b298 client measurement boundary, 1 October 2026
+
+App `b2988e7f488f6a528d4d8f295fab99fa1d3df33b` passes [Verify Tasks 36803937896](https://github.com/ethanmcn2013-droid/app/actions/runs/36803937896) and adds a bounded Preview-only observer for actual task acknowledgements. A three-action browser smoke and independent App/SQL persistence checks passed; its original session-cleanup failure and subsequent exact terminal verification are preserved separately in `c03f880`.
+
+The first full browser attempt stopped at its fixed request cap after 166 cycles and 498 confirmed actions. It supplies no accepted p95. Independently reviewed recovery removed all 166 owned tasks, two memberships and the Project, with twelve zero residue counts, terminal sessions, unchanged original evidence and unchanged unrelated data (`8d3d67a`). A distinct second-run freeze (`57d6dd9`) retains five warmups plus 200 measured samples per class and the 800 ms criterion, with a prospective 35,000-request cap and coarse traffic diagnostics. Playwright interception disables browser HTTP caching, so the measurement does not establish normal-cache behavior.
+
+The complete second run fails all three actual-client p95 targets: create **1,382.7 ms**, edit **1,566.5 ms**, complete **1,925 ms**, against 800 ms. All 615 actions persisted, all 205 created tasks were deleted, exact sessions are terminal and twelve residue scopes are empty. Independent review verified sample joins, statistics, source and cleanup; the failed result is preserved in `24232f5`. No partial first-run samples were pooled. The 24,702 browser requests do not by themselves identify the cause; a separately frozen one-cycle passive diagnostic (`8989487`, result `e26dfc5`) recorded repeated detail reads and substantial prefetching. Exact cleanup and terminal sessions passed independent review. A bounded client scheduling correction is in implementation; its performance effect remains unmeasured.
+
+The earlier full-response p95 failure remains valid for its stated endpoint. Actual-client acceptance, representative load, final fault/recovery and the Tasks-page receiving obligation remain unresolved. Existing visual materiality and contrast findings are still open; no design waiver or production readiness follows from the diagnostic or recovery work. Later sections retain historical checkpoints; their then-current results do not supersede this completed browser result.
+
 ## db865cad receiving checkpoint, 1 October 2026
 
 App `db865cad890de3e60d00f2f99bc9861d7b876a2d` consolidates four actor/owner account-fence SELECTs into two within the existing writer transaction. Fresh identity, separate Project authorization, deletion fences, scoped updates and effect ordering remain intact. [Full Verify Tasks CI 36699598774](https://github.com/ethanmcn2013-droid/app/actions/runs/36699598774) passed, alongside 50 focused checks, compiler/lint, 14 independent SQLite equivalence cases and an isolated 19-case concurrency rerun. A prior combined invocation crashed during native shutdown after its assertions passed; it is not counted as a clean run.
