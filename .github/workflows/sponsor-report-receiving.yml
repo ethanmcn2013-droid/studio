@@ -6,8 +6,13 @@ on:
       - .github/workflows/sponsor-report-receiving.yml
       - package.json
       - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - drizzle-entitlements/**
       - scripts/sponsor-report-rehearsal.cjs
       - scripts/migrate-sponsor-programme.mjs
+      - scripts/migrate-venue-fulfilment.mjs
+      - scripts/migrate-usage-delivery.mjs
+      - scripts/migrate-usage-workspace-erasure.mjs
       - src/app/api/internal/sponsored-use/**
       - src/app/api/sponsor-programmes/**
       - src/lib/account/instrumentation/**
