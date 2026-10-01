@@ -7,13 +7,26 @@ lastVerified: 2026-10-01
 links: [turso-databases-and-reads, signal-progressive-analytics]
 tags: [App, Tasks, Signal, recovery, authorization, briefing, coverage]
 references: [app/src/modules/signal/lib/data/source.ts, app/src/modules/signal/server/briefing/signal-build-for-user.ts, app/src/modules/signal/server/analytics/providers/tasks.ts, app/scripts/reliability/]
-summary: "Current development Signal claims are grounded; hosted reliability, fresh blind quality and combined receiving remain open."
+summary: "Exact-source task acknowledgement passes its 200-sample browser p95 gate; representative load, design and blind Signal acceptance remain open."
 status: complete
 pinned: false
 execWhat: Home and Full Briefing read authorized task facts through different server paths. Recovery checks restore five isolated stores and verify their contents and relationships.
 execMatters: Accurate lifecycle facts prevent old or finished work from being presented as a new problem. Verified recovery protects work when a dependency fails.
-execRisk: Complete b298 browser acknowledgement p95 fails 800 ms for create, edit and complete. Signal's three critical omissions are repaired in development; independent quality acceptance and combined receiving remain open.
+execRisk: The 59684368 actual-client acknowledgement p95 passes all three 800 ms targets; the earlier b298 failure remains preserved. Representative load, inherited design failures and sealed blind Signal quality remain open.
 ---
+
+## Current 59684368 receiving checkpoint, 1 October 2026
+
+App `59684368521b7e75dea56a9cc1eb8cda8ca4ea82` moves the three task-detail reads (subtasks, resources and conversation) off Next's client Server Function mutation queue through a bounded same-origin POST. Each section still calls its existing authenticated server action; the Project and task fences, read modes, failure handling, polling, manual refresh and late-response guards remain. Opus's visible markup and styling are unchanged. [Verify Tasks 36836011308](https://github.com/ethanmcn2013-droid/app/actions/runs/36836011308) and a normal local Turbopack build passed.
+
+The first authenticated one-cycle check recorded trusted create, edit and complete acknowledgements of **611.3 ms**, **492.1 ms** and **603.4 ms**. These three observations are descriptive only, not a p95 or proof of the 800 ms gate (`43249f2`, private custody). A separate authenticated detail-health check decoded **nine successful owned-task reads, three per section**, and verified twelve empty cleanup scopes and terminal sessions (`a6da322`, private custody). This establishes a functioning read path in that bounded receiving run, not long-run latency or representative-load acceptance.
+
+The frozen full browser run completed **205 cycles**, with five warmups and 200 measured attempts in each action class. Trusted-activation p50/p95/max were **524/702.8/946.5 ms** for create, **503.7/658.9/872.4 ms** for edit and **519.6/662.4/782.6 ms** for complete. Each p95 passes the unchanged **800 ms actual-client acknowledgement target**. All 615 actions had independently verified persistence; all 205 unique tasks were deleted, two memberships and one Project were removed, twelve residue scopes were empty, owned sessions were terminal, and original inputs and unrelated data were unchanged. Independent verification and the prospective representative packet are preserved in `5a8547a`. This passes the specified acknowledgement measurement, not representative-load, visual or combined receiving acceptance. The earlier b298 result remains a failure at **1,382.7/1,566.5/1,925 ms** p95 and is not overwritten. The representative workload failed at 12:09 UTC during its first repetition. History-scope verification could not finish; retained catch records do not establish a cross-project leak. The manifest lacked required acceptance targets, and partial promotion, send, conversation-list, Home and visibility measurements exceeded their unchanged limits. All ten workload sessions were revoked. Read-only reconciliation found all 80 writes durable, including one promotion without a verified acknowledgement; both owned fixtures were subsequently removed with confirmed commits, fresh zero-residue checks and unchanged checked nonowned data (private custody `f131b27`). No representative, postload, fault or final combined receiving acceptance is claimed.
+
+In the selected twelve-view rendered matrix, all six mobile/tablet cases passed and all six desktop/wide cases failed the inherited sidebar text contrast check (**4.41:1** against **4.5:1**). [Design 36836011214](https://github.com/ethanmcn2013-droid/app/actions/runs/36836011214) also retains four materiality hash drifts; no hash refresh or contrast waiver was applied. The three known Signal omissions were repaired on the retired development cohort, but whole quality is still false and the newly authored round2 case facts and labels remain sealed.
+
+
+The corrected external Drive capture completed **76 passing cases, zero failures, 92 screenshots, zero page errors and zero external requests**. Root inspected representative mobile, desktop and dark captures. The earlier 64-pass/12-fail capture remains preserved; only obsolete fixture copy/selectors changed. This verifies the local component fixture, not a hosted Drive/provider lifecycle. Product source and visual design were unchanged.
 
 ## b298 acknowledgement boundary, 1 October 2026
 
