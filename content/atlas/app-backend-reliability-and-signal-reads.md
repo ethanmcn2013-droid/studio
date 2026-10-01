@@ -3,7 +3,7 @@ title: App backend reliability and Signal reads
 slug: app-backend-reliability-and-signal-reads
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-09-30
+lastVerified: 2026-10-01
 links: [turso-databases-and-reads, signal-progressive-analytics]
 tags: [App, Tasks, Signal, recovery, authorization, briefing, coverage]
 references: [app/src/modules/signal/lib/data/source.ts, app/src/modules/signal/server/briefing/signal-build-for-user.ts, app/src/modules/signal/server/analytics/providers/tasks.ts, app/scripts/reliability/]
@@ -12,8 +12,24 @@ status: complete
 pinned: false
 execWhat: Home and Full Briefing read authorized task facts through different server paths. Recovery checks restore five isolated stores and verify their contents and relationships.
 execMatters: Accurate lifecycle facts prevent old or finished work from being presented as a new problem. Verified recovery protects work when a dependency fails.
-execRisk: The latest complete ordinary-task p95 comparison at 5e4 misses 800 ms in all three classes. Signal's development result retains unscored cycle and fault cases; fresh blind and combined receiving remain open.
+execRisk: The latest complete ordinary-task full-response p95 comparison at 5e4 misses 800 ms in all three classes; actual browser acknowledgement remains unmeasured. Signal's development result retains unscored cycle and fault cases; fresh blind and combined receiving remain open.
 ---
+
+## db865cad receiving checkpoint, 1 October 2026
+
+App `db865cad890de3e60d00f2f99bc9861d7b876a2d` consolidates four actor/owner account-fence SELECTs into two within the existing writer transaction. Fresh identity, separate Project authorization, deletion fences, scoped updates and effect ordering remain intact. [Full Verify Tasks CI 36699598774](https://github.com/ethanmcn2013-droid/app/actions/runs/36699598774) passed, alongside 50 focused checks, compiler/lint, 14 independent SQLite equivalence cases and an isolated 19-case concurrency rerun. A prior combined invocation crashed during native shutdown after its assertions passed; it is not counted as a clean run.
+
+Normal and progressive Preview receiving each completed four cases through Home and Overview, eight ordered SQL checkpoints and full owned fixture/session cleanup. Independent reviews accept the observed scoped IDs, ordering, date meanings, counts and honest partial coverage. Normal custody is `ad6f2d9`; progressive setup is `a7172d7` and its actual result is `6bb32e6`. Preserved read-only connection failures required bounded recovery; these observations do not certify transport reliability. Final-document HTTP statuses remain unverified, seven normal captures reuse navigation-start metadata, and closed disclosure content is not counted as visibly expanded.
+
+The exact-current existing source-opening and access-negative contracts passed 67 local tests, including persisted membership removal, foreign/unbound subjects, deleted scopes, authorized source-link reconstruction and read-state behavior. This supplies the original compatibility and access requirements alongside the scoped browser checks. Additional live source-click, second-actor and foreign-scope interactions were not observed; those are separate possible UX evidence, not newly imposed acceptance gates. Opus's visual design remains unchanged.
+
+The fresh normal BY7 Preview lifecycle completed six operations and 43 App requests, deleted its task and Project fixture, and left twelve scoped tables empty. Two separate provider GETs confirmed both owned sessions revoked. Independent review accepted this bounded lifecycle. Both interrupted db865cad benchmarks are preserved and fully reconciled: 71 tasks/284 activities in the first, 33 tasks/129 activities in the second, with no action replay or unrelated-data change. Neither partial run supplies a performance verdict. The latest complete benchmark remains the 5e4 result below, which misses 800 ms in all three classes.
+
+The third db865cad attempt recorded 1,036 App requests and 1,036 responses with zero App transport failures. It retained partial samples of 163 creates, 162 edits and 162 completions. One edit stopped before its App request was dispatched because diagnostic token acquisition failed; the frozen requirement of 200 measured samples per class was therefore not met, so this attempt has no accepted performance verdict. Guarded recovery then removed its 168 tasks, 669 activities, two memberships and owned Project. The final cleanup receipt records verified post-commit readback, zero residual rows in the twelve scoped tables, unchanged non-owned fingerprints, no action replay and two sessions revoked during reconciliation. The original attempt artifacts remain unchanged. This completes fixture recovery only; it does not change the latest complete 5e4 full-response result, which still fails the 800 ms p95 target in all three classes.
+
+The 5e4 metric is full-response completion for the hosted action request, not the browser's settled action promise or App sync-success boundary. The source audit found no all-operation actual-client acknowledgement observer; existing sync success events omit operations that finish before the pending event threshold. Actual warm browser acknowledgement with independently confirmed fresh-reader persistence therefore remains unmeasured. Full-response timing is neither the exact original acknowledgement metric nor a proven universal upper bound on it. Keep the frozen result and its unchanged threshold as measured; do not substitute headers, Node model readiness, optimistic UI or browser paint for acknowledgement.
+
+Fresh independent held-out evaluation, final performance/load/recovery and the full browser/design gate remain open. This checkpoint supplies neither whole-programme acceptance nor production-release authority. Current execution ownership and next proof remain in delivery issue #38.
 
 ## 9d diagnostic stream checkpoint, 30 September 2026
 
@@ -21,7 +37,7 @@ App `9d0313060b08e6083fc5eebb1216dc169be8f85c` passes [full Verify Tasks CI 3666
 
 The next bounded experiment is to test reducing the actor/owner account-fence queries from four to two. That change and its receiving verification are not yet implemented. Evidence is private premeasurement `6366c59` and result `b6bbe5f`. The v8 development result remains incomplete and fresh blind quality remains open.
 
-## Current 5e4 source and open gates, 30 September 2026
+## Historical 5e4 source and gates, 30 September 2026
 
 App `5e4e7bdd359b5690e862d0cd27a28b69ddf13919` passes [full Verify Tasks CI 36655972274](https://github.com/ethanmcn2013-droid/app/actions/runs/36655972274). Separate Design quality failed on the inherited visual materiality checks and is not waived. The nonvisual Task writer repair rechecks the stored Project, membership and deletion fences inside an immediate transaction and requires a confirmed scoped update before secondary effects. Its focused validation passed 76 tests; independent review ran all 13 real SQLite concurrency tests, including contending toggles and both commit orders for task move, task deletion and Project-deletion intent. Contention can return `SQLITE_BUSY`; the tests do not claim transparent retry or remote scheduling proof. Opus's presentation remains unchanged.
 

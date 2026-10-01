@@ -6,10 +6,26 @@ likelihood: Medium
 impact: High
 status: Needs attention
 owner: Ethan
-reviewDate: 2026-09-30
+reviewDate: 2026-10-01
 ---
 
-## Current proof boundary, 30 September 2026
+## db865cad receiving checkpoint, 1 October 2026
+
+App `db865cad890de3e60d00f2f99bc9861d7b876a2d` consolidates four actor/owner account-fence SELECTs into two within the existing writer transaction. Fresh identity, separate Project authorization, deletion fences, scoped updates and effect ordering remain intact. [Full Verify Tasks CI 36699598774](https://github.com/ethanmcn2013-droid/app/actions/runs/36699598774) passed, alongside 50 focused checks, compiler/lint, 14 independent SQLite equivalence cases and an isolated 19-case concurrency rerun. A prior combined invocation crashed during native shutdown after its assertions passed; it is not counted as a clean run.
+
+Normal and progressive Preview receiving each completed four cases through Home and Overview, eight ordered SQL checkpoints and full owned fixture/session cleanup. Independent reviews accept the observed scoped IDs, ordering, date meanings, counts and honest partial coverage. Normal custody is `ad6f2d9`; progressive setup is `a7172d7` and its actual result is `6bb32e6`. Preserved read-only connection failures required bounded recovery; these observations do not certify transport reliability. Final-document HTTP statuses remain unverified, seven normal captures reuse navigation-start metadata, and closed disclosure content is not counted as visibly expanded.
+
+The exact-current existing source-opening and access-negative contracts passed 67 local tests, including persisted membership removal, foreign/unbound subjects, deleted scopes, authorized source-link reconstruction and read-state behavior. This supplies the original compatibility and access requirements alongside the scoped browser checks. Additional live source-click, second-actor and foreign-scope interactions were not observed; those are separate possible UX evidence, not newly imposed acceptance gates. Opus's visual design remains unchanged.
+
+The fresh normal BY7 Preview lifecycle completed six operations and 43 App requests, deleted its task and Project fixture, and left twelve scoped tables empty. Two separate provider GETs confirmed both owned sessions revoked. Independent review accepted this bounded lifecycle. Both interrupted db865cad benchmarks are preserved and fully reconciled: 71 tasks/284 activities in the first, 33 tasks/129 activities in the second, with no action replay or unrelated-data change. Neither partial run supplies a performance verdict. The latest complete benchmark remains the 5e4 result below, which misses 800 ms in all three classes.
+
+The third db865cad attempt recorded 1,036 App requests and 1,036 responses with zero App transport failures, plus partial samples of 163 creates, 162 edits and 162 completions. One edit stopped before its App request was dispatched because diagnostic token acquisition failed. The frozen requirement of 200 measured samples per class was not met, so the attempt has no accepted performance verdict. Guarded recovery removed 168 tasks, 669 activities, two memberships and the owned Project. Its receipt records verified post-commit readback, zero residual rows in twelve scoped tables, unchanged non-owned fingerprints, no action replay and two sessions revoked during reconciliation. The original attempt artifacts remain unchanged. This is verified fixture recovery, not a performance result.
+
+The latest complete 5e4 full-response p95 comparison remains unchanged and fails the 800 ms target for create, edit and complete. It measures full hosted action-response completion, not actual browser action-promise or App sync-success acknowledgement. The source audit found no all-operation actual-client observer, and existing sync-success events omit sufficiently fast operations. Warm browser acknowledgement with fresh-reader persistence remains unmeasured. The full-response result is neither the exact original acknowledgement metric nor a proven universal upper bound; headers, Node model readiness, optimistic UI and paint cannot replace it.
+
+Fresh independent held-out evaluation, final performance/load/recovery and the full browser/design gate remain open. This checkpoint supplies neither whole-programme acceptance nor production-release authority. Current execution ownership and next proof remain in delivery issue #38.
+
+## Historical 5e4 proof boundary, 30 September 2026
 
 App `5e4e7bdd359b5690e862d0cd27a28b69ddf13919` passes [full Verify Tasks CI 36655972274](https://github.com/ethanmcn2013-droid/app/actions/runs/36655972274); separate inherited Design quality failures remain. Its nonvisual Task writer repair puts stored-Project authority and deletion-fence checks in the same immediate writer transaction as edit/complete, and gates activity and milestone work on a confirmed scoped update. The author ran 76 focused tests. Independent review passed 13 real SQLite concurrency tests, including two-client toggle contention and both commit orders for task move/delete and Project-deletion intent. A contending writer can fail with `SQLITE_BUSY`; local serialization evidence does not prove automatic retry or hosted scheduling.
 
