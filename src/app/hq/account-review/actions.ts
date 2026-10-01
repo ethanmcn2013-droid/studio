@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createSponsorRequest } from "@/lib/entitlements-db/requests";
-import { loadVenueAccessSnapshot } from "@/lib/account/live/load-venue-access";
+import { loadVenueUsageSnapshot as loadVenueAccessSnapshot } from "@/lib/account/live/load-venue-usage";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { resolveHqOperatorActor } from "@/lib/hq/operator-identity";
 import type { AccountSnapshot } from "@/lib/account/types";

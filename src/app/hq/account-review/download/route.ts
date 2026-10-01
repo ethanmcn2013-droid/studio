@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { NextResponse } from "next/server";
 import { csvFilename, pdfFilename, snapshotToCsv } from "@/lib/account/csv";
 import { getVenueFixture } from "@/lib/account/fixtures";
-import { loadVenueAccessSnapshot } from "@/lib/account/live/load-venue-access";
+import { loadVenueUsageSnapshot as loadVenueAccessSnapshot } from "@/lib/account/live/load-venue-usage";
 import { snapshotToReportHtml } from "@/lib/account/pdf-html";
 import {
   accountSamplePath,
