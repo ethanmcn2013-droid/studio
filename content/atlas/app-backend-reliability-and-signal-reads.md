@@ -7,15 +7,26 @@ lastVerified: 2026-10-01
 links: [turso-databases-and-reads, signal-progressive-analytics]
 tags: [App, Tasks, Signal, recovery, authorization, briefing, coverage]
 references: [app/src/modules/signal/lib/data/source.ts, app/src/modules/signal/server/briefing/signal-build-for-user.ts, app/src/modules/signal/server/analytics/providers/tasks.ts, app/scripts/reliability/]
-summary: "Exact-source task acknowledgement passes its 200-sample browser p95 gate; representative load, design and blind Signal acceptance remain open."
+summary: "Current task acknowledgement misses its p95 targets; representative load and blind Signal acceptance remain open."
 status: complete
 pinned: false
 execWhat: Home and Full Briefing read authorized task facts through different server paths. Recovery checks restore five isolated stores and verify their contents and relationships.
 execMatters: Accurate lifecycle facts prevent old or finished work from being presented as a new problem. Verified recovery protects work when a dependency fails.
-execRisk: The 59684368 actual-client acknowledgement p95 passes all three 800 ms targets; the earlier b298 failure remains preserved. Representative load, inherited design failures and sealed blind Signal quality remain open.
+execRisk: Current-source acknowledgement p95 fails all three 800 ms targets. Representative load, inherited design findings and sealed blind Signal quality remain open.
 ---
 
-## Current 59684368 receiving checkpoint, 1 October 2026
+## Current 9d645877 checkpoint, 1 October 2026
+
+A separately reviewed recovery completed at 14:13 UTC: one confirmed transaction removed the 70 Tasks, 210 activities, 70 discussion-state rows, two members and synthetic Project. Fresh-client readback verified zero residue and unchanged nonowned state across all 49 tables; original evidence and terminal sessions remain intact. Prospective recovery evidence is preserved in private `1017f19`; terminal recovery custody is preserved in private `f3e952c`. This closes cleanup only; the original latency result remains failed.
+
+App `9d6458774e2f25d7e5b6a3a532c93197dcfecf25` overlaps independent authorized Home reads and batches ordered conversation statements on the existing writer transaction. Fresh identity, membership, account and Project deletion checks, replay receipts, rollback and sequence locks remain. The harness retains real HTTP and acknowledgement outcomes when later persistence verification fails. [Verify Tasks 36865699524](https://github.com/ethanmcn2013-droid/app/actions/runs/36865699524), typechecks, changed-file lint and the canonical build pass. Opus's visual design is unchanged.
+
+The current-source actual-client run completed 205 cycles and independently verified all 615 actions persisted. With five warmups excluded and 200 measured samples per class, create/edit/complete p95 was **916.9/847.5/860 ms**, all above the unchanged **800 ms** target. This is a failed result. Cleanup verified 134 deletions; the next deletion returned decoded HTTP 200 before scoped SQL verification failed with a socket error. Both sessions are terminal. A separate read-only snapshot confirms that deletion persisted and identified exactly 70 Tasks, 210 activities and 70 initial discussion-state rows subsequently removed by the recovery above. The failed result and review are preserved in private `0631498`. No representative workload has been released for this revision.
+
+Both specified known-fixture intelligence faults passed containment and same-store recovery review (private `0f188a6`), without quality credit. Exact deployed configuration and source confirm the normal legacy route selection. Current-source consumer tools are prepared (`ca91d96`); rendered receiving and the independently authored blind evaluation remain pending. The fresh twenty-family cohort remains sealed. Existing visual findings remain open. The following checkpoints retain historical evidence.
+
+
+## Historical 59684368 receiving checkpoint, 1 October 2026
 
 App `59684368521b7e75dea56a9cc1eb8cda8ca4ea82` moves the three task-detail reads (subtasks, resources and conversation) off Next's client Server Function mutation queue through a bounded same-origin POST. Each section still calls its existing authenticated server action; the Project and task fences, read modes, failure handling, polling, manual refresh and late-response guards remain. Opus's visible markup and styling are unchanged. [Verify Tasks 36836011308](https://github.com/ethanmcn2013-droid/app/actions/runs/36836011308) and a normal local Turbopack build passed.
 

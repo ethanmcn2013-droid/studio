@@ -9,7 +9,16 @@ owner: Ethan
 reviewDate: 2026-10-01
 ---
 
-## Current 59684368 checkpoint, 1 October 2026
+## Current 9d645877 checkpoint, 1 October 2026
+
+A separately reviewed recovery completed at 14:13 UTC: one confirmed transaction removed the 70 Tasks, 210 activities, 70 discussion-state rows, two members and synthetic Project. Fresh-client readback verified zero residue and unchanged nonowned state across all 49 tables; original evidence and terminal sessions remain intact. Prospective recovery evidence is preserved in private `1017f19`; terminal recovery custody is preserved in private `f3e952c`. This closes cleanup only; the original latency result remains failed.
+
+The new conversation batching, Home concurrency and measurement corrections pass [full backend CI](https://github.com/ethanmcn2013-droid/app/actions/runs/36865699524), local typechecks, lint and canonical build. Current-source actual-client acknowledgement nevertheless fails all three 800 ms p95 targets: **916.9 ms create, 847.5 ms edit, 860 ms complete**, with 200 measured samples each. All 615 actions have persistence evidence. The difference from the earlier passing revision does not establish a cause; ordinary task mutation source is unchanged between those revisions.
+
+Cleanup verified 134 deletions before a post-response scoped SQL socket error. Both sessions are terminal. Exact read-only reconciliation confirms the uncertain deletion persisted and identified 70 owned Tasks, 210 activities and 70 initial discussion-state rows subsequently removed by the recovery above. Original failure evidence is preserved in private `0631498`. The bounded post-authorization query-fusion v1 aims to reduce database round trips while preserving all fresh permission and deletion fences. Its 56 focused local tests, TypeScript and lint passed, but independent review found a malformed-JSON refusal-ordering regression. Corrected v2 is in progress; no patch is accepted. Hosted performance remains pending. Representative, fault, consumer and combined acceptance remain open. Opus's visual design and the existing contrast/materiality findings are unchanged.
+
+
+## Historical 59684368 checkpoint, 1 October 2026
 
 App `59684368521b7e75dea56a9cc1eb8cda8ca4ea82` moves subtasks, resources and conversation reads off Next's client Server Function mutation queue. The bounded same-origin POST delegates to the unchanged authenticated section actions and retains their Project/task authorization, failure and disposal fences; visible Tasks design is unchanged. [Verify Tasks 36836011308](https://github.com/ethanmcn2013-droid/app/actions/runs/36836011308) and a normal local Turbopack build passed.
 

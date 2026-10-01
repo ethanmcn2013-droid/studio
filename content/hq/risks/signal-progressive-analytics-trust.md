@@ -9,6 +9,15 @@ owner: Ethan
 reviewDate: 2026-10-01
 ---
 
+## Current 9d645877 checkpoint, 1 October 2026
+
+A separately reviewed recovery completed at 14:13 UTC: one confirmed transaction removed the 70 Tasks, 210 activities, 70 discussion-state rows, two members and synthetic Project. Fresh-client readback verified zero residue and unchanged nonowned state across all 49 tables; original evidence and terminal sessions remain intact. Prospective recovery evidence is preserved in private `1017f19`; terminal recovery custody is preserved in private `f3e952c`. This closes cleanup only; the original latency result remains failed.
+
+At App `9d6458774e2f25d7e5b6a3a532c93197dcfecf25`, both separately specified known-fixture faults passed containment and recovery on the same persisted stores. Independent review checked the recorded phases, unchanged state and tool/source bindings; private `0f188a6` preserves the result. This is fault-handling evidence, not factual quality or human-relevance credit.
+
+The new twenty-family blind cohort remains sealed. Current-source normal/progressive receiving helpers are prepared in private `ca91d96`, and the normal Preview's configuration/source route selection passed review. Actual current-source rendered receiving remains pending. The reliability prerequisite is still failed: actual-client create/edit/complete p95 was **916.9/847.5/860 ms** against 800 ms, with all 615 actions persisted and exact cleanup subsequently completed (private `0631498`). No blind release, whole-quality acceptance, visual waiver or production change follows from these results.
+
+
 ## Current combined-source boundary, 1 October 2026
 
 App `59684368521b7e75dea56a9cc1eb8cda8ca4ea82` passed [Verify Tasks 36836011308](https://github.com/ethanmcn2013-droid/app/actions/runs/36836011308) and a normal local Turbopack build. Its task-detail transport has a separate bounded authenticated check of nine successful reads, three per section for the same owned task, with twelve empty cleanup scopes and terminal sessions (`a6da322`, private custody). The completed 205-cycle browser run also passes the specified actual-client acknowledgement p95 target in all three action classes, with independent persistence and cleanup verification preserved in `5a8547a`. Neither task-read health nor acknowledgement timing scores Signal intelligence quality or establishes final combined receiving. The representative workload failed at 12:09 UTC during its first repetition. History-scope verification could not finish; retained catch records do not establish a cross-project leak. The manifest lacked required acceptance targets, and partial promotion, send, conversation-list, Home and visibility measurements exceeded their unchanged limits. All ten workload sessions were revoked. Read-only reconciliation found all 80 writes durable, including one promotion without a verified acknowledgement; both owned fixtures were subsequently removed with confirmed commits, fresh zero-residue checks and unchanged checked nonowned data (private custody `f131b27`). No representative, postload, fault or final combined receiving acceptance is claimed.
