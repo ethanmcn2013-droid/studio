@@ -12,6 +12,7 @@ async function installed(tx: UsageTransaction) {
 /** Called only inside the existing verified-ingest writer transaction. */
 export async function recordProgrammeContribution(tx: UsageTransaction, canonical: CanonicalUsageIssuance,
   event: VenueMeaningfulActionV1, epoch: string, localDate: string) {
+  if (canonical.environment !== "internal_test") return;
   if (!await installed(tx)) return; // Additive deployment; never creates schema during ingestion.
   await tx.run(sql`INSERT OR IGNORE INTO sponsor_programme_contributions
     (programme_id,unit_key,epoch,workspace_hash,subject_hash,local_date,expires_at)

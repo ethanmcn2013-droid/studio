@@ -182,6 +182,12 @@ test("actual App actions, authenticated Studio receipt and canonical cohort publ
     assert.equal(deliveredAdmin.evidencedDelivery,1);
     assert.deepEqual(deliveredAdmin.claimed,{state:"verified",value:40});
     assert.equal((await viaInvitation("reader")).status,403);
+    await studio.database.insert(studio.schema.licenseCodes).values({id:"legacy-unverified",sponsorId,
+      code:"LEGACY-SYNTHETIC-ONLY",tier:"wedding",durationDays:548,createdAt:claimAt,updatedAt:claimAt});
+    const mixedInventory=await (await viaInvitation("admin")).json();
+    assert.deepEqual(mixedInventory.claimed,{state:"unavailable"});
+    assert.deepEqual(mixedInventory.invitations.find(row=>row.reference==="legacy-unverified").claim,{state:"unknown"});
+
     for (const body of [JSON.stringify(published),htmlBody,csvBody]) {
       assert.doesNotMatch(body,/PRIVATE SYNTHETIC TASK|clerk-cohort|cohort-project|cohort-claim|workspace_hash|subject_hash|licenseCodeId/);
       for(const {codes} of cohort.issuances)for(const code of codes)assert.ok(!body.includes(code.code));
