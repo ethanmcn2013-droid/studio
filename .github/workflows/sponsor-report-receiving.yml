@@ -1,0 +1,97 @@
+name: Sponsor report receiving
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/sponsor-report-receiving.yml
+      - package.json
+      - pnpm-lock.yaml
+      - scripts/sponsor-report-rehearsal.cjs
+      - scripts/migrate-sponsor-programme.mjs
+      - src/app/api/internal/sponsored-use/**
+      - src/app/api/sponsor-programmes/**
+      - src/lib/account/instrumentation/**
+      - src/lib/account/live/load-venue-usage.ts
+      - src/lib/entitlements-db/**
+      - src/lib/sponsor-programme/**
+      - src/lib/sponsored-use/**
+      - src/lib/venue-fulfilment/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sponsor-report-receiving-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  receiving:
+    name: Synthetic App to Studio receiving
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout Studio PR source
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: sponsor-pair/studio
+          persist-credentials: false
+
+      - name: Checkout immutable public App fixture
+        uses: actions/checkout@v4
+        with:
+          repository: ethanmcn2013-droid/app
+          ref: f51b37f85bdb2ca1e232d74d7cb1f4b02ca19051
+          path: sponsor-pair/app
+          persist-credentials: false
+
+      - name: Set up Node 22 and Corepack
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install App fixture dependencies
+        working-directory: sponsor-pair/app
+        run: |
+          corepack pnpm --version
+          corepack pnpm install --frozen-lockfile
+
+      - name: Install Studio dependencies
+        working-directory: sponsor-pair/studio
+        run: |
+          corepack pnpm --version
+          corepack pnpm install --frozen-lockfile
+
+      - name: Rehearse synthetic receiving
+        working-directory: sponsor-pair/studio
+        run: corepack pnpm run test:sponsor-receiving ../evidence/receiving
+
+      - name: Record exact pair and specimen hashes
+        run: |
+          set -eu
+          evidence=sponsor-pair/evidence/receiving
+          for file in report.json report.html report.csv evidence.json; do test -s "$evidence/$file"; done
+          studio_sha=$(git -C sponsor-pair/studio rev-parse HEAD)
+          app_sha=$(git -C sponsor-pair/app rev-parse HEAD)
+          test "$app_sha" = f51b37f85bdb2ca1e232d74d7cb1f4b02ca19051
+          printf '{"studio":"%s","app":"%s"}\n' "$studio_sha" "$app_sha" > "$evidence/source-revisions.json"
+          (cd "$evidence" && sha256sum report.json report.html report.csv evidence.json source-revisions.json > SHA256SUMS)
+
+      - name: Upload synthetic receiving evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: sponsor-report-receiving-${{ github.run_id }}
+          path: |
+            sponsor-pair/evidence/receiving/report.json
+            sponsor-pair/evidence/receiving/report.html
+            sponsor-pair/evidence/receiving/report.csv
+            sponsor-pair/evidence/receiving/evidence.json
+            sponsor-pair/evidence/receiving/source-revisions.json
+            sponsor-pair/evidence/receiving/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 7
