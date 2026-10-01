@@ -28,11 +28,11 @@ export async function invitationAdministration(db: ReportDatabase, programmeId: 
     const invitations = rows.rows.map(r => ({ reference: String(r.id), codeStatus: String(r.status),
       generatedAt: Number(r.created_at), issuedAt: r.issued_at === null ? null : Number(r.issued_at),
       delivery: r.delivered_at === null ? { state: "unknown" as const } : { state: "evidenced" as const, source: "operator_attestation" as const, at: Number(r.delivered_at) },
-      claim: claims === null ? { state: "unknown" as const } : claims.has(String(r.id)) ? { state: "verified" as const, at: claims.get(String(r.id))! } : { state: "unclaimed" as const }, expiresAt: r.expires_at === null ? null : Number(r.expires_at) }));
+      claim: claims === null ? { state: "unknown" as const } : claims.has(String(r.id)) ? { state: "verified" as const, at: claims.get(String(r.id))! } : { state: "unknown" as const }, expiresAt: r.expires_at === null ? null : Number(r.expires_at) }));
     await tx.commit();
     return { programmeId, generated: invitations.length, issued: invitations.filter(i => i.issuedAt !== null).length,
       evidencedDelivery: invitations.filter(i => i.delivery.state === "evidenced").length,
-      claimed: claims === null ? { state: "unavailable" as const } : { state: "verified" as const, value: invitations.filter(i => i.claim.state === "verified").length }, invitations };
+      claimed: claims === null || invitations.some(i => i.claim.state === "unknown") ? { state: "unavailable" as const } : { state: "verified" as const, value: invitations.filter(i => i.claim.state === "verified").length }, invitations };
   } catch (error) { await tx.rollback(); throw error; } finally { tx.close(); }
 }
 export async function recordInvitation(db: ReportDatabase, programmeId: string, subject: string, input: unknown, now: number) {
