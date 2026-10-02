@@ -691,8 +691,9 @@ export function startHome(root) {
       var rings = $("#rings"), closeWrap = rings.parentNode;
       function ringFit() {
         var b = closeWrap.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2, need = 0;
-        $$(".sub, .wl, .wl-done", closeWrap).forEach(function (el) {
-          if (el.hidden) return;
+        /* The confirmation is a full-width row, so its words are measured, not its box. */
+        $$(".sub, .wl, .wl-done > *", closeWrap).forEach(function (el) {
+          if (el.closest("[hidden]")) return;
           var r = el.getBoundingClientRect();
           [[r.left, r.top], [r.right, r.top], [r.left, r.bottom], [r.right, r.bottom]].forEach(function (p) { need = Math.max(need, Math.sqrt(Math.pow(p[0] - cx, 2) + Math.pow(p[1] - cy, 2))); });
         });

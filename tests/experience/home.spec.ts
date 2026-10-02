@@ -68,9 +68,13 @@ test.describe("the home page, One Friday", () => {
     await page.emulateMedia({ colorScheme: "light" });
     await page.goto("/");
     await expect(page.locator(".lp")).toHaveAttribute("data-theme", "light");
-    await page.locator("#projects").scrollIntoViewIfNeeded();
+    // The capture loads lazily, so bring its own frame into view and give a busy dev server time.
+    await page.locator("#pl-projects").scrollIntoViewIfNeeded();
     await expect
-      .poll(() => page.locator("#pl-projects .shot.on img").evaluate((img: HTMLImageElement) => img.currentSrc))
+      .poll(
+        () => page.locator("#pl-projects .shot.on img").evaluate((img: HTMLImageElement) => img.currentSrc),
+        { timeout: 20_000 },
+      )
       .toMatch(/projects-desk-light-\dx\.webp$/);
   });
 
