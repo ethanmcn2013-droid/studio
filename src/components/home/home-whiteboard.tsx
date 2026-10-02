@@ -13,7 +13,7 @@ const px = (n: number) => `${Math.round(n * 10) / 10}px`;
  * the desktop width, so the wall does not move when the script arrives.
  */
 export function HomeWhiteboard() {
-  const L = layoutWall(1191, false);
+  const L = layoutWall(1190, false);
   const hands = handSpots(L);
   const arrows = arrowPaths(L);
   const florist = L.S[NOTES.findIndex((note) => note.id === "n-florist")];

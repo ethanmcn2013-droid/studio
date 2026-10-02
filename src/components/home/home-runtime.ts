@@ -56,6 +56,8 @@ export function startHome(root) {
   var reduceQuery = matchMedia("(prefers-reduced-motion: reduce)");
   var reduce = reduceQuery.matches;
   var live = $("#live");
+  /* :focus-visible is missing from older Safari; there, any focus counts as keyboard focus. */
+  function keyFocus(el) { try { return el.matches(":focus-visible"); } catch (e) { return true; } }
   function announce(t) { live.textContent = ""; requestAnimationFrame(function () { if (!dead) live.textContent = t; }); }
 
   /* Smooth scrolling starts after the page has landed, so a deep link or a restored
@@ -347,7 +349,7 @@ export function startHome(root) {
     }
     /* The toast stays while the pointer is on it or keyboard focus is in the sample or on the toast. */
     var hovering = false;
-    function holding() { var a = document.activeElement; return hovering || (!!a && (toast.contains(a) || (home.contains(a) && a.matches(":focus-visible")))); }
+    function holding() { var a = document.activeElement; return hovering || (!!a && (toast.contains(a) || (home.contains(a) && keyFocus(a)))); }
     function hide() { clearTimeout(toastTimer); toast.classList.remove("on"); }
     function hideSoon(ms) { clearTimeout(toastTimer); toastTimer = later(function () { if (holding()) hideSoon(2000); else hide(); }, ms); }
     function say(text, nearEl, reply) {
@@ -680,7 +682,7 @@ export function startHome(root) {
 
     /* The cast. */
     function sleep(ms) { return new Promise(function (r) { later(r, ms); }); }
-    function keyboardOnWall() { var a = document.activeElement; return !!a && wb.contains(a) && a.classList.contains("note") && a.matches(":focus-visible"); }
+    function keyboardOnWall() { var a = document.activeElement; return !!a && wb.contains(a) && a.classList.contains("note") && keyFocus(a); }
     function blocked() { return userPaused || !onWall || document.hidden || !!picked || !!dragging || keyboardOnWall(); }
     async function clear() { while (blocked()) await sleep(300); }
     function fly(who, x, y, ms) {
