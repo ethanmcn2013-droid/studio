@@ -12,15 +12,19 @@ import { buildFavicon, FAVICON_SIZES } from "./favicon-artifacts.mjs";
 
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const require = createRequire(import.meta.url);
-const { SuiteMark } = require("../../src/lib/brand/suite-mark.tsx");
+const { SuiteMark, SIGNAL_INDIGO, SIGNAL_INDIGO_ON_DARK, SIGNAL_FLOOR, TILE_COVERAGE } = require("../../src/lib/brand/suite-mark.tsx");
 const { STUDIO_BROWSER_ICONS, STATIC_BROWSER_ICON } = require("../../src/lib/brand/browser-icons.ts");
 const read = (path) => readFileSync(join(root, path));
 const PNG_SIGNATURE = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
 
-// Ethan's committed dot + broadcast-ring artwork, studio 839fd493.
-// Transparency is a browser treatment; the underlying mark stays unchanged.
+// The ring and dot as redrawn on 2026-10-02 (round 2, Q24) to match the mark
+// the home page draws: its indigo, a dot 41% of the ring, a ring never under
+// two pixels. It replaces the seal on studio 839fd493 (anchor indigo, 36%
+// dot, a one-pixel ring at 16px). Resealed deliberately, with the rendered
+// sheet at content/hq/design-reviews/2026-10-02-home-page-v3/
+// round2-site-icons-contact-sheet.png.
 const CANONICAL_MARK_SHA256 =
-  "4b00fa51d93e967dfda92641394e806e4a097a1047b453c064e6681520f5f14d";
+  "064b4bdc31df3993de4f061c8a2b30a25128c98a8ef1a892627be9024c943801";
 
 test("the shared renderer preserves the committed Signal artwork", () => {
   const source = read("src/lib/brand/suite-mark.tsx").toString().replace(/\r\n?/g, "\n");
@@ -29,7 +33,7 @@ test("the shared renderer preserves the committed Signal artwork", () => {
 });
 
 test("the ICO fallback contains the actual shared mark at every tab size", async () => {
-  const actual = read("src/app/favicon.ico");
+  const actual = read("public/favicon.ico");
   const expected = await buildFavicon();
   assert.ok(actual.equals(expected),
     "favicon.ico differs from SuiteMark. Run pnpm brand:icons, then inspect the rendered icon.");
@@ -58,45 +62,84 @@ function assertTransparentMark(buffer) {
   for (const [x, y] of [[0, 0], [png.width - 1, 0], [0, png.height - 1], [png.width - 1, png.height - 1]]) {
     assert.equal(pixel(x, y)[3], 0, "browser favicon must have no background");
   }
-  assert.deepEqual(pixel(png.width / 2, png.height / 2), [79, 70, 229, 255], "solid indigo center dot");
+  const INDIGO = [104, 96, 255]; // SIGNAL_INDIGO
+  assert.deepEqual(pixel(png.width / 2, png.height / 2), [...INDIGO, 255], "solid indigo centre dot");
+  const isIndigo = (p) => p[3] > 240 && INDIGO.every((channel, i) => Math.abs(p[i] - channel) <= 2);
+  if (png.width === 16) {
+    // Pixel hinting: the ring is two whole pixels at the top of the frame
+    // and the gap inside it is clear. One soft pixel was the old defect.
+    assert.ok(pixel(8, 1)[3] > 200 && pixel(8, 2)[3] > 240, "the 16px ring must be two solid pixels wide");
+    assert.ok(pixel(8, 4)[3] < 16, "the 16px gap between ring and dot must be clear");
+  }
   if (png.width === 32) {
-    assert.equal(pixel(16, 8)[3], 0, "the space between the dot and ring must be transparent");
-    const ring = pixel(16, 5);
-    assert.ok(ring[3] > 240, "the indigo broadcast ring must remain visible");
-    assert.ok(Math.abs(ring[0] - 79) <= 2 && Math.abs(ring[1] - 70) <= 2 && Math.abs(ring[2] - 229) <= 2);
+    assert.equal(pixel(16, 7)[3], 0, "the space between the dot and ring must be transparent");
+    assert.ok(isIndigo(pixel(16, 3)), "the indigo ring must remain visible");
+  }
+}
+
+function assertOpaqueTile(buffer) {
+  const png = PNG.sync.read(buffer);
+  for (let i = 3; i < png.data.length; i += 4) {
+    if (png.data[i] !== 255) assert.fail("install tiles must have no transparent pixels: iOS fills them with black");
+  }
+  // Full bleed: every corner is the floor, so no rounded corner is baked in.
+  for (const [x, y] of [[0, 0], [png.width - 1, 0], [0, png.height - 1], [png.width - 1, png.height - 1]]) {
+    assert.deepEqual([...png.data.subarray((y * png.width + x) * 4, (y * png.width + x) * 4 + 3)], [12, 12, 13]);
   }
 }
 
 test("browser, Apple and install routes render the same suite artwork", async () => {
-  for (const [file, canvas, borderRadius, background] of [
-    ["icon.tsx", 32, 0, "transparent"],
-    ["apple-icon.tsx", 180, 36, "#ffffff"],
-    ["icon1.tsx", 512, 0, "#ffffff"],
+  for (const [file, canvas, background, coverage] of [
+    ["icon.tsx", 32, "transparent", undefined],
+    ["apple-icon.tsx", 180, SIGNAL_FLOOR, TILE_COVERAGE],
+    ["icon2.tsx", 192, SIGNAL_FLOOR, TILE_COVERAGE],
+    ["icon1.tsx", 512, SIGNAL_FLOOR, TILE_COVERAGE],
   ]) {
     const route = require(`../../src/app/${file}`);
     assert.deepEqual(route.size, { width: canvas, height: canvas });
     assert.equal(route.contentType, "image/png");
     const actual = Buffer.from(await route.default().arrayBuffer());
-    const expected = new ImageResponse(createElement(SuiteMark, { canvas, borderRadius, background }), route.size);
+    const expected = new ImageResponse(createElement(SuiteMark, { canvas, background, coverage }), route.size);
     assert.ok(actual.equals(Buffer.from(await expected.arrayBuffer())), `${file} drifted from SuiteMark`);
     if (file === "icon.tsx") assertTransparentMark(actual);
+    else assertOpaqueTile(actual);
   }
 });
 
-test("page metadata selects the transparent browser icon and keeps the Apple tile", () => {
-  assert.deepEqual(STUDIO_BROWSER_ICONS.icon, [{
-    url: "/icon?v=transparent-dot-ring-20260908", type: "image/png", sizes: "32x32",
-  }]);
-  assert.deepEqual(STUDIO_BROWSER_ICONS.apple, [{
+test("the SVG tab icon is the same mark, with a lighter indigo for dark tab strips", () => {
+  const svg = read("public/icon.svg").toString();
+  assert.ok(svg.includes(`.mark { color: ${SIGNAL_INDIGO}; }`), "icon.svg must use the mark indigo");
+  assert.match(svg, /@media \(prefers-color-scheme: dark\)/);
+  assert.ok(svg.includes(`.mark { color: ${SIGNAL_INDIGO_ON_DARK}; }`), "icon.svg must lighten on a dark strip");
+  // 16 unit box: a 2 unit ring 14 wide, and a dot 41% of that.
+  assert.match(svg, /viewBox="0 0 16 16"/);
+  assert.match(svg, /r="6" fill="none" stroke="currentColor" stroke-width="2"/);
+  assert.match(svg, /r="2\.87" fill="currentColor"/);
+});
+
+test("page metadata declares each icon with the sizes it really holds", () => {
+  const strip = (entry) => ({ ...entry, url: entry.url.replace(/\?v=.*$/, "") });
+  assert.deepEqual(STUDIO_BROWSER_ICONS.icon.map(strip), [
+    // The ICO holds four frames; it used to be announced as 256x256 only.
+    { url: "/favicon.ico", type: "image/x-icon", sizes: FAVICON_SIZES.map((size) => `${size}x${size}`).join(" ") },
+    { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+    { url: "/icon", type: "image/png", sizes: "32x32" },
+  ]);
+  assert.deepEqual(STUDIO_BROWSER_ICONS.apple.map(strip), [{
     url: "/apple-icon", type: "image/png", sizes: "180x180",
   }]);
+  for (const entry of [...STUDIO_BROWSER_ICONS.icon, ...STUDIO_BROWSER_ICONS.apple]) {
+    assert.match(entry.url, /\?v=[a-z0-9-]+$/, "every icon link carries the artwork version");
+  }
+  // Next adds its own, wrongly sized, link for a favicon.ico in src/app.
+  assert.equal(existsSync(join(root, "src/app/favicon.ico")), false, "favicon.ico lives in public/");
   assert.match(read("src/app/layout.tsx").toString(), /icons:\s*STUDIO_BROWSER_ICONS/);
 });
 
 test("hosted static brand pages and deck mirrors use the same favicon", () => {
   const brandDir = join(root, "public/brand");
   if (!existsSync(brandDir)) return;
-  assert.deepEqual(read(`public/brand/assets/${STATIC_BROWSER_ICON}`), read("src/app/favicon.ico"));
+  assert.deepEqual(read(`public/brand/assets/${STATIC_BROWSER_ICON}`), read("public/favicon.ico"));
   const requiredPages = new Set([
     "business-loan-pack-2026.html", "market-entry-deck-2026.html", "loading-review-2026.html",
   ]);

@@ -1,3 +1,4 @@
+import { SHARE_CARD } from "@/lib/brand/share-card";
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
@@ -48,12 +49,15 @@ export const metadata: Metadata = {
       "Free, Student, Pro and Enterprise. Compare the price, limits and access terms without a feature maze.",
     type: "website",
     url: "/pricing",
+    siteName: "Signal Studio",
+    images: [SHARE_CARD],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pricing · Signal Studio",
     description:
       "Free, Student, Pro and Enterprise. One clear comparison.",
+    images: [SHARE_CARD],
   },
 };
 

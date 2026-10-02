@@ -3310,7 +3310,7 @@
       "lastReviewedAt": "2026-08-23",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "3b512f29e490990e"
+      "materialityHash": "2f1f4f59639b759d"
     },
     {
       "id": "studio.page.design-lab-design",
@@ -6143,7 +6143,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "c1993f2f16079243"
+      "materialityHash": "fed9a1432c9f8834"
     },
     {
       "id": "studio.page.principles",
@@ -6416,7 +6416,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "2cb463735ea5df40"
+      "materialityHash": "dd2b0165f60a6851"
     },
     {
       "id": "studio.state.root-error",
@@ -6500,7 +6500,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "77b4997c6f87ba41"
+      "materialityHash": "c7c50aebb2f9be7b"
     },
     {
       "id": "studio.surface.atlas-filter",

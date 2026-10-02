@@ -1,12 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { Wordmark } from "@/components/brand/wordmark";
+import { RingDotMark } from "@/components/brand/ring-dot-mark";
 import { SiteFooter } from "@/components/landing/site-footer";
+
+/* A missing page used to carry the home page's title, canonical and share
+   text. It names itself and stays out of the index. */
+export const metadata: Metadata = {
+  title: "Page not found · Signal Studio",
+  description: "This page is not here. Start again from the Signal Studio home page.",
+  robots: { index: false, follow: true },
+  alternates: { canonical: null },
+};
 
 const ROUTES = [
   {
     href: "/",
     label: "Home",
-    detail: "Start from the suite entrance.",
+    detail: "See what Signal Studio does.",
   },
   {
     href: "/about",
@@ -230,8 +240,28 @@ const NOT_FOUND_CSS = `
 
 .nf-stage-wordmark {
   position: absolute;
+  z-index: 1;
   left: clamp(20px, 4vw, 44px);
   top: clamp(18px, 4vw, 40px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.nf-stage-wordmark svg {
+  color: var(--accent);
+}
+
+.nf-stage-wordmark:focus-visible {
+  outline: 1.5px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .nf-stage-note {
@@ -407,8 +437,8 @@ const NOT_FOUND_CSS = `
 `;
 
 /**
- * 404, built from the /design page grammar: baseline, cap height,
- * one indigo dot, and routes that get the reader unstuck.
+ * 404: baseline, cap height, one indigo dot, the ring and dot linking
+ * home, and routes that get the reader unstuck.
  */
 export default function NotFound() {
   return (
@@ -423,8 +453,8 @@ export default function NotFound() {
                 This page is not here.
               </h1>
               <p className="nf-body">
-                Start at Signal Studio, see the design system, or join the
-                waitlist for the next access batch.
+                The link may be old, or the page may have moved. Start from
+                the home page, read about us, or join the waitlist.
               </p>
 
               <nav className="nf-routes" aria-label="Helpful routes">
@@ -437,14 +467,15 @@ export default function NotFound() {
               </nav>
             </div>
 
-            <div className="nf-stage" aria-hidden="true">
-              <div className="nf-stage-wordmark">
-                <Wordmark kind="studio" size="md" animate={false} />
-              </div>
-              <div className="nf-cap">
+            <div className="nf-stage">
+              <Link href="/" className="nf-stage-wordmark" aria-label="Signal Studio, home">
+                <RingDotMark />
+                signal studio
+              </Link>
+              <div className="nf-cap" aria-hidden="true">
                 <span>cap height</span>
               </div>
-              <div className="nf-base">
+              <div className="nf-base" aria-hidden="true">
                 <span>baseline</span>
               </div>
               <div className="nf-number" aria-hidden="true">
@@ -452,9 +483,9 @@ export default function NotFound() {
                 <span>0</span>
                 <span>4</span>
               </div>
-              <span className="nf-dot-shadow" />
-              <span className="nf-dot" />
-              <div className="nf-stage-note">
+              <span className="nf-dot-shadow" aria-hidden="true" />
+              <span className="nf-dot" aria-hidden="true" />
+              <div className="nf-stage-note" aria-hidden="true">
                 <span>Page missing.</span>
                 <strong>Signal Studio is still here.</strong>
               </div>

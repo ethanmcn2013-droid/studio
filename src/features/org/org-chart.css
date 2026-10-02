@@ -2654,13 +2654,16 @@ a.orgc-link:hover {
   display: none;
 }
 
+/* Scoped to the page that carries the brief. This sheet is part of the one
+   global stylesheet, and unscoped the rule blanked every printed page on the
+   site (round 2, Q4). */
 @media print {
-  body * {
+  body:has(.orgc-print) * {
     visibility: hidden;
   }
 
-  .orgc-print,
-  .orgc-print * {
+  body:has(.orgc-print) .orgc-print,
+  body:has(.orgc-print) .orgc-print * {
     visibility: visible;
   }
 

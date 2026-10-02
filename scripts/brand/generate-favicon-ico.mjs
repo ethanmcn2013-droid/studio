@@ -7,7 +7,7 @@ const { STATIC_BROWSER_ICON } = require("../../src/lib/brand/browser-icons.ts");
 
 const root = new URL("../../", import.meta.url);
 const icon = await buildFavicon();
-writeFileSync(new URL("src/app/favicon.ico", root), icon);
+writeFileSync(new URL("public/favicon.ico", root), icon);
 
 // The deck publisher copies assets/ references to the static mirror hosts.
 const brandAssets = new URL("public/brand/assets/", root);
