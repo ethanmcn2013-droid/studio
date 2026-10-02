@@ -8,6 +8,16 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-02 · S·181 · ships · The home page follows one Friday
+
+**The home page now shows the product at work. You can tick a task off, follow it from Home to the board, the list and the calendar, and move notes around a shared wall. It opens dark, and there is a light switch.**
+
+The founder picked "A, One Friday, with parts of B and C" on 2 October and asked for it to be published now, ahead of the 21 January date, for the home page only. Nothing else opens with it. The waitlist is still the only way in, the form at the foot of the page is the same one as on Waitlist, and the page says access comes in stages. The header names what the product does: Projects, Tasks, Timeline, Files, Analytics, Whiteboard. Pricing and About ride in it quietly and stay in the footer. The footer and the company registration line are unchanged, with the dot run above them.
+
+Under it: `src/components/home/` holds the page. The markup is static server components, the styles are one sheet scoped under `.lp` with its own `--lp-` properties, and one DOM runtime (`home-runtime.ts`) starts from an effect and takes down every listener, timer, observer and animation when the page leaves. The theme is `data-theme` on the page root, so the design system's dark mapping themes the footer and every other page stays light; `SiteNav` returns nothing on `/`. The waitlist form is a client component on `joinWaitlistAction` with source `home_close`. Product captures are WebP in `public/landing/`, built by `scripts/build-landing-shots.mjs` at the sizes they are shown, with the parts no frame can reach painted flat: a full scroll moves 561 KB of images at 1440 and 683 KB on a 3x phone. Steps 02 and 03 of the Tasks story use two new phone captures instead of cropped desktop ones.
+
+Two lines came back to what the site already said, so the page makes no new claim: the stamp reads "Wedding venues in private preview" and the venue card reads "In private preview with wedding venues." Three inks on tinted grounds and the footer's faint ink on the light floor were moved the smallest amount that clears 4.5 to 1. The floor-and-sheet home components are in `archive/home-floor-and-sheet/`; About and Pricing keep the floor and are untouched. `tests/experience/home.spec.ts` is new, and four contract tests that pinned the old page now pin this one. Decision: `content/hq/decisions/home-page-v3-2026-10-02.md`.
+
 ## 2026-09-23 · S·180 · reads · HQ separates App candidate proof from production
 
 **HQ now records the September App candidate without calling it a production release.** The monthly starter is a separate, owned Tasks Project with unset dates, while the four-layer source pack remains broader than that control. Notes recovery and recipient account deletion have bounded, isolated Preview proof; the full live extract journey and production lifecycle remain release gates. Timeline and Home Signal source-date repairs are recorded at their actual test scope. The navigation record points to the current integration candidate and keeps the production boundary explicit.
