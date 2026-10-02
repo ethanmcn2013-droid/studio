@@ -138,12 +138,21 @@ describe("public story proof contract", () => {
     // the route renders one HomePage, and HomePage holds the story order.
     assert.doesNotMatch(home + homePage, /RevealManifesto/);
     assert.match(home, /<HomePage>/);
+    // Round 2 (2026-10-02): the page runs in the header's order, with who it
+    // is for straight after the sample and the form last.
     const story = [
       "<HomeHero />",
+      "<HomeWho />",
+      "<HomeProjects />",
       "<HomeTasks />",
-      "<HomeSections />",
+      "<HomeTimeline />",
+      "<HomeFiles />",
+      "<HomeYours />",
+      "<HomeAnalytics />",
       "<HomeWhiteboard />",
-      "<HomeClosing />",
+      "<HomeWords />",
+      "<HomeVenue />",
+      "<HomeClose />",
     ];
     const positions = story.map((part) => homePage.indexOf(part));
     assert.ok(

@@ -29,6 +29,12 @@ export function HomeBoot() {
   useLayoutEffect(() => {
     bootHome(document.querySelector(".lp"));
   }, []);
-  useEffect(() => startHome(document.querySelector(".lp")), []);
+  useEffect(() => {
+    // Two marks, so a performance trace can say what the runtime's start cost.
+    performance.mark("home-runtime-start");
+    const stop = startHome(document.querySelector(".lp"));
+    performance.mark("home-runtime-ready");
+    return stop;
+  }, []);
   return null;
 }

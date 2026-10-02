@@ -89,7 +89,13 @@ describe("product URL contract", () => {
           `${href} has a section to land on`,
         );
       } else {
-        assert.match(href, /^\/(?:pricing|about)$/, `${href} stays on the umbrella`);
+        // Round 2 (2026-10-02): the form's note links Privacy, and venues and
+        // questions go to the one company address by email.
+        assert.match(
+          href,
+          /^(?:\/(?:pricing|about|privacy)|mailto:hello@signalstudio\.ie(?:\?subject=[A-Za-z0-9%]+)?)$/,
+          `${href} stays on the umbrella`,
+        );
       }
     }
     assert.doesNotMatch(homeSources, /target=["']_blank["']/);

@@ -8,6 +8,13 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-02 · S·184 · tightens · The home page lands where you send it
+
+**A link to any part of the home page now opens on that part, a reload comes back to the same place, the page remembers the theme you chose, and it says what joining the waitlist gets you.**
+
+Six blind reviews of the live page came back the same day it shipped. This is the answer to the home page's share of them. The page now runs in the header's order: the working sample, who it is for, Projects, one Friday in Tasks, Timeline, Files, the same first line in a builder's, a school's and a studio's words, Analytics, Whiteboard, plain words, venues, the form. The Friday story is three steps instead of five and the "One task" section is one sentence inside it. Analytics opens on the question. The hero's label sits on the sample and says it is live. Under the form: "Free to join. No card and no newsletter. One email when it is your turn, from January 2027. There is a free plan for one project, and Pro is €12 a month." Venues can ask to try it now by email. The form has an optional "What do you run?".
+
+Under it: every product frame takes its size from the markup, so the page is its final length before any script runs. The story's step is read off the scroll position. The whiteboard's Tidy moves notes by transform, its height never changes, the sample people can be paused, and a note can be moved without dragging. Tabs are real tabs and never show an empty plate. The header is 92% opaque with a blur. Type is in rem with a 12px floor and breakpoints are in em. There are forced-colours, more-contrast, print and no-script states. Captures are rebuilt from the round 2 set, cut to the rows a frame shows, with tablet captures between 641 and 1023 px and the whole app window from 1680 px, in a content-hashed folder. The dot run above the footer plays once and is a button that plays it again. Four contract pins moved with the page. Decision: `content/hq/decisions/home-page-v3-2026-10-02.md`, Round 2. Receipt: `experience/materiality-receipts/2026-10-02-home-page-v3-round-2.md`.
 ## 2026-10-02 · S·183 · tightens · A shared link shows a picture, and the footer fits
 
 **A link to Signal Studio now previews with a real picture, pages print, and the footer on every page is half its old height with links you can tap without hitting the wrong one.**
