@@ -45,8 +45,7 @@ export async function generateViewport({
  *         Files, Analytics and the whiteboard, in the header's order. Dark
  *         first, with a light theme scoped to this page. It carries its own
  *         header; the global site nav hides itself on this route. The shared
- *         footer stays, without the mascot film: the dot run above it is the
- *         page's one closing motion (round 2).
+ *         footer stays.
  *
  * The two-variant pattern avoids a redirect loop (authed redirect to /
  * would loop back to this page). The proxy rewrite keeps the URL clean.
@@ -73,7 +72,7 @@ export default async function Home() {
 
   return (
     <HomePage>
-      <SiteFooter />
+      <SiteFooter showDot />
     </HomePage>
   );
 }

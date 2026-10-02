@@ -111,15 +111,12 @@
 /* light-palette:end */
 
 .lp *, .lp *::before, .lp *::after { box-sizing: border-box; }
-/* The document behind the page. The layout paints html and body white for
-   every route; on this one the root's floor colour has to reach the edges,
-   so overscroll and the first frame are the page's colour, not white. The
-   !important is there to beat the layout's inline style, on this route only.
-   The header's height lives here so the scroll padding can read it: every
-   in-page link, deep link and focused control lands clear of the header. */
-html:has(.lp) { --lp-nav-h: 60px; -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--lp-nav-h) + 24px); overflow-x: clip; background: rgb(12 12 13) !important; color-scheme: dark !important; } /* ds-allow: the dark floor, repeated because html sits outside the root's variables */
-html:has(.lp[data-theme="light"]) { background: rgb(244 243 241) !important; color-scheme: light !important; } /* ds-allow: the light floor, as above */
-html:has(.lp) body { background: transparent !important; }
+/* The document behind the page takes the page's floor from the layout's own
+   head style (src/app/layout.tsx, from theme-color.ts), so overscroll and the
+   first frame are the page's colour. The header's height lives here so the
+   scroll padding can read it: every in-page link, deep link and focused
+   control lands clear of the header. */
+html:has(.lp) { --lp-nav-h: 60px; -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--lp-nav-h) + 24px); overflow-x: clip; }
 @media (max-height: 30em) { html:has(.lp) { --lp-nav-h: 48px; } }
 @media (max-height: 21.25em) { html:has(.lp) { scroll-padding-top: 12px; } }
 .lp {
@@ -486,7 +483,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .frame[hidden], .lp .note[hidden], .lp .hand[hidden], .lp .cursor[hidden] { display: none; }
 /* A note sits where its two numbers say, by transform, so moving one never lays the page
    out again. Tidy is the same transform, eased. */
-.lp .note { position: absolute; left: 0; top: 0; z-index: var(--lp-z, 2); width: var(--lp-nw); min-height: var(--lp-nh); padding: 11px 12px 10px; border: 1px solid var(--lp-edge); border-radius: var(--lp-r-sm); background: var(--lp-c); box-shadow: 0 8px 16px -9px rgba(0, 0, 0, 0.5); font-size: 0.90625rem; font-weight: 500; line-height: 1.3; letter-spacing: -0.005em; text-align: left; color: var(--lp-p-text); cursor: grab; touch-action: pan-y; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; transform: translate(var(--lp-nx, 0px), var(--lp-ny, 0px)) rotate(var(--lp-rot, 0deg)) scale(var(--lp-ns, 1)); display: flex; flex-direction: column; justify-content: space-between; gap: 6px; }
+.lp .note { --lp-rot: var(--lp-tilt, 0deg); position: absolute; left: 0; top: 0; z-index: var(--lp-z, 2); width: var(--lp-nw); min-height: var(--lp-nh); padding: 11px 12px 10px; border: 1px solid var(--lp-edge); border-radius: var(--lp-r-sm); background: var(--lp-c); box-shadow: 0 8px 16px -9px rgba(0, 0, 0, 0.5); font-size: 0.90625rem; font-weight: 500; line-height: 1.3; letter-spacing: -0.005em; text-align: left; color: var(--lp-p-text); cursor: grab; touch-action: pan-y; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; transform: translate(var(--lp-nx, 0px), var(--lp-ny, 0px)) rotate(var(--lp-rot, 0deg)) scale(var(--lp-ns, 1)); display: flex; flex-direction: column; justify-content: space-between; gap: 6px; }
 .lp button.note:where(:not(.lp-footer *)) { padding: 11px 12px 10px; border: 1px solid var(--lp-edge); background: var(--lp-c); color: var(--lp-p-text); font-size: 0.90625rem; font-weight: 500; line-height: 1.3; }
 .lp .wb.ready .note { transition: transform var(--lp-t3) var(--ease-in-out), box-shadow var(--lp-t1) var(--ease-out), opacity var(--lp-t2) var(--ease-out); }
 .lp .note small { display: flex; align-items: center; gap: 6px; min-height: 24px; font-size: 0.75rem; font-weight: 500; color: var(--lp-p-text-2); white-space: nowrap; }
@@ -614,24 +611,12 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp.js .wl-done span { animation: lp-rise var(--lp-t2) var(--ease-out); }
 
 /* 14 Footer: the dot run, then the shared site footer (components/landing/site-footer.tsx).
-   The footer keeps its own grid, links and company registration line; here it only gives
-   up its top margin and rule, because the dot run's hairline already opens the footer. */
+   The footer's own sheet (site-footer.css) puts it on this page's grid and inks, reading
+   --lp-wrap, --lp-gutter, --lp-text, --lp-text-2, --lp-text-3, --lp-line and
+   --lp-signal-ink from here. This page only takes its top margin and rule, because the
+   dot run's hairline already opens the footer. */
 .lp .lp-foot { border-top: 1px solid var(--lp-line); }
-.lp .lp-footer { font-size: 1rem; line-height: 1.5; color: var(--ink); --ink-quiet: var(--ink-faint); }
-/* --ink-quiet is a legacy alias resolved once at the document root, so on its own it does not
-   follow the design system's dark mapping; declared again here, it does. On the light floor,
-   a shade under white, the system's faint ink falls just short of 4.5 to 1 and the page's
-   own third ink clears it. */
-.lp[data-theme="light"] .lp-footer { --ink-faint: var(--lp-text-3); --ink-quiet: var(--lp-text-3); } /* ds-allow: the shared footer's faint ink on this page's light floor, contrast */
 .lp .lp-footer .site-footer { margin-top: 0 !important; border-top-color: transparent !important; }
-/* The footer's rows sit on this page's own grid edges. */
-.lp .lp-footer .site-footer > * { max-width: calc(var(--lp-wrap) + var(--lp-gutter) * 2) !important; padding-left: max(var(--lp-gutter), env(safe-area-inset-left)) !important; padding-right: max(var(--lp-gutter), env(safe-area-inset-right)) !important; }
-/* The footer's 44px targets resolve to 80px site-wide (the utility reads the design
-   system's eleventh space step). Pricing corrects it in its own scope; so does this page,
-   until the footer itself is put right. */
-.lp .lp-footer .marketing-footer-action { min-height: 44px; }
-.lp .lp-footer nav[aria-label="Signal Studio on social"] .marketing-footer-action { width: 44px; height: 44px; }
-.lp .lp-footer nav[aria-label="Legal"], .lp .lp-footer nav > div:first-child { font-size: 0.75rem; }
 /* The dot run. The dot hops along the line and settles into the ring to make the mark.
    It plays once, and the button plays it again. */
 .lp .dotrun { position: relative; display: block; width: 100%; height: 104px; cursor: pointer; overflow: hidden; -webkit-tap-highlight-color: transparent; }
@@ -792,7 +777,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
    hides everything but the org chart. */
 @media print {
   .lp, .lp * { visibility: visible !important; }
-  html:has(.lp) { background: rgb(255 255 255) !important; color-scheme: light !important; } /* ds-allow: paper */
+  html:has(.lp), html:has(.lp[data-theme="light"]) { background: rgb(255 255 255) !important; color-scheme: light !important; } /* ds-allow: paper */
   /* print-palette:start */
   .lp, .lp[data-theme="light"] {
   color-scheme: light;
@@ -829,7 +814,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
   .lp { background: rgb(255 255 255); --lp-sec: 3rem; } /* ds-allow: paper */
   .lp *, .lp *::before, .lp *::after { animation: none !important; transition: none !important; }
   .lp .nav { position: static; background: none; border: 0; }
-  .lp .nav-links, .lp .theme, .lp .menu, .lp .nav .btn, .lp .toast, .lp .lp-foot, .lp .tabs, .lp .wb-tools, .lp .wb-keys, .lp .win-more, .lp .cursor, .lp .bubble, .lp .progress, .lp .slate, .lp .noscript, .lp .wl, .lp .cta-row, .lp .prompt .btn { display: none !important; }
+  .lp .nav-links, .lp .theme, .lp .menu, .lp .nav .btn, .lp .toast, .lp .respond, .lp .tick.hint::after, .lp .lp-foot, .lp .tabs, .lp .wb-tools, .lp .wb-keys, .lp .win-more, .lp .cursor, .lp .bubble, .lp .progress, .lp .slate, .lp .noscript, .lp .wl, .lp .cta-row, .lp .prompt .btn { display: none !important; }
   .lp.js .lp-reveal { opacity: 1 !important; transform: none !important; }
   .lp.js .struck.lp-reveal li { color: var(--lp-text-3); }
   .lp.js .struck.lp-reveal del::after { transform: none; }

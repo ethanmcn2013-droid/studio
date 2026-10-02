@@ -1,6 +1,6 @@
 # UX Assurance report
 
-Generated: 2026-10-02T13:55:30.030Z
+Generated: 2026-10-02T19:42:43.863Z
 Gate: **pass**
 
 - 0 deterministic observations

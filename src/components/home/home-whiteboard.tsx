@@ -64,7 +64,7 @@ export function HomeWhiteboard() {
                     data-g={note.g}
                     aria-label={noteLabel(note)}
                     tabIndex={i === 0 ? 0 : -1}
-                    style={v({ "--lp-c": note.c, "--lp-a": note.a ?? "transparent", "--lp-rot": `${note.j[2]}deg`, "--lp-nx": px(p[0]), "--lp-ny": px(p[1]), ...(typed ? { "--lp-who": "var(--lp-av-violet)" } : {}) })}
+                    style={v({ "--lp-c": note.c, "--lp-a": note.a ?? "transparent", "--lp-tilt": `${note.j[2]}deg`, "--lp-nx": px(p[0]), "--lp-ny": px(p[1]), ...(typed ? { "--lp-who": "var(--lp-av-violet)" } : {}) })}
                   >
                     {typed ? <span><span className="tx" data-full={note.title}>{note.title}</span></span> : <span>{note.title}</span>}
                     <small>{note.late ? <em>{note.meta}</em> : note.meta}{note.who ? <i aria-hidden="true">{note.who}</i> : null}</small>

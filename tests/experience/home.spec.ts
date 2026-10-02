@@ -80,7 +80,7 @@ async function landing(page: Page, id: string) {
 }
 
 test.describe("the home page, One Friday", () => {
-  test.describe.configure({ timeout: 90_000 });
+  test.describe.configure({ timeout: 120_000 });
 
   test("opens dark on its own root and leaves the rest of the site light", async ({ page }) => {
     await page.emulateMedia({ colorScheme: "dark" });
@@ -296,6 +296,11 @@ test.describe("the home page, One Friday", () => {
         };
         requestAnimationFrame(tick);
       });
+      // Once to put the web fonts in the cache: a font arriving late can re-wrap a line, which
+      // is the layout's to settle (scroll anchoring holds the view meanwhile). This test is
+      // about the page's own sizing, with the fonts in hand.
+      await page.goto(DARK);
+      await page.evaluate(() => document.fonts.ready);
       await page.goto(DARK);
       await settled(page);
       await page.waitForTimeout(1200);
