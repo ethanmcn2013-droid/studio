@@ -6321,7 +6321,7 @@
       "lastReviewedAt": "2026-08-09",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "4ec4bcc80439b247"
+      "materialityHash": "824df8d54bebcf99"
     },
     {
       "id": "studio.page.terms",
@@ -6772,7 +6772,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "06d375d13e38aabb"
+      "materialityHash": "1c4b12301c5e809b"
     },
     {
       "id": "tasks.page.about",

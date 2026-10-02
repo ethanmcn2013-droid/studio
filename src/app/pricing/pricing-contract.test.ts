@@ -16,6 +16,7 @@ const proxy = source("src", "proxy.ts");
 const layout = source("src", "app", "layout.tsx");
 const manifest = source("src", "app", "manifest.ts");
 const home = source("src", "app", "page.tsx");
+const homePage = source("src", "components", "home", "home-page.tsx");
 const fixture = source(
   "src",
   "components",
@@ -133,10 +134,27 @@ describe("public pricing truth and decision contract", () => {
 
 describe("public story proof contract", () => {
   it("keeps the landing story to hero, product proof, wedge and invitation", () => {
-    assert.doesNotMatch(home, /RevealManifesto/);
-    assert.match(home, /RevealHero/);
-    assert.match(home, /RevealProductRelay/);
-    assert.match(home, /RevealClosing/);
+    // Home page v3 (2026-10-02, content/hq/decisions/home-page-v3-2026-10-02.md):
+    // the route renders one HomePage, and HomePage holds the story order.
+    assert.doesNotMatch(home + homePage, /RevealManifesto/);
+    assert.match(home, /<HomePage>/);
+    const story = [
+      "<HomeHero />",
+      "<HomeTasks />",
+      "<HomeSections />",
+      "<HomeWhiteboard />",
+      "<HomeClosing />",
+    ];
+    const positions = story.map((part) => homePage.indexOf(part));
+    assert.ok(
+      positions.every((position) => position >= 0),
+      "hero, product proof, wedge and invitation are all rendered",
+    );
+    assert.deepEqual(
+      [...positions].sort((a, b) => a - b),
+      positions,
+      "the story keeps its order",
+    );
   });
 
   it("pins the public Mara and Finn proof to the canonical fixture date", () => {

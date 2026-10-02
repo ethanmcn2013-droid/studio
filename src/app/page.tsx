@@ -1,11 +1,8 @@
 import { headers } from "next/headers";
-import { RevealHero } from "@/components/reveal/reveal-hero";
 import { SuiteSwitcher } from "@/components/layout/suite-switcher-pills";
-import { RevealProductRelay } from "@/components/reveal/reveal-product-relay";
-import { RevealClosing } from "@/components/reveal/reveal-closing";
+import { HomePage } from "@/components/home/home-page";
 import { SuiteLauncher } from "@/components/layout/suite-launcher";
 import { SiteFooter } from "@/components/landing/site-footer";
-import "@/components/reveal/floor-and-sheet.css";
 
 /**
  * Home page, two variants, one URL (DESIGN.md §14).
@@ -14,9 +11,11 @@ import "@/components/reveal/floor-and-sheet.css";
  *         This component reads that header and renders the suite launcher.
  *
  * Unauthed: proxy passes through; renders the marketing front door.
- *         Direction A, "Floor and sheet" (founder pick 2026-09-03): the
- *         suite's own geometry, an ink floor with white sheets lifted off
- *         it, and the three products shown as real scenes that play once.
+ *         "One Friday" (founder pick 2026-10-02): a working Home sample,
+ *         one task followed through the product, then Projects, Timeline,
+ *         Files, Analytics and the whiteboard. Dark first, with a light
+ *         theme scoped to this page. It carries its own header; the global
+ *         site nav hides itself on this route. The locked footer stays.
  *
  * The two-variant pattern avoids a redirect loop (authed redirect to /
  * would loop back to this page). The proxy rewrite keeps the URL clean.
@@ -42,15 +41,8 @@ export default async function Home() {
   }
 
   return (
-    <>
-      <main id="main" tabIndex={-1} className="floor-page">
-        <RevealHero />
-        <RevealProductRelay />
-        <RevealClosing />
-      </main>
-      <div className="floor-footer">
-        <SiteFooter showDot />
-      </div>
-    </>
+    <HomePage>
+      <SiteFooter showDot />
+    </HomePage>
   );
 }

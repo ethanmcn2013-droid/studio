@@ -1,6 +1,6 @@
 # Signal design quality report
 
-Generated: 2026-09-11T09:30:42.072Z
+Generated: 2026-10-02T11:13:09.961Z
 Status: **baseline-held**
 Readiness: **not-certified**
 
@@ -52,7 +52,7 @@ Tasks, Timeline, Signal, and Notes are the four customer products. The Studio pu
 - Missing founder-approved visual baselines: 24
 - Open findings: 0 (0 release-blocking, 0 high)
 - Experiences under remediation: 0
-- Experiences not yet reviewed since registration/material change: 203
+- Experiences not yet reviewed since registration/material change: 201
 - Expired exceptions: 0
 - Golden set: approved
 - Certification blocker: 20/4700 required state/breakpoint audit cells pass

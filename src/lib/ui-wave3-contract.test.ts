@@ -7,32 +7,66 @@ function source(...parts: string[]) {
   return readFileSync(path.join(process.cwd(), ...parts), "utf8");
 }
 
+// Home page v3 (2026-10-02, content/hq/decisions/home-page-v3-2026-10-02.md)
+// replaced the hero, relay and closing components with these.
+function homeSource() {
+  return [
+    "home-header.tsx",
+    "home-hero.tsx",
+    "home-tasks.tsx",
+    "home-sections.tsx",
+    "home-whiteboard.tsx",
+    "home-closing.tsx",
+  ]
+    .map((file) => source("src", "components", "home", file))
+    .join("\n");
+}
+
 describe("Wave 3 public interface contracts", () => {
   it("uses one versioned review story across landing proof components", () => {
     const registry = source("src", "lib", "review-suite-presentation.ts");
-    const relay = source("src", "components", "reveal", "reveal-product-relay.tsx");
+    const home = homeSource();
     const tasks = source("src", "components", "marketing", "heroes", "tasks", "lib", "domains.ts");
     const timeline = source("src", "components", "marketing", "heroes", "timeline", "fixture.ts");
     assert.match(registry, /version: 3/);
     assert.match(registry, /total: 13/);
-    assert.match(relay, /REVIEW_SUITE_PRESENTATION/);
     assert.match(tasks, /REVIEW_SUITE_PRESENTATION/);
     assert.match(timeline, /REVIEW_SUITE_PRESENTATION/);
+    // The home page shows captures of the product's own sample, so it cannot
+    // import the registry. It still has to tell the registry's story: the
+    // same project, on the same wedding day as the timeline fixture.
+    assert.match(registry, /name: "Mara & Finn"/);
+    assert.match(timeline, /2026-10-03/);
+    assert.match(home, /Mara &amp; Finn/);
+    assert.match(home, /Saturday 3 October/);
+    assert.doesNotMatch(home, /\b(?:Bloom|Weir)\b/);
     assert.doesNotMatch(tasks, /tags: \["mara-finn"\]/);
   });
 
   it("keeps the public story to the three-product suite", () => {
     const about = source("src", "app", "about", "page.tsx");
     const footer = source("src", "components", "landing", "site-footer.tsx");
-    const hero = source("src", "components", "reveal", "reveal-hero.tsx");
-    const relay = source("src", "components", "reveal", "reveal-product-relay.tsx");
-    const closing = source("src", "components", "reveal", "reveal-closing.tsx");
+    const home = homeSource();
+    const header = source("src", "components", "home", "home-header.tsx");
     const layout = source("src", "app", "layout.tsx");
     const manifest = source("src", "app", "manifest.ts");
-    assert.doesNotMatch(`${about}\n${hero}\n${relay}\n${layout}`, /daily briefing|daily signal|Inside Home/i);
-    assert.doesNotMatch(relay, /key: "home"|number: "04"/);
-    // This is a copy contract: presentational spans must not change the words.
-    assert.match(closing.replace(/<[^>]+>/g, ""), /Built for the 80%/);
+    assert.doesNotMatch(`${about}\n${home}\n${layout}`, /daily briefing|daily signal|Inside Home/i);
+    // The header names what the product does, in the founder's order, and
+    // never presents Home or the briefing as a product (lock, 2026-10-01).
+    const sectionLinks = [...header.matchAll(/href="#([a-z]+)">([^<]+)</g)].map((match) => match[2]);
+    assert.deepEqual(sectionLinks.slice(0, 6), [
+      "Projects",
+      "Tasks",
+      "Timeline",
+      "Files",
+      "Analytics",
+      "Whiteboard",
+    ]);
+    assert.doesNotMatch(header, />(?:Home|Notes|Daily briefing)</);
+    // This is a copy contract: presentational tags must not change the words.
+    // "Built for the 80%" left with the floor-and-sheet closing; this is the
+    // line that carries the same claim on the v3 page.
+    assert.match(home.replace(/<[^>]+>/g, ""), /The person the work runs through\./);
     assert.match(manifest, /Three products read as one system/);
     assert.doesNotMatch(manifest, /Four small tools/);
     const suite = footer.slice(footer.indexOf('heading="Suite"'));

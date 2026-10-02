@@ -42,6 +42,11 @@ not "generated".
 
 ## Supersession
 
+Amended 2026-10-02 by `home-page-v3-2026-10-02.md`: the floor and the sheet is
+no longer the home page, and the launch notice above the first sheet went
+with it. About and Pricing are unchanged and this decision still governs
+them.
+
 The six-movement About that cleared its 9.5 verdict gate on 2026-08-23
 (S·168) is superseded as the shipped page. Its gate record remains history
 under design-reviews. The About and Pricing browser specs were rewritten to

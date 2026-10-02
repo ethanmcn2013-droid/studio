@@ -32,6 +32,13 @@ moved to elevated-surface tokens; dark remaps for the focus ring, the
 Add-task capsule, blocker chips, and the browser theme-color; and the
 contrast gate extended to measure all three product surfaces in both themes.
 
+## Amendment, 2026-10-02
+
+`home-page-v3-2026-10-02.md` amends this for `/` only. The public home page is
+now dark first with a light switch of its own, scoped to that page and not
+stored. Every other public surface stays light, as below. The signed-in app's
+theme setting is untouched and the two do not share a preference.
+
 ## Reason
 
 Dark was designed into the token system (the dark mapping has lived in

@@ -3,10 +3,15 @@ id: homepage-reduction-relay-2026-07-28
 title: Make the homepage prove one line through the whole studio.
 category: Brand
 date: 2026-07-28
-status: Active
+status: Superseded
 reviewDate: 2026-09-28
 relatedObjects: [Homepage, Signal Notes, Signal Tasks, Signal Timeline, Signal, Weddings wedge, Waitlist]
 ---
+
+## Superseded
+
+Superseded on 2026-10-02 by `home-page-v3-2026-10-02.md`. The home page is now
+"One Friday". This file is kept as the record of the page it replaced.
 
 ## Decision
 

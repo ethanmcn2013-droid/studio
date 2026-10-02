@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-design-quality-report/1",
-  "generatedAt": "2026-09-11T09:30:42.072Z",
+  "generatedAt": "2026-10-02T11:13:09.961Z",
   "status": "baseline-held",
   "readiness": {
     "status": "not-certified",
@@ -290,7 +290,7 @@
     "validAcceptedExceptions": 0,
     "activeExceptions": 0,
     "expiredExceptions": 0,
-    "notReviewedSinceMaterialChange": 204
+    "notReviewedSinceMaterialChange": 202
   },
   "goldenSet": {
     "status": "approved",
