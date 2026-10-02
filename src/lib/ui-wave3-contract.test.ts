@@ -76,6 +76,24 @@ describe("Wave 3 public interface contracts", () => {
     assert.doesNotMatch(suite, /Daily briefing/);
   });
 
+  it("prints the home page in exactly its light palette", () => {
+    // A media query cannot borrow a rule, so home.css repeats the light
+    // palette inside @media print. The two must not drift.
+    const css = source("src", "components", "home", "home.css");
+    const between = (start: string, end: string) => {
+      const block = css.slice(css.indexOf(start) + start.length, css.indexOf(end));
+      return block
+        .slice(block.indexOf("{") + 1, block.lastIndexOf("}"))
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean);
+    };
+    const light = between("/* light-palette:start */", "/* light-palette:end */");
+    const print = between("/* print-palette:start */", "/* print-palette:end */");
+    assert.ok(light.length > 20, "the light palette was found");
+    assert.deepEqual(print, light);
+  });
+
   it("arms landing proof motion only after hydration, consent and intersection", () => {
     const artifact = source("src", "components", "marketing", "heroes", "timeline", "artifact", "timeline-artifact.tsx");
     const css = source("src", "components", "marketing", "heroes", "timeline", "artifact", "timeline-artifact.module.css");

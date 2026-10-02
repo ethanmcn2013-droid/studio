@@ -1,0 +1,191 @@
+{
+  "desk": {
+    "sourceWidth": 1440,
+    "panelX": 249,
+    "panelWidth": 1191
+  },
+  "tablet": {
+    "sourceWidth": 1024,
+    "panelX": 249,
+    "panelWidth": 775
+  },
+  "phone": {
+    "sourceWidth": 390
+  },
+  "shots": {
+    "home-desk": {
+      "kind": "desk",
+      "y": 9,
+      "h": 703,
+      "wide": true
+    },
+    "calendar-desk": {
+      "kind": "desk",
+      "y": 9,
+      "h": 700,
+      "wide": true
+    },
+    "a-board-desk": {
+      "kind": "desk",
+      "y": 170,
+      "h": 700,
+      "wide": true
+    },
+    "projects-desk": {
+      "kind": "desk",
+      "y": 9,
+      "h": 700,
+      "wide": true
+    },
+    "ledger-desk": {
+      "kind": "desk",
+      "y": 9,
+      "h": 700,
+      "wide": true
+    },
+    "project-home-desk": {
+      "kind": "desk",
+      "y": 9,
+      "h": 700,
+      "wide": true
+    },
+    "a-timeline-desk": {
+      "kind": "desk",
+      "y": 150,
+      "h": 780,
+      "wide": false,
+      "x": 249,
+      "w": 1182
+    },
+    "files-desk": {
+      "kind": "desk",
+      "y": 9,
+      "h": 580,
+      "wide": true
+    },
+    "analytics-ask-desk": {
+      "kind": "desk",
+      "y": 9,
+      "h": 779,
+      "wide": true
+    },
+    "analytics-wall-desk": {
+      "kind": "desk",
+      "y": 9,
+      "h": 779,
+      "wide": true
+    },
+    "home-phone": {
+      "kind": "phone",
+      "y": 0,
+      "h": 462
+    },
+    "calendar-phone": {
+      "kind": "phone",
+      "y": 0,
+      "h": 560
+    },
+    "board-task-phone": {
+      "kind": "phone",
+      "y": 0,
+      "h": 396
+    },
+    "projects-phone": {
+      "kind": "phone",
+      "y": 0,
+      "h": 580
+    },
+    "ledger-phone": {
+      "kind": "phone",
+      "y": 0,
+      "h": 580
+    },
+    "project-home-phone": {
+      "kind": "phone",
+      "y": 0,
+      "h": 580
+    },
+    "a-timeline-phone": {
+      "kind": "phone",
+      "y": 150,
+      "h": 500
+    },
+    "files-phone": {
+      "kind": "phone",
+      "y": 0,
+      "h": 636
+    },
+    "analytics-ask-phone": {
+      "kind": "phone",
+      "y": 0,
+      "h": 524
+    },
+    "analytics-wall-phone": {
+      "kind": "phone",
+      "y": 0,
+      "h": 524
+    },
+    "home-tablet": {
+      "kind": "tablet",
+      "y": 9,
+      "h": 560,
+      "wide": true
+    },
+    "calendar-tablet": {
+      "kind": "tablet",
+      "y": 9,
+      "h": 560,
+      "wide": true
+    },
+    "board-tablet": {
+      "kind": "tablet",
+      "y": 160,
+      "h": 600,
+      "wide": true
+    },
+    "projects-tablet": {
+      "kind": "tablet",
+      "y": 9,
+      "h": 610,
+      "wide": true
+    },
+    "ledger-tablet": {
+      "kind": "tablet",
+      "y": 9,
+      "h": 610,
+      "wide": true
+    },
+    "project-home-tablet": {
+      "kind": "tablet",
+      "y": 9,
+      "h": 610,
+      "wide": true
+    },
+    "a-timeline-tablet": {
+      "kind": "tablet",
+      "y": 120,
+      "h": 700,
+      "wide": false,
+      "x": 249,
+      "w": 766
+    },
+    "files-tablet": {
+      "kind": "tablet",
+      "y": 9,
+      "h": 580,
+      "wide": true
+    },
+    "analytics-ask-tablet": {
+      "kind": "tablet",
+      "y": 9,
+      "h": 640,
+      "wide": true
+    },
+    "analytics-wall-tablet": {
+      "kind": "tablet",
+      "y": 9,
+      "h": 640,
+      "wide": true
+    }
+  }
+}

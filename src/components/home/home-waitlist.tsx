@@ -8,6 +8,19 @@ import { v } from "./style-vars";
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
+ * "What do you run?" Each answer rides along twice: as itself in `audience`,
+ * and as the nearest of the waitlist's own use cases in `useCase`, which the
+ * server only accepts from its fixed list.
+ */
+const RUNS = [
+  { value: "venue", label: "Venue", useCase: "venues" },
+  { value: "trade", label: "Trade", useCase: "trades" },
+  { value: "school", label: "School", useCase: "other" },
+  { value: "studio", label: "Studio", useCase: "small-business" },
+  { value: "other", label: "Something else", useCase: "other" },
+] as const;
+
+/**
  * The waitlist form at the close of the home page: one call to action, one
  * place it lands. Wired to the real joinWaitlistAction. The address is checked
  * here first, then the server's own message is shown, for success and for
@@ -17,7 +30,10 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function HomeWaitlist() {
   const [state, formAction, pending] = useActionState(joinWaitlistAction, initialWaitlistFormState);
   const [email, setEmail] = useState("");
+  const [run, setRun] = useState("");
   const [localError, setLocalError] = useState("");
+  // Counts refusals, so a second wrong try shows the message again rather than sitting still.
+  const [tries, setTries] = useState(0);
   // The server's error is cleared by typing, like the local one.
   const [dismissed, setDismissed] = useState<WaitlistFormState | null>(null);
   const [minWidth, setMinWidth] = useState<number | undefined>(undefined);
@@ -28,6 +44,7 @@ export function HomeWaitlist() {
   const done = state.status === "success";
   const serverError = state.status === "error" && dismissed !== state ? state.message : "";
   const error = localError || serverError;
+  const useCase = RUNS.find((item) => item.value === run)?.useCase ?? "";
 
   useEffect(() => {
     if (state.status === "success") doneRef.current?.focus({ preventScroll: true });
@@ -48,6 +65,7 @@ export function HomeWaitlist() {
     if (problem) {
       event.preventDefault();
       setLocalError(problem);
+      setTries((count) => count + 1);
       input?.focus();
       return;
     }
@@ -61,7 +79,7 @@ export function HomeWaitlist() {
     <>
       <form
         className="wl lp-reveal"
-        style={v({ "--lp-i": 3 })}
+        style={v({ "--lp-i": 2 })}
         id="waitlist-form"
         action={formAction}
         onSubmit={onSubmit}
@@ -71,7 +89,8 @@ export function HomeWaitlist() {
       >
         <input type="hidden" name="source" value="home_close" />
         <input type="hidden" name="campaign" value="pre_access_waitlist" />
-        <input type="hidden" name="audience" value="" />
+        <input type="hidden" name="audience" value={run} />
+        <input type="hidden" name="useCase" value={useCase} />
         <input type="hidden" name="artifact" value="close_form" />
         <input type="hidden" name="touch" value="site" />
         <input type="hidden" name="path" value="/" />
@@ -86,11 +105,12 @@ export function HomeWaitlist() {
             type="email"
             autoComplete="email"
             inputMode="email"
+            enterKeyHint="send"
             autoCapitalize="off"
             spellCheck={false}
             required
             placeholder="you@example.ie"
-            aria-describedby="wl-err"
+            aria-describedby="wl-err wl-note"
             aria-invalid={error ? true : undefined}
             readOnly={pending}
             value={email}
@@ -109,10 +129,32 @@ export function HomeWaitlist() {
             style={minWidth ? { minWidth } : undefined}
           >
             <span>{pending ? "Sending" : "Join the waitlist"}</span>{" "}
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            <svg className="along" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
           </button>
         </div>
-        <p className="wl-err" id="wl-err" role="alert">{error}</p>
+        <p key={tries} className={error ? (tries > 1 ? "wl-err again" : "wl-err shown") : "wl-err"} id="wl-err" role="alert">{error}</p>
+        <fieldset>
+          <legend>What do you run? <span>You can skip this.</span></legend>
+          <div className="chips">
+            {RUNS.map((item) => (
+              <label key={item.value}>
+                <input
+                  type="radio"
+                  name="run"
+                  value={item.value}
+                  checked={run === item.value}
+                  disabled={pending}
+                  onChange={() => setRun(item.value)}
+                  onClick={() => {
+                    // A second press on the chosen answer clears it: the question is optional.
+                    if (run === item.value) setRun("");
+                  }}
+                />
+                {item.label}
+              </label>
+            ))}
+          </div>
+        </fieldset>
         <span className="vh" role="status">{pending ? "Sending." : ""}</span>
       </form>
       <p className="wl-done" id="wl-done" role="status" tabIndex={-1} hidden={!done} ref={doneRef}>

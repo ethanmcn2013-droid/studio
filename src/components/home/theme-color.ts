@@ -10,3 +10,6 @@ export const HOME_THEME_COLOR = {
 } as const;
 
 export type HomeTheme = keyof typeof HOME_THEME_COLOR;
+
+/** Where the visitor's own choice of theme is kept, on their device, for this page only. */
+export const THEME_KEY = "signal-home-theme";

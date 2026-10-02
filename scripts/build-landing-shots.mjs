@@ -1,22 +1,27 @@
 #!/usr/bin/env node
-// One-off: builds the home page's product captures in public/landing/ from the
-// lab originals (remote-redesign, work/2026-10-01-landing-v3-2026-10/shots/product).
+// Builds the home page's product captures in public/landing/<version>/ from
+// the lab originals (remote-redesign, work/2026-10-01-landing-v3-2026-10/shots/product).
 //
 //   node scripts/build-landing-shots.mjs [path-to-lab-shots/product]
 //
-// Desk captures are 1440 CSS px wide and ship at 1x (1440) and 2x (2880).
-// Phone captures are 390 CSS px wide and ship at 2x (780) and 3x (1170); the
-// page never draws one source pixel larger than one CSS pixel. Only resizes
-// down. sharp comes with Next, so this adds no dependency.
+// src/components/home/shots.json says which rows of each capture a frame can
+// show. Each file is cut to exactly those rows, so nothing is sent that the
+// page cannot show and a frame never has to shift its picture up or down.
 //
-// Each capture keeps its full canvas, so the page's crop coordinates are the
-// product's own, but the parts the page can never show are painted flat so
-// they cost almost nothing to send: the app sidebar on desk captures (every
-// shot is held right of x 249) and the rows above and below the band a shot
-// can reach at its widest frame. The bands are worked out from the crop
-// values in src/components/home/ (see the notes beside each entry).
+//   desk    1440 CSS px wide captures. A "wide" one keeps its whole width
+//           (the page shows the main panel from 1272 px and the whole window
+//           from 1680 px); the rest are cut to their own panel. 1x and 2x.
+//   tablet  1024 CSS px wide captures, cut the same way. 2x only: they are
+//           always drawn a little under their own size.
+//   phone   390 CSS px wide captures. 2x and 3x.
+//
+// The folder name is a hash of every file written, so /landing/<version>/ can
+// be cached for good and a new capture can never be served stale. The hash
+// goes to src/components/home/shot-manifest.json. Only resizes down. sharp
+// comes with Next, so this adds no dependency.
+import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
-import { mkdirSync, statSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 const require = createRequire(import.meta.url);
@@ -27,84 +32,58 @@ const SRC =
   path.resolve(
     "../../remote-redesign/design-landing-v3-directions/work/2026-10-01-landing-v3-2026-10/shots/product",
   );
-const OUT = path.resolve("public/landing");
-mkdirSync(OUT, { recursive: true });
+const HOME = path.resolve("src/components/home");
+const registry = JSON.parse(readFileSync(path.join(HOME, "shots.json"), "utf8"));
+const PUBLIC = path.resolve("public/landing");
+const TMP = path.join(PUBLIC, ".building");
+rmSync(TMP, { recursive: true, force: true });
+mkdirSync(TMP, { recursive: true });
 
-// [name, first row kept, last row kept, canvas height] in CSS px.
-// Stage layers (ratio 1.36, 0.97 scale) are at most 892 wide: 676 rows from y.
-// Plates (ratio 1.6) are at most 1180 wide: 738 rows from y.
-const DESK_MIN_X = 249;
-const DESK = [
-  ["home-desk", 70, 747],
-  ["a-board-desk", 212, 889],
-  ["a-list-desk", 170, 847],
-  ["calendar-desk", 160, 837],
-  ["a-overview-desk", 66, 771], // stage from 66, the one-task strip to 770
-  ["projects-desk", 60, 798],
-  ["ledger-desk", 60, 798],
-  ["project-home-desk", 60, 798],
-  ["a-timeline-desk", 176, 980, 1000], // ratio 1.42 at 1140 wide; the capture is 1900 tall
-  ["files-desk", 138, 824],
-  ["analytics-wall-desk", 60, 798],
-  ["analytics-ask-desk", 112, 850],
-];
-// Phone frames show exactly --y to --y + --h.
-const PHONE = [
-  ["home-phone", 118, 638],
-  ["board-task-phone", 48, 568],
-  ["list-task-phone", 268, 788],
-  ["calendar-phone", 222, 742],
-  ["overview-phone", 66, 586],
-  ["projects-phone", 44, 664],
-  ["ledger-phone", 44, 664],
-  ["project-home-phone", 44, 664],
-  ["a-timeline-phone", 132, 902, 920], // the capture is 1900 tall
-  ["files-phone", 128, 718],
-  ["analytics-wall-phone", 60, 700],
-  ["analytics-ask-phone", 204, 844],
-];
-const FLAT = { dark: { r: 28, g: 28, b: 28 }, light: { r: 255, g: 255, b: 255 } };
-const MARGIN = 3;
+const PLAN = {
+  desk: { scales: [[1, 86], [2, 76]] },
+  tablet: { scales: [[2, 78]] },
+  phone: { scales: [[2, 82], [3, 74]] },
+};
 
+const hash = createHash("sha256");
 let total = 0;
-async function build([name, y0, y1, canvas], theme, cssWidth, minX, scales) {
-  const file = path.join(SRC, `${name}-${theme}.png`);
-  const meta = await sharp(file).metadata();
-  const density = meta.width / cssWidth;
-  const height = canvas ? Math.round(canvas * density) : meta.height;
-  const px = (n) => Math.round(n * density);
-  const flat = (left, top, w, h) =>
-    w > 0 && h > 0
-      ? [{ input: { create: { width: w, height: h, channels: 3, background: FLAT[theme] } }, left, top }]
-      : [];
-  const top = Math.max(0, px(y0 - MARGIN));
-  const bottom = Math.min(height, px(y1 + MARGIN));
-  const left = Math.max(0, px(minX - MARGIN));
-  const masks = [
-    ...flat(0, 0, meta.width, top),
-    ...flat(0, bottom, meta.width, height - bottom),
-    ...flat(0, top, left, bottom - top),
-  ];
-  const base = await sharp(file)
-    .extract({ left: 0, top: 0, width: meta.width, height })
-    .composite(masks)
-    .png()
-    .toBuffer();
-  for (const [scale, quality] of scales) {
-    if (scale > density) throw new Error(`${name}: ${scale}x would upscale a ${density}x capture`);
-    const out = path.join(OUT, `${name}-${theme}-${scale}x.webp`);
-    await sharp(base)
-      .resize({ width: cssWidth * scale, kernel: "lanczos3" })
-      .webp({ quality, effort: 6, smartSubsample: true })
-      .toFile(out);
-    const kb = statSync(out).size / 1024;
-    total += kb;
-    console.log(`${path.basename(out).padEnd(44)} ${kb.toFixed(0).padStart(5)} KB`);
+for (const [name, entry] of Object.entries(registry.shots)) {
+  const kind = registry[entry.kind];
+  let left = 0;
+  let width = kind.sourceWidth;
+  if (entry.kind !== "phone" && !entry.wide) {
+    left = entry.x ?? kind.panelX;
+    width = entry.w ?? kind.panelWidth;
+  }
+  for (const theme of ["dark", "light"]) {
+    const file = path.join(SRC, `${name}-${theme}.png`);
+    const meta = await sharp(file).metadata();
+    const density = meta.width / kind.sourceWidth;
+    const px = (n) => Math.round(n * density);
+    if (px(entry.y + entry.h) > meta.height) throw new Error(`${name}: rows ${entry.y} to ${entry.y + entry.h} run past the capture`);
+    const cut = await sharp(file)
+      .extract({ left: px(left), top: px(entry.y), width: px(width), height: px(entry.h) })
+      .png()
+      .toBuffer();
+    for (const [scale, quality] of PLAN[entry.kind].scales) {
+      if (scale > density) throw new Error(`${name}: ${scale}x would upscale a ${density}x capture`);
+      const out = `${name}-${theme}-${scale}x.webp`;
+      const buffer = await sharp(cut)
+        .resize({ width: width * scale, height: entry.h * scale, fit: "fill", kernel: "lanczos3" })
+        .webp({ quality, effort: 6, smartSubsample: true })
+        .toBuffer();
+      writeFileSync(path.join(TMP, out), buffer);
+      hash.update(out).update(buffer);
+      total += buffer.length / 1024;
+      console.log(`${out.padEnd(44)} ${(buffer.length / 1024).toFixed(0).padStart(5)} KB`);
+    }
   }
 }
 
-for (const theme of ["dark", "light"]) {
-  for (const shot of DESK) await build(shot, theme, 1440, DESK_MIN_X, [[1, 86], [2, 76]]);
-  for (const shot of PHONE) await build(shot, theme, 390, 0, [[2, 82], [3, 74]]);
-}
+const version = hash.digest("hex").slice(0, 10);
+for (const old of readdirSync(PUBLIC)) if (old !== ".building") rmSync(path.join(PUBLIC, old), { recursive: true, force: true });
+const OUT = path.join(PUBLIC, version);
+if (existsSync(OUT)) rmSync(OUT, { recursive: true, force: true });
+renameSync(TMP, OUT);
+writeFileSync(path.join(HOME, "shot-manifest.json"), `${JSON.stringify({ version }, null, 2)}\n`);
 console.log(`total ${(total / 1024).toFixed(2)} MB in ${OUT}`);
