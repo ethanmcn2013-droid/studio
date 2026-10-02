@@ -51,23 +51,51 @@ describe("product URL contract", () => {
     );
   });
 
-  it("keeps every homepage product link same-tab and bound to marketing destinations", () => {
-    const productRelay = readFileSync(
-      new URL("../components/reveal/reveal-product-relay.tsx", import.meta.url),
-      "utf8",
-    );
+  it("keeps every homepage link same-tab and bound to the page or the umbrella", () => {
+    // Home page v3 (2026-10-02). The product pages are archived until launch
+    // (public-estate-cut-2026-09-11), so the home page shows the product in
+    // sections of its own and its product links are anchors to them. The
+    // old rule, "no bare #tasks, link the marketing page", went with the
+    // relay component it guarded. What still holds: nothing opens a new tab,
+    // nothing links into the app, every anchor has a section to land on and
+    // every other link stays on signalstudio.ie.
+    const homeSources = [
+      "home-page.tsx",
+      "home-header.tsx",
+      "home-hero.tsx",
+      "home-tasks.tsx",
+      "home-sections.tsx",
+      "home-whiteboard.tsx",
+      "home-closing.tsx",
+      "home-waitlist.tsx",
+    ]
+      .map((file) =>
+        readFileSync(new URL(`../components/home/${file}`, import.meta.url), "utf8"),
+      )
+      .join("\n");
     const homepage = readFileSync(
       new URL("../app/page.tsx", import.meta.url),
       "utf8",
     );
 
-    assert.match(homepage, /RevealProductRelay/);
+    assert.match(homepage, /<HomePage>/);
     assert.doesNotMatch(homepage, /RevealProducts/);
-    assert.match(productRelay, /PRODUCT_MARKETING_URLS/);
-    assert.doesNotMatch(productRelay, /href="#(?:notes|tasks|timeline|signal)"/);
-    assert.doesNotMatch(productRelay, /target=["']_blank["']/);
+    const hrefs = [...homeSources.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+    assert.ok(hrefs.length > 0, "the home page has links to check");
+    for (const href of hrefs) {
+      if (href.startsWith("#")) {
+        assert.ok(
+          homeSources.includes(`id="${href.slice(1)}"`),
+          `${href} has a section to land on`,
+        );
+      } else {
+        assert.match(href, /^\/(?:pricing|about)$/, `${href} stays on the umbrella`);
+      }
+    }
+    assert.doesNotMatch(homeSources, /target=["']_blank["']/);
+    assert.doesNotMatch(homeSources, /app\.signalstudio\.ie/);
     assert.doesNotMatch(
-      productRelay,
+      homeSources,
       /href=\{(?:NOTES_URL|TASKS_URL|TIMELINE_URL|SIGNAL_URL)\}/,
     );
   });

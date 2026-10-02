@@ -56,7 +56,11 @@ export function SiteNav() {
     };
   }, [mobileOpen]);
 
+  // The home page renders its own header (components/home/home-header.tsx).
+  // Signed-in visitors never reach this on "/": the layout drops the nav for
+  // the suite launcher before it renders.
   if (
+    pathname === "/" ||
     pathname?.startsWith("/hq") ||
     pathname === "/__design-lab/brand-guidelines"
   ) {

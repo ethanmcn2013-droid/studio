@@ -101,7 +101,8 @@ forbid(
   "the public example must not invent a composite state",
 );
 for (const file of [
-  "src/components/reveal/reveal-hero.tsx",
+  "src/components/home/home-hero.tsx",
+  "src/components/home/home-closing.tsx",
   "src/app/waitlist/page.tsx",
   "src/app/waitlist/waitlist-line.tsx",
   "src/app/students/page.tsx",
