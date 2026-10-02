@@ -182,14 +182,20 @@ test.describe("the home page, One Friday", () => {
   });
 
   test("remembers the theme the visitor chose, and paints it first", async ({ page }) => {
-    // The page records what its root looked like in the first frame it could draw.
+    // The page records what its root looked like in the first frame that had its headline to draw.
     await page.addInitScript(() => {
-      requestAnimationFrame(() => {
+      const look = () => {
         const root = document.querySelector(".lp");
-        (window as unknown as { __first: unknown }).__first = root
-          ? { theme: root.getAttribute("data-theme"), floor: getComputedStyle(document.documentElement).backgroundColor }
-          : null;
-      });
+        if (!root || !document.getElementById("h1")) {
+          requestAnimationFrame(look);
+          return;
+        }
+        (window as unknown as { __first: unknown }).__first = {
+          theme: root.getAttribute("data-theme"),
+          floor: getComputedStyle(document.documentElement).backgroundColor,
+        };
+      };
+      requestAnimationFrame(look);
     });
     await page.emulateMedia({ colorScheme: "dark" });
     await page.setViewportSize(DESK);
