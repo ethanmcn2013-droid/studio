@@ -63,9 +63,40 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
 ];
 
+/**
+ * Files in public/ and the generated icon routes went out with
+ * `max-age=0, must-revalidate`, so every view of the home page re-asked for
+ * each capture (round 2, Q12). The capture filenames are not content-hashed
+ * (`projects-desk-light-2x.webp`), so they cannot be marked immutable: a
+ * day fresh, then a week served stale while the new file is fetched. If the
+ * landing build starts hashing its filenames, /landing can go to a year.
+ */
+const dayThenRevalidate = [
+  { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+];
+/** The share card carries its version in its filename. */
+const yearImmutable = [
+  { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+];
+
 const nextConfig: NextConfig = {
+  // Do not advertise the framework in every response (round 2, Q27).
+  poweredByHeader: false,
   async redirects() {
     return [
+      {
+        // One host. www served the whole site as a duplicate with no
+        // redirect; the apex is the canonical origin (round 2, Q19).
+        source: "/:path*",
+        has: [{ type: "host", value: "www.signalstudio.ie" }],
+        destination: "https://signalstudio.ie/:path*",
+        permanent: true,
+      },
+      // The share card was a route before it was a file. Old links to the
+      // route, and the Twitter variant crawlers guess at, land on the file.
+      { source: "/opengraph-image", destination: "/share/signal-studio-card-v2.png", permanent: true },
+      { source: "/about/opengraph-image", destination: "/share/signal-studio-card-v2.png", permanent: true },
+      { source: "/twitter-image", destination: "/share/signal-studio-card-v2.png", permanent: true },
       {
         // The brand page retired 2026-07-06 and the design page left the
         // public estate 2026-09-08 (archived behind the design-lab gate).
@@ -181,23 +212,31 @@ const nextConfig: NextConfig = {
       //         that is an uphill fight. Everything held back for launch
       //         is temporary, deliberately.
       //   308 — the page is genuinely retired and the URL is not returning.
-      { source: "/notes", destination: "/", permanent: false },
-      { source: "/tasks", destination: "/", permanent: false },
-      { source: "/timeline", destination: "/", permanent: false },
+      //
+      // 2026-10-02 (round 2, Q21): the home page became one product story
+      // with a section for each of these, so the three product pages, the
+      // feature pages and the changelog stub are retired, not parked. They
+      // are permanent now and each lands on its nearest section.
+      // /venues stays temporary: the venue page is archived for launch, the
+      // Venue Edition contract still tracks its copy, and a permanent
+      // redirect on the one path venue outreach will use is hard to undo.
+      { source: "/notes", destination: "/", permanent: true },
+      { source: "/tasks", destination: "/#tasks", permanent: true },
+      { source: "/timeline", destination: "/#timeline", permanent: true },
       { source: "/venues", destination: "/", permanent: false },
       { source: "/venues/:path*", destination: "/", permanent: false },
       { source: "/students", destination: "/", permanent: false },
       { source: "/dispatch", destination: "/", permanent: false },
       { source: "/dispatch/:path*", destination: "/", permanent: false },
       { source: "/changelog.rss", destination: "/", permanent: false },
-      { source: "/features/:path*", destination: "/", permanent: false },
+      { source: "/features/:path*", destination: "/", permanent: true },
       { source: "/security", destination: "/", permanent: false },
       { source: "/accessibility", destination: "/", permanent: false },
 
       // These two were redirect stubs inside src/app rather than rules.
       // Their destinations are archived now, so they land at the root and
       // the machinery lives in one file instead of two.
-      { source: "/changelog", destination: "/", permanent: false },
+      { source: "/changelog", destination: "/", permanent: true },
       { source: "/signal", destination: "/", permanent: false },
 
       // ── older retired paths ────────────────────────────────────────
@@ -290,6 +329,14 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: securityHeaders,
       },
+      { source: "/landing/:path*", headers: dayThenRevalidate },
+      { source: "/favicon.ico", headers: dayThenRevalidate },
+      { source: "/icon.svg", headers: dayThenRevalidate },
+      { source: "/icon", headers: dayThenRevalidate },
+      { source: "/icon1", headers: dayThenRevalidate },
+      { source: "/icon2", headers: dayThenRevalidate },
+      { source: "/apple-icon", headers: dayThenRevalidate },
+      { source: "/share/:path*", headers: yearImmutable },
       {
         // The /brand page iframes loader.html same-origin. Site-wide
         // X-Frame-Options: DENY blocks that and renders a broken-doc icon

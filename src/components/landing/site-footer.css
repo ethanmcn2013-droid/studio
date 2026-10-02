@@ -1,0 +1,194 @@
+/*
+ * The site footer's own measurements.
+ *
+ * Why this file exists: Tailwind's numeric spacing utilities resolve through
+ * the design system's twelve-step scale here (`--spacing-11` is `--space-11`,
+ * 80px), so `min-h-11` and `h-11 w-11` rendered every footer link and social
+ * icon 80px tall on every public page. The sizes that matter are written out
+ * in pixels below, so the footer no longer depends on what a utility number
+ * happens to mean.
+ *
+ * It is imported from globals.css, not from the component, so the footer's
+ * rules ride in the one global sheet instead of pulling a route's CSS chunk
+ * onto every page that renders a footer.
+ */
+
+/* Shell. The contract classes on the element set the outer rhythm. */
+.site-footer {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Brand block */
+.site-footer-promise {
+  margin-top: 14px;
+  max-width: 320px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.site-footer-brand-with-dot .site-footer-promise {
+  max-width: min(320px, calc(100% - 132px));
+}
+
+.site-footer-social {
+  display: flex;
+  align-items: center;
+  margin: 8px 0 0 -14px;
+  color: var(--ink-faint);
+}
+
+/* Every footer link is a 44px target. */
+.site-footer-target {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.site-footer-social .site-footer-target {
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+/* Link columns */
+.site-footer-grid {
+  column-gap: 24px;
+  row-gap: 28px;
+}
+
+.site-footer-heading {
+  margin-bottom: 2px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--ink-faint);
+}
+
+.site-footer-links {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* 44px targets on a 40px pitch by touch, and a 30px pitch with a pointer.
+   The targets overlap; the words do not. */
+.site-footer-links > li + li {
+  margin-top: -4px;
+}
+
+@media (min-width: 1024px) {
+  .site-footer-grid {
+    column-gap: 40px;
+  }
+
+  .site-footer-links > li + li {
+    margin-top: -14px;
+  }
+}
+
+/* Bottom strip: copyright and sign-off, then the company particulars with
+   the legal links beside them. The particulars sit under the copyright and
+   quieter than it. */
+.site-footer-bar {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2px 24px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-soft);
+}
+
+.site-footer-particulars {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0 24px;
+}
+
+.site-footer-registration {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.site-footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: -8px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-faint);
+}
+
+.site-footer-legal .site-footer-target {
+  padding: 0 8px;
+}
+
+@media (min-width: 768px) {
+  .site-footer-bar {
+    margin-top: 32px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .site-footer-particulars {
+    margin-top: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .site-footer-legal {
+    margin-left: 0;
+    margin-right: -8px;
+  }
+}
+
+/* ── On the home page ──────────────────────────────────────────────────
+   The home page renders the footer inside its own root (.lp), dark first
+   with a light theme. There the footer sits on the page's grid and takes
+   the page's warm inks instead of the system's cool zinc. The wrap width
+   and gutter are the page's own properties, so the two cannot drift. */
+.lp .site-footer {
+  --ink: var(--lp-text); /* ds-allow: the home page's warm ink, scoped to its footer */
+  --ink-soft: var(--lp-text-2); /* ds-allow: the home page's second ink, scoped to its footer */
+  --ink-faint: var(--lp-text-3); /* ds-allow: the home page's third ink, scoped to its footer */
+  --ink-quiet: var(--lp-text-3);
+  --hairline-soft: var(--lp-line); /* ds-allow: the home page's rule, scoped to its footer */
+  color: var(--lp-text-2);
+}
+
+.lp .site-footer .site-footer-wrap {
+  max-width: calc(var(--lp-wrap) + var(--lp-gutter) * 2);
+  padding-left: var(--lp-gutter);
+  padding-right: var(--lp-gutter);
+}
+
+.lp .site-footer :focus-visible {
+  outline: 2px solid var(--lp-signal-ink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* The compact footer lists its links in one row. */
+.site-footer-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+}
+
+.site-footer-links-row > li + li {
+  margin-top: 0;
+}

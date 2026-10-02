@@ -3,6 +3,8 @@
 @import "signal-ds/tailwind.css";
 @import "../features/atlas/atlas.css";
 @import "../features/org/org-chart.css";
+@import "../components/landing/site-footer.css";
+@import "../components/landing/footer-dot.css";
 
 /* ────────────────────────────────────────────────────────────
    Signal Design System 2.0 (Wave 2, 2026-07-02)
@@ -9123,4 +9125,36 @@ a.hq-needsme-row:hover .hq-needsme-arrow { color: var(--accent); }
   .hq-needsme-arrow { grid-area: arrow; align-self: center; }
 
   .hq-decisions-row { flex-direction: column; gap: 0.35rem; }
+}
+
+/* ── Skip link ─────────────────────────────────────────────────────────
+   Off screen until it takes focus, then a 44px pill at the top left.
+   Sizes are written out: `min-h-11` resolves to 80px through the design
+   system's spacing scale, which drew it 122 by 80 over the logo. White on
+   ink with an indigo ring reads on the white pages and on the dark home
+   page alike. */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: var(--zinc-950, rgb(9 9 11));
+  color: var(--lp-white, rgb(255 255 255));
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  box-shadow: 0 0 0 2px rgb(255 255 255), 0 0 0 4px var(--accent);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: none;
+  outline: none;
 }

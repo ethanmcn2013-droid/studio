@@ -57,3 +57,23 @@ Canonical reference: `studio/src/components/landing/site-footer.tsx`. Each
 repo's `site-footer.tsx` mirrors it with product-specific slot content. The
 suite-chrome contract check asserts the shell markers (hairline token, `mt-32`,
 1240px grid, legal-row register) in every repo; drift fails CI.
+
+## Amendment, 2026-10-02 (delegated decision, site round 2)
+
+Recorded for the Studio footer after the round 2 review of the home page.
+The shell markers the contract check asserts are unchanged.
+
+- Link and icon sizes are written in pixels in
+  `studio/src/components/landing/site-footer.css`. `min-h-11` and `h-11 w-11`
+  resolve to 80px through the design system's spacing scale, not 44px, which
+  made the footer 742px tall on every public page.
+- Targets are 44px. The link pitch is 30px with a pointer and 40px by touch.
+- No type under 12px. The legal row is 13px, still mono, uppercase and
+  `0.08em`.
+- "Made by Signal Studio." appears once, in the copyright row. The brand
+  block no longer repeats it.
+- The company registration line sits under the copyright row, smaller and
+  quieter. Its words do not change and it stays on every public page.
+- Social links come from `studio/src/lib/social-profiles.ts`, the list the
+  structured data uses.
+- On the home page the footer takes that page's grid and inks.

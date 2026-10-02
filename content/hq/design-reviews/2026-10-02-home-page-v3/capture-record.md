@@ -72,6 +72,10 @@ No capture is drawn larger than its own pixels: the lowest density on screen is 
 
 `followup-pricing-proof-before-*.png` and `followup-pricing-proof-after-*.png`, at 390 and 1440, show the Pricing proof before and after it took the home page's sample day (Friday 25 September at The Orchard). `followup-pricing-full-*.png` are the whole Pricing page at the same widths. `followup-about-after-*.png` are About at the same widths, where only the footer line changed. `followup-home-*.png` show the home page in both themes at 390 and 1440 from the final build; the browser theme colour it sends is asserted in `tests/experience/home.spec.ts`, not visible in a capture.
 
+## Site round 2, same day (S·183)
+
+`round2-site-*.png` are from the site-wide fix round, taken from a production build served locally. `round2-site-share-card.png` is the link-preview card as committed. `round2-site-icons-contact-sheet.png` shows every icon at 16, 32, 48, 180 and 512 on a white and a dark tab strip. `round2-site-footer-before-*` and `round2-site-footer-after-*` show the footer on the home page and About at 1440 and 390: 742px to 372px at 1440, and 1,116px (home) and 979px (About) to 620px at 390. `round2-site-404-*`, `round2-site-skip-link-home-1440.png` and `round2-site-print-*` are the 404 page, the skip link with focus on the dark home page, and About and Pricing under print media.
+
 ## Not checked
 
 Chromium only. No screen reader pass. No real device.

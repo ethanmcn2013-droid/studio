@@ -4,7 +4,6 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { evaluateFilm } from "@/lib/dot/clips";
 import { DotPlayer } from "@/lib/dot/player";
 import { renderContents, type RenderOptions } from "@/lib/dot/render";
-import "./footer-dot.css";
 
 const MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const FILM_SPEED = 1.4;

@@ -1,3 +1,4 @@
+import { SHARE_CARD } from "@/lib/brand/share-card";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
@@ -21,12 +22,15 @@ export const metadata: Metadata = {
       "Three products. One system. Plain English. For the other 80%.",
     url: "/about",
     type: "website",
+    siteName: "Signal Studio",
+    images: [SHARE_CARD],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Signal Studio",
     description:
       "Three products. One system. Plain English. For the other 80%.",
+    images: [SHARE_CARD],
   },
 };
 

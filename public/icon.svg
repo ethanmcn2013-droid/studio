@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <style>
+    .mark { color: #6860ff; }
+    @media (prefers-color-scheme: dark) { .mark { color: #8b87f8; } }
+  </style>
+  <g class="mark">
+    <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="8" cy="8" r="2.87" fill="currentColor"/>
+  </g>
+</svg>
