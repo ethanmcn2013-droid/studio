@@ -1,8 +1,37 @@
+import type { Viewport } from "next";
 import { headers } from "next/headers";
 import { SuiteSwitcher } from "@/components/layout/suite-switcher-pills";
 import { HomePage } from "@/components/home/home-page";
 import { SuiteLauncher } from "@/components/layout/suite-launcher";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { HOME_THEME_COLOR } from "@/components/home/theme-color";
+
+/**
+ * The browser bar on the signed-out home page takes the page's floor, by the
+ * same rule the page uses for its theme: ?theme=light|dark, else the device
+ * setting. The home runtime keeps it in step with the toggle after that.
+ * The signed-in launcher returns nothing here, so it keeps the layout's
+ * white bar, as does every other route.
+ */
+export async function generateViewport({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Viewport> {
+  const headersList = await headers();
+  if (headersList.get("x-signal-authed") === "1") return {};
+
+  const { theme } = await searchParams;
+  if (theme === "light" || theme === "dark") {
+    return { themeColor: HOME_THEME_COLOR[theme] };
+  }
+  return {
+    themeColor: [
+      { media: "(prefers-color-scheme: light)", color: HOME_THEME_COLOR.light },
+      { media: "(prefers-color-scheme: dark)", color: HOME_THEME_COLOR.dark },
+    ],
+  };
+}
 
 /**
  * Home page, two variants, one URL (DESIGN.md §14).

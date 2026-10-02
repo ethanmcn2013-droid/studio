@@ -27,6 +27,22 @@ function collectPageErrors(page: Page): string[] {
   return errors;
 }
 
+/** The colour the browser would give its bar: the first theme-color tag whose media applies. */
+async function browserBar(page: Page) {
+  return page.evaluate(() => {
+    const tag = Array.from(document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')).find(
+      (meta) => !meta.media || matchMedia(meta.media).matches,
+    );
+    if (!tag) return null;
+    const probe = document.createElement("span");
+    probe.style.color = tag.content;
+    document.body.appendChild(probe);
+    const colour = getComputedStyle(probe).color;
+    probe.remove();
+    return colour;
+  });
+}
+
 async function counts(page: Page) {
   return page.evaluate(() =>
     ["need", "late", "week"]
@@ -62,6 +78,62 @@ test.describe("the home page, One Friday", () => {
     expect(
       await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor),
     ).toBe("rgb(255, 255, 255)");
+  });
+
+  test("colours the browser bar like the floor, before and after the toggle", async ({ page }) => {
+    const errors = collectPageErrors(page);
+    const floor = () => page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor);
+
+    // No script has to run for the opening colour: the server sends it.
+    const sent = await (await page.request.get("/")).text();
+    expect(sent).toContain('<meta name="theme-color" content="rgb(244, 243, 241)" media="(prefers-color-scheme: light)"/>');
+    expect(sent).toContain('<meta name="theme-color" content="rgb(12, 12, 13)" media="(prefers-color-scheme: dark)"/>');
+    expect(await (await page.request.get(LIGHT)).text()).toContain('<meta name="theme-color" content="rgb(244, 243, 241)"/>');
+    expect(await (await page.request.get(DARK)).text()).toContain('<meta name="theme-color" content="rgb(12, 12, 13)"/>');
+
+    for (const scheme of ["dark", "light"] as const) {
+      await page.emulateMedia({ colorScheme: scheme });
+      await page.goto("/");
+      await expect(page.locator(".lp")).toHaveAttribute("data-theme", scheme);
+      await expect.poll(() => browserBar(page)).toBe(await floor());
+      await page.locator("#theme").click();
+      await expect(page.locator(".lp")).toHaveAttribute("data-theme", scheme === "dark" ? "light" : "dark");
+      expect(await browserBar(page)).toBe(await floor());
+      await page.locator("#theme").click();
+      expect(await browserBar(page)).toBe(await floor());
+    }
+
+    expect(errors).toEqual([]);
+  });
+
+  test("hands the browser bar back when the page leaves, and leaves the signed-in launcher white", async ({ page, browser }) => {
+    const errors = collectPageErrors(page);
+    // ?theme= wins over the device, for the bar as for the page.
+    await page.emulateMedia({ colorScheme: "light" });
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(DARK);
+    await expect.poll(() => browserBar(page)).toBe("rgb(12, 12, 13)");
+    expect(
+      await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor),
+    ).toBe("rgb(12, 12, 13)");
+
+    // Leaving by a link in the page hands the bar back to the rest of the site.
+    await page.locator(".lp header").getByRole("link", { name: "Pricing" }).click();
+    // A dev server builds Pricing on first request, so the arrival gets room.
+    await expect(page).toHaveURL(/\/pricing$/, { timeout: 30_000 });
+    await expect(page.locator(".lp")).toHaveCount(0);
+    await expect.poll(() => browserBar(page)).toBe("rgb(255, 255, 255)");
+    await expect(page.locator('meta[name="theme-color"]')).toHaveCount(1);
+    expect(errors).toEqual([]);
+
+    // The signed-in launcher on the same URL keeps the site's white bar.
+    const signedIn = await browser.newContext({ extraHTTPHeaders: { "x-signal-authed": "1" } });
+    const launcher = await signedIn.newPage();
+    await launcher.goto("/");
+    await expect(launcher.locator(".lp")).toHaveCount(0);
+    await expect(launcher.locator('meta[name="theme-color"]')).toHaveCount(1);
+    expect(await browserBar(launcher)).toBe("rgb(255, 255, 255)");
+    await signedIn.close();
   });
 
   test("follows a light device without being asked", async ({ page }) => {

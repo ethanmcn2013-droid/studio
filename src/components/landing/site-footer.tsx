@@ -82,7 +82,7 @@ export function SiteFooter({
         <div className={showDot ? "col-span-2 lg:col-span-1 site-footer-brand-with-dot" : "col-span-2 lg:col-span-1"}>
           <Wordmark size="sm" animate={false} />
           <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-ink-soft">
-            Notes. Tasks. Timeline. One clear system. Built for the work.
+            Tasks, dates, files and people live together. Built for the work.
           </p>
           <p className="mt-4 text-[12px] text-ink-quiet">
             Made by Signal Studio.
@@ -131,7 +131,7 @@ function CompactFooter({ year }: { year: number }) {
         <div>
           <Wordmark size="sm" animate={false} />
           <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-ink-soft">
-            Notes. Tasks. Timeline. One clear system. Built for the work.
+            Tasks, dates, files and people live together. Built for the work.
           </p>
         </div>
         <nav aria-label="Signal Studio">

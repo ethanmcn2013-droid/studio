@@ -6143,7 +6143,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "de65f7a096f55a77"
+      "materialityHash": "c1993f2f16079243"
     },
     {
       "id": "studio.page.principles",
@@ -6321,7 +6321,7 @@
       "lastReviewedAt": "2026-08-09",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "824df8d54bebcf99"
+      "materialityHash": "5316f65851ef54cc"
     },
     {
       "id": "studio.page.terms",

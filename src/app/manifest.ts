@@ -28,7 +28,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Signal Studio",
     short_name: "Studio",
     description:
-      "Project management for people not in tech. Three products read as one system, with a daily briefing in Home.",
+      "Project management for people not in tech. Signal Studio tells you what needs you today, in words you would use yourself.",
     start_url: "/",
     scope: "/",
     display: "standalone",

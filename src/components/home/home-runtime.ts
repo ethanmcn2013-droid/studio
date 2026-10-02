@@ -10,6 +10,7 @@
    and animation it starts is tracked, so stopping leaves nothing behind and
    starting again on the same markup is safe. */
 import { shotSources } from "./shot-sources";
+import { HOME_THEME_COLOR } from "./theme-color";
 
 /* The theme the page should open in: ?theme=light|dark, else the device
    setting, else dark. Nothing is stored, as in the reviewed build. */
@@ -151,8 +152,18 @@ export function startHome(root) {
          The captures behind another one had their src taken off at boot; sync gives it back
          when the scene is next in line or the tab is reached for. */
       shotImgs.forEach(function (im) { var w = want(im); if (im.hasAttribute("src") && im.getAttribute("src") !== w.src) point(im, w); });
+      /* The browser bar follows the page. The server sends the right colour for the opening
+         theme; from here one tag of the runtime's own, first in the head so it is the one
+         the browser reads, carries the page's theme. It leaves with the page, which hands
+         the bar back to whatever the next route declares. */
+      var barMeta = document.createElement("meta");
+      barMeta.setAttribute("name", "theme-color");
+      barMeta.setAttribute("data-home-theme-color", "");
+      stops.push(function () { if (barMeta.parentNode) barMeta.parentNode.removeChild(barMeta); });
       function paint() {
         var t = root.getAttribute("data-theme");
+        barMeta.setAttribute("content", HOME_THEME_COLOR[t === "light" ? "light" : "dark"]);
+        if (!barMeta.parentNode) document.head.insertBefore(barMeta, document.head.firstChild);
         shotImgs.forEach(function (im) { sync(im); });
         var label = "Switch to " + (t === "dark" ? "light" : "dark") + " theme";
         themeBtns.forEach(function (b) { if (b.id === "theme") b.setAttribute("aria-label", label); else b.textContent = label; });
