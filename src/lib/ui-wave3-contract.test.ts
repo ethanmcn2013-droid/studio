@@ -67,7 +67,10 @@ describe("Wave 3 public interface contracts", () => {
     // "Built for the 80%" left with the floor-and-sheet closing; this is the
     // line that carries the same claim on the v3 page.
     assert.match(home.replace(/<[^>]+>/g, ""), /The person the work runs through\./);
-    assert.match(manifest, /Three products read as one system/);
+    // The manifest describes the product in the home page's own words
+    // (2026-10-02 follow-up); it used to pin "Three products read as one system".
+    assert.match(manifest, /Signal Studio tells you what needs you today/);
+    assert.doesNotMatch(manifest, /Three products|daily briefing/i);
     assert.doesNotMatch(manifest, /Four small tools/);
     const suite = footer.slice(footer.indexOf('heading="Suite"'));
     assert.doesNotMatch(suite, /Daily briefing/);

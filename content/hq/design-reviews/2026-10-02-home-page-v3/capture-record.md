@@ -68,6 +68,10 @@ No capture is drawn larger than its own pixels: the lowest density on screen is 
 - Four contrast fixes: an unselected tab in the light theme, a done note's title in both themes, "late" on a note in the dark theme, and the footer's faint ink on the light floor.
 - The waitlist confirmation is the server's sentence, "You are on the list. We will write when the next access window opens."
 
+## Follow-ups, same day (S·182)
+
+`followup-pricing-proof-before-*.png` and `followup-pricing-proof-after-*.png`, at 390 and 1440, show the Pricing proof before and after it took the home page's sample day (Friday 25 September at The Orchard). `followup-pricing-full-*.png` are the whole Pricing page at the same widths. `followup-about-after-*.png` are About at the same widths, where only the footer line changed. `followup-home-*.png` show the home page in both themes at 390 and 1440 from the final build; the browser theme colour it sends is asserted in `tests/experience/home.spec.ts`, not visible in a capture.
+
 ## Not checked
 
 Chromium only. No screen reader pass. No real device.

@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Signal Studio · Project management for people not in tech.",
   description:
-    "Project management for people not in tech. Notes, Tasks and Timeline form one clear system. Plain English. Built for the work, not the workflow.",
+    "Project management for people not in tech. Signal Studio tells you what needs you today, in words you would use yourself, whether you run a venue, a trade crew, a studio or a school.",
   metadataBase: new URL(
     SITE_URL
   ),
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Signal Studio · Project management for people not in tech.",
     description:
-      "Notes. Tasks. Timeline. One clear system. Plain English. Built for the work, not the workflow.",
+      "Signal Studio tells you what needs you today, in words you would use yourself, whether you run a venue, a trade crew, a studio or a school.",
     type: "website",
   },
 };
@@ -87,7 +87,7 @@ const structuredData = [
     operatingSystem: "Web",
     url: SITE_URL,
     description:
-      "Project management for people not in tech. Signal Notes, Signal Tasks and Signal Timeline read as one clear system.",
+      "Project management for people not in tech. Signal Studio tells you what needs you today, in words you would use yourself. Tasks, dates, files and people live together.",
     offers: [
       {
         "@type": "Offer",

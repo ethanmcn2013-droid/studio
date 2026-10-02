@@ -8,6 +8,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-02 · S·182 · tightens · The site describes itself the way the home page does
+
+**Search results, shared links and the Pricing page now tell the same story as the new home page, and on a phone the browser bar matches the page instead of sitting white above it.**
+
+The site description, the link preview text, the structured data, the install manifest and the footer line named Notes, Tasks and Timeline as three products. They now use sentences already on the home page: "Signal Studio tells you what needs you today, in words you would use yourself" and "Tasks, dates, files and people live together." Nothing new is claimed. Plan names, prices and the Venue Edition offer in structured data are untouched. Pricing's proof used a July sample day and a menu tasting; it now follows the home page's Friday 25 September at The Orchard, with the florist deposit that has waited on Fern and Furrow and Mara and Finn's wedding eight days out. About never showed a sample day and is unchanged.
+
+Under it: `/` declares its own browser colour with `generateViewport`, by the page's own rule (`?theme=`, else the device), and returns nothing for the signed-in launcher, which keeps the layout's white. After that `home-runtime.ts` keeps one `theme-color` tag of its own in step with the toggle and removes it when the page leaves. The two floor colours live once in `src/components/home/theme-color.ts` and the browser spec checks them against the painted floor. Pricing's proof content is local to the page; the shared review registry keeps its July review day because it mirrors the app's fixture. One contract pin moved: the manifest test now requires the home page's sentence where it required "Three products read as one system". Receipt: `experience/materiality-receipts/2026-10-02-home-page-v3-followups.md`.
+
 ## 2026-10-02 · S·181 · ships · The home page follows one Friday
 
 **The home page now shows the product at work. You can tick a task off, follow it from Home to the board, the list and the calendar, and move notes around a shared wall. It opens dark, and there is a light switch.**

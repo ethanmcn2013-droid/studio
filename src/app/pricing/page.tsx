@@ -205,32 +205,46 @@ const COMPARISON_ROWS: readonly Readonly<{
   { key: "access", label: "Access" },
 ];
 
+/* The proof tells the same day as the home page: Friday 25 September at
+   The Orchard, eight days before Mara and Finn marry, following the task the
+   home page follows. The words are the home page's own sample content
+   (src/components/home/), restated here because that page is static markup.
+   The shared review registry still names the workspace and the project; its
+   July review day belongs to the app's fixture and is not shown here. */
+const PROOF_DAY = Object.freeze({
+  today: "Fri 25 Sep",
+  countdown: "8 days to go",
+  supplier: "Fern and Furrow",
+  task: "Chase florist deposit",
+  weddingDay: "Saturday 3 October 2026",
+});
+
 const PROOF_STEPS = [
   {
     id: "notes",
     product: "notes" as const,
     state: "Captured privately",
     label: "Working note",
-    title: "Menu tasting",
-    body: REVIEW_SUITE_PRESENTATION.journey.note,
+    title: "Florist deposit",
+    body: `${PROOF_DAY.supplier} have gone quiet on the florist deposit. Chase it before the wedding on Sat 3 Oct.`,
     meta: "Private by default",
   },
   {
     id: "tasks",
     product: "tasks" as const,
     state: "Approved into work",
-    label: REVIEW_SUITE_PRESENTATION.journey.taskState,
-    title: REVIEW_SUITE_PRESENTATION.journey.task,
-    body: REVIEW_SUITE_PRESENTATION.journey.openRisk,
-    meta: `${REVIEW_SUITE_PRESENTATION.journey.taskPriority} priority`,
+    label: "Waiting",
+    title: PROOF_DAY.task,
+    body: `Waited 7 days on ${PROOF_DAY.supplier}. Due Mon 28 Sep, with Aoife.`,
+    meta: "High priority",
   },
   {
     id: "timeline",
     product: "timeline" as const,
     state: "Published after review",
-    label: "Current milestone",
-    title: REVIEW_SUITE_PRESENTATION.journey.task,
-    body: "1 August 2026 at The Orchard.",
+    label: "Next big day",
+    title: `${REVIEW_SUITE_PRESENTATION.project.name}'s wedding`,
+    body: `${PROOF_DAY.weddingDay} at The Orchard. ${PROOF_DAY.countdown}.`,
     meta: "Link-only copy",
   },
 ] as const;
@@ -426,9 +440,9 @@ export default function PricingPage() {
               <div className={`${styles.sectionHeader} rise`}>
                 <h2 id="proof-title">The same work, without starting again.</h2>
                 <p>
-                  One verified line of work moves from a private note to an
-                  approved task and a published Timeline. It is fixed product
-                  evidence, not live customer data.
+                  One line of work moves from a private note to an approved
+                  task and a published Timeline. It is sample content from the
+                  home page&apos;s Friday.
                 </p>
               </div>
 
@@ -476,15 +490,17 @@ export default function PricingPage() {
                     <span />
                   </div>
                   <div className={styles.timelineLabels}>
-                    <span>The Orchard reserved</span>
-                    <strong>Menu tasting · 1 Aug</strong>
+                    <span>Venue walk-through · 19 Sep</span>
+                    <strong>
+                      {PROOF_DAY.today} · {PROOF_DAY.countdown}
+                    </strong>
                     <span>Wedding day · 3 Oct</span>
                   </div>
                 </div>
 
                 <figcaption>
-                  Deterministic product fixture. Mara &amp; Finn. The Orchard,
-                  events. No controls, no invented fields.
+                  Friday 25 September. Mara &amp; Finn. The Orchard, events.
+                  No controls, no invented fields.
                 </figcaption>
               </figure>
             </div>
