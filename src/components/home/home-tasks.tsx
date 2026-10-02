@@ -35,7 +35,8 @@ export function HomeTasks() {
                   </div>
                   <p><b>Chase florist deposit has waited 7 days on Fern and Furrow.</b> One line in plain English, with the next move beside it: nudge Fern and Furrow.</p>
                 </div>
-                <Shot name="home-desk" className="window" fade spots={[{ x: 267, y: 133, w: 636, h: 30 }]} alt="Home: Good morning, Orla. 5 things need you today. Chase florist deposit has waited 7 days on Fern and Furrow." />
+                {/* A detail of Home, not Home again: the visitor has just used the whole screen above. */}
+                <Shot name="home-detail-desk" className="window fade-r" fade spots={[{ x: 267, y: 133, w: 636, h: 30 }]} alt="A detail of Home: Good morning, Orla. 5 things need you today. Chase florist deposit has waited 7 days on Fern and Furrow. Nudge Fern and Furrow." />
                 <Shot name="home-tablet" className="window" fade spots={[{ x: 264, y: 136, w: 398, h: 44 }]} alt="Home on a tablet: Good morning, Orla. Chase florist deposit has waited 7 days on Fern and Furrow." />
                 <Shot name="home-phone" className="window" spots={[{ x: 8, y: 176, w: 374, h: 46 }]} alt="The nudge on Home: Chase florist deposit has waited 7 days on Fern and Furrow. Nudge Fern and Furrow. 3 more stuck." />
               </li>

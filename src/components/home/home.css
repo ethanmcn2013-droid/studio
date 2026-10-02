@@ -1,5 +1,5 @@
 
-/* The home page · "One Friday" (founder pick, 2 October 2026; round 2 the same day).
+/* The home page · "One Friday" (founder pick, 2 October 2026; rounds 2 and 3 the same day).
 
    Everything here is scoped under the page root, .lp. The root carries
    data-theme ("dark" in the markup; the boot script sets the visitor's own
@@ -27,8 +27,6 @@
   --lp-signal-press: rgb(70 64 235); /* ds-allow: primary button, pressed */
   --lp-card-from: rgb(109 92 246); /* ds-allow: the product's Next big day card rule, start */
   --lp-hue-wedding: rgb(147 51 234); /* ds-allow: the wedding project's hue, and the card rule's end */
-  --lp-toast-pale: rgb(237 237 239); /* ds-allow: the product's toast, on dark */
-  --lp-toast-ink: rgb(20 20 20); /* ds-allow: the product's toast, on light */
   --lp-proj-winter: rgb(34 160 91); /* ds-allow: project hue, Winter launch */
   --lp-proj-keane: rgb(59 111 240); /* ds-allow: project hue, Keane Legal */
   --lp-proj-wedding: rgb(162 59 240); /* ds-allow: project hue, Mara and Finn */
@@ -109,6 +107,47 @@
   --lp-n-indigo: rgb(227 226 251); --lp-n-blue: rgb(221 230 251); --lp-n-teal: rgb(217 235 231); --lp-n-green: rgb(220 235 224); --lp-n-plum: rgb(239 226 249);
 }
 /* light-palette:end */
+/* Without script nothing can read the device setting and set data-theme, so the page would
+   be dark for everyone. The root only gains .js from the boot script, so :not(.js) is the
+   page with no script: there it follows the device, with the light palette repeated because
+   a media query cannot borrow a rule. A contract test keeps the copies in step. The design
+   system's own tokens, which the shared footer reads, are put back to their light values
+   by name, because its dark mapping keys off data-theme="dark" in the markup. */
+@media (prefers-color-scheme: light) {
+  /* noscript-palette:start */
+  .lp:not(.js) {
+  color-scheme: light;
+  --lp-tab-ink: rgb(104 102 97); /* ds-allow: an unselected tab on the tab strip's fill, contrast */
+  --lp-note-quiet: rgb(100 98 94); /* ds-allow: a done note's title on its ground, contrast */
+  --lp-note-late: var(--lp-p-danger-text);
+  --lp-floor: rgb(244 243 241);
+  --lp-floor-2: rgb(239 238 235);
+  --lp-raised: rgb(255 255 255);
+  --lp-line: rgba(24, 20, 14, 0.1);
+  --lp-line-strong: rgba(24, 20, 14, 0.18);
+  --lp-edge: rgb(132 129 124); /* ds-allow: the boundary of a control, 3 to 1 on every light surface */
+  --lp-text: rgb(20 20 20);
+  --lp-text-2: rgb(74 73 70);
+  --lp-text-3: rgb(107 105 100);
+  --lp-signal-ink: var(--indigo-600);
+  --lp-signal-soft: rgba(83, 77, 255, 0.1);
+  --lp-frame: rgba(24, 20, 14, 0.14);
+  --lp-frame-shadow: 0 30px 70px -34px rgba(20, 18, 14, 0.32), 0 2px 6px rgba(20, 18, 14, 0.06);
+  --lp-dim: rgba(244, 243, 241, 0.28);
+  --lp-nav-bg: rgba(244, 243, 241, 0.92);
+  --lp-nav-solid: rgb(244 243 241);
+  --lp-btn-ghost: rgba(24, 20, 14, 0.05);
+  --lp-btn-ghost-hover: rgba(24, 20, 14, 0.09);
+  --lp-tab-shadow: 0 1px 3px rgba(20, 18, 14, 0.1);
+  --lp-p-canvas: rgb(255 255 255); --lp-p-surface: rgb(255 255 255); --lp-p-sunken: rgb(248 247 245); --lp-p-border: rgb(232 230 227); --lp-p-border-strong: rgb(217 214 209);
+  --lp-p-text: rgb(20 20 20); --lp-p-text-2: rgb(74 73 70); --lp-p-text-3: rgb(107 105 100); --lp-p-accent: var(--indigo-600); --lp-p-accent-text: var(--indigo-600); --lp-p-on-accent: rgb(255 255 255);
+  --lp-p-danger-text: rgb(172 39 44); --lp-p-warning: rgb(229 169 59); --lp-p-warning-text: rgb(125 87 16); --lp-p-success: rgb(47 158 106); --lp-p-success-text: rgb(36 103 74);
+  --lp-p-control: rgb(137 135 131); --lp-p-review: rgb(91 82 224); --lp-p-hover: rgba(24, 20, 14, 0.045); --lp-p-fill: rgb(241 240 238);
+  --lp-p-card-top: rgba(139, 92, 246, 0.12);
+  --lp-n-indigo: rgb(227 226 251); --lp-n-blue: rgb(221 230 251); --lp-n-teal: rgb(217 235 231); --lp-n-green: rgb(220 235 224); --lp-n-plum: rgb(239 226 249);
+}
+  /* noscript-palette:end */
+}
 
 .lp *, .lp *::before, .lp *::after { box-sizing: border-box; }
 /* The document behind the page takes the page's floor from the layout's own
@@ -142,7 +181,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
    on the document is the only offset, so every section lands the same way. */
 .lp [id] { scroll-margin-top: 0; }
 .lp .wrap { width: 100%; max-width: calc(var(--lp-wrap) + var(--lp-gutter) * 2); margin: 0 auto; padding-left: max(var(--lp-gutter), env(safe-area-inset-left)); padding-right: max(var(--lp-gutter), env(safe-area-inset-right)); }
-.lp .mono { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lp-text-3); }
+.lp .mono { font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lp-text-3); }
 /* The layout's skip link lands on main; it takes focus without a ring of its own. */
 .lp main:focus { outline: none; }
 .lp .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -231,6 +270,13 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .window { position: relative; overflow: hidden; background: var(--lp-p-canvas); color: var(--lp-p-text); border-radius: var(--lp-r-win); box-shadow: 0 0 0 1px var(--lp-frame), var(--lp-frame-shadow); isolation: isolate; }
 .lp .shot { --lp-x: var(--lp-px); --lp-w: var(--lp-pw); position: relative; overflow: hidden; width: 100%; aspect-ratio: var(--lp-w) / var(--lp-h); container-type: inline-size; background: var(--lp-p-canvas); }
 .lp .shot img { position: absolute; top: 0; left: calc(var(--lp-x) / var(--lp-w) * -100%); width: calc(var(--lp-fw) / var(--lp-w) * 100%); max-width: none; height: auto; }
+/* A capture waits outside its frame until the frame is near the screen. The frame clips
+   it, so the browser's lazy loading does not count it as near and does not fetch it: a
+   desktop browser otherwise fetches every lazy picture within about 3000 px, which was six
+   captures on arrival. The boot script and the runtime mark a frame `near` at 1200 px, the
+   picture drops into place unfetched, and lazy loading takes it from there. It stays in
+   the accessibility tree throughout, with its description. Without script nothing waits. */
+.lp.js .shot:not(.near) img { transform: translateY(-20000px); }
 /* A capture that failed to load says what it was, in the frame. */
 .lp .shot img.failed { position: static; width: auto; height: auto; padding: 24px; font-size: 0.875rem; line-height: 1.5; color: var(--lp-p-text-2); }
 /* Where a crop cannot end on a row, it ends in a deliberate fade to the window's own surface. */
@@ -247,6 +293,11 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 /* The board runs off the side of a tablet in the product too; here it leaves by a fade. */
 .lp .shot.fade-r::before { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 4rem; background: linear-gradient(90deg, transparent, var(--lp-p-canvas)); pointer-events: none; z-index: 3; }
 
+/* A detail leaves by a longer fade on the right, where it cuts through the next column,
+   and never grows past the size its file can carry. */
+.lp .shot.detail.fade-r::before { width: 22%; }
+.lp .shot.detail { max-width: 1190px; }
+
 /* 2 Hero */
 .lp .hero { position: relative; padding: clamp(28px, 5vh, 56px) 0 0; text-align: center; }
 .lp .stamp { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 12px; border-radius: 99px; border: 1px solid var(--lp-line-strong); background: var(--lp-btn-ghost); }
@@ -257,7 +308,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp h1:where(:not(.lp-footer *)) { margin: 20px auto 0; font-size: min(clamp(2.625rem, 1.5rem + 5.4vw, 6.5rem), max(2.625rem, 13vh)); line-height: 0.96 !important; letter-spacing: -0.052em; font-weight: 600; text-wrap: balance; max-width: 13em; }
 .lp h1:where(:not(.lp-footer *)) em, .lp .close h2 em { font-style: normal; color: var(--lp-signal-ink); }
 .lp .lede { margin: 20px auto 0; max-width: 35em; font-size: 1.25rem; letter-spacing: -0.01em; line-height: 1.5; color: var(--lp-text-2); text-wrap: pretty; }
-.lp .cta-row { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.lp .cta-row { margin-top: 24px; display: flex; gap: 12px; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
 /* The entrance. The headline is painted in the first frame and only travels; the rest
    fades up behind it, all inside 450ms. */
 .lp .lp-rise { animation: lp-rise var(--lp-t3) var(--ease-out) both; animation-delay: calc(var(--lp-i, 0) * 40ms); }
@@ -275,8 +326,9 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .win-bar { display: flex; align-items: center; gap: 9px; height: 48px; padding: 0 22px 0 18px; border-bottom: 1px solid var(--lp-p-border); font-size: 0.875rem; color: var(--lp-p-text-3); }
 .lp .win-bar b { color: var(--lp-p-text); font-weight: 600; }
 .lp .win-bar i { font-style: normal; color: var(--lp-p-text-3); }
-.lp .home { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 0 40px; padding: 20px 30px 8px 24px; }
-.lp .home-top { grid-column: 1 / -1; }
+.lp .win { --lp-foot: 52px; overflow: clip; }
+.lp .home { display: grid; grid-template-columns: minmax(0, 1fr) 380px; grid-template-areas: "top side" "main side"; grid-template-rows: auto 1fr; gap: 0 40px; padding: 20px 30px 22px 24px; }
+.lp .home-top { grid-area: top; }
 .lp .greet-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
 .lp .greet { font-size: 1.4375rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; }
 .lp .datepill { display: inline-flex; align-items: center; height: 27px; padding: 0 11px; border: 1px solid var(--lp-p-border-strong); border-radius: 99px; font-size: 0.8125rem; color: var(--lp-p-text-2); white-space: nowrap; }
@@ -284,8 +336,11 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .stats b { color: var(--lp-p-text); font-weight: 650; font-variant-numeric: tabular-nums; display: inline-block; }
 .lp .stats b[hidden] { display: none; }
 .lp .stats b.red { color: var(--lp-p-danger-text); }
+/* The late count runs from eleven down to eight: it keeps two figures' room, so the line
+   does not re-wrap as it changes. */
+.lp .stats b[data-n="late"] { min-width: 2ch; text-align: end; }
 .lp .stats .dot { margin: 0 8px; color: var(--lp-p-text-3); }
-.lp .stats b.bump { animation: lp-bump var(--lp-t2) var(--ease-out); }
+.lp .home b.bump { animation: lp-bump var(--lp-t2) var(--ease-out); }
 @keyframes lp-bump { 0% { transform: translateY(-6px); opacity: 0; } }
 .lp .stuck { display: flex; gap: 9px; margin-top: 9px; font-size: 0.90625rem; color: var(--lp-p-text-2); }
 .lp .stuck svg { flex: none; margin-top: 3px; color: var(--lp-p-warning-text); }
@@ -296,7 +351,13 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .link:active { opacity: 0.7; }
 @media (hover: hover) { .lp .link:hover { text-decoration-color: currentColor; } }
 .lp .link[aria-disabled="true"] { color: var(--lp-p-success-text); cursor: default; text-decoration-color: transparent; opacity: 1; }
-.lp .home-main { min-width: 0; padding-top: 6px; }
+/* The nudge's two words share one place, as wide as the longer, so the line never re-wraps
+   under the visitor's finger when it changes. The one not showing is not read out either. */
+.lp #nudge { display: inline-grid; }
+.lp #nudge > span { grid-area: 1 / 1; }
+.lp #nudge .then, .lp #nudge[aria-disabled="true"] .now { visibility: hidden; }
+.lp #nudge[aria-disabled="true"] .then { visibility: visible; }
+.lp .home-main { grid-area: main; min-width: 0; padding-top: 6px; }
 .lp .grp { display: flex; align-items: baseline; gap: 9px; margin-top: 26px; padding: 0 0 9px 8px; border-bottom: 1px solid var(--lp-p-border); font-size: 0.875rem; font-weight: 600; }
 .lp .grp:first-child { margin-top: 14px; }
 .lp .grp span { color: var(--lp-p-text-3); font-weight: 450; font-variant-numeric: tabular-nums; }
@@ -316,16 +377,15 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .icon-cell { width: 44px; height: 44px; margin-left: 4px; display: grid; place-items: center; color: var(--lp-p-text-2); }
 .lp .row-t { display: inline; font-size: 0.9375rem; font-weight: 500; letter-spacing: -0.005em; background: linear-gradient(currentColor, currentColor) no-repeat 0 56% / 0 1.5px; transition: background-size var(--lp-t3) var(--ease-out), color var(--lp-t2) var(--ease-out); }
 .lp .row.done .row-t { color: var(--lp-p-text-3); background-size: 100% 1.5px; }
-.lp .row-p { display: flex; align-items: center; gap: 7px; margin-top: 2px; font-size: 0.84375rem; color: var(--lp-p-text-3); }
+.lp .row-p { display: flex; align-items: center; gap: 7px; margin-top: 2px; font-size: 0.875rem; color: var(--lp-p-text-3); }
 .lp .row-p .pd { width: 8px; height: 8px; border-radius: 50%; background: var(--lp-c); flex: none; }
-.lp .row-m { font-size: 0.84375rem; font-weight: 550; color: var(--lp-p-text-2); white-space: nowrap; padding: 0 6px 0 12px; }
+.lp .row-m { font-size: 0.875rem; font-weight: 550; color: var(--lp-p-text-2); white-space: nowrap; padding: 0 6px 0 12px; }
 .lp .row-m.late { color: var(--lp-p-danger-text); }
 .lp button.row-m { min-height: 36px; border: 1px solid var(--lp-p-control); border-radius: var(--lp-r-sm); padding: 0 12px; margin: 0 2px 0 12px; color: var(--lp-p-text); transition: background-color var(--lp-t1) var(--ease-out), transform var(--lp-t1) var(--ease-out), border-color var(--lp-t1) var(--ease-out), color var(--lp-t1) var(--ease-out); }
 .lp button.row-m:active { transform: scale(0.97); background: var(--lp-p-fill); }
 @media (hover: hover) { .lp button.row-m:hover { background: var(--lp-p-fill); } }
 .lp button.row-m.ok { color: var(--lp-p-success-text); border-color: transparent; }
-.lp .home-foot { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 12px; padding: 14px 6px 10px; font-size: 0.8125rem; color: var(--lp-p-text-3); }
-.lp .home-side { padding-top: 40px; min-width: 0; }
+.lp .home-side { grid-area: side; padding-top: 2px; min-width: 0; }
 .lp .nbd { position: relative; border: 1px solid var(--lp-p-border); border-radius: var(--lp-r-ctl); padding: 22px 19px 18px; background: linear-gradient(var(--lp-p-card-top), transparent 62%); overflow: hidden; }
 .lp .nbd::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--lp-card-from), var(--lp-hue-wedding)); }
 .lp .nbd small { font-size: 0.78125rem; font-weight: 500; color: var(--lp-p-text-2); }
@@ -333,7 +393,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .nbd .days { margin-top: 8px; font-size: 0.875rem; color: var(--lp-p-text-2); }
 .lp .nbd .days b { font-size: 1.8125rem; font-weight: 650; color: var(--lp-p-text); letter-spacing: -0.03em; margin-right: 3px; }
 .lp .nbd .state { display: flex; align-items: center; gap: 12px; margin-top: 8px; font-size: 0.875rem; color: var(--lp-p-text-2); }
-.lp .nbd .state b { color: var(--lp-p-text); font-weight: 650; }
+.lp .nbd .state b { display: inline-block; color: var(--lp-p-text); font-weight: 650; font-variant-numeric: tabular-nums; }
 .lp .nbd .state .lt, .lp .nbd .state .lt b { color: var(--lp-p-danger-text); }
 .lp .risk { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px 0 7px; border-radius: 99px; background: color-mix(in srgb, var(--lp-p-warning) 20%, transparent); color: var(--lp-p-warning-text); font-size: 0.8125rem; font-weight: 550; }
 .lp .nbd p.pace { margin-top: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--lp-p-border); font-size: 0.90625rem; color: var(--lp-p-text-2); }
@@ -342,23 +402,27 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .plist-h a { font-size: 0.84375rem; }
 .lp .plist li { display: flex; align-items: center; gap: 10px; height: 40px; border-bottom: 1px solid var(--lp-p-border); font-size: 0.875rem; font-weight: 550; }
 .lp .plist li svg { flex: none; color: var(--lp-p-text-2); }
-.lp .plist li span { margin-left: auto; font-size: 0.8125rem; font-weight: 450; color: var(--lp-p-text-3); white-space: nowrap; }
+.lp .plist li span { margin-left: auto; font-size: 0.875rem; font-weight: 450; color: var(--lp-p-text-3); white-space: nowrap; }
 .lp .plist li span em { font-style: normal; color: var(--lp-p-warning-text); }
 .lp .plist li span em.r { color: var(--lp-p-danger-text); }
+.lp .plist li span b { display: inline-block; font-weight: inherit; font-variant-numeric: tabular-nums; }
 /* On a phone the sample is cut to a screen's worth and offers the rest. */
 .lp .win-more { display: none; }
-.lp .toast { position: fixed; z-index: 80; left: 50%; bottom: max(22px, env(safe-area-inset-bottom)); transform: translate(-50%, 12px); display: flex; align-items: center; gap: 14px; max-width: min(600px, calc(100vw - 24px)); padding: 8px 8px 8px 16px; border-radius: var(--lp-r-ctl); background: var(--lp-toast-pale); color: var(--lp-toast-ink); font-size: 1rem; line-height: 1.35; text-align: left; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transition: opacity var(--lp-t1) var(--ease-out), transform var(--lp-t2) var(--ease-out), visibility 0s var(--lp-t2); }
-.lp[data-theme="light"] .toast { background: var(--lp-toast-ink); color: var(--lp-white); }
-.lp .toast.on { opacity: 1; transform: translate(-50%, 0); visibility: visible; transition-delay: 0s; }
-.lp .toast b { font-weight: 600; }
-/* When the toast would sit on the row just acted on, it goes to the top instead. */
-.lp .toast.up { bottom: auto; top: calc(var(--lp-nav-h) + 12px); transform: translate(-50%, -12px); }
-.lp .toast.up.on { transform: translate(-50%, 0); }
-.lp .toast button { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 12px; border: 1px solid currentColor; border-radius: var(--lp-r-sm); font-weight: 600; white-space: nowrap; transition: background-color var(--lp-t1) var(--ease-out), transform var(--lp-t1) var(--ease-out); }
-.lp .toast button:active { transform: scale(0.97); }
-@media (hover: hover) { .lp .toast button:hover { background: rgba(127, 127, 127, 0.2); } }
+/* The window's foot: its one line of small print, and the place where what the visitor
+   just did is said, with the way to take it back. It rides the bottom of the screen while
+   the window runs past it (the window clips rather than hides its overflow, so the foot is
+   not trapped), and rests at the window's own foot once that is in view. It never moves
+   the window: the message is laid over the small print, in a row that keeps its height. */
+.lp .win-foot { position: sticky; bottom: 0; z-index: 4; display: grid; align-items: center; min-height: var(--lp-foot); padding: 0 12px 0 30px; border-top: 1px solid var(--lp-p-border); background: var(--lp-p-canvas); font-size: 0.8125rem; color: var(--lp-p-text-3); }
+.lp .foot-note, .lp .toast { grid-area: 1 / 1; }
+.lp .toast { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: var(--lp-foot); margin: 0 -12px 0 -30px; padding: 0 8px 0 30px; background: var(--lp-p-canvas); color: var(--lp-p-text); font-size: 0.9375rem; font-weight: 550; line-height: 1.3; opacity: 0; visibility: hidden; transition: opacity var(--lp-t1) var(--ease-out), visibility 0s var(--lp-t1); }
+.lp .toast.on { opacity: 1; visibility: visible; transition-delay: 0s; }
+.lp .toast.said #toast-t { animation: lp-rise var(--lp-t2) var(--ease-out); }
+.lp .toast button { flex: none; display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 12px; border: 1px solid var(--lp-p-control); border-radius: var(--lp-r-sm); font-size: 0.875rem; font-weight: 600; white-space: nowrap; transition: background-color var(--lp-t1) var(--ease-out), transform var(--lp-t1) var(--ease-out); }
+.lp .toast button:active { transform: scale(0.97); background: var(--lp-p-fill); }
+@media (hover: hover) { .lp .toast button:hover { background: var(--lp-p-fill); } }
 .lp .toast button[hidden] { display: none; }
-.lp .toast kbd { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; opacity: 0.72; }
+.lp .toast kbd { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; color: var(--lp-p-text-2); }
 @media (hover: none), (pointer: coarse) { .lp .toast kbd { display: none; } }
 
 /* Section furniture. One rhythm: every section starts the same distance below the last. */
@@ -393,6 +457,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 /* A plate holds one window, or several views of it laid over each other. */
 .lp .plate > .shot + .shot, .lp .plate > .shot + .shot + .shot { margin-top: 0; }
 .lp .plate[data-tabs] { display: grid; }
+.lp .plate[role="tabpanel"]:focus-visible { outline-offset: 4px; border-radius: var(--lp-r-win); }
 .lp .plate[data-tabs] > .shot { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity var(--lp-t1) var(--ease-out), visibility 0s var(--lp-t1); }
 .lp .plate[data-tabs] > .shot.on { opacity: 1; visibility: visible; transition-delay: 0s; z-index: 1; }
 
@@ -417,7 +482,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .step-in > div { display: grid; gap: 10px; }
 .lp .step h3 { font-size: clamp(1.625rem, 1rem + 1.4vw, 2.25rem); line-height: 1.06; letter-spacing: -0.04em; font-weight: 600; text-wrap: balance; }
 .lp .step p { color: var(--lp-text-2); font-size: 1.0625rem; max-width: 30em; text-wrap: pretty; }
-.lp .step p.mono { font-size: 0.75rem; line-height: 1.4; max-width: none; color: var(--lp-text-3); }
+.lp .step p.mono { font-size: 0.8125rem; line-height: 1.4; max-width: none; color: var(--lp-text-3); }
 .lp .step p.mono b { color: var(--lp-signal-ink); font-weight: 500; }
 .lp .step p b { color: var(--lp-text); font-weight: 500; }
 .lp .progress { display: none; }
@@ -444,6 +509,10 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .prompt { margin-top: clamp(28px, 4vw, 48px); padding-top: 24px; border-top: 1px solid var(--lp-line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px; }
 .lp .prompt p { font-size: 1.0625rem; color: var(--lp-text-2); max-width: 36em; }
 .lp .prompt p b { color: var(--lp-text); font-weight: 500; }
+.lp .prompt[hidden] { display: none; }
+/* Under the sample the prompt has no rule of its own: the window's edge is above it. */
+.lp .live .prompt { margin-top: 18px; padding-top: 0; border-top: 0; }
+.lp.js .live .prompt { animation: lp-rise var(--lp-t3) var(--ease-out); }
 
 /* 8 The same thing in your words */
 .lp .yours-list { margin-top: clamp(28px, 4vw, 48px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -471,7 +540,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .presence ul { display: flex; padding-left: 4px; }
 .lp .presence li { width: 30px; height: 30px; margin-left: -4px; border-radius: 50%; background: var(--lp-who); color: var(--lp-white); font-size: 0.75rem; font-weight: 600; line-height: 30px; text-align: center; box-shadow: 0 0 0 2px var(--lp-p-canvas); }
 .lp .presence li.you { background: var(--lp-p-canvas); color: var(--lp-p-accent-text); box-shadow: 0 0 0 2px var(--lp-p-canvas), inset 0 0 0 1.5px var(--lp-p-accent); }
-.lp .wb { --lp-nw: 164px; --lp-nh: 108px; position: relative; height: 986px; overflow: hidden; background-color: var(--lp-p-sunken); background-image: radial-gradient(var(--lp-p-border-strong) 1px, transparent 1.4px); background-size: 22px 22px; touch-action: pan-y; }
+.lp .wb { --lp-nw: 164px; --lp-nh: 108px; position: relative; height: 1004px; overflow: hidden; background-color: var(--lp-p-sunken); background-image: radial-gradient(var(--lp-p-border-strong) 1px, transparent 1.4px); background-size: 22px 22px; touch-action: pan-y; }
 @container (min-width: 684px) { .lp .wb { height: 1100px; } }
 @container (min-width: 1152px) { .lp .wb { height: 688px; } }
 @container (max-width: 683px) { .lp .wb-count .all { display: none; } .lp .wb-count .few { display: inline; } }
@@ -480,13 +549,13 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .frame span b { margin-left: 7px; font-weight: 450; color: var(--lp-p-text-3); }
 .lp .frame.loose, .lp .wb.shuffling .frame { opacity: 0; }
 .lp .wb.tidy:not(.shuffling) .frame.loose { opacity: 1; }
-.lp .frame[hidden], .lp .note[hidden], .lp .hand[hidden], .lp .cursor[hidden] { display: none; }
+.lp .frame[hidden], .lp .note[hidden], .lp .hand[hidden], .lp .cursor[hidden], .lp .dep[hidden] { display: none; }
 /* A note sits where its two numbers say, by transform, so moving one never lays the page
    out again. Tidy is the same transform, eased. */
 .lp .note { --lp-rot: var(--lp-tilt, 0deg); position: absolute; left: 0; top: 0; z-index: var(--lp-z, 2); width: var(--lp-nw); min-height: var(--lp-nh); padding: 11px 12px 10px; border: 1px solid var(--lp-edge); border-radius: var(--lp-r-sm); background: var(--lp-c); box-shadow: 0 8px 16px -9px rgba(0, 0, 0, 0.5); font-size: 0.90625rem; font-weight: 500; line-height: 1.3; letter-spacing: -0.005em; text-align: left; color: var(--lp-p-text); cursor: grab; touch-action: pan-y; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; transform: translate(var(--lp-nx, 0px), var(--lp-ny, 0px)) rotate(var(--lp-rot, 0deg)) scale(var(--lp-ns, 1)); display: flex; flex-direction: column; justify-content: space-between; gap: 6px; }
 .lp button.note:where(:not(.lp-footer *)) { padding: 11px 12px 10px; border: 1px solid var(--lp-edge); background: var(--lp-c); color: var(--lp-p-text); font-size: 0.90625rem; font-weight: 500; line-height: 1.3; }
 .lp .wb.ready .note { transition: transform var(--lp-t3) var(--ease-in-out), box-shadow var(--lp-t1) var(--ease-out), opacity var(--lp-t2) var(--ease-out); }
-.lp .note small { display: flex; align-items: center; gap: 6px; min-height: 24px; font-size: 0.75rem; font-weight: 500; color: var(--lp-p-text-2); white-space: nowrap; }
+.lp .note small { display: flex; align-items: center; gap: 6px; min-height: 24px; font-size: 0.8125rem; font-weight: 500; color: var(--lp-p-text-2); white-space: nowrap; }
 .lp .note small em { font-style: normal; color: var(--lp-note-late); }
 .lp .note small i { margin-left: auto; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--lp-a); color: var(--lp-white); font-size: 0.75rem; font-weight: 600; letter-spacing: -0.03em; line-height: 24px; text-align: center; font-style: normal; }
 .lp .note.done > span { color: var(--lp-note-quiet); }
@@ -505,6 +574,8 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .note.pending { opacity: 0; --lp-ns: 0.9; pointer-events: none; }
 .lp .caret { display: inline-block; width: 1.5px; height: 1.05em; margin-left: 1px; vertical-align: -0.16em; background: var(--lp-who); animation: lp-caret 1.1s steps(1) infinite; }
 @keyframes lp-caret { 50% { opacity: 0; } }
+/* A phone's wall has no room to scatter sideways, so its loose notes lean further. */
+.lp .wb.wb-m:not(.tidy) .note:not(.drag):not(.picked):not(.held) { --lp-rot: calc(var(--lp-tilt, 0deg) * 2.2); }
 .lp .wb.tidy .note:not(.pending) { --lp-rot: 0deg; }
 .lp .wb-s .note { font-size: 0.8125rem; padding: 9px 10px 8px; }
 .lp .hand { position: absolute; left: 0; top: 0; transform: translate(var(--lp-hx, 0px), var(--lp-hy, 0px)); z-index: 1; font-size: 1rem; font-weight: 560; line-height: 1.3; letter-spacing: -0.01em; color: var(--lp-p-text-2); white-space: nowrap; pointer-events: none; transition: opacity var(--lp-t2) var(--ease-out); }
@@ -537,7 +608,9 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .wb-tool.paused .pause { display: none; }
 .lp .wb-tool.paused { background: var(--lp-p-fill); }
 .lp .h-coarse { display: none; }
-@media (hover: none), (pointer: coarse) { .lp .h-fine { display: none; } .lp .h-coarse { display: inline; } }
+/* On a touch screen the keyboard's instructions are kept for a screen reader and a paired
+   keyboard, and taken off the page. */
+@media (hover: none), (pointer: coarse) { .lp .h-fine { display: none; } .lp .h-coarse { display: inline; } .lp .wb-keys { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } }
 .lp .tidy-btn { border-color: transparent; background: var(--lp-p-accent); color: var(--lp-p-on-accent); font-weight: 600; }
 .lp .tidy-btn:active { background: var(--lp-p-accent); }
 @media (hover: hover) { .lp .tidy-btn:hover { background: color-mix(in srgb, var(--lp-p-accent) 86%, var(--lp-white)); } }
@@ -589,11 +662,26 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .wl input[type="email"][aria-invalid="true"] { border-color: var(--lp-p-danger-text); box-shadow: inset 0 0 0 1px var(--lp-p-danger-text); }
 .lp .wl input[readonly] { color: var(--lp-text-2); }
 .lp .wl .btn[aria-disabled="true"] { cursor: progress; opacity: 0.72; }
-.lp .wl-err { min-height: 1.25rem; font-size: 0.875rem; line-height: 1.25rem; color: var(--lp-p-danger-text); }
+/* The error has no line kept for it. It is laid into the space that is already under the
+   field (in the full form, the gap before the next question), so it appears without
+   moving anything and leaves no hole when there is nothing to say. A longer message,
+   which only the server sends, takes a line of its own. */
+.lp .wl-err { position: relative; height: 0; font-size: 0.875rem; line-height: 1.25rem; color: var(--lp-p-danger-text); white-space: nowrap; }
+.lp .wl-err.long { height: auto; white-space: normal; }
 .lp .wl-err.shown { animation: lp-rise var(--lp-t1) var(--ease-out); }
 .lp .wl-err.again { animation: lp-again var(--lp-t2) var(--ease-out); }
 @keyframes lp-again { 40% { transform: translateX(4px); } }
-.lp .wl fieldset { margin: 6px 0 0; padding: 0; border: 0; min-width: 0; display: grid; gap: 8px; }
+.lp .wl fieldset { margin: 14px 0 0; padding: 0; border: 0; min-width: 0; display: grid; gap: 8px; }
+/* The same form, small: in the hero beside "Try the sample", and in the two quiet prompts.
+   One row, no visible label (the field's own is read out), the error just under the row. */
+.lp .wl-hero, .lp .wl-prompt { position: relative; display: block; margin: 0; max-width: none; }
+.lp .wl-hero .wl-row, .lp .wl-prompt .wl-row { gap: 8px; }
+.lp .wl-hero input[type="email"] { flex: none; width: 17rem; }
+.lp .wl-prompt input[type="email"] { flex: 1 1 15rem; width: 15rem; }
+.lp .wl-hero .wl-err, .lp .wl-prompt .wl-err { position: absolute; left: 2px; top: calc(100% + 4px); }
+.lp .wl-hero .wl-err.long, .lp .wl-prompt .wl-err.long { position: static; margin-top: 6px; }
+.lp .wl-done-hero, .lp .wl-done-prompt { margin: 0; min-height: 46px; font-size: 1.0625rem; }
+.lp .wl-done-prompt { justify-content: flex-start; }
 .lp .wl legend span { font-weight: 400; color: var(--lp-text-3); }
 .lp .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .lp .chips label { position: relative; display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border: 1px solid var(--lp-edge); border-radius: 99px; font-size: 0.875rem; font-weight: 450; color: var(--lp-text-2); cursor: pointer; transition: background-color var(--lp-t1) var(--ease-out), color var(--lp-t1) var(--ease-out), border-color var(--lp-t1) var(--ease-out), transform var(--lp-t1) var(--ease-out); }
@@ -636,6 +724,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 /* Responsive. Breakpoints are in em: 1 em is 16 px at the browser's usual text size. */
 @media (max-width: 80em) {
   .lp .home { grid-template-columns: minmax(0, 1fr) 340px; gap: 0 28px; }
+  .lp .plist li span { font-size: 0.8125rem; }
 }
 @media (max-width: 73.75em) {
   .lp .lede, .lp .sub { font-size: 1.0625rem; letter-spacing: 0; }
@@ -644,7 +733,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
   .lp .nav-links { display: none; }
   .lp .menu { display: block; }
   .lp .nav .wrap { gap: 10px; }
-  .lp .home { grid-template-columns: minmax(0, 1fr); padding-right: 24px; }
+  .lp .home { grid-template-columns: minmax(0, 1fr); grid-template-areas: "top" "main" "side"; grid-template-rows: none; padding-right: 24px; }
   .lp .home-side { padding-top: 28px; }
   .lp .plist-h, .lp .plist { display: none; }
 }
@@ -663,25 +752,38 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
   .lp .v-tablet { display: none; }
   .lp .plate[data-tabs] > .v-tablet { display: none; }
   .lp .v-phone { display: block; }
-  .lp .stamp i, .lp .lede .more { display: none; }
+  .lp .stamp i { display: none; }
   .lp h1:where(:not(.lp-footer *)), .lp .close h2 { font-size: clamp(1.875rem, 0.3rem + 7.9vw, 2.625rem); letter-spacing: -0.045em; line-height: 1 !important; }
-  .lp .hero { padding-top: 20px; }
-  .lp h1:where(:not(.lp-footer *)) { margin-top: 16px; }
-  .lp .lede { margin-top: 14px; }
-  .lp .cta-row { margin-top: 18px; }
-  .lp .cta-row .btn { flex: 1 1 100%; }
-  .lp .cta-row .btn-ghost { display: none; }
-  .lp .live { margin-top: 22px; }
-  .lp .live-label { margin-bottom: 10px; font-size: 0.875rem; }
+  /* A little tighter than round 2: the sample's reply now keeps two lines, and its first
+     task must still be on the first screen above the window's foot. */
+  .lp .hero { padding-top: 12px; }
+  .lp h1:where(:not(.lp-footer *)) { margin-top: 12px; }
+  .lp .lede { margin-top: 12px; }
+  .lp .cta-row { margin-top: 16px; }
+  /* Two lines are kept for the sample's reply, so the sample does not move under a finger. */
+  .lp .respond { min-height: 2.8em; }
+  .lp .live { margin-top: 24px; }
+  .lp .live-label { margin-bottom: 8px; font-size: 0.875rem; }
   .lp .step p { font-size: 1rem; }
   .lp .wl-row { flex-direction: column; }
   .lp .wl input[type="email"] { flex: none; width: 100%; }
   .lp .wl .btn { width: 100%; }
-  .lp .wl-err { min-height: 2.5rem; }
+  /* The hero's field and its button share one row, so the sample's first task is still on
+     the first screen. "Try the sample" steps back: the sample is the next thing down. */
+  .lp .cta-row > .btn-ghost { display: none; }
+  .lp .cta-row .wl-hero, .lp .cta-row .wl-done-hero { flex: 1 1 100%; min-width: 0; }
+  .lp .wl-hero .wl-row { flex-direction: row; }
+  .lp .wl-hero input[type="email"] { flex: 1 1 0; width: 0; }
+  .lp .wl-hero .btn { width: auto; flex: none; padding: 0 14px; }
+  .lp .wl-hero .btn svg { display: none; }
+  .lp .wl-hero .wl-err { top: calc(100% + 2px); }
+  .lp .wl-prompt { width: 100%; }
   .lp .wl-done { min-height: 156px; }
   .lp .brand { font-size: 1rem; }
   .lp .win-bar { height: 44px; }
-  .lp .home { padding: 14px 14px 6px 12px; }
+  .lp .win-foot { padding: 0 8px 0 14px; }
+  .lp .toast { margin: 0 -8px 0 -14px; padding: 0 8px 0 14px; font-size: 0.875rem; }
+  .lp .home { padding: 14px 14px 14px 12px; }
   .lp .greet { font-size: 1.3125rem; }
   .lp .grp { margin-top: 22px; }
   .lp .grp:first-child { margin-top: 12px; }
@@ -690,20 +792,17 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
   .lp .row-m { padding-left: 8px; }
   .lp button.row-m { margin-left: 8px; }
   /* The sample on a phone: one screen of it, the rest on request. */
-  .lp.js .win.capped .home { max-height: 600px; overflow: hidden; }
-  .lp.js .win.capped .win-more { display: flex; position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; justify-content: center; padding: 56px 12px 12px; background: linear-gradient(transparent, var(--lp-p-canvas) 62%); }
+  .lp.js .win.capped .home { max-height: 600px; overflow: clip; }
+  .lp.js .win.capped .win-more { display: flex; position: absolute; left: 0; right: 0; bottom: var(--lp-foot); z-index: 2; justify-content: center; padding: 56px 12px 12px; background: linear-gradient(transparent, var(--lp-p-canvas) 62%); }
   .lp .win-more button { min-height: 44px; padding: 0 16px; border: 1px solid var(--lp-p-control); border-radius: var(--lp-r-ctl); background: var(--lp-p-surface); font-size: 0.9375rem; font-weight: 550; transition: transform var(--lp-t1) var(--ease-out), background-color var(--lp-t1) var(--ease-out); }
   .lp .win-more button:active { transform: scale(0.97); }
-  .lp .toast { left: 12px; right: 12px; max-width: none; transform: translateY(12px); justify-content: space-between; }
-  .lp .toast.on { transform: none; }
-  .lp .toast.up { transform: translateY(-12px); }
-  .lp .toast.up.on { transform: none; }
   .lp .wb-head { padding: 14px; }
   .lp .presence span { display: none; }
   .lp .frame span { left: 10px; }
   .lp .wb-tool { padding: 0 12px; }
   .lp .plate, .lp .step .shot, .lp .yours-list { max-width: 400px; }
   .lp .prompt .btn { width: 100%; }
+  .lp .live .prompt { margin-top: 16px; }
   .lp .venue-card .side, .lp .venue-card .btn { width: 100%; }
   .lp .venue-card .btn { white-space: normal; text-align: center; padding: 10px 16px; }
 }
@@ -714,6 +813,11 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
   .lp .menu-theme { display: flex; }
   .lp.js .nav .btn { display: none; }
   .lp.js .nav.past .btn { display: inline-flex; animation: lp-rise var(--lp-t2) var(--ease-out); }
+}
+@media (max-width: 22.4375em) {
+  .lp .wl-hero .wl-row { flex-direction: column; }
+  .lp .wl-hero input[type="email"] { flex: none; width: 100%; }
+  .lp .wl-hero .btn { width: 100%; }
 }
 @media (max-width: 23.375em) {
   .lp.js .nav.past .brand span { display: none; }
@@ -758,7 +862,7 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 /* Forced colours: shadows and fills go, so every control keeps a real border and each
    state says so with a system colour. */
 @media (forced-colors: active) {
-  .lp .btn, .lp .tabs button, .lp .note, .lp .wb-tool, .lp .window, .lp .venue-card, .lp .toast, .lp .menu-panel, .lp .chips label, .lp .frame { border: 1px solid CanvasText; }
+  .lp .btn, .lp .tabs button, .lp .note, .lp .wb-tool, .lp .window, .lp .venue-card, .lp .menu-panel, .lp .chips label, .lp .frame { border: 1px solid CanvasText; }
   .lp .btn-primary, .lp .tidy-btn { border: 2px solid ButtonText; }
   .lp .tabs button[aria-current], .lp .tabs button[aria-selected="true"], .lp .chips label:has(input:checked), .lp .wb-tool.paused { border: 2px solid Highlight; forced-color-adjust: none; background: Highlight; color: HighlightText; }
   .lp .struck del { text-decoration: line-through; }
@@ -816,6 +920,9 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
   .lp .nav { position: static; background: none; border: 0; }
   .lp .nav-links, .lp .theme, .lp .menu, .lp .nav .btn, .lp .toast, .lp .respond, .lp .tick.hint::after, .lp .lp-foot, .lp .tabs, .lp .wb-tools, .lp .wb-keys, .lp .win-more, .lp .cursor, .lp .bubble, .lp .progress, .lp .slate, .lp .noscript, .lp .wl, .lp .cta-row, .lp .prompt .btn { display: none !important; }
   .lp.js .lp-reveal { opacity: 1 !important; transform: none !important; }
+  .lp.js .shot:not(.near) img { transform: none !important; }
+  .lp .win-foot { position: static; }
+  .lp .prompt .wl, .lp .cta-row .wl { display: none !important; }
   .lp.js .struck.lp-reveal li { color: var(--lp-text-3); }
   .lp.js .struck.lp-reveal del::after { transform: none; }
   .lp .struck del { text-decoration: line-through; }

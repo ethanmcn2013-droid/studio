@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { headers } from "next/headers";
 import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
 import { DevBanner } from "@/components/dev-banner";
@@ -86,6 +85,9 @@ const ROOT_CANVAS_CSS = [
   `html:has(.lp){background:${HOME_THEME_COLOR.dark};color-scheme:dark}`,
   `html:has(.lp[data-theme="light"]){background:${HOME_THEME_COLOR.light};color-scheme:light}`,
   "html:has(.lp) body{background:transparent}",
+  // No script, light device: the page follows the device in CSS (home.css),
+  // and so does the document behind it.
+  `@media (prefers-color-scheme: light){html:has(.lp:not(.js)){background:${HOME_THEME_COLOR.light};color-scheme:light}}`,
 ].join("");
 
 const structuredData = [
@@ -176,18 +178,16 @@ const structuredData = [
   },
 ];
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Suppress the marketing SiteNav when the suite launcher is active.
-  // The proxy (src/proxy.ts) sets x-signal-authed: 1 via a rewrite when
-  // an authed user hits a marketing route. The SuiteLauncher renders its
-  // own chrome; the marketing SiteNav must not stack on top of it.
-  const headersList = await headers();
-  const isAuthedLauncher = headersList.get("x-signal-authed") === "1";
-
+  // The layout reads nothing from the request (round 3, 2026-10-02), so a
+  // page that reads nothing either can be prerendered. It used to read the
+  // proxy's `x-signal-authed` header here to drop the marketing SiteNav for
+  // the suite launcher; SiteNav now steps aside by address instead, on `/`
+  // and on the launcher's internal route.
   return (
     <html
       lang="en-IE"
@@ -229,7 +229,7 @@ export default async function RootLayout({
         >
           Skip to content
         </a>
-        {!isAuthedLauncher && <SiteNav />}
+        <SiteNav />
         {children}
         <DevBanner />
       </body>

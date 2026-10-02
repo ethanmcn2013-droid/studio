@@ -19,7 +19,7 @@ import manifest from "./shot-manifest.json";
 export type ShotTheme = "dark" | "light";
 export type ShotKind = "desk" | "tablet" | "phone";
 
-type Entry = { kind: string; y: number; h: number; wide?: boolean; x?: number; w?: number };
+type Entry = { kind: string; y: number; h: number; wide?: boolean; x?: number; w?: number; fit?: boolean; source?: string };
 
 export const SHOT_BASE = `/landing/${manifest.version}/`;
 
@@ -34,8 +34,11 @@ export type ShotGeometry = {
   width: number;
   /** The whole window can be shown from 1680 px. */
   wide: boolean;
-  /** The top of the file in the capture, for spots given in capture pixels. */
+  /** The top and left of the file in the capture, for spots given in capture pixels. */
   top: number;
+  left: number;
+  /** A detail: the file fills the frame and is drawn larger than life. */
+  fit: boolean;
   /** Pixel densities shipped. */
   scales: readonly number[];
 };
@@ -46,15 +49,19 @@ export function shotGeometry(name: string): ShotGeometry {
   const kind = entry.kind as ShotKind;
   if (kind === "phone") {
     const width = registry.phone.sourceWidth;
-    return { kind, fileWidth: width, height: entry.h, x: 0, width, wide: false, top: entry.y, scales: [2, 3] };
+    return { kind, fileWidth: width, height: entry.h, x: 0, width, wide: false, top: entry.y, left: 0, fit: false, scales: [2, 3] };
   }
   const { sourceWidth, panelX, panelWidth } = registry[kind];
   const scales = kind === "desk" ? [1, 2] : [2];
-  if (entry.wide) return { kind, fileWidth: sourceWidth, height: entry.h, x: panelX, width: panelWidth, wide: true, top: entry.y, scales };
+  if (entry.wide) return { kind, fileWidth: sourceWidth, height: entry.h, x: panelX, width: panelWidth, wide: true, top: entry.y, left: 0, fit: false, scales };
+  const fileWidth = entry.w ?? panelWidth;
+  const left = entry.x ?? panelX;
+  /* A detail is a narrower cut of a capture, shown across the whole frame: larger than
+     life, from the 2x file, so it is only ever sampled up a little. */
+  if (entry.fit) return { kind, fileWidth, height: entry.h, x: 0, width: fileWidth, wide: false, top: entry.y, left, fit: true, scales };
   /* A capture from another shell is cut to its own panel and sits centred in the frame,
      on the same surface colour, so it is still drawn at its own size. */
-  const fileWidth = entry.w ?? panelWidth;
-  return { kind, fileWidth, height: entry.h, x: (fileWidth - panelWidth) / 2, width: panelWidth, wide: false, top: entry.y, scales };
+  return { kind, fileWidth, height: entry.h, x: (fileWidth - panelWidth) / 2, width: panelWidth, wide: false, top: entry.y, left, fit: false, scales };
 }
 
 export function shotSources(name: string, theme: ShotTheme) {
@@ -72,6 +79,7 @@ export function shotSizes(name: string) {
   if (g.kind === "phone") return `${g.fileWidth}px`;
   if (g.kind === "tablet") return `${registry.tablet.sourceWidth * 2}px`;
   const twice = `${g.fileWidth * 2}px`;
+  if (g.fit) return twice;
   return g.wide
     ? `(min-width: 79.5em) ${g.fileWidth}px, ${twice}`
     : `(min-width: 105em) ${twice}, (min-width: 79.5em) ${g.fileWidth}px, ${twice}`;

@@ -121,3 +121,81 @@ export function renderSvg(p: DotPose, options: RenderOptions = {}) {
   const size = Math.round(clamp(options.size ?? 1024, 16, 4096));
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="-95 -95 190 190">${renderContents(p, options)}</svg>`;
 }
+
+/**
+ * The same picture as renderContents, drawn on a canvas: the same poses, the
+ * same paths, the same palette. Drawing a frame this way touches no DOM, so
+ * a film can run without the page being styled and laid out again every
+ * frame. The context is expected in the artwork's own units, with the origin
+ * at the dot's centre.
+ */
+export function paintContents(
+  ctx: CanvasRenderingContext2D,
+  p: DotPose,
+  options: RenderOptions = {},
+) {
+  const body = COLORS[options.color ?? "indigo"] ?? COLORS.indigo,
+    dark = options.stage === "night";
+  const face = body === COLORS.paper ? COLORS.indigo : COLORS.paper;
+  const effects = options.effects !== false,
+    orbit = effects ? orbitLines(p) : { back: [], front: [] };
+  const scale = clamp(p.scale, 0.12, 1.15);
+  const lines = (list: Line[]) => {
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    for (const l of list) {
+      ctx.globalAlpha = clamp(l.opacity);
+      ctx.strokeStyle = l.stroke;
+      ctx.lineWidth = l.width;
+      ctx.stroke(new Path2D(l.d));
+    }
+    ctx.globalAlpha = 1;
+  };
+  const disc = (x: number, y: number, r: number) => {
+    ctx.beginPath();
+    ctx.arc(x, y, Math.max(0, r), 0, Math.PI * 2);
+  };
+  ctx.save();
+  ctx.translate(p.x, p.y);
+  ctx.scale(scale, scale);
+  if (effects && p.satellites > 0.001) {
+    for (let i = 0; i < 3; i++) {
+      const row = p.satellitePhase === -1,
+        a = p.satellitePhase + (i * Math.PI * 2) / 3;
+      if (row && i === 2) continue;
+      ctx.globalAlpha = clamp((0.7 - i * 0.18) * p.satellites);
+      ctx.fillStyle = body;
+      disc(row ? (i ? 1 : -1) * 74 : Math.cos(a) * 76, row ? 0 : Math.sin(a) * 32, (row ? 15 : 10 - i * 2) * p.satellites);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+  lines(orbit.back);
+  ctx.fillStyle = body;
+  disc(0, 0, 50);
+  ctx.fill();
+  if (options.face !== false) {
+    ctx.save();
+    ctx.globalAlpha = clamp(p.faceOpacity);
+    ctx.rotate((p.roll * Math.PI) / 180);
+    ctx.fillStyle = face;
+    for (const e of [p.left, p.right]) {
+      ctx.save();
+      ctx.translate(e.x, e.y);
+      ctx.rotate((e.angle * Math.PI) / 180);
+      ctx.fill(new Path2D(eyePath(e)));
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+  lines(orbit.front);
+  if (effects && p.bead > 0.001) {
+    disc(40, -37, 6 * p.bead);
+    ctx.fillStyle = palette.bead;
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = dark ? palette.stage.night : palette.stage.paper;
+    ctx.stroke();
+  }
+  ctx.restore();
+}

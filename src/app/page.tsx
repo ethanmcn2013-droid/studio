@@ -1,78 +1,48 @@
 import type { Viewport } from "next";
-import { headers } from "next/headers";
-import { SuiteSwitcher } from "@/components/layout/suite-switcher-pills";
 import { HomePage } from "@/components/home/home-page";
-import { SuiteLauncher } from "@/components/layout/suite-launcher";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { HOME_THEME_COLOR } from "@/components/home/theme-color";
 
 /**
- * The browser bar on the signed-out home page takes the page's floor, by the
- * same rule the page uses for its theme: ?theme=light|dark, else the device
- * setting. The home runtime keeps it in step with the toggle after that.
- * The signed-in launcher returns nothing here, so it keeps the layout's
- * white bar, as does every other route.
+ * The browser bar on the public home page takes the page's floor, by the
+ * device setting. This is all the server says, so the page can be built once
+ * and served from cache. A visitor's own choice (`?theme=light|dark`, or the
+ * switch) is settled in the browser: the page's boot script puts one
+ * theme-color tag of its own first in the head while the page is parsed, and
+ * the home runtime keeps it in step with the toggle after that.
  */
-export async function generateViewport({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}): Promise<Viewport> {
-  const headersList = await headers();
-  if (headersList.get("x-signal-authed") === "1") return {};
-
-  const { theme } = await searchParams;
-  if (theme === "light" || theme === "dark") {
-    return { themeColor: HOME_THEME_COLOR[theme] };
-  }
-  return {
-    themeColor: [
-      { media: "(prefers-color-scheme: light)", color: HOME_THEME_COLOR.light },
-      { media: "(prefers-color-scheme: dark)", color: HOME_THEME_COLOR.dark },
-    ],
-  };
-}
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: HOME_THEME_COLOR.light },
+    { media: "(prefers-color-scheme: dark)", color: HOME_THEME_COLOR.dark },
+  ],
+};
 
 /**
  * Home page, two variants, one URL (DESIGN.md §14).
  *
- * Authed: src/proxy.ts rewrites to / and sets x-signal-authed: 1.
- *         This component reads that header and renders the suite launcher.
+ * Signed out: this route. The marketing front door, "One Friday" (founder
+ *         pick 2026-10-02): a working Home sample, the same first line in
+ *         other trades' words, who it is for, then Projects, one Friday in
+ *         Tasks, Timeline, Files, Analytics and the whiteboard, in the
+ *         header's order. Dark first, with a light theme scoped to this
+ *         page. It carries its own header; the global site nav hides itself
+ *         on this route. The shared footer stays, without its mascot: the
+ *         dot run above it is the page's one dot.
  *
- * Unauthed: proxy passes through; renders the marketing front door.
- *         "One Friday" (founder pick 2026-10-02): a working Home sample,
- *         who it is for, then Projects, one Friday in Tasks, Timeline,
- *         Files, Analytics and the whiteboard, in the header's order. Dark
- *         first, with a light theme scoped to this page. It carries its own
- *         header; the global site nav hides itself on this route. The shared
- *         footer stays.
+ * Signed in: src/proxy.ts rewrites `/` to the internal `/launcher` route
+ *         (src/app/launcher/page.tsx), which renders the suite launcher. The
+ *         URL stays `/`.
  *
- * The two-variant pattern avoids a redirect loop (authed redirect to /
- * would loop back to this page). The proxy rewrite keeps the URL clean.
+ * Round 3 (2026-10-02): this route reads nothing from the request, no header
+ * and no query string, so it is prerendered and cacheable. It used to read
+ * the proxy's `x-signal-authed` header to choose a variant, which made every
+ * signed-out visit a fresh render with `no-store`.
  */
-export default async function Home() {
-  const headersList = await headers();
-  const isAuthed = headersList.get("x-signal-authed") === "1";
-
-  if (isAuthed) {
-    // §14 (amended 2026-05-19): the canonical SuiteSwitcher pills, the
-    // same component the four product app-chromes render, so the suite
-    // feels like one surface. No `current` (you are on the umbrella, not
-    // in a product); no umbrella anchor (you are already here). The
-    // full-page launcher grid stays below as the richer "jump back in".
-    return (
-      <>
-        <div className="flex w-full justify-center px-4 pt-[18px]">
-          <SuiteSwitcher showUmbrella={false} />
-        </div>
-        <SuiteLauncher />
-      </>
-    );
-  }
-
+export default function Home() {
   return (
     <HomePage>
-      <SiteFooter showDot />
+      <SiteFooter />
     </HomePage>
   );
 }

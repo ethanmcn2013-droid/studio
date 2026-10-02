@@ -57,10 +57,12 @@ export function SiteNav() {
   }, [mobileOpen]);
 
   // The home page renders its own header (components/home/home-header.tsx).
-  // Signed-in visitors never reach this on "/": the layout drops the nav for
-  // the suite launcher before it renders.
+  // The suite launcher, the signed-in variant of "/", carries its own chrome:
+  // the proxy serves it from the internal /launcher route under the address
+  // "/", so both addresses step aside here.
   if (
     pathname === "/" ||
+    pathname === "/launcher" ||
     pathname?.startsWith("/hq") ||
     pathname === "/__design-lab/brand-guidelines"
   ) {

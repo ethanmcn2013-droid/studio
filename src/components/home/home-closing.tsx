@@ -29,7 +29,7 @@ export const STRUCK_WORDS = [
   "OKR",
 ] as const;
 
-/** Who it is for: straight after the sample, because it speaks to everyone the headline names. */
+/** Who it is for: it speaks to everyone the headline names. */
 export function HomeWho() {
   return (
     <section className="sec who" id="who" aria-labelledby="h-who">
@@ -47,7 +47,7 @@ export function HomeWho() {
   );
 }
 
-/** The same first line on Home, for the three other people the headline names. */
+/** The same first line on Home, for the three other people the headline names. Straight after the sample, so a builder, a teacher or a designer sees themselves before the page goes on about a venue. */
 export function HomeYours() {
   return (
     <section className="sec yours" id="yours" aria-labelledby="h-yours">
@@ -108,7 +108,7 @@ export function HomeVenue() {
   );
 }
 
-/** The close: the one form, and what joining gets you. */
+/** The close: the form in full, with its optional question, and what joining gets you. */
 export function HomeClose() {
   const pricing = getConsumerPricingPresentation();
   return (
@@ -116,9 +116,9 @@ export function HomeClose() {
       <div className="wrap">
         <p className="mono kicker lp-reveal">Launching January 2027</p>
         <h2 id="h-close" className="lp-reveal" style={v({ "--lp-i": 1 })}>Start your Friday with five things, <em>not</em> fifty.</h2>
-        <HomeWaitlist />
+        <HomeWaitlist variant="close" source="home_close" artifact="close_form" />
         <div className="wl-note lp-reveal" style={v({ "--lp-i": 3 })}>
-          <p id="wl-note">Free to join. No card and no newsletter. One email when it is your turn, from January 2027. There is a free plan for one project, and Pro is {pricing.plans.pro.price} a month.</p>
+          <p id="wl-note">Free to join. No card and no newsletter. One email when it is your turn, from January 2027. There is a free plan, and Pro is {pricing.plans.pro.price} a month.</p>
           <p className="wl-links"><Link className="tlink" href="/pricing" prefetch={false}>See pricing</Link><span aria-hidden="true"> · </span><Link className="tlink" href="/privacy" prefetch={false}>Privacy</Link></p>
           <p>{COMPANY_META.legalName} is registered in Ireland. Questions go to <a className="tlink" href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>.</p>
         </div>

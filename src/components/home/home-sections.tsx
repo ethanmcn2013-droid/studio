@@ -1,9 +1,6 @@
 import { Shot } from "./home-shot";
+import { HomeWaitlist } from "./home-waitlist";
 import { v } from "./style-vars";
-
-const ARROW = (
-  <svg className="along" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-);
 
 /** Projects: every project the venue has on, three ways. */
 export function HomeProjects() {
@@ -24,7 +21,7 @@ export function HomeProjects() {
             </div>
             <p className="cap" data-cap="pl-projects" aria-live="polite">A cover for every project: its date, who is on it and how far along it is.</p>
           </div>
-          <div className="plate window" id="pl-projects" role="tabpanel" aria-labelledby="tab-projects-0" data-tabs="" data-caps="A cover for every project: its date, who is on it and how far along it is.|The same projects as rows, for when you want to compare them.|Open one and it says what is yours, what is late and what the team said last.">
+          <div className="plate window" id="pl-projects" role="tabpanel" tabIndex={0} aria-labelledby="tab-projects-0" data-tabs="" data-caps="A cover for every project: its date, who is on it and how far along it is.|The same projects as rows, for when you want to compare them.|Open one and it says what is yours, what is late and what the team said last.">
             <Shot name="projects-desk" className="on" fade view={0} alt="Projects as covers. 15 active projects, 2 off track, 2 at risk, 10 on track. Mara and Finn's wedding: in 8 days, 23 of 44 done, 2 late, at risk." />
             <Shot name="ledger-desk" fade view={1} alt="Projects as a list: each project in a row with how it is doing, open tasks, tasks done, its next big date and who leads it." />
             <Shot name="project-home-desk" fade view={2} alt="One project, Mara and Finn's wedding: at risk, in 8 days, 23 of 44 tasks done, 2 late, with the team's latest updates." />
@@ -89,7 +86,7 @@ export function HomeFiles() {
           </div>
           <div className="prompt">
             <p><b>That is the idea.</b> Leave your email and we will write when you can try it.</p>
-            <a className="btn btn-ghost" href="#join">Join the waitlist {ARROW}</a>
+            <HomeWaitlist variant="prompt" id="files" source="home_files" artifact="files_prompt" />
           </div>
         </div>
       </div>
@@ -116,9 +113,9 @@ export function HomeAnalytics() {
             </div>
             <p className="cap" data-cap="pl-analytics" aria-live="polite">“Are we on track for the wedding?” Only just: done by Fri 2 Oct, 1 day to spare.</p>
           </div>
-          <div className="plate window" id="pl-analytics" role="tabpanel" aria-labelledby="tab-analytics-0" data-tabs="" data-caps="“Are we on track for the wedding?” Only just: done by Fri 2 Oct, 1 day to spare.|Tasks finished each week, and whether the date still holds.">
+          <div className="plate window" id="pl-analytics" role="tabpanel" tabIndex={0} aria-labelledby="tab-analytics-0" data-tabs="" data-caps="“Are we on track for the wedding?” Only just: done by Fri 2 Oct, 1 day to spare.|Tasks finished each week, and whether the date still holds.">
             <Shot name="analytics-ask-desk" className="on" view={0} alt="Analytics answering: are we on track for the wedding, Sat 3 Oct? Only just. 17 tasks are due by the wedding, done by Fri 2 Oct at the current pace, 1 day to spare. A line chart shows open tasks falling to zero on 2 Oct." />
-            <Shot name="analytics-wall-desk" view={1} alt="Analytics for all projects: one card each, with a chart of tasks finished each week and a line saying when the work is likely done. Mara and Finn's wedding: at risk, likely done Fri 2 Oct, 1 day to spare." />
+            <Shot name="analytics-wall-desk" fade view={1} alt="Analytics for all projects: one card each, with a chart of tasks finished each week and a line saying when the work is likely done. Mara and Finn's wedding: at risk, likely done Fri 2 Oct, 1 day to spare." />
             <Shot name="analytics-ask-tablet" className="on" fade view={0} alt="Analytics on a tablet answering: are we on track for the wedding? Only just. Done by Fri 2 Oct, 1 day to spare." />
             <Shot name="analytics-wall-tablet" fade view={1} alt="Analytics on a tablet: a card for each project, with tasks finished each week and when the work is likely done." />
             <Shot name="analytics-ask-phone" className="on" fade view={0} alt="Analytics on a phone answering: are we on track for the wedding? Only just. Done by Fri 2 Oct, 1 day to spare." />
