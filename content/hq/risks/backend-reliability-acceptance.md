@@ -9,6 +9,12 @@ owner: Ethan
 reviewDate: 2026-10-02
 ---
 
+## Current source checkpoint, 2 October 2026
+
+App `25d652307864ee9f7fddce1accd579977fc2ad2b` (tree `7dff59ff06a8e4e135d66e4a1700c4376cb19c4d`) is pushed in [PR 204](https://github.com/ethanmcn2013-droid/app/pull/204). Independent source review `e10a3b6e` accepted the bounded task acknowledgement change, and reviewed source custody `878f1b1` is pushed. Local checks passed 18/18 browser cases, 8/8 helper cases, scoped TypeScript and targeted lint. [Exact-source Verify Tasks CI 37015981537](https://github.com/ethanmcn2013-droid/app/actions/runs/37015981537) failed both full-test jobs on an obsolete receiving-fixture interface. The receiving reproduction also exposed a demo startup server read; a narrow demo guard and fixture correction are undergoing final review. These checks do not establish a new hosted performance or intelligence receiving result.
+
+The preceding `bc27c483` full acknowledgement attempt failed after 464 successful UI terminals and 463 verified persistence joins. Read-only reconciliation confirmed the uncertain edit had persisted. A separate guarded cleanup removed all 777 owned rows; twelve residue checks returned zero, nonowned state across 49 tables was unchanged, and the cleanup session exited 0. The failed run is preserved in private `bb8f387c`, with recovery custody in private `c5afce7`. The **800 ms** target is unchanged. Representative and fault acceptance remain open, the new twenty-family cohort is sealed, and the visual design is unchanged.
+
 ## Current C3 checkpoint, 2 October 2026
 
 App `c3ef18235f1bbab0e77fb83c9fa9ac21426ee32e` passes both exact-head and merge jobs in Verify Tasks CI. The full actual-client run finished 205 cycles, and all 615 actions were persisted. After five warmups, 200 measured samples per class produced nearest-rank create/edit/complete p95 of **1,247.2/1,289.8/1,275.8 ms**, all above the unchanged **800 ms** target. The acknowledgement result remains failed and is preserved in private `695a685`. The render-reuse explanation remains unproven.
