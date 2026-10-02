@@ -6,10 +6,18 @@ likelihood: Medium
 impact: High
 status: Needs attention
 owner: Ethan
-reviewDate: 2026-10-01
+reviewDate: 2026-10-02
 ---
 
-## Current 9d645877 checkpoint, 1 October 2026
+## Current C3 checkpoint, 2 October 2026
+
+App `c3ef18235f1bbab0e77fb83c9fa9ac21426ee32e` passes both exact-head and merge jobs in Verify Tasks CI. The full actual-client run finished 205 cycles, and all 615 actions were persisted. After five warmups, 200 measured samples per class produced nearest-rank create/edit/complete p95 of **1,247.2/1,289.8/1,275.8 ms**, all above the unchanged **800 ms** target. The acknowledgement result remains failed and is preserved in private `695a685`. The render-reuse explanation remains unproven.
+
+Cleanup completed separately. One confirmed transaction removed 131 discussion-state rows, 393 activities, 131 tasks, two members and one Project, 658 rows total. Fresh readback found zero residue and unchanged nonowned fingerprints across 49 tables. Both sessions are terminal, no action replay occurred, and original data stayed unchanged. Independent review is `3cc53583`; the prospective record is `145868b` and terminal recovery custody is private `db4de21`. Cleanup success does not change the failed acknowledgement result.
+
+Current-source receiving and representative workload acceptance remain pending. The new twenty-family quality cohort remains sealed; no new quality result is claimed. The visual design is unchanged, and the existing contrast and materiality findings remain open.
+
+## Historical 9d645877 checkpoint, 1 October 2026
 
 A separately reviewed recovery completed at 14:13 UTC: one confirmed transaction removed the 70 Tasks, 210 activities, 70 discussion-state rows, two members and synthetic Project. Fresh-client readback verified zero residue and unchanged nonowned state across all 49 tables; original evidence and terminal sessions remain intact. Prospective recovery evidence is preserved in private `1017f19`; terminal recovery custody is preserved in private `f3e952c`. This closes cleanup only; the original latency result remains failed.
 
