@@ -1,15 +1,27 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { SHARE_CARD } from "@/lib/brand/share-card";
 import { WaitlistLine } from "./waitlist-line";
 
 export const metadata: Metadata = {
-  title: "Waitlist | Signal Studio",
+  title: "Waitlist · Signal Studio",
   description:
     "Join the Signal Studio waitlist. Access opens in small batches when each product and privacy gate is ready.",
+  // Campaign links arrive with tracking parameters; the canonical drops them.
+  alternates: { canonical: "/waitlist" },
   openGraph: {
-    title: "Waitlist | Signal Studio",
+    title: "Waitlist · Signal Studio",
     description: "Join the Signal Studio waitlist. Access opens in small batches.",
     type: "website",
+    url: "/waitlist",
+    siteName: "Signal Studio",
+    images: [SHARE_CARD],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Waitlist · Signal Studio",
+    description: "Join the Signal Studio waitlist. Access opens in small batches.",
+    images: [SHARE_CARD],
   },
 };
 

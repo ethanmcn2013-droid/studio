@@ -7,6 +7,10 @@ import { DevBanner } from "@/components/dev-banner";
 import { SITE_URL } from "@/lib/site-url";
 import { COMMERCIAL_TERMS } from "@/lib/commercial-terms";
 import { STUDIO_BROWSER_ICONS } from "@/lib/brand/browser-icons";
+import { SHARE_CARD } from "@/lib/brand/share-card";
+import { SOCIAL_PROFILE_URLS } from "@/lib/social-profiles";
+import { recurringPrice } from "@/lib/structured-offer";
+import { HOME_THEME_COLOR } from "@/components/home/theme-color";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,13 +44,49 @@ export const metadata: Metadata = {
   ),
   manifest: "/manifest.webmanifest",
   icons: STUDIO_BROWSER_ICONS,
+  // "./" resolves against the page being rendered, so every page that does
+  // not declare its own canonical names itself: the home page is
+  // https://signalstudio.ie, /waitlist is /waitlist. Query strings (?theme=,
+  // campaign tags) never reach the canonical.
+  alternates: {
+    canonical: "./",
+  },
   openGraph: {
     title: "Signal Studio · Project management for people not in tech.",
     description:
       "Signal Studio tells you what needs you today, in words you would use yourself, whether you run a venue, a trade crew, a studio or a school.",
     type: "website",
+    url: "./",
+    siteName: "Signal Studio",
+    locale: "en_IE",
+    images: [SHARE_CARD],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [SHARE_CARD],
   },
 };
+
+/**
+ * The document behind every page, set before any stylesheet resolves.
+ *
+ * Every route paints white with a light colour scheme (D4, layer 0: no grey
+ * void on a cross-origin first load, no dark UA canvas on a dark device).
+ * The home page is the one exception: its root is `.lp`, dark first with a
+ * light theme, and the document takes that root's floor so the scrollbar,
+ * the overscroll area and native controls match the page. The two floors are
+ * the ones the home page already keeps in theme-color.ts.
+ *
+ * This is a style block, not a style attribute, so a later rule can change
+ * it without `!important`.
+ */
+const ROOT_CANVAS_CSS = [
+  "html{background:#fff;color-scheme:light}",
+  "body{background:#fff}",
+  `html:has(.lp){background:${HOME_THEME_COLOR.dark};color-scheme:dark}`,
+  `html:has(.lp[data-theme="light"]){background:${HOME_THEME_COLOR.light};color-scheme:light}`,
+  "html:has(.lp) body{background:transparent}",
+].join("");
 
 const structuredData = [
   {
@@ -57,12 +97,14 @@ const structuredData = [
     url: SITE_URL,
     email: "hello@signalstudio.ie",
     foundingDate: "2025",
+    // A square logo (the 512px ring and dot), not the 1200x630 share card.
     logo: {
       "@type": "ImageObject",
-      url: `${SITE_URL}/opengraph-image`,
-      width: 1200,
-      height: 630,
+      url: `${SITE_URL}/icon1`,
+      width: 512,
+      height: 512,
     },
+    image: `${SITE_URL}${SHARE_CARD.url}`,
     founder: {
       "@type": "Person",
       name: "Ethan McNamara",
@@ -72,12 +114,8 @@ const structuredData = [
       addressLocality: "Limerick",
       addressCountry: "IE",
     },
-    sameAs: [
-      "https://www.linkedin.com/company/signalstudio-ie/",
-      "https://x.com/SignalStudioIE",
-      "https://www.instagram.com/signalstudioie/",
-      "https://www.youtube.com/@SignalStudioIE",
-    ],
+    // The same list the footer links to: src/lib/social-profiles.ts.
+    sameAs: SOCIAL_PROFILE_URLS,
   },
   {
     "@context": "https://schema.org",
@@ -102,6 +140,8 @@ const structuredData = [
         name: "Student",
         price: String(COMMERCIAL_TERMS.plans.student.amountCents / 100),
         priceCurrency: "EUR",
+        // Student is billed once a year; a bare price reads as one-off.
+        ...recurringPrice(COMMERCIAL_TERMS.plans.student.amountCents, "P1Y"),
         availability: "https://schema.org/PreOrder",
         url: `${SITE_URL}/pricing#plans`,
       },
@@ -110,6 +150,7 @@ const structuredData = [
         name: "Pro",
         price: String(COMMERCIAL_TERMS.plans.pro.monthlyAmountCents / 100),
         priceCurrency: "EUR",
+        ...recurringPrice(COMMERCIAL_TERMS.plans.pro.monthlyAmountCents, "P1M"),
         availability: "https://schema.org/PreOrder",
         url: `${SITE_URL}/pricing#plans`,
       },
@@ -123,11 +164,13 @@ const structuredData = [
         /* Venue Edition remains a separate commercial surface, not a fifth
            consumer pricing plan. Its price is deliberately omitted here:
            search structured data cannot carry the conditions presented next
-           to that price on /venues. */
+           to that price on the venue page. That page is archived until
+           launch and /venues redirects, so the offer points at the place a
+           venue can ask about it today: the contact section on About. */
         "@type": "Offer",
         name: "Venue Edition",
         availability: "https://schema.org/PreOrder",
-        url: `${SITE_URL}/venues`,
+        url: `${SITE_URL}/about?subject=founding-venue#contact`,
       },
     ],
   },
@@ -147,31 +190,23 @@ export default async function RootLayout({
 
   return (
     <html
-      lang="en"
+      lang="en-IE"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      // D4 Layer-0 instant canvas: these inline attributes fire before any
-      // stylesheet resolves. background:#fff kills the browser-default grey
-      // on cross-origin first load. colorScheme:light prevents the UA from
-      // painting a dark-mode void even when the OS is in dark mode.
-      // LOADING_SYSTEM.md §2, "Frame 1 of every cross-origin destination
-      // is paper white field, no content."
-      style={{ background: "#fff", colorScheme: "light" }}
     >
       <head>
         {/* No analytics tag. GA4 was removed on 2026-08-12 under decision D2:
             it ran on every public page with no consent gate while the privacy
             policy claimed cookieless analytics only. Traffic counts come from
             Vercel Analytics, which sets no cookie. See docs/ANALYTICS.md. */}
-        {/* D4, belt-and-braces inline style: fires synchronously before the
-            linked stylesheet resolves, preventing any grey flash on the
-            document body. One-liner; only background is set here. */}
-        <style dangerouslySetInnerHTML={{ __html: "html{background:#fff}" }} />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title="Signal Studio, The dispatch"
-          href={`${SITE_URL}/changelog.rss`}
-        />
+        {/* D4 layer 0, the instant canvas: parsed before the linked
+            stylesheet resolves, so there is no grey flash on a cross-origin
+            first load and no dark UA void on a dark device. It also gives
+            the home page its own floor; see ROOT_CANVAS_CSS above.
+            LOADING_SYSTEM.md §2. */}
+        <style dangerouslySetInnerHTML={{ __html: ROOT_CANVAS_CSS }} />
+        {/* No feed link. The dispatch and its feed left the public estate on
+            2026-09-11 and /changelog.rss redirects to the home page, so the
+            head no longer advertises a feed that is not there. */}
         {/* D4, preconnect + DNS-prefetch to all 4 product origins.
             Marketing is the cross-product hub; establishing early connections
             shaves ~100-300ms from the first cross-domain navigation.
@@ -183,10 +218,6 @@ export default async function RootLayout({
       </head>
       <body
         className="flex min-h-full flex-col"
-        // D4, inline style on body: same reason as html above.
-        // background:#fff fires before the stylesheet link resolves,
-        // removing the grey void on cross-origin first paint.
-        style={{ background: "#fff" }}
       >
         <script
           type="application/ld+json"
@@ -194,7 +225,7 @@ export default async function RootLayout({
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center focus:rounded focus:bg-ink focus:px-3 focus:py-2 focus:text-sm focus:text-bg-elevated"
+          className="skip-link"
         >
           Skip to content
         </a>

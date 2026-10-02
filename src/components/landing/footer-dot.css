@@ -2,11 +2,16 @@
   position: relative;
 }
 
+/* The mascot stands beside the brand block, not under it, so it adds no
+   height to the footer at any width. */
 .footer-dot {
+  position: absolute;
+  top: 0;
+  left: min(344px, calc(100% - 126px));
   display: block;
   width: 126px;
   height: 135.45px;
-  margin: 10px 0 -8px -15px;
+  margin: 0;
   padding: 0;
   border: 0;
   border-radius: 8px;
@@ -31,12 +36,14 @@
   cursor: default;
 }
 
-/* The brand column already has this space beneath its social links on desktop. */
-@media (min-width: 1024px) {
+@media (max-width: 359px) {
   .footer-dot {
-    position: absolute;
-    left: -15px;
-    bottom: -30px;
-    margin: 0;
+    left: calc(100% - 96px);
+    width: 96px;
+    height: 103.2px;
+  }
+
+  .site-footer-brand-with-dot .site-footer-promise {
+    max-width: calc(100% - 104px);
   }
 }
