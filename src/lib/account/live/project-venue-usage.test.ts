@@ -136,9 +136,27 @@ test("a small venue is suppressed rather than described", () => {
     dataThrough: "2026-06-05",
   });
   assert.equal(snapshot.coverage.state, "suppressed");
+  assert.equal("daysCovered" in snapshot.coverage, false);
+  assert.equal("modulesCovered" in snapshot.coverage, false);
   assert.equal(snapshot.adoption.activeRecently.state, "withheld");
   for (const reach of snapshot.productReach) {
     assert.equal(reach.workspacesReached.state, "withheld");
+  }
+});
+
+test("suppression discards inherited observed metadata; privacy guard rejects its reintroduction", () => {
+  const snapshot = projectVenueUsageSnapshot({
+    ...accessSnapshot,
+    coverage: { ...accessSnapshot.coverage, daysCovered: 17, modulesCovered: 4 },
+  }, { window: WINDOW, rows: [row({ eligibleWorkspaces: 1 })], lifecycle, dataThrough: WINDOW.end });
+  assert.equal("daysCovered" in snapshot.coverage, false);
+  assert.equal("modulesCovered" in snapshot.coverage, false);
+  assert.equal(snapshot.coverage.daysExpected, 5);
+  assert.equal(snapshot.coverage.modulesExpected, 4);
+  for (const key of ["daysCovered", "modulesCovered"] as const) {
+    for (const value of [0, 1, 2]) {
+      assert.ok(assertSnapshotPrivacy({ ...snapshot, coverage: { ...snapshot.coverage, [key]: value } }).length > 0);
+    }
   }
 });
 

@@ -8,6 +8,34 @@
       "when": 1785485547368,
       "tag": "0000_init",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788559200000,
+      "tag": "0001_venue_fulfilment",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788566400000,
+      "tag": "0002_usage_delivery",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1788573600000,
+      "tag": "0003_usage_workspace_erasure",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1788580800000,
+      "tag": "0004_sponsor_programme",
+      "breakpoints": true
     }
   ]
 }

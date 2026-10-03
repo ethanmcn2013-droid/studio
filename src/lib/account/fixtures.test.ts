@@ -36,6 +36,8 @@ describe("Signal Studio Account fixtures", () => {
   });
 
   it("suppressed never contradicts a tiny eligible cohort", () => {
+    assert.equal("modulesCovered" in VENUE_SUPPRESSED.coverage, false);
+    assert.equal("daysCovered" in VENUE_SUPPRESSED.coverage, false);
     assert.equal(VENUE_SUPPRESSED.access.redeemed.state, "exact");
     assert.ok(
       VENUE_SUPPRESSED.access.redeemed.state === "exact" &&
