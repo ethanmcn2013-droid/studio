@@ -325,6 +325,7 @@ test.describe("the home page, One Friday", () => {
 
     // Round 3: once the visitor chooses, ?theme= comes off the address, so a reload keeps
     // their choice instead of the link's.
+    await page.goto("about:blank");
     await page.goto(`${DARK}#projects`);
     await settled(page);
     await page.locator("#theme").click();
@@ -1005,6 +1006,8 @@ test.describe("the home page, One Friday", () => {
       await expect(page.locator("#wl-err")).toHaveText("Enter your email address.");
       expect(await gap(), `no jump at ${viewport.width}`).toBe(empty);
       const clear = await page.evaluate(() => {
+        // Measured where the message rests, not part-way through its entrance.
+        document.querySelector("#wl-err")!.getAnimations().forEach((animation) => animation.finish());
         const err = document.querySelector("#wl-err")!.getBoundingClientRect();
         const legend = document.querySelector("#waitlist-form legend")!.getBoundingClientRect();
         return Math.round(legend.top - (err.top + 20));
