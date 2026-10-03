@@ -6058,6 +6058,48 @@
       "materialityHash": "2dab7382c2c83877"
     },
     {
+      "id": "studio.page.launcher",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/launcher",
+      "source": "studio/src/app/launcher/page.tsx",
+      "parentJourney": "suite-discovery",
+      "archetype": "application-shell-and-navigation",
+      "primaryJob": "Signed in, go straight to the app from the umbrella address.",
+      "primaryAction": "Open Home or a product from the launcher.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "critical",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "live",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "partial",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "ee6292fd8fa47089"
+    },
+    {
       "id": "studio.page.press",
       "product": "studio",
       "experienceClass": "company-public",
@@ -6099,7 +6141,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "de378d3dc2ae2d6c"
+      "materialityHash": "5a33d032bd77a1f8"
     },
     {
       "id": "studio.page.pricing",
@@ -6143,7 +6185,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "fed9a1432c9f8834"
+      "materialityHash": "3dc2ef033458f09d"
     },
     {
       "id": "studio.page.principles",
@@ -6187,7 +6229,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "235f89a319e540b4"
+      "materialityHash": "d35618ff83d7e5ab"
     },
     {
       "id": "studio.page.privacy",
@@ -6231,7 +6273,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b706e3cddb4c1e34"
+      "materialityHash": "5e5bb3cc402e76e3"
     },
     {
       "id": "studio.page.redeem-by-code",
@@ -6321,7 +6363,7 @@
       "lastReviewedAt": "2026-08-09",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "094e2e78fddf27c8"
+      "materialityHash": "8969e65e34ac47b7"
     },
     {
       "id": "studio.page.terms",
@@ -6365,7 +6407,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "cfc4fd3da0eadd93"
+      "materialityHash": "c8fb1637f3c7de0e"
     },
     {
       "id": "studio.page.waitlist",
@@ -6772,7 +6814,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1c4b12301c5e809b"
+      "materialityHash": "e3cfe2aff9e480c4"
     },
     {
       "id": "tasks.page.about",

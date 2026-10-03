@@ -835,6 +835,16 @@ test.describe("the home page, One Friday", () => {
         }
         for (const note of notes) for (const l of labels) if (hit(note.getBoundingClientRect(), l.getBoundingClientRect())) out.push(`${note.getAttribute("aria-label")!.split(",")[0]} over ${l.textContent}`);
         for (const d of deps) for (const a of avatars) if (hit(d.getBoundingClientRect(), a.getBoundingClientRect())) out.push(`depends on over ${a.textContent}`);
+        const hands = Array.from(wall.querySelectorAll(".hand:not([hidden])"));
+        for (const h of hands) for (const l of labels) if (hit(h.getBoundingClientRect(), l.getBoundingClientRect())) out.push(`${h.textContent} over ${l.textContent}`);
+        // Nothing on a note spills out of it: its date, its comment and its owner's initials fit.
+        for (const note of notes) {
+          const box = note.getBoundingClientRect();
+          for (const a of Array.from(note.querySelectorAll("small i, small u"))) {
+            const r = a.getBoundingClientRect();
+            if (r.right > box.right + 1 || r.left < box.left - 1) out.push(`${a.textContent} spills out of ${note.getAttribute("aria-label")!.split(",")[0]}`);
+          }
+        }
         return out;
       });
       expect(clashes, `at ${viewport.width}`).toEqual([]);

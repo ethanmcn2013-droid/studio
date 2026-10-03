@@ -348,7 +348,7 @@ export function handSpots(L: WallLayout): (Point | null)[] {
   const c = L.cell;
   return [
     c.ideas ? [c.ideas[0] + 6, c.ideas[1] + 2] : null,
-    c.day ? [c.day[0] + 8, c.day[1] + L.fh + 16] : null,
+    c.day && L.mode !== "m" ? [c.day[0] + 8, c.day[1] + L.fh + 16] : null,
     c.suppliers && L.mode !== "m" ? [c.suppliers[0] + (L.mode === "d" ? 150 : 8), c.suppliers[1] + L.fh + 16] : null,
   ];
 }

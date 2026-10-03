@@ -110,9 +110,8 @@
 /* Without script nothing can read the device setting and set data-theme, so the page would
    be dark for everyone. The root only gains .js from the boot script, so :not(.js) is the
    page with no script: there it follows the device, with the light palette repeated because
-   a media query cannot borrow a rule. A contract test keeps the copies in step. The design
-   system's own tokens, which the shared footer reads, are put back to their light values
-   by name, because its dark mapping keys off data-theme="dark" in the markup. */
+   a media query cannot borrow a rule. A contract test keeps the copies in step. The shared
+   footer takes its inks from these properties (site-footer.css), so it follows too. */
 @media (prefers-color-scheme: light) {
   /* noscript-palette:start */
   .lp:not(.js) {
@@ -559,7 +558,8 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .note small em { font-style: normal; color: var(--lp-note-late); }
 .lp .note small i { margin-left: auto; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--lp-a); color: var(--lp-white); font-size: 0.75rem; font-weight: 600; letter-spacing: -0.03em; line-height: 24px; text-align: center; font-style: normal; }
 .lp .note.done > span { color: var(--lp-note-quiet); }
-.lp .note small u { text-decoration: none; display: inline-flex; align-items: center; gap: 3px; padding: 0 6px; height: 18px; border-radius: 99px; background: var(--lp-p-fill); font-size: 0.75rem; color: var(--lp-p-text); animation: lp-rise var(--lp-t2) var(--ease-out); }
+/* The comment count sits in the note's top corner, clear of its date and its owner. */
+.lp .note small u { position: absolute; top: 8px; right: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 3px; padding: 0 6px; height: 18px; border-radius: 99px; background: var(--lp-p-fill); font-size: 0.75rem; color: var(--lp-p-text); animation: lp-rise var(--lp-t2) var(--ease-out); }
 .lp .note small u::before { content: ""; width: 8px; height: 7px; border-radius: 2px 2px 2px 0; border: 1.3px solid currentColor; }
 .lp .note.sel { border-color: var(--lp-who); box-shadow: 0 0 0 1px var(--lp-who), 0 8px 16px -9px rgba(0, 0, 0, 0.5); }
 .lp .note.held { z-index: 6; --lp-rot: 0deg; --lp-ns: 1.03; border-color: var(--lp-who); box-shadow: 0 0 0 1px var(--lp-who), 0 20px 30px -14px rgba(0, 0, 0, 0.6); }
@@ -578,6 +578,8 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
 .lp .wb.wb-m:not(.tidy) .note:not(.drag):not(.picked):not(.held) { --lp-rot: calc(var(--lp-tilt, 0deg) * 2.2); }
 .lp .wb.tidy .note:not(.pending) { --lp-rot: 0deg; }
 .lp .wb-s .note { font-size: 0.8125rem; padding: 9px 10px 8px; }
+/* A narrow note keeps its dates at 12 px, so a date, a comment and initials still fit on one line. */
+.lp .wb-s .note small, .lp .wb.wb-m .note small { font-size: 0.75rem; }
 .lp .hand { position: absolute; left: 0; top: 0; transform: translate(var(--lp-hx, 0px), var(--lp-hy, 0px)); z-index: 1; font-size: 1rem; font-weight: 560; line-height: 1.3; letter-spacing: -0.01em; color: var(--lp-p-text-2); white-space: nowrap; pointer-events: none; transition: opacity var(--lp-t2) var(--ease-out); }
 .lp .wb-arrows { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; overflow: visible; pointer-events: none; transition: opacity var(--lp-t2) var(--ease-out); }
 .lp .wb-arrows path { fill: none; stroke: var(--lp-p-text-2); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
