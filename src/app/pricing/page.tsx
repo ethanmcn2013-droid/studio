@@ -37,6 +37,12 @@ const PRO_EDITING_LIMIT =
     ? "Limit not yet published"
     : PRICING.plans.pro.editingGuestLimit;
 
+/* Rendered per request, as before. Until round 3 of the home page (2026-10-02)
+   the root layout read a request header, which made every route dynamic
+   without saying so. The layout no longer does, so that only `/` changes,
+   this route says it here. Making it static is a separate decision. */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Pricing · Signal Studio",
   description: `Start free, pay ${STUDENT_PRICE} yearly while studying, choose Pro from ${PRO_PRICE} monthly, or shape Enterprise terms with Ethan.`,

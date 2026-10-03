@@ -1,7 +1,8 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
-// The public home page, "One Friday" (content/hq/decisions/home-page-v3-2026-10-02.md).
+// The public home page, "One Friday" (content/hq/decisions/home-page-v3-2026-10-02.md,
+// rounds 2 and 3).
 // `?theme=` settles the theme the same way the device setting does, so each
 // test says which surface it is looking at instead of inheriting the runner's.
 const DARK = "/?theme=dark";
@@ -112,12 +113,15 @@ test.describe("the home page, One Friday", () => {
     const errors = collectPageErrors(page);
     const floor = () => page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor);
 
-    // No script has to run for the opening colour: the server sends it.
-    const sent = await (await page.request.get("/")).text();
-    expect(sent).toContain('<meta name="theme-color" content="rgb(244, 243, 241)" media="(prefers-color-scheme: light)"/>');
-    expect(sent).toContain('<meta name="theme-color" content="rgb(12, 12, 13)" media="(prefers-color-scheme: dark)"/>');
-    expect(await (await page.request.get(LIGHT)).text()).toContain('<meta name="theme-color" content="rgb(244, 243, 241)"/>');
-    expect(await (await page.request.get(DARK)).text()).toContain('<meta name="theme-color" content="rgb(12, 12, 13)"/>');
+    // Round 3: the server sends the device's two colours, and the same two whatever the
+    // query, so the page can be built once and served from cache. ?theme= is the browser's
+    // business (the boot script's own tag, checked below and in the next test).
+    for (const route of ["/", LIGHT, DARK]) {
+      const sent = await (await page.request.get(route)).text();
+      expect(sent, route).toContain('<meta name="theme-color" content="rgb(244, 243, 241)" media="(prefers-color-scheme: light)"/>');
+      expect(sent, route).toContain('<meta name="theme-color" content="rgb(12, 12, 13)" media="(prefers-color-scheme: dark)"/>');
+      expect(sent, route).toContain('class="lp" data-theme="dark"');
+    }
 
     for (const scheme of ["dark", "light"] as const) {
       await page.emulateMedia({ colorScheme: scheme });
@@ -156,14 +160,37 @@ test.describe("the home page, One Friday", () => {
     await expect(page.locator('meta[name="theme-color"]')).toHaveCount(1);
     expect(errors).toEqual([]);
 
-    // The signed-in launcher on the same URL keeps the site's white bar.
-    const signedIn = await browser.newContext({ extraHTTPHeaders: { "x-signal-authed": "1" } });
-    const launcher = await signedIn.newPage();
-    await launcher.goto("/");
-    await expect(launcher.locator(".lp")).toHaveCount(0);
-    await expect(launcher.locator('meta[name="theme-color"]')).toHaveCount(1);
-    expect(await browserBar(launcher)).toBe("rgb(255, 255, 255)");
-    await signedIn.close();
+    // The signed-in launcher on the same URL keeps the site's white bar and no site nav.
+    // Round 3: the proxy serves it from its own route, so `/` can be static. Asked for by
+    // the old marker or by a session cookie, it is the same page.
+    for (const signal of [
+      { extraHTTPHeaders: { "x-signal-authed": "1" } },
+      { storageState: { cookies: [{ name: "__session", value: "signed-in", domain: "127.0.0.1", path: "/", expires: -1, httpOnly: false, secure: false, sameSite: "Lax" as const }], origins: [] } },
+    ]) {
+      const signedIn = await browser.newContext(signal);
+      const launcher = await signedIn.newPage();
+      // A dev server builds the launcher's route on first request; give it room.
+      await expect(async () => {
+        await launcher.goto("/");
+        await expect(launcher.getByText("Jump back in")).toBeVisible({ timeout: 2_000 });
+      }).toPass({ timeout: 60_000 });
+      expect(new URL(launcher.url()).pathname).toBe("/");
+      await expect(launcher.locator(".lp")).toHaveCount(0);
+      await expect(launcher.locator("header.site-nav")).toHaveCount(0);
+      await expect(launcher.locator('meta[name="theme-color"]')).toHaveCount(1);
+      expect(await browserBar(launcher)).toBe("rgb(255, 255, 255)");
+      await signedIn.close();
+    }
+  });
+
+  test("keeps the launcher's own route internal, and the public page free of the request", async ({ page, request }) => {
+    // Asked for by name, the launcher's route is the home page.
+    const direct = await request.get("/launcher", { maxRedirects: 0 });
+    expect(direct.status()).toBe(307);
+    expect(direct.headers()["location"]).toBe("/");
+    await page.goto("/launcher");
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator(".lp")).toHaveCount(1);
   });
 
   test("follows a light device without being asked", async ({ page }) => {
@@ -179,6 +206,79 @@ test.describe("the home page, One Friday", () => {
         { timeout: 20_000 },
       )
       .toMatch(/projects-desk-light-\dx\.webp$/);
+  });
+
+  test("every capture follows the theme switch, both ways, with no empty frame", async ({ page }) => {
+    test.setTimeout(240_000);
+    await page.setViewportSize(DESK);
+    await page.emulateMedia({ colorScheme: "dark" });
+    await page.goto("/");
+    await page.evaluate(() => localStorage.clear());
+    await page.goto("/");
+    await settled(page);
+    /* Scroll every section and check every capture that is on screen and loaded. */
+    const sweep = async (theme: "dark" | "light") => {
+      const height = await page.evaluate(() => document.documentElement.scrollHeight);
+      const seen: string[] = [];
+      for (let y = 0; y < height; y += 600) {
+        await page.evaluate((top) => window.scrollTo({ top, behavior: "instant" }), y);
+        await expect
+          .poll(
+            () =>
+              page.evaluate((want) => {
+                const wrong: string[] = [];
+                document.querySelectorAll<HTMLImageElement>("img[data-shot]").forEach((img) => {
+                  const r = img.parentElement!.getBoundingClientRect();
+                  if (!img.offsetParent || r.bottom < 0 || r.top > innerHeight || getComputedStyle(img.parentElement!).visibility === "hidden") return;
+                  if (!img.complete || !img.currentSrc) wrong.push(`${img.dataset.shot} not loaded`);
+                  else if (!new RegExp(`-${want}-\\dx\\.webp$`).test(img.currentSrc)) wrong.push(`${img.dataset.shot}: ${img.currentSrc.split("/").pop()}`);
+                });
+                return wrong;
+              }, theme),
+            { timeout: 15_000, message: `${theme} at ${y}` },
+          )
+          .toEqual([]);
+        seen.push(...(await page.evaluate(() => Array.from(document.querySelectorAll<HTMLImageElement>("img[data-shot]")).filter((img) => img.complete && img.naturalWidth).map((img) => img.dataset.shot!))));
+      }
+      return new Set(seen);
+    };
+    // At the top, dark to light, then down the page.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await page.locator("#theme").click();
+    await expect(page.locator(".lp")).toHaveAttribute("data-theme", "light");
+    const loaded = await sweep("light");
+    expect(loaded.size).toBeGreaterThanOrEqual(8);
+    // Back at the top with every capture loaded, light to dark: the ones already showing change too.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await page.locator("#theme").click();
+    await expect(page.locator(".lp")).toHaveAttribute("data-theme", "dark");
+    await sweep("dark");
+    // And on screen: a capture in view keeps a whole picture while it changes.
+    await page.locator("#pl-projects").scrollIntoViewIfNeeded();
+    const showing = page.locator("#pl-projects .shot.v-desk.on img");
+    await expect.poll(() => showing.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+    await page.locator("#theme").click();
+    for (let i = 0; i < 6; i++) {
+      expect(await showing.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+      await page.waitForTimeout(100);
+    }
+    await expect.poll(() => showing.evaluate((img: HTMLImageElement) => img.currentSrc), { timeout: 10_000 }).toMatch(/projects-desk-light-\dx\.webp$/);
+  });
+
+  test("fetches no capture on arrival, and the rest as their frames come near", async ({ page }) => {
+    await page.setViewportSize(DESK);
+    const images: string[] = [];
+    page.on("requestfinished", (request) => {
+      if (request.resourceType() === "image" && request.url().includes("/landing/")) images.push(request.url().split("/").pop()!);
+    });
+    await page.goto(DARK);
+    await settled(page);
+    await page.waitForTimeout(1500);
+    expect(images, "captures fetched before scrolling").toEqual([]);
+    // Every capture is still described while it waits.
+    expect(await page.locator("#pl-projects img").first().getAttribute("alt")).toMatch(/^Projects as covers/);
+    await page.locator("#projects").scrollIntoViewIfNeeded();
+    await expect.poll(() => images.some((name) => name.startsWith("projects-desk-dark"))).toBe(true);
   });
 
   test("remembers the theme the visitor chose, and paints it first", async ({ page }) => {
@@ -222,6 +322,36 @@ test.describe("the home page, One Friday", () => {
     await page.goto(DARK);
     await expect(page.locator(".lp")).toHaveAttribute("data-theme", "dark");
     expect(await page.evaluate(() => localStorage.getItem("signal-home-theme"))).toBe("light");
+
+    // Round 3: once the visitor chooses, ?theme= comes off the address, so a reload keeps
+    // their choice instead of the link's.
+    await page.goto("about:blank");
+    await page.goto(`${DARK}#projects`);
+    await settled(page);
+    await page.locator("#theme").click();
+    await expect(page.locator(".lp")).toHaveAttribute("data-theme", "light");
+    await expect.poll(() => page.evaluate(() => location.search + location.hash)).toBe("#projects");
+    await page.reload();
+    await expect(page.locator(".lp")).toHaveAttribute("data-theme", "light");
+  });
+
+  test("follows the device in CSS when there is no script", async ({ browser }) => {
+    for (const colorScheme of ["light", "dark"] as const) {
+      const context = await browser.newContext({ javaScriptEnabled: false, viewport: DESK, colorScheme });
+      const page = await context.newPage();
+      await page.goto("/");
+      const look = await page.evaluate(() => ({
+        doc: getComputedStyle(document.documentElement).backgroundColor,
+        floor: getComputedStyle(document.querySelector(".lp")!).backgroundColor,
+        ink: getComputedStyle(document.querySelector("h1")!).color,
+      }));
+      expect(look, colorScheme).toEqual(
+        colorScheme === "light"
+          ? { doc: "rgb(244, 243, 241)", floor: "rgb(244, 243, 241)", ink: "rgb(20, 20, 20)" }
+          : { doc: "rgb(12, 12, 13)", floor: "rgb(12, 12, 13)", ink: "rgb(241, 241, 239)" },
+      );
+      await context.close();
+    }
   });
 
   test("carries its own header, one main and the shared footer", async ({ page }) => {
@@ -248,14 +378,15 @@ test.describe("the home page, One Friday", () => {
     const order = await page.evaluate(() =>
       Array.from(document.querySelectorAll("main > section")).map((section) => section.id),
     );
+    // Round 3: the same thing in other trades' words comes straight after the sample.
     expect(order).toEqual([
       "top",
+      "yours",
       "who",
       "projects",
       "tasks",
       "timeline",
       "files",
-      "yours",
       "analytics",
       "whiteboard",
       "words",
@@ -336,6 +467,23 @@ test.describe("the home page, One Friday", () => {
     }
   });
 
+  test("Back to /#join from another page lands where a direct visit does", async ({ page }) => {
+    await page.setViewportSize(DESK);
+    await page.goto(`${DARK}#join`);
+    await settled(page);
+    const direct = await landing(page, "join");
+    await page.goto(DARK);
+    await settled(page);
+    // The page's own jump, then a link away, then Back.
+    await page.locator("#nav a.btn").click();
+    await expect.poll(() => landing(page, "join")).toBe(direct);
+    await page.locator("#join").getByRole("link", { name: "See pricing" }).click();
+    await expect(page).toHaveURL(/\/pricing$/, { timeout: 30_000 });
+    await page.goBack();
+    await expect(page.locator(".lp")).toHaveCount(1);
+    await expect.poll(() => landing(page, "join"), { timeout: 10_000 }).toBe(direct);
+  });
+
   test("the Friday story shows the step the scroll position says, however you arrive", async ({ page }) => {
     await page.setViewportSize(DESK);
     await page.goto(DARK);
@@ -378,50 +526,96 @@ test.describe("the home page, One Friday", () => {
     await expect.poll(showing).toBe("2");
   });
 
-  test("the working Home counts with the visitor, and Undo says what it did", async ({ page }) => {
+  test("the working Home counts with the visitor, in both columns, and Undo says what it did", async ({ page }) => {
     await page.setViewportSize(DESK);
     await page.goto(DARK);
     await settled(page);
     const toast = page.locator("#toast");
+    const act = page.locator("#toast-act");
+    const winter = page.locator('#home [data-n="winterLate"]');
+    const open = page.locator('#home [data-n="mfOpen"]');
     expect(await counts(page)).toBe("5/11/35");
+    await expect(winter).toHaveText("4");
+    await expect(open).toHaveText("21");
+    await expect(page.locator("#sample-prompt")).toBeHidden();
     const first = page.getByRole("button", { name: "Mark done: Agree the winter price list" });
     await first.click();
     expect(await counts(page)).toBe("4/10/36");
-    await expect(toast).toContainText("Marked done. That is it. You just did project management.");
-    // The name stays put and the pressed state carries the change.
+    // The window's foot says what was done; the reply is the label on top of the sample.
+    await expect(toast).toContainText("Marked done.");
+    await expect(page.locator("#respond")).toHaveText("That is it. You just did project management.");
     await expect(first).toHaveAttribute("aria-pressed", "true");
     await expect(page.locator("#live")).toContainText("Undo with Control Z.");
-    await expect(page.locator("#undo")).toHaveAttribute("aria-keyshortcuts", "Control+Z");
+    await expect(act).toHaveText(/^Undo/);
+    await expect(act).toHaveAttribute("aria-keyshortcuts", "Control+Z");
+    // The toast lives in the sample's own foot, inside the window, never over its rows.
+    expect(await toast.evaluate((el) => !!el.closest("#home .win-foot"))).toBe(true);
+    // Something has been done, so the sample asks for an address under itself.
+    await expect(page.locator("#sample-prompt")).toBeVisible();
 
+    // The right-hand column is the same Friday: both Winter launch tasks are two of its four late.
+    await expect(winter).toHaveText("3");
     await page.getByRole("button", { name: "Mark done: Approve the brochure copy" }).click();
     expect(await counts(page)).toBe("3/9/37");
-    // One step back, and the page says one step. The button stays while there is more to undo.
-    await page.getByRole("button", { name: "Undo" }).click();
+    await expect(winter).toHaveText("2");
+    // Undo one step: the button now offers to redo it, not to undo again.
+    await act.click();
     expect(await counts(page)).toBe("4/10/36");
-    await expect(toast).toHaveText(/^Undone\./);
+    await expect(winter).toHaveText("3");
+    await expect(toast).toContainText("Undone.");
     await expect(toast).not.toContainText("Everything is back");
-    await expect(page.locator("#undo")).toBeVisible();
+    await expect(act).toHaveText(/^Redo/);
+    await expect(act).toHaveAttribute("aria-keyshortcuts", "Control+Shift+Z");
+    await act.click();
+    expect(await counts(page)).toBe("3/9/37");
+    await expect(toast).toContainText("Redone.");
+    await expect(act).toHaveText(/^Undo/);
     // Redo, from anywhere on the page while the sample is in view.
+    await page.keyboard.press("Control+Z");
     await page.locator("body").click({ position: { x: 5, y: 300 } });
     await page.keyboard.press("Control+Shift+Z");
     expect(await counts(page)).toBe("3/9/37");
-    await expect(toast).toContainText("Redone.");
     await page.keyboard.press("Control+Z");
     await page.keyboard.press("Control+Z");
     expect(await counts(page)).toBe("5/11/35");
     await expect(toast).toContainText("Undone. Everything is back as it was.");
-    await expect(page.locator("#undo")).toBeHidden();
+    await expect(act).toHaveText(/^Redo/);
     await expect(page.locator(".tick.hint")).toHaveCount(1);
 
-    // Reopening says only that; the nudge says nothing was really sent.
+    // Reopening the invoice adds it back to the wedding's open tasks.
     await page.getByRole("button", { name: "Mark done: Send the final invoice to Mara and Finn" }).click();
-    await expect(toast).toHaveText(/^Reopened\.\s*Undo/);
+    await expect(toast).toContainText("Reopened.");
+    await expect(open).toHaveText("22");
+    await expect(page.locator("#respond")).toHaveText("The counts moved with you. Keep going.");
     await page.getByRole("button", { name: "Nudge Fern and Furrow" }).click();
-    await expect(page.locator("#nudge")).toHaveText("Nudged today");
+    await expect(page.locator("#nudge")).toHaveAccessibleName("Nudged today");
     await expect(toast).toContainText("Nudged. This is a sample, so nothing was really sent.");
     // Escape puts the toast away.
     await page.keyboard.press("Escape");
     await expect(toast).not.toHaveClass(/(^| )on( |$)/);
+  });
+
+  test("on a phone the sample holds still under the finger and says no shortcuts", async ({ browser }) => {
+    const context = await browser.newContext({ viewport: PHONE, hasTouch: true, isMobile: true, colorScheme: "dark" });
+    const page = await context.newPage();
+    await page.goto(DARK);
+    await settled(page);
+    const top = () => page.locator('.row[data-id="t1"]').evaluate((row) => Math.round(row.getBoundingClientRect().top + window.scrollY));
+    const at = await top();
+    // The first task is on the first screen, clear of the window's foot riding the screen's edge.
+    const first = await page.evaluate(() => ({
+      row: document.querySelector('.row[data-id="t1"]')!.getBoundingClientRect().bottom,
+      foot: document.querySelector(".win-foot")!.getBoundingClientRect().top,
+    }));
+    expect(first.row).toBeLessThanOrEqual(first.foot);
+    expect(first.row).toBeLessThanOrEqual(PHONE.height);
+    for (const name of ["Mark done: Agree the winter price list", "Mark done: Approve the brochure copy", "Nudge Fern and Furrow", "Mark done: Chase the headcount from Mark"]) {
+      await page.getByRole("button", { name }).tap();
+      await page.waitForTimeout(300);
+      expect(await top(), `after ${name}`).toBe(at);
+    }
+    await expect(page.locator("#live")).not.toContainText("Control");
+    await context.close();
   });
 
   test("a tab never shows an empty plate, and the arrow keys move between tabs", async ({ page }) => {
@@ -469,7 +663,7 @@ test.describe("the home page, One Friday", () => {
     for (const [viewport, height, count] of [
       [DESK, 688, "21 notes in 6 groups"],
       [{ width: 900, height: 1000 }, 1100, "21 notes in 6 groups"],
-      [PHONE, 986, "12 notes in 3 groups"],
+      [PHONE, 1004, "12 notes in 3 groups"],
     ] as const) {
       await page.setViewportSize(viewport);
       await page.goto(DARK);
@@ -526,10 +720,10 @@ test.describe("the home page, One Friday", () => {
         return Math.abs(to!.x - from!.x) + Math.abs(to!.y - from!.y);
       })
       .toBeGreaterThan(100);
-    await expect(page.locator("#live")).toContainText("Chase florist deposit, put down");
-
-    // With the keyboard: the name carries the group, and the drop says where it landed.
-    await expect(note).toHaveAccessibleName(/Chase florist deposit, in Suppliers/);
+    await expect(page.locator("#live")).toContainText("Chase florist deposit, put down between groups.");
+    // Round 3: where a note is set down is where it is. Its name says so, and its group's count drops.
+    await expect(note).toHaveAccessibleName(/^Chase florist deposit, between groups,/);
+    await expect(page.locator('#wb .frame[data-g="suppliers"] b')).toHaveText("3");
     await expect(page.locator("#wb-keys")).toBeVisible();
     await page.locator("#wb .note").first().focus();
     await page.keyboard.press("End");
@@ -540,6 +734,144 @@ test.describe("the home page, One Friday", () => {
     await page.keyboard.press("ArrowDown");
     await page.keyboard.press("Enter");
     await expect(page.locator("#live")).toContainText(/Brief the whole team on the day, put down (in The day|between groups)\./);
+    const said = (await page.locator("#live").textContent())!.match(/put down (in The day|between groups)/)![1];
+    await expect(page.locator("#wb .note").first()).toHaveAccessibleName(new RegExp(`^Brief the whole team on the day, ${said},`));
+  });
+
+  test("the whiteboard re-homes a note that is dropped in another group, and Tidy closes up", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize(DESK);
+    await page.goto(DARK);
+    await settled(page);
+    const wall = page.locator("#wb");
+    await wall.scrollIntoViewIfNeeded();
+    const count = (g: string) => page.locator(`#wb .frame[data-g="${g}"] b`);
+    await expect(count("suppliers")).toHaveText("4");
+    await expect(count("day")).toHaveText("4");
+    // Drag the florist's note into The day.
+    const note = page.locator("#n-florist");
+    const into = await page.locator('#wb .frame[data-g="day"]').boundingBox();
+    const from = await note.boundingBox();
+    await page.mouse.move(from!.x + 40, from!.y + 30);
+    await page.mouse.down();
+    await page.mouse.move(into!.x + into!.width / 2, into!.y + into!.height / 2 + 30, { steps: 12 });
+    await page.mouse.up();
+    await expect(page.locator("#live")).toHaveText("Chase florist deposit, moved, in The day.");
+    await expect(note).toHaveAccessibleName(/^Chase florist deposit, in The day,/);
+    await expect(note).toHaveAttribute("data-g", "day");
+    await expect(count("day")).toHaveText("5");
+    await expect(count("suppliers")).toHaveText("3");
+
+    // Tidy: one column a group, the florist's note in The day's column, and no holes.
+    await page.locator("#tidy").click();
+    const columns = await wall.evaluate((el) => {
+      const notes = Array.from(el.querySelectorAll<HTMLElement>(".note:not([hidden])"));
+      const byGroup: Record<string, number[]> = {};
+      for (const n of notes) {
+        const g = n.dataset.g || "none";
+        const y = parseFloat(n.style.getPropertyValue("--lp-ny"));
+        (byGroup[g] ??= []).push(y);
+      }
+      return Object.fromEntries(Object.entries(byGroup).map(([g, ys]) => [g, ys.sort((a, b) => a - b)]));
+    });
+    expect(Object.keys(columns)).not.toContain("none");
+    expect(columns.day).toHaveLength(5);
+    for (const [g, ys] of Object.entries(columns)) {
+      ys.forEach((y, i) => {
+        if (i) expect(Math.round(y - ys[i - 1]), `${g} pitch`).toBe(116);
+      });
+    }
+    // Carry the Suppliers column's top note to the foot of the Kitchen column: it snaps in, and Suppliers closes up.
+    const top = page.locator('#wb .note[data-g="suppliers"]').first();
+    const kitchen = await page.locator('#wb .frame[data-g="kitchen"]').boundingBox();
+    const t = await top.boundingBox();
+    await page.mouse.move(t!.x + 40, t!.y + 30);
+    await page.mouse.down();
+    await page.mouse.move(kitchen!.x + kitchen!.width / 2, kitchen!.y + kitchen!.height - 20, { steps: 12 });
+    await page.mouse.up();
+    // The Kitchen column sits over the wall's controls and has no room for a fifth: the note goes back.
+    await expect(page.locator("#live")).toContainText(/^No room in Kitchen and bar\. .+ is back in Suppliers\.$/);
+    await expect(count("kitchen")).toHaveText("4");
+    await expect(count("suppliers")).toHaveText("3");
+    // Signage has room: it snaps in at the foot, and Suppliers closes up.
+    const signage = await page.locator('#wb .frame[data-g="signage"]').boundingBox();
+    const t2 = await top.boundingBox();
+    await page.mouse.move(t2!.x + 40, t2!.y + 30);
+    await page.mouse.down();
+    await page.mouse.move(signage!.x + signage!.width / 2, signage!.y + signage!.height + 30, { steps: 12 });
+    await page.mouse.up();
+    await expect(page.locator("#live")).toContainText(/, moved, in Signage\.$/);
+    await expect(count("signage")).toHaveText("4");
+    await expect(count("suppliers")).toHaveText("2");
+    const suppliers = await wall.evaluate((el) =>
+      Array.from(el.querySelectorAll<HTMLElement>('.note[data-g="suppliers"]')).map((n) => parseFloat(n.style.getPropertyValue("--lp-ny"))).sort((a, b) => a - b),
+    );
+    expect(Math.round(suppliers[0])).toBe(64);
+    expect(Math.round(suppliers[1] - suppliers[0])).toBe(116);
+  });
+
+  test("the whiteboard rests clean: nothing frozen over a label, no name over anyone's initials", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    for (const viewport of [DESK, { width: 900, height: 1000 }, PHONE]) {
+      await page.setViewportSize(viewport);
+      await page.goto(DARK);
+      await settled(page);
+      await page.locator("#wb").scrollIntoViewIfNeeded();
+      const clashes = await page.evaluate(() => {
+        const hit = (a: DOMRect, b: DOMRect) => a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1;
+        const shown = (el: Element) => (el as HTMLElement).getClientRects().length && getComputedStyle(el).visibility !== "hidden" && getComputedStyle(el).opacity !== "0";
+        const wall = document.getElementById("wb")!;
+        const labels = Array.from(wall.querySelectorAll(".frame:not([hidden]) > span")).filter((el) => shown(el.parentElement!));
+        const avatars = Array.from(wall.querySelectorAll(".note:not([hidden]) small i"));
+        const names = Array.from(wall.querySelectorAll(".cursor:not([hidden]) b")).filter(shown);
+        const notes = Array.from(wall.querySelectorAll(".note:not([hidden])"));
+        const deps = Array.from(wall.querySelectorAll(".dep:not([hidden])")).filter(shown);
+        const tools = wall.querySelector(".wb-tools")!.getBoundingClientRect();
+        const out: string[] = [];
+        for (const n of names) {
+          const r = n.getBoundingClientRect();
+          for (const a of avatars) if (hit(r, a.getBoundingClientRect())) out.push(`${n.textContent} over ${a.textContent}`);
+          for (const l of labels) if (hit(r, l.getBoundingClientRect())) out.push(`${n.textContent} over ${l.textContent}`);
+          if (hit(r, tools)) out.push(`${n.textContent} under the toolbar`);
+        }
+        for (const note of notes) for (const l of labels) if (hit(note.getBoundingClientRect(), l.getBoundingClientRect())) out.push(`${note.getAttribute("aria-label")!.split(",")[0]} over ${l.textContent}`);
+        for (const d of deps) for (const a of avatars) if (hit(d.getBoundingClientRect(), a.getBoundingClientRect())) out.push(`depends on over ${a.textContent}`);
+        const hands = Array.from(wall.querySelectorAll(".hand:not([hidden])"));
+        for (const h of hands) for (const l of labels) if (hit(h.getBoundingClientRect(), l.getBoundingClientRect())) out.push(`${h.textContent} over ${l.textContent}`);
+        // Nothing on a note spills out of it: its date, its comment and its owner's initials fit.
+        for (const note of notes) {
+          const box = note.getBoundingClientRect();
+          for (const a of Array.from(note.querySelectorAll("small i, small u"))) {
+            const r = a.getBoundingClientRect();
+            if (r.right > box.right + 1 || r.left < box.left - 1) out.push(`${a.textContent} spills out of ${note.getAttribute("aria-label")!.split(",")[0]}`);
+          }
+        }
+        return out;
+      });
+      expect(clashes, `at ${viewport.width}`).toEqual([]);
+    }
+  });
+
+  test("on a phone the wall starts loose, so Tidy visibly tidies, and keeps its keyboard notes for a screen reader", async ({ browser }) => {
+    const context = await browser.newContext({ viewport: PHONE, hasTouch: true, isMobile: true, colorScheme: "dark" });
+    const page = await context.newPage();
+    await page.goto(DARK);
+    await settled(page);
+    await page.locator("#wb").scrollIntoViewIfNeeded();
+    const tilt = () => page.evaluate(() => Array.from(document.querySelectorAll<HTMLElement>("#wb .note:not([hidden])")).map((n) => {
+      const m = new DOMMatrix(getComputedStyle(n).transform);
+      return Math.round((Math.atan2(m.b, m.a) * 180) / Math.PI * 10) / 10;
+    }));
+    const loose = await tilt();
+    expect(loose.filter((deg) => Math.abs(deg) >= 2).length).toBeGreaterThanOrEqual(6);
+    await page.locator("#tidy").click();
+    await expect.poll(async () => (await tilt()).every((deg) => deg === 0), { timeout: 5_000 }).toBe(true);
+    // The keyboard instructions are off the page for touch, still there for assistive technology.
+    const keys = page.locator("#wb-keys");
+    await expect(keys).toHaveText(/With a keyboard/);
+    expect(await keys.evaluate((el) => el.getBoundingClientRect().height)).toBeLessThanOrEqual(1);
+    await expect(page.locator("#wb")).toHaveAttribute("aria-describedby", "wb-keys");
+    await context.close();
   });
 
   test("the waitlist form checks the address before it sends anything", async ({ page }) => {
@@ -550,17 +882,18 @@ test.describe("the home page, One Friday", () => {
     page.on("request", (request) => {
       if (request.method() === "POST") requests.push(request.url());
     });
-    await page.locator(".hero .cta-row .btn-primary").click();
+    // The header's button still goes to the closing form.
+    await page.locator("#nav a.btn").click();
     await expect(page.locator("#wl-email")).toBeFocused();
     await page.locator("#wl-submit").click();
     await expect(page.locator("#wl-err")).toHaveText("Enter your email address.");
     await page.locator("#wl-email").fill("not-an-address");
     await expect(page.locator("#wl-err")).toHaveText("");
     await page.locator("#wl-submit").click();
-    await expect(page.locator("#wl-err")).toContainText("That does not look like an email address.");
+    await expect(page.locator("#wl-err")).toHaveText("That does not look like an email address.");
     // What joining gets you, in the site's own published facts.
     await expect(page.locator("#wl-note")).toHaveText(
-      "Free to join. No card and no newsletter. One email when it is your turn, from January 2027. There is a free plan for one project, and Pro is €12 a month.",
+      "Free to join. No card and no newsletter. One email when it is your turn, from January 2027. There is a free plan, and Pro is €12 a month.",
     );
     await expect(page.locator("#join").getByRole("link", { name: "See pricing" })).toHaveAttribute("href", "/pricing");
     await expect(page.locator("#join").getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
@@ -586,6 +919,101 @@ test.describe("the home page, One Friday", () => {
       "mailto:hello@signalstudio.ie?subject=Trying%20Signal%20Studio%20at%20our%20venue",
     );
     await expect(page.locator("#venue")).toContainText("Everyone else, join the waitlist.");
+  });
+
+  test("asks for an address in the hero and after the sample and Files, with one form's rules", async ({ page }) => {
+    await page.setViewportSize(DESK);
+    // Nothing is ever sent from here: any request that is not a read fails.
+    const sent: string[] = [];
+    await page.route("**/*", (route) => {
+      if (route.request().method() === "GET") return route.continue();
+      sent.push(route.request().url());
+      return route.abort();
+    });
+    await page.goto(DARK);
+    await settled(page);
+    // Every id on the page is its own.
+    const dupes = await page.evaluate(() => {
+      const seen = new Map<string, number>();
+      document.querySelectorAll("[id]").forEach((el) => seen.set(el.id, (seen.get(el.id) ?? 0) + 1));
+      return [...seen].filter(([, n]) => n > 1).map(([id]) => id);
+    });
+    expect(dupes).toEqual([]);
+    // The hero's form is on the first screen, beside the way into the sample.
+    const hero = page.locator("#wl-hero-form");
+    await expect(hero).toBeInViewport();
+    await expect(page.locator(".hero").getByRole("link", { name: "Try the sample" })).toBeVisible();
+    await expect(page.locator("#wl-hero-email")).toHaveAccessibleName("Email address");
+    for (const [name, value] of [
+      ["source", "home_hero"],
+      ["artifact", "hero_form"],
+      ["campaign", "pre_access_waitlist"],
+      ["touch", "site"],
+      ["path", "/"],
+    ] as const) {
+      await expect(hero.locator(`input[name="${name}"]`)).toHaveValue(value);
+    }
+    // The same checks and the same words as the form at the close, and nothing moves.
+    const below = () => page.locator(".live-label").evaluate((el) => Math.round(el.getBoundingClientRect().top));
+    const before = await below();
+    await page.locator("#wl-hero-submit").click();
+    await expect(page.locator("#wl-hero-err")).toHaveText("Enter your email address.");
+    await expect(page.locator("#wl-hero-email")).toBeFocused();
+    await page.locator("#wl-hero-email").fill("not-an-address");
+    await expect(page.locator("#wl-hero-err")).toHaveText("");
+    await page.locator("#wl-hero-submit").click();
+    await expect(page.locator("#wl-hero-err")).toHaveText("That does not look like an email address.");
+    await expect(page.locator("#wl-hero-email")).toHaveAttribute("aria-invalid", "true");
+    expect(await below()).toBe(before);
+
+    // After Files: a form, not a jump.
+    const files = page.locator("#wl-files-form");
+    await files.scrollIntoViewIfNeeded();
+    await expect(page.locator("#files .prompt")).toContainText("That is the idea. Leave your email and we will write when you can try it.");
+    await expect(files.locator('input[name="source"]')).toHaveValue("home_files");
+    await expect(files.locator('input[name="artifact"]')).toHaveValue("files_prompt");
+    await page.locator("#wl-files-submit").click();
+    await expect(page.locator("#wl-files-err")).toHaveText("Enter your email address.");
+
+    // After the sample, once something has been ticked.
+    await page.locator("#sample").scrollIntoViewIfNeeded();
+    await expect(page.locator("#wl-sample-form")).toBeHidden();
+    await page.getByRole("button", { name: "Mark done: Agree the winter price list" }).click();
+    await expect(page.locator("#wl-sample-form")).toBeVisible();
+    await expect(page.locator("#sample-prompt")).toContainText("That is the idea.");
+    await expect(page.locator('#wl-sample-form input[name="source"]')).toHaveValue("home_sample");
+    await expect(page.locator('#wl-sample-form input[name="artifact"]')).toHaveValue("sample_prompt");
+    await page.locator("#wl-sample-email").fill("still@not");
+    await page.locator("#wl-sample-submit").click();
+    await expect(page.locator("#wl-sample-err")).toHaveText("That does not look like an email address.");
+    expect(sent).toEqual([]);
+  });
+
+  test("the closing form keeps no empty line for its error", async ({ page }) => {
+    for (const viewport of [DESK, PHONE]) {
+      await page.setViewportSize(viewport);
+      await page.goto(DARK);
+      await settled(page);
+      const gap = () => page.evaluate(() => {
+        const row = document.querySelector("#waitlist-form .wl-row")!.getBoundingClientRect();
+        const legend = document.querySelector("#waitlist-form legend")!.getBoundingClientRect();
+        return Math.round(legend.top - row.bottom);
+      });
+      const empty = await gap();
+      expect(empty, `gap at ${viewport.width}`).toBeLessThanOrEqual(32);
+      await page.locator("#waitlist-form").scrollIntoViewIfNeeded();
+      await page.locator("#wl-submit").click();
+      await expect(page.locator("#wl-err")).toHaveText("Enter your email address.");
+      expect(await gap(), `no jump at ${viewport.width}`).toBe(empty);
+      const clear = await page.evaluate(() => {
+        // Measured where the message rests, not part-way through its entrance.
+        document.querySelector("#wl-err")!.getAnimations().forEach((animation) => animation.finish());
+        const err = document.querySelector("#wl-err")!.getBoundingClientRect();
+        const legend = document.querySelector("#waitlist-form legend")!.getBoundingClientRect();
+        return Math.round(legend.top - (err.top + 20));
+      });
+      expect(clear, `error clear of the question at ${viewport.width}`).toBeGreaterThanOrEqual(0);
+    }
   });
 
   test("strikes only words the page itself never uses", async ({ page }) => {
@@ -760,6 +1188,8 @@ test.describe("the home page, One Friday", () => {
         if (!el || el === document.body || el.closest("#nav") || !el.closest(".lp")) return null;
         const r = el.getBoundingClientRect();
         const bar = document.getElementById("nav")!.getBoundingClientRect().bottom;
+        // A panel taller than the room under the header (a tab's picture) is in view if it shows below it.
+        if (r.height > innerHeight - bar) return r.bottom > bar + 40 ? null : `${el.tagName} tall, ends at ${Math.round(r.bottom)}`;
         return r.top < bar - 1 ? `${el.tagName} ${(el.getAttribute("aria-label") || el.textContent || "").trim().slice(0, 30)} at ${Math.round(r.top)}` : null;
       });
       expect(hidden, "a focused control under the header").toBeNull();

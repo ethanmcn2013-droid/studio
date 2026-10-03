@@ -92,6 +92,25 @@ describe("Wave 3 public interface contracts", () => {
     const print = between("/* print-palette:start */", "/* print-palette:end */");
     assert.ok(light.length > 20, "the light palette was found");
     assert.deepEqual(print, light);
+    // Round 3: with no script the page follows a light device in CSS, with the same palette.
+    const noscript = between("/* noscript-palette:start */", "/* noscript-palette:end */");
+    assert.deepEqual(noscript, light);
+  });
+
+  it("serves the public home page from cache: nothing in it reads the request", () => {
+    // Round 3 (2026-10-02, content/hq/decisions/home-page-v3-2026-10-02.md):
+    // `/` is prerendered. A header, a cookie or the query string read in the
+    // root layout or the home route makes every visit a fresh render again.
+    // The signed-in launcher is the proxy's rewrite to its own route.
+    const layout = source("src", "app", "layout.tsx");
+    const page = source("src", "app", "page.tsx");
+    for (const [name, file] of [["layout", layout], ["page", page]] as const) {
+      assert.doesNotMatch(file, /from "next\/headers"/, `${name} reads no request header or cookie`);
+      assert.doesNotMatch(file, /searchParams|generateViewport|export const dynamic/, `${name} reads no query string`);
+    }
+    const proxy = source("src", "proxy.ts");
+    assert.match(proxy, /LAUNCHER_PATH = "\/launcher"/);
+    assert.match(source("src", "app", "launcher", "page.tsx"), /<SuiteLauncher \/>/);
   });
 
   it("arms landing proof motion only after hydration, consent and intersection", () => {

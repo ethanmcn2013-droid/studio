@@ -56,7 +56,8 @@ for (const [name, entry] of Object.entries(registry.shots)) {
     width = entry.w ?? kind.panelWidth;
   }
   for (const theme of ["dark", "light"]) {
-    const file = path.join(SRC, `${name}-${theme}.png`);
+    // A second cut of a capture that is already used names it in `source`.
+    const file = path.join(SRC, `${entry.source ?? name}-${theme}.png`);
     const meta = await sharp(file).metadata();
     const density = meta.width / kind.sourceWidth;
     const px = (n) => Math.round(n * density);

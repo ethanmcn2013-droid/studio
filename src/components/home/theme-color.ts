@@ -13,3 +13,10 @@ export type HomeTheme = keyof typeof HOME_THEME_COLOR;
 
 /** Where the visitor's own choice of theme is kept, on their device, for this page only. */
 export const THEME_KEY = "signal-home-theme";
+
+/**
+ * How close a capture's frame comes to the screen before its picture is let
+ * into the frame and fetched. One number for the inline boot script and the
+ * runtime.
+ */
+export const NEAR_MARGIN = "1200px 0px";

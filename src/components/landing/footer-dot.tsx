@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { evaluateFilm } from "@/lib/dot/clips";
 import { DotPlayer } from "@/lib/dot/player";
-import { renderContents, type RenderOptions } from "@/lib/dot/render";
+import { paintContents, renderContents, type RenderOptions } from "@/lib/dot/render";
 
 const MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const FILM_SPEED = 1.4;
@@ -24,13 +24,25 @@ function staticServerSnapshot() {
   return true;
 }
 
+/* The artwork's box, in its own units: the SVG's viewBox and the canvas's frame. */
+const BOX = { x: -70, y: -80, w: 140, h: 150 };
+
 /**
- * The complete Dot Studio v2 film, using its original transparent SVG renderer.
- * One visible-only clock preserves the authored sequence and pause position.
+ * The complete Dot Studio v2 film. One visible-only clock preserves the
+ * authored sequence and pause position.
+ *
+ * The first frame is the film's own SVG, in the server's markup, and it is
+ * all that reduced motion ever shows. The film itself is painted on a canvas
+ * laid over it, from the same poses and the same paths (paintContents). It
+ * used to replace the SVG's contents every frame, which had the browser
+ * style and lay the page out sixty times a second while the footer was on
+ * screen: about a quarter of the main thread. Painting a canvas does
+ * neither. The clock still stops when the mascot is off screen, when the tab
+ * is hidden and when it is paused.
  */
 export function FooterDot() {
   const stageRef = useRef<HTMLButtonElement>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const playerRef = useRef<DotPlayer | null>(null);
   const [paused, setPaused] = useState(false);
   const reducedMotion = useSyncExternalStore(
@@ -41,21 +53,38 @@ export function FooterDot() {
 
   useEffect(() => {
     const stage = stageRef.current;
-    const svg = svgRef.current;
-    if (!stage || !svg) return;
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!stage || !canvas || !ctx || reducedMotion) return;
     const player = (playerRef.current ??= new DotPlayer());
     player.clip = "film";
     player.speed = FILM_SPEED;
     player.loop = true;
-    player.setReduced(reducedMotion);
-    player.playing = !paused && !reducedMotion;
+    player.setReduced(false);
+    player.playing = !paused;
     let intersecting = false;
     let frame: number | null = null;
     let lastTime: number | null = null;
+    let width = 0;
+    let height = 0;
+    /* The canvas takes the button's size and the screen's density once, and again only
+       when the button's size changes: never inside a frame. */
+    const fit = () => {
+      const box = stage.getBoundingClientRect();
+      const density = Math.min(3, window.devicePixelRatio || 1);
+      width = Math.max(1, Math.round(box.width * density));
+      height = Math.max(1, Math.round(box.height * density));
+      canvas.width = width;
+      canvas.height = height;
+      draw();
+    };
     const draw = () => {
-      // The renderer accepts only numeric poses and a closed artwork palette.
-      svg.innerHTML = renderContents(player.pose(), ARTWORK);
-      stage.dataset.filmTime = player.time.toFixed(3);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+      // The same fit as the SVG: the whole box, centred, never stretched.
+      const scale = Math.min(width / BOX.w, height / BOX.h);
+      ctx.setTransform(scale, 0, 0, scale, (width - BOX.w * scale) / 2 - BOX.x * scale, (height - BOX.h * scale) / 2 - BOX.y * scale);
+      paintContents(ctx, player.pose(), ARTWORK);
     };
     const animate = (now: number) => {
       frame = null;
@@ -68,6 +97,7 @@ export function FooterDot() {
     const updatePlayback = () => {
       player.visible = intersecting && !document.hidden;
       stage.dataset.running = String(player.needsFrame);
+      stage.dataset.filmTime = player.time.toFixed(3);
       if (player.needsFrame && frame === null) {
         lastTime = null;
         frame = requestAnimationFrame(animate);
@@ -85,16 +115,22 @@ export function FooterDot() {
       { threshold: 0.25 },
     );
     observer.observe(stage);
+    const resize = new ResizeObserver(fit);
+    resize.observe(stage);
     document.addEventListener("visibilitychange", updatePlayback);
-    draw();
+    fit();
+    // From here the canvas is the picture and the SVG under it steps back.
+    stage.dataset.painted = "true";
     updatePlayback();
 
     return () => {
       observer.disconnect();
+      resize.disconnect();
       document.removeEventListener("visibilitychange", updatePlayback);
       if (frame !== null) cancelAnimationFrame(frame);
       player.visible = false;
       stage.dataset.running = "false";
+      stage.dataset.filmTime = player.time.toFixed(3);
     };
   }, [paused, reducedMotion]);
 
@@ -118,12 +154,12 @@ export function FooterDot() {
       onClick={() => setPaused((value) => !value)}
     >
       <svg
-        ref={svgRef}
-        viewBox="-70 -80 140 150"
+        viewBox={`${BOX.x} ${BOX.y} ${BOX.w} ${BOX.h}`}
         aria-hidden="true"
         focusable="false"
         dangerouslySetInnerHTML={POSTER}
       />
+      <canvas ref={canvasRef} aria-hidden="true" />
     </button>
   );
 }

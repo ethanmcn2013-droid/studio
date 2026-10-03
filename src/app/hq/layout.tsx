@@ -23,6 +23,12 @@ import { HqShell } from "@/components/hq/hq-shell";
  * layout, showing INTERNAL before the user is logged in is correct and
  * safe (the content behind the gate is still protected).
  */
+/* Every HQ room is rendered per request, as before. Until round 3 of the
+   home page (2026-10-02) the root layout read a request header, which made
+   every route dynamic without saying so. HQ reads live data, so it says so
+   here for the whole subtree. */
+export const dynamic = "force-dynamic";
+
 export default function HqLayout({ children }: { children: React.ReactNode }) {
   return <HqShell>{children}</HqShell>;
 }

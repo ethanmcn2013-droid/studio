@@ -1,11 +1,11 @@
 {
   "schemaVersion": "signal-design-quality-report/1",
-  "generatedAt": "2026-10-02T19:42:35.787Z",
+  "generatedAt": "2026-10-03T00:39:57.812Z",
   "status": "baseline-held",
   "readiness": {
     "status": "not-certified",
     "reasons": [
-      "20/4700 required state/breakpoint audit cells pass",
+      "20/4708 required state/breakpoint audit cells pass",
       "24 visual baselines await approval"
     ]
   },
@@ -29,24 +29,24 @@
     "overallMinimum": 3.5
   },
   "inventory": {
-    "experiences": 240,
-    "stateVariants": 1175,
-    "breakpointVariants": 960,
+    "experiences": 241,
+    "stateVariants": 1177,
+    "breakpointVariants": 964,
     "products": {
       "notes": 20,
       "signal": 31,
       "signal-review": 4,
-      "studio": 97,
+      "studio": 98,
       "tasks": 59,
       "timeline": 29
     },
     "experienceClasses": {
       "customer-product": 139,
-      "company-public": 28,
+      "company-public": 29,
       "founder-operator": 73
     },
     "archetypes": {
-      "application-shell-and-navigation": 4,
+      "application-shell-and-navigation": 5,
       "create-and-edit-form": 3,
       "dashboard-or-command-centre": 9,
       "detail-or-record-view": 55,
@@ -75,8 +75,8 @@
       "releaseBlocking": 0
     },
     "company-public": {
-      "experiences": 28,
-      "critical": 8,
+      "experiences": 29,
+      "critical": 9,
       "passing": 0,
       "openFindings": 0,
       "releaseBlocking": 0
@@ -112,8 +112,8 @@
       "releaseBlocking": 0
     },
     "studio": {
-      "experiences": 97,
-      "critical": 13,
+      "experiences": 98,
+      "critical": 14,
       "passing": 0,
       "openFindings": 0,
       "releaseBlocking": 0
@@ -145,10 +145,10 @@
   },
   "audits": {
     "total": 20,
-    "requiredCells": 4700,
+    "requiredCells": 4708,
     "passing": 20,
-    "failing": 4680,
-    "missing": 4680,
+    "failing": 4688,
+    "missing": 4688,
     "duplicate": 0,
     "falsePassingExperienceIds": [],
     "byProduct": {
@@ -244,17 +244,17 @@
   },
   "coverage": {
     "registry": {
-      "registered": 240,
+      "registered": 241,
       "validationErrors": 0
     },
     "states": {
       "capturedVariants": 16,
-      "requiredVariants": 1175,
+      "requiredVariants": 1177,
       "completeFixtureExperiences": 6
     },
     "breakpoints": {
       "capturedVariants": 64,
-      "requiredVariants": 960,
+      "requiredVariants": 964,
       "completeScreenshotExperiences": 6
     },
     "accessibility": {
@@ -290,7 +290,7 @@
     "validAcceptedExceptions": 0,
     "activeExceptions": 0,
     "expiredExceptions": 0,
-    "notReviewedSinceMaterialChange": 202
+    "notReviewedSinceMaterialChange": 203
   },
   "goldenSet": {
     "status": "approved",

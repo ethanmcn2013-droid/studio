@@ -13,11 +13,15 @@
     "sourceWidth": 390
   },
   "shots": {
-    "home-desk": {
+    "home-detail-desk": {
       "kind": "desk",
-      "y": 9,
-      "h": 703,
-      "wide": true
+      "y": 62,
+      "h": 290,
+      "wide": false,
+      "x": 249,
+      "w": 916,
+      "fit": true,
+      "source": "home-desk"
     },
     "calendar-desk": {
       "kind": "desk",
@@ -66,19 +70,19 @@
     "analytics-ask-desk": {
       "kind": "desk",
       "y": 9,
-      "h": 779,
+      "h": 882,
       "wide": true
     },
     "analytics-wall-desk": {
       "kind": "desk",
       "y": 9,
-      "h": 779,
+      "h": 882,
       "wide": true
     },
     "home-phone": {
       "kind": "phone",
       "y": 0,
-      "h": 462
+      "h": 228
     },
     "calendar-phone": {
       "kind": "phone",
@@ -113,7 +117,7 @@
     "files-phone": {
       "kind": "phone",
       "y": 0,
-      "h": 636
+      "h": 630
     },
     "analytics-ask-phone": {
       "kind": "phone",
@@ -128,7 +132,7 @@
     "home-tablet": {
       "kind": "tablet",
       "y": 9,
-      "h": 560,
+      "h": 300,
       "wide": true
     },
     "calendar-tablet": {

@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 
+/* Rendered per request, as before. Until round 3 of the home page (2026-10-02)
+   the root layout read a request header, which made every route dynamic
+   without saying so. The layout no longer does, so that only `/` changes,
+   this route says it here. Making it static is a separate decision. */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Principles · Signal Studio",
   description:

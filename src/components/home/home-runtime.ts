@@ -12,8 +12,8 @@
    and animation it starts is tracked, so stopping leaves nothing behind and
    starting again on the same markup is safe. */
 import { themed } from "./shot-sources";
-import { HOME_THEME_COLOR, THEME_KEY } from "./theme-color";
-import { GROUP_NAME, NOTES, STRAY, arrowPaths, handSpots, layoutWall } from "./whiteboard-layout";
+import { HOME_THEME_COLOR, NEAR_MARGIN, THEME_KEY } from "./theme-color";
+import { GROUP_NAME, NOTES, STRAY, arrowPaths, avatarRect, groupOf, handSpots, homeColumns, layoutWall, looseGroupAt, noteLabel, restOn, tidyOverflows, tidyPlaceAt } from "./whiteboard-layout";
 
 const EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)";
 const EASE_IN_OUT = "cubic-bezier(0.77, 0, 0.175, 1)";
@@ -60,11 +60,38 @@ export function startHome(root) {
   function keyFocus(el) { try { return el.matches(":focus-visible"); } catch (e) { return true; } }
   function announce(t) { live.textContent = ""; requestAnimationFrame(function () { if (!dead) live.textContent = t; }); }
 
+  /* Touch screens: no keyboard shortcuts to mention, no cursor to put in a field. */
+  var touchy = matchMedia("(hover: none), (pointer: coarse)");
+
   /* Smooth scrolling starts after the page has landed, so a deep link or a restored
      position arrives at once and only the visitor's own jumps are eased. */
   function settle() { later(function () { root.classList.add("smooth"); }, 60); }
   if (document.readyState === "complete") settle(); else on(window, "load", settle);
   stops.push(function () { root.classList.remove("smooth"); });
+
+  /* A jump to a section is the browser's own navigation, and the history entry it makes
+     carries none of the router's state. Coming Back to such an entry from another page,
+     the router did nothing: the address changed and the other page stayed on screen. Each
+     of those entries is handed the state of the entry it was made from, so Back to
+     /#join lands where a direct visit to /#join does. */
+  var routerState = history.state;
+  on(document, "click", function (e) { if (history.state && e.target.closest && e.target.closest('a[href^="#"]')) routerState = history.state; }, true);
+  on(window, "hashchange", function () {
+    if (history.state) { routerState = history.state; return; }
+    if (routerState) { try { history.replaceState(routerState, "", location.href); } catch (e) {} }
+  });
+
+  /* ── Captures wait outside their frames, where the browser will not fetch them, until
+     the frame is within reach of the screen (home.css, .shot:not(.near)). The inline boot
+     script starts this while the page is parsed; this is the same for frames it did not
+     see, and for arrivals by a link inside the site. Printing asks for all of them. ── */
+  var shotFrames = $$(".shot");
+  function nearAll() { shotFrames.forEach(function (f) { f.classList.add("near"); }); }
+  if ("IntersectionObserver" in window) {
+    var nearIO = watch(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("near"); nearIO.unobserve(e.target); } }); }, { rootMargin: NEAR_MARGIN });
+    shotFrames.forEach(function (f) { if (!f.classList.contains("near")) nearIO.observe(f); });
+  } else nearAll();
+  on(window, "beforeprint", nearAll);
 
   /* ── The dot run. The dot hops along the line, sends out a signal each time it
      lands, and settles into the ring to make the mark. It plays once, the first
@@ -131,25 +158,29 @@ export function startHome(root) {
   })();
 
   /* ── Theme. One switch, remembered on this device, and every surface changes in the
-     same frame. Captures on screen change once their other file has decoded, so a frame
-     is never empty; the rest are fetched quietly afterwards. ── */
+     same frame. Every capture follows: one that has not been fetched is simply pointed at
+     its other file; one that is showing keeps its picture until the other file has
+     decoded, so a frame is never empty. Those on screen go first, the rest one at a time.
+     `want` is the theme the page is going to. It is set before anything else, because the
+     cross-fade applies the new theme a frame later and the captures must not read the old
+     one off the page (round 3: they did, and every loaded capture stayed in the old theme). ── */
   var themeBtns = $$("[data-theme-toggle]");
   var shotImgs = $$("img[data-shot]");
   function theme() { return root.getAttribute("data-theme") === "light" ? "light" : "dark"; }
   function laidOut(im) { return !!im.offsetParent; }
   function onScreen(im) { var r = im.parentNode.getBoundingClientRect(); return r.bottom > -200 && r.top < window.innerHeight + 200; }
-  var retheme = 0;
+  var want = theme(), retheme = 0;
   function swap(im, t) {
     var set = im.getAttribute("srcset");
     if (!set || themed(set, t) === set) return Promise.resolve();
     if (!(im.complete && im.naturalWidth)) { point(im, t); return Promise.resolve(); }
     var pre = new Image();
     pre.sizes = im.sizes; pre.srcset = themed(set, t); pre.src = themed(im.getAttribute("src"), t);
-    var done = function () { if (!dead && theme() === t) point(im, t); };
+    var done = function () { if (!dead && want === t) point(im, t); };
     return (pre.decode ? pre.decode() : Promise.reject()).then(done, done);
   }
-  function syncShots() {
-    var t = theme(), turn = ++retheme;
+  function syncShots(t) {
+    var turn = ++retheme;
     var now = [], rest = [];
     shotImgs.forEach(function (im) { (laidOut(im) && onScreen(im) ? now : rest).push(im); });
     now.forEach(function (im) { swap(im, t); });
@@ -162,13 +193,17 @@ export function startHome(root) {
       swap(im, t).then(function () { later(function () { next(i + 1); }, 30); });
     })(0);
   }
-  /* The browser bar follows the page. The server sends the right colour for the opening
-     theme; from here one tag of the runtime's own, first in the head so it is the one
-     the browser reads, carries the page's theme. It leaves with the page, which hands
-     the bar back to whatever the next route declares. */
-  var barMeta = document.createElement("meta");
-  barMeta.setAttribute("name", "theme-color");
-  barMeta.setAttribute("data-home-theme-color", "");
+  /* The browser bar follows the page. The server sends the device's colour; the boot
+     script puts one tag of the page's own first in the head, where it is the one the
+     browser reads, and this keeps it in step with the switch (and makes it, arriving by a
+     link inside the site). It leaves with the page, which hands the bar back to whatever
+     the next route declares. */
+  var barMeta = document.querySelector("meta[data-home-theme-color]");
+  if (!barMeta) {
+    barMeta = document.createElement("meta");
+    barMeta.setAttribute("name", "theme-color");
+    barMeta.setAttribute("data-home-theme-color", "");
+  }
   stops.push(function () { if (barMeta.parentNode) barMeta.parentNode.removeChild(barMeta); });
   function paint() {
     var t = theme();
@@ -177,7 +212,19 @@ export function startHome(root) {
     var label = "Switch to " + (t === "dark" ? "light" : "dark") + " theme";
     themeBtns.forEach(function (b) { if (b.id === "theme") b.setAttribute("aria-label", label); else b.textContent = label; });
   }
+  /* ?theme= opens the page in a theme. Once the visitor has chosen for themselves it comes
+     off the address, so a reload or a shared link does not put the old one back. Through
+     the History API, which the router follows, so nothing puts the parameter back either. */
+  function dropThemeParam() {
+    try {
+      var u = new URL(location.href);
+      if (!u.searchParams.has("theme")) return;
+      u.searchParams.delete("theme");
+      history.replaceState(null, "", u.pathname + u.search + u.hash);
+    } catch (e) {}
+  }
   function setTheme(t) {
+    want = t;
     var apply = function () {
       root.classList.add("theming");
       root.setAttribute("data-theme", t);
@@ -186,10 +233,11 @@ export function startHome(root) {
       requestAnimationFrame(function () { root.classList.remove("theming"); });
     };
     try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
+    dropThemeParam();
     if (!reduce && document.startViewTransition) { try { document.startViewTransition(apply); } catch (e) { apply(); } } else apply();
-    syncShots();
+    syncShots(t);
   }
-  themeBtns.forEach(function (b) { on(b, "click", function () { setTheme(theme() === "dark" ? "light" : "dark"); }); });
+  themeBtns.forEach(function (b) { on(b, "click", function () { setTheme(want === "dark" ? "light" : "dark"); }); });
   paint();
   /* Arriving by a link inside the site, the markup may still point at the other theme's files. */
   shotImgs.forEach(function (im) { var set = im.getAttribute("srcset"); if (set && themed(set, theme()) !== set) point(im, theme()); });
@@ -291,9 +339,10 @@ export function startHome(root) {
     revs.forEach(function (r) { ro.observe(r); });
   } else revs.forEach(function (r) { r.classList.add("in"); });
 
-  /* ── The working Home. One small state object, snapshots for Undo and Redo. ── */
+  /* ── The working Home. One small state object, snapshots for Undo and Redo. Every count
+     on the sample, in both columns, is worked out from that one state. ── */
   (function () {
-    var home = byId("home"), respond = byId("respond"), toast = byId("toast"), toastT = byId("toast-t"), undoBtn = byId("undo"), nudge = byId("nudge"), moreBtn = byId("win-more");
+    var home = byId("home"), respond = byId("respond"), toast = byId("toast"), toastT = byId("toast-t"), actBtn = byId("toast-act"), nudge = byId("nudge"), moreBtn = byId("win-more"), prompt = byId("sample-prompt");
     var S = { done: { t1: 0, t2: 0, t3: 0, inv: 1 }, ok: { f1: 0, f2: 0 }, nudged: 0, acts: 0 };
     var past = [], ahead = [], toastTimer, replyLine = "", inView = true;
     var NUM = ["no", "one", "two", "three"];
@@ -311,6 +360,9 @@ export function startHome(root) {
       setN("need", need); setN("needWord", need === 0 ? "Nothing needs" : need === 1 ? "thing needs" : "things need");
       setN("late", 11 - (3 - lateOpen)); setN("week", 35 + (3 - lateOpen) - today);
       setN("lateN", lateOpen); setN("todayN", today); setN("waitN", files);
+      /* The right-hand column is the same Friday: the two Winter launch tasks are two of that
+         project's four late ones, and the invoice is one of the wedding's open tasks. */
+      setN("winterLate", 4 - (S.done.t1 ? 1 : 0) - (S.done.t2 ? 1 : 0)); setN("mfOpen", 21 + today);
       var jobs = 3 - lateOpen, appr = 2 - files;
       setN("lateD", jobs ? "· " + jobs + " done" : ""); setN("todayD", today ? "" : "· 1 done"); setN("waitD", appr ? "· " + appr + " approved" : "");
       $$(".row[data-id]", home).forEach(function (row) {
@@ -326,11 +378,10 @@ export function startHome(root) {
         $("[data-word]", b).textContent = ok ? "Approved" : "Approve";
         b.classList.toggle("ok", ok);
       });
-      nudge.textContent = S.nudged ? "Nudged today" : "Nudge Fern and Furrow";
       if (S.nudged) nudge.setAttribute("aria-disabled", "true"); else nudge.removeAttribute("aria-disabled");
       /* The first tick asks to be pressed whenever nothing has been done. */
       var first = $(".row[data-id] .tick", home); first.classList.toggle("hint", !S.acts);
-      /* The reply is built from what has actually been done. */
+      /* The reply is built from what has actually been done, and kept to two lines on a phone. */
       var parts = [];
       if (jobs) parts.push(NUM[jobs] + (jobs === 1 ? " task done" : " tasks done"));
       if (appr) parts.push(NUM[appr] + (appr === 1 ? " file approved" : " files approved"));
@@ -338,7 +389,7 @@ export function startHome(root) {
       var tally = parts.join(", "); tally = tally.charAt(0).toUpperCase() + tally.slice(1) + ", no meeting held.";
       var line = !S.acts ? "This one is live. Tick a task."
         : !parts.length ? "The counts moved with you. Keep going."
-        : need === 0 ? tally + " That is the whole point of the thing."
+        : need === 0 ? "All done, and no meeting held. That is the whole point of the thing."
         : parts.length === 1 && jobs === 1 ? "That is it. You just did project management."
         : parts.length === 1 && S.nudged ? "Fern and Furrow gets one polite reminder. You get your morning back."
         : tally + " Keep going.";
@@ -346,52 +397,55 @@ export function startHome(root) {
       var span = $("span", respond);
       if (span.textContent !== line) { var fresh = document.createElement("span"); fresh.textContent = line; respond.replaceChild(fresh, span); }
       respond.classList.toggle("said", !!S.acts);
+      /* Once the visitor has done something, the sample asks its one question under itself. */
+      if (S.acts && prompt.hidden) { prompt.hidden = false; later(refresh, 0); }
     }
-    /* The toast stays while the pointer is on it or keyboard focus is in the sample or on the toast. */
+    /* What was just done is said in the window's own foot, with the way to take it back
+       beside it: Undo after a change, Redo after an undo. It stays while the pointer is on
+       it or keyboard focus is in the sample. */
     var hovering = false;
     function holding() { var a = document.activeElement; return hovering || (!!a && (toast.contains(a) || (home.contains(a) && keyFocus(a)))); }
     function hide() { clearTimeout(toastTimer); toast.classList.remove("on"); }
     function hideSoon(ms) { clearTimeout(toastTimer); toastTimer = later(function () { if (holding()) hideSoon(2000); else hide(); }, ms); }
-    function say(text, nearEl, reply) {
-      toastT.textContent = "";
-      var b = document.createElement("b"); b.textContent = text; toastT.appendChild(b);
-      if (reply) toastT.appendChild(document.createTextNode(" " + reply));
-      undoBtn.hidden = !past.length;
-      /* Keep it off the row that was just acted on. */
-      toast.classList.remove("up");
-      if (nearEl) {
-        var r = nearEl.getBoundingClientRect(), vw = root.clientWidth, vh = window.innerHeight, w = toast.offsetWidth, h = toast.offsetHeight;
-        var edge = vw <= 640 ? 12 : 22, top = vh - edge - h, left = vw <= 640 ? 12 : (vw - w) / 2;
-        if (r.bottom > top - 8 && r.top < vh && r.right > left && r.left < left + w) toast.classList.add("up");
-      }
-      toast.classList.add("on");
-      announce(text + (reply ? " " + reply : "") + (past.length ? " Undo with Control Z." : ""));
+    function offer(way) {
+      var redo = way === "redo", can = redo ? ahead.length : past.length;
+      actBtn.hidden = !can;
+      actBtn.dataset.way = redo ? "redo" : "undo";
+      $("[data-word]", actBtn).textContent = redo ? "Redo" : "Undo";
+      $("kbd", actBtn).textContent = redo ? "Ctrl Shift Z" : "Ctrl Z";
+      actBtn.setAttribute("aria-keyshortcuts", redo ? "Control+Shift+Z" : "Control+Z");
+      return can;
+    }
+    function say(text, reply, way) {
+      toastT.textContent = text;
+      var can = offer(way || "undo");
+      toast.classList.remove("said"); void toast.offsetWidth; toast.classList.add("on", "said");
+      /* The shortcut is only worth saying where there is a keyboard. */
+      var key = !can || touchy.matches ? "" : way === "redo" ? " Redo with Control Shift Z." : " Undo with Control Z.";
+      announce(text + (reply ? " " + reply : "") + key);
       /* Long enough to read and to reach: ten seconds, more for a longer line. */
       hideSoon(Math.max(10000, (text + " " + (reply || "")).split(" ").length * 600));
     }
-    function near(b) { return b.closest(".row, .stuck"); }
-    function act(text, change, b, withReply) { past.push({ s: JSON.stringify(S), el: b }); ahead = []; change(); S.acts++; render(); say(text, near(b), withReply ? replyLine : ""); }
+    function act(text, change, b, withReply) { past.push({ s: JSON.stringify(S), el: b }); ahead = []; change(); S.acts++; render(); say(text, withReply ? replyLine : ""); }
     function undo() {
       var last = past.pop(); if (!last) return false;
-      var fromButton = document.activeElement === undoBtn;
       ahead.push({ s: JSON.stringify(S), el: last.el });
       S = JSON.parse(last.s); render();
       /* True to what happened: one step back, and only "everything" when nothing is left to undo. */
-      say(past.length ? "Undone." : "Undone. Everything is back as it was.", near(last.el));
-      if (fromButton && undoBtn.hidden) last.el.focus({ preventScroll: true });
+      say(past.length ? "Undone." : "Undone. Everything is back as it was.", "", "redo");
       return true;
     }
     function redo() {
       var next = ahead.pop(); if (!next) return false;
       past.push({ s: JSON.stringify(S), el: next.el });
-      S = JSON.parse(next.s); render(); say("Redone.", near(next.el));
+      S = JSON.parse(next.s); render(); say("Redone.", "", "undo");
       return true;
     }
     on(home, "click", function (e) {
-      var b = e.target.closest("button"); if (!b || b === moreBtn) return;
+      var b = e.target.closest("button"); if (!b || b === moreBtn || b === actBtn) return;
       var row = b.closest(".row");
       if (b === nudge) {
-        if (S.nudged) return say("Already nudged today. One reminder is enough.", near(b));
+        if (S.nudged) return say("Already nudged today. One reminder is enough.");
         return act("Nudged. This is a sample, so nothing was really sent.", function () { S.nudged = 1; }, b, false);
       }
       if (row && row.dataset.id) {
@@ -407,7 +461,7 @@ export function startHome(root) {
     });
     /* A held key must not tick and untick on every repeat. */
     on(home, "keydown", function (e) { if (e.repeat && (e.key === "Enter" || e.key === " ") && e.target.closest("button")) e.preventDefault(); });
-    on(undoBtn, "click", undo);
+    on(actBtn, "click", function () { if (actBtn.dataset.way === "redo") redo(); else undo(); });
     /* Ctrl or Cmd with Z undoes and with Shift and Z (or Y) redoes, while the sample is on
        screen, wherever focus is, but never in a text field. Escape puts the toast away. */
     on(document, "keydown", function (e) {
@@ -420,24 +474,23 @@ export function startHome(root) {
     });
     on(toast, "pointerenter", function () { hovering = true; });
     on(toast, "pointerleave", function () { hovering = false; });
-    /* Fixed to the screen, so it leaves once less than a third of the sample is in view. */
+    /* The shortcuts belong to the sample while at least a third of it is in view. */
     if ("IntersectionObserver" in window) {
       var th = []; for (var i = 0; i <= 20; i++) th.push(i / 20);
       watch(function (es) {
         var e = es[0], visible = e.intersectionRect.height, most = Math.min(e.boundingClientRect.height, window.innerHeight);
         inView = visible >= most / 3;
-        if (!inView && !toast.contains(document.activeElement)) hide();
       }, { threshold: th }).observe(home);
     }
     /* On a phone the sample is cut to a screen; the button, or focus moving past the cut, opens it. */
     function openAll() { if (!home.classList.contains("capped")) return; home.classList.remove("capped"); moreBtn.setAttribute("aria-expanded", "true"); later(refresh, 0); }
     on(moreBtn, "click", function () { openAll(); var next = $(".row[data-file] button", home); if (next) next.focus({ preventScroll: true }); });
     on(home, "focusin", function (e) {
-      if (!home.classList.contains("capped") || e.target === moreBtn) return;
+      if (!home.classList.contains("capped") || e.target === moreBtn || !e.target.closest(".home")) return;
       var box = $(".home", home).getBoundingClientRect(), r = e.target.getBoundingClientRect();
       if (r.bottom > box.bottom - 56) openAll();
     });
-    stops.push(function () { home.classList.add("capped"); moreBtn.setAttribute("aria-expanded", "false"); hide(); });
+    stops.push(function () { home.classList.add("capped"); moreBtn.setAttribute("aria-expanded", "false"); hide(); prompt.hidden = true; });
     render();
   })();
 
@@ -479,16 +532,21 @@ export function startHome(root) {
   /* ── The whiteboard. Notes sit in loose groups. A note can be dragged, picked up and
      set down with a click or a tap, or moved with the keyboard, and Tidy drops everything
      into columns and back. Every move is a transform, so nothing is laid out again.
+     A note belongs where it was last set down: on the loose wall, the group whose frame
+     holds it, or none; on the tidy wall, the nearest column, which closes up around it.
+     Its group, the count on each group's label and what it is called aloud all follow.
      Four sample people work on the wall on a script, then move about for a while. They
      are decoration: nothing they do is announced, they leave alone whatever you hold,
      and they stop when asked, when you are using the keyboard and when out of sight. ── */
   (function () {
-    var wb = byId("wb"), tidyBtn = byId("tidy"), pauseBtn = byId("wb-pause"), notes = $$(".note", wb), hands = $$(".hand", wb);
+    var wb = byId("wb"), tools = $(".wb-tools", wb), tidyBtn = byId("tidy"), pauseBtn = byId("wb-pause"), notes = $$(".note", wb), hands = $$(".hand", wb);
     var frames = {}; $$(".frame", wb).forEach(function (f) { frames[f.dataset.g] = f; });
     var cursors = {}; $$(".cursor", wb).forEach(function (c) { cursors[c.dataset.who] = c; });
     var typedN = byId("n-typed"), strayN = byId("n-stray"), floristN = byId("n-florist");
     var arrA = byId("arr-a"), arrB = byId("arr-b"), depA = byId("dep-a"), depB = byId("dep-b"), bubble = byId("bubble"), tx = $(".tx", typedN);
-    var tidy = false, strayHome = false, castDone = false, L = null, moved = {}, tmoved = {};
+    /* cols: each group's notes, in order. moved: where the visitor left a note on the loose
+       wall. carried: where a note is while it is being carried across the tidy wall. */
+    var tidy = false, castDone = false, L = null, cols = homeColumns(), moved = {}, carried = {}, commented = true;
     var rover = null, picked = null, pickedFrom = null, byPointer = false, dragging = null, movedT = 0, zTop = 3, topNote = null, onNote = {};
     var userPaused = false, budget = 12, onWall = false, started = false, parkedAt = 0;
     notes.forEach(function (n) { n._k = +n.dataset.k; });
@@ -503,20 +561,37 @@ export function startHome(root) {
     function setRover(n) { if (rover === n) return; if (rover) rover.tabIndex = -1; rover = n; n.tabIndex = 0; }
     function title(n) { return NOTES[n._k].title.replace("&", "and"); }
     function live(n) { return !n.hidden && !n.classList.contains("pending"); }
+    function home(n) { return groupOf(cols, n._k); }
+    function where(n) { var g = home(n); return g ? "in " + GROUP_NAME[g] : "between groups"; }
+    /* What a note is called, and which group the sample people find it in, follow where it is. */
+    function relabel(n) {
+      var g = home(n);
+      n.dataset.g = g;
+      n.setAttribute("aria-label", noteLabel(NOTES[n._k], g) + (n === floristN && commented ? ", 1 comment" : ""));
+    }
+    function join(n, g, at) {
+      var k = n._k;
+      Object.keys(cols).forEach(function (o) { var i = cols[o].indexOf(k); if (i >= 0) cols[o].splice(i, 1); });
+      if (g) { if (at == null || at > cols[g].length) cols[g].push(k); else cols[g].splice(at, 0, k); }
+      relabel(n);
+    }
+    function setComment(to) {
+      commented = to;
+      var sm = $("small", floristN), chip = $("u", sm);
+      if (to && !chip) { chip = document.createElement("u"); chip.className = "cm"; chip.textContent = "1"; sm.insertBefore(chip, $("i", sm)); }
+      if (!to && chip) chip.remove();
+      relabel(floristN);
+    }
     /* A note the visitor has moved is remembered as a share of the wall, so it keeps its
        place when the wall changes width. */
     function target(n) {
-      var m = (tidy ? tmoved : moved)[n._k];
+      var k = n._k, m = tidy ? carried[k] : moved[k];
       if (m) return [m[0] * (L.W - L.nw), m[1] * (L.H - L.nh)];
-      return (tidy ? L.T : L.S)[n._k];
+      return (tidy ? L.T : L.S)[k];
     }
     function place(n, p) { n.style.setProperty("--lp-nx", p[0].toFixed(1) + "px"); n.style.setProperty("--lp-ny", p[1].toFixed(1) + "px"); }
     function rects() { return tidy ? L.tfr : L.fr; }
-    function groupAt(n) {
-      var p = target(n), cx = p[0] + L.nw / 2, cy = p[1] + L.nh / 2, r = rects(), found = "";
-      L.order.forEach(function (g) { var b = r[g]; if (b && cx >= b[0] && cx <= b[0] + b[2] && cy >= b[1] && cy <= b[1] + b[3]) found = GROUP_NAME[g]; });
-      return found ? "in " + found : "between groups";
-    }
+    function toolsRect() { return [tools.offsetLeft - tools.offsetWidth / 2 - 8, tools.offsetTop - 8, tools.offsetWidth + 16, tools.offsetHeight + 16]; }
     function placeBubble() {
       var fp = target(floristN);
       bubble.style.left = Math.max(4, Math.min(fp[0] + 30, L.W - 222)) + "px"; bubble.style.top = fp[1] + L.nh - 16 + "px";
@@ -527,14 +602,13 @@ export function startHome(root) {
         var f = frames[g], b = r[g]; f.hidden = !b; if (!b) return;
         f.style.setProperty("--lp-fx", b[0].toFixed(1) + "px"); f.style.setProperty("--lp-fy", b[1].toFixed(1) + "px");
         f.style.setProperty("--lp-fwd", b[2].toFixed(1) + "px"); f.style.setProperty("--lp-fht", b[3].toFixed(1) + "px");
-        var count = L.count[g]; if (g === "kitchen" && !tidy && !strayHome) count -= 1;
-        $("b", f).textContent = count;
+        $("b", f).textContent = tidy ? L.tcols[g].length : L.count[g];
       });
     }
     function apply(framesToo) {
-      L = layoutWall(wb.clientWidth, strayHome);
+      L = layoutWall(wb.clientWidth, cols);
       wb.style.setProperty("--lp-nw", L.nw + "px"); wb.style.setProperty("--lp-nh", L.nh + "px");
-      wb.classList.toggle("wb-s", L.nw < 150);
+      wb.classList.toggle("wb-s", L.nw < 150); wb.classList.toggle("wb-m", L.mode === "m");
       notes.forEach(function (n) {
         var shown = L.shown.indexOf(n._k) >= 0; n.hidden = !shown; if (!shown) return;
         place(n, target(n));
@@ -543,10 +617,10 @@ export function startHome(root) {
       var hs = handSpots(L);
       hands.forEach(function (h, i) { h.hidden = !hs[i]; if (hs[i]) { h.style.setProperty("--lp-hx", hs[i][0] + "px"); h.style.setProperty("--lp-hy", hs[i][1] + "px"); } });
       var arrows = arrowPaths(L);
-      $(".wb-arrows", wb).style.display = arrows ? "" : "none"; depA.hidden = depB.hidden = !arrows;
+      $(".wb-arrows", wb).style.display = arrows ? "" : "none"; depA.hidden = !arrows || !arrows.a.dep; depB.hidden = !arrows;
       if (arrows) {
         $(".ln", arrA).setAttribute("d", arrows.a.ln); $(".hd", arrA).setAttribute("d", arrows.a.hd);
-        depA.style.left = arrows.a.dep[0] + "px"; depA.style.top = arrows.a.dep[1] + "px";
+        if (arrows.a.dep) { depA.style.left = arrows.a.dep[0] + "px"; depA.style.top = arrows.a.dep[1] + "px"; }
         $(".ln", arrB).setAttribute("d", arrows.b.ln); $(".hd", arrB).setAttribute("d", arrows.b.hd);
         depB.style.left = arrows.b.dep[0] + "px"; depB.style.top = arrows.b.dep[1] + "px";
       }
@@ -555,13 +629,55 @@ export function startHome(root) {
       if (cursors.dev) cursors.dev.hidden = L.mode === "m";
       if (cursors.aoife) cursors.aoife.hidden = typedN.hidden;
     }
+    /* On the loose wall a note the visitor has moved belongs to the frame that holds its
+       middle. Asked again whenever the frames may have moved under it. */
+    function rehome() {
+      if (tidy) return;
+      var changed = false;
+      notes.forEach(function (n) {
+        if (n.hidden || !(n._k in moved)) return;
+        var p = target(n), g = looseGroupAt(L, p[0] + L.nw / 2, p[1] + L.nh / 2);
+        if (g !== home(n)) { join(n, g); changed = true; }
+      });
+      if (changed) apply();
+    }
+    /* A note set down belongs where it lands. On the tidy wall that is the nearest column,
+       at the height it was dropped, and both columns close up; if the wall has no room for
+       one more in that column, the note goes back to its own. Says where it ended up. */
+    function setDown(n) {
+      var k = n._k, p = target(n), cx = p[0] + L.nw / 2, cy = p[1] + L.nh / 2;
+      if (!tidy) {
+        var g = looseGroupAt(L, cx, cy);
+        if (g !== home(n)) { join(n, g); apply(); }
+        return { where: where(n), full: "" };
+      }
+      var spot = tidyPlaceAt(L, cx, cy), from = home(n), before = JSON.stringify(cols), full = "";
+      join(n, spot.g, spot.index);
+      if (tidyOverflows(layoutWall(wb.clientWidth, cols), toolsRect())) { cols = JSON.parse(before); relabel(n); full = GROUP_NAME[spot.g]; }
+      /* Moved to another group: it has a place there on the loose wall too. */
+      else if (spot.g !== from) delete moved[k];
+      delete carried[k];
+      apply();
+      return { where: where(n), full: full };
+    }
+    function told(n, verb, at) { return at.full ? "No room in " + at.full + ". " + title(n) + " is back " + at.where + "." : title(n) + ", " + verb + " " + at.where + "."; }
+    /* Where a note would land if it were set down now, for the keyboard. */
+    function over(n) {
+      var p = target(n), cx = p[0] + L.nw / 2, cy = p[1] + L.nh / 2;
+      if (tidy) return "over " + GROUP_NAME[tidyPlaceAt(L, cx, cy).g];
+      var g = looseGroupAt(L, cx, cy);
+      return g ? "in " + GROUP_NAME[g] : "between groups";
+    }
     function endDrag() { if (dragging) dragging(); }
     function setTidy(to) {
       endDrag(); if (picked) putDown(false, true);
-      tidy = to; tmoved = {};
+      /* Tidy has a column for everything: a note between groups goes back to its own. */
+      if (to) notes.forEach(function (n) { if (!n.hidden && !home(n)) join(n, NOTES[n._k].g, NOTES[n._k].s); });
+      tidy = to; carried = {};
       /* The group outlines step out while the notes travel, and come back where the notes land. */
       wb.classList.add("shuffling"); wb.classList.toggle("tidy", to);
       apply(false);
+      rehome();
       later(function () { applyFrames(); wb.classList.remove("shuffling"); }, reduce ? 0 : 150);
       park(reduce ? 1 : 450);
       $("span", tidyBtn).textContent = to ? "Put it back" : "Tidy";
@@ -570,12 +686,12 @@ export function startHome(root) {
     on(tidyBtn, "click", function () { setTidy(!tidy); });
     function put(n, x, y) {
       var p = [Math.max(0, Math.min(x, L.W - L.nw)), Math.max(0, Math.min(y, L.H - L.nh))];
-      (tidy ? tmoved : moved)[n._k] = [p[0] / (L.W - L.nw), p[1] / (L.H - L.nh)];
+      (tidy ? carried : moved)[n._k] = [p[0] / (L.W - L.nw), p[1] / (L.H - L.nh)];
       place(n, p);
       if (n === floristN) placeBubble();
     }
     function pickUp(n, pointer) {
-      var m = tidy ? tmoved : moved;
+      var m = tidy ? carried : moved;
       if (picked && picked !== n) putDown(false, true);
       picked = n; byPointer = !!pointer; pickedFrom = { had: n._k in m, p: m[n._k] };
       n.classList.remove("sel", "held"); n.classList.add("picked"); raise(n);
@@ -587,12 +703,15 @@ export function startHome(root) {
       picked = null; clearTimeout(movedT);
       n.classList.remove("picked"); wb.classList.remove("aim");
       if (back) {
-        var m = tidy ? tmoved : moved;
+        var m = tidy ? carried : moved;
         if (pickedFrom.had) m[n._k] = pickedFrom.p; else delete m[n._k];
         place(n, target(n));
         if (n === floristN) placeBubble();
+        if (!quiet) announce(title(n) + ", put back " + where(n) + ".");
+        return;
       }
-      if (!quiet) announce(title(n) + (back ? ", put back " : ", put down ") + groupAt(n) + ".");
+      var at = setDown(n);
+      if (!quiet) announce(told(n, "put down", at));
     }
     /* The nearest note in the direction pressed, counting sideways drift against it. */
     function nextNote(n, d) {
@@ -621,7 +740,7 @@ export function startHome(root) {
         clearTimeout(start.timer);
         var was = start; start = null; dragging = null;
         n.classList.remove("drag", "press");
-        if (was.moved) { raise(n); announce(title(n) + ", moved, " + groupAt(n) + "."); return; }
+        if (was.moved) { raise(n); announce(told(n, "moved,", setDown(n))); return; }
         /* A press that did not travel picks the note up, or sets it down. */
         if (e && e.type === "pointerup" && (was.armed || was.touch)) { if (picked === n) putDown(false); else pickUp(n, true); }
       }
@@ -650,7 +769,9 @@ export function startHome(root) {
       /* Once a held note is being carried, the page must not scroll under the finger. */
       on(n, "touchmove", function (e) { if (start && start.armed && e.cancelable) e.preventDefault(); }, { passive: false });
       on(n, "contextmenu", function (e) { if (start) e.preventDefault(); });
-      on(n, "pointerup", end); on(n, "pointercancel", function () { if (start) { clearTimeout(start.timer); start = null; dragging = null; n.classList.remove("drag", "press"); } });
+      on(n, "pointerup", end);
+      /* A drag the system takes away still sets the note down, quietly, where it had got to. */
+      on(n, "pointercancel", function () { if (!start) return; clearTimeout(start.timer); var was = start; start = null; dragging = null; n.classList.remove("drag", "press"); if (was.moved) setDown(n); });
       on(n, "keydown", function (e) {
         var k = e.key;
         if (k === "Enter" || k === " " || k === "Spacebar") {
@@ -669,7 +790,7 @@ export function startHome(root) {
         e.preventDefault();
         if (picked === n) {
           var p = target(n), step = e.shiftKey ? 48 : 16; put(n, p[0] + d[0] * step, p[1] + d[1] * step);
-          clearTimeout(movedT); movedT = later(function () { announce("Now " + groupAt(n) + "."); }, 500);
+          clearTimeout(movedT); movedT = later(function () { announce("Now " + over(n) + "."); }, 500);
         } else { var o = nextNote(n, d); if (o) { setRover(o); o.focus(); } }
       });
       /* The click that follows a press is the press's own business; Enter and Space are handled above. */
@@ -690,10 +811,28 @@ export function startHome(root) {
       x = Math.max(4, Math.min(x, L.W - 74)); c.style.setProperty("--lp-d", (ms || 900) + "ms"); c.style.setProperty("--lp-x", x.toFixed(1) + "px"); c.style.setProperty("--lp-y", y.toFixed(1) + "px");
       return sleep(ms || 900);
     }
-    function over(who, n, fx, fy, ms) { var p = target(n); onNote[who] = n; return fly(who, p[0] + L.nw * fx, p[1] + L.nh * fy, ms); }
+    /* A person rests on a note with their name clear of what matters: nobody's initials,
+       no group's label, the comment while it is open, and the wall's own controls. On a
+       touch screen there is no arrow and the name sits at the point itself. */
+    function nameTag(c) { var b = $("b", c), coarse = touchy.matches; return { w: b.offsetWidth || 62, h: b.offsetHeight || 22, dx: coarse ? 0 : 13, dy: coarse ? 6 : 17 }; }
+    function inTheWay() {
+      var list = [toolsRect()];
+      notes.forEach(function (n) { if (live(n) && NOTES[n._k].who) list.push(avatarRect(L, target(n))); });
+      Object.keys(frames).forEach(function (g) {
+        var f = frames[g], b = rects()[g]; if (!b || f.hidden || (g === "ideas" && !tidy)) return;
+        var s = $("span", f); list.push([b[0] + s.offsetLeft - 2, b[1] + s.offsetTop - 2, s.offsetWidth + 4, s.offsetHeight + 4]);
+      });
+      if (!tidy && !bubble.classList.contains("pending")) list.push([bubble.offsetLeft, bubble.offsetTop, bubble.offsetWidth, bubble.offsetHeight]);
+      return list;
+    }
+    function rest(who, n, ms) {
+      var c = cursors[who]; if (!c || c.hidden) return sleep(0);
+      var p = restOn(L, target(n), nameTag(c), inTheWay());
+      onNote[who] = n; return fly(who, p[0], p[1], ms);
+    }
     /* The scripted and the idle moves wait their turn: nothing starts while the people are paused. */
     async function go(who, x, y, ms) { await clear(); return fly(who, x, y, ms); }
-    async function goOver(who, n, fx, fy, ms) { await clear(); return over(who, n, fx, fy, ms); }
+    async function goRest(who, n, ms) { await clear(); return rest(who, n, ms); }
     function busy(n) { return n === picked || n.classList.contains("drag") || n.classList.contains("press") || n.hidden; }
     function who(n, c) { n.style.setProperty("--lp-who", getComputedStyle(cursors[c]).getPropertyValue("--lp-who")); }
     /* Dev waits in the gap between Kitchen and Guests: beside the arrow on the loose wall,
@@ -707,23 +846,23 @@ export function startHome(root) {
     /* Each person on the note they were last working on: Aoife where she is typing, Dara on
        the note he straightened, Niamh on the florist's, Dev in his gap. */
     function park(ms) {
-      if (!typedN.hidden) over("aoife", typedN, 0.82, 0.52, ms || 1);
-      over("dara", strayN, 0.6, 0.56, ms || 1); over("niamh", floristN, 0.72, 0.3, ms || 1);
+      if (!typedN.hidden) rest("aoife", typedN, ms || 1);
+      rest("dara", strayN, ms || 1); rest("niamh", floristN, ms || 1);
       if (L.mode !== "m") { var p = devSpot(); onNote.dev = null; fly("dev", p[0], p[1], ms || 1); }
       parkedAt = Date.now();
     }
     async function dara() {
-      await goOver("dara", strayN, 0.6, 0.56, 1100);
+      await goRest("dara", strayN, 1100);
       for (var i = 0; i < 6 && (busy(strayN) || tidy); i++) await sleep(1500);
-      if (strayHome || moved[strayN._k] || busy(strayN) || tidy) { strayHome = strayHome || tidy; return; }
+      if (home(strayN) || moved[STRAY] || busy(strayN) || tidy) return;
       await clear();
       who(strayN, "dara"); strayN.classList.add("held"); await sleep(350);
-      strayHome = true; apply(); await goOver("dara", strayN, 0.6, 0.56, 450);
+      join(strayN, NOTES[STRAY].g, NOTES[STRAY].s); apply(); await goRest("dara", strayN, 450);
       strayN.classList.remove("held"); await sleep(300);
     }
     async function aoife() {
       if (typedN.hidden) return;
-      await sleep(700); await goOver("aoife", typedN, 0.82, 0.52, 1200);
+      await sleep(700); await goRest("aoife", typedN, 1200);
       who(typedN, "aoife"); typedN.classList.remove("pending"); typedN.classList.add("sel"); apply();
       var full = tx.dataset.full;
       for (var i = 1; i <= full.length; i++) { await clear(); tx.textContent = full.slice(0, i); await sleep(full[i - 1] === " " ? 120 : 62); }
@@ -738,15 +877,10 @@ export function startHome(root) {
       depB.classList.remove("pending"); await sleep(300); await go("dev", x - 66, (b1[1] + L.nh + b2[1]) / 2 + 6, 450);
     }
     async function niamh() {
-      await goOver("niamh", floristN, 0.72, 0.3, 1200);
+      await goRest("niamh", floristN, 1200);
       if (!busy(floristN)) { who(floristN, "niamh"); floristN.classList.add("sel"); }
-      await sleep(300); bubble.classList.remove("pending"); await sleep(1400); floristN.classList.remove("sel");
-      later(function () {
-        bubble.classList.add("pending");
-        var chip = document.createElement("u"); chip.className = "cm"; chip.textContent = "1";
-        var sm = $("small", floristN); sm.insertBefore(chip, $("i", sm));
-        floristN.setAttribute("aria-label", floristN.getAttribute("aria-label") + ", 1 comment");
-      }, 5200);
+      await sleep(300); bubble.classList.remove("pending"); rest("niamh", floristN, 450); await sleep(1400); floristN.classList.remove("sel");
+      later(function () { bubble.classList.add("pending"); setComment(true); }, 5200);
     }
     var HOME_GROUPS = { aoife: ["day", "guests", "ideas"], dara: ["suppliers", "signage", "kitchen"], dev: ["kitchen", "guests"], niamh: ["suppliers", "day"] };
     function showPause() {
@@ -767,7 +901,7 @@ export function startHome(root) {
         if (!pool.length) continue;
         var n = pool[Math.floor(Math.random() * pool.length)];
         budget--;
-        await goOver(name, n, 0.45 + Math.random() * 0.3, 0.4 + Math.random() * 0.3, 1200);
+        await goRest(name, n, 1200);
         if (busy(n) || blocked()) continue;
         who(n, name); n.classList.add("sel"); await sleep(1300); n.classList.remove("sel");
       }
@@ -784,9 +918,14 @@ export function startHome(root) {
       castDone = true; ambient();
     }
     apply();
-    if (reduce || !("IntersectionObserver" in window)) { park(); castDone = true; pauseBtn.hidden = true; }
-    else {
-      /* Motion allowed: rewind the still to its opening state, then play once the wall is in view. */
+    if (reduce || !("IntersectionObserver" in window)) {
+      /* Nothing moves: the wall rests on the finished still, everyone's name clear of the notes. */
+      park(); castDone = true; pauseBtn.hidden = true;
+    } else {
+      /* Motion allowed: rewind the still to its opening state, then play once the wall is in view.
+         One note sits outside its group, the last idea has not been typed and nobody has commented. */
+      join(strayN, "");
+      setComment(false);
       typedN.classList.add("pending"); typedN.classList.remove("sel"); tx.textContent = "";
       var caret = document.createElement("i"); caret.className = "caret"; tx.parentNode.appendChild(caret);
       arrB.classList.add("undrawn"); depB.classList.add("pending"); bubble.classList.add("pending");
@@ -807,18 +946,18 @@ export function startHome(root) {
     function wbResize() {
       if (wb.clientWidth === wbW) return; wbW = wb.clientWidth;
       endDrag(); if (picked) putDown(false, true);
-      wb.classList.remove("ready"); apply(); if (castDone) park(1);
+      wb.classList.remove("ready"); apply(); rehome(); if (castDone) park(1);
       requestAnimationFrame(function () { requestAnimationFrame(function () { if (!dead) wb.classList.add("ready"); }); });
     }
     if ("ResizeObserver" in window) { var wro = new ResizeObserver(function () { if (!dead) wbResize(); }); wro.observe(wb); stops.push(function () { wro.disconnect(); }); }
     else on(window, "resize", wbResize);
   })();
 
-  /* ── The waitlist form is a React component (home-waitlist.tsx) wired to the real action.
-     Every other "Join the waitlist" lands there with the cursor in the field, except on
-     touch screens, where that would throw the keyboard up over the page. ── */
+  /* ── The waitlist forms are one React component (home-waitlist.tsx) wired to the real
+     action: in the hero, in the two quiet prompts and at the close. A link to #join, the
+     header's button among them, lands on the closing form with the cursor in the field,
+     except on touch screens, where that would throw the keyboard up over the page. ── */
   var wlForm = byId("waitlist-form"), wlIn = byId("wl-email"), wlDone = byId("wl-done");
-  var touchy = matchMedia("(hover: none), (pointer: coarse)");
   function arriveJoin() {
     if (touchy.matches) return;
     (wlForm.hidden ? wlDone : wlIn).focus({ preventScroll: true });

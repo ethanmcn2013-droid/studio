@@ -58,8 +58,11 @@ async function hqGate(request: NextRequest): Promise<NextResponse | null> {
 
 // ── Layer 2: M→suite-launcher redirect (DESIGN.md §14) ──────────────────
 // Authed users on marketing routes are redirected to / (the suite launcher).
-// / itself is handled via a rewrite + x-signal-authed header so page.tsx
-// can choose the launcher variant without a redirect loop.
+// / itself is rewritten to the internal /launcher route, so the URL stays /
+// and there is no redirect loop. The public home page at / reads nothing
+// from the request and is served from cache (round 3, 2026-10-02); before
+// that, page.tsx and the root layout read an x-signal-authed header set
+// here and every visit was rendered fresh.
 //
 // Categories (this Set and the matcher below ARE the allowlist — the
 // review2/LAYER0_ROUTE_ALLOWLIST.md this once cited has never existed in
@@ -92,8 +95,28 @@ const CLERK_SESSION_COOKIE = "__session";
 // See DESIGN.md §14 for the full escape-hatch contract.
 const PREVIEW_COOKIE = "signal_preview_public";
 
+// Where the signed-in variant of / lives. Never an address anyone visits:
+// a direct request for it goes back to /.
+const LAUNCHER_PATH = "/launcher";
+
+// The marker the old two-variant page read. The proxy still sets it on the
+// rewritten response, and still honours it on a request for /, so anything
+// that asked for the launcher that way gets the launcher.
+const AUTHED_HEADER = "x-signal-authed";
+
 function suiteRedirect(request: NextRequest): NextResponse | null {
   const { pathname } = request.nextUrl;
+
+  // The launcher's own route is internal. Asked for by name, it is /.
+  // The one exception carries the marker: where a server is bound to
+  // 127.0.0.1 (local runs and the browser spec), Next resolves the rewrite
+  // below against `localhost`, takes it for another origin and fetches it
+  // over HTTP, with the marker the rewrite set copied onto that request.
+  // That second request is let through, or it would redirect for ever.
+  if (pathname === LAUNCHER_PATH) {
+    if (request.headers.get(AUTHED_HEADER) === "1") return null;
+    return NextResponse.redirect(new URL("/", request.url), 307);
+  }
 
   // C routes, always pass through
   if (pathname.startsWith("/brand")) return null;
@@ -115,16 +138,20 @@ function suiteRedirect(request: NextRequest): NextResponse | null {
     request.cookies.get(PREVIEW_COOKIE)?.value === "1" ||
     request.nextUrl.searchParams.get("preview") === "public";
 
-  if (!isAuthed || isPreview) return null;
-
   if (pathname === "/") {
-    // Rewrite in place; set a header so page.tsx renders the launcher variant.
-    // A redirect would loop; a rewrite preserves the URL and lets the RSC
-    // read the header via next/headers.
-    const rewritten = NextResponse.rewrite(request.nextUrl);
-    rewritten.headers.set("x-signal-authed", "1");
+    const asksForLauncher = request.headers.get(AUTHED_HEADER) === "1";
+    if (!asksForLauncher && (!isAuthed || isPreview)) return null;
+    // Rewrite in place to the launcher's route. A redirect would loop; a
+    // rewrite keeps the URL. The destination is built from the request's own
+    // address so it is always the same origin, an internal rewrite.
+    const destination = request.nextUrl.clone();
+    destination.pathname = LAUNCHER_PATH;
+    const rewritten = NextResponse.rewrite(destination);
+    rewritten.headers.set(AUTHED_HEADER, "1");
     return rewritten;
   }
+
+  if (!isAuthed || isPreview) return null;
 
   // All other M routes → redirect to the suite launcher at /
   return NextResponse.redirect(new URL("/", request.url), 307);

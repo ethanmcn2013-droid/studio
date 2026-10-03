@@ -34,7 +34,7 @@ export function Shot({
 }) {
   const g = shotGeometry(name);
   const { src, srcSet } = shotSources(name, "dark");
-  const classes = ["shot", `v-${g.kind}`, g.wide ? "wide" : "", fade ? "fade" : "", spots.length ? "lit" : "", className]
+  const classes = ["shot", `v-${g.kind}`, g.wide ? "wide" : "", g.fit ? "detail" : "", fade ? "fade" : "", spots.length ? "lit" : "", className]
     .filter(Boolean)
     .join(" ");
   return (
@@ -60,7 +60,7 @@ export function Shot({
         <span
           key={index}
           className={index === 0 ? "spot dim" : "spot"}
-          style={v({ "--lp-sx": spot.x, "--lp-sy": spot.y - g.top, "--lp-spw": spot.w, "--lp-sph": spot.h })}
+          style={v({ "--lp-sx": spot.x - g.left, "--lp-sy": spot.y - g.top, "--lp-spw": spot.w, "--lp-sph": spot.h })}
         ></span>
       ))}
       {children}
