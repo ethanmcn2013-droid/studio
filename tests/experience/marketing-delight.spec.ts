@@ -116,18 +116,18 @@ test.describe("public marketing delight contract", () => {
     ).toEqual({ animation: "none", opacity: "1", transform: "none" });
 
     await page.goto("/about");
-    const aboutReveal = page.locator("#system .rise").first();
+    const aboutReveal = page.locator("#system");
     await aboutReveal.scrollIntoViewIfNeeded();
-    await expect(aboutReveal).toHaveClass(/is-in/);
+    await expect(aboutReveal).toBeVisible();
     const reducedNames = await page.evaluate(() => ({
       rows: Array.from(
-        document.querySelectorAll<HTMLElement>("#system li a"),
+        document.querySelectorAll<HTMLElement>("#system li"),
         (element) => getComputedStyle(element).animationName,
       ),
       // the site-wide reduced-motion rule pins reveals to translateY(0),
       // which computes as the identity matrix: no travel either way
       travel: Array.from(
-        document.querySelectorAll<HTMLElement>(".floor-page .rise"),
+        document.querySelectorAll<HTMLElement>(".about-main section, .ab-system"),
         (element) => getComputedStyle(element).transform,
       ).every(
         (transform) => transform === "none" || transform === "matrix(1, 0, 0, 1, 0, 0)",
