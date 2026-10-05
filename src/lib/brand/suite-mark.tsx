@@ -9,10 +9,15 @@
 export const SIGNAL_INDIGO = "#6860ff"; // the home page mark, --lp-mark
 /** For dark tab strips, where the mark above falls to about 3.6 to 1. */
 export const SIGNAL_INDIGO_ON_DARK = "#8b87f8";
-/** The home page's dark floor (src/components/home/theme-color.ts). */
-export const SIGNAL_FLOOR = "rgb(12, 12, 13)";
+/**
+ * The ground for the two icons that cannot float: the Apple touch icon (iOS
+ * paints transparent pixels black) and the maskable install icon (a mask
+ * needs a filled safe zone). White, never a dark tile. Every other icon has
+ * no background at all.
+ */
+export const SIGNAL_TILE = "rgb(255, 255, 255)"; // ds-allow: a PNG renderer and the manifest cannot read tokens
 
-/** Tab icons fill the frame. Tiles keep the mark inside the maskable safe zone. */
+/** Floating icons fill the frame. Tiles keep the mark inside the maskable safe zone. */
 export const TAB_COVERAGE = 0.875;
 export const TILE_COVERAGE = 0.56;
 

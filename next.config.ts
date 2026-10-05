@@ -335,6 +335,8 @@ const nextConfig: NextConfig = {
       { source: "/icon", headers: dayThenRevalidate },
       { source: "/icon1", headers: dayThenRevalidate },
       { source: "/icon2", headers: dayThenRevalidate },
+      { source: "/icon3", headers: dayThenRevalidate },
+      { source: "/icon4", headers: dayThenRevalidate },
       { source: "/apple-icon", headers: dayThenRevalidate },
       { source: "/share/:path*", headers: yearImmutable },
       {

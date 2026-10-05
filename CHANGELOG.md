@@ -8,6 +8,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-05 · S·189 · tightens · The icon floats, with no dark tile anywhere
+
+**The ring and dot now sit on nothing: no black square behind the icon in a tab, a bookmark, a shortcut or an installed copy.**
+
+The tab icon already had no background. The black came from the larger icons added on 2 October for home screens and launchers, which drew the mark on a near-black tile; browsers also reach for those in bookmarks, shortcut grids and install prompts. The 192 and 512 pixel icons are now the mark alone, clear all round. Two places cannot take a clear icon: an iPhone home screen paints clear pixels black, and an Android launcher cuts its own shape from the icon. Those two get the mark on white. An installed copy opens on white too.
+
+Under it: the test that guards the icons now fails if any icon has a dark pixel, if a floating icon is not clear along its whole edge, or if a new icon route is added without being checked. The icon links carry a new version so browsers fetch them again; a phone that already has the site on its home screen keeps the old tile until it is added again. Before and after, as served: `content/hq/design-reviews/2026-10-02-home-page-v3/favicon-floating-contact-sheet.png`. Rule: `docs/FAVICONS.md`.
+
 ## 2026-10-05 · S·188 · ships · The brand film plays in HQ
 
 **Plain Words, the 73-second brand film, now plays in the film room in Signal HQ, with a 30-second and a 15-second cut, the interactive player, and the list of what the next version still owes.**

@@ -3,7 +3,7 @@ export const BROWSER_ICON_BACKGROUND = "transparent";
 export const STATIC_BROWSER_ICON = "signal-favicon-transparent-v1.ico";
 
 /** Change this when the artwork changes, to get past cached tab icons. */
-export const BROWSER_ICON_VERSION = "ring-dot-20261002";
+export const BROWSER_ICON_VERSION = "floating-20261005";
 
 /**
  * Every icon link the site sends, declared once.
@@ -13,11 +13,12 @@ export const BROWSER_ICON_VERSION = "ring-dot-20261002";
  * - /icon.svg is what Chrome, Edge and Firefox pick. It carries a
  *   prefers-color-scheme rule, so the mark lightens on a dark tab strip.
  * - /icon is the 32px PNG, for readers that take neither.
- * - /apple-icon is the 180px home-screen tile: full bleed, no transparency,
- *   no baked corners (iOS rounds it itself).
+ * - /apple-icon is the 180px home-screen tile: the mark on white, full
+ *   bleed, no baked corners (iOS rounds it itself). It is the one link here
+ *   with a background, because iOS paints transparent pixels black.
  *
  * The 192 and 512px install icons are listed in the manifest, not here, so
- * an opaque tile never lands in a browser tab.
+ * a tile never lands in a browser tab.
  */
 export const STUDIO_BROWSER_ICONS = {
   icon: [

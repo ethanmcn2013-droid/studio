@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { HOME_THEME_COLOR } from "@/components/home/theme-color";
+import { SIGNAL_TILE } from "@/lib/brand/suite-mark";
 
 /**
  * PWA manifest · Signal Studio umbrella.
@@ -9,16 +9,20 @@ import { HOME_THEME_COLOR } from "@/components/home/theme-color";
  * but ignores most of this), Android Chrome (full PWA), and the
  * desktop Chrome install prompt.
  *
- * background_color and theme_color are the home page's dark floor, the
- * page an installed copy opens on (start_url is "/") and the ground the
- * install icons are drawn on. Each page still sends its own theme-color
- * tag, which wins once it loads: white everywhere except the home page.
+ * background_color and theme_color are white, the ground of the maskable
+ * icon, so the launch splash is the tile the launcher showed and never a
+ * dark one. Each page still sends its own theme-color tag, which wins once
+ * it loads; the home page keeps its own floor in each theme.
  *
  * `id` is product-scoped (not "/") so each suite product registers
  * as a distinct PWA identity even when origins are consolidated.
  *
- * Install icons: /icon2 (192) and /icon1 (512), the mark inside the
- * 80% safe zone so an adaptive mask never clips it; /apple-icon (180).
+ * Install icons: /icon2 (192) and /icon1 (512) are the mark with no
+ * background, for launchers that draw transparency. /icon4 (192) and
+ * /icon3 (512) are the maskable pair: the mark on white, inside the 80%
+ * safe zone so an adaptive mask never clips it. The Apple touch icon is
+ * linked from the page head and not listed here: it is a white tile, and
+ * an "any" entry would let a launcher pick the tile over the floating mark.
  *
  * Shortcuts only name pages this site serves. /roadmap and /the-wedding
  * left with the estate cut and returned 404 from an installed copy.
@@ -34,18 +38,12 @@ export default function manifest(): MetadataRoute.Manifest {
     scope: "/",
     display: "standalone",
     orientation: "portrait",
-    background_color: HOME_THEME_COLOR.dark,
-    theme_color: HOME_THEME_COLOR.dark,
+    background_color: SIGNAL_TILE,
+    theme_color: SIGNAL_TILE,
     lang: "en-IE",
     dir: "ltr",
     categories: ["productivity", "business"],
     icons: [
-      {
-        src: "/apple-icon",
-        sizes: "180x180",
-        type: "image/png",
-        purpose: "any",
-      },
       {
         src: "/icon2",
         sizes: "192x192",
@@ -53,7 +51,7 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "any",
       },
       {
-        src: "/icon2",
+        src: "/icon4",
         sizes: "192x192",
         type: "image/png",
         purpose: "maskable",
@@ -65,7 +63,7 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "any",
       },
       {
-        src: "/icon1",
+        src: "/icon3",
         sizes: "512x512",
         type: "image/png",
         purpose: "maskable",

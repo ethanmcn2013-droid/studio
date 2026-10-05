@@ -79,3 +79,7 @@ No capture is drawn larger than its own pixels: the lowest density on screen is 
 ## Not checked
 
 Chromium only. No screen reader pass. No real device.
+
+## Floating icons, 5 October (S·189)
+
+`favicon-floating-contact-sheet.png` shows every icon the page head and the manifest name, fetched from production (before) and from this branch built and served with `next start` on `http://127.0.0.1:4397` (after), each on a white, a light grey (#f1f3f4) and a dark (#202124) tab strip at 16, 32, 48, 180, 192 and 512. Before: `/apple-icon`, `/icon1` and `/icon2` were the mark on a near-black tile, rgb(12, 12, 13); the tab icons were already clear. After: no icon has a dark pixel; `/icon1` and `/icon2` are clear, and `/apple-icon`, `/icon3` and `/icon4` are the mark on white. Made with `node scripts/brand/icon-contact-sheet.mjs <out.png> http://127.0.0.1:4397 https://signalstudio.ie`. Not checked on a real iPhone or Android home screen; the sheet draws the masks those apply.
