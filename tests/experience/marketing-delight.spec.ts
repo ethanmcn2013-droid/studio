@@ -165,14 +165,11 @@ test.describe("public marketing delight contract", () => {
     }
 
     await page.goto("/about");
-    const trigger = page.getByRole("button", { name: "Open navigation" });
+    const trigger = page.locator("summary[aria-label='Menu']");
     await trigger.click();
-    await expect(page.locator("#mobile-nav-panel")).toBeVisible();
-    await page
-      .getByRole("button", { name: "Close navigation" })
-      .click();
-    await page.waitForTimeout(240);
-    await expect(page.locator("#mobile-nav-panel")).toBeHidden();
+    await expect(page.getByRole("navigation", { name: "Main, compact" })).toBeVisible();
+    await trigger.click();
+    await expect(page.locator("details.menu")).not.toHaveAttribute("open");
   });
 
   test("all current pages have no serious accessibility violations", async ({
