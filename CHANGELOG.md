@@ -8,6 +8,10 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-05 · S·187 · ships · Pricing joins the current home page
+
+**Pricing now follows the same design as Home and About.** Replaces the retired sheets with the landing palette, typography, shared navigation and saved light or dark theme. Keeps all four plans, canonical prices, VAT and billing disclosures, comparison, FAQs, keyboard selection and attributed waitlist or Enterprise contact links. The comparison opens one plan at a time on a phone.
+
 ## 2026-10-05 · S·186 · ships · About joins the current home page
 
 **The About page now follows the main landing page’s design.** Replaces the retired floor-and-sheet layout with the shared landing palette, Geist typography, header and footer. Both themes use the same saved preference. Retains the founder story, company facts, product descriptions, refusals and attributed contact links. The shared header routes product links back to the landing page from About.

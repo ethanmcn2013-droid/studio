@@ -299,7 +299,7 @@ test.describe("Signal Ledger pricing page", () => {
             )
           : [];
         const mobileMenu = document.querySelector<HTMLElement>(
-          '[aria-label="Open navigation"]',
+          'summary[aria-label="Menu"]',
         );
         const labelBounds = publishedLabel?.getBoundingClientRect();
         const menuBounds = mobileMenu?.getBoundingClientRect();
@@ -497,21 +497,36 @@ test.describe("Signal Ledger pricing page", () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/pricing");
 
-    // The Products disclosure left the rail with the 2026-09-11 estate cut,
-    // so on wide viewports the rail is three plain links and there is nothing
-    // to open. The mobile menu below is the only header control that still
-    // has open and closed states.
-    await expect(page.getByRole("button", { name: "Products" })).toHaveCount(0);
-    const rail = page.locator("header.site-nav nav[aria-label='Site navigation']");
-    await expect(rail.getByRole("link", { name: "Pricing" })).toBeVisible();
-    await expect(rail.getByRole("link", { name: "Waitlist" })).toBeVisible();
-
+    const rail = page.locator("#nav nav[aria-label='Main']");
+    await expect(rail.getByRole("link", { name: "Pricing" })).toHaveAttribute("aria-current", "page");
+    await expect(rail.getByRole("link", { name: "Projects", exact: true })).toHaveAttribute("href", "/#projects");
     await page.setViewportSize({ width: 390, height: 844 });
-    const mobile = page.getByRole("button", { name: "Open navigation" });
+    const mobile = page.locator('summary[aria-label="Menu"]');
     await mobile.click();
-    await expect(page.getByRole("region", { name: "Mobile navigation" })).toBeVisible();
+    await expect(page.getByRole("navigation", { name: "Main, compact" })).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(mobile).toBeFocused();
+  });
+
+  test("shares landing themes and preserves attribution when changing theme", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/pricing?theme=dark&source=pricing_review#plans");
+    await expect(page.locator(".pricing-page")).toHaveAttribute("data-theme", "dark");
+    await page.getByRole("button", { name: "Switch to light theme", exact: true }).click();
+    await expect(page).toHaveURL(/pricing\?source=pricing_review#plans$/);
+    await page.reload();
+    await expect(page.locator(".pricing-page")).toHaveAttribute("data-theme", "light");
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.locator('summary[aria-label="Menu"]').click();
+    await page.getByRole("button", { name: "Switch to dark theme", exact: true }).click();
+    await page.keyboard.press("Escape");
+    await expect(page.locator(".pricing-page")).toHaveAttribute("data-theme", "dark");
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(results.violations).toEqual([]);
+    await page.goto("/about");
+    await expect(page.locator(".about-page")).toHaveAttribute("data-theme", "dark");
+    await page.goto("/");
+    await expect(page.locator(".lp")).toHaveAttribute("data-theme", "dark");
   });
 
   test("holds visual stability after load and plan selection", async ({ page }) => {

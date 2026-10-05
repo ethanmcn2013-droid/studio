@@ -16,7 +16,7 @@ const SECTIONS = [
  * the phone menu. On a phone the theme switch lives in the menu and the
  * button waits until the hero's own has scrolled away.
  */
-export function HomeHeader({ page = "home" }: { page?: "home" | "about" }) {
+export function HomeHeader({ page = "home" }: { page?: "home" | "about" | "pricing" }) {
   const home = page === "home";
   const anchor = (id: string) => `${home ? "" : "/"}#${id}`;
   return (
@@ -25,7 +25,7 @@ export function HomeHeader({ page = "home" }: { page?: "home" | "about" }) {
         <a className="brand" href={home ? "#top" : "/"} aria-label="Signal Studio, home"><svg className="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle className="ring" cx="12" cy="12" r="10.5" /><circle className="dot" cx="12" cy="12" r="4.7" /></svg><span>signal studio</span></a>
         <nav className="nav-links" aria-label="Main" id="navlinks">
           <a href={anchor("projects")}>Projects</a><a href={anchor("tasks")}>Tasks</a><a href={anchor("timeline")}>Timeline</a><a href={anchor("files")}>Files</a><a href={anchor("analytics")}>Analytics</a><a href={anchor("whiteboard")}>Whiteboard</a>
-          <span className="nav-quiet"><Link href="/pricing" prefetch={false}>Pricing</Link><Link href="/about" prefetch={false} aria-current={!home ? "page" : undefined}>About</Link></span>
+          <span className="nav-quiet"><Link href="/pricing" prefetch={false} aria-current={page === "pricing" ? "page" : undefined}>Pricing</Link><Link href="/about" prefetch={false} aria-current={page === "about" ? "page" : undefined}>About</Link></span>
           <span className="nav-marker" id="nav-marker" aria-hidden="true"></span>
         </nav>
         <button className="theme" id="theme" type="button" data-theme-toggle="" aria-label="Switch to light theme">
@@ -42,7 +42,7 @@ export function HomeHeader({ page = "home" }: { page?: "home" | "about" }) {
             {SECTIONS.map(([id, label]) => (
               <a key={id} href={anchor(id)}>{label}</a>
             ))}
-            <span className="menu-quiet"><Link href="/pricing" prefetch={false}>Pricing</Link><Link href="/about" prefetch={false} aria-current={!home ? "page" : undefined}>About</Link></span>
+            <span className="menu-quiet"><Link href="/pricing" prefetch={false} aria-current={page === "pricing" ? "page" : undefined}>Pricing</Link><Link href="/about" prefetch={false} aria-current={page === "about" ? "page" : undefined}>About</Link></span>
             <button className="menu-theme" type="button" data-theme-toggle="">Switch to light theme</button>
           </nav>
         </details>
