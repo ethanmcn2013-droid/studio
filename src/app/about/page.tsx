@@ -299,7 +299,7 @@ export default async function AboutPage({
                   into an operator of software.
                 </p>
                 <p className="ab-pull">
-                  <span className="mark">
+                  <span className="ab-pull-text">
                     The product should feel calm even when the project is not.
                   </span>
                 </p>
