@@ -2,13 +2,13 @@ import { SHARE_CARD } from "@/lib/brand/share-card";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { FloorRise } from "@/components/reveal/floor-rise";
+import { AboutShell } from "./about-shell";
 import {
   formatTrackingRef,
   normalizeTrackingParams,
   type TrackingParamKey,
 } from "@/lib/tracking";
-import "@/components/reveal/floor-and-sheet.css";
+import "@/components/home/home.css";
 import "./about.css";
 
 export const metadata: Metadata = {
@@ -162,14 +162,7 @@ const FACTS = [
   { label: "Built by", value: "Ethan McNamara" },
 ] as const;
 
-/**
- * About, on the floor and the sheet (2026-09-08). The same geometry as the
- * home page: an ink floor with white sheets lifted off it. One sheet holds
- * the claim, the three products sit on the floor as small sheets, the
- * founder's note is a ruled page with a turned corner, the refusals sit on
- * the floor, and contact is the last sheet. Copy carries over from the
- * six-movement brief; the translation table retired with this cut.
- */
+/** About shares the current landing page palette, header and typography. */
 export default async function AboutPage({
   searchParams,
 }: {
@@ -198,21 +191,21 @@ export default async function AboutPage({
   const isEnterpriseContact = params.subject === "enterprise";
 
   return (
-    <>
-      <noscript>
-        <style>{".floor-page .rise{opacity:1!important;transform:none!important;transition:none!important}"}</style>
-      </noscript>
-      <FloorRise />
-      <main id="main" tabIndex={-1} className="floor-page about-floor">
-        <section className="sheet ab-hero" id="claim" aria-labelledby="about-title">
-          <div className="inner">
-            <span className="kicker">About · Signal Studio</span>
+    <AboutShell>
+      <main id="main" tabIndex={-1} className="about-main">
+        <section className="ab-hero" id="claim" aria-labelledby="about-title">
+          <div className="wrap">
+            <span className="ab-label">About · Signal Studio</span>
             <h1 id="about-title" className="display">
               Most productivity tools were built for the people who build them.
             </h1>
             <p className="ab-turn">
-              Signal Studio builds for <span className="hl-accent">the other 80%</span>.
+              Signal Studio builds for <span className="ab-accent">the other 80%</span>.
             </p>
+            <div className="ab-actions">
+              <Link href="/#join" className="btn btn-primary">Join the waitlist</Link>
+              <a href="#contact" className="btn btn-ghost">Write to Ethan <span aria-hidden="true">→</span></a>
+            </div>
             <div className="ab-body">
               <p>
                 Weddings, building sites, classrooms, client rosters, shop
@@ -236,9 +229,9 @@ export default async function AboutPage({
           </div>
         </section>
 
-        <div className="floor ab-system" id="system">
-          <div className="inner">
-            <div className="ab-band rise">
+        <div className="ab-system" id="system">
+          <div className="wrap">
+            <div className="ab-band">
               <h2 id="system-title">Three products. Each owns one kind of clarity.</h2>
               <p>
                 Named so you don’t have to ask what they do. A note stays
@@ -246,7 +239,7 @@ export default async function AboutPage({
                 The date the owner confirms is what the timeline shows.
               </p>
             </div>
-            <ul className="ab-products rise" aria-labelledby="system-title">
+            <ul className="ab-products" aria-labelledby="system-title">
               {PRODUCTS.map((product) => (
                 <li key={product.id}>
                   <div className="ab-product">
@@ -254,7 +247,7 @@ export default async function AboutPage({
                       {product.name}
                       <i aria-hidden="true" />
                     </span>
-                    <span className="kicker">{product.kind}</span>
+                    <span className="ab-label">{product.kind}</span>
                     <p>{product.desc}</p>
                   </div>
                 </li>
@@ -263,18 +256,18 @@ export default async function AboutPage({
           </div>
         </div>
 
-        <section className="sheet ab-note" id="founder" aria-labelledby="founder-title">
-          <div className="ab-note-fold" aria-hidden="true" />
-          <div className="inner">
-            <div className="ab-note-head">
-              <span className="kicker">A note from the founder</span>
-              <span className="kicker">Limerick, Ireland</span>
+        <section className="ab-founder" id="founder" aria-labelledby="founder-title">
+
+          <div className="wrap">
+            <div className="ab-founder-top">
+              <span className="ab-label">A note from the founder</span>
+              <span className="ab-label">Limerick, Ireland</span>
             </div>
             <h2 id="founder-title" className="title">Built by one person.</h2>
           </div>
           <div className="ab-ruled">
-            <div className="inner">
-              <div className="ab-letter rise">
+            <div className="wrap">
+              <div className="ab-letter">
                 <p>
                   I came to this from inside the profession. Years spent
                   managing projects, improving processes and sitting inside
@@ -325,10 +318,10 @@ export default async function AboutPage({
           </div>
         </section>
 
-        <div className="floor" id="refusals">
-          <div className="inner ab-refusals rise">
+        <div className="ab-refusal-section" id="refusals">
+          <div className="wrap ab-refusals">
             <div>
-              <span className="kicker">The refusals</span>
+              <span className="ab-label">The refusals</span>
               <h2 className="section">You can measure a company by what it refuses.</h2>
             </div>
             <ul className="ab-ref-list">
@@ -353,12 +346,12 @@ export default async function AboutPage({
         </div>
 
         <section
-          className="sheet ab-contact"
+          className="ab-contact"
           id="contact"
           aria-labelledby="about-contact-heading"
         >
-          <div className="inner">
-            <span className="kicker">Contact</span>
+          <div className="wrap">
+            <span className="ab-label">Contact</span>
             {contactEyebrow ? (
               <p className="ab-contact-subject">{contactEyebrow}</p>
             ) : null}
@@ -370,13 +363,13 @@ export default async function AboutPage({
               No form, no CRM, no autoresponder pretending to be a person.
             </p>
             {isEnterpriseContact ? (
-              <a href={mailtoHref} className="btn btn-ink ab-contact-cta">
+              <a href={mailtoHref} className="btn btn-primary ab-contact-cta">
                 Email Ethan about Enterprise
               </a>
             ) : null}
             <div className="ab-contact-grid">
               <div>
-                <span className="kicker">
+                <span className="ab-label">
                   {isEnterpriseContact ? "Helpful to include" : "Best for"}
                 </span>
                 <ul>
@@ -397,7 +390,7 @@ export default async function AboutPage({
                 </ul>
               </div>
               <div>
-                <span className="kicker">Probably not for</span>
+                <span className="ab-label">Probably not for</span>
                 <ul>
                   <li>Press and analyst outreach.</li>
                   <li>Sales and vendor pitches.</li>
@@ -415,9 +408,9 @@ export default async function AboutPage({
           </div>
         </section>
       </main>
-      <div className="floor-footer">
+      <div className="lp-footer">
         <SiteFooter />
       </div>
-    </>
+    </AboutShell>
   );
 }

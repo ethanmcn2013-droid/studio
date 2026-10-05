@@ -62,6 +62,7 @@ export function SiteNav() {
   // "/", so both addresses step aside here.
   if (
     pathname === "/" ||
+    pathname === "/about" ||
     pathname === "/launcher" ||
     pathname?.startsWith("/hq") ||
     pathname === "/__design-lab/brand-guidelines"
