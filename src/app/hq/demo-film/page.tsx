@@ -9,20 +9,22 @@ import {
   productionProgress,
   STORYBOARD,
 } from "@/lib/hq/demo-film";
+import { BRAND_FILM } from "@/lib/hq/brand-film";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Demo film · Signal HQ",
   description:
-    "Production scaffold for the hero product demo film, logline, spec, storyboard, motion grammar, and the build checklist. Not yet rendered.",
+    "Signal Studio's films: the rendered brand film Plain Words (flagship prototype v1) and the production scaffold for the 30-second hero product film.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /hq/demo-film, the production scaffold for the hero product film. A
- * buildable brief grounded in the Film System; honest that the film is not
- * yet rendered (the checklist tracks what's left).
+ * /hq/demo-film, the film room. The rendered brand film (Plain Words,
+ * flagship prototype v1) leads; below it, the production scaffold for the
+ * hero product film, a buildable brief grounded in the Film System and
+ * honest that it is not yet rendered (the checklist tracks what's left).
  */
 export default async function DemoFilmPage() {
   await requireHqAccess();
@@ -33,15 +35,25 @@ export default async function DemoFilmPage() {
     <main id="main" className="hq-page">
       <HqPageHeader
         slug="demo-film"
-        title={`${FILM_META.title}.`}
-        standfirst="A coordinator runs a whole wedding through Signal Studio in 30 seconds, and it resolves to the dot."
+        title="Films."
+        standfirst="Plain Words, the brand film, is cut, scored and rendered. One Wedding, Four Views, the 30-second hero film, is the next one."
         meta={
           <span className="hq-page-head-note">
-            {FILM_META.statusLabel} · {progress.done}/{progress.total} steps
-            done
+            {BRAND_FILM.title} · {BRAND_FILM.version.toLowerCase()} · hero film {progress.done}/{progress.total} steps done
           </span>
         }
       />
+
+      <BrandFilm />
+
+      <div className="hq-bf-next">
+        <span className="hq-os-eyebrow">next · the 30-second hero film · scaffold</span>
+        <h2 className="hq-bf-h2">{FILM_META.title}.</h2>
+        <p className="hq-bf-standfirst">
+          A coordinator runs a whole wedding through Signal Studio in 30 seconds, and it resolves to the dot.
+        </p>
+        <p className="hq-page-head-note">{FILM_META.statusLabel}</p>
+      </div>
 
       <section className="hq-page-header" aria-label="why and build state">
         <p className="hq-page-intro" style={{ fontSize: 15 }}>{FILM_META.why}</p>
@@ -147,6 +159,89 @@ export default async function DemoFilmPage() {
         </span>
       </footer>
     </main>
+  );
+}
+
+/** The rendered brand film: the player, the cuts, the spec, the beats, and what v1.1 still owes. */
+function BrandFilm() {
+  const f = BRAND_FILM;
+  return (
+    <section className="hq-co-block hq-bf" aria-label={`brand film, ${f.title}`}>
+      <div className="hq-fm-unit-head">
+        <span className="hq-os-eyebrow">
+          rendered · {f.version.toLowerCase()} · frozen {f.frozenOn}
+        </span>
+        <h2 className="hq-bf-h2">{f.title}.</h2>
+        <p className="hq-bf-standfirst">{f.logline}</p>
+      </div>
+
+      <figure className="hq-bf-player">
+        <video
+          controls
+          playsInline
+          preload="metadata"
+          poster={f.player.poster}
+          src={f.player.src}
+          aria-label={`${f.title}, ${f.version}, the full film with sound`}
+        />
+        <figcaption className="hq-bf-cap">
+          <span>{f.why}</span>
+          <span className="hq-bf-links">
+            {f.cuts.map((c) => (
+              <a key={c.src} href={c.src} className="hq-co-srclink" download>
+                {c.label} · {c.length}
+              </a>
+            ))}
+            <a href={f.player.interactive} target="_blank" rel="noopener noreferrer" className="hq-co-srclink">
+              interactive player, with chapters
+            </a>
+          </span>
+        </figcaption>
+      </figure>
+
+      <div className="hq-co-facts" aria-label="brand film spec">
+        <Fact label="Duration" value={f.spec.duration} />
+        <Fact label="Master" value={f.spec.master} />
+        <Fact label="Web" value={f.spec.web} />
+        <Fact label="Sound" value={f.spec.sound} />
+        <Fact label="Type" value={f.spec.type} />
+        <Fact label="Source" value={f.spec.source} />
+      </div>
+
+      <div className="hq-film-board" aria-label="brand film beats">
+        {f.beats.map((b, i) => (
+          <article key={b.t} className="hq-film-scene">
+            <div className="hq-film-scene-rail">
+              <span className="hq-film-scene-n">{String(i + 1).padStart(2, "0")}</span>
+              <span className="hq-film-scene-t">{b.t}</span>
+            </div>
+            <div className="hq-film-scene-body">
+              <p className="hq-film-scene-caption">{b.beat}</p>
+              <p className="hq-film-scene-beat">{b.note}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="hq-bf-review">
+        <div>
+          <span className="hq-os-eyebrow">open for v1.1 · from the v1 review</span>
+          <ul className="hq-bf-list" role="list">
+            {f.openItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <span className="hq-os-eyebrow">gates before it leaves HQ</span>
+          <ul className="hq-bf-list" role="list">
+            {f.gates.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }
 

@@ -297,7 +297,7 @@ export const HQ_ROOMS: HqRoom[] = [
     group: "make",
     kind: "room",
     lifecycle: "active",
-    summary: "The 30-second hero film: storyboard, motion grammar, production.",
+    summary: "The films: Plain Words, the rendered brand film, and the 30-second hero film scaffold.",
     aliases: ["film", "video", "remotion"],
   },
   {

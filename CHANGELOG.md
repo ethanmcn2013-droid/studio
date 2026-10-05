@@ -1,4 +1,4 @@
-# signal studio. — the dispatch
+﻿# signal studio. — the dispatch
 
 The umbrella dispatch. The three products and Home keep their own product
 receipts; this one
@@ -7,6 +7,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 (operating vocabulary — pass · step · update · fix · re-do · push ·
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
+
+## 2026-10-05 · S·188 · ships · The brand film plays in HQ
+
+**Plain Words, the 73-second brand film, now plays in the film room in Signal HQ, with a 30-second and a 15-second cut, the interactive player, and the list of what the next version still owes.**
+
+The film says the promise without a voice: project management was built by tech companies for tech companies, everyone else had to learn its language, and Signal Studio speaks theirs. It opens on a sprint board for a wedding venue, runs ten of those words back to what they meant first, strikes them out, and lands on Orla's Home in plain words. Then Mara and Finn's plan draws itself as a timeline to today, the next step lights indigo, and the line runs back through 4,500 years of method before it folds into four words: late, waiting, today, done. This cut is marked as the flagship prototype, version 1, and it is frozen as it stands.
+
+Under it: the master is 3840 by 2160 at 120 frames a second, drawn natively at that size rather than scaled up; the room plays a 1080p encode of it at 11 MB. The sound is mastered with one fixed gain so the quiet parts stay quiet. Every name, date and number in the film is an example, the historical claims wait for sign-off, and the film stays internal until launch; its files are kept out of search indexes. The last review found nine things to fix for the next version, listed in the room. Record: `content/hq/design-reviews/2026-10-03-plain-words-film-v1/README.md`.
 
 ## 2026-10-05 · S·187 · ships · Pricing joins the current home page
 
