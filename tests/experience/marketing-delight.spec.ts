@@ -51,7 +51,7 @@ test.describe("public marketing delight contract", () => {
     expect(infinite).toBe(0);
   });
 
-  test("About presents one semantic page on the floor and settles each sheet once", async ({
+  test("About presents one semantic page in the landing design system", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
@@ -87,9 +87,9 @@ test.describe("public marketing delight contract", () => {
         .evaluateAll((anchors) => anchors.every((anchor) => Boolean(anchor.getAttribute("href")))),
     ).toBe(true);
 
-    const reveal = main.locator(".rise").first();
+    const reveal = main.locator("#system");
     await reveal.scrollIntoViewIfNeeded();
-    await expect(reveal).toHaveClass(/is-in/);
+    await expect(reveal).toBeVisible();
   });
 
   test("reduced motion preserves state and removes authored travel", async ({
