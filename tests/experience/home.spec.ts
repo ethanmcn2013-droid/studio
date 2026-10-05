@@ -83,7 +83,7 @@ async function landing(page: Page, id: string) {
 test.describe("the home page, One Friday", () => {
   test.describe.configure({ timeout: 120_000 });
 
-  test("opens dark on its own root and leaves the rest of the site light", async ({ page }) => {
+  test("shares its theme with Pricing and leaves other site routes light", async ({ page }) => {
     await page.emulateMedia({ colorScheme: "dark" });
     await page.goto("/");
     const root = page.locator(".lp");
@@ -102,11 +102,13 @@ test.describe("the home page, One Friday", () => {
       .toBe("rgb(244, 243, 241)");
 
     await page.goto("/pricing");
+    await expect(page.locator(".pricing-page")).toHaveAttribute("data-theme", "light");
+    await expect(page.locator("#nav")).toBeVisible();
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor)).toBe("rgb(244, 243, 241)");
+    await page.goto("/waitlist");
     await expect(page.locator(".lp")).toHaveCount(0);
     await expect(page.locator("header.site-nav")).toBeVisible();
-    expect(
-      await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor),
-    ).toBe("rgb(255, 255, 255)");
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor)).toBe("rgb(255, 255, 255)");
   });
 
   test("colours the browser bar like the floor, before and after the toggle", async ({ page }) => {
@@ -151,10 +153,14 @@ test.describe("the home page, One Friday", () => {
       await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor),
     ).toBe("rgb(12, 12, 13)");
 
-    // Leaving by a link in the page hands the bar back to the rest of the site.
+    // Pricing shares the landing palette; leaving that family restores the site bar.
     await page.locator(".lp header").getByRole("link", { name: "Pricing" }).click();
-    // A dev server builds Pricing on first request, so the arrival gets room.
     await expect(page).toHaveURL(/\/pricing$/, { timeout: 30_000 });
+    await expect(page.locator(".pricing-page")).toHaveAttribute("data-theme", "light");
+    await expect.poll(() => browserBar(page)).toBe("rgb(244, 243, 241)");
+    await expect(page.locator('meta[name="theme-color"]')).toHaveCount(2);
+    await page.locator("footer").getByRole("link", { name: "Waitlist", exact: true }).click();
+    await expect(page).toHaveURL(/\/waitlist$/, { timeout: 30_000 });
     await expect(page.locator(".lp")).toHaveCount(0);
     await expect.poll(() => browserBar(page)).toBe("rgb(255, 255, 255)");
     await expect(page.locator('meta[name="theme-color"]')).toHaveCount(1);

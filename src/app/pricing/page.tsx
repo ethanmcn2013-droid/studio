@@ -1,9 +1,8 @@
 import { SHARE_CARD } from "@/lib/brand/share-card";
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
+import { MarketingShell } from "@/components/home/marketing-shell";
 import { HOMEPAGE_RELAY_TIMELINE_FIXTURE } from "@/components/marketing/heroes/timeline/fixture";
-import { FloorRise } from "@/components/reveal/floor-rise";
 import { ProductSignatureWordmark } from "@/components/reveal/product-signature-wordmark";
 import {
   COMMERCIAL_TERMS,
@@ -20,7 +19,7 @@ import {
   PricingClosing,
   PricingSelectionProvider,
 } from "./pricing-selection";
-import "@/components/reveal/floor-and-sheet.css";
+import "@/components/home/home.css";
 import styles from "./pricing.module.css";
 
 const PRICING = getConsumerPricingPresentation();
@@ -293,26 +292,14 @@ const FAQ = [
   },
 ] as const;
 
-/**
- * Pricing, on the floor and the sheet (2026-09-08). The same geometry as
- * the home page: the claim and the three commitments on the first sheet,
- * the plan ledger and the comparison on sheets of their own, the Notes to
- * Tasks to Timeline proof as white panes on the floor, straight answers on
- * the last sheet, and the closing on the floor. The plan model, selection
- * and the contract test are untouched.
- */
+/** Canonical commercial terms in the landing page design system. */
 export default function PricingPage() {
   return (
-    <>
-      <noscript>
-        <style>{".floor-page .rise{opacity:1!important;transform:none!important;transition:none!important}"}</style>
-      </noscript>
-      <FloorRise />
-      <main className={`floor-page ${styles.page}`} id="main" tabIndex={-1}>
-        <MarketingDelightController />
-        <header className={`sheet ${styles.hero}`}>
+    <MarketingShell page="pricing">
+      <main className={styles.page} id="main" tabIndex={-1}>
+        <header className={styles.hero}>
           <div className={styles.shell}>
-            <p className={`kicker ${styles.eyebrow}`}>Pricing</p>
+            <p className={styles.eyebrow}>Pricing</p>
             <h1>
               <span>One clear system.</span>
               <span>Four ways in.</span>
@@ -338,10 +325,10 @@ export default function PricingPage() {
           </div>
         </header>
 
-        <div className="floor">
-          <div className="band rise">
-            <p className="big">One clear system on every plan.</p>
-            <p className="small">
+        <div className={styles.intro}>
+          <div className={styles.shell}>
+            <p className={styles.introTitle}>One clear system on every plan.</p>
+            <p className={styles.introBody}>
               What changes is the workspace count, the editing guests and the
               terms. Compare them below. Anything unresolved is named plainly.
             </p>
@@ -351,7 +338,7 @@ export default function PricingPage() {
         <PricingSelectionProvider>
           <section
             aria-labelledby="plans-title"
-            className={`sheet ${styles.plansSection}`}
+            className={`${styles.plansSection}`}
             id="plans"
           >
             <div className={styles.shell}>
@@ -371,7 +358,7 @@ export default function PricingPage() {
 
           <section
             aria-labelledby="comparison-title"
-            className={`sheet ${styles.comparisonSection}`}
+            className={`${styles.comparisonSection}`}
           >
             <div className={styles.shell}>
               <div className={styles.sectionHeader}>
@@ -444,10 +431,10 @@ export default function PricingPage() {
 
           <section
             aria-labelledby="proof-title"
-            className={`floor ${styles.proofSection}`}
+            className={`${styles.proofSection}`}
           >
             <div className={styles.shell}>
-              <div className={`${styles.sectionHeader} rise`}>
+              <div className={`${styles.sectionHeader}`}>
                 <h2 id="proof-title">The same work, without starting again.</h2>
                 <p>
                   One line of work moves from a private note to an approved
@@ -457,7 +444,7 @@ export default function PricingPage() {
               </div>
 
               <figure
-                className={`${styles.signalProof} rise`}
+                className={`${styles.signalProof}`}
                 data-delight="pricing-proof"
                 data-delight-once
               >
@@ -518,7 +505,7 @@ export default function PricingPage() {
 
           <section
             aria-labelledby="answers-title"
-            className={`sheet ${styles.answersSection}`}
+            className={`${styles.answersSection}`}
           >
             <div className={`${styles.shell} ${styles.answersShell}`}>
               <div className={styles.sectionHeader}>
@@ -544,9 +531,9 @@ export default function PricingPage() {
           <PricingClosing plans={PLANS} />
         </PricingSelectionProvider>
       </main>
-      <div className={`floor-footer ${styles.pricingFooter}`}>
+      <div className={`lp-footer ${styles.pricingFooter}`}>
         <SiteFooter />
       </div>
-    </>
+    </MarketingShell>
   );
 }

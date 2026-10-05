@@ -77,8 +77,8 @@ export function PricingClosing({
   const isEnterprise = selected.id === "enterprise";
 
   return (
-    <section aria-labelledby="closing-title" className={`floor ${styles.closing}`}>
-      <div className={`${styles.closingInner} ${styles.shell} rise`}>
+    <section aria-labelledby="closing-title" className={styles.closing}>
+      <div className={`${styles.closingInner} ${styles.shell}`}>
         <div>
           <p className={styles.closingEyebrow}>{selected.name} selected</p>
           <h2 id="closing-title">

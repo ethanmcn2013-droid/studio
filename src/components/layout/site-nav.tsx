@@ -63,6 +63,7 @@ export function SiteNav() {
   if (
     pathname === "/" ||
     pathname === "/about" ||
+    pathname === "/pricing" ||
     pathname === "/launcher" ||
     pathname?.startsWith("/hq") ||
     pathname === "/__design-lab/brand-guidelines"
