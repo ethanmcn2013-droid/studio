@@ -338,6 +338,12 @@ const nextConfig: NextConfig = {
       { source: "/apple-icon", headers: dayThenRevalidate },
       { source: "/share/:path*", headers: yearImmutable },
       {
+        // Brand films are internal review material for Signal HQ until launch:
+        // reachable by the HQ room, kept out of every index.
+        source: "/brand/films/:path*",
+        headers: [...dayThenRevalidate, { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
+      },
+      {
         // The /brand page iframes loader.html same-origin. Site-wide
         // X-Frame-Options: DENY blocks that and renders a broken-doc icon
         // in the phone frame. Allow same-origin framing for this asset only.

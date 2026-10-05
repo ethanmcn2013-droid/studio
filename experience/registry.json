@@ -2785,6 +2785,50 @@
       "materialityHash": "9383cedc12159b00"
     },
     {
+      "id": "studio.artifact.brand-films-plain-words-v1-plain-words-v1",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/brand/films/plain-words/v1/plain-words-v1",
+      "source": "studio/public/brand/films/plain-words/v1/plain-words-v1.html",
+      "parentJourney": "brand-assets-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Watch Plain Words, the brand film, with live sound and chapters.",
+      "primaryAction": "Play the film, or jump to a chapter.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "live",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-10-05",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "1abd100d6bca2c37"
+    },
+    {
       "id": "studio.artifact.brand-loader",
       "product": "studio",
       "experienceClass": "company-public",
@@ -4351,7 +4395,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "899f945588740b98"
+      "materialityHash": "b13e4827d5bdd08d"
     },
     {
       "id": "studio.page.hq-design-rooms",

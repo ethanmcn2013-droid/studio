@@ -1,0 +1,2007 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Plain Words</title>
+<style>@font-face{font-family:Geist;src:url(fonts/Geist-Variable.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}@font-face{font-family:"Geist Mono";src:url(fonts/GeistMono-Variable.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}</style>
+<style>
+/* Layout: a dark screening room. The film sits in one frame, the transport below it,
+   then a short colophon. Film and page are dark by design, in every viewer theme. */
+:root {
+  --room: #0a0a0b; --panel: #151517; --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.16);
+  --text: #ededef; --text-2: #a6a6ad; --text-3: #6f6f77;
+  --accent: #8b87f8; --accent-soft: rgba(139,135,248,.18); --on-accent: #0e0e12;
+  --frame: 0 0 0 1px rgba(255,255,255,.07), 0 40px 100px -30px rgba(0,0,0,.8);
+  --ui: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box }
+body { margin: 0; background: var(--room); color: var(--text); font: 15px/1.55 var(--ui); -webkit-font-smoothing: antialiased }
+.room { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: clamp(20px, 4vw, 44px) 72px; display: grid; gap: 18px }
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 20px; flex-wrap: wrap }
+.top h1 { margin: 0; font-size: clamp(22px, 2.4vw, 28px); font-weight: 600; letter-spacing: -.025em; display: flex; align-items: baseline }
+.top h1 i { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--accent); margin-left: .05em }
+.meta { font: 500 12.5px/1.4 var(--mono); color: var(--text-3); letter-spacing: .02em }
+.meta .tag { color: var(--text); border: 1px solid var(--line-2); border-radius: 99px; padding: 2px 9px; margin-right: 8px; white-space: nowrap }
+
+.frame { position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; margin-inline: auto; border-radius: 14px; overflow: hidden; background: #111113; box-shadow: var(--frame) }
+#stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; background: #111113; color: #EDEDEF; font-family: var(--ui); overflow: hidden; contain: strict }
+#stage .mono { font-family: var(--mono); font-weight: 500 }
+#stage .scene { will-change: opacity }
+.cover { position: absolute; inset: 0; display: grid; place-items: center; background: transparent; border: 0; padding: 0; cursor: pointer; color: #ededef }
+.cover span { display: grid; place-items: center; width: clamp(64px, 9vw, 104px); height: clamp(64px, 9vw, 104px); border-radius: 50%; background: #ededef; color: #111113; box-shadow: 0 10px 40px rgba(0,0,0,.5); transition: transform 180ms cubic-bezier(.2,.8,.2,1) }
+.cover:hover span { transform: scale(1.05) }
+.cover svg { width: 34%; height: 34%; margin-left: 6% }
+.cover[hidden] { display: none }
+.frame:focus-within .cover span { outline: 3px solid var(--accent); outline-offset: 4px }
+
+.bar { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto auto; align-items: center; gap: 14px; padding: 10px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px }
+.btn { display: inline-grid; place-items: center; height: 38px; min-width: 38px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--line); background: transparent; color: var(--text); cursor: pointer; font: 500 13px var(--ui); gap: 6px; grid-auto-flow: column }
+.btn:hover { border-color: var(--line-2) }
+.btn:focus-visible, .track:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.btn svg { width: 16px; height: 16px }
+.btn.play { background: var(--text); color: var(--room); border-color: var(--text) }
+.time { font: 500 12.5px var(--mono); color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap }
+.scrub { display: grid; gap: 7px; min-width: 0 }
+.track { position: relative; height: 18px; cursor: pointer; touch-action: none; border-radius: 4px }
+.segs { position: absolute; left: 0; right: 0; top: 7px; height: 4px; display: flex; gap: 3px }
+.segs i { display: block; height: 100%; background: var(--line-2); border-radius: 99px; position: relative; overflow: hidden }
+.segs i b { position: absolute; inset: 0; background: var(--text); transform-origin: 0 50%; transform: scaleX(0) }
+.thumb { position: absolute; top: 3px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--text); box-shadow: 0 0 0 3px var(--panel) }
+.chaps { display: flex; gap: 3px; font-size: 12px; color: var(--text-3); min-width: 0 }
+.chaps button { appearance: none; border: 0; background: none; padding: 0; color: inherit; font: inherit; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer }
+.chaps button[aria-current="true"] { color: var(--text); font-weight: 500 }
+.chaps button:hover { color: var(--text-2) }
+
+.notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding-top: 6px }
+.notes div { display: grid; gap: 4px; align-content: start; min-width: 0 }
+.notes h2 { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0 }
+.notes p { margin: 0; font-size: 13.5px; color: var(--text-2); text-wrap: pretty }
+.notes a { color: inherit; text-underline-offset: 3px; text-decoration-color: var(--line-2) }
+.fmts { display: inline-flex; padding: 3px; gap: 2px; border-radius: 10px; border: 1px solid var(--line) }
+.fmts button { appearance: none; border: 0; background: transparent; color: var(--text-3); font: 500 12.5px var(--mono); height: 30px; padding: 0 10px; border-radius: 7px; cursor: pointer }
+.fmts button[aria-pressed="true"] { background: var(--text); color: var(--room) }
+.fmts button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.kbd { font: 500 11px var(--mono); padding: 1px 5px; border: 1px solid var(--line); border-radius: 5px; color: var(--text-3) }
+@media (max-width: 720px) {
+  .bar { grid-template-columns: auto minmax(0, 1fr) auto auto; }
+  .fmts button { padding: 0 7px }
+  .bar .snd span { display: none }
+  .bar .time { display: none }
+  .chaps button:not([aria-current="true"]) { display: none }
+  .chaps button[aria-current="true"] { flex: 1 1 auto !important }
+  .notes { grid-template-columns: 1fr }
+}
+/* export mode: the stage alone, at native size */
+body.render { background: #111113 }
+body.render .room { max-width: none; padding: 0; display: block }
+body.render .top, body.render .bar, body.render .notes, body.render .cover { display: none }
+body.render .frame { border-radius: 0; box-shadow: none; aspect-ratio: auto; max-width: none; margin: 0 }
+</style>
+
+<main class="room">
+  <header class="top">
+    <h1>Plain Words<i aria-hidden="true"></i></h1>
+    <p class="meta"><span class="tag">Flagship prototype v1</span> Signal Studio · brand film · 1:13 · 16:9 · 4K 120 fps master · sound on</p>
+  </header>
+
+  <div class="frame" id="frame">
+    <div id="stage" role="img" aria-label="Plain Words, a 73 second Signal Studio brand film. Project management was built by tech companies, for tech companies. Everyone else was expected to adapt, and to learn a whole new language just to use a tool. Orla runs a wedding venue; her to-do list says things like blocked by florist dependency. Ten of those words and where they came from: kanban was a shop signboard, a backlog was the biggest log at the back of the fire, a dashboard stopped the mud on a carriage, sync is two clocks agreeing, and faster: stakeholder, sprint, milestone, benchmark, bandwidth, onboarding, then a burst ending on certified practitioner. Every one of them meant something ordinary once. You should not need a new language to run your project, or a certification; the words are struck out. Signal Studio speaks your language: Orla types ring Fern and Furrow about the peonies Friday and it lands on her Home, then the same screen for a school, a student and a building crew. Open it. You already know how it works. Software calls it a roadmap; Mara and Finn just call it the plan: their wedding plan draws itself left to right as a timeline, ink marks for what is done up to today, the florist deposit lighting indigo as the one thing next, rings for what is ahead, then the whole year in view and 239 days to the day. The camera keeps going back: the plan becomes the present and more than 4,500 years of method draw in behind it, from the crews at Giza to an app for every method, then the whole line folds into the indigo mark. Most days come down to four words you already know: late, waiting, today, done. The full stop of done turns indigo and lands in the Signal Studio wordmark. Project management for people not in tech. Join the waitlist at signalstudio.ie."></div>
+    <button class="cover" id="cover" type="button" aria-label="Play the film"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
+  </div>
+
+  <div class="bar">
+    <button class="btn play" id="play" type="button" aria-label="Play"><svg id="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg><svg id="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/></svg></button>
+    <div class="scrub">
+      <div class="track" id="track" role="slider" tabindex="0" aria-label="Position in the film" aria-valuemin="0" aria-valuemax="73" aria-valuenow="0" aria-valuetext="0:00">
+        <div class="segs" id="segs"></div>
+        <div class="thumb" id="thumb"></div>
+      </div>
+      <div class="chaps" id="chaps"></div>
+    </div>
+    <span class="time" id="time">0:00 / 1:12</span>
+    <div class="fmts" id="fmts" role="group" aria-label="Format"></div>
+    <button class="btn snd" id="snd" type="button" aria-pressed="true"><svg id="i-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg><svg id="i-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span id="snd-l">Sound on</span></button>
+  </div>
+
+  <section class="notes" aria-label="About the film">
+    <div><h2>What it says</h2><p>Project management was built by tech companies for tech companies, and everyone else had to learn its language. Signal Studio speaks yours: intuitive, simple, no jargon, no certification.</p></div>
+    <div><h2>Where it comes from</h2><p>The drawings are the plates from the <a href="https://claude.ai/artifact/Fa6LX8t75u6nt2HhVoR1jy" target="_blank" rel="noopener">Where the Words Came From</a> series. The Home screen and the end line follow the live landing page.</p></div>
+    <div><h2>Watching</h2><p><span class="kbd">Space</span> plays and pauses, <span class="kbd">←</span> <span class="kbd">→</span> skip five seconds, <span class="kbd">M</span> mutes. With reduced motion on, the blur and camera drift are off. Every name and number in the film is an example.</p></div>
+  </section>
+</main>
+<script>
+/* Plain Words · runtime kit. A trimmed port of the Signal Studio social kit:
+   DOM and SVG builders, the motion curves, a seeded random. Everything the film
+   draws is a pure function of time, so any frame can be rendered on demand. */
+const C = {
+  paper: '#111113', sheet: '#1A1A1E', ink: '#EDEDEF', indigo: '#8B87F8', indigoSoft: '#A3A0FA',
+  g200: 'rgba(255,255,255,0.12)', g300: '#3B3B41', g400: '#6F6F77', g500: '#8E8E96', g700: '#C6C6CC',
+  hair: 'rgba(255,255,255,0.10)', late: '#F07D82', lateSoft: 'rgba(240,100,106,0.16)', fire: '#EDEDEF',
+  wash: 'rgba(255,255,255,0.04)', fill: 'rgba(255,255,255,0.07)', track: 'rgba(255,255,255,0.14)', leader: 'rgba(255,255,255,0.5)',
+  inkRGB: [237, 237, 239], mutedRGB: [92, 92, 100], dimRGB: [160, 160, 168], indigoRGB: [139, 135, 248], indigoFade: 'rgba(139,135,248,0.62)', indigoDeep: '#4F46E5', indigoGlow: 'rgba(139,135,248,0.45)',
+  wait: '#E8B64C', waitSoft: 'rgba(232,182,76,0.16)', done: '#4CC38A', doneSoft: 'rgba(76,195,138,0.16)',
+};
+const px = (n) => (typeof n === 'number' ? n + 'px' : n);
+function abs(el, o = {}) {
+  const s = el.style; s.position = 'absolute';
+  if (o.x != null) s.left = px(o.x); if (o.y != null) s.top = px(o.y);
+  if (o.r != null) s.right = px(o.r); if (o.b != null) s.bottom = px(o.b);
+  if (o.w != null) s.width = px(o.w); if (o.h != null) s.height = px(o.h);
+  return el;
+}
+function h(sel, props, ...kids) {
+  const m = /^([a-z0-9]+)?((?:[.#][\w-]+)*)$/i.exec(sel || 'div') || [];
+  const el = document.createElement(m[1] || 'div');
+  for (const part of (m[2] || '').match(/[.#][\w-]+/g) || []) { if (part[0] === '.') el.classList.add(part.slice(1)); else el.id = part.slice(1); }
+  if (props != null && (typeof props !== 'object' || props instanceof Node || Array.isArray(props))) { kids.unshift(props); props = null; }
+  if (props) for (const [k, v] of Object.entries(props)) {
+    if (v == null || v === false) continue;
+    if (k === 'style') Object.assign(el.style, v);
+    else if (k === 'text') el.textContent = v;
+    else if (k === 'html') el.innerHTML = v;
+    else if (k === 'at') abs(el, v);
+    else el.setAttribute(k, v);
+  }
+  for (const kid of kids.flat(Infinity)) if (kid != null && kid !== false) el.append(kid instanceof Node ? kid : document.createTextNode(String(kid)));
+  return el;
+}
+const NS = 'http://www.w3.org/2000/svg';
+function svg(tag, attrs, ...kids) {
+  const el = document.createElementNS(NS, tag);
+  if (attrs) for (const [k, v] of Object.entries(attrs)) if (v != null) el.setAttribute(k, v);
+  for (const kid of kids.flat(Infinity)) if (kid != null && kid !== false) el.append(kid instanceof Node ? kid : document.createTextNode(String(kid)));
+  return el;
+}
+const p = (d, a) => svg('path', { d, ...(a || {}) });
+const cir = (cx, cy, r, a) => svg('circle', { cx, cy, r, ...(a || {}) });
+const ell = (cx, cy, rx, ry, a) => svg('ellipse', { cx, cy, rx, ry, ...(a || {}) });
+const COL = 936;
+
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, x) => a + (b - a) * x;
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+function bezier(x1, y1, x2, y2) {
+  const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx, cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+  const sx = (t) => ((ax * t + bx) * t + cx) * t, sy = (t) => ((ay * t + by) * t + cy) * t, dx = (t) => (3 * ax * t + 2 * bx) * t + cx;
+  return (x) => {
+    if (x <= 0) return 0; if (x >= 1) return 1;
+    let t = x;
+    for (let i = 0; i < 8; i++) { const e = sx(t) - x; const d = dx(t); if (Math.abs(e) < 1e-5 || Math.abs(d) < 1e-6) break; t -= e / d; }
+    return sy(clamp(t));
+  };
+}
+const ease = { out: bezier(0.23, 1, 0.32, 1), inOut: bezier(0.77, 0, 0.175, 1), soft: bezier(0.25, 0.1, 0.25, 1), in: bezier(0.55, 0, 1, 0.45), draw: bezier(0.45, 0, 0.2, 1) };
+const loopT = (t, d) => ((t % d) + d) % d;
+const pulse = (t, period = 2.6) => 0.5 - 0.5 * Math.cos((loopT(t, period) / period) * Math.PI * 2);
+const typeOn = (str, x) => String(str).slice(0, Math.round(String(str).length * clamp(x)));
+function rng(seed = 1) { let s = (seed >>> 0) || 1; return () => ((s = (Math.imul(s, 1664525) + 1013904223) >>> 0) / 4294967296); }
+function set(el, o) {
+  if (!el) return;
+  const tr = [];
+  if (o.x != null || o.y != null) tr.push(`translate3d(${(o.x || 0).toFixed(2)}px, ${(o.y || 0).toFixed(2)}px, 0)`);
+  if (o.r != null) tr.push(`rotate(${o.r.toFixed(3)}deg)`);
+  if (o.s != null) tr.push(`scale(${o.s.toFixed(4)})`);
+  if (o.sx != null || o.sy != null) tr.push(`scale(${(o.sx == null ? 1 : o.sx).toFixed(4)}, ${(o.sy == null ? 1 : o.sy).toFixed(4)})`);
+  el.style.transform = tr.join(' ');
+  if (o.o != null) el.style.opacity = clamp(o.o).toFixed(4);
+}
+const KANJI = {"upm": 2048, "paths": {"\u770b": "M732 805H1690V-143H1545V-61H675V-143H532V541Q425 419 227 254L131 366Q465 614 644 940H135V1061H706L714 1077Q735 1121 761 1196H225V1313H800Q822 1382 837 1456L806 1454Q594 1441 290 1434L241 1559Q1079 1574 1574 1667L1686 1542Q1402 1500 985 1465Q967 1368 952 1313H1802V1196H917L911 1180Q906 1164 866 1061H1946V940H808Q764 854 732 805ZM675 688V553H1545V688ZM675 444V307H1545V444ZM675 201V58H1545V201Z", "\u677f": "M412 844Q305 487 160 252L74 400Q289 706 394 1135H117V1264H412V1696H551V1264H819V1135H551V934Q706 799 835 641L756 496Q663 643 551 777V-143H412ZM1032 1434V1073H1727L1813 997Q1719 611 1547 342Q1696 168 1944 18L1836 -119Q1641 20 1458 221Q1285 6 1026 -152L932 -31Q1186 105 1366 338Q1164 626 1085 942H1032Q1029 581 989 362Q934 69 760 -148L658 -43Q887 266 887 895V1567H1891V1434ZM1450 461Q1577 668 1647 942H1223Q1224 939 1225 932Q1226 925 1227 921Q1290 687 1450 461Z"}};
+  const FLAME_OUT = 'M50 159 C 10 130, 16 84, 34 46 C 40 68, 50 80, 58 92 C 66 74, 66 50, 58 24 C 92 62, 98 124, 50 159 Z';
+  const FLAME_IN = 'M50 150 C 30 130, 34 102, 45 80 C 52 100, 62 112, 58 132 C 56 142, 54 148, 50 150 Z';
+
+function board(vb, o, kids) {
+    const w = o.w || COL, s = w / vb[0];
+    const el = svg('svg', {
+      width: Math.round(w), height: Math.round(vb[1] * s), viewBox: `0 0 ${vb[0]} ${vb[1]}`,
+      fill: 'none', stroke: o.color || C.ink, 'stroke-width': (o.line || 3) / s,
+      'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+    }, kids);
+    if (o.at) abs(el, o.at);
+    el.__s = s;
+    return el;
+  }
+
+function drawCarriage(o = {}) {
+    const VB = [960, 560], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, R = rng(3701), F = { fill: gd };
+    const mud = [];
+    for (let i = 0; i < 46; i++) {           // the arc thrown back off the hooves
+      const t = R(), x = 366 + t * 178 + (R() - 0.5) * 34, y = 486 - 250 * t + 46 * t * t + (R() - 0.5) * 58;
+      mud.push(cir(x, y, 3 + R() * 5, { fill: col, stroke: 'none' }));
+    }
+    for (let i = 0; i < 40; i++) {           // the spatter stopped by the board
+      const t = R(), x = 540 + t * t * 30 + (R() - 0.5) * 14, y = 180 + R() * 120;
+      mud.push(cir(x, y, 2.4 + R() * 3.4, { fill: col, stroke: 'none' }));
+    }
+    for (let i = 0; i < 8; i++) mud.push(cir(566 + R() * 62, 142 + R() * 34, 2.2 + R() * 3, { fill: col, stroke: 'none' }));
+    for (let i = 0; i < 14; i++) mud.push(cir(330 + R() * 96, 474 + R() * 34, 2.8 + R() * 5, { fill: col, stroke: 'none' }));
+
+    const spokes = (cx, cy, r0, r1, n) => p(Array.from({ length: n }, (_, i) => {
+      const a = (i / n) * Math.PI * 2 + 0.26;
+      return `M${(cx + Math.cos(a) * r0).toFixed(1)} ${(cy + Math.sin(a) * r0).toFixed(1)} L${(cx + Math.cos(a) * r1).toFixed(1)} ${(cy + Math.sin(a) * r1).toFixed(1)}`;
+    }).join(' '), { 'stroke-width': thin * 1.5 });
+    return board(VB, { ...o, w }, [
+      // road
+      p('M-6 500 C 200 495, 430 506, 680 499 C 820 495, 900 502, 966 498', { 'stroke-width': sw }),
+      p('M36 526 h56 M166 536 h34 M300 528 h48 M470 536 h44 M640 526 h40 M860 536 h50', { 'stroke-width': thin }),
+      // the far wheel, behind the body
+      cir(700, 384, 112, { 'stroke-width': thin }), spokes(700, 384, 20, 104, 12),
+      // horse · head, neck, body, tail, then the legs
+      p('M24 166 C 20 148, 26 124, 40 102 C 54 80, 74 66, 88 68 C 100 70, 106 84, 106 104 C 106 126, 100 150, 90 166 C 80 182, 56 186, 38 180 C 28 176, 24 172, 24 166 Z', F),
+      p('M90 70 C 86 56, 90 42, 98 38 C 103 50, 103 62, 101 72 Z M106 68 C 107 54, 113 42, 121 40 C 123 54, 120 64, 116 74 Z', F),
+      cir(86, 100, 4.4, { fill: col, stroke: 'none' }),
+      p('M26 160 C 34 164, 44 162, 50 156 M74 164 C 86 160, 94 150, 96 136', { 'stroke-width': thin }),
+      p('M104 84 C 140 100, 178 138, 202 178 C 190 198, 186 224, 190 250 C 160 226, 124 190, 94 170 C 98 140, 102 110, 104 84 Z', F),
+      p('M108 92 C 136 108, 162 138, 182 166 M118 96 C 144 114, 168 144, 186 172', { 'stroke-width': thin }),
+      p('M202 178 C 234 160, 278 156, 316 162 C 340 166, 358 178, 366 196 C 374 222, 370 262, 356 290 C 342 316, 298 330, 248 320 C 212 312, 196 288, 190 250 C 186 224, 190 198, 202 178 Z', F),
+      p('M360 188 C 394 212, 408 266, 398 322 C 393 350, 384 372, 372 388 L 354 378 C 366 356, 374 330, 376 300 C 380 256, 370 216, 344 196 Z', F),
+      p('M364 218 C 382 246, 388 288, 382 326', { 'stroke-width': thin }),
+      p('M372 386 C 368 400, 362 410, 354 418 M362 382 C 356 396, 348 404, 338 410', { 'stroke-width': thin }),
+      // legs · far pair first
+      p('M198 288 C 192 322, 188 360, 187 400 C 186 430, 183 458, 181 480 L 207 480 C 209 458, 211 430, 212 400 C 213 360, 213 322, 216 292 Z', F),
+      p('M175 474 C 173 490, 181 498, 197 498 C 213 498, 219 490, 215 474 Z', F),
+      p('M330 300 C 344 330, 360 356, 370 384 C 378 408, 384 440, 386 466 L 412 464 C 410 438, 404 404, 394 378 C 384 350, 368 322, 352 296 Z', F),
+      p('M382 458 C 378 476, 388 486, 404 486 C 420 486, 428 476, 424 458 Z', F),
+      // legs · near pair
+      p('M228 292 C 224 330, 222 370, 222 404 C 222 434, 220 462, 218 484 L 250 484 C 252 462, 254 434, 254 404 C 254 370, 252 330, 248 294 Z', F),
+      p('M212 478 C 210 496, 220 504, 238 504 C 256 504, 262 496, 258 478 Z', F),
+      p('M214 372 h38 M220 448 h32', { 'stroke-width': thin }),
+      p('M308 304 C 316 338, 328 364, 334 392 C 340 420, 340 454, 338 478 L 370 478 C 372 452, 370 418, 364 390 C 356 360, 340 332, 328 300 Z', F),
+      p('M332 472 C 328 492, 338 502, 356 502 C 374 502, 382 492, 378 472 Z', F),
+      p('M330 392 h34 M334 448 h30', { 'stroke-width': thin }),
+      // harness · collar, saddle, tug and breeching
+      p('M198 174 C 216 190, 222 220, 216 250 C 212 268, 202 280, 192 284'),
+      p('M212 172 C 230 190, 236 222, 230 252 C 226 270, 216 282, 206 286', { 'stroke-width': thin }),
+      p('M248 162 L 302 158 L 304 184 L 250 188 Z', F),
+      p('M256 186 C 254 226, 252 262, 256 296', { 'stroke-width': thin }),
+      p('M272 188 V232', { 'stroke-width': thin }),
+      p('M358 236 C 332 252, 302 258, 278 256', { 'stroke-width': thin }),
+      // shafts, running from the collar back to the trap
+      p('M204 214 L 552 296 M204 232 L 552 314'),
+      // the dash-board · leather over an iron frame, stitched, with its stay
+      p('M544 300 C 534 260, 538 212, 556 178 C 564 162, 586 162, 594 178 C 608 212, 608 260, 600 300 Z', F),
+      p('M560 186 C 570 172, 584 172, 592 186', { 'stroke-width': thin }),
+      p('M556 294 C 546 258, 550 214, 566 182', { 'stroke-width': thin, 'stroke-dasharray': `${thin * 3} ${thin * 3}` }),
+      p('M632 298 C 630 258, 620 208, 600 180'),
+      // footboard, body, seat and springs
+      p('M536 300 L 692 292 L 692 316 L 536 324 Z', F),
+      p('M690 250 C 692 298, 724 322, 796 320 L 912 316 C 940 312, 950 288, 948 248 Z', F),
+      p('M686 208 L 946 196 L 948 244 L 688 256 Z', F),
+      p('M746 202 v46 M806 199 v46 M866 196 v46', { 'stroke-width': thin }),
+      p('M704 322 C 748 306, 852 302, 924 318', { 'stroke-width': thin }),
+      // the near wheel
+      cir(800, 380, 120, F), cir(800, 380, 106, { 'stroke-width': thin }), cir(800, 380, 24, F), cir(800, 380, 10, { fill: col, stroke: 'none' }),
+      spokes(800, 380, 24, 106, 12),
+      // reins, over the dash rail to the driver's hands
+      p('M32 192 C 140 172, 262 164, 362 176 C 472 190, 604 216, 730 246', { 'stroke-width': thin }),
+      mud,
+    ]);
+  }
+
+function drawHearth(o = {}) {
+    const VB = [1000, 660], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, F = { fill: gd };
+    return board(VB, { ...o, w }, [
+      // brick back
+      p('M120 172 H880 M120 240 H880 M120 308 H880 M120 376 H880 M120 444 H880 M120 512 H880', { 'stroke-width': thin, opacity: 0.55 }),
+      p('M260 96 V172 M500 96 V172 M740 96 V172 M180 172 V240 M380 172 V240 M620 172 V240 M840 172 V240 M260 240 V308 M500 240 V308 M740 240 V308 M180 308 V376 M380 308 V376 M620 308 V376 M840 308 V376 M260 376 V444 M500 376 V444 M740 376 V444 M180 444 V512 M380 444 V512 M620 444 V512 M840 444 V512', { 'stroke-width': thin, opacity: 0.55 }),
+      // jambs, the timber lintel and the mantel shelf
+      p('M-10 -10 H1010 V96 H-10 Z', F),
+      p('M-10 22 H1010 M-10 32 H1010', { 'stroke-width': thin }),
+      p('M-10 46 C 300 42, 700 52, 1010 44 M-10 76 C 340 80, 660 70, 1010 76', { 'stroke-width': thin }),
+      cir(176, 60, 8, { 'stroke-width': thin }), cir(824, 60, 8, { 'stroke-width': thin }),
+      p('M-10 96 H120 V566 H-10 Z', F), p('M880 96 H1010 V566 H880 Z', F),
+      p('M-10 200 H120 M-10 308 H120 M-10 416 H120 M-10 524 H120 M880 200 H1010 M880 308 H1010 M880 416 H1010 M880 524 H1010', { 'stroke-width': thin }),
+      // crane and pot hook, swung in over the fire
+      p('M140 112 V510 M140 150 H316 M316 150 V204'),
+      p('M316 204 C 304 210, 304 226, 316 232 C 328 238, 328 254, 316 260', { 'stroke-width': thin }),
+      p('M140 222 L 250 150', { 'stroke-width': thin }),
+      // the backlog, put on to burn all night
+      p('M156 400 H840 C 874 420, 874 532, 840 552 H156 Z', F),
+      ell(156, 476, 36, 76, F), ell(156, 476, 23, 49, { 'stroke-width': thin }), ell(156, 476, 11, 23, { 'stroke-width': thin }),
+      p('M200 428 C 360 424, 560 432, 800 422 M206 476 C 400 482, 600 470, 812 478 M200 524 C 380 518, 580 526, 806 516', { 'stroke-width': thin }),
+      // andirons
+      p('M236 488 V560 M236 488 C 224 482, 224 466, 236 460 C 248 466, 248 482, 236 488', F),
+      p('M764 488 V560 M764 488 C 752 482, 752 466, 764 460 C 776 466, 776 482, 764 488', F),
+      // logs in front
+      p('M252 496 L556 474 C 580 480, 582 518, 558 524 L256 546 C 234 542, 230 502, 252 496 Z', F),
+      ell(558, 499, 15, 26, F), p('M552 480 L 566 518 M544 490 L 570 504', { 'stroke-width': thin }),
+      p('M330 460 L634 490 C 656 498, 652 534, 630 534 L334 508 C 312 504, 310 464, 330 460 Z', F),
+      ell(632, 512, 14, 23, F), p('M626 494 L 640 530', { 'stroke-width': thin }),
+      p('M618 522 L 762 530 C 778 536, 776 556, 760 556 L 620 548 Z', F),
+      ell(762, 543, 11, 14, F),
+      // hearthstone
+      p('M-10 560 H1010 M-10 612 H1010 M-10 628 H1010', { 'stroke-width': sw }),
+      p('M300 560 V612 M700 560 V612', { 'stroke-width': thin }),
+      // a standing fire, for the plate that has no motion of its own
+      !o.fire ? null : [324, 500, 676].map((cx, i) => {
+        const hgt = [270, 352, 216][i], k = hgt / 160;
+        return svg('g', { transform: `translate(${cx - 50 * k},${534 - hgt}) scale(${k})` }, [
+          p(FLAME_OUT, { fill: gd, 'stroke-width': sw / k }),
+          p(FLAME_IN, { 'stroke-width': (sw * 0.55) / k }),
+        ]);
+      }),
+      !o.fire ? null : [230, 292, 356, 420, 484, 548, 612, 676, 740].map((x, i) =>
+        cir(x, 572 + (i % 2) * 10, 7 + (i % 3) * 3, { fill: o.accent || C.indigo, stroke: 'none' })),
+    ]);
+  }
+
+function drawSignboard(o = {}) {
+    const VB = [720, 540], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, F = { fill: gd };
+    return board(VB, { ...o, w }, [
+      // the wall and the eave over it
+      p('M-10 0 H120 V540 H-10 Z', F),
+      p('M-10 92 H120 M-10 196 H120 M-10 300 H120 M-10 404 H120 M60 0 V92 M40 92 V196 M70 196 V300 M46 300 V404 M66 404 V540', { 'stroke-width': thin }),
+      p('M-10 24 H240 L 268 62 H-10 Z', F),
+      // the bracket, with its scroll and stay
+      p('M120 96 H560'),
+      p('M120 96 L 120 240 M128 232 C 200 214, 244 168, 252 100', { 'stroke-width': thin }),
+      p('M540 96 C 552 96, 560 104, 560 116 C 560 128, 550 134, 540 132', { 'stroke-width': thin }),
+      // the chains and rings
+      p('M236 100 V152 M236 152 C 226 158, 226 172, 236 178 M496 100 V152 M496 152 C 486 158, 486 172, 496 178', { 'stroke-width': thin }),
+      cir(236, 98, 11, { 'stroke-width': thin }), cir(496, 98, 11, { 'stroke-width': thin }),
+      // the board itself
+      p('M168 180 H564 V430 H168 Z', F),
+      p('M186 198 H546 V412 H186 Z', { 'stroke-width': thin }),
+      p('M168 180 L 186 198 M564 180 L 546 198 M168 430 L 186 412 M564 430 L 546 412', { 'stroke-width': thin }),
+      p('M206 246 H528 M206 366 H528', { 'stroke-width': thin, opacity: 0.4 }),
+      cir(366, 306, 54, { fill: o.accent || C.indigo, stroke: 'none' }),
+      cir(366, 306, 78, { 'stroke-width': thin }),
+    ]);
+  }
+
+function drawClocks(o = {}) {
+    const VB = [960, 660], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, F = { fill: gd }, acc = o.accent || C.indigo;
+    const one = (dx) => {
+      const marks = [];
+      for (let i = 0; i < 12; i++) {
+        const a = (i / 12) * Math.PI * 2, r0 = i % 3 === 0 ? 62 : 70;
+        marks.push(`M${(dx + 180 + Math.sin(a) * r0).toFixed(1)} ${(150 - Math.cos(a) * r0).toFixed(1)} L${(dx + 180 + Math.sin(a) * 80).toFixed(1)} ${(150 - Math.cos(a) * 80).toFixed(1)}`);
+      }
+      return [
+        p(`M${dx + 74} 64 C ${dx + 74} 24, ${dx + 286} 24, ${dx + 286} 64 L ${dx + 286} 248 L ${dx + 74} 248 Z`, F),
+        p(`M${dx + 60} 60 H${dx + 300} V84 H${dx + 60} Z`, F),
+        cir(dx + 180, 150, 92, F), cir(dx + 180, 150, 80, { 'stroke-width': thin }),
+        p(marks.join(' '), { 'stroke-width': thin }),
+        p(`M${dx + 180} 150 L ${dx + 180} 108`, { 'stroke-width': sw * 1.2 }),
+        p(`M${dx + 180} 150 L ${dx + 232} 182`, { 'stroke-width': sw }),
+        cir(dx + 180, 150, 7, { fill: col, stroke: 'none' }),
+        p(`M${dx + 96} 248 H${dx + 264} V566 H${dx + 96} Z`, F),
+        p(`M${dx + 116} 272 H${dx + 244} V542 H${dx + 116} Z`, { 'stroke-width': thin }),
+        p(`M${dx + 78} 566 H${dx + 282} L ${dx + 262} 616 H${dx + 98} Z`, F),
+        p(`M${dx + 170} 566 V616`, { 'stroke-width': thin, opacity: 0.4 }),
+      ];
+    };
+    const pend = (dx) => [
+      p(`M${dx + 180} 262 V 452`, { 'stroke-width': sw }),
+      cir(dx + 180, 492, 40, { fill: acc, stroke: acc }),
+      cir(dx + 180, 492, 26, { stroke: gd, 'stroke-width': thin }),
+    ];
+    return board(VB, { ...o, w }, [one(90), one(570), o.pendulum === false ? null : [pend(90), pend(570)]]);
+  }
+
+function pendulum(o = {}) {
+    const VB = [200, 460], w = o.w || 200, s = w / VB[0], acc = o.accent || C.indigo;
+    const el = board(VB, { ...o, w, line: o.line || 4 }, [
+      p('M100 10 V 200', { 'stroke-width': (o.line || 4) / s }),
+      cir(100, 240, 40, { fill: acc, stroke: acc }),
+      cir(100, 240, 26, { stroke: o.fill || '#fff', 'stroke-width': ((o.line || 4) * 0.5) / s }),
+    ]);
+    el.style.transformOrigin = '50% 2%';
+    return el;
+  }
+
+function drawStakeholder(o = {}) {
+    const VB = [640, 660], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, F = { fill: gd };
+    const notes = [];
+    for (let i = 0; i < 6; i++) {
+      const a = -0.5 + i * 0.16, cx = 470, cy = 214, L = 150 + i * 6, Wd = 76;
+      const co = Math.cos(a), si = Math.sin(a);
+      const pt = (u, v) => `${(cx + u * co - v * si).toFixed(1)} ${(cy + u * si + v * co).toFixed(1)}`;
+      notes.push(p(`M${pt(0, -Wd / 2)} L${pt(L, -Wd / 2)} L${pt(L, Wd / 2)} L${pt(0, Wd / 2)} Z`, F));
+      notes.push(p(`M${pt(L * 0.36, -Wd / 2)} L${pt(L * 0.36, Wd / 2)}`, { 'stroke-width': thin, opacity: 0.5 }));
+    }
+    return board(VB, { ...o, w }, [
+      // coat, cap and boots
+      p('M280 150 C 280 118, 296 100, 320 100 C 344 100, 360 118, 360 150 C 360 178, 344 196, 320 196 C 296 196, 280 178, 280 150 Z', F),
+      p('M268 128 C 268 102, 290 86, 320 86 C 350 86, 372 102, 372 128 C 372 140, 350 148, 320 148 C 290 148, 268 140, 268 128 Z', F),
+      p('M366 126 C 402 128, 422 134, 422 142 C 422 151, 394 156, 362 153', F),
+      p('M298 192 C 298 214, 304 226, 320 226 C 336 226, 342 214, 342 192', F),
+      p('M256 246 C 276 232, 364 232, 386 246 C 418 268, 430 400, 424 520 L 218 520 C 210 400, 224 268, 256 246 Z', F),
+      p('M320 232 V520', { 'stroke-width': thin }),
+      p('M286 250 L 320 300 L 354 250', { 'stroke-width': thin }),
+      cir(320, 340, 7, { fill: col, stroke: 'none' }), cir(320, 396, 7, { fill: col, stroke: 'none' }),
+      p('M238 512 L 232 636 L 302 636 L 306 512 Z', F),
+      p('M340 512 L 344 636 L 414 636 L 408 512 Z', F),
+      p('M232 620 H302 M344 620 H414', { 'stroke-width': thin }),
+      // the arm that holds the bets
+      p('M382 258 C 424 268, 452 238, 464 214 L 506 236 C 486 292, 430 330, 378 312 Z', F),
+      notes,
+      p('M446 186 C 478 176, 508 190, 512 216 C 516 244, 494 264, 462 262 C 436 260, 424 244, 424 222 C 424 202, 432 190, 446 186 Z', F),
+      p('M454 214 C 470 206, 486 210, 494 220 M452 234 C 468 228, 484 232, 492 240', { 'stroke-width': thin }),
+    ]);
+  }
+
+function drawTrack(o = {}) {
+    const VB = [960, 520], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, F = { fill: gd }, acc = o.accent || C.indigo;
+    const lanes = [], nums = [];
+    for (let i = 0; i <= 6; i++) lanes.push(`M60 ${140 + i * 62} H930`);
+    for (let i = 0; i < 6; i++) nums.push(svg('text', {
+      x: 96, y: 189 + i * 62, fill: col, stroke: 'none',
+      style: 'font-family:Geist Mono,monospace;font-weight:500;font-size:26px;letter-spacing:0.06em',
+    }, String(i + 1)));
+    const grit = [];
+    const RG = rng(4401);
+    for (let i = 0; i < 260; i++) grit.push(cir(62 + RG() * 866, 142 + RG() * 368, 1.4 + RG() * 2.6, { fill: col, stroke: 'none', opacity: 0.1 + RG() * 0.18 }));
+    const tlabel = (str, x, y, size, color) => svg('text', {
+      x, y, fill: color || col, stroke: 'none',
+      style: `font-family:Geist Mono,monospace;font-weight:500;font-size:${size}px;letter-spacing:0.08em;text-transform:uppercase`,
+    }, str);
+    return board(VB, { ...o, w }, [
+      grit,
+      p(lanes.join(' '), { 'stroke-width': sw * 0.8 }),
+      p('M60 140 V512 M930 140 V512', { 'stroke-width': thin, opacity: 0.4 }),
+      nums,
+      // start and finish
+      p('M150 140 V512', { 'stroke-width': sw * 1.8 }),
+      p('M900 140 V512', { 'stroke-width': sw * 1.8 }),
+      tlabel('start', 150, 124, 24), tlabel('finish', 828, 124, 24),
+      // starting blocks in lane three
+      p('M98 268 H150 M98 262 V274', { 'stroke-width': thin }),
+      p('M104 276 L 136 300 L 148 286 L 116 264 Z', F),
+      p('M104 266 L 136 242 L 148 256 L 116 278 Z', F),
+      // the hundred metres
+      p('M150 84 H900 M150 84 L 180 72 M150 84 L 180 96 M900 84 L 870 72 M900 84 L 870 96', { 'stroke-width': thin, stroke: acc }),
+      svg('text', { x: 525, y: 62, 'text-anchor': 'middle', fill: acc, stroke: 'none', style: 'font-family:Geist Mono,monospace;font-weight:500;font-size:30px;letter-spacing:0.06em' }, '100 m'),
+    ]);
+  }
+
+function flame(wpx, hpx, o = {}) {
+    const el = svg('svg', {
+      width: wpx, height: hpx, viewBox: '0 0 100 160', fill: 'none', stroke: o.color || '#fff',
+      'stroke-width': (o.line || 3) * (100 / wpx), 'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+    }, svg('g', { transform: o.flip ? 'translate(100,0) scale(-1,1)' : null }, [
+      p('M50 159 C 10 130, 16 84, 34 46 C 40 68, 50 80, 58 92 C 66 74, 66 50, 58 24 C 92 62, 98 124, 50 159 Z', { fill: o.fill || 'none' }),
+      p('M50 150 C 30 130, 34 102, 45 80 C 52 100, 62 112, 58 132 C 56 142, 54 148, 50 150 Z', { 'stroke-width': (o.line || 3) * 0.55 * (100 / wpx) }),
+    ]));
+    abs(el, o.at);
+    el.style.transformOrigin = '50% 100%';
+    return el;
+  }function drawMilestone(o = {}) {
+    const VB = [760, 700], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, R = rng(3903), F = { fill: gd };
+    const lichen = [];
+    for (const [bx, by, r] of [[282, 362, 24], [476, 336, 18], [266, 546, 26], [500, 472, 20], [300, 470, 15], [452, 586, 20], [392, 328, 14]]) {
+      const n = 14 + Math.floor(R() * 12);
+      for (let i = 0; i < n; i++) {
+        const a = R() * Math.PI * 2, rr = R() * r;
+        lichen.push(cir(bx + Math.cos(a) * rr * 1.4, by + Math.sin(a) * rr, 2.4 + R() * 4.4, { fill: col, stroke: 'none', opacity: 0.22 + R() * 0.3 }));
+      }
+    }
+    const hatch = [];
+    for (let i = 0; i < 7; i++) { const x = 496 + i * 5, y0 = 400 + i * 22, ln = 150 - i * 16; hatch.push(`M${x} ${y0} v${ln}`); }
+    const blades = [], grit = [];
+    for (let i = 0; i < 26; i++) {
+      const bx = 8 + i * 29 + R() * 14, base = 616 + (R() - 0.5) * 12, n = 2 + Math.round(R());
+      for (let k = 0; k < n; k++) {
+        const hgt = 20 + R() * 44, lean = (k - (n - 1) / 2) * 18 + (R() - 0.5) * 14, x = bx + (k - (n - 1) / 2) * 5;
+        blades.push(`M${x.toFixed(0)} ${base.toFixed(0)} C ${(x + lean * 0.2).toFixed(0)} ${(base - hgt * 0.6).toFixed(0)}, ${(x + lean * 0.5).toFixed(0)} ${(base - hgt * 0.9).toFixed(0)}, ${(x + lean).toFixed(0)} ${(base - hgt).toFixed(0)}`);
+      }
+    }
+    for (let i = 0; i < 96; i++) grit.push(cir(R() * 760, 662 + R() * 38, 1.4 + R() * 2.6, { fill: col, stroke: 'none', opacity: 0.16 + R() * 0.3 }));
+    const carve = (str, y, size) => [
+      svg('text', { x: 389, y: y + 5, 'text-anchor': 'middle', fill: col, opacity: 0.26, stroke: 'none', style: `font-family:Geist;font-weight:600;font-size:${size}px;letter-spacing:0.03em` }, str),
+      svg('text', { x: 386, y, 'text-anchor': 'middle', fill: col, stroke: 'none', style: `font-family:Geist;font-weight:600;font-size:${size}px;letter-spacing:0.03em` }, str),
+    ];
+    return board(VB, { ...o, w }, [
+      // a dry stone field wall behind the verge
+      p('M0 404 H760 M0 446 H760 M0 490 H760 M78 404 V446 M196 404 V446 M320 404 V446 M598 404 V446 M700 404 V446 M140 446 V490 M262 446 V490 M620 446 V490 M710 446 V490 M120 366 H760 M120 366 V404 M250 366 V404 M556 366 V404 M664 366 V404', { 'stroke-width': thin, opacity: 0.5 }),
+      // the stone, set in the verge
+      p('M226 616 L240 362 C242 318, 286 290, 386 290 C486 290, 530 318, 532 362 L546 616 Z', F),
+      p('M254 598 L266 378 C268 342, 310 320, 386 320 C462 320, 504 342, 506 378 L518 598', { 'stroke-width': thin }),
+      p('M244 340 C 254 346, 258 356, 254 366 M528 448 C 518 454, 516 464, 522 474 M238 500 C 248 506, 252 516, 248 526', { 'stroke-width': thin }),
+      p(hatch.join(' '), { 'stroke-width': thin, opacity: 0.3 }),
+      lichen,
+      carve('LIMERICK', 418, 40),
+      p('M306 446 H466', { 'stroke-width': thin * 1.5 }),
+      carve('0', 560, 124),
+      // verge and the road at its foot
+      p(blades.join(' '), { 'stroke-width': thin * 1.4 }),
+      p('M0 620 C 160 612, 250 628, 380 622 C 520 616, 640 628, 760 618', { 'stroke-width': sw }),
+      p('M0 652 C 200 644, 420 658, 760 648', { 'stroke-width': sw }),
+      grit,
+      p('M96 690 C 118 678, 152 680, 162 694 C 148 704, 108 704, 96 690 Z M596 680 C 612 668, 646 670, 654 684', { 'stroke-width': thin * 1.4 }),
+    ]);
+  }
+
+function drawBenchmark(o = {}) {
+    const VB = [960, 470], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, F = { fill: gd }, acc = o.accent || C.indigo, R = rng(4301);
+    const speck = [];
+    for (let i = 0; i < 110; i++) speck.push(cir(R() * 960, 64 + R() * 226, 1.6 + R() * 3, { fill: col, stroke: 'none', opacity: 0.1 + R() * 0.2 }));
+    return board(VB, { ...o, w }, [
+      // the spandrel wall, with the arch cut through it and the river beyond
+      p('M-10 290 H970 V470 H-10 Z', F),
+      p('M-10 366 H970 M60 290 V366 M240 290 V366 M700 290 V366 M860 290 V366 M140 366 V470 M660 366 V470 M820 366 V470 M940 366 V470', { 'stroke-width': thin }),
+      p('M282 470 C 286 382, 380 336, 500 336 C 620 336, 714 382, 718 470 Z', F),
+      p('M282 470 C 286 382, 380 336, 500 336 C 620 336, 714 382, 718 470', { 'stroke-width': sw }),
+      p('M318 470 C 322 402, 398 370, 500 370 C 602 370, 678 402, 682 470', { 'stroke-width': thin }),
+      p('M330 430 h140 M540 428 h130 M356 452 h110 M528 454 h140', { 'stroke-width': thin }),
+      // coping and coursed stone
+      p('M-10 64 H970 V290 H-10 Z', F),
+      p('M-10 20 H970 V64 H-10 Z', F),
+      p('M-10 140 H970 M-10 216 H970', { 'stroke-width': thin }),
+      p('M120 64 V140 M320 64 V140 M640 64 V140 M820 64 V140 M60 140 V216 M240 140 V216 M580 140 V216 M760 140 V216 M920 140 V216 M140 216 V290 M360 216 V290 M660 216 V290 M860 216 V290', { 'stroke-width': thin }),
+      speck,
+      // the mark cut into one block: a bar over a broad arrow
+      p('M434 150 H566 V172 H434 Z', { fill: acc, stroke: acc }),
+      p('M500 186 L 436 272 M500 186 L 564 272 M500 186 V272', { 'stroke-width': sw * 1.5 }),
+      p('M-10 290 H970', { 'stroke-width': sw }),
+    ]);
+  }
+
+function drawDial(o = {}) {
+    const VB = [960, 520], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, F = { fill: gd }, acc = o.accent || C.indigo;
+    const ticks = [];
+    for (let i = 0; i <= 44; i++) {
+      const x = 90 + i * 17.5, big = i % 5 === 0;
+      ticks.push(`M${x.toFixed(1)} 250 v${big ? 34 : 18}`);
+    }
+    const label = (str, x, y, size, color) => svg('text', {
+      x, y, 'text-anchor': 'middle', fill: color || col, stroke: 'none',
+      style: `font-family:Geist Mono,monospace;font-weight:400;font-size:${size}px;letter-spacing:0.02em`,
+    }, str);
+    return board(VB, { ...o, w }, [
+      // cabinet and dial glass
+      p('M20 20 H940 V430 H20 Z', F),
+      p('M60 56 H900 V330 H60 Z', F),
+      p('M78 74 H882 V312 H78 Z', { 'stroke-width': thin }),
+      // the scale
+      p('M90 250 H860', { 'stroke-width': sw }),
+      p(ticks.join(' '), { 'stroke-width': thin }),
+      label('the tasting', 226, 172, 34), label('the florist', 500, 172, 34), label('the numbers', 774, 172, 34),
+      label('long', 140, 300, 22), label('medium', 500, 300, 22), label('short', 840, 300, 22),
+      // the width of one band
+      p('M366 92 V332 M634 92 V332', { 'stroke-width': sw, stroke: acc }),
+      p('M366 116 H634 M366 116 L 392 104 M366 116 L 392 128 M634 116 L 608 104 M634 116 L 608 128', { 'stroke-width': thin, stroke: acc }),
+      // the pointer
+      p('M500 64 L 486 92 H 514 Z', { fill: col }),
+      p('M500 92 V318', { 'stroke-width': sw }),
+      // knobs
+      cir(180, 384, 46, F), cir(180, 384, 30, { 'stroke-width': thin }), p('M180 338 V354 M134 384 H150 M226 384 H210 M180 430 V414', { 'stroke-width': thin }),
+      cir(780, 384, 46, F), cir(780, 384, 30, { 'stroke-width': thin }), p('M780 338 V354 M734 384 H750 M826 384 H810 M780 430 V414', { 'stroke-width': thin }),
+    ]);
+  }
+
+function drawGangway(o = {}) {
+    const VB = [960, 560], w = o.w || COL, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, thin = sw * 0.5, F = { fill: gd }, acc = o.accent || C.indigo;
+    const treads = [];
+    for (let i = 1; i < 13; i++) {
+      const t = i / 13, x = 250 + t * 450, y = 470 - t * 280;
+      treads.push(`M${x.toFixed(0)} ${y.toFixed(0)} L${(x + 14).toFixed(0)} ${(y + 26).toFixed(0)}`);
+    }
+    const posts = [];
+    for (let i = 1; i < 5; i++) {
+      const t = i / 5, x = 250 + t * 450, y = 470 - t * 280;
+      posts.push(`M${x.toFixed(0)} ${y.toFixed(0)} L${(x + 6).toFixed(0)} ${(y - 46).toFixed(0)}`);
+    }
+    return board(VB, { ...o, w }, [
+      // water
+      p('M-10 470 H560', { 'stroke-width': sw }),
+      p('M20 506 h86 M150 522 h70 M60 542 h110 M260 508 h74 M330 540 h96 M430 520 h60', { 'stroke-width': thin }),
+      // the quay and its bollard
+      p('M-10 456 H310 V560 H-10 Z', F),
+      p('M-10 486 H310 M-10 524 H310 M80 486 V524 M210 486 V524 M40 524 V560 M150 524 V560 M260 524 V560', { 'stroke-width': thin }),
+      p('M138 400 L 142 454 H 188 L 192 400 Z', F),
+      p('M128 382 C 128 370, 144 362, 165 362 C 186 362, 202 370, 202 382 C 202 394, 186 400, 165 400 C 144 400, 128 394, 128 382 Z', F),
+      // the hull, in fine hatch, with the deck, the mast and the gangway port
+      p('M880 112 V-30 M846 -4 H914 M880 -18 L 958 52 M880 -18 L 806 52', { 'stroke-width': thin }),
+      p('M540 470 C 548 380, 574 250, 632 150 L 960 150 L 960 470 Z', F),
+      p('M668 190 V470 M796 158 V470 M924 150 V470', { 'stroke-width': thin, opacity: 0.5 }),
+      p('M576 364 H960', { 'stroke-width': thin, opacity: 0.5 }),
+      cir(706, 270, 19, { 'stroke-width': thin }), cir(706, 270, 11, { 'stroke-width': thin }),
+      cir(792, 268, 19, { 'stroke-width': thin }), cir(792, 268, 11, { 'stroke-width': thin }),
+      cir(878, 266, 19, { 'stroke-width': thin }), cir(878, 266, 11, { 'stroke-width': thin }),
+      p('M626 112 H700 M806 112 H960 M632 150 H700 M806 150 H960 M626 112 V150 M700 112 V150 M806 112 V150', { 'stroke-width': sw }),
+      p('M700 112 V48 M806 112 V48 M700 48 H806 M700 78 H806', { 'stroke-width': thin }),
+      cir(946, 86, 24, { 'stroke-width': thin }), cir(946, 86, 14, { 'stroke-width': thin }),
+      // the mooring rope
+      p('M178 370 C 300 350, 470 314, 622 282', { 'stroke-width': thin }),
+      // the gangway itself, with its treads and its rail
+      p('M250 470 L 700 190 L 714 216 L 264 496 Z', F),
+      p(treads.join(' '), { 'stroke-width': thin }),
+      p(posts.join(' '), { 'stroke-width': thin, stroke: acc }),
+      p('M250 424 L 700 144', { 'stroke-width': sw, stroke: acc }),
+      p('M250 424 L 250 470 M700 144 L 700 190', { 'stroke-width': thin, stroke: acc }),
+    ]);
+  }
+
+function drawWalker(o = {}) {
+    const VB = [200, 420], w = o.w || 120, s = w / VB[0], col = o.color || C.ink, gd = o.fill || '#fff';
+    const sw = (o.line || 4) / s, F = { fill: gd };
+    return board(VB, { ...o, w, line: o.line || 4 }, [
+      cir(100, 44, 36, F),
+      p('M64 96 C 76 82, 124 82, 136 96 C 152 116, 158 196, 152 244 L 48 244 C 42 196, 48 116, 64 96 Z', F),
+      p('M64 110 C 52 140, 44 180, 44 214', { 'stroke-width': sw * 0.5 }),
+      p('M136 110 C 150 142, 156 182, 156 214', { 'stroke-width': sw * 0.5 }),
+      p('M66 240 L 58 340 L 44 404 L 84 404 L 96 336 L 104 246 Z', F),
+      p('M112 244 L 130 330 L 158 392 L 192 380 L 160 316 L 142 240 Z', F),
+    ]);
+  }/* Plain Words · FLAGSHIP PROTOTYPE V1 (frozen 2026-10-03). 73 seconds, finished in 16:9; 4K 120 fps master.
+   The story: project software was built by tech companies, for tech companies, and everyone else
+   had to learn its language. Ten words and where they came from, faster and faster. Then the words go,
+   Signal Studio speaks yours, Mara and Finn's plan draws itself as a timeline that runs back through
+   4,500 years of method and folds into four plain words and one drop. Every element is a pure function of t. */
+const FORMATS = {
+  '16x9': { w: 1920, h: 1080, label: '16:9' },
+  '9x16': { w: 1080, h: 1920, label: '9:16' },
+  '4x5': { w: 1080, h: 1350, label: '4:5' },
+};
+// ---- the timeline, shared by every format and by the sound ----------------------------------------
+const T = {
+  hook: [0, 8.2], highlight: 6.7, fly: [7.3, 8.3],
+  words: 8.0,
+  turn: [27.1, 30.8], strike: [30.6, 34.6], product: [34.3, 47.0], distil: [46.8, 55.4], end: 55.2,
+};
+const WORDS = [
+  { word: 'kanban', d: 3.4, head: 'shopfront · signboard', vb: [720, 540], draw: (o) => drawSignboard({ ...o, accent: 'none' }), kanji: true,
+    origin: 'japanese for signboard: the board hung outside a shop' },
+  { word: 'backlog', d: 2.9, head: 'hearth · the back log', vb: [1000, 660], draw: (o) => drawHearth(o), fire: true,
+    origin: 'the biggest log at the back of the fire, put there to burn all night' },
+  { word: 'dashboard', d: 2.7, head: 'carriage · dash-board', vb: [960, 560], draw: (o) => drawCarriage(o), mud: true,
+    origin: 'a board on a carriage that stopped the mud dashing up' },
+  { word: 'sync', d: 2.3, head: 'two clocks · agreeing', vb: [960, 660], draw: (o) => drawClocks({ ...o, pendulum: false }), clocks: true,
+    origin: 'two clocks agreeing' },
+  { word: 'stakeholder', d: 1.8, head: 'race meeting · the stakes', vb: [640, 660], draw: (o) => drawStakeholder(o),
+    origin: 'the one who held the bets' },
+  { word: 'sprint', d: 1.4, head: 'track · a hundred metres', vb: [960, 520], draw: (o) => drawTrack(o),
+    origin: 'a hundred metres, run flat out' },
+  { word: 'milestone', d: 1.1, head: 'roadside · milestone', vb: [760, 700], draw: (o) => drawMilestone(o),
+    origin: 'a stone that tells you how far' },
+  { word: 'benchmark', d: 0.85, head: 'bridge · surveyor’s mark', vb: [960, 470], draw: (o) => drawBenchmark(o),
+    origin: 'a mark cut in stone' },
+  { word: 'bandwidth', d: 0.7, head: 'wireless set · tuning dial', vb: [960, 520], draw: (o) => drawDial(o),
+    origin: 'a band on a radio dial' },
+  { word: 'onboarding', d: 0.6, head: 'quayside · gangway', vb: [960, 560], draw: (o) => drawGangway(o),
+    origin: 'going up the gangway onto a ship' },
+];
+let _a = T.words; WORDS.forEach((w) => { w.a = _a; _a += w.d; w.b = _a; });
+const EXTRA = ['epic', 'velocity', 'burndown', 'swimlane', 'story points', 'OKR', 'workflow', 'certified practitioner'];
+const EXTRA_A = _a, EXTRA_D = 0.1;
+const EXTRA_T = EXTRA.map((_, i) => ({ a: EXTRA_A + i * EXTRA_D, d: i === EXTRA.length - 1 ? 0.55 : EXTRA_D }));
+const WORDS_END = EXTRA_T[EXTRA_T.length - 1].a + EXTRA_T[EXTRA_T.length - 1].d;
+// ---- the edit: two beats are cut into the master timeline ------------------------------------------
+// Scenes are authored on the original ("old") clock. An insert holds the old clock still while its own
+// scene plays on the real clock, so the beats before and after keep their timing.
+const OLD_END = 60;
+const INSERTS = [
+  { key: 'orla', at: 6.66, d: 2.1, hideOld: false },
+  { key: 'bridge', at: WORDS_END + 0.02, d: 2.7, hideOld: true },
+  // the plan runs straight on into the history of method, so the old dated list (47.0 – 50.8) is skipped
+  { key: 'timeline', at: 46.98, d: 11.8, hideOld: true, skip: 3.82 },
+];
+const DURATION = OLD_END + INSERTS.reduce((n, i) => n + i.d - (i.skip || 0), 0);
+function toOld(t) {
+  let off = 0;
+  for (const ins of INSERTS) {
+    if (t < ins.at + off) return t - off;
+    if (t < ins.at + off + ins.d) return ins.at;
+    off += ins.d - (ins.skip || 0);
+  }
+  return t - off;
+}
+function toReal(o) { let off = 0; for (const ins of INSERTS) { if (o <= ins.at) break; if (o < ins.at + (ins.skip || 0)) return ins.at + off + ins.d; off += ins.d - (ins.skip || 0); } return o + off; }
+function insertAt(t) { let off = 0; for (const ins of INSERTS) { const a = ins.at + off; if (t >= a && t < a + ins.d) return { ins, a, lt: t - a }; off += ins.d - (ins.skip || 0); } return null; }
+const insertStart = (key) => { let off = 0; for (const ins of INSERTS) { if (ins.key === key) return ins.at + off; off += ins.d - (ins.skip || 0); } return 0; };
+const STRUCK = [...WORDS.map((w) => w.word), ...EXTRA];
+const STRIKE_AT = (() => { const out = []; let t = 31.5; STRUCK.forEach((_, i) => { out.push(t); t += Math.max(0.05, 0.3 * Math.pow(0.84, i)); }); return out; })();
+const ORLA_NEW = ['Ring Fern and Furrow about the peonies', 'today', 'Friday'];
+const ORLA_TYPED = 'Ring Fern and Furrow about the peonies Friday';
+const PROJECTS = [
+  { at: 0, place: 'The Orchard', kind: 'a wedding venue', who: 'Orla', date: 'Friday 25 September', stats: [5, '11 late across the venue', 35],
+    rows: [['Agree the winter price list', 'late', '7 days late'], ['Chase florist deposit', 'wait', 'Waiting on Fern and Furrow'], ['Approve the brochure copy', 'today', 'Today'], ['Send Mara and Finn the menu options', 'done', 'Done']] },
+  { at: 39.8, place: 'St Brigid’s', kind: 'a school', who: 'Ms Byrne', date: 'Monday 28 September', stats: [3, '1 late', 12],
+    rows: [['Costumes for the school play', 'late', '3 not started'], ['Permission slips from 4B', 'wait', 'Waiting on 6 parents'], ['Book the hall for Friday', 'today', 'Today'], ['Print the programmes', 'done', 'Done']] },
+  { at: 40.9, place: 'Final year', kind: 'a student', who: 'Aoife', date: 'Tuesday 29 September', stats: [4, '1 late', 9],
+    rows: [['Library books', 'late', 'Due yesterday'], ['Feedback from Dr Walsh', 'wait', 'Waiting on Dr Walsh'], ['Chapter three draft', 'today', 'Today'], ['Ethics form', 'done', 'Done']] },
+  { at: 42.0, place: 'Kavanagh job', kind: 'a building crew', who: 'Dara', date: 'Wednesday 30 September', stats: [6, '1 late', 21],
+    rows: [['Van service', 'late', '1 day late'], ['Slates for the roof', 'wait', 'Waiting on the supplier'], ['Quote for the Ryan extension', 'today', 'Today'], ['Scaffolding down at Main St', 'done', 'Done']] },
+];
+const METHODS = [['c. 2500 BC', 'Crews at the pyramids of Giza'], ['1100s', 'Cathedral master builders'], ['1910s', 'Gantt charts'], ['1950s', 'Kanban cards at Toyota'], ['1970', 'Waterfall'], ['2001', 'The Agile manifesto'], ['2010s', 'An app for every method']];
+const BOARD_COLS = [['TO DO', '4/4'], ['IN SPRINT', '4/5'], ['IN REVIEW', '3/3'], ['BLOCKED', '3'], ['DONE', '4']];
+// [column, key, title, type, points, epic, assignee, priority]
+const TICKETS = [
+  [0, 'ORC-142', 'Groom the enquiries backlog', 'story', 3, 'ENQUIRIES', 'OR', 2], [0, 'ORC-147', 'Set kanban limits for tastings', 'task', 5, 'OPS', 'DK', 1],
+  [0, 'ORC-151', 'Spike: winter pricing', 'spike', 8, 'WINTER LAUNCH', 'OR', 2], [0, 'ORC-153', 'Story points for the seating plan', 'story', 13, 'MARA & FINN', 'AB', 3],
+  [1, 'ORC-098', 'Sprint 14 scope: Mara and Finn', 'epic', 21, 'MARA & FINN', 'OR', 3], [1, 'ORC-113', 'Sync stakeholders (the couple)', 'task', 2, 'MARA & FINN', 'OR', 2],
+  [1, 'ORC-120', 'Velocity: 3 weddings a month', 'story', 8, 'OPS', 'DK', 1], [1, 'ORC-124', 'Refactor the run-sheet', 'task', 5, 'OPS', 'AB', 1],
+  [2, 'ORC-075', 'Dashboard for the bar takings', 'story', 5, 'OPS', 'DK', 1], [2, 'ORC-081', 'Retro: the Byrne wedding', 'task', 1, 'OPS', 'OR', 1],
+  [2, 'ORC-084', 'Benchmark the caterers', 'spike', 3, 'WINTER LAUNCH', 'AB', 2],
+  [3, 'ORC-090', 'Blocked by florist dependency', 'bug', 5, 'MARA & FINN', 'OR', 3], [3, 'ORC-092', 'Dependency: marquee permit', 'task', 3, 'WINTER LAUNCH', 'DK', 3],
+  [3, 'ORC-095', 'Awaiting stakeholder sign-off', 'task', 2, 'ENQUIRIES', 'AB', 2],
+  [4, 'ORC-040', 'Epic kickoff: winter launch', 'epic', 13, 'WINTER LAUNCH', 'OR', 1], [4, 'ORC-052', 'Onboarding the new chef', 'task', 3, 'OPS', 'DK', 1],
+  [4, 'ORC-057', 'Swimlane for the marquee', 'task', 2, 'OPS', 'AB', 1], [4, 'ORC-061', 'Deliverable: menu v3', 'story', 5, 'WINTER LAUNCH', 'OR', 2],
+];
+const CHAPTERS = [
+  { t: 0, label: 'Built for them' }, { t: toReal(T.words) - 0.6, label: 'A new language' }, { t: insertStart('bridge'), label: 'Not here' },
+  { t: toReal(T.product[0]), label: 'Your words' }, { t: insertStart('timeline'), label: 'The plan' }, { t: toReal(50.85), label: 'Four words' },
+];
+// per-format layout
+const LAYOUT = {
+  '16x9': { M: 120, hook: 124, hookW: 1680, hookY: 600, cols: 4, colW: 404, boardY: 150,
+    head: 30, hwY: 150, hw: 224, rule2: 420, orY: 460, orW: 620, orSize: 52, box: { x: 840, y: 470, w: 960, h: 500 },
+    turn: 124, turnY: 300, struck: 88, struckY: 420, title: 88,
+    winX: 120, winY: 190, winW: 1180, cap: 'side', capX: 1370, capY: 400, capSize: 80,
+    meth: 52, methY: 300, methGap: 86, markSize: 172, markY: 430, still: 0.8, fourSize: 88, fall: 250, h1Y: 84, h1W: 1100, tag: 52, fourY: 400,
+    hookTop: 76, turnTop: 300, pStart: 380, pTop: 62, pSize: 64, labelAt: 'rule' },
+  '9x16': { M: 84, hook: 104, hookW: 912, hookY: 900, cols: 2, colW: 444, boardY: 170,
+    head: 30, hwY: 230, hw: 190, rule2: 470, orY: 510, orW: 912, orSize: 54, box: { x: 84, y: 780, w: 912, h: 760 },
+    turn: 124, turnY: 520, struck: 84, struckY: 430, title: 84,
+    winX: 84, winY: 560, winW: 912, cap: 'below', capX: 84, capY: 1480, capSize: 84,
+    meth: 48, methY: 336, methGap: 74, markSize: 128, markY: 1300, still: 0.84, fourSize: 104, fall: 260, h1Y: 150, h1W: 912, tag: 51, fourY: 420,
+    hookTop: 560, turnTop: 520, pStart: 640, pTop: 300, pSize: 76, labelAt: 'box' },
+  '4x5': { M: 84, hook: 96, hookW: 912, hookY: 620, cols: 2, colW: 444, boardY: 140,
+    head: 28, hwY: 150, hw: 176, rule2: 380, orY: 412, orW: 912, orSize: 48, box: { x: 84, y: 640, w: 912, h: 560 },
+    turn: 112, turnY: 380, struck: 76, struckY: 300, title: 72,
+    winX: 84, winY: 330, winW: 912, cap: 'below', capX: 84, capY: 1130, capSize: 64,
+    meth: 38, methY: 240, methGap: 52, markSize: 128, markY: 990, still: 0.64, fourSize: 80, fall: 230, h1Y: 84, h1W: 912, tag: 38, fourY: 270,
+    hookTop: 330, turnTop: 330, pStart: 470, pTop: 90, pSize: 58, labelAt: 'box' },
+};
+
+// ---- The plan, as a horizontal timeline: the same grammar as the product's timeline -----------------
+//      Finished milestones are ink beads on an ink line, the next one is the single indigo mark,
+//      what is ahead is a hairline ring, today is a hairline. World units are the wide shot's pixels.
+//      Then the camera keeps going back: the plan shrinks to the present and 4,500 years of method
+//      draw in behind it, before the whole line folds into the indigo mark.
+const TLW = (() => {
+  const T0 = Date.UTC(2026, 2, 1), T1 = Date.UTC(2027, 5, 1);
+  const uOf = (iso) => (Date.parse(iso) - T0) / (T1 - T0);
+  const X0 = 150, X1 = 1770, AY = 600;
+  const xOf = (u) => X0 + (X1 - X0) * u;
+  // lane: 1 sits low, 2 sits high, so no two flags meet; flip puts the words on the left of the leader
+  const STONES = [
+    ['Booked the venue', '2026-03-14', 'done', '14 Mar', 1], ['Menu tasting', '2026-06-12', 'done', '12 Jun', 2], ['Save the dates out', '2026-07-10', 'done', '10 Jul', 1],
+    ['Florist deposit', '2026-10-30', 'next', 'Next · 30 Oct', 1], ['Invitations out', '2027-01-15', 'ahead', '15 Jan', 2], ['Seating plan', '2027-04-09', 'ahead', '9 Apr', 1, true], ['The day', '2027-05-22', 'day', '22 May', 2, true],
+  ].map(([title, iso, state, when, lane, flip]) => ({ title, u: uOf(iso), state, when, lane, flip: !!flip }));
+  const uToday = uOf('2026-09-25'), uNext = STONES[3].u;
+  const MONTHS = Array.from({ length: 15 }, (_, i) => { const d = new Date(Date.UTC(2026, 2 + i, 1)); return { u: uOf(d.toISOString().slice(0, 10)), name: i % 3 ? '' : ['Mar', 'Jun', '', 'Dec', 'Mar'][i / 3], year: i === 0 ? '2026' : i === 12 ? '2027' : '' }; });
+  // the shot: close on the line while it draws to today, a held beat while the next mark lights, back to the
+  // whole plan and a proper dwell, then further back through history, then the fold
+  const SHOT = { draw: [1.2, 3.45], ignite: 4.05, crane: [4.6, 5.95], swap: 7.85, squeeze: [7.9, 9.0], hist: [8.1, 9.7], fold: [10.95, 11.55], end: 11.8 };
+  const drawEase = bezier(0.42, 0.05, 0.25, 1);
+  const uHead = (lt) => uToday * drawEase(seg(lt, SHOT.draw[0], SHOT.draw[1]));
+  const reach = (u) => { for (let lt = 0; lt < 7.2; lt += 0.005) if (uHead(lt) >= u) return lt; return 7.2; };
+  STONES.forEach((st, i) => { st.land = st.state === 'done' ? reach(st.u) : st.state === 'next' ? SHOT.ignite : 4.95 + (i - 4) * 0.2; });
+  MONTHS.forEach((m) => { m.at = m.u <= uToday ? reach(m.u) - 0.08 : 4.8 + (m.u - uToday) * 1.6; });
+  // history: not to scale (the axis breaks say so); the present, squeezed, sits at the right
+  const P0 = 1560;
+  const HIST = [['Crews at Giza', 'c. 2500 BC', 160], ['Cathedral builders', '1100s', 400], ['Gantt charts', '1910s', 610], ['Kanban at Toyota', '1950s', 840],
+    ['Waterfall', '1970', 1050], ['The Agile manifesto', '2001', 1270], ['An app for every method', '2010s', 1470]].map(([title, when, x], i) => ({ title, when, x, lane: i % 2 ? 2 : 1 }));
+  const histHead = (lt) => P0 - (P0 - X0) * drawEase(seg(lt, SHOT.hist[0], SHOT.hist[1]));
+  HIST.forEach((m) => { for (let lt = SHOT.hist[0]; lt < 11; lt += 0.005) if (histHead(lt) <= m.x) { m.land = lt; break; } });
+  const BREAKS = [280, 505];
+  return { uOf, xOf, X0, X1, AY, P0, STONES, MONTHS, HIST, BREAKS, uToday, uNext, SHOT, uHead, histHead };
+})();
+
+const STAGE = document.getElementById('stage');
+// reduced motion: no motion blur on the rolling words and no slow camera push; the edit itself is unchanged
+const REDUCED = !/#render/.test(location.hash) && typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+function buildFilm(fmtKey) {
+  const FMT = FORMATS[fmtKey], L = LAYOUT[fmtKey], W = FMT.w, H = FMT.h, M = L.M, V = H > W;
+  STAGE.innerHTML = '';
+  STAGE.style.width = W + 'px'; STAGE.style.height = H + 'px';
+  const scenes = [], afterFonts = [];
+  const scene = (a, b, build) => { const root = h('div.scene', { at: { x: 0, y: 0, w: W, h: H } }); STAGE.append(root); const s = { a, b, root, ...build(root) }; scenes.push(s); return s; };
+  const mono = (str, o = {}) => h('div.mono', { at: o.at, style: { fontSize: px(o.size || 28), color: o.color || C.g500, whiteSpace: 'nowrap', letterSpacing: '0.01em', ...(o.style || {}) } }, str);
+  const words = (str, o = {}) => h('div', { at: o.at, style: { fontSize: px(o.size || 64), fontWeight: o.weight || 600, letterSpacing: o.track || '-0.04em', lineHeight: o.lh || 1.04, color: o.color || C.ink, textWrap: 'balance', ...(o.style || {}) } }, str);
+  const rule = (x, y, w, t = 2, color = C.ink) => h('div', { at: { x, y, w, h: t }, style: { background: color, transformOrigin: '0 50%' } });
+  // a line revealed from below its own baseline
+  const reveal = (el, q, out = 0) => { el.style.clipPath = `inset(${(out * 100).toFixed(2)}% -5% ${((1 - q) * 100).toFixed(2)}% -5%)`; set(el, { y: (1 - q) * 40 - out * 40, o: 1 }); };
+  const push = (t, a, b) => ease.inOut(seg(t, a, b)); // shared exit: up and away
+
+  // =================================================================================================
+  // 1 · Built for them · 0 – 8.3
+  //     Orla's to-do list, as a tool built for engineers would show it: sprints, WIP limits,
+  //     story points, a burndown. The headline holds the left; the board stays legible on the right.
+  // =================================================================================================
+  const hook = scene(T.hook[0], T.hook[1] + 0.1, (root) => {
+    const BX = 64, BY = 520, BW = W - 128, BH = 900, PAD = 28;
+    const win = h('div', { at: { x: BX, y: BY, w: BW, h: BH }, style: { background: C.sheet, borderRadius: '22px', boxShadow: `0 0 0 2px ${C.hair}`, overflow: 'hidden' } });
+    const drift = h('div', { at: { x: 0, y: 0, w: BW, h: BH } });
+    win.append(drift);
+    // the tool: crumbs, tabs, filters, people, the button
+    const tb = h('div', { at: { x: 0, y: 0, w: BW, h: 72 }, style: { display: 'flex', alignItems: 'center', gap: '22px', padding: `0 ${PAD}px`, borderBottom: `2px solid ${C.hair}`, fontSize: '22px', color: C.g500, whiteSpace: 'nowrap' } });
+    const tab = (label, on) => h('span', { style: { padding: '8px 14px', borderRadius: '10px', background: on ? C.fill : 'transparent', color: on ? C.ink : C.g500, fontWeight: on ? 500 : 400 } }, label);
+    const chip = (label) => h('span.mono', { style: { fontSize: '17px', padding: '7px 12px', borderRadius: '8px', boxShadow: `inset 0 0 0 2px ${C.hair}`, color: C.g500 } }, label);
+    const av = (ini, i) => h('span.mono', { style: { width: '34px', height: '34px', borderRadius: '50%', display: 'grid', placeItems: 'center', fontSize: '13px', color: C.g700, background: C.fill, boxShadow: `0 0 0 3px ${C.sheet}`, marginLeft: i ? '-10px' : '0' } }, ini);
+    tb.append(
+      h('span.mono', { style: { fontSize: '19px', color: C.g500 } }, 'The Orchard / Orla’s board'),
+      h('span', { style: { display: 'flex', gap: '4px', marginLeft: '10px' } }, tab('Backlog'), tab('Active sprint', true), tab('Roadmap'), tab('Reports')),
+      h('span', { style: { display: 'flex', gap: '10px', marginLeft: 'auto' } }, chip('Epic ▾'), chip('Story points ▾'), chip('Swimlanes ▾')),
+      h('span', { style: { display: 'flex' } }, ...['OR', 'DK', 'AB', 'MF'].map(av)),
+      h('span', { style: { fontSize: '20px', fontWeight: 500, color: C.ink, padding: '10px 18px', borderRadius: '10px', background: C.fill } }, 'Complete sprint'));
+    // the sprint bar, with a burndown that is, of course, behind
+    const sb = h('div', { at: { x: 0, y: 72, w: BW, h: 64 }, style: { display: 'flex', alignItems: 'center', gap: '26px', padding: `0 ${PAD}px`, borderBottom: `2px solid ${C.hair}`, fontSize: '20px', color: C.g500, whiteSpace: 'nowrap' } });
+    const burn = svg('svg', { width: 150, height: 36, viewBox: '0 0 150 36', fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' },
+      p('M2 4 L148 32', { stroke: C.g300, 'stroke-width': 2, 'stroke-dasharray': '4 5' }),
+      p('M2 4 L22 6 L40 6 L58 12 L76 12 L94 13 L112 18 L130 19 L148 22', { stroke: C.g700, 'stroke-width': 2.5, pathLength: 1 }));
+    sb.append(h('b', { style: { color: C.ink, fontWeight: 500 } }, 'Sprint 14'), ...['6 days left', '·', 'Velocity 21', '·', '34 story points committed'].map((x) => h('span', { style: x === '·' ? { color: C.g400 } : {} }, x)), h('span', { style: { marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '12px' } }, h('span.mono', { style: { fontSize: '16px' } }, 'BURNDOWN'), burn));
+    drift.append(tb, sb);
+    // columns
+    const cols = BOARD_COLS.length, gap = 16, colW = (BW - PAD * 2 - gap * (cols - 1)) / cols, top = 160;
+    const colEls = [], heads = [], cards = [];
+    BOARD_COLS.forEach(([name, wip], i) => {
+      const x = PAD + i * (colW + gap);
+      const colEl = h('div', { at: { x, y: top, w: colW, h: BH - top - 20 }, style: { background: C.wash, borderRadius: '16px' } });
+      const count = h('span', { style: { color: C.g400, marginLeft: '10px' } }, wip);
+      const headEl = h('div.mono', { at: { x: x + 18, y: top + 18 }, style: { fontSize: '18px', color: C.g500, letterSpacing: '0.08em', whiteSpace: 'nowrap' } }, name, count);
+      drift.append(colEl, headEl); colEls.push(colEl, headEl); heads.push(count);
+    });
+    const TYPE = {
+      story: () => svg('svg', { width: 18, height: 18, viewBox: '0 0 18 18' }, svg('rect', { x: 2, y: 2, width: 14, height: 14, rx: 3, fill: C.g500 })),
+      task: () => svg('svg', { width: 18, height: 18, viewBox: '0 0 18 18', fill: 'none', stroke: C.g500, 'stroke-width': 2.2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg('rect', { x: 2, y: 2, width: 14, height: 14, rx: 3 }), p('M5.5 9.5l2.5 2.5 4.5-5')),
+      bug: () => svg('svg', { width: 18, height: 18, viewBox: '0 0 18 18' }, cir(9, 9, 7, { fill: C.late })),
+      epic: () => svg('svg', { width: 18, height: 18, viewBox: '0 0 18 18' }, p('M10 1 L3 10 H8 L7 17 L15 7 H10 Z', { fill: C.g700 })),
+      spike: () => svg('svg', { width: 18, height: 18, viewBox: '0 0 18 18' }, p('M9 1 L17 9 L9 17 L1 9 Z', { fill: C.g500 })),
+    };
+    const prio = (n) => svg('svg', { width: 16, height: 16, viewBox: '0 0 16 16', fill: 'none', stroke: C.g500, 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, ...[0, 1, 2].slice(0, n).map((k) => p(`M3 ${11 - k * 4} L8 ${7 - k * 4} L13 ${11 - k * 4}`)));
+    const per = new Array(cols).fill(0), CH = 150;
+    let kanban = null;
+    TICKETS.forEach(([c, key, title, type, pts, epic, who, pr], k) => {
+      const j = per[c]++;
+      const titleEl = h('div', { style: { fontSize: '23px', fontWeight: 500, letterSpacing: '-0.012em', lineHeight: 1.2, color: C.ink, marginTop: '10px', height: '56px', overflow: 'hidden' } });
+      if (title.includes('kanban')) { const [pre, post] = title.split('kanban'); titleEl.append(pre, h('span.kw', null, 'kanban'), post); } else titleEl.append(title);
+      const card = h('div', { at: { x: PAD + c * (colW + gap) + 10, y: top + 58 + j * (CH + 12), w: colW - 20, h: CH }, style: { background: C.paper, borderRadius: '12px', padding: '14px 16px', boxShadow: `0 0 0 2px ${C.hair}`, transformOrigin: '50% 50%' } },
+        h('div', { style: { display: 'flex', alignItems: 'center', gap: '8px' } }, TYPE[type](), h('span.mono', { style: { fontSize: '16px', color: C.g500, letterSpacing: '0.03em' } }, key), h('span', { style: { marginLeft: 'auto', display: 'flex' } }, prio(pr))),
+        titleEl,
+        h('div', { style: { display: 'flex', alignItems: 'center', gap: '8px', marginTop: '6px' } },
+          h('span.mono', { style: { fontSize: '13px', color: C.g500, padding: '4px 8px', borderRadius: '6px', background: C.fill, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '62%' } }, epic),
+          h('span.mono', { style: { marginLeft: 'auto', fontSize: '14px', color: C.g700, minWidth: '26px', height: '26px', padding: '0 7px', borderRadius: '13px', background: C.fill, display: 'grid', placeItems: 'center' } }, String(pts)),
+          h('span.mono', { style: { width: '28px', height: '28px', borderRadius: '50%', display: 'grid', placeItems: 'center', fontSize: '11px', color: C.g700, background: C.fill } }, who)));
+      const it = { card, k, c, at: -0.32 + k * 0.045, kw: titleEl.querySelector('.kw'), florist: title.startsWith('Blocked by florist') };
+      if (it.kw) kanban = it;
+      cards.push(it); drift.append(card);
+    });
+    // the headline's side: a dark wash from the left, so the type reads and the board stays visible
+    // the board bleeds off the bottom of the frame; a soft fade lets it go
+    const scrim = h('div', { at: { x: 0, y: H - 220, w: W, h: 220 }, style: { background: `linear-gradient(180deg, rgba(17,17,19,0) 0%, rgba(17,17,19,0.92) 85%)` } });
+    root.append(win, scrim);
+    const mk = (str, grey) => words(str, { size: L.hook, track: '-0.045em', lh: 1.02, color: grey ? C.g500 : C.ink, style: { position: 'relative' } });
+    const colA = h('div', { at: { x: M, y: L.hookTop, w: L.hookW }, style: { display: 'flex', flexDirection: 'column', gap: px(L.hook * 0.28) } });
+    const colB = h('div', { at: { x: M, y: L.hookTop, w: L.hookW }, style: { display: 'flex', flexDirection: 'column', gap: px(L.hook * 0.28) } });
+    const l1 = mk('Project management was built by tech companies.'), l2 = mk('For tech companies.', true);
+    const l3 = mk('Everyone else was expected to adapt.'), l4 = mk('And to learn a whole new language, just to use a tool.', true);
+    colA.append(l1, l2); colB.append(l3, l4);
+    root.append(colA, colB);
+    return {
+      cards, kanban,
+      update(t) {
+        const gone = seg(t, 7.45, 8.0);
+        win.style.opacity = (1 - gone).toFixed(3);
+        scrim.style.opacity = (1 - gone).toFixed(3);
+        // the board makes room for the longer lines, then comes back up for Orla
+        const by = 300 * ease.inOut(seg(t, 3.25, 3.75)) - 340 * ease.inOut(seg(t, 6.2, 6.64));
+        win.style.transform = `translate3d(0, ${by.toFixed(2)}px, 0)`;
+        drift.style.transformOrigin = '70% 0'; drift.style.transform = `scale(${(1 + 0.025 * ease.soft(seg(t, 0, 7.4))).toFixed(4)})`;
+        const hl = ease.out(seg(t, T.highlight, T.highlight + 0.5));
+        const burnQ = ease.draw(seg(t, 0.6, 1.6));
+        burn.lastChild.style.strokeDasharray = '1 1'; burn.lastChild.style.strokeDashoffset = (1 - burnQ).toFixed(3);
+        tb.style.opacity = sb.style.opacity = lerp(1, 0.25, hl).toFixed(3);
+        colEls.forEach((el) => { el.style.opacity = lerp(1, 0.35, hl).toFixed(3); });
+        cards.forEach((it) => {
+          const q = ease.out(seg(t, it.at, it.at + 0.24));
+          const isK = it === kanban, isF = it.florist;
+          const fl = isF ? ease.out(seg(t, 6.3, 6.62)) * (1 - ease.out(seg(t, T.highlight, T.highlight + 0.3))) : 0;
+          const base = 0.92;
+          const level = isK ? lerp(base, 1, hl) : lerp(lerp(base, 1, fl), 0.1, hl);
+          set(it.card, { y: (1 - q) * -18 - (isK ? hl * 10 : 0), s: isK ? 1 + 0.05 * hl : 1 + 0.03 * fl, o: q * level * (1 - (isK ? seg(t, 7.7, 8.25) : 0)) });
+          it.card.style.zIndex = isK || isF ? 5 : 1;
+          if (isK && it.kw) {
+            it.kw.style.opacity = t >= T.fly[0] ? 0 : 1;
+            it.kw.style.color = hl > 0 ? `rgb(${C.inkRGB.map((v, j) => Math.round(lerp(v, C.indigoRGB[j], hl))).join(',')})` : '';
+            it.kw.style.boxShadow = `inset 0 -${(4 * hl).toFixed(1)}px 0 ${C.indigo}`;
+          }
+          if (isF) it.card.style.boxShadow = fl > 0.01 ? `0 0 0 2px rgba(139,135,248,${(0.9 * fl).toFixed(3)}), 0 0 ${Math.round(40 * fl)}px rgba(139,135,248,${(0.28 * fl).toFixed(3)})` : `0 0 0 2px ${C.hair}`;
+        });
+        reveal(l1, 1, push(t, 3.2, 3.55)); l1.style.opacity = t < 3.55 ? 1 : 0;
+        reveal(l2, ease.out(seg(t, 1.5, 2.0)), push(t, 3.2, 3.55)); l2.style.opacity = t < 3.55 ? 1 : 0;
+        reveal(l3, ease.out(seg(t, 3.55, 4.05)), push(t, 6.3, 6.65)); l3.style.opacity = t >= 3.55 && t < 6.65 ? 1 : 0;
+        reveal(l4, ease.out(seg(t, 4.35, 4.85)), push(t, 6.3, 6.65)); l4.style.opacity = t >= 4.35 && t < 6.65 ? 1 : 0;
+      },
+    };
+  });
+
+  // =================================================================================================
+  // 2 · A whole new language · 8.0 – 27.0, faster and faster
+  // =================================================================================================
+  const lang = scene(T.fly[0], WORDS_END + 0.02, (root) => {
+    const chrome = h('div', { at: { x: 0, y: 0, w: W, h: H } });
+    const runY = L.hwY - 86;
+    chrome.append(mono('a whole new language', { size: L.head, at: { x: M, y: runY } }));
+    const counter = mono('', { size: L.head, color: C.g500, at: { r: M, y: runY }, style: { fontVariantNumeric: 'tabular-nums' } });
+    const headLabel = mono('', { size: L.head, color: C.g500, at: L.labelAt === 'rule' ? { r: M, y: L.rule2 + 20 } : { x: M, y: L.box.y - 56 } });
+    const r1 = rule(M, runY + 46, W - 2 * M), r2 = rule(M, L.rule2, W - 2 * M, 2, C.g300);
+    chrome.append(counter, r1, r2);
+    root.append(chrome);
+    // the headword slot: a masked window, so words roll like a dictionary's pages
+    const fitSize = (w) => Math.min(L.hw, Math.floor((W - 2 * M) / (Math.max(5, w.length) * 0.56)));
+    const slot = h('div', { at: { x: M - 8, y: L.hwY, w: W - 2 * M + 16, h: Math.round(L.hw * 1.12) }, style: { overflow: 'hidden' } });
+    root.append(slot);
+    const all = [...WORDS.map((w) => ({ ...w })), ...EXTRA.map((wd, i) => ({ word: wd, a: EXTRA_T[i].a, d: EXTRA_T[i].d, b: EXTRA_T[i].a + EXTRA_T[i].d, extra: true, last: i === EXTRA.length - 1 }))];
+    const items = all.map((pl, idx) => {
+      const size = fitSize(pl.word);
+      const wordEl = h('div', { at: { x: 0, y: Math.round(L.hw * 1.12 - size * 1.08) }, style: { fontSize: px(size), fontWeight: 600, letterSpacing: '-0.055em', lineHeight: 1, whiteSpace: 'nowrap', transformOrigin: '0 0', color: pl.extra && !pl.last ? C.g700 : C.ink } }, h('span.hw', null, pl.word));
+      slot.append(wordEl);
+      const it = { pl, idx, wordEl, size };
+      if (!pl.extra) {
+        it.g = h('div', { at: { x: 0, y: 0, w: W, h: H } });
+        it.origin = h('div', { at: { x: M, y: L.orY, w: L.orW }, style: { fontSize: px(L.orSize), fontWeight: 500, letterSpacing: '-0.02em', lineHeight: 1.16, color: C.ink, textWrap: 'balance' } });
+        it.head = pl.head;
+        const pos = place(pl.vb, L.box);
+        it.pos = pos;
+        it.art = pl.draw({ w: pos.w, fill: C.paper, color: C.ink, line: V ? 3.6 : 4, accent: C.indigo });
+        abs(it.art, { x: pos.x, y: pos.y });
+        // each plate's one indigo moment: the part of the drawing the word is named for
+        const wash = 'rgba(79,70,229,0.22)';
+        if (pl.word === 'dashboard') it.art.querySelectorAll('path').forEach((e) => {
+          const d = e.getAttribute('d') || '';
+          if (d.startsWith('M544 300')) { e.setAttribute('stroke', C.indigo); e.setAttribute('fill', wash); }
+          if (d.startsWith('M560 186') || d.startsWith('M556 294') || d.startsWith('M632 298')) e.setAttribute('stroke', C.indigo);
+        });
+        if (pl.word === 'stakeholder') {
+          const ps = [...it.art.querySelectorAll('path')], i0 = ps.findIndex((e) => (e.getAttribute('d') || '').startsWith('M382 258')), i1 = ps.findIndex((e) => (e.getAttribute('d') || '').startsWith('M446 186'));
+          ps.slice(i0 + 1, i1).forEach((e) => { e.setAttribute('stroke', C.indigo); if (e.getAttribute('fill') && e.getAttribute('fill') !== 'none') e.setAttribute('fill', wash); });
+        }
+        if (pl.word === 'milestone') it.art.querySelectorAll('text').forEach((e) => e.setAttribute('fill', C.indigo));
+        if (pl.kanji) {
+          it.art.querySelectorAll('circle').forEach((c) => {
+            if (c.getAttribute('r') === '54') c.remove();
+            // the ring behind the characters, in the deeper brand indigo with a faint wash
+            if (c.getAttribute('r') === '78') { c.setAttribute('r', '106'); c.setAttribute('stroke', C.indigoDeep); c.setAttribute('fill', 'rgba(79,70,229,0.22)'); c.dataset.ring = '1'; }
+          });
+          const ks = 84 / KANJI.upm;
+          it.art.append(svg('path', { d: KANJI.paths['看'], fill: C.indigo, stroke: 'none', transform: `translate(278 337) scale(${ks} ${-ks})` }));
+          it.art.append(svg('path', { d: KANJI.paths['板'], fill: C.indigo, stroke: 'none', transform: `translate(370 337) scale(${ks} ${-ks})` }));
+        }
+        if (pl.mud) {
+          // the mud is thrown: every fleck starts at the hooves and flies to where it lands
+          it.mud = [...it.art.querySelectorAll('circle')].filter((c) => c.getAttribute('stroke') === 'none' && +c.getAttribute('r') < 9 && +c.getAttribute('cx') > 320 && +c.getAttribute('cx') < 650)
+            .map((c, i) => ({ c, fx: +c.getAttribute('cx'), fy: +c.getAttribute('cy'), k: i }));
+          it.mud.forEach((m) => { m.c.dataset.mud = '1'; });
+        }
+        it.d = prepDraw(it.art, (e) => e.dataset && e.dataset.mud);
+        it.g.append(it.origin, it.art);
+        if (pl.fire) {
+          const P = (x, y) => [pos.x + x * pos.s, pos.y + y * pos.s], base = P(0, 534)[1];
+          it.flames = [[324, 270, true], [500, 352, false], [676, 216, false], [420, 120, true], [608, 108, false]].map(([cx, hv, flip]) => {
+            const hp = hv * pos.s, wp = hp * 0.66;
+            return flame(wp, hp, { color: C.indigo, fill: 'rgba(79,70,229,0.22)', line: V ? 3.6 : 4, flip, at: { x: P(cx, 0)[0] - wp / 2, y: base - hp } });
+          });
+          it.embers = [228, 276, 330, 372, 430, 478, 524, 576, 624, 672, 726, 768].map((x, i) => {
+            const [ax, ay] = P(x, 574 + (i % 2) * 10), dd = 8 + ((i * 7) % 5) * 3;
+            return h('div', { at: { x: ax - dd / 2, y: ay - dd / 2, w: dd, h: dd }, style: { borderRadius: '50%', background: i % 3 ? C.indigoDeep : C.indigo } });
+          });
+          // the big log at the back, the backlog itself, outlined in indigo
+          it.art.querySelectorAll('path, ellipse').forEach((e) => {
+            const d = e.getAttribute('d') || '';
+            if (d.startsWith('M156 400') || d.startsWith('M200 428') || (e.tagName === 'ellipse' && e.getAttribute('cx') === '156')) e.setAttribute('stroke', C.indigo);
+          });
+          const lp = P(160, 470);
+          it.label = h('div', { at: { x: 0, y: 0, w: W, h: H } },
+            svg('svg', { width: W, height: H, style: 'position:absolute;left:0;top:0', fill: 'none', stroke: C.leader, 'stroke-width': 2, 'stroke-linecap': 'round' },
+              p(`M${lp[0]} ${lp[1]} L${lp[0]} ${lp[1] + 120}`), cir(lp[0], lp[1], 6, { fill: C.ink, stroke: 'none' })),
+            mono('the backlog', { size: 30, color: C.ink, at: { x: lp[0] - 8, y: lp[1] + 128 } }));
+          it.g.append(...it.flames, ...it.embers, it.label);
+        }
+        if (pl.clocks) {
+          const pw = 200 * pos.s;
+          it.pends = [90, 570].map((dx) => { const el = pendulum({ w: pw, accent: C.indigo, fill: C.paper, line: V ? 3.6 : 4 }); abs(el, { x: pos.x + (dx + 80) * pos.s, y: pos.y + 252 * pos.s }); return el; });
+          it.g.append(...it.pends);
+        }
+        root.append(it.g);
+      }
+      return it;
+    });
+    root.append(headLabel);
+    return {
+      items, root,
+      update(t) {
+        const cin = ease.out(seg(t, T.words - 0.1, T.words + 0.5));
+        chrome.style.opacity = cin.toFixed(3);
+        r1.style.transform = `scaleX(${ease.inOut(seg(t, T.words - 0.1, T.words + 0.7)).toFixed(4)})`;
+        r2.style.transform = `scaleX(${ease.inOut(seg(t, T.words + 0.1, T.words + 0.9)).toFixed(4)})`;
+        let cur = items.findIndex((it) => t >= it.pl.a && t < it.pl.b); if (cur < 0) cur = t < T.words ? 0 : items.length - 1;
+        root.__push = 0;
+        counter.textContent = `word ${cur + 1}`;
+        const curIt = items[cur];
+        headLabel.textContent = curIt.head || '';
+        headLabel.style.opacity = curIt.head ? (cin * (curIt.pl.d > 1 ? ease.out(seg(t - curIt.pl.a, 0.1, 0.4)) : 1)).toFixed(3) : '0';
+        slot.style.overflow = t < T.fly[1] ? 'visible' : 'hidden';
+        items.forEach((it, idx) => {
+          const { pl } = it, lt = t - pl.a;
+          const roll = Math.max(0.1, Math.min(0.2, pl.d * 0.3));
+          const visible = t >= pl.a - 0.001 && t < pl.b + roll;
+          it.wordEl.style.display = visible || (idx === 0 && t < pl.a) ? '' : 'none';
+          if (idx === 0 && it.from && t < T.fly[1]) {
+            const f = ease.inOut(seg(t, T.fly[0], T.fly[1]));
+            set(it.wordEl, { x: lerp(it.from.dx, 0, f), y: lerp(it.from.dy, 0, f), s: lerp(it.from.s, 1, f), o: t >= T.fly[0] ? 1 : 0 });
+            const settle = seg(t, T.fly[1] - 0.35, T.fly[1]);
+            it.wordEl.style.color = `rgb(${C.indigoRGB.map((v, j) => Math.round(lerp(v, C.inkRGB[j], settle))).join(',')})`;
+          } else if (visible) {
+            const inQ = idx === 0 ? 1 : ease.inOut(seg(lt, 0, roll));
+            const outQ = idx === items.length - 1 ? 0 : ease.inOut(seg(t, pl.b, pl.b + roll));
+            const SH = L.hw * 1.12 + 8; set(it.wordEl, { y: (1 - inQ) * SH - outQ * SH, o: 1 });
+            if (idx === 0) it.wordEl.style.color = C.ink;
+            const v = Math.max(Math.sin(Math.PI * clamp(inQ)) * (inQ < 1 ? 1 : 0), Math.sin(Math.PI * clamp(outQ)) * (outQ > 0 ? 1 : 0)) * (SH / roll) / 60;
+            it.wordEl.style.filter = !REDUCED && v > 0.6 ? `url(#vblur-${Math.min(5, Math.round(v / 2.4) + 1)})` : 'none';
+          }
+          if (!it.g) return;
+          const live = t >= pl.a && t < pl.b;
+          it.g.style.display = live ? '' : 'none';
+          if (!live) return;
+          it.art.style.transformOrigin = '50% 60%'; it.art.style.transform = `scale(${(1 + 0.035 * seg(lt, 0, pl.d)).toFixed(4)})`;
+          const long = pl.d >= 2;
+          it.origin.textContent = long ? typeOn(pl.origin, seg(lt, 0.2, 0.2 + Math.min(1.1, pl.d * 0.32))) : pl.origin;
+          const dp = seg(lt, 0, Math.max(0.42, pl.d * (long ? 0.72 : 0.62)));
+          drawOn(it.d, dp);
+          if (it.mud) it.mud.forEach((m) => {
+            const a0 = 0.55 + (m.k % 46) / 46 * 0.7 + (m.k >= 46 ? 0.35 : 0), k = ease.out(seg(lt, a0, a0 + 0.42));
+            const hx = 390, hy = 482;
+            m.c.setAttribute('cx', lerp(hx, m.fx, k).toFixed(1)); m.c.setAttribute('cy', (lerp(hy, m.fy, k) - Math.sin(k * Math.PI) * 60).toFixed(1));
+            m.c.style.opacity = k > 0 ? 1 : 0;
+          });
+          if (it.flames) {
+            const breath = 0.88 + 0.12 * Math.cos((t / 3.2) * Math.PI * 2);
+            it.flames.forEach((el, i) => {
+              const ph = i * 0.37, grow = ease.out(seg(lt, 1.3 + i * 0.1, 2.0 + i * 0.1));
+              const fl = 1 + 0.09 * Math.sin((t / 0.8 + ph) * Math.PI * 2) + 0.045 * Math.sin((t / 0.4 + ph * 2) * Math.PI * 2);
+              set(el, { sy: grow * breath * fl, sx: 1 + 0.05 * Math.sin((t / 0.8 + ph + 0.4) * Math.PI * 2), o: grow });
+            });
+            it.embers.forEach((el, i) => set(el, { o: seg(lt, 1.6, 2.1) * (0.35 + 0.65 * pulse(t + i * 0.31, 1.4)) }));
+            set(it.label, { o: ease.out(seg(lt, 0.9, 1.3)) });
+          }
+          if (it.pends) {
+            const phase = lerp(2.6, 0, ease.inOut(seg(lt, 0.5, 1.7)));
+            it.pends.forEach((el, i) => { el.style.transformOrigin = '50% 2%'; set(el, { r: 11 * Math.cos(((lt - 0.2) / 0.9) * Math.PI + (i ? phase : 0)), o: seg(dp, 0.5, 0.75) }); });
+          }
+        });
+      },
+    };
+  });
+  afterFonts.push({ at: 7.2, fn: () => {
+    const k0 = hook.kanban, it = lang.items[0];
+    if (!k0 || !k0.kw) return;
+    const target = it.wordEl.querySelector('.hw');
+    const keep = [k0.card.style.transform, it.wordEl.style.transform];
+    k0.card.style.transform = 'translate3d(0,-10px,0) scale(1.04)'; it.wordEl.style.transform = 'none';
+    lang.root.style.display = ''; it.wordEl.style.display = '';
+    const sr = STAGE.getBoundingClientRect(), k = sr.width / W;
+    const a = k0.kw.getBoundingClientRect(), b = target.getBoundingClientRect();
+    it.from = { dx: (a.left - b.left) / k, dy: (a.top - b.top) / k, s: a.height / b.height };
+    k0.card.style.transform = keep[0]; it.wordEl.style.transform = keep[1];
+  } });
+
+  // =================================================================================================
+  // 3 · You shouldn't need a new language · 27.1 – 34.6
+  //     The claim, then the words struck out beneath it: one beat, not two.
+  // =================================================================================================
+  scene(T.turn[0], T.strike[1], (root) => {
+    const col = h('div', { at: { x: M - 4, y: L.turnTop, w: W - 2 * M }, style: { display: 'flex', flexDirection: 'column', gap: px(L.turn * 0.3), transformOrigin: '0 0' } });
+    const a = words('You shouldn’t need a new language to run your project.', { size: L.turn, track: '-0.05em', lh: 1.02, style: { position: 'relative' } });
+    const b = words('Or a certification.', { size: L.turn, track: '-0.05em', lh: 1.02, color: C.g500, style: { position: 'relative' } });
+    col.append(a, b);
+    const list = h('div', { at: { x: M, y: L.struckY, w: W - 2 * M }, style: { display: 'flex', flexWrap: 'wrap', gap: `4px ${Math.round(L.struck * 0.42)}px`, fontSize: px(L.struck), fontWeight: 500, letterSpacing: '-0.045em', lineHeight: 1.12 } });
+    const items = STRUCK.map((wd, i) => {
+      const line = h('span', { style: { position: 'absolute', left: '-0.03em', right: '-0.03em', top: '55%', height: '0.065em', borderRadius: '99px', background: C.indigoFade, transformOrigin: '0 50%', transform: 'scaleX(0)' } });
+      const el = h('span', { style: { position: 'relative', display: 'inline-block', whiteSpace: 'nowrap' } }, wd, line);
+      list.append(el);
+      return { el, line, i, learned: i < WORDS.length };
+    });
+    root.append(col, list);
+    const up = 96 - L.turnTop, small = 0.56;
+    return {
+      update(t) {
+        const out = push(t, 34.15, 34.55);
+        reveal(a, ease.out(seg(t, 27.2, 27.75)), 0); reveal(b, ease.out(seg(t, 28.6, 29.1)), 0);
+        const mv = ease.inOut(seg(t, 30.25, 30.85));
+        set(col, { y: up * mv - out * 40, s: lerp(1, small, mv), o: 1 - out });
+        items.forEach(({ el, line, i, learned }) => {
+          const q = ease.out(seg(t, 30.75 + i * 0.025, 31.1 + i * 0.025));
+          const s0 = STRIKE_AT[i], sd = Math.min(0.24, Math.max(0.09, ((STRIKE_AT[i + 1] || s0 + 0.2) - s0) * 1.3));
+          const st = ease.inOut(seg(t, s0, s0 + sd));
+          line.style.transform = `scaleX(${st.toFixed(4)})`;
+          const base = learned ? C.inkRGB : C.dimRGB;
+          el.style.color = `rgb(${base.map((v, j) => Math.round(lerp(v, C.mutedRGB[j], seg(t, s0 + sd * 0.6, s0 + sd + 0.25)))).join(',')})`;
+          set(el, { y: (1 - q) * 30 - out * 40, o: q * (1 - out) });
+        });
+      },
+    };
+  });
+
+  // =================================================================================================
+  // 5 · Signal Studio speaks your language · 34.3 – 47.0
+  //     A hard cut into Orla's Home. She types a task the way she'd say it, it lands,
+  //     she ticks one off. Then the same screen for a school, a student and a crew.
+  // =================================================================================================
+  const TONE = { late: [C.late, C.lateSoft], wait: [C.wait, C.waitSoft], today: [C.g700, C.fill], done: [C.done, C.doneSoft] };
+  scene(T.product[0], T.product[1], (root) => {
+    const CUT = 35.6;
+    const big = words('Signal Studio speaks your language.', { size: L.turn, track: '-0.05em', lh: 1.0, at: { x: M - 4, y: L.pStart, w: W - 2 * M } });
+    const small = words('Signal Studio speaks your language.', { size: L.pSize, track: '-0.04em', lh: 1.1, color: C.ink, at: { x: M, y: L.pTop, w: W - 2 * M } });
+    const u = L.winW / 1080;
+    const win = h('div', { at: { x: L.winX, y: L.winY, w: L.winW }, style: { background: C.sheet, borderRadius: px(22 * u), boxShadow: `0 0 0 2px ${C.hair}, 0 30px 80px rgba(0,0,0,.45)`, overflow: 'hidden', transformOrigin: '50% 0' } });
+    const bar = h('div', { style: { display: 'flex', alignItems: 'center', gap: px(14 * u), height: px(64 * u), padding: `0 ${px(26 * u)}`, borderBottom: `2px solid ${C.hair}`, fontSize: px(24 * u), color: C.g500 } });
+    const barPlace = h('span', { style: { color: C.g500 } }), barKind = h('span.mono', { style: { marginLeft: 'auto', fontSize: px(22 * u), color: C.g500 } });
+    bar.append(h('span', { style: { display: 'flex', gap: px(8 * u) } }, ...[0, 1, 2].map(() => h('i', { style: { width: px(12 * u), height: px(12 * u), borderRadius: '50%', background: C.g300, display: 'block' } }))), barPlace, h('span', { style: { color: C.g400 } }, '/'), h('b', { style: { color: C.ink, fontWeight: 500 } }, 'Home'), barKind);
+    const body = h('div', { style: { padding: `${px(30 * u)} ${px(36 * u)} ${px(24 * u)}`, position: 'relative' } });
+    const greetRow = h('div', { style: { display: 'flex', alignItems: 'baseline', gap: px(16 * u) } });
+    const greet = h('div', { style: { fontSize: px(46 * u), fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.1 } });
+    const date = h('span', { style: { fontSize: px(22 * u), color: C.g500, padding: `${px(6 * u)} ${px(12 * u)}`, borderRadius: '99px', background: C.fill } });
+    greetRow.append(greet, date);
+    const stats = h('div', { style: { fontSize: px(27 * u), color: C.g700, marginTop: px(14 * u), letterSpacing: '-0.01em' } });
+    const sNeed = h('b', { style: { color: C.ink, fontWeight: 600, fontVariantNumeric: 'tabular-nums' } }), sLate = h('b', { style: { color: C.late, fontWeight: 600 } }), sDone = h('b', { style: { color: C.ink, fontWeight: 600 } });
+    stats.append(sNeed, ' things need you today · ', sLate, ' · ', sDone, ' done this week');
+    // the quick-add field: say it the way you'd say it
+    const field = h('div', { style: { marginTop: px(22 * u), height: px(64 * u), borderRadius: px(14 * u), display: 'flex', alignItems: 'center', gap: px(14 * u), padding: `0 ${px(20 * u)}`, fontSize: px(28 * u), color: C.g500 } });
+    const plus = h('span', { style: { fontSize: px(32 * u), color: C.g400, lineHeight: 1 } }, '+');
+    const typed = h('span', { style: { color: C.ink, whiteSpace: 'nowrap', overflow: 'hidden' } });
+    const caret = h('i', { style: { display: 'inline-block', width: px(2.5 * u), height: px(32 * u), background: C.ink, marginLeft: px(2 * u), verticalAlign: 'middle' } });
+    const ph = h('span', null, 'Add a task, the way you’d say it');
+    const enter = h('span.mono', { style: { marginLeft: 'auto', fontSize: px(20 * u), color: C.g400, padding: `${px(4 * u)} ${px(10 * u)}`, borderRadius: px(8 * u), boxShadow: `inset 0 0 0 ${px(2 * u)} ${C.hair}` } }, 'enter');
+    field.append(plus, ph, typed, caret, enter);
+    const RH = 88 * u;
+    const rowsBox = h('div', { style: { marginTop: px(16 * u), position: 'relative', height: px(4 * RH), overflow: 'hidden' } });
+    body.append(greetRow, stats, field, rowsBox); win.append(bar, body);
+    const mkRow = () => {
+      const box = h('i', { style: { width: px(32 * u), height: px(32 * u), borderRadius: '50%', display: 'grid', placeItems: 'center', flex: 'none', fontStyle: 'normal' } });
+      const tick = svg('svg', { width: 20 * u, height: 20 * u, viewBox: '0 0 24 24', fill: 'none', stroke: C.paper, 'stroke-width': 3.4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, p('M5 12.5l4.5 4.5L19 7.5', { pathLength: 1 }));
+      box.append(tick);
+      const ttl = h('span', { style: { flex: 1, minWidth: 0, fontSize: px(30 * u), fontWeight: 500, letterSpacing: '-0.015em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } });
+      const chip = h('span', { style: { flex: 'none', display: 'inline-flex', alignItems: 'center', height: px(44 * u), padding: `0 ${px(18 * u)}`, borderRadius: '99px', fontSize: px(24 * u), fontWeight: 500, whiteSpace: 'nowrap' } });
+      const row = h('div', { at: { x: 0, y: 0, w: L.winW - 72 * u, h: RH }, style: { display: 'flex', alignItems: 'center', gap: px(20 * u), borderTop: `2px solid ${C.hair}` } }, box, ttl, chip);
+      rowsBox.append(row);
+      return { row, box, tick, ttl, chip };
+    };
+    const rows = [0, 1, 2, 3, 4].map(mkRow); // rows[0] is the new task Orla types
+    const fillRow = (r, data, doneNow) => {
+      const [ttlTxt, tone, label] = data;
+      r.ttl.textContent = ttlTxt;
+      const [fg, bg] = TONE[doneNow ? 'done' : tone];
+      r.chip.textContent = doneNow ? 'Done' : label; r.chip.style.color = fg; r.chip.style.background = bg;
+      const isDone = doneNow || tone === 'done';
+      r.ttl.style.color = isDone ? C.g500 : C.ink;
+      r.ttl.style.textDecoration = isDone ? 'line-through' : 'none'; r.ttl.style.textDecorationColor = C.g400;
+      r.box.style.background = isDone ? C.done : 'transparent';
+      r.box.style.boxShadow = isDone ? 'none' : `inset 0 0 0 ${px(2.5 * u)} ${C.g400}`;
+      r.tick.firstChild.style.strokeDasharray = '1 1'; r.tick.firstChild.style.strokeDashoffset = isDone ? '0' : '1';
+    };
+    const cap = words('Open it. You already know how it works.', { size: L.capSize, track: '-0.045em', lh: 1.04, at: { x: L.capX, y: L.capY, w: W - L.capX - M } });
+    root.append(big, small, win, cap);
+    const TYPE = [36.6, 38.35], ENTER = 38.5, TICK = 39.2;
+    return {
+      update(t) {
+        const out = push(t, 46.55, 47.0);
+        // the claim, full size, then a hard cut to the product
+        const cutIn = t >= CUT;
+        big.style.display = cutIn ? 'none' : '';
+        if (!cutIn) reveal(big, ease.out(seg(t, 34.45, 35.0)), 0);
+        small.style.display = cutIn ? '' : 'none'; win.style.display = cutIn ? '' : 'none';
+        set(small, { y: -out * 40, o: 1 - out });
+        // the product holds the centre while Orla uses it, then steps left to make room for the line
+        const centre = fmtKey === '16x9' ? (W - L.winW) / 2 - L.winX : 0, side = ease.inOut(seg(t, 42.85, 43.35));
+        set(win, { x: centre * (1 - side), y: -out * 40, o: 1 - out });
+        let pi = 0; PROJECTS.forEach((pr, i) => { if (i && t >= pr.at) pi = i; });
+        const pr = PROJECTS[pi];
+        barPlace.textContent = pr.place; barKind.textContent = pr.kind;
+        greet.textContent = `Good morning, ${pr.who}`; date.textContent = pr.date;
+        const added = pi === 0 && t >= ENTER, ticked = pi === 0 && t >= TICK;
+        sNeed.textContent = String(pi === 0 ? 5 + (added ? 1 : 0) - (ticked ? 1 : 0) : pr.stats[0]);
+        sLate.textContent = pr.stats[1]; sDone.textContent = String(pr.stats[2] + (ticked ? 1 : 0));
+        // typing
+        const ty = pi === 0 ? seg(t, TYPE[0], TYPE[1]) : 0;
+        const txt = pi === 0 && t < ENTER ? typeOn(ORLA_TYPED, ty) : '';
+        typed.textContent = txt; ph.style.display = txt ? 'none' : '';
+        const focus = pi === 0 && t >= TYPE[0] - 0.25 && t < ENTER + 0.15;
+        field.style.boxShadow = focus ? `inset 0 0 0 ${px(2 * u)} ${C.indigo}, 0 0 0 ${px(5 * u)} rgba(139,135,248,0.16)` : `inset 0 0 0 ${px(2 * u)} ${C.hair}`;
+        caret.style.opacity = focus && (Math.floor(t * 2.4) % 2 === 0 || (ty > 0 && ty < 1)) ? 1 : 0;
+        enter.style.color = pi === 0 && t >= ENTER - 0.05 && t < ENTER + 0.2 ? C.ink : C.g400;
+        // rows: Orla's four, the new one sliding in on top; the others shift down
+        const ins = pi === 0 ? ease.out(seg(t, ENTER, ENTER + 0.4)) : 0;
+        fillRow(rows[0], ORLA_NEW, false);
+        rows.slice(1).forEach((r, i) => fillRow(r, pr.rows[i], pi === 0 && i === 2 && ticked));
+        rows.forEach((r, k) => {
+          let y, o;
+          if (k === 0) { y = (ins - 1) * RH; o = ins; }
+          else {
+            const rin = pi === 0 ? 1 : ease.out(seg(t, pr.at + (k - 1) * 0.05, pr.at + 0.3 + (k - 1) * 0.05));
+            const nxt = PROJECTS[pi + 1];
+            const rout = nxt ? ease.in(seg(t, nxt.at - 0.22 + (k - 1) * 0.04, nxt.at + (k - 1) * 0.04)) : 0;
+            y = (k - 1 + ins) * RH; o = rin * (1 - rout);
+            set(r.row, { x: (1 - rin) * 50 - rout * 50, y, o }); return;
+          }
+          set(r.row, { y, o: pi === 0 ? o : 0 });
+        });
+        rows[0].row.style.background = pi === 0 && t < ENTER + 1.4 ? `rgba(139,135,248,${(0.16 * (1 - seg(t, ENTER + 0.3, ENTER + 1.4))).toFixed(3)})` : 'transparent';
+        if (pi === 0) {
+          const k = seg(t, TICK, TICK + 0.4);
+          if (k > 0 && k < 1) { rows[3].tick.firstChild.style.strokeDashoffset = (1 - ease.out(k)).toFixed(3); rows[3].box.style.transform = `scale(${(1 + 0.18 * Math.sin(k * Math.PI)).toFixed(3)})`; }
+          else rows[3].box.style.transform = 'none';
+        }
+        const ghead = pi === 0 ? 1 : 1 - Math.sin(seg(t, pr.at - 0.2, pr.at + 0.2) * Math.PI) * 0.6;
+        greet.style.opacity = ghead.toFixed(3); barPlace.style.opacity = ghead.toFixed(3);
+        reveal(cap, ease.out(seg(t, 43.3, 43.9)), out);
+      },
+    };
+  });
+
+  // =================================================================================================
+  // 6 · A hundred years, distilled · 46.8 – 55.4, then the name
+  //     The dated list folds shut into four plain words. The full stop of "done."
+  //     turns indigo, lifts out, and lands as the full stop of the name.
+  // =================================================================================================
+  scene(T.distil[0], OLD_END + 0.01, (root) => {
+    const hs = L.title;
+    const h1 = words('More than 4,500 years of method.', { size: hs, track: '-0.04em', at: { x: M, y: L.h1Y, w: L.h1W } });
+    const h2 = words('Most days come down to four words you already know.', { size: hs, track: '-0.04em', at: { x: M, y: L.h1Y, w: L.h1W } });
+    const meths = METHODS.map(([yr, name], i) => h('div', { at: { x: M, y: L.methY + i * L.methGap }, style: { display: 'flex', alignItems: 'baseline', gap: '22px', whiteSpace: 'nowrap', transformOrigin: '0 50%' } },
+      h('span.mono', { style: { fontSize: px(Math.round(L.meth * 0.56)), color: C.g500, width: px(L.meth * 3.6), flex: 'none' } }, yr),
+      h('span', { style: { fontSize: px(L.meth), fontWeight: 600, letterSpacing: '-0.035em' } }, name)));
+    const fourY = L.fourY;
+    const period = h('span', null, '.');
+    const fourEls = ['late.', 'waiting.', 'today.', 'done'].map((wd, i) => {
+      const el = words(wd, { size: L.fourSize, track: '-0.05em', lh: 1, at: { x: M, y: fourY + i * L.fourSize * 1.08 } });
+      if (i === 3) el.append(period);
+      return el;
+    });
+    const midY = fourY + L.fourSize * 1.62;
+    const drop = h('div', { at: { x: 0, y: 0, w: 30, h: 30 }, style: { borderRadius: '50%', background: C.indigo, transformOrigin: '50% 50%' } });
+    const mark = h('div', { at: { x: 0, y: L.markY, w: W }, style: { display: 'flex', justifyContent: 'center' } });
+    const markIn = h('span', { style: { display: 'inline-flex', alignItems: 'baseline', fontSize: px(L.markSize), fontWeight: 500, letterSpacing: '-0.035em', lineHeight: 1, whiteSpace: 'nowrap' } }, 'signal studio');
+    const markDot = h('span', { style: { display: 'inline-block', width: '0.16em', height: '0.16em', borderRadius: '50%', background: C.indigo, marginLeft: '0.045em', opacity: 0 } });
+    markIn.append(markDot); mark.append(markIn);
+    const tagSize = L.tag;
+    const tag = h('div', { at: { x: M, y: L.markY + L.markSize * 1.32, w: W - 2 * M }, style: { textAlign: 'center', fontSize: px(tagSize), fontWeight: 500, letterSpacing: '-0.025em', color: C.g700, textWrap: 'balance' } },
+      'Project management for people ', h('em', { style: { fontStyle: 'italic', color: C.ink } }, 'not'), ' in tech.');
+    const cta = h('div.mono', { at: { x: M, y: L.markY + L.markSize * 1.32 + tagSize * (fmtKey === '9x16' ? 2.9 : 2.0), w: W - 2 * M }, style: { textAlign: 'center', fontSize: px(fmtKey === '16x9' ? 38 : 30), color: C.g700, letterSpacing: '0.01em' } },
+      'Join the waitlist · ', h('span', { style: { color: C.ink } }, 'signalstudio.ie'));
+    root.append(h1, h2, ...meths, ...fourEls, mark, tag, cta, drop);
+    const geo = { dot: { x: W * 0.74, y: L.markY + L.markSize * 0.7, d: 30 }, from: { x: M + 300, y: fourY + L.fourSize * 4, d: 12 } };
+    afterFonts.push({ at: 53.0, fn: () => {
+      const sr = STAGE.getBoundingClientRect(), k = sr.width / W;
+      const keepM = mark.style.transform, keepF = fourEls[3].style.transform, keepC = fourEls[3].style.clipPath, keepR = root.style.transform;
+      root.style.transform = 'none'; mark.style.transform = 'none'; fourEls[3].style.transform = 'none'; fourEls[3].style.clipPath = 'none';
+      const r = markDot.getBoundingClientRect(), q = period.getBoundingClientRect();
+      geo.dot = { x: (r.left - sr.left) / k + r.width / k / 2, y: (r.top - sr.top) / k + r.height / k / 2, d: r.width / k };
+      // the full stop sits on the baseline: centre it on the glyph's ink, about a fifth of an em up
+      geo.from = { x: (q.left - sr.left) / k + q.width / k / 2, y: (q.bottom - sr.top) / k - L.fourSize * 0.2 - L.fourSize * 0.06, d: L.fourSize * 0.15 };
+      drop.style.width = drop.style.height = px(geo.dot.d);
+      mark.style.transform = keepM; fourEls[3].style.transform = keepF; fourEls[3].style.clipPath = keepC; root.style.transform = keepR;
+    } });
+    return {
+      update(t) {
+        const a = ease.out(seg(t, 47.0, 47.5)), sw = seg(t, 50.7, 51.1), fade = ease.inOut(seg(t, 53.4, 53.9));
+        h1.style.opacity = 0; // the history is told by the timeline now
+        reveal(h2, ease.out(seg(t, 50.95, 51.4)), fade); h2.style.opacity = t >= 50.9 ? 1 - fade : 0;
+        // the list folds shut, top and bottom toward the middle, like a closing concertina
+        const n = METHODS.length, mid = (n - 1) / 2;
+        meths.forEach((el, i) => {
+          const q = ease.out(seg(t, 47.35 + i * 0.2, 47.75 + i * 0.2));
+          const order = Math.abs(i - mid), fold = ease.inOut(seg(t, 49.7 + (mid - order) * 0.12, 50.5 + (mid - order) * 0.12));
+          const y0 = L.methY + i * L.methGap;
+          el.style.opacity = 0; void q; void y0;
+        });
+        // four words open out of the fold
+        fourEls.forEach((el, i) => {
+          const q = ease.out(seg(t, 50.85 + i * 0.22, 51.35 + i * 0.22));
+          const yy = fourY + i * L.fourSize * 1.08;
+          set(el, { y: (midY - yy - L.fourSize * 0.5) * (1 - q), sy: lerp(0.2, 1, q), o: q * (1 - fade) });
+          el.style.transformOrigin = '0 50%';
+        });
+        // the full stop of "done." becomes the brand's dot
+        const D = geo.dot, F = geo.from;
+        const ink = seg(t, 52.4, 52.9);
+        const inkCol = ink > 0 ? `rgb(${C.inkRGB.map((v, j) => Math.round(lerp(v, C.indigoRGB[j], ink))).join(',')})` : C.ink;
+        period.style.color = inkCol; fourEls[3].style.color = inkCol;
+        fourEls[3].style.textShadow = ink > 0 ? `0 0 ${Math.round(48 * ink)}px ${C.indigoGlow}` : 'none';
+        const live = t >= 53.0;
+        period.style.opacity = live ? 0 : 1;
+        drop.style.opacity = live ? 1 : 0;
+        const fly = seg(t, 53.0, 54.45);
+        let x, y, sxs = 1, sys = 1, s;
+        if (t < 54.45) {
+          // one thrown arc: up out of the word, across, and down into the name
+          // across first, then a vertical fall into the name: never through the letters
+          const xu = ease.inOut(seg(fly, 0, 0.62));
+          x = lerp(F.x, D.x, xu);
+          const apex = Math.min(F.y, D.y) - L.markSize * 1.25;
+          const up = ease.out(seg(fly, 0, 0.55)), down = ease.in(seg(fly, 0.62, 1));
+          y = fly < 0.62 ? lerp(F.y, apex, up) : lerp(apex, D.y, down);
+          s = lerp(F.d / D.d, 1, ease.out(seg(fly, 0, 0.45)));
+          const sp = Math.sin(fly * Math.PI); sxs = 1 - 0.08 * sp; sys = 1 + 0.12 * sp;
+        } else {
+          const k = seg(t, 54.45, 55.15), sq = Math.exp(-6 * k) * Math.cos(k * Math.PI * 3.2);
+          x = D.x; y = D.y - Math.max(0, Math.sin(seg(k, 0.12, 0.6) * Math.PI)) * 14; s = 1;
+          sxs = 1 + 0.4 * Math.max(0, sq); sys = 1 - 0.36 * Math.max(0, sq);
+        }
+        drop.style.transform = `translate3d(${(x - D.d / 2).toFixed(2)}px, ${(y - D.d / 2).toFixed(2)}px, 0) scale(${(s * sxs).toFixed(4)}, ${(s * sys).toFixed(4)})`;
+        const glow = 0.35 + 0.65 * (1 - seg(t, 54.45, 56.5)) ;
+        drop.style.boxShadow = `0 0 ${Math.round(38 * glow)}px ${Math.round(6 * glow)}px ${C.indigoGlow}`;
+        const m = ease.out(seg(t, 53.6, 54.3));
+        set(mark, { y: (1 - m) * 18, o: m });
+        reveal(tag, ease.out(seg(t, 55.3, 55.85)), 0); tag.style.opacity = t >= 55.3 ? 1 : 0;
+        reveal(cta, ease.out(seg(t, 56.2, 56.7)), 0); cta.style.opacity = t >= 56.2 ? 1 : 0;
+      },
+    };
+  });
+
+  // =================================================================================================
+  // Inserts, on the real clock
+  // =================================================================================================
+  const iscenes = [];
+  const iscene = (key, build) => { const root = h('div.scene', { at: { x: 0, y: 0, w: W, h: H } }); STAGE.append(root); const s = { key, root, ...build(root) }; iscenes.push(s); return s; };
+  // Orla: whose board this is
+  iscene('orla', (root) => {
+    const d = INSERTS.find((i) => i.key === 'orla').d;
+    const col = h('div', { at: { x: M, y: L.hookTop, w: L.hookW }, style: { display: 'flex', flexDirection: 'column', gap: px(L.hook * 0.28) } });
+    const a = words('Orla runs a wedding venue.', { size: L.hook, track: '-0.045em', lh: 1.02, style: { position: 'relative' } });
+    const b = words('This is her to-do list.', { size: L.hook, track: '-0.045em', lh: 1.02, color: C.g500, style: { position: 'relative' } });
+    col.append(a, b); root.append(col);
+    return { update(lt) { const out = push(lt, d - 0.35, d); reveal(a, ease.out(seg(lt, 0.05, 0.55)), out); reveal(b, ease.out(seg(lt, 0.7, 1.2)), out); } };
+  });
+  // The bridge: every one of them meant something ordinary once
+  iscene('bridge', (root) => {
+    const d = INSERTS.find((i) => i.key === 'bridge').d;
+    const line = words(['Every one of them meant something ', h('span', { style: { color: C.indigo } }, 'ordinary'), ' once.'], { size: L.title, track: '-0.04em', at: { x: M, y: 96, w: W - 2 * M } });
+    root.append(line);
+    const cols = 5, gap = 24, cw = (W - 2 * M - gap * (cols - 1)) / cols, ch = 220;
+    const cells = WORDS.map((pl, i) => {
+      const cx = M + (i % cols) * (cw + gap), cy = 330 + Math.floor(i / cols) * (ch + 110);
+      const pos = place(pl.vb, { x: cx + 12, y: cy, w: cw - 24, h: ch });
+      const art = pl.clocks ? drawClocks({ w: pos.w, fill: C.paper, color: C.ink, line: 2.6, accent: C.ink }) : pl.draw({ w: pos.w, fill: C.paper, color: C.ink, line: 2.6, accent: C.ink });
+      if (pl.kanji) {
+        art.querySelectorAll('circle').forEach((c) => { if (c.getAttribute('r') === '54') c.remove(); });
+        const ks = 100 / KANJI.upm;
+        art.append(svg('path', { d: KANJI.paths['看'], fill: C.ink, stroke: 'none', transform: `translate(262 344) scale(${ks} ${-ks})` }));
+        art.append(svg('path', { d: KANJI.paths['板'], fill: C.ink, stroke: 'none', transform: `translate(370 344) scale(${ks} ${-ks})` }));
+      }
+      abs(art, { x: pos.x, y: pos.y });
+      const label = mono(pl.word, { size: 28, color: C.g500, at: { x: cx + 12, y: cy + ch + 22 } });
+      const frame = h('div', { at: { x: cx, y: cy - 16, w: cw, h: ch + 32 }, style: { borderBottom: `2px solid ${C.g300}` } });
+      root.append(frame, art, label);
+      return { art, label, frame, d: prepDraw(art), i };
+    });
+    return {
+      update(lt) {
+        const out = push(lt, d - 0.35, d);
+        reveal(line, ease.out(seg(lt, 0.1, 0.6)), out);
+        cells.forEach((c) => {
+          const q = seg(lt, 0.2 + c.i * 0.07, 1.0 + c.i * 0.07);
+          drawOn(c.d, q);
+          const o = ease.out(seg(lt, 0.15 + c.i * 0.07, 0.45 + c.i * 0.07)) * (1 - out);
+          set(c.art, { y: -out * 30, o }); set(c.label, { y: -out * 30, o }); set(c.frame, { y: -out * 30, o: o * 0.6 });
+        });
+      },
+    };
+  });
+
+  // The plan: software calls it a roadmap. Mara and Finn's plan draws itself across the frame, close up,
+  // to today; the next thing lights indigo; the camera steps back to the whole year and holds. Then it keeps
+  // going: the plan becomes the present, 4,500 years of method draw in behind it, and the line folds shut.
+  iscene('timeline', (root) => {
+    const d = INSERTS.find((i) => i.key === 'timeline').d, SH = TLW.SHOT;
+    const { AY, X0, X1, P0 } = TLW, next = TLW.STONES[3];
+    const ringDraw = (e, q) => { e.style.strokeDashoffset = (1 - q).toFixed(4); };
+    const strike = h('span', { style: { position: 'absolute', left: '-0.03em', right: '-0.03em', top: '55%', height: '0.065em', borderRadius: '99px', background: C.indigoFade, transformOrigin: '0 50%', transform: 'scaleX(0)' } });
+    const road = h('span', { style: { position: 'relative', display: 'inline-block' } }, 'roadmap', strike);
+    const l1 = words(['Software calls it a ', road, '.'], { size: L.title, track: '-0.04em', at: { x: M, y: 80, w: W - 2 * M } });
+    const l2 = words('Mara and Finn just call it the plan.', { size: L.title, track: '-0.04em', color: C.g500, at: { x: M, y: 80 + L.title * 1.12, w: W - 2 * M } });
+    const l3 = words('More than 4,500 years of method.', { size: L.title, track: '-0.04em', at: { x: M, y: 80, w: W - 2 * M } });
+    const world = h('div', { at: { x: 0, y: 0, w: W, h: H }, style: { transformOrigin: '0 0' } });
+    const sv = svg('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, style: 'position:absolute;left:0;top:0;overflow:visible' });
+    const L2 = (attrs) => svg('line', { y1: AY, y2: AY, 'stroke-linecap': 'round', ...attrs });
+    const track = L2({ stroke: 'rgba(255,255,255,0.12)', 'stroke-width': 2 });
+    const ahead = L2({ stroke: 'rgba(255,255,255,0.42)', 'stroke-width': 2, 'stroke-dasharray': '1 9' });
+    const done = L2({ stroke: C.ink, 'stroke-width': 3 });
+    const past = L2({ stroke: C.ink, 'stroke-width': 3 });
+    const ticks = TLW.MONTHS.map((m) => svg('line', { y1: AY + 12, y2: AY + (m.name ? 24 : 20), stroke: m.name ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.22)', 'stroke-width': 1.5, 'stroke-linecap': 'round' }));
+    const todayLine = svg('line', { y1: AY - 34, y2: AY + 24, stroke: C.ink, 'stroke-width': 1.5, 'stroke-linecap': 'round' });
+    const halo = svg('circle', { cy: AY, r: 15, fill: 'none', stroke: C.indigo, 'stroke-width': 2, opacity: 0 });
+    const brk = TLW.BREAKS.map(() => svg('g', null, svg('line', { x1: -9, y1: AY, x2: 9, y2: AY, stroke: C.paper, 'stroke-width': 10 }), svg('line', { x1: -8, y1: AY + 9, x2: -2, y2: AY - 9, stroke: C.g500, 'stroke-width': 2, 'stroke-linecap': 'round' }), svg('line', { x1: 2, y1: AY + 9, x2: 8, y2: AY - 9, stroke: C.g500, 'stroke-width': 2, 'stroke-linecap': 'round' })));
+    const bracket = svg('path', { fill: 'none', stroke: 'rgba(255,255,255,0.4)', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+    const bloom = h('div', { at: { x: 0, y: AY - 160, w: 320, h: 320 }, style: { borderRadius: '50%', background: 'radial-gradient(closest-side, rgba(110,102,255,0.30), rgba(79,70,229,0.10) 55%, rgba(79,70,229,0) 100%)', opacity: 0 } });
+    sv.append(track, past, ahead, done, ...ticks, todayLine, halo, bracket);
+    const titleEl = (txt, st, size = 35) => h('div', { style: { fontSize: px(size), fontWeight: st === 'next' ? 600 : 500, letterSpacing: '-0.025em', lineHeight: 1.1, color: st === 'ahead' ? C.g500 : st === 'day' ? C.g700 : C.ink } }, txt);
+    const whenEl = (txt, st) => h('div.mono', { style: { fontSize: '23px', marginTop: '7px', color: st === 'next' ? C.indigo : C.g500 } }, txt);
+    const mkFlag = (st, lane, flip, title, when, size) => {
+      const L0 = lane === 1 ? 108 : 204;
+      const leader = svg('line', { y1: AY - 16, y2: AY - L0, stroke: st === 'next' ? C.indigo : 'rgba(255,255,255,0.3)', 'stroke-width': 1.5, 'stroke-linecap': 'round' });
+      const flag = h('div', { at: { y: AY - L0 - 4 }, style: { whiteSpace: 'nowrap', textAlign: flip ? 'right' : 'left' } }, titleEl(title, st, size), whenEl(when, st));
+      return { leader, flag, L0, flip, w: 0 };
+    };
+    const marks = TLW.STONES.map((st) => {
+      const R = st.state === 'next' ? 15 : st.state === 'day' ? 11 : 10;
+      const bead = svg('circle', { cy: AY, r: R, fill: st.state === 'done' ? C.ink : C.paper, stroke: st.state === 'done' ? 'none' : 'rgba(255,255,255,0.58)', 'stroke-width': 2 });
+      const outer = st.state === 'day' ? svg('circle', { cy: AY, r: R + 7, fill: 'none', stroke: 'rgba(255,255,255,0.32)', 'stroke-width': 1.5 }) : null;
+      const f = mkFlag(st.state, st.lane, st.flip, st.title, st.when);
+      sv.append(f.leader, ...(outer ? [outer] : []), bead);
+      [bead, outer].forEach((e) => { if (e && st.state !== 'done') { e.setAttribute('pathLength', '1'); e.style.strokeDasharray = '1 1'; } });
+      return { st, bead, outer, R, ...f };
+    });
+    const hist = TLW.HIST.map((m) => {
+      const bead = svg('circle', { cy: AY, r: 10, fill: C.ink });
+      const f = mkFlag('done', m.lane, false, m.title, m.when, 32);
+      sv.append(f.leader, bead);
+      return { m, bead, ...f };
+    });
+    sv.append(...brk);
+    const monthLabs = TLW.MONTHS.map((m) => m.name ? h('div.mono', { at: { y: AY + 32 }, style: { fontSize: '22px', color: C.g500, whiteSpace: 'nowrap', lineHeight: 1.3 } }, m.name, m.year ? h('span', { style: { color: C.g400 } }, ' ' + m.year) : null) : null);
+    const todayLab = h('div.mono', { at: { y: AY + 32, w: 200 }, style: { fontSize: '22px', color: C.ink, textAlign: 'center', whiteSpace: 'nowrap' } }, 'Today');
+    const nowLab = h('div.mono', { at: { y: AY + 40, w: 400 }, style: { fontSize: '22px', color: C.ink, textAlign: 'center', whiteSpace: 'nowrap' } }, 'Mara and Finn, now');
+    world.append(bloom, sv, ...marks.map((m) => m.flag), ...hist.map((m) => m.flag), ...monthLabs.filter(Boolean), todayLab, nowLab);
+    const num = h('span', { style: { fontSize: px(L.title), fontWeight: 600, letterSpacing: '-0.05em', lineHeight: 1, fontVariantNumeric: 'tabular-nums' } }, '0');
+    const count = h('div', { at: { r: M, b: 88 }, style: { display: 'flex', alignItems: 'baseline', gap: '16px' } }, num, h('span', { style: { fontSize: '32px', color: C.g500, letterSpacing: '-0.01em' } }, 'days to the day'));
+    const place = h('div', { at: { x: M, b: 96 }, style: { fontSize: '30px', color: C.g500, letterSpacing: '-0.01em', whiteSpace: 'nowrap' } }, h('span', { style: { color: C.ink, fontWeight: 500 } }, 'Timeline'), '  ·  Mara and Finn are getting married at Orla’s venue');
+    root.append(world, l1, l2, l3, place, count);
+    // the camera: close (s = ZOOM) following the drawing head, a framed hold, then the wide (world = screen)
+    const ZOOM = 2.0, AX = 1180, AYS = 770;
+    const bump = (x) => (x > 0 && x < 0.35 ? Math.sin((x / 0.35) * Math.PI) : 0);
+    const camAt = (lt) => {
+      const hx = TLW.xOf(TLW.uHead(lt));
+      const hk = ease.inOut(seg(lt, 3.25, 4.2)), k = ease.inOut(seg(lt, SH.crane[0], SH.crane[1]));
+      // a small give in the lens each time a bead lands
+      const give = 1 + 0.02 * TLW.STONES.reduce((n, st) => n + (st.state === 'done' ? bump(lt - st.land) : 0), 0);
+      const fx0 = lerp(Math.max(hx + 110, X0 + 400), 870, hk), s0 = give * Math.exp(lerp(Math.log(ZOOM), Math.log(1.3 * (1 + 0.03 * seg(lt, 4.0, 4.7))), hk));
+      const ax0 = lerp(AX, 960, hk), ay0 = lerp(AYS, 700, hk);
+      const s = Math.exp(lerp(Math.log(s0), Math.log(1 + 0.012 * seg(lt, 5.9, SH.swap)), k));
+      const back = ease.inOut(seg(lt, SH.squeeze[0], SH.squeeze[1]));
+      const sF = lerp(s, 1, back);
+      const fxx = lerp(fx0, W / 2, k), fy = lerp(AY, AY - 40, k), ax = lerp(ax0, W / 2, k), ay = lerp(ay0, AY - 40, k);
+      return { s: sF, tx: ax - fxx * sF, ty: lerp(ay - fy * sF, 0, back) };
+    };
+    return {
+      update(lt) {
+        const out = seg(lt, d - 0.25, d);
+        // words: the roadmap line, then the history line; both leave before the fold lands
+        const swap = push(lt, SH.swap, SH.swap + 0.35);
+        reveal(l1, ease.out(seg(lt, 0.0, 0.45)), swap); reveal(l2, ease.out(seg(lt, 0.9, 1.3)), swap);
+        l1.style.opacity = l2.style.opacity = swap < 1 ? 1 : 0;
+        strike.style.transform = `scaleX(${ease.inOut(seg(lt, 0.5, 0.8)).toFixed(4)})`;
+        road.style.color = `rgb(${C.inkRGB.map((v, j) => Math.round(lerp(v, C.mutedRGB[j], seg(lt, 0.65, 0.95)))).join(',')})`;
+        const f3 = push(lt, SH.fold[0], SH.fold[0] + 0.35);
+        reveal(l3, ease.out(seg(lt, SH.swap + 0.25, SH.swap + 0.7)), f3); l3.style.opacity = lt >= SH.swap + 0.25 && f3 < 1 ? 1 : 0;
+        const cam = camAt(lt);
+        world.style.transform = `translate(${cam.tx.toFixed(2)}px, ${cam.ty.toFixed(2)}px) scale(${cam.s.toFixed(4)})`;
+        world.style.opacity = ease.out(seg(lt, 1.05, 1.5)).toFixed(3);
+        // horizontal mapping: the plan squeezes into the present, then everything folds into the next mark
+        const sq = ease.inOut(seg(lt, SH.squeeze[0], SH.squeeze[1]));
+        const A = lerp(X0, P0, sq);
+        const fold = ease.in(seg(lt, SH.fold[0], SH.fold[1]));
+        const plan0 = (u) => A + (X1 - A) * u;
+        const xF = plan0(TLW.uNext);
+        const X = (x) => lerp(x, xF, fold);
+        const plan = (u) => X(plan0(u));
+        const planFade = 1 - ease.out(seg(lt, SH.swap - 0.1, SH.swap + 0.25));
+        const foldFade = 1 - seg(fold, 0.55, 1);
+        // the line
+        const hx = plan(TLW.uHead(lt)), xT = plan(TLW.uToday);
+        track.setAttribute('x1', X(X0).toFixed(1)); track.setAttribute('x2', plan(1).toFixed(1)); track.style.opacity = foldFade;
+        done.setAttribute('x1', plan(0).toFixed(1)); done.setAttribute('x2', hx.toFixed(1)); done.style.opacity = foldFade;
+        const hh = TLW.histHead(lt);
+        past.setAttribute('x1', X(Math.min(hh, P0)).toFixed(1)); past.setAttribute('x2', plan(0).toFixed(1)); past.style.opacity = lt >= SH.hist[0] ? foldFade : 0;
+        const wide = ease.inOut(seg(lt, SH.crane[0] + 0.2, SH.crane[1]));
+        ahead.style.opacity = (wide * foldFade).toFixed(3);
+        ahead.setAttribute('x1', xT.toFixed(1)); ahead.setAttribute('x2', lerp(xT, plan(1), ease.out(seg(lt, 4.75, 5.9))).toFixed(1));
+        TLW.MONTHS.forEach((m, i) => {
+          const q = ease.out(seg(lt, m.at, m.at + 0.35)) * planFade, x = plan(m.u);
+          ticks[i].setAttribute('x1', x.toFixed(1)); ticks[i].setAttribute('x2', x.toFixed(1)); ticks[i].style.opacity = q.toFixed(3);
+          if (monthLabs[i]) { monthLabs[i].style.left = px(x + 6); set(monthLabs[i], { y: (1 - q) * 10, o: q }); }
+        });
+        // today
+        const tq = ease.out(seg(lt, 3.5, 3.85));
+        todayLine.setAttribute('x1', xT.toFixed(1)); todayLine.setAttribute('x2', xT.toFixed(1));
+        todayLine.setAttribute('y2', lerp(AY - 34, AY + 24, tq).toFixed(1)); todayLine.style.opacity = (tq * planFade).toFixed(3);
+        todayLab.style.left = px(xT - 100); set(todayLab, { y: (1 - ease.out(seg(lt, 3.65, 4.0))) * 10, o: ease.out(seg(lt, 3.65, 4.0)) * planFade });
+        // flags fade near the frame edge while the camera tracks, so no word is ever cut in half
+        const edge = (fl, xl) => {
+          if (!fl.w) fl.w = fl.flag.offsetWidth;
+          const l = fl.flip ? xl - 14 - fl.w : xl + 14, r = l + fl.w;
+          const sl = l * cam.s + cam.tx, sr = r * cam.s + cam.tx;
+          return clamp((sl - 24) / 110) * clamp((W - 24 - sr) / 110);
+        };
+        const placeFlag = (fl, x, lq, fq, o) => {
+          fl.leader.setAttribute('x1', x.toFixed(1)); fl.leader.setAttribute('x2', x.toFixed(1));
+          fl.leader.setAttribute('y2', lerp(AY - 16, AY - fl.L0, lq).toFixed(1));
+          const e = edge(fl, x);
+          fl.leader.style.opacity = lq > 0 ? (o * Math.max(e, 0.35)).toFixed(3) : 0;
+          if (fl.flip) { fl.flag.style.left = ''; fl.flag.style.right = px(W - x + 14); } else fl.flag.style.left = px(x + 14);
+          fl.flag.style.clipPath = `inset(-10% -5% ${((1 - fq) * 100).toFixed(2)}% -5%)`;
+          set(fl.flag, { y: (1 - fq) * 18, o: fq > 0 ? o * e : 0 });
+        };
+        // the marks
+        const ig = ease.out(seg(lt, SH.ignite, SH.ignite + 0.4));
+        marks.forEach((mk) => {
+          const { st, bead, outer, R } = mk, x = plan(st.u);
+          bead.setAttribute('cx', x.toFixed(1)); if (outer) outer.setAttribute('cx', x.toFixed(1));
+          [bead, outer].forEach((e) => { if (e && st.state !== 'done') e.setAttribute('transform', `rotate(-90 ${x.toFixed(1)} ${AY})`); });
+          let bq, lq, fq;
+          if (st.state === 'done') { bq = seg(lt, st.land, st.land + 0.32); lq = ease.out(seg(lt, st.land + 0.08, st.land + 0.42)); fq = ease.out(seg(lt, st.land + 0.18, st.land + 0.6)); }
+          else if (st.state === 'next') { bq = seg(lt, 3.75, 4.05); lq = ease.out(seg(lt, SH.ignite + 0.05, SH.ignite + 0.4)); fq = ease.out(seg(lt, SH.ignite + 0.15, SH.ignite + 0.55)); }
+          else { bq = seg(lt, st.land, st.land + 0.4); lq = ease.out(seg(lt, st.land + 0.1, st.land + 0.45)); fq = ease.out(seg(lt, st.land + 0.2, st.land + 0.6)); }
+          const keep = st.state === 'next' ? 1 : foldFade;
+          if (st.state === 'done') {
+            const sc = bq <= 0 ? 0 : bq < 0.6 ? ease.out(bq / 0.6) * 1.35 : lerp(1.35, 1, ease.inOut((bq - 0.6) / 0.4));
+            bead.setAttribute('r', (R * sc).toFixed(2)); bead.style.opacity = bq > 0 ? keep : 0;
+          } else if (st.state === 'next') {
+            ringDraw(bead, ease.draw(bq));
+            bead.setAttribute('fill', ig > 0.01 ? `rgba(139,135,248,${ig.toFixed(3)})` : C.paper);
+            bead.setAttribute('stroke', ig > 0.5 ? C.indigo : 'rgba(255,255,255,0.58)');
+            const endK = seg(lt, d - 0.35, d);
+            bead.setAttribute('r', (R * (1 + 0.28 * Math.sin(seg(lt, SH.ignite, SH.ignite + 0.45) * Math.PI)) * lerp(1, 0.8, sq) * (1 - endK)).toFixed(2));
+            bead.style.opacity = bq > 0 ? 1 : 0;
+          } else { ringDraw(bead, ease.draw(bq)); bead.style.opacity = bq > 0 ? keep : 0; if (outer) { ringDraw(outer, ease.draw(seg(lt, st.land + 0.15, st.land + 0.55))); outer.style.opacity = bq > 0 ? keep : 0; } }
+          placeFlag(mk, x, lq, fq, planFade);
+        });
+        // history: the line draws back into the past, each method lands as it is reached
+        hist.forEach((hm) => {
+          const { m, bead } = hm, x = X(m.x);
+          const bq = seg(lt, m.land, m.land + 0.32), lq = ease.out(seg(lt, m.land + 0.08, m.land + 0.42)), fq = ease.out(seg(lt, m.land + 0.18, m.land + 0.6));
+          const sc = bq <= 0 ? 0 : bq < 0.6 ? ease.out(bq / 0.6) * 1.35 : lerp(1.35, 1, ease.inOut((bq - 0.6) / 0.4));
+          bead.setAttribute('cx', x.toFixed(1)); bead.setAttribute('r', (10 * sc).toFixed(2)); bead.style.opacity = bq > 0 ? foldFade : 0;
+          placeFlag(hm, x, lq, fq, 1 - seg(fold, 0, 0.3));
+        });
+        // the axis breaks: the past is not drawn to scale, and says so
+        brk.forEach((g, i) => { const x = X(TLW.BREAKS[i]); g.setAttribute('transform', `translate(${x.toFixed(1)} 0)`); g.style.opacity = (seg(TLW.histHead(lt), x + 30, x - 10) * foldFade).toFixed(3); });
+        // the present: a bracket under the squeezed plan
+        { const q = ease.out(seg(lt, SH.squeeze[1] - 0.2, SH.squeeze[1] + 0.3)) * (1 - seg(fold, 0, 0.3)), a = plan(0), b = plan(1), y0 = AY + 20, y1 = AY + 28;
+          bracket.setAttribute('d', `M${a.toFixed(1)} ${y0}L${a.toFixed(1)} ${y1}L${b.toFixed(1)} ${y1}L${b.toFixed(1)} ${y0}`); bracket.style.opacity = q.toFixed(3);
+          nowLab.style.left = px((a + b) / 2 - 200); set(nowLab, { y: (1 - q) * 10, o: q }); }
+        // the one indigo moment: light pools under the next mark and a single ring goes out; it stays with the mark
+        const xN = plan(TLW.uNext), rk = seg(lt, SH.ignite + 0.05, SH.ignite + 0.9);
+        halo.setAttribute('cx', xN.toFixed(1)); halo.setAttribute('r', lerp(15, 64, ease.out(rk)).toFixed(2)); halo.style.opacity = (Math.sin(rk * Math.PI) * 0.8 * (rk < 1 ? 1 : 0)).toFixed(3);
+        bloom.style.left = px(xN - 160); bloom.style.transform = `scale(${lerp(1, 0.6, sq).toFixed(3)})`;
+        bloom.style.opacity = (ig * (0.85 + 0.15 * Math.sin(lt * 3.2)) * (1 - seg(lt, d - 0.4, d))).toFixed(3);
+        // the wide shot: what it is, whose it is, and the count to the day
+        const fin = ease.out(seg(lt, 5.45, 5.95)), gone = push(lt, SH.swap, SH.swap + 0.35);
+        set(place, { y: (1 - fin) * 20 - gone * 20, o: fin * (1 - gone) });
+        set(count, { y: (1 - fin) * 20 - gone * 20, o: fin * (1 - gone) });
+        num.textContent = String(Math.round(239 * ease.out(seg(lt, 5.5, 6.6))));
+        root.style.opacity = (1 - out * 0).toFixed(3);
+      },
+    };
+  });
+
+  // ---- the finish: grain and a soft light, over everything; directional blur filters -----------------
+  const light = h('div', { at: { x: 0, y: 0, w: W, h: H }, style: { pointerEvents: 'none', background: `radial-gradient(${Math.round(W * 0.7)}px ${Math.round(H * 0.8)}px at 22% 12%, rgba(255,255,255,0.045), rgba(255,255,255,0) 70%), radial-gradient(${Math.round(W * 0.9)}px ${Math.round(H)}px at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.28) 100%)` } });
+  const grainCv = document.createElement('canvas'); grainCv.width = grainCv.height = 256;
+  { const g = grainCv.getContext('2d'), img = g.createImageData(256, 256), r = rng(4242); for (let i = 0; i < img.data.length; i += 4) { const v = Math.round(r() * 255); img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255; } g.putImageData(img, 0, 0); }
+  const grain = h('div', { at: { x: 0, y: 0, w: W, h: H }, style: { pointerEvents: 'none', backgroundImage: `url(${grainCv.toDataURL()})`, backgroundSize: '256px 256px', opacity: 0.055, mixBlendMode: 'screen' } });
+  const filt = svg('svg', { width: 0, height: 0, style: 'position:absolute' }, svg('defs', null, [3, 6, 10, 15, 22].map((sd, i) => svg('filter', { id: `vblur-${i + 1}`, x: '-5%', y: '-60%', width: '110%', height: '220%' }, svg('feGaussianBlur', { stdDeviation: `0 ${sd}` })))));
+  STAGE.append(light, grain, filt);
+
+  function render(t) {
+    t = clamp(t, 0, DURATION);
+    const ins = insertAt(t), to = toOld(t);
+    for (const s of scenes) {
+      const live = (!ins || !ins.ins.hideOld) && to >= s.a - 0.001 && to <= s.b;
+      s.root.style.display = live ? '' : 'none';
+      if (!live) continue;
+      s.update(to);
+      const k = s.root.__push != null ? s.root.__push : seg(to, s.a, s.b);
+      s.root.style.transformOrigin = '50% 45%'; s.root.style.transform = REDUCED ? 'none' : `scale(${(1 + 0.022 * k).toFixed(4)})`;
+    }
+    for (const s of iscenes) {
+      const live = !!ins && ins.ins.key === s.key;
+      s.root.style.display = live ? '' : 'none';
+      if (!live) continue;
+      s.update(ins.lt, t);
+      s.root.style.transformOrigin = '50% 45%'; s.root.style.transform = `scale(${(1 + 0.02 * ins.lt / ins.ins.d).toFixed(4)})`;
+    }
+    const f = Math.floor(t * 24), gr = rng(f * 7919 + 13);
+    grain.style.backgroundPosition = `${Math.floor(gr() * 256)}px ${Math.floor(gr() * 256)}px`;
+  }
+  return { render, afterFonts: afterFonts.map((f) => ({ at: toReal(f.at), fn: f.fn })), W, H };
+}
+
+// ---- line drawings that draw themselves (shared) -----------------------------------------------------
+function prepDraw(el, skip) {
+  const strokes = [], dots = [];
+  el.querySelectorAll('path, circle, ellipse, text').forEach((e) => {
+    if (skip && skip(e)) return;
+    const dot = e.tagName === 'text' || e.getAttribute('stroke') === 'none';
+    const base = parseFloat(e.getAttribute('opacity') || '1');
+    if (dot) dots.push({ e, base });
+    else { e.setAttribute('pathLength', '1'); e.style.strokeDasharray = '1 1'; strokes.push({ e, base }); }
+  });
+  return { strokes, dots, last: -1 };
+}
+function drawOn(d, prog) {
+  const q0 = Math.round(prog * 1000) / 1000;
+  if (q0 === d.last) return; d.last = q0;
+  const n = d.strokes.length;
+  d.strokes.forEach(({ e }, i) => {
+    const a = (i / Math.max(1, n)) * 0.6, q = ease.draw(seg(prog, a, a + 0.4));
+    e.style.strokeDashoffset = (1 - q).toFixed(4);
+    e.style.fillOpacity = seg(q, 0.5, 1).toFixed(3);
+  });
+  const m = d.dots.length;
+  d.dots.forEach(({ e, base }, i) => { const a = 0.5 + 0.4 * (i / Math.max(1, m)); e.style.opacity = (seg(prog, a, a + 0.08) * base).toFixed(3); });
+}
+function place(vb, box) {
+  const k = Math.min(box.w / vb[0], box.h / vb[1]);
+  const w = Math.round(vb[0] * k), hh = Math.round(vb[1] * k);
+  return { x: box.x + Math.round((box.w - w) / 2), y: box.y + box.h - hh, w, h: hh, s: k };
+}
+/* Plain Words · sound. Picture-locked sound design, synthesised, no music bed.
+   Each cue is {t, d, fn}. The same list drives live playback and the offline
+   render for the exported film, so they always match. */
+const Sound = (() => {
+  const R = rng(911);
+  const cues = [];
+  const cue = (t, fn, d = 0.3) => cues.push({ t: toReal(t), d, fn });
+
+  function noise(ctx) {
+    if (ctx.__noise) return ctx.__noise;
+    const b = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate), d = b.getChannelData(0), r = rng(77);
+    for (let i = 0; i < d.length; i++) d[i] = r() * 2 - 1;
+    return (ctx.__noise = b);
+  }
+  function env(ctx, g, t, a, peak, dec) {
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak, t + a);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec);
+  }
+  function burst(ctx, out, t, { type = 'bandpass', f = 2000, q = 1, a = 0.002, peak = 0.2, dec = 0.04, pan = 0, f2 }) {
+    const src = ctx.createBufferSource(); src.buffer = noise(ctx);
+    const fl = ctx.createBiquadFilter(); fl.type = type; fl.frequency.setValueAtTime(f, t); fl.Q.value = q;
+    if (f2) fl.frequency.exponentialRampToValueAtTime(f2, t + a + dec);
+    const g = ctx.createGain(); env(ctx, g, t, a, peak, dec);
+    const pn = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+    src.connect(fl).connect(g);
+    if (pn) { pn.pan.value = pan; g.connect(pn).connect(out); } else g.connect(out);
+    src.start(t, R() * 1.5); src.stop(t + a + dec + 0.05);
+    return src;
+  }
+  function tone(ctx, out, t, { f = 440, f2, type = 'sine', a = 0.004, peak = 0.1, dec = 0.2, pan = 0 }) {
+    const o = ctx.createOscillator(); o.type = type; o.frequency.setValueAtTime(f, t);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + a + dec);
+    const g = ctx.createGain(); env(ctx, g, t, a, peak, dec);
+    const pn = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+    o.connect(g);
+    if (pn) { pn.pan.value = pan; g.connect(pn).connect(out); } else g.connect(out);
+    o.start(t); o.stop(t + a + dec + 0.05);
+    return o;
+  }
+  const S = {
+    key: (ctx, o, t) => [burst(ctx, o, t, { f: 3200, q: 2.5, peak: 0.16, dec: 0.025, pan: (R() - 0.5) * 0.6 }), tone(ctx, o, t, { f: 180, peak: 0.05, dec: 0.03 })],
+    type: (ctx, o, t) => burst(ctx, o, t, { f: 4200 + R() * 1200, q: 3, peak: 0.035, dec: 0.012, pan: 0.15 }),
+    whoosh: (ctx, o, t, d = 0.7, peak = 0.07) => burst(ctx, o, t, { type: 'bandpass', f: 380, f2: 2200, q: 0.8, a: d * 0.55, peak, dec: d * 0.45 }),
+    flick: (ctx, o, t) => burst(ctx, o, t, { type: 'bandpass', f: 1600, f2: 900, q: 1.2, a: 0.01, peak: 0.07, dec: 0.08, pan: 0.2 }),
+    wood: (ctx, o, t) => [tone(ctx, o, t, { f: 210, f2: 150, type: 'triangle', peak: 0.12, dec: 0.16 }), burst(ctx, o, t, { type: 'lowpass', f: 900, peak: 0.08, dec: 0.06 }),
+      tone(ctx, o, t + 0.34, { f: 240, f2: 180, type: 'triangle', peak: 0.05, dec: 0.12 })],
+    thud: (ctx, o, t) => [tone(ctx, o, t, { f: 110, f2: 60, peak: 0.28, dec: 0.28 }), burst(ctx, o, t, { type: 'lowpass', f: 600, peak: 0.12, dec: 0.12 })],
+    crackle: (ctx, o, t) => burst(ctx, o, t, { f: 2500 + R() * 4000, q: 4, peak: 0.02 + R() * 0.05, dec: 0.006 + R() * 0.01, pan: (R() - 0.5) * 0.5 }),
+    rumble: (ctx, o, t, d) => burst(ctx, o, t, { type: 'lowpass', f: 260, q: 0.6, a: 0.6, peak: 0.05, dec: d - 0.6 }),
+    splat: (ctx, o, t) => burst(ctx, o, t, { type: 'lowpass', f: 1400, f2: 300, q: 1.4, a: 0.004, peak: 0.12, dec: 0.09, pan: 0.3 }),
+    hoof: (ctx, o, t) => [tone(ctx, o, t, { f: 140, f2: 90, peak: 0.08, dec: 0.08 }), burst(ctx, o, t, { f: 1800, q: 2, peak: 0.05, dec: 0.02 })],
+    tick: (ctx, o, t, pan = 0) => [burst(ctx, o, t, { f: 5200, q: 6, peak: 0.12, dec: 0.018, pan }), tone(ctx, o, t, { f: 2100, peak: 0.03, dec: 0.03, pan })],
+    strike: (ctx, o, t) => burst(ctx, o, t, { type: 'bandpass', f: 1800, f2: 4200, q: 1.6, a: 0.07, peak: 0.07, dec: 0.12, pan: (R() - 0.5) * 0.8 }),
+    tap: (ctx, o, t, f = 620) => [tone(ctx, o, t, { f, f2: f * 0.8, type: 'triangle', peak: 0.07, dec: 0.09 }), burst(ctx, o, t, { f: 2600, q: 2, peak: 0.03, dec: 0.015 })],
+    hum: (ctx, o, t, d) => {
+      const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.045, t + d * 0.7); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+      const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.setValueAtTime(400, t); lp.frequency.exponentialRampToValueAtTime(2400, t + d * 0.8);
+      lp.connect(g).connect(o);
+      return [196, 293.66, 392.0, 587.33].map((f, i) => { const os = ctx.createOscillator(); os.type = i % 2 ? 'sine' : 'triangle'; os.frequency.value = f; os.detune.value = (i - 1.5) * 4; os.connect(lp); os.start(t); os.stop(t + d + 0.05); return os; });
+    },
+    drip: (ctx, o, t) => tone(ctx, o, t, { f: 700, f2: 1500, peak: 0.08, dec: 0.07 }),
+    stop: (ctx, o, t) => [tone(ctx, o, t, { f: 520, f2: 60, type: 'triangle', a: 0.005, peak: 0.09, dec: 0.32 }), burst(ctx, o, t, { type: 'lowpass', f: 1800, f2: 120, peak: 0.08, dec: 0.25 })],
+    // score: a warm pad (detuned saws through a soft low-pass), a felt pulse, a bell
+    pad: (ctx, o, t, d, notes, peak = 0.05, cut = 900, att = 0.9, rel = 1.2) => {
+      const g = ctx.createGain(); const end = t + d;
+      g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(peak, t + Math.min(att, d * 0.5));
+      g.gain.setValueAtTime(peak, Math.max(t + Math.min(att, d * 0.5), end - rel)); g.gain.linearRampToValueAtTime(0.0001, end);
+      const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.setValueAtTime(cut, t); lp.Q.value = 0.4;
+      lp.connect(g).connect(o);
+      const srcs = [];
+      notes.forEach((f) => [-6, 6].forEach((det) => { const os = ctx.createOscillator(); os.type = 'sawtooth'; os.frequency.value = f; os.detune.value = det; const og = ctx.createGain(); og.gain.value = 0.5 / notes.length; os.connect(og).connect(lp); os.start(t); os.stop(end + 0.05); srcs.push(os); }));
+      return srcs;
+    },
+    pulse: (ctx, o, t, peak = 0.06) => [tone(ctx, o, t, { f: 82, f2: 52, peak, dec: 0.16 }), burst(ctx, o, t, { type: 'bandpass', f: 1200, q: 1.5, peak: peak * 0.35, dec: 0.03 })],
+    bell: (ctx, o, t, f, peak = 0.035) => [tone(ctx, o, t, { f, peak, dec: 1.4 }), tone(ctx, o, t, { f: f * 2.01, peak: peak * 0.3, dec: 0.9 })],
+    stone: (ctx, o, t, f = 300) => [tone(ctx, o, t, { f, f2: f * 0.7, type: 'triangle', peak: 0.1, dec: 0.12 }), burst(ctx, o, t, { type: 'lowpass', f: 1500, peak: 0.06, dec: 0.04 })],
+    bubble: (ctx, o, t) => tone(ctx, o, t, { f: 260 + R() * 260, f2: 520 + R() * 400, peak: 0.025, dec: 0.05, pan: (R() - 0.5) * 0.4 }),
+    // the line drawing to today: a thin tone that rises with it
+    rise: (ctx, o, t, d) => {
+      const os = ctx.createOscillator(); os.type = 'sine'; os.frequency.setValueAtTime(293.66, t); os.frequency.exponentialRampToValueAtTime(587.33, t + d);
+      const os2 = ctx.createOscillator(); os2.type = 'sine'; os2.frequency.setValueAtTime(440, t); os2.frequency.exponentialRampToValueAtTime(880, t + d);
+      const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.022, t + d * 0.6); g.gain.exponentialRampToValueAtTime(0.0001, t + d + 0.25);
+      const g2 = ctx.createGain(); g2.gain.value = 0.35; os.connect(g); os2.connect(g2).connect(g); g.connect(o);
+      os.start(t); os2.start(t); os.stop(t + d + 0.3); os2.stop(t + d + 0.3); return [os, os2];
+    },
+    // the one indigo moment: its own signature, a bell chord in the home key over a low swell
+    signal: (ctx, o, t) => [tone(ctx, o, t, { f: 587.33, peak: 0.06, dec: 2.2 }), tone(ctx, o, t + 0.05, { f: 739.99, peak: 0.04, dec: 2.0 }), tone(ctx, o, t + 0.1, { f: 880, peak: 0.035, dec: 2.4 }),
+      tone(ctx, o, t, { f: 1174.66, peak: 0.012, dec: 1.4 }), tone(ctx, o, t, { f: 73.42, a: 0.08, peak: 0.08, dec: 1.6 }), burst(ctx, o, t, { type: 'lowpass', f: 500, a: 0.15, peak: 0.03, dec: 0.6 })],
+    // a ring drawing on: glassy, quiet
+    glass: (ctx, o, t, f = 1318.5) => [tone(ctx, o, t, { f, peak: 0.022, dec: 0.5 }), tone(ctx, o, t, { f: f * 1.5, peak: 0.008, dec: 0.3 })],
+    // a counter ticking over: tiny and dry
+    count: (ctx, o, t) => burst(ctx, o, t, { type: 'highpass', f: 6500, q: 1, peak: 0.03, dec: 0.008 }),
+    // the line folding shut: a whoosh run backwards
+    gather: (ctx, o, t, d = 0.6) => burst(ctx, o, t, { type: 'bandpass', f: 2400, f2: 300, q: 0.9, a: d * 0.85, peak: 0.06, dec: d * 0.15 }),
+    done: (ctx, o, t) => [tone(ctx, o, t, { f: 880, type: 'triangle', peak: 0.07, dec: 0.18 }), tone(ctx, o, t + 0.07, { f: 1318.5, type: 'triangle', peak: 0.06, dec: 0.3 })],
+    snap: (ctx, o, t) => [tone(ctx, o, t, { f: 120, f2: 55, peak: 0.34, dec: 0.22 }), burst(ctx, o, t, { type: 'highpass', f: 3000, peak: 0.05, dec: 0.03 }),
+      tone(ctx, o, t + 0.02, { f: 1318.5, peak: 0.07, dec: 2.2 }), tone(ctx, o, t + 0.02, { f: 1975.5, peak: 0.035, dec: 1.8 }), tone(ctx, o, t + 0.02, { f: 659.25, peak: 0.05, dec: 2.6 })],
+  };
+
+  // ---- the cue sheet ----------------------------------------------------------------------------------
+  // Effects are authored on the old clock and mapped to the real one; inserts and the score use the real clock.
+  const cueR = (t, fn, d = 0.3) => cues.push({ t, d, fn });
+  TICKETS.forEach((_, k) => { const at = -0.32 + k * 0.045; if (at >= 0) cue(at, (c, o, t) => S.key(c, o, t)); });
+  cue(3.5, (c, o, t) => S.whoosh(c, o, t, 0.5, 0.05), 0.5);
+  cue(T.highlight, (c, o, t) => S.tap(c, o, t, 440));
+  cue(T.fly[0], (c, o, t) => S.whoosh(c, o, t, 1.0, 0.08), 1);
+  WORDS.forEach((pl, i) => {
+    if (i) cue(pl.a, (c, o, t) => S.flick(c, o, t));
+    if (pl.d >= 2) { const txt = pl.origin.length, t0 = pl.a + 0.2, t1 = pl.a + 0.2 + Math.min(1.1, pl.d * 0.32); for (let k = 0; k < txt; k += 3) cue(t0 + (t1 - t0) * (k / txt), (c, o, t) => S.type(c, o, t), 0.05); }
+  });
+  EXTRA_T.forEach((e) => cue(e.a, (c, o, t) => S.flick(c, o, t)));
+  cue(WORDS[0].a + 1.2, (c, o, t) => S.wood(c, o, t));
+  { const w = WORDS[1]; cue(w.a + 0.8, (c, o, t) => S.thud(c, o, t)); cue(w.a + 1.3, (c, o, t, d) => S.rumble(c, o, t, d), w.b - w.a - 1.3);
+    for (let t = w.a + 1.4; t < w.b - 0.1; t += 0.04 + R() * 0.12) cue(t, (c, o, tt) => S.crackle(c, o, tt), 0.05); }
+  { const w = WORDS[2]; [0.15, 0.32, 0.5].forEach((d) => cue(w.a + d, (c, o, t) => S.hoof(c, o, t))); [0.62, 0.8, 1.0, 1.25, 1.5].forEach((d) => cue(w.a + d, (c, o, t) => S.splat(c, o, t))); }
+  { const w = WORDS[3]; for (let n = 0; ; n++) { const lt = 0.2 + n * 0.9; if (w.a + lt > w.b - 0.1) break; cue(w.a + lt, (c, o, t) => S.tick(c, o, t, -0.45)); const ph = lerp(2.6, 0, ease.inOut(seg(lt, 0.5, 1.7))); cue(w.a + lt + (ph / Math.PI) * 0.9 + 0.012, (c, o, t) => S.tick(c, o, t, 0.45)); } }
+  cue(WORDS_END, (c, o, t) => S.stop(c, o, t));
+  STRIKE_AT.forEach((s0) => cue(s0, (c, o, t) => S.strike(c, o, t)));
+  cue(T.product[0] + 0.15, (c, o, t) => S.whoosh(c, o, t, 0.6, 0.05), 0.6);
+  cue(35.6, (c, o, t) => S.tap(c, o, t, 330));
+  for (let k = 0; k < ORLA_TYPED.length; k++) cue(36.6 + (38.35 - 36.6) * (k / ORLA_TYPED.length), (c, o, t) => S.key(c, o, t), 0.05);
+  cue(38.5, (c, o, t) => S.tap(c, o, t, 700));
+  cue(39.2, (c, o, t) => S.done(c, o, t));
+  PROJECTS.slice(1).forEach((pr) => cue(pr.at - 0.2, (c, o, t) => S.whoosh(c, o, t, 0.4, 0.04), 0.4));
+  cue(43.3, (c, o, t) => S.tap(c, o, t, 659.25));
+  cue(46.6, (c, o, t) => S.whoosh(c, o, t, 0.5, 0.04), 0.5);
+  // the dated list is told by the timeline now; its old cues (47.35 – 50.55) went with it
+  [523.25, 587.33, 659.25, 783.99].forEach((f, i) => cue(50.85 + i * 0.22, (c, o, t) => S.tap(c, o, t, f)));
+  cue(52.45, (c, o, t) => S.drip(c, o, t));
+  cue(53.0, (c, o, t) => S.whoosh(c, o, t, 1.4, 0.04), 1.4);
+  cue(54.45, (c, o, t) => S.snap(c, o, t), 2.6);
+  // inserts
+  { const a = insertStart('orla'); cueR(a + 0.05, (c, o, t) => S.whoosh(c, o, t, 0.5, 0.05), 0.5); cueR(a + 0.7, (c, o, t) => S.tap(c, o, t, 392)); }
+  { const a = insertStart('bridge'); cueR(a + 0.1, (c, o, t) => S.whoosh(c, o, t, 0.6, 0.04), 0.6); WORDS.forEach((_, i) => cueR(a + 0.2 + i * 0.07, (c, o, t) => S.bell(c, o, t, [587.33, 659.25, 739.99, 880, 987.77][i % 5], 0.018))); }
+  { const a = insertStart('timeline'), SH = TLW.SHOT;
+    cueR(a + 0.05, (c, o, t) => S.whoosh(c, o, t, 0.5, 0.05), 0.5); cueR(a + 0.5, (c, o, t) => S.strike(c, o, t));
+    cueR(a + SH.draw[0], (c, o, t, d) => S.rise(c, o, t, d), SH.draw[1] - SH.draw[0]);
+    // each bead lands on its pop, and the pitch climbs: progress
+    const up = [293.66, 369.99, 440];
+    TLW.STONES.forEach((st, i) => { if (st.state === 'done') cueR(a + st.land + 0.01, (c, o, t) => S.stone(c, o, t, up[i])); if (st.state === 'ahead' || st.state === 'day') cueR(a + st.land, (c, o, t) => S.glass(c, o, t, [1174.66, 1318.5, 1479.98][i - 4])); });
+    cueR(a + 3.5, (c, o, t) => S.tick(c, o, t, 0));
+    cueR(a + SH.ignite, (c, o, t) => S.signal(c, o, t), 2.4);
+    cueR(a + SH.crane[0], (c, o, t) => S.whoosh(c, o, t, 1.2, 0.03), 1.2);
+    // the counter: a tick each time the number turns over twenty, so the ticks slow as it does
+    { let last = 0; for (let lt = 5.5; lt <= 6.6; lt += 0.002) { const v = Math.floor(239 * ease.out(seg(lt, 5.5, 6.6)) / 20); if (v > last) { last = v; cueR(a + lt, (c, o, t) => S.count(c, o, t), 0.05); } } }
+    cueR(a + SH.swap, (c, o, t) => S.whoosh(c, o, t, 0.45, 0.04), 0.45);
+    // history: the line runs back, each method lands lower than the last
+    const down = [220, 246.94, 293.66, 329.63, 369.99, 392, 440];
+    TLW.HIST.forEach((m, i) => cueR(a + m.land + 0.01, (c, o, t) => S.stone(c, o, t, down[i])));
+    cueR(a + SH.fold[0] - 0.05, (c, o, t) => S.gather(c, o, t, 0.6), 0.6);
+  }
+  // ---- the score (real clock). D major, a slow pulse that follows the edit, and silence at the stop.
+  const N = { D2: 73.42, A2: 110, B2: 123.47, D3: 146.83, E3: 164.81, Fs3: 185, G3: 196, A3: 220, B3: 246.94, Cs4: 277.18, D4: 293.66, E4: 329.63, Fs4: 369.99, A4: 440 };
+  const Bm = [N.B2, N.D3, N.Fs3], G = [N.G3 / 2, N.D3, N.G3, N.B3 / 2 * 2], Dm = [N.D3, N.Fs3, N.A3], A = [N.A2, N.E3, N.A3, N.Cs4 / 2 * 2], Dh = [N.D3, N.A3, N.D4, N.Fs4];
+  const stopR = toReal(WORDS_END), wordsR = toReal(T.words), turnR = toReal(T.turn[0]), prodR = toReal(T.product[0]), landR = toReal(54.45);
+  // built for them: a low, uneasy pad and a sparse pulse
+  cueR(0, (c, o, t, d) => S.pad(c, o, t, d, Bm, 0.04, 700, 0.4, 0.8), 4.4);
+  cueR(4.2, (c, o, t, d) => S.pad(c, o, t, d, G, 0.04, 700, 1.0, 0.8), wordsR - 4.2 + 0.4);
+  for (let t = 1.2; t < wordsR - 0.6; t += 1.2) cueR(t, (c, o, tt) => S.pulse(c, o, tt, 0.035));
+  // the new language: the pulse follows each plate and doubles as the plates speed up; the filter opens
+  const prog = [Bm, G, Dm, A];
+  let ci = 0;
+  for (let t = wordsR; t < stopR - 0.05; ci++) { const d = Math.min(3.0, stopR - t); const k = (t - wordsR) / (stopR - wordsR); cueR(t, (c, o, tt, dd) => S.pad(c, o, tt, dd, prog[ci % 4], 0.045 + 0.02 * k, 700 + 1600 * k, 0.5, 0.25), d); t += d; }
+  [...WORDS.map((w) => w.a), ...EXTRA_T.map((e) => e.a)].forEach((a, i, arr) => {
+    const r = toReal(a), next = i < arr.length - 1 ? toReal(arr[i + 1]) : stopR;
+    cueR(r, (c, o, tt) => S.pulse(c, o, tt, 0.05));
+    if (next - r > 0.5) cueR(r + (next - r) / 2, (c, o, tt) => S.pulse(c, o, tt, 0.03));
+  });
+  // the stop is silence. The bridge: one warm chord, very low.
+  cueR(insertStart('bridge') + 0.15, (c, o, t, d) => S.pad(c, o, t, d, Dm, 0.03, 650, 0.6, 0.8), turnR - insertStart('bridge') - 0.15 + 0.3);
+  // the claim and the strikes: held, then the chord lifts as the words fall
+  cueR(turnR, (c, o, t, d) => S.pad(c, o, t, d, G, 0.035, 800, 0.6, 0.5), prodR - turnR);
+  // your words: home key, a gentle arpeggio, up to the plan
+  const tlR = insertStart('timeline'), SHr = TLW.SHOT, fourR = toReal(50.85);
+  cueR(prodR, (c, o, t, d) => S.pad(c, o, t, d, Dh, 0.04, 1300, 0.5, 0.9), tlR - prodR + 0.4);
+  for (let t = toReal(35.6), i = 0; t < tlR - 0.3; t += 0.36, i++) cueR(t, (c, o, tt) => S.bell(c, o, tt, [N.D4, N.Fs4, N.A4, N.Fs4][i % 4], 0.012));
+  // the plan: warm and patient while it draws, opening to the home chord when the next mark lights
+  cueR(tlR + 0.2, (c, o, t, d) => S.pad(c, o, t, d, G, 0.035, 900, 0.8, 0.4), SHr.ignite - 0.2 + 0.3);
+  cueR(tlR + SHr.ignite, (c, o, t, d) => S.pad(c, o, t, d, Dh, 0.04, 1500, 0.3, 0.6), SHr.swap - SHr.ignite + 0.4);
+  // history: lower and older under the methods
+  cueR(tlR + SHr.swap, (c, o, t, d) => S.pad(c, o, t, d, Bm, 0.04, 800, 0.5, 0.5), SHr.fold[0] - SHr.swap + 0.3);
+  // the fold and the four words: the pulse returns and quickens into the drop
+  cueR(tlR + SHr.fold[0], (c, o, t, d) => S.pad(c, o, t, d, G, 0.045, 1200, 0.3, 0.3), fourR - tlR - SHr.fold[0] + 1.4);
+  cueR(fourR + 1.4, (c, o, t, d) => S.pad(c, o, t, d, A, 0.05, 1700, 0.3, 0.2), landR - fourR - 1.4);
+  for (let t = fourR - 0.2, gap = 0.6; t < landR - 0.1; t += gap, gap = Math.max(0.22, gap * 0.88)) cueR(t, (c, o, tt) => S.pulse(c, o, tt, 0.045));
+  // the name: the home chord, full, and a long tail
+  cueR(landR, (c, o, t, d) => S.pad(c, o, t, d, [N.D2, ...Dh], 0.06, 1500, 0.08, 3.2), DURATION - landR);
+  cues.sort((x, y) => x.t - y.t);
+
+  function chain(ctx, dest) {
+    // mastered close to delivery level: +8 dB into a gentle bus compressor, then a fast limiter
+    const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -20; comp.ratio.value = 3; comp.attack.value = 0.01; comp.release.value = 0.2;
+    const lim = ctx.createDynamicsCompressor(); lim.threshold.value = -4; lim.knee.value = 0; lim.ratio.value = 20; lim.attack.value = 0.001; lim.release.value = 0.08;
+    const master = ctx.createGain(); master.gain.value = 4.5;
+    master.connect(comp).connect(lim).connect(dest);
+    return master;
+  }
+
+  // ---- live playback ----------------------------------------------------------------------------------
+  let ctx = null, out = null, idx = 0, on = true, live = [];
+  const track = (n) => { (Array.isArray(n) ? n : [n]).flat(Infinity).forEach((x) => x && live.push(x)); };
+  function ensure() {
+    if (!ctx) { const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null; ctx = new AC(); out = chain(ctx, ctx.destination); }
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+  function stopAll() { live.forEach((n) => { try { n.stop(); } catch (e) {} }); live = []; }
+  function seek(t) {
+    stopAll();
+    idx = cues.findIndex((c) => c.t >= t); if (idx < 0) idx = cues.length;
+    if (!on || !ctx) return;
+    // long beds already under way pick up where they are
+    cues.forEach((c) => { if (c.d > 1.5 && c.t < t && c.t + c.d > t + 0.3) track(c.fn(ctx, out, ctx.currentTime + 0.02, c.t + c.d - t)); });
+  }
+  function tick(t, playing) {
+    if (!playing || !on || !ctx) return;
+    const ahead = 0.15;
+    while (idx < cues.length && cues[idx].t < t + ahead) {
+      const c = cues[idx++];
+      if (c.t < t - 0.05) continue;
+      track(c.fn(ctx, out, ctx.currentTime + Math.max(0, c.t - t), c.d));
+    }
+    if (live.length > 400) live = live.slice(-200);
+  }
+  async function renderWav() {
+    const sr = 48000, oc = new OfflineAudioContext(2, sr * DURATION, sr), o = chain(oc, oc.destination);
+    cues.forEach((c) => c.fn(oc, o, c.t, c.d));
+    const buf = await oc.startRendering();
+    const L = buf.getChannelData(0), Rr = buf.getChannelData(1), n = L.length;
+    const ab = new ArrayBuffer(44 + n * 4), v = new DataView(ab);
+    const w = (o2, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o2 + i, s.charCodeAt(i)); };
+    w(0, 'RIFF'); v.setUint32(4, 36 + n * 4, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 2, true);
+    v.setUint32(24, sr, true); v.setUint32(28, sr * 4, true); v.setUint16(32, 4, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 4, true);
+    for (let i = 0; i < n; i++) { v.setInt16(44 + i * 4, clamp(L[i], -1, 1) * 32767, true); v.setInt16(46 + i * 4, clamp(Rr[i], -1, 1) * 32767, true); }
+    let bin = ''; const u8 = new Uint8Array(ab);
+    for (let i = 0; i < u8.length; i += 0x8000) bin += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
+    return btoa(bin);
+  }
+  return {
+    ensure, seek, tick, stopAll, renderWav,
+    get on() { return on; },
+    set on(v) { on = v; if (!v) stopAll(); },
+  };
+})();
+/* Plain Words · the transport. Plays, scrubs, jumps by chapter and switches format. */
+(() => {
+  const frame = document.getElementById('frame'), cover = document.getElementById('cover');
+  const playBtn = document.getElementById('play'), track = document.getElementById('track'), thumb = document.getElementById('thumb');
+  const segsEl = document.getElementById('segs'), chapsEl = document.getElementById('chaps'), timeEl = document.getElementById('time');
+  const snd = document.getElementById('snd'), fmtBox = document.getElementById('fmts');
+  const m = /^#render(?:-(9x16|4x5))?(?:@(2)x)?$/.exec(location.hash);
+  const ZOOM = m && m[2] ? +m[2] : 1; // #render@2x draws the stage natively at twice the size (4K for 16:9)
+  const RENDER = !!m;
+  if (RENDER) document.body.classList.add('render');
+  // This cut is finished for 16:9 only; the vertical layouts are parked until they get the same pass.
+  let fmt = RENDER ? (m[1] || '16x9') : '16x9';
+  if (!FORMATS[fmt]) fmt = '16x9';
+  const POSTER = toReal(11.2);
+  let film = null, t = POSTER, playing = false, last = 0, started = false;
+
+  function fit() {
+    if (!film) return;
+    if (RENDER) { frame.style.width = film.W * ZOOM + 'px'; frame.style.height = film.H * ZOOM + 'px'; STAGE.style.transform = 'none'; STAGE.style.zoom = ZOOM; return; }
+    frame.style.aspectRatio = `${film.W} / ${film.H}`;
+    frame.style.maxWidth = film.H > film.W ? `min(100%, calc(76vh * ${film.W / film.H}))` : '100%';
+    STAGE.style.transform = `scale(${frame.clientWidth / film.W})`;
+  }
+  new ResizeObserver(fit).observe(frame);
+
+  const bounds = CHAPTERS.map((c, i) => [c.t, i < CHAPTERS.length - 1 ? CHAPTERS[i + 1].t : DURATION]);
+  const fills = bounds.map(([a, b], i) => {
+    const sg = h('i', { style: { flex: `${b - a} 1 0` } }); const fill = h('b'); sg.append(fill); segsEl.append(sg);
+    const btn = h('button', { type: 'button', style: { flex: `${b - a} 1 0` } }, CHAPTERS[i].label);
+    btn.addEventListener('click', () => go(a + 0.01, true));
+    chapsEl.append(btn);
+    return { fill, btn, a, b };
+  });
+  const fmtT = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+  function paint() {
+    if (!film) return;
+    film.render(t);
+    thumb.style.left = ((t / DURATION) * 100).toFixed(3) + '%';
+    fills.forEach((f) => {
+      f.fill.style.transform = `scaleX(${clamp((t - f.a) / (f.b - f.a)).toFixed(4)})`;
+      f.btn.setAttribute('aria-current', t >= f.a && t < f.b ? 'true' : 'false');
+    });
+    timeEl.textContent = `${fmtT(t)} / ${fmtT(DURATION)}`;
+    track.setAttribute('aria-valuenow', t.toFixed(1)); track.setAttribute('aria-valuetext', fmtT(t));
+  }
+  function measure() {
+    if (!film) return;
+    const keep = STAGE.style.transform; STAGE.style.transform = 'none';
+    film.afterFonts.forEach((f) => { film.render(f.at); f.fn(); });
+    STAGE.style.transform = keep;
+    fit(); paint();
+  }
+  const fontsIn = () => document.fonts ? Promise.all([document.fonts.load('600 100px Geist'), document.fonts.load('500 100px Geist'), document.fonts.load('italic 500 40px Geist'), document.fonts.load('500 24px "Geist Mono"')]).then(() => document.fonts.ready) : Promise.resolve();
+  function load(key) {
+    fmt = key;
+    film = buildFilm(key);
+    [...fmtBox.querySelectorAll('button')].forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.fmt === key)));
+    fit(); measure();
+    try { if (!RENDER) localStorage.setItem('plainwords-fmt', key); } catch (e) {}
+  }
+  fmtBox.hidden = true;
+  Object.entries(FORMATS).filter(([key]) => key === '16x9').forEach(([key, f]) => {
+    const b = h('button', { type: 'button', 'data-fmt': key, 'aria-pressed': 'false' }, f.label);
+    b.addEventListener('click', () => load(key));
+    fmtBox.append(b);
+  });
+  function setPlaying(v) {
+    playing = v;
+    document.getElementById('i-play').style.display = v ? 'none' : '';
+    document.getElementById('i-pause').style.display = v ? '' : 'none';
+    playBtn.setAttribute('aria-label', v ? 'Pause' : 'Play');
+    cover.hidden = v || started;
+    if (v) { if (Sound.on) Sound.ensure(); Sound.seek(t); last = performance.now(); requestAnimationFrame(loop); }
+    else Sound.stopAll();
+  }
+  function go(nt, keep) {
+    t = clamp(nt, 0, DURATION);
+    Sound.seek(t); paint();
+    if (keep && !started) { started = true; cover.hidden = true; }
+  }
+  function loop(now) {
+    if (!playing) return;
+    t += Math.min(0.1, (now - last) / 1000); last = now;
+    if (t >= DURATION) { t = DURATION; paint(); setPlaying(false); return; }
+    Sound.tick(t, true); paint();
+    requestAnimationFrame(loop);
+  }
+  function toggle() {
+    if (!started) { started = true; t = 0; Sound.seek(0); }
+    else if (!playing && t >= DURATION - 0.05) { t = 0; Sound.seek(0); }
+    setPlaying(!playing);
+  }
+  cover.addEventListener('click', toggle);
+  playBtn.addEventListener('click', toggle);
+  snd.addEventListener('click', () => {
+    Sound.on = !Sound.on;
+    snd.setAttribute('aria-pressed', String(Sound.on));
+    document.getElementById('i-on').style.display = Sound.on ? '' : 'none';
+    document.getElementById('i-off').style.display = Sound.on ? 'none' : '';
+    document.getElementById('snd-l').textContent = Sound.on ? 'Sound on' : 'Sound off';
+    if (Sound.on && playing) { Sound.ensure(); Sound.seek(t); }
+  });
+  let drag = false, wasPlaying = false;
+  const at = (e) => { const r = track.getBoundingClientRect(); return clamp((e.clientX - r.left) / r.width) * DURATION; };
+  track.addEventListener('pointerdown', (e) => { drag = true; wasPlaying = playing; if (playing) setPlaying(false); track.setPointerCapture(e.pointerId); go(at(e), true); });
+  track.addEventListener('pointermove', (e) => { if (drag) go(at(e), true); });
+  const up = () => { if (!drag) return; drag = false; if (wasPlaying) setPlaying(true); };
+  track.addEventListener('pointerup', up); track.addEventListener('pointercancel', up);
+  track.addEventListener('keydown', (e) => {
+    const map = { ArrowRight: t + 5, ArrowLeft: t - 5, Home: 0, End: DURATION };
+    if (e.key in map) { go(map[e.key], true); e.preventDefault(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest && e.target.closest('input, textarea')) return;
+    if (e.key === ' ' && e.target === document.body) { toggle(); e.preventDefault(); }
+    else if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && e.target === document.body) { go(t + (e.key === 'ArrowRight' ? 5 : -5), true); e.preventDefault(); }
+    else if (e.key === 'm' || e.key === 'M') snd.click();
+  });
+
+  load(fmt);
+  const ready = fontsIn().then(measure, measure);
+  if (document.fonts) document.fonts.addEventListener('loadingdone', () => measure());
+  window.__film = { ready, seek: (s) => { t = s; film.render(s); }, renderWav: () => Sound.renderWav(), duration: DURATION, size: () => [film.W, film.H] };
+})();
+</script>
