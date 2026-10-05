@@ -53,7 +53,7 @@ describe("Wave 3 public interface contracts", () => {
     assert.doesNotMatch(`${about}\n${home}\n${layout}`, /daily briefing|daily signal|Inside Home/i);
     // The header names what the product does, in the founder's order, and
     // never presents Home or the briefing as a product (lock, 2026-10-01).
-    const sectionLinks = [...header.matchAll(/href="#([a-z]+)">([^<]+)</g)].map((match) => match[2]);
+    const sectionLinks = [...header.matchAll(/href=\{anchor\("([a-z]+)"\)\}>([^<]+)</g)].map((match) => match[2]);
     assert.deepEqual(sectionLinks.slice(0, 6), [
       "Projects",
       "Tasks",

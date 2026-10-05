@@ -51,7 +51,7 @@ test.describe("public marketing delight contract", () => {
     expect(infinite).toBe(0);
   });
 
-  test("About presents one semantic page on the floor and settles each sheet once", async ({
+  test("About presents one semantic page in the landing design system", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
@@ -87,9 +87,9 @@ test.describe("public marketing delight contract", () => {
         .evaluateAll((anchors) => anchors.every((anchor) => Boolean(anchor.getAttribute("href")))),
     ).toBe(true);
 
-    const reveal = main.locator(".rise").first();
+    const reveal = main.locator("#system");
     await reveal.scrollIntoViewIfNeeded();
-    await expect(reveal).toHaveClass(/is-in/);
+    await expect(reveal).toBeVisible();
   });
 
   test("reduced motion preserves state and removes authored travel", async ({
@@ -116,18 +116,18 @@ test.describe("public marketing delight contract", () => {
     ).toEqual({ animation: "none", opacity: "1", transform: "none" });
 
     await page.goto("/about");
-    const aboutReveal = page.locator("#system .rise").first();
+    const aboutReveal = page.locator("#system");
     await aboutReveal.scrollIntoViewIfNeeded();
-    await expect(aboutReveal).toHaveClass(/is-in/);
+    await expect(aboutReveal).toBeVisible();
     const reducedNames = await page.evaluate(() => ({
       rows: Array.from(
-        document.querySelectorAll<HTMLElement>("#system li a"),
+        document.querySelectorAll<HTMLElement>("#system li"),
         (element) => getComputedStyle(element).animationName,
       ),
       // the site-wide reduced-motion rule pins reveals to translateY(0),
       // which computes as the identity matrix: no travel either way
       travel: Array.from(
-        document.querySelectorAll<HTMLElement>(".floor-page .rise"),
+        document.querySelectorAll<HTMLElement>(".about-main section, .ab-system"),
         (element) => getComputedStyle(element).transform,
       ).every(
         (transform) => transform === "none" || transform === "matrix(1, 0, 0, 1, 0, 0)",
@@ -165,14 +165,11 @@ test.describe("public marketing delight contract", () => {
     }
 
     await page.goto("/about");
-    const trigger = page.getByRole("button", { name: "Open navigation" });
+    const trigger = page.locator("summary[aria-label='Menu']");
     await trigger.click();
-    await expect(page.locator("#mobile-nav-panel")).toBeVisible();
-    await page
-      .getByRole("button", { name: "Close navigation" })
-      .click();
-    await page.waitForTimeout(240);
-    await expect(page.locator("#mobile-nav-panel")).toBeHidden();
+    await expect(page.getByRole("navigation", { name: "Main, compact" })).toBeVisible();
+    await trigger.click();
+    await expect(page.locator("details.menu")).not.toHaveAttribute("open");
   });
 
   test("all current pages have no serious accessibility violations", async ({

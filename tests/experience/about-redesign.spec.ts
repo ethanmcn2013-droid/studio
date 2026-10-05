@@ -32,7 +32,7 @@ function collectPageErrors(page: Page): string[] {
   return errors;
 }
 
-test.describe("About on the floor and the sheet, production evidence", () => {
+test.describe("About in the landing page design system, production evidence", () => {
   test.describe.configure({ mode: "serial", timeout: 90_000 });
 
   for (const viewport of VIEWPORTS) {
@@ -98,7 +98,7 @@ test.describe("About on the floor and the sheet, production evidence", () => {
 
     await expect(
       page
-        .getByRole("navigation", { name: "Site navigation" })
+        .getByRole("navigation", { name: "Main" })
         .getByRole("link", { name: "About", exact: true }),
     ).toHaveAttribute("aria-current", "page");
     const desktopAudit = await new AxeBuilder({ page })
@@ -111,26 +111,11 @@ test.describe("About on the floor and the sheet, production evidence", () => {
     ).toEqual([]);
 
     // Under reduced motion every sheet and band lands at once, with no travel.
-    const motion = await page.evaluate(() =>
-      Array.from(document.querySelectorAll<HTMLElement>(".floor-page .rise")).map(
-        (element) => {
-          const style = getComputedStyle(element);
-          return {
-            settled: element.classList.contains("is-in"),
-            opacity: style.opacity,
-            transform: style.transform,
-          };
-        },
-      ),
-    );
-    // The site-wide reduced-motion rule pins reveal classes to translateY(0),
-    // which computes as the identity matrix: no travel either way.
-    const noTravel = (transform: string) =>
-      transform === "none" || transform === "matrix(1, 0, 0, 1, 0, 0)";
-    expect(motion.length).toBeGreaterThan(0);
-    expect(motion.every((item) => item.settled)).toBe(true);
-    expect(motion.every((item) => item.opacity === "1")).toBe(true);
-    expect(motion.every((item) => noTravel(item.transform))).toBe(true);
+    const motion = await page.locator(".about-main").evaluate(element => ({
+      opacity: getComputedStyle(element).opacity,
+      animation: getComputedStyle(element).animationName,
+    }));
+    expect(motion).toEqual({ opacity: "1", animation: "none" });
 
     for (const width of [640, 320]) {
       await page.setViewportSize({ width, height: 900 });
@@ -157,39 +142,24 @@ test.describe("About on the floor and the sheet, production evidence", () => {
   }) => {
     const errors = collectPageErrors(page);
 
-    // The Products mega-panel left the rail with the 2026-09-11 estate cut:
-    // it existed to open the three product pages, and those are archived
-    // until launch. What is asserted here is the rail that remains — three
-    // links, no disclosure widget — and the mobile menu, which is unchanged
-    // and is now the only thing in the header that opens and closes.
-    await page.setViewportSize({ width: 1440, height: 667 });
-    await page.goto(ABOUT_URL, { waitUntil: "networkidle" });
-    await expect(page.getByRole("button", { name: "Products" })).toHaveCount(0);
-    await expect(page.locator("#products-mega-panel")).toHaveCount(0);
-
-    const rail = page.locator("header.site-nav nav[aria-label='Site navigation']");
-    for (const [name, href] of [
-      ["Pricing", "/pricing"],
-      ["About", "/about"],
-      ["Waitlist", "/waitlist"],
-    ] as const) {
-      await expect(rail.getByRole("link", { name })).toHaveAttribute("href", href);
-    }
-
-    await page.setViewportSize({ width: 375, height: 667 });
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(ABOUT_URL + "?theme=dark", { waitUntil: "networkidle" });
+    const rail = page.getByRole("navigation", { name: "Main", exact: true });
+    await expect(rail.getByRole("link", { name: "Tasks", exact: true })).toHaveAttribute("href", "/#tasks");
+    await expect(rail.getByRole("link", { name: "About", exact: true })).toHaveAttribute("aria-current", "page");
+    await page.getByRole("button", { name: "Switch to light theme", exact: true }).click();
+    await expect(page.locator(".about-page")).toHaveAttribute("data-theme", "light");
     await page.reload({ waitUntil: "networkidle" });
-    const mobileButton = page.getByRole("button", { name: "Open navigation" });
-    await expect(mobileButton).not.toHaveAttribute("aria-controls");
-    await mobileButton.click();
-    const mobileCloseButton = page.getByRole("button", { name: "Close navigation" });
-    await expect(mobileCloseButton).toHaveAttribute("aria-controls", "mobile-nav-panel");
-    await expect(page.locator("#mobile-nav-panel")).toBeVisible();
-    await expect.poll(() => page.evaluate(() => getComputedStyle(document.body).overflow)).toBe("hidden");
+    await expect(page.locator(".about-page")).toHaveAttribute("data-theme", "light");
+    await page.setViewportSize({ width: 375, height: 667 });
+    const summary = page.locator("summary[aria-label='Menu']");
+    await summary.click();
+    await expect(page.getByRole("navigation", { name: "Main, compact" })).toBeVisible();
+    await page.getByRole("button", { name: "Switch to dark theme", exact: true }).click();
+    await expect(page.locator(".about-page")).toHaveAttribute("data-theme", "dark");
     await page.keyboard.press("Escape");
-    await expect(page.getByRole("button", { name: "Open navigation" })).toBeFocused();
-    await expect
-      .poll(() => page.evaluate(() => getComputedStyle(document.body).overflow))
-      .not.toBe("hidden");
+    await expect(summary).toBeFocused();
+    await expect(page.locator("details.menu")).not.toHaveAttribute("open");
 
     expect(errors).toEqual([]);
   });
@@ -214,15 +184,11 @@ test.describe("About on the floor and the sheet, production evidence", () => {
         ),
       ),
     ).toBe(true);
-    const fallback = page.getByRole("navigation", {
-      name: "Site navigation without JavaScript",
-    });
-    await expect(fallback).toBeVisible();
-    // The no-JS rail mirrors NAV_LINKS. Notes and Timeline left it with the
-    // estate cut; what has to survive without JavaScript is the route to
-    // pricing and the route to asking for access.
+    await page.locator("summary[aria-label='Menu']").click();
+    const fallback = page.getByRole("navigation", { name: "Main, compact" });
     await expect(fallback.getByRole("link", { name: "Pricing" })).toBeVisible();
-    await expect(fallback.getByRole("link", { name: "Waitlist" })).toBeVisible();
+    await expect(fallback.getByRole("link", { name: "Tasks", exact: true })).toHaveAttribute("href", "/#tasks");
+    await expect(page.getByRole("link", { name: "Join the waitlist", exact: true }).last()).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
 
     await context.close();

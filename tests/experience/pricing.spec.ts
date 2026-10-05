@@ -187,7 +187,11 @@ test.describe("Signal Ledger pricing page", () => {
     const contactTop = await page.locator("#contact").evaluate((element) =>
       Math.round(element.getBoundingClientRect().top),
     );
-    expect(contactTop).toBeLessThanOrEqual(24);
+    const headerBottom = await page.locator("header#nav").evaluate((element) =>
+      Math.round(element.getBoundingClientRect().bottom),
+    );
+    expect(contactTop).toBeGreaterThanOrEqual(headerBottom);
+    expect(contactTop).toBeLessThanOrEqual(headerBottom + 24);
   });
 
   test("uses first-party proof and a semantic comparison without public Event", async ({

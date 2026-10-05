@@ -1,4 +1,4 @@
-﻿# signal studio. — the dispatch
+# signal studio. — the dispatch
 
 The umbrella dispatch. The three products and Home keep their own product
 receipts; this one
@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 (operating vocabulary — pass · step · update · fix · re-do · push ·
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
+
+## 2026-10-05 · S·186 · ships · About joins the current home page
+
+**The About page now follows the main landing page’s design.** Replaces the retired floor-and-sheet layout with the shared landing palette, Geist typography, header and footer. Both themes use the same saved preference. Retains the founder story, company facts, product descriptions, refusals and attributed contact links. The shared header routes product links back to the landing page from About.
 
 ## 2026-10-03 · S·185 · tightens · The home page asks for your address at the top
 
