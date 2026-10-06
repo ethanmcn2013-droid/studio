@@ -17,7 +17,11 @@ A fluent interpretation can select the wrong Project, omit part of a compound re
 
 The first isolated proof uses a strict versioned contract, explicit Project and task identities, trusted final-input and actor boundaries, semantic preconditions and capability checks inside the writer transaction. All effects and the exact actor-scoped receipt commit together. A reused identity with changed content conflicts, and current access gates receipt retrieval.
 
-Independent synthetic checks have verified literal before/after state, preserved collaborators and unrelated fields, atomic fault rollback, no-op accounting, replay, response loss and revocation against the committed construction source in [App PR 214](https://github.com/ethanmcn2013-droid/app/pull/214). Wider maintained operation and receiving evidence remain open.
+Independent synthetic checks have verified literal before/after state, preserved collaborators and unrelated fields, atomic fault rollback, no-op accounting, replay, response loss and revocation against source `c48c8d621b5b3352ebd5dab3e53bec80191560ae` in [App PR 214](https://github.com/ethanmcn2013-droid/app/pull/214). Validation in a separate local checkout and all four remote repository checks passed at that source. Authenticated operation and live receiving remain open.
+
+Input finality introduces further failure paths: Finish can omit buffered tail input, acknowledgements can arrive after local commits, completed text can arrive out of order, and conflicting finals can invalidate a request already being interpreted. The next inert proof must establish a complete immutable manifest and discard stale results without executing a supported prefix. An interpreter may return a schema-valid partial compound request; independent whole-request labels are needed to detect that semantic error.
+
+After mutation dispatch, an absent receipt or failed lookup does not prove zero effects: a transaction may still be running or access may have changed. Reconciliation must retain the original identity and payload. A local pure state machine cannot by itself establish browser reload recovery, all-tab coordination, real provider protocol compliance or visible refreshed completion.
 
 ## Known semantic dependencies
 
