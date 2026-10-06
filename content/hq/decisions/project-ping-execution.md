@@ -20,6 +20,12 @@ Recover an existing committed receipt through a currently authorized read. An ab
 
 Use synthetic local data for the first proof, with no ambient production database import or provider call. The initial status and date scope is deliberately narrower than final V1: system columns and Europe/Dublin projection until custom persistence and timezone semantics are resolved. This is a proof boundary, not deletion of the broader requirements.
 
+Continue with an inert lifecycle before adding transport. Capture immutable application context, serialize unacknowledged input commits, drain the accepted-frame boundary at Finish and freeze a complete ordered manifest before interpretation. Provider deltas are never executable input. Bind the resulting operation-only proposal to application-owned actor, target, finality and command identity; schema validity alone does not prove that every requested clause was understood.
+
+Before dispatch, cancellation produces no mutation descriptor. After dispatch, a missing response, denied recovery or absent receipt leaves the outcome unresolved until original-identity reconciliation establishes it. Do not substitute a new command identity or claim cancellation for a possibly committed command. A pure reducer can establish these descriptor rules; actual request, transaction, refresh and account-wide coordination boundaries still need separate receiving evidence.
+
+Predeclare independent synthetic text labels and retain a reserved screening split outside candidate development until the interface is frozen. Preparing the corpus or passing mocked interpretation tests establishes neither model accuracy nor speech quality. Choose the simplest voice route that survives measured real comparisons; no route is selected by this construction decision.
+
 ## Reason
 
 Generic task actions and bulk UI fan-out do not establish compound atomicity or truthful completion. Interpretation can be wrong, responses can be lost and access can change. Exact state and durable recovery need to work before selecting a speech architecture or polishing its completion experience.
