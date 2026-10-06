@@ -29,6 +29,10 @@ App source `ae9713bcb40a94f047ee92e0c1747f04e3629efc` contains divergent custom-
 
 The existing local conversation transaction adapter provides queued explicit transactions. An independent second file connection exposed installed Windows libSQL 0.17.3 contention: the losing connection failed closed, and new writes in the same process could remain blocked even after reopening handles. Authorized read-only receipt recovery worked on a reopened handle; a fresh worker process recovered the original identity and resumed writes. Tests must accept safe recovery on other platforms rather than require this driver defect. Production adapter retirement and remote concurrency remain unresolved; this observation does not establish hosted behavior or capacity.
 
+The canonical task-count projection also had a reproduced outer-correlation defect under the installed query builder. The narrow source fix at `853c1102bc352335f0f421cda6cf477a9a67d564` has independent review and separate local receiving, including a maintained literal persistence oracle. Until the draft change is integrated and operated, that local result does not establish deployed count accuracy.
+
+The reviewed local bridge at `e307eef9b88c9625cb6e7662bfae0dde0c98a67a` exercises actual injected invocation, currently authorized plan-bound recovery and local readback. Separate receiving passes 25 owning state/fault tests and full types, focused lint, module and logging checks; six independent literal source cases also pass. Cancellation paths clear raw input and stale projected rows without falsifying historical commit knowledge. This reduces the isolated construction risk. Strict real-session binding, canonical browser hydration, account-wide custody, live provider behavior and operated use remain open.
+
 ## Current state
 
 Open on 6 October 2026. Independent isolated contract and persistence checks pass; full provider, browser, maintained-operation, pilot and operating evidence remains unverified. Current work and the next proof live in the private Delivery Project.

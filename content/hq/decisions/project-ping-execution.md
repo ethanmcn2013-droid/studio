@@ -28,6 +28,10 @@ Predeclare independent synthetic text labels and retain a reserved screening spl
 
 The next finite enabler connects synthetic typed input to the existing isolated executor, authorized receipt recovery and a verified readback. Record actual calls and resulting state independently of requested descriptors. This delegated recommendation is approved for disposable construction; a local bridge cannot substitute for the authenticated browser and current-control comparison required by the typed floor.
 
+Fix the canonical task-count correlation defect as a finite necessary enabler. Share the existing projection with one literal persistence regression, preserve current query predicates, and keep the change separate from the disposable bridge. This recommendation is recorded approved under founder delegation. The sprint uses six agents in total, one source writer per worktree and one combined HQ update; further abstractions and extra test matrices are deferred unless a material failure requires them.
+
+The local bridge now has immutable reviewed source in App PR 217. Keep committed receipt knowledge separate from current projection: cancellation clears raw input and stale displayed rows, while retaining the original identity and any already known historical outcome. Manual receipt lookup and readback have finite local budgets; they never authorize another executor call. Those disposable limits are not product availability promises. The next meaningful floor proof requires a strict real session actor, an explicitly isolated runtime target and canonical browser hydration.
+
 ## Reason
 
 Generic task actions and bulk UI fan-out do not establish compound atomicity or truthful completion. Interpretation can be wrong, responses can be lost and access can change. Exact state and durable recovery need to work before selecting a speech architecture or polishing its completion experience.
