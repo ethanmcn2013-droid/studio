@@ -26,6 +26,8 @@ Before dispatch, cancellation produces no mutation descriptor. After dispatch, a
 
 Predeclare independent synthetic text labels and retain a reserved screening split outside candidate development until the interface is frozen. Preparing the corpus or passing mocked interpretation tests establishes neither model accuracy nor speech quality. Choose the simplest voice route that survives measured real comparisons; no route is selected by this construction decision.
 
+The next finite enabler connects synthetic typed input to the existing isolated executor, authorized receipt recovery and a verified readback. Record actual calls and resulting state independently of requested descriptors. This delegated recommendation is approved for disposable construction; a local bridge cannot substitute for the authenticated browser and current-control comparison required by the typed floor.
+
 ## Reason
 
 Generic task actions and bulk UI fan-out do not establish compound atomicity or truthful completion. Interpretation can be wrong, responses can be lost and access can change. Exact state and durable recovery need to work before selecting a speech architecture or polishing its completion experience.
