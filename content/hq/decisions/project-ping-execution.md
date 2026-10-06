@@ -16,6 +16,8 @@ Start with a disposable isolated proof of a versioned application-owned command 
 
 Bind actor identity at a trusted authentication boundary. Reauthorize all effects in the transaction and atomically store the exact outcome with an actor-scoped command identity and immutable payload hash. Receipt retrieval checks current access. Before dispatch, cancellation writes nothing; after dispatch, reconciliation determines the outcome.
 
+Recover an existing committed receipt through a currently authorized read. An absent read does not authorize a write: repeat receipt lookup, payload comparison and all write checks inside the transaction. This avoids requiring a new writer lock merely to report an already committed result while preserving concurrent first-write protection.
+
 Use synthetic local data for the first proof, with no ambient production database import or provider call. The initial status and date scope is deliberately narrower than final V1: system columns and Europe/Dublin projection until custom persistence and timezone semantics are resolved. This is a proof boundary, not deletion of the broader requirements.
 
 ## Reason

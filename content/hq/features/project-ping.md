@@ -19,7 +19,9 @@ Project Ping will let someone carry out an explicit command in the Project they 
 
 Execution was authorized on 6 October 2026. The first isolated engineering proof has started from App source `ae9713bcb40a94f047ee92e0c1747f04e3629efc`. No Ping transport, microphone experience, deployed feature or customer acceptance is established by this record.
 
-The proof begins with a strict inert command contract and an injected executor. It must demonstrate current authorization inside the writer transaction, exact requested effects, rollback of the whole compound command, and an atomic actor-scoped receipt. Retrying the same command recovers its prior result; changing a possibly executed request must never create an accidental second action.
+The strict inert command contract and injected executor are committed for review in [App PR 214](https://github.com/ethanmcn2013-droid/app/pull/214). Independent checks against its unchanged command and service source passed 26 contract/date-projection cases and nine file-backed state/fault groups. They demonstrate exact effects, preservation of unrelated fields and collaborators, atomic task/activity/creation-capture/receipt rollback, no-op accounting, actor-scoped replay and current access after revocation. These are disposable construction observations, not integrated product acceptance.
+
+Recovering an already committed receipt uses an authorized read transaction. If no receipt exists, the writer transaction repeats receipt lookup and authorization before effects. Retrying the same command recovers its prior result; changing a possibly executed request conflicts.
 
 The disposable first proof covers configured system statuses and a documented Europe/Dublin date projection. Existing custom-status writers disagree on lane persistence, and existing date writers choose different instants. Full custom-status and timezone support remains part of the product work and needs its own semantic and state evidence before real use.
 

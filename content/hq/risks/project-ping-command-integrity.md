@@ -17,14 +17,14 @@ A fluent interpretation can select the wrong Project, omit part of a compound re
 
 The first isolated proof uses a strict versioned contract, explicit Project and task identities, trusted final-input and actor boundaries, semantic preconditions and capability checks inside the writer transaction. All effects and the exact actor-scoped receipt commit together. A reused identity with changed content conflicts, and current access gates receipt retrieval.
 
-Independent synthetic oracles will verify literal before/after state, preserved collaborators and unrelated fields, atomic fault rollback, no-op accounting, replay, response loss and revocation. Local proof is not hosted receiving or user acceptance.
+Independent synthetic checks have verified literal before/after state, preserved collaborators and unrelated fields, atomic fault rollback, no-op accounting, replay, response loss and revocation against the committed construction source in [App PR 214](https://github.com/ethanmcn2013-droid/app/pull/214). Wider maintained operation and receiving evidence remain open.
 
 ## Known semantic dependencies
 
 App source `ae9713bcb40a94f047ee92e0c1747f04e3629efc` contains divergent custom-column lane persistence and date-to-instant conventions. The initial disposable proof uses configured system columns and a documented Europe/Dublin projection. Wider custom-status and timezone support needs a reviewed persistence policy and exact projection tests before real use.
 
-The existing local conversation transaction adapter documents native-driver contention problems and provides queued explicit transactions. The Ping proof must attest its chosen adapter and test a second client; that result cannot establish hosted-driver behavior or user capacity.
+The existing local conversation transaction adapter provides queued explicit transactions. An independent second file connection exposed installed Windows libSQL 0.17.3 contention: the losing connection failed closed, and new writes in the same process could remain blocked even after reopening handles. Authorized read-only receipt recovery worked on a reopened handle; a fresh worker process recovered the original identity and resumed writes. Tests must accept safe recovery on other platforms rather than require this driver defect. Production adapter retirement and remote concurrency remain unresolved; this observation does not establish hosted behavior or capacity.
 
 ## Current state
 
-Open on 6 October 2026. The implementation claim has started; no passing persistence, provider, browser, pilot or operating evidence is recorded here yet. Current work and the next proof live in the private Delivery Project.
+Open on 6 October 2026. Independent isolated contract and persistence checks pass; full provider, browser, maintained-operation, pilot and operating evidence remains unverified. Current work and the next proof live in the private Delivery Project.
