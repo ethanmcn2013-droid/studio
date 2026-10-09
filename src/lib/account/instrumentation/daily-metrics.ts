@@ -95,7 +95,7 @@ function present(
   const covered = rows.length;
   if (covered === 0) return unavailable(emptyReason);
   if (eligible < BEHAVIOURAL_MIN_WORKSPACES) return withheld();
-  if (covered < expected) {
+  if (covered < expected || rows.some(row => (row.coverageMask & row.expectedMask) !== row.expectedMask)) {
     return { state: "lower_bound", value, denominator: expected };
   }
   return { state: "exact", value, denominator: expected };
@@ -142,7 +142,7 @@ export function activeRecently(inputs: WindowInputs): MetricValue {
 
   if (window.trailing) {
     const value = lifecycle.filter(
-      (row) => row.lastActionLocalDate >= window.start,
+      (row) => row.lastActionLocalDate >= window.start && row.lastActionLocalDate <= window.end,
     ).length;
     return present(value, rows, window, eligible, "No sponsored-use rollup for this period");
   }
@@ -214,7 +214,7 @@ export function productReach(inputs: WindowInputs): ProductReach[] {
     if (window.trailing) {
       const value = lifecycle.filter((row) => {
         const last = row.productLastActionLocalDate[product];
-        return last != null && last >= window.start;
+        return last != null && last >= window.start && last <= window.end;
       }).length;
       return {
         product: label,
@@ -272,7 +272,8 @@ export function summariseCoverage(inputs: WindowInputs): CoverageSummary {
   let state: CoverageSummary["state"];
   if (covered === 0) state = "unavailable";
   else if (eligible < BEHAVIOURAL_MIN_WORKSPACES) state = "suppressed";
-  else if (covered < expected || modulesCovered < modulesExpected) state = "partial";
+  else if (covered < expected || modulesCovered < modulesExpected ||
+    rows.some(row => (row.coverageMask & row.expectedMask) !== row.expectedMask)) state = "partial";
   else state = "complete";
 
   return {

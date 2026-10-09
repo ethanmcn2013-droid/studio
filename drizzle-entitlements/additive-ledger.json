@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "baseline": "0000_init",
+  "productionAuthorized": false,
+  "migrations": [
+    {
+      "id": "0001_venue_fulfilment",
+      "sql": "drizzle-entitlements/0001_venue_fulfilment.sql",
+      "sha256": "930455a3f86d457f98c8391a6079a47165cf3dedd5fc01d9087366b1c5e84b82",
+      "journalWhen": 1788559200000,
+      "policy": "additive-local-only",
+      "rollback": "Disable the issuance service and keep allocated requests/codes for exact retry. Do not drop delivered records or rewrite grants."
+    },
+    {
+      "id": "0002_usage_delivery",
+      "sql": "drizzle-entitlements/0002_usage_delivery.sql",
+      "sha256": "d8b6eb2c01d9890558bf77b7bbfc580b199e121e11688525cf5de02e8bbac441",
+      "journalWhen": 1788566400000,
+      "policy": "additive-local-only",
+      "rollback": "Disable positive usage capture/delivery; keep authenticated maintenance and erasure delivery running. Drain pending erasure controls before any separately reviewed data removal. No production application authorized."
+    },
+    {
+      "id": "0003_usage_workspace_erasure",
+      "sql": "drizzle-entitlements/0003_usage_workspace_erasure.sql",
+      "sha256": "9d6fc58ee438ef00ec42402c70fac33ec0ec007ae6a37769cdca6adb973c822f",
+      "journalWhen": 1788573600000,
+      "policy": "additive-local-only",
+      "rollback": "Keep workspace erasure tombstones and disable positive capture. Do not drop an erasure fence while delayed delivery is possible."
+    },
+    {
+      "id": "0004_sponsor_programme",
+      "sql": "drizzle-entitlements/0004_sponsor_programme.sql",
+      "sha256": "f30624c4b4df45ed69800a6067984ccbb3be2df46def63ab7f4c570346de2798",
+      "journalWhen": 1788580800000,
+      "policy": "additive-local-only",
+      "rollback": "Disable programme capture, reporting and exports; restrict the report family through the programme service. Preserve release and invitation evidence for controlled recovery. Do not drop reporting or erasure records. No production application authorized."
+    }
+  ]
+}

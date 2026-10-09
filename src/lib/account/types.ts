@@ -63,7 +63,8 @@ export type ReportingCoverage = {
   periodEnd: string;
   periodLabel: string;
   definitionVersion: string;
-  modulesCovered: number;
+  /** Observed coverage is omitted when it could reveal suppressed behaviour. */
+  modulesCovered?: number;
   modulesExpected: number;
   daysCovered?: number;
   daysExpected?: number;

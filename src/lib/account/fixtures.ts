@@ -331,15 +331,13 @@ export const VENUE_SUPPRESSED: AccountSnapshot = {
     state: "suppressed",
     label: "Small-group privacy protection",
     detail:
-      "Two eligible sponsored workspaces. Behavioural values are withheld.",
+      "The eligible group is below the reporting threshold. Behavioural values are withheld.",
     dataThrough: "2026-07-24",
     periodStart: "2026-06-25",
     periodEnd: "2026-07-24",
     periodLabel: "Last 30 days",
     definitionVersion: DEFINITION_VERSION,
-    modulesCovered: 4,
     modulesExpected: 4,
-    daysCovered: 30,
     daysExpected: 30,
   },
   access: {
