@@ -13,7 +13,7 @@ reviewDate: 2026-10-02
 
 The reviewed App source and guarded verification tools are being received for release. The tool successor `4823d208ed349ddceb7048833928c69036a9c43e` passed its 107-test synthetic stage. It supplies no new hosted acknowledgement, representative-load or fault acceptance. The latest C3 measurement below remains failed at 1,247.2 / 1,289.8 / 1,275.8 ms p95 against the unchanged 800 ms target; successful cleanup does not change that verdict. Earlier failed acknowledgements and Windows native-process failures remain preserved.
 
-Migration source PR 259 is received at main `9d1c719e`, tree `65b90cd`. Encrypted migration run 37999591761 and independent packet review attest applied count two and current status. Fresh received-main status run 38000438986 is still pending verification here. Final App source, combined CI/build, schema2 receiving for App PR 196, actual production flags and runtime deployment remain pending. This risk stays Needs attention until its own acceptance evidence is complete.
+Migration source PR 259 is received at main `9d1c719e`, tree `65b90cd`. Encrypted migration run 37999591761 and independent packet review attest applied count two and current status. Fresh read-only received-main status run 38000438986 passed at 22:40:52 UTC on exact main `9d1c719e448a4a117a2e428abc3b5bdd1349956f`: target, identity and ledger match, last applied is `0040`, status is current and pending is empty. Final App runtime source, combined CI/build, schema2 receiving for App PR 196, actual production flags and runtime deployment remain pending. This risk stays Needs attention until its own acceptance evidence is complete.
 
 ## Historical source checkpoint, 2 October 2026
 
