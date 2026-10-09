@@ -8,6 +8,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-09 · S·190 · reads · HQ separates prepared source from accepted results
+
+**The release record shows what has been proved and what still needs checking.**
+
+Receives the reviewed backend reliability history and keeps the failed 800 ms acknowledgement, representative-workload and Signal quality results intact. Adds dated source-preparation boundaries to Today Signal, Ping and the sponsor system record. Ping remains 22/58 with 0/13 programme gates, its partial audio package remains deferred, and product paths remain disconnected. Sponsor Studio runtime and migrations remain a separate candidate; disabled App receiving does not complete remote Project withdrawal or enable reporting. Existing product designs are preserved without a new founder selection.
+
+App migration PR 259 is received at main `9d1c719e`, tree `65b90cd`. Encrypted workflow 37999591761 and independent artifact review attest two applied migrations and current status; fresh received-main status 38000438986 remains pending verification here. Final App source, combined CI/build, schema2 receiving for App PR 196, actual production flags and runtime deployment remain pending. No production runtime release is claimed by this documentation preparation.
+
 ## 2026-10-05 · S·189 · tightens · The icon floats, with no dark tile anywhere
 
 **The ring and dot now sit on nothing: no black square behind the icon in a tab, a bookmark, a shortcut or an installed copy.**

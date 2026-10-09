@@ -15,6 +15,20 @@ relatedMetric: Weekly active workspaces
 
 ## Notes
 
+### App source receiving, 9 October 2026
+
+The release candidate preserves the current Home and Overview while receiving the reviewed backend truth repairs. For an explicitly complete and empty authorized task inventory, partial activity coverage no longer invents work that could not be checked. Raw activity evidence stays partial, and unknown, incomplete, mixed-scope or nonempty inventories keep their partial state. This is a bounded correctness repair, not a new blind quality result.
+
+Final App main source, combined CI, schema2 receiving for App PR 196 and production runtime receiving remain pending. The progressive Signal flags remain off by source default; actual production configuration still needs verification. The historical quality failures, sealed fresh labels, three-item briefing discipline and current design remain intact. No founder design selection follows from receiving the source.
+
+### Backend truth checkpoint, 27 September 2026
+
+The source-pinned investigation at App `6bb1013a` confirms that mounted Home still uses the legacy briefing path; explicit planning-period Full Briefing also retains it with V1 enabled. Original candidate `7ebb502b` repairs canonical lifecycle facts and complete-or-error source enumeration. Its forty-family development comparison records five lifecycle wins, 34 ties, no losses and one unscored outage. A separately completed diagnostic comparison corrects two further lifecycle families but exposes a new critical omission; the aborted blind protocol remains inconclusive and absolute quality fails.
+
+Follow-up `87d8bef7` resolves completed prerequisites, uses explicit unavailability for unknown open dependencies and lets valid comment-creation evidence advance recency. Eighteen independent receiving checks pass; the completed sixty-family nonblind regression fails acceptance: 141 unsupported claims, six critical failures, one new critical omission versus baseline and four newly unavailable families. These repairs do not certify complete activity history or resolve protected priority/date/presentation contracts. No release or overall quality acceptance is claimed. The current interface remains unchanged.
+
+See [App backend reliability and Signal reads](../../atlas/app-backend-reliability-and-signal-reads.md) for the exact source paths, evidence limits and private delivery links. The historical design record below is not evidence that these backend quality gates passed.
+
 The ecosystem's daily state of work. The live Briefing remains Signal's default and keeps its hard three-item discipline. The separate `signal-progressive-depth` feature adds Overview, Trends, and Evidence beneath it behind a production-off flag; it does not replace this artifact.
 
 ### Tasks due-date source repair (App candidate, 23 September 2026)

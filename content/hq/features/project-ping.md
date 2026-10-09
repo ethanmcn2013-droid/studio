@@ -8,8 +8,14 @@ priority: High
 effort: Large
 impact: High
 owner: Ethan
-lastVerified: 2026-10-06
+lastVerified: 2026-10-09
 ---
+
+## App release preparation, 9 October 2026
+
+The reviewed Ping construction is prepared for App source integration. Final App main source, combined release checks, schema2 receiving for App PR 196, actual production configuration and runtime deployment remain pending. Earlier draft and unmerged statements below are retained as historical checkpoints; this preparation does not claim they have all reached App main.
+
+Product defaults remain disconnected. The typed runtime is limited to an explicitly marked local synthetic SQLite fixture and refuses hosted Vercel, demo, remote and ambient database targets. Source receiving does not select a provider or prove genuine admission, effective region/retention, cost controls, real-device or human use. Whole-plan acceptance remains 22/58 and programme gates remain 0/13. The partial audio package stays DEFER, and merged Studio PR 234 establishes only its bounded public synthetic text smoke. No provider route or founder-specific design selection is recorded.
 
 ## What it is
 

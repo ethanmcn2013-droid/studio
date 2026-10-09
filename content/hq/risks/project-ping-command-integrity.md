@@ -9,6 +9,10 @@ owner: Ethan
 reviewDate: 2026-10-20
 ---
 
+## Source release boundary, 9 October 2026
+
+The reviewed Ping source is prepared for App integration, with default-disconnected product paths and strict actor, Project, original-identity and recovery controls retained. Final App main receiving, combined CI, schema2 receiving for App PR 196, actual production flags and deployment remain pending. Source integration does not establish a live provider route, device/human acceptance or a founder design selection. This risk remains Needs attention; whole acceptance stays 22/58 and 0/13 programme gates, with the partial audio package DEFER. Studio PR 234's accepted public synthetic text smoke changes none of those gates.
+
 ## Risk
 
 A fluent interpretation can select the wrong Project, omit part of a compound request or report completion before durable effects are known. Retrying after a lost response can duplicate placeholder tasks. A stale permission check or receipt can disclose or mutate work after access is revoked.
