@@ -15,11 +15,11 @@ relatedMetric: Weekly active workspaces
 
 ## Notes
 
-### App source receiving, 9 October 2026
+### App source receiving, 10 October 2026
 
 The release candidate preserves the current Home and Overview while receiving the reviewed backend truth repairs. For an explicitly complete and empty authorized task inventory, partial activity coverage no longer invents work that could not be checked. Raw activity evidence stays partial, and unknown, incomplete, mixed-scope or nonempty inventories keep their partial state. This is a bounded correctness repair, not a new blind quality result.
 
-Final App main source, combined CI, schema2 receiving for App PR 196 and production runtime receiving remain pending. The progressive Signal flags remain off by source default; actual production configuration still needs verification. The historical quality failures, sealed fresh labels, three-item briefing discipline and current design remain intact. No founder design selection follows from receiving the source.
+The latest local App candidate is `5d2cd32ce893c4c84dc5a1f19706864043dd1f37`, tree `b654abd6585922428237a34a2828bdda932674f8`, with latest PR 204/207 runtime and verification fixes accepted by independent source review. It adds observations of saved completions and overload based on canonical personal assignments; source receiving supplies no new quality score. Current browser receiving passed 76 route checks, 604 Home checks and 576 Overview checks across four widths in dark and light modes. App typecheck, 15 realtime checks, three React replacement cases, changed-file lint, fresh local production-classified/demo builds and seven Settings/shell hydration cases passed with native exit 0. The corrected production-classified budget passed unchanged ceilings at 1,110.2 KB gzip across 116 chunks, while lower target debt remains; the initial native-exit-2 population mismatch is preserved. Full schema2 receiving for App PR 196 is still running and unaccepted. Current CI, complete receiving proof, final App main receiving and provider deployment remain pending. The prior `d4b97edc` full receiving pass is historical; production still serves the earlier artifact. Production-access-mode preparation passed without establishing activation or deployment. The progressive Signal flags remain off by source default; actual production configuration still needs verification. The historical quality failures, sealed fresh labels, three-item briefing discipline and current design remain intact. No founder design selection follows from receiving the source.
 
 ### Backend truth checkpoint, 27 September 2026
 

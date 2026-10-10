@@ -9,9 +9,9 @@ owner: Ethan
 reviewDate: 2026-10-20
 ---
 
-## Source release boundary, 9 October 2026
+## Source release boundary, 10 October 2026
 
-The reviewed Ping source is prepared for App integration, with default-disconnected product paths and strict actor, Project, original-identity and recovery controls retained. Final App main receiving, combined CI, schema2 receiving for App PR 196, actual production flags and deployment remain pending. Source integration does not establish a live provider route, device/human acceptance or a founder design selection. This risk remains Needs attention; whole acceptance stays 22/58 and 0/13 programme gates, with the partial audio package DEFER. Studio PR 234's accepted public synthetic text smoke changes none of those gates.
+The reviewed Ping source is composed in local App candidate `5d2cd32ce893c4c84dc5a1f19706864043dd1f37`, tree `b654abd6585922428237a34a2828bdda932674f8`, with latest PR 204/207 runtime and verification fixes accepted in independent source review. Default-disconnected product paths and strict actor, Project, original-identity and recovery controls are retained. Current broader route, Home and Overview browser checks passed. App typecheck, 15 realtime checks, three React replacement cases, changed-file lint, fresh local production-classified/demo builds and seven Settings/shell hydration cases passed with native exit 0. The corrected production-classified budget passed unchanged ceilings; lower target debt and the initial native-exit-2 population mismatch remain recorded. These checks do not establish live Ping acceptance. Full schema2 receiving for App PR 196 is still running and unaccepted. Current CI, complete receiving proof, final App main receiving, actual production flags and provider deployment remain pending. Production-access-mode preparation supplies no activation or deployment proof; production still serves the earlier artifact. The prior `d4b97edc` full receiving pass and all original checkpoints below are historical. Source integration does not establish a live provider route, device/human acceptance or a founder design selection. This risk remains Needs attention; whole acceptance stays 22/58 and 0/13 programme gates, with the partial audio package DEFER. Studio PR 234's accepted public synthetic text smoke changes none of those gates.
 
 ## Risk
 

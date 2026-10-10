@@ -3,27 +3,29 @@ title: App backend reliability and Signal reads
 slug: app-backend-reliability-and-signal-reads
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-10-09
+lastVerified: 2026-10-10
 links: [turso-databases-and-reads, signal-progressive-analytics]
 tags: [App, Tasks, Signal, recovery, authorization, briefing, coverage]
 references: [app/src/modules/signal/lib/data/source.ts, app/src/modules/signal/server/briefing/signal-build-for-user.ts, app/src/modules/signal/server/analytics/providers/tasks.ts, app/scripts/reliability/]
-summary: "Current task acknowledgement misses its p95 targets; representative load and blind Signal acceptance remain open."
+summary: "Recorded hosted task acknowledgement misses its p95 targets; latest-source receiving, representative load and blind Signal acceptance remain open."
 status: complete
 pinned: false
 execWhat: Home and Full Briefing read authorized task facts through different server paths. Recovery checks restore five isolated stores and verify their contents and relationships.
 execMatters: Accurate lifecycle facts prevent old or finished work from being presented as a new problem. Verified recovery protects work when a dependency fails.
-execRisk: Current-source acknowledgement p95 fails all three 800 ms targets. Representative load, inherited design findings and sealed blind Signal quality remain open.
+execRisk: Recorded hosted acknowledgement p95 fails all three 800 ms targets; the latest local candidate has no new hosted latency verdict. Representative load, inherited design findings and sealed blind Signal quality remain open.
 ---
 
-## App release preparation, 9 October 2026
+## App release preparation, 10 October 2026
 
 The App release is receiving the reviewed task, authorization and briefing repairs while preserving the current product design. The bounded empty-history repair treats activity coverage as inapplicable only when the authorized task inventory is explicitly complete and empty. Raw partial activity evidence remains recorded; unknown, incomplete, mixed-scope and nonempty inventories remain partial. This source repair does not establish a new intelligence quality score.
 
-The guarded reliability tools omitted from the first runtime receiver are now received in candidate `4823d208ed349ddceb7048833928c69036a9c43e`. Its 23 paths preserve hosted workload safeguards and add a synthetic reliability stage that passed 107 tests. Receiving these tools does not execute a hosted workload or change the failed acknowledgement and representative-workload verdicts below. Original failed attempts remain preserved.
+The earlier guarded-tool receiver `4823d208ed349ddceb7048833928c69036a9c43e` received 23 paths and passed its 107-test synthetic stage. The latest PR 204/207 donor `3647299dec53dac23b9981b0bbeff0e414ea9791` is now composed in local App candidate `5d2cd32ce893c4c84dc5a1f19706864043dd1f37`, tree `b654abd6585922428237a34a2828bdda932674f8`, with the bounded receiver, durable briefing-test registration and later verification fixes independently accepted in source review. The source adds observations of saved completions and overload based on canonical personal assignments, conversation failure diagnostics that exclude work content, and bounded promotion contention and original-receipt recovery. Guarded operator proofs remain bounded verification tools. This does not execute a hosted workload, establish production behavior or change the failed acknowledgement and representative-workload verdicts below. Original failed attempts remain preserved.
 
 The migration source was received through [App PR 259](https://github.com/ethanmcn2013-droid/app/pull/259), at main `9d1c719e448a4a117a2e428abc3b5bdd1349956f`, tree `65b90cd`. The supported encrypted migration [run 37999591761](https://github.com/ethanmcn2013-droid/app/actions/runs/37999591761) attests two applied migrations and current status: conversation index `0039`, then sponsor measurement choice `0040`. Independent review passed the actual workflow and artifact custody; it did not independently decrypt the backup, restore it or query the live database. Fresh read-only received-main status [38000438986](https://github.com/ethanmcn2013-droid/app/actions/runs/38000438986) passed at 22:40:52 UTC on that exact main source: the bound target, identity and ledger match, the last applied migration is `0040`, status is current and the pending list is empty. This verifies migration receiving, not final runtime deployment.
 
-Final App main source, combined CI, build, hosted receiving, production flag posture and runtime deployment are pending. The new schema2 receiving capture for App PR 196 is also pending; historical captures cannot be rebound to that new contract. The unchanged 800 ms target, failed current-source measurements, representative workload, sealed quality labels and existing design findings remain separate acceptance gates. No new founder design pick is recorded.
+Current browser receiving at `5d2cd32ce893c4c84dc5a1f19706864043dd1f37` passed 76 route checks, 604 Home checks and 576 Overview checks across four widths in dark and light modes. App typecheck, 15 realtime checks, three React replacement cases and changed-file lint each passed with native exit 0. Fresh local production-classified and demo builds passed with native exit 0; seven Settings/shell hydration cases passed. The production-classified budget passed the unchanged ceilings at 1,110.2 KB gzip across 116 client chunks. Shared runtime, total client JavaScript and largest chunk still exceed their lower target budgets. The initial review-classified budget failed with native exit 2 after measuring a different chunk population; that failure remains preserved, and the corrected classification passed at unchanged source. These are local fixture builds, not a provider production environment or deployment proof.
+
+Full schema2 receiving for App PR 196 is still running and unaccepted; passing assertions during the run establish progress only. The earlier `d4b97edc` full native receiving and independent custody pass is historical and cannot establish this newer source's acceptance. Final App main receiving, current CI, complete receiving proof, production flag posture and provider deployment remain pending; production still serves the earlier artifact. Production-access-mode preparation passed, which supplies no activation or deployment proof. Applied `0039`/`0040` migrations do not need repeating. The unchanged 800 ms target, failed hosted measurements, representative workload, sealed quality labels and existing design findings remain separate acceptance gates. All original checkpoints below are historical. No new founder design pick is recorded.
 
 ## Historical C3 checkpoint, 2 October 2026
 

@@ -8,12 +8,12 @@ priority: High
 effort: Large
 impact: High
 owner: Ethan
-lastVerified: 2026-10-09
+lastVerified: 2026-10-10
 ---
 
-## App release preparation, 9 October 2026
+## App release preparation, 10 October 2026
 
-The reviewed Ping construction is prepared for App source integration. Final App main source, combined release checks, schema2 receiving for App PR 196, actual production configuration and runtime deployment remain pending. Earlier draft and unmerged statements below are retained as historical checkpoints; this preparation does not claim they have all reached App main.
+The reviewed Ping construction is composed with the latest PR 204/207 runtime and verification fixes in local App candidate `5d2cd32ce893c4c84dc5a1f19706864043dd1f37`, tree `b654abd6585922428237a34a2828bdda932674f8`. Independent source review passed. Current broader browser receiving passed 76 route checks, 604 Home checks and 576 Overview checks across four widths in dark and light modes. App typecheck, 15 realtime checks, three React replacement cases, changed-file lint, fresh local production-classified/demo builds and seven Settings/shell hydration cases passed with native exit 0. The corrected production-classified budget passed unchanged ceilings while lower target debt remains; the initial native-exit-2 population mismatch is preserved. These results do not establish live Ping acceptance. Full schema2 receiving for App PR 196 is still running and unaccepted; current CI, complete receiving proof, final App main receiving, actual production configuration and provider deployment remain pending. Production-access-mode preparation passed without establishing activation or deployment; production still serves the earlier artifact. Earlier draft and unmerged statements below are historical checkpoints; this preparation does not claim they have all reached App main. The prior `d4b97edc` full receiving pass is historical evidence for that source only.
 
 Product defaults remain disconnected. The typed runtime is limited to an explicitly marked local synthetic SQLite fixture and refuses hosted Vercel, demo, remote and ambient database targets. Source receiving does not select a provider or prove genuine admission, effective region/retention, cost controls, real-device or human use. Whole-plan acceptance remains 22/58 and programme gates remain 0/13. The partial audio package stays DEFER, and merged Studio PR 234 establishes only its bounded public synthetic text smoke. No provider route or founder-specific design selection is recorded.
 
