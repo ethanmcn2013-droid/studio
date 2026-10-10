@@ -8,8 +8,20 @@ priority: High
 effort: Large
 impact: High
 owner: Ethan
-lastVerified: 2026-10-06
+lastVerified: 2026-10-10
 ---
+
+## App release preparation, 10 October 2026
+
+The latest local App candidate is `f09cb3461abdcd5e17e31be180737f4c6c7b35aa`, tree `e093a15b0c68c6e56120337c1d2af32de59dc277`, including the bounded row-menu focus guard after the received backend runtime and verification repairs. Current App typecheck, menu lint and experience selftests passed with native exit 0. Fresh local production-classified and demo builds passed, as did seven Settings/shell hydration cases, eight Timeline switcher cases and all 196 maintained experience cases; each completed with native exit 0. The full experience run completed from 03:01:23.768 to 03:14:23.916 UTC on 10 October. The production-classified budget passed unchanged ceilings at 1,110.5 KB gzip across 116 client chunks; lower target budgets remain unmet. These are local fixture results, not provider production or live-user acceptance.
+
+Prior 614 module, lint, conversation, reliability and synthetic-contrast results keep their actual source identities and establish only unchanged-source continuity. Prior 5d route/Home/Overview, realtime/React and full196 passes, and the earlier d4 full receiving pass, remain historical. The initial 5d review-classified budget failed with native exit 2 on a different chunk population; that failure is preserved, and corrected classification passed at unchanged 5d source. No earlier native result is relabelled as an executed f09 check.
+
+Current CI, final App main receiving, final receiving proof, actual production flags and provider deployment remain pending. App PR 262 is separately in review; these receipts do not prove its inclusion or receiving. Production-access-mode preparation passed without establishing activation or deployment. Production still serves the earlier artifact. These broader checks do not establish live Ping acceptance. Earlier draft and unmerged statements below remain historical checkpoints; this preparation does not claim all of their source has reached App main.
+
+Product defaults remain disconnected. The typed release runtime remains gated to an explicitly marked local synthetic SQLite fixture and refuses hosted Vercel, demo, remote and ambient database targets. The separate bounded genuine Clerk development proof is retained below; it does not establish production admission, effective real-data region/retention, cost controls, real-device or human use. No provider route or founder-specific design selection is recorded.
+
+Received Studio main records 22/58 sections, 36 open and bounded G1 at 1/13 programme gates. PP016 alone was reopened; its narrow reacceptance is approved, but the prospective 23/58 transition remains pending paired HQ receiving and canonical parent readback. Intrinsic corpus preparation now includes the additive synthetic-noise correction: 43 text inputs and 42 audio fixtures, with one original text-only exclusion. Earlier 0/13 checkpoints and DEFER/HOLD failures remain historical evidence. This does not establish listening/alignment, semantic quality, a provider comparison or winner, G0, production or whole-programme acceptance.
 
 ## What it is
 

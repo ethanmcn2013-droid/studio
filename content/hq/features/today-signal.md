@@ -15,6 +15,24 @@ relatedMetric: Weekly active workspaces
 
 ## Notes
 
+### App source receiving, 10 October 2026
+
+The release candidate preserves current Home and Overview while receiving reviewed backend truth repairs. For an explicitly complete and empty authorized task inventory, partial activity coverage no longer invents work that could not be checked. Raw activity evidence stays partial, and unknown, incomplete, mixed-scope or nonempty inventories keep their partial state. Observations of saved completions and overload based on canonical personal assignments are bounded source repairs, not a new blind quality result.
+
+The latest local App candidate is `f09cb3461abdcd5e17e31be180737f4c6c7b35aa`, tree `e093a15b0c68c6e56120337c1d2af32de59dc277`, including the bounded row-menu focus guard after the received backend runtime and verification repairs. Current App typecheck, menu lint and experience selftests passed with native exit 0. Fresh local production-classified and demo builds passed, as did seven Settings/shell hydration cases, eight Timeline switcher cases and all 196 maintained experience cases; each completed with native exit 0. The full experience run completed from 03:01:23.768 to 03:14:23.916 UTC on 10 October. The production-classified budget passed unchanged ceilings at 1,110.5 KB gzip across 116 client chunks; lower target budgets remain unmet. These are local fixture results, not provider production or live-user acceptance.
+
+Prior 614 module, lint, conversation, reliability and synthetic-contrast results keep their actual source identities and establish only unchanged-source continuity. Prior 5d route/Home/Overview, realtime/React and full196 passes, and the earlier d4 full receiving pass, remain historical. The initial 5d review-classified budget failed with native exit 2 on a different chunk population; that failure is preserved, and corrected classification passed at unchanged 5d source. No earlier native result is relabelled as an executed f09 check.
+
+Current CI, final App main receiving, final receiving proof, actual production flags and provider deployment remain pending. App PR 262 is separately in review; these receipts do not prove its inclusion or receiving. Production-access-mode preparation passed without establishing activation or deployment. Production still serves the earlier artifact. The progressive Signal flags remain off by source default; actual production configuration still needs verification. Historical quality failures, sealed fresh labels, three-item briefing discipline and current design remain intact. No founder design selection follows from receiving the source.
+
+### Backend truth checkpoint, 27 September 2026
+
+The source-pinned investigation at App `6bb1013a` confirms that mounted Home still uses the legacy briefing path; explicit planning-period Full Briefing also retains it with V1 enabled. Original candidate `7ebb502b` repairs canonical lifecycle facts and complete-or-error source enumeration. Its forty-family development comparison records five lifecycle wins, 34 ties, no losses and one unscored outage. A separately completed diagnostic comparison corrects two further lifecycle families but exposes a new critical omission; the aborted blind protocol remains inconclusive and absolute quality fails.
+
+Follow-up `87d8bef7` resolves completed prerequisites, uses explicit unavailability for unknown open dependencies and lets valid comment-creation evidence advance recency. Eighteen independent receiving checks pass; the completed sixty-family nonblind regression fails acceptance: 141 unsupported claims, six critical failures, one new critical omission versus baseline and four newly unavailable families. These repairs do not certify complete activity history or resolve protected priority/date/presentation contracts. No release or overall quality acceptance is claimed. The current interface remains unchanged.
+
+See [App backend reliability and Signal reads](../../atlas/app-backend-reliability-and-signal-reads.md) for the exact source paths, evidence limits and private delivery links. The historical design record below is not evidence that these backend quality gates passed.
+
 The ecosystem's daily state of work. The live Briefing remains Signal's default and keeps its hard three-item discipline. The separate `signal-progressive-depth` feature adds Overview, Trends, and Evidence beneath it behind a production-off flag; it does not replace this artifact.
 
 ### Tasks due-date source repair (App candidate, 23 September 2026)
