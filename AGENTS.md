@@ -1,6 +1,27 @@
 # AGENTS.md — Signal Studio
 
-Read this before any change. Canonical contract for every agent in this repo. Workspace contract: `../AGENTS.md` — read that first for the company map; this file is now the canonical home of the HQ rules — `CLAUDE.md` no longer duplicates them.
+This is the self-contained Studio contract for Claude Code and Codex. The shared block below is maintained in the private Signal Operations repository; an isolated checkout needs no parent instruction file. HQ-specific rules live here; CLAUDE.md is a thin local adapter.
+
+<!-- signal-shared-rules:begin -->
+<!-- Source: docs/agent-rules.md; sha256: b87309ff14660a99c962bd2deca2147faaf782e9f04ccfce01d5bec15b2c2068 -->
+## Shared working rules
+
+Signal Studio builds one coherent product system. Use current source and accepted product facts; do not revive an archived architecture or infer scope from an old chat.
+
+These product and programme rules apply to Signal work. Personal work follows its own purpose, checks, and acceptance target; it does not inherit Signal launch or programme constraints.
+
+- Follow the user's scope. Research-only requests stay read-only. For authorized implementation, own relevant checks, review, integration, receiving verification, and closeout.
+- Integrate routine in-scope work without a founder merge click once current checks and proportionate revision-bound review pass. Missing review, unresolved findings, changed source/target, and explicit release holds prevent eligibility. Production consequences must be authorized and verified separately.
+  During this migration, apply that integration path only to explicitly admitted, individually reviewed pilots. Adopt it as the general operating default after the P6 qualification receipt; enabling a repository setting alone does not qualify the workflow.
+- One task owns its branch and checkout; one session holds the writer claim. Concurrent writers use isolated worktrees. Transfer the claim before another provider edits. Preserve unrelated changes.
+- Use the existing task authority and handoff anchor. Record intended outcome, owner, source revision, target, evidence, next proof, and paused-state restore location. A new chat is not a new source of truth.
+- Run the owning checks against the final state. UI changes require a real rendered check. Never report a test, review, merge, deployment, or acceptance that was not observed.
+- Keep code, customer/privacy boundaries, secrets, and production/test environments distinct. Access to a tool does not authorize every effect it can perform.
+- Ask the founder for a material decision outside standing authority, such as changed product direction, pricing/legal commitments, purchases, external communication, or destructive action beyond the adopted housekeeping policy. Prepare concrete options first.
+- Before pausing or retiring work, preserve useful commits and files and verify the restore route. Never delete by age alone, remove another owner's state, or treat a squashed commit as unpublished solely from ancestry.
+- Finish with target proof, task-state readbacks, and cleanup of owned disposable resources. A draft PR or a successful merge alone is not completion.
+- Prefer purpose-based names, concise entrypoints, and scoped procedures. Automate mechanical bookkeeping; spend review effort in proportion to impact.
+<!-- signal-shared-rules:end -->
 
 ## What this is
 
@@ -14,7 +35,9 @@ public, is not linked from navigation, and stays `noindex`.
 
 ## Commands
 
-`pnpm typecheck` · `pnpm build` · `pnpm test` — run all three before any PR. Local dev launches via the workspace `launch.json`, not an ad hoc `pnpm dev`. `pnpm-workspace.yaml`'s `packages` line is required — don't remove it.
+Use Node 22 and the packageManager version in package.json (currently pnpm 10.33.4); install with `corepack pnpm install --frozen-lockfile`. Run `pnpm typecheck`, `pnpm test`, and `pnpm build` before any PR. Owning CI also requires `pnpm ds:check`; lint is currently informational in ci.yml. Preserve `pnpm-workspace.yaml`'s packages line. Local dev uses the owning workspace launch configuration with an explicit task checkout and available port; an isolated checkout does not inherit its parent's fixed-port process. Do not run credentialed scripts against production as a setup shortcut.
+
+Current priorities, admission, owner and next proof belong to the private Delivery issue linked from authenticated HQ. Record the task's existing authority before editing; local claims do not certify another writer stopped. Studio main has enabled Git deployment: integration can trigger a production deployment, so verify destination authority and applicable release holds before merging. Programme-only work remains internal, with isolated test data and no implied production or outreach authority. Completion includes receiving proof and task/Project reconciliation, then owned resource closeout.
 
 ## The Signal HQ rule (canonical, rewritten HQ-6c.4, 2026-05-14)
 
@@ -58,42 +81,19 @@ Shipped, operator-visible work gets a `CHANGELOG.md` entry: `## YYYY-MM-DD · X�
 
 ## North star (set 2026-08 · operator re-derives ~every six months)
 
-Three priorities govern everything front-facing — the three products,
-authenticated Home, and this marketing surface alike — in this order:
+These priorities govern the products, authenticated Home and marketing, in order:
 
-1. **Experience.** Using the product should feel considered end to end,
-   and in the right moments delightful. Delight is deliberate: in the
-   app, candidate moments run through `app/docs/DELIGHT_CATALOG.md` —
-   never sprinkled ad hoc.
-2. **Design.** Every front-facing surface ships at the standard of the
-   best studios working today — spacing, type, motion, empty, loading,
-   and error states, microcopy, all deliberate, nothing default. The
-   register below and the 9.5 gate hold the bar.
-3. **Utility.** Someone who has never used a project-management tool
-   must be able to pick it up and understand it unaided — the
-   first-contact test. No jargon, no technical lock-out; a surface that
-   needs explaining is not done.
+1. **Experience.** Considered end to end, deliberately delightful where appropriate. App candidate moments follow its `docs/DELIGHT_CATALOG.md`; do not improvise them ad hoc.
+2. **Design.** The best-studio standard applies to spacing, type, motion, empty/loading/error states and microcopy. Nothing default; the register and 9.5 gate apply.
+3. **Utility.** First-time users must understand the surface unaided, without project-management experience, jargon or technical lock-out. A surface needing explanation is unfinished.
 
-When the three pull against each other, that order decides. Canonical
-record and review date: `content/hq/decisions/product-north-star.md`.
+That order resolves conflicts. Canonical record/review date: `content/hq/decisions/product-north-star.md`.
 
 ## Design register (amended 2026-07-31 · A1 + A1.1)
 
-Confident, premium, expressive — edited, not timid. Geist; indigo `#4f46e5`
-is the anchor, not a cage — its tints, gradients, and supporting tones are
-welcome when the moment earns them. Motion is a first-class material: use it
-generously where it clarifies or delights, cut it where it merely decorates.
-Reach further than feels safe in exploration; restraint is the edit at the
-end, never the brief at the start. Never cheap: no clutter, no stock
-effects, no noise.
+Confident, premium, expressive; edited without timidity. Use Geist and indigo `#4f46e5` as an anchor, with earned tints, gradients and supporting tones. Motion is first-class: generous when clarifying or delighting, removed when merely decorative. Explore boldly; restraint belongs to the final edit. No clutter, stock effects or noise.
 
-**Priority order, permanent (A1.1): creativity and emotion outrank
-restraint.** No rule in this register may be used to flatten a genuinely
-better idea — when they conflict, the rule goes under review (wildcard →
-amendment), never the idea pre-censored. Design for feeling as much as
-function: the work should move the person using it. Voice rules are the one
-standing exception — plain English, active verbs, no exclamation marks,
-banned-words list in BRAND.md — they never bend.
+**Permanent A1.1: creativity and emotion outrank restraint.** When a better idea conflicts with this register, review the rule through wildcard → amendment; do not pre-censor the idea. Design for feeling and function. Voice is the standing exception: plain English, active verbs, no exclamation marks, BRAND.md's banned words; these never bend.
 
 ## Pointers
 
