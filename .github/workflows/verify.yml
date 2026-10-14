@@ -20,9 +20,36 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+      - name: Verify CI classification and status semantics
+        run: node --test scripts/ci-workflow.test.mjs
       - run: pnpm install --frozen-lockfile
       - run: pnpm remediation:check
       - run: pnpm recovery:drill
       - run: pnpm typecheck
+      - name: Design-system drift gate
+        run: pnpm run ds:check
       - run: pnpm test
       - run: pnpm build
+      - name: Lint (informational)
+        run: pnpm run lint
+        continue-on-error: true
+
+  compatibility-status:
+    name: typecheck · test
+    needs: verify
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions: {}
+    steps:
+      - name: Preserve required status after canonical verification
+        env:
+          VERIFY_RESULT: ${{ needs.verify.result }}
+        run: |
+          # compatibility-status:start
+          if [ "$VERIFY_RESULT" != "success" ]; then
+            echo "Canonical verification did not succeed: $VERIFY_RESULT"
+            exit 1
+          fi
+          echo "Canonical verification passed."
+          # compatibility-status:end
