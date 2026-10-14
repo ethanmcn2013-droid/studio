@@ -1,54 +1,29 @@
-# Product Marketing Context — Signal Studio
+# Marketing context — Signal Studio
 
-> Read by the marketing skills (seo-audit, competitors, programmatic-seo,
-> directory-submissions, direct-response-copy) before they ask questions.
-> This file is the brand gate. **Any copy these skills produce passes
-> through the `signal-brand-voice` skill + `BRAND.md` §3 / `DESIGN.md`
-> §10 before it ships. The brand wins over any framework default.**
+Read this file explicitly before marketing research or drafting. It is scoped guidance, not an automatically loaded agent entrypoint. Follow [AGENTS.md](../AGENTS.md) for task authority, checks, integration and completion. Research does not authorize publication, outreach or changes to commercial terms.
 
-## What Signal Studio is
+## Product and audience
 
-One work-clarity suite, not four adjacent apps. Five surfaces:
+Signal Studio is the company and one signed-in app with **Signal Notes, Signal Tasks and Signal Timeline**. **Home** is the authenticated front door, with Today's Signal and the Full Briefing; it is not a fourth product. Roadmap and Analytics are retired product names.
 
-- **Signal Studio** (signalstudio.ie) — umbrella.
-- **Signal Tasks** — execution. What needs doing, by whom, by when.
-- **Signal Roadmap** — direction. Where it's going, what changed, what's next. Shareable public pages.
-- **Signal Analytics** — attention. A plain-language daily briefing, not a dashboard.
-- **Signal Notes** — context. Private capture; one-way approved extracts to Tasks.
+Use [BRAND.md §1](../BRAND.md) and the [Home consolidation](../docs/consolidation/signal-home-2026-08-04.md) for that model. Marketing lives at signalstudio.ie; the app lives at app.signalstudio.ie. Classify each destination as marketing, authenticated app, public artifact, service or compatibility before changing a link. Preserve public/service routes; old helper exports are not evidence of a current product.
 
-Operating principle: *Everything important. Nothing distracting.*
-Suite tagline (locked): **Clarity, not configuration.**
+Write for people doing real work: venue coordinators, couples, freelancers, tradespeople, students and small-business operators. Use concrete situations they recognise. The standing principle is **Everything important. Nothing distracting.** Read the current Delivery issue and relevant HQ source for campaign priority; this context does not admit a campaign.
 
-## Who it's for
+## Prices, access and promises
 
-The 80% not in tech: wedding/venue coordinators, freelancers, tradespeople, students, small-business operators. Never "engineering teams", never "for developers". Every example must be one of these real people, concrete, not abstract.
+Read [commercial-terms.v2.json](../contracts/commercial-terms.v2.json) and its decision basis for every offer: public name, price, cadence, access window, eligibility and availability. Check the [current pricing page](../src/app/pricing/page.tsx) before proposing customer copy. Do not maintain a second price list here.
 
-**Go-to-market wedge: wedding venues.** Founding Venue Programme (`/venues`) — a venue sponsors an 18-month workspace per couple, co-branded as a quiet eyebrow. The couple keeps the workspace past the wedding. Primary near-term marketing surface is the wedding/venue path, not a generic SaaS launch.
+Access is waitlist-first. A verified contract status does not prove paid access is open. Student eligibility enforcement is a condition of availability. Venue couple access uses the contract's redemption/wedding-date rule; licence survival is not indefinite editing access. Joining a waitlist does not start a purchase or subscription. Preserve those distinctions and report conflicts before drafting a new promise.
 
-## Pricing (canonical — use these exactly)
+## Voice and design
 
-Free · Workspace €12/mo · Event €79 one-time · Student (.edu) free. Single pricing surface at signalstudio.ie/pricing; per-product /pricing routes there.
+Apply the available `signal-brand-voice` skill and [BRAND.md §3](../BRAND.md): plain English, active verbs, specific claims, no exclamation marks, hype, AI promotion or project-management jargon. Use **Signal Studio** in body copy and `signal studio.` for the wordmark. Do not introduce Signal as a standalone product or company label.
 
-## Positioning vs the field
+Use the current surface's action and destination. The product page currently says **Join the waitlist**; historical “Open the…” examples do not authorize an access promise. Competitor comparisons must acknowledge strengths and distinguish observed facts from hypotheses. Distribution channels and return on effort require evidence; do not claim SEO or directories outperform launches without measured results.
 
-Reference register: Apple, Linear, Arc, Notion Calendar, Raycast. Anti-reference: Jira, Monday, Tableau, PowerBI, Salesforce. The differentiator is restraint sustained across the whole suite — the discipline competitors won't hold. Competitor pages must be honest (acknowledge their strengths); honesty is the brand, not a tactic.
+Visuals follow Signal Design System 2.0 and the current repository design rules. `DESIGN.md` and `docs/BRAND.md` are deprecated history; BRAND's old visual tokens are superseded.
 
-## Voice — non-negotiable (full list in BRAND.md §3)
+## Source conflicts
 
-Stark + Jobs. Declarative. Plain English ~7th-grade, clean not childish. Verbs over nouns. Periods, not drama-colons. One earned adjective, never trios.
-
-**Never ship:** exclamation marks (anywhere); AI-marketing register (AI, AI-powered, intelligent/smart-system, copilot, agent, assistant, autonomous, predicts, recommends, "automatically" implying decisions); SaaS fluff (best-in-class, world-class, cutting-edge, seamless, robust, enterprise-grade, transform, revolutionize, unleash, supercharge, leverage-as-verb, delight); PM jargon (sprint, epic, backlog, stakeholder, Kanban, Scrum, Agile); tech jargon on user-facing pages (API, webhook, OAuth, deploy, repo, integration → say "connect"/"works with").
-
-**Naming:** wordmark `signal studio.` (lowercase+period) in chrome; `Signal Studio` (title case) in body. **Never `Signal` alone** (Signal Messenger collision). Retired: "Cut through the noise." — do not reintroduce.
-
-**CTAs (locked):** `Open the [product]` — workspace / roadmap / briefing / notebook. Never "Get started", "Try it", "Sign up free".
-
-## Distribution reality (shape skill output around this)
-
-- Product Hunt / Show HN are a **weak fit** — the buyer (a venue coordinator) is not there. Directory/SEO/founder-voice in niche communities (r/weddingplanning, r/weddingvenue, r/smallbusiness) outperforms a tech launch.
-- Directory submissions and programmatic/comparison pages are high-ROI; build the destination pages first, then the backlinks.
-- No modal-on-load, no popups, no confetti, no third-party tracker on guest/marketing surfaces (DESIGN.md §10).
-
-## When in doubt
-
-Invoke `signal-brand-voice`. Read `~/Projects/personal/studio/BRAND.md` §2–§3 and `DESIGN.md` §10. If a framework formula needs a banned word, rewrite the output, keep the structure, lose the word.
+The older [suite URL contract](../docs/architecture/SUITE_URL_AND_NAMING_CONTRACT.md), [HQ messaging](../content/hq/messaging.md), later BRAND examples and compatibility URL helpers retain four-product wording. The newer product-model amendment governs this context. Flag remaining contradictions; do not silently rewrite runtime routes, canonical decisions or customer sources as part of instruction maintenance.
