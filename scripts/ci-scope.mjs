@@ -14,17 +14,21 @@ export function classifyScope({ repository, base, head, event }) {
   try {
     git(['cat-file', '-e', `${base}^{commit}`]);
     git(['cat-file', '-e', `${head}^{commit}`]);
-    const fields = git(['diff', '--no-ext-diff', '--no-textconv', '--no-renames', '--name-status', '-z', base, head]).toString('utf8').split('\0');
-    if (fields.pop() !== '' || fields.length === 0 || fields.length % 2) return full('empty-or-unreadable-diff');
-    for (let index = 0; index < fields.length; index += 2) {
-      const [status, file] = fields.slice(index, index + 2);
-      if (status !== 'M' || !instructionFiles.has(file)) return full('non-instruction-change');
-      for (const revision of [base, head]) {
-        const entry = git(['ls-tree', revision, '--', file]).toString('utf8');
-        if (!entry.startsWith('100644 blob ') || !entry.endsWith(`\t${file}\n`)) return full('non-regular-instruction');
-        const bytes = git(['show', `${revision}:${file}`]);
-        if (bytes.includes(0)) return full('binary-instruction');
-        new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+    const checkout = git(['rev-parse', '--verify', 'HEAD^{commit}']).toString('utf8').trim();
+    if (!shaPattern.test(checkout)) return full('invalid-checkout');
+    for (const target of new Set([head, checkout])) {
+      const fields = git(['diff', '--no-ext-diff', '--no-textconv', '--no-renames', '--name-status', '-z', base, target]).toString('utf8').split('\0');
+      if (fields.pop() !== '' || fields.length === 0 || fields.length % 2) return full('empty-or-unreadable-diff');
+      for (let index = 0; index < fields.length; index += 2) {
+        const [status, file] = fields.slice(index, index + 2);
+        if (status !== 'M' || !instructionFiles.has(file)) return full('non-instruction-change');
+        for (const revision of [base, target]) {
+          const entry = git(['ls-tree', revision, '--', file]).toString('utf8');
+          if (!entry.startsWith('100644 blob ') || !entry.endsWith(`\t${file}\n`)) return full('non-regular-instruction');
+          const bytes = git(['show', `${revision}:${file}`]);
+          if (bytes.includes(0)) return full('binary-instruction');
+          new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+        }
       }
     }
     return { renderedRequired: false, reason: 'modified-existing-instructions-only' };

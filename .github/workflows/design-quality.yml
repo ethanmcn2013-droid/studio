@@ -16,10 +16,18 @@ jobs:
     name: design quality
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
+      checks: read
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
       - name: Classify rendered-check scope using the receiving branch policy
         id: scope
         env:
@@ -36,11 +44,21 @@ jobs:
             node "$classifier" --repository "$GITHUB_WORKSPACE" --base "$BASE_SHA" --head "$HEAD_SHA" --event "$EVENT_NAME" >> "$GITHUB_OUTPUT"
           fi
           # scope-classifier:end
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
+      - name: Require the latest successful trusted rendered baseline
+        id: baseline
+        if: ${{ steps.scope.outputs.rendered_required == 'false' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || '' }}
+        run: |
+          # rendered-baseline:start
+          response="$RUNNER_TEMP/studio-ci-baseline.json"
+          if gh api "repos/$GITHUB_REPOSITORY/commits/$BASE_SHA/check-runs?per_page=100" > "$response"; then
+            node scripts/ci-baseline.mjs "$BASE_SHA" < "$response" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          fi
+          # rendered-baseline:end
       - run: pnpm install --frozen-lockfile
       - name: Reject unregistered Studio surfaces and stale evidence
         run: pnpm run experience:validate -- --product=studio
@@ -51,14 +69,14 @@ jobs:
       - name: Run UX Assurance specialist modes
         run: pnpm run ux:assure -- --enforce
       - name: Install deterministic browser
-        if: ${{ steps.scope.outputs.rendered_required != 'false' }}
+        if: ${{ steps.scope.outputs.rendered_required != 'false' || steps.baseline.outputs.available != 'true' }}
         run: pnpm exec playwright install --with-deps chromium
       - name: Accessibility and visual harness
-        if: ${{ steps.scope.outputs.rendered_required != 'false' }}
+        if: ${{ steps.scope.outputs.rendered_required != 'false' || steps.baseline.outputs.available != 'true' }}
         run: pnpm exec playwright test
       - name: Record instruction-only rendered-check decision
-        if: ${{ steps.scope.outputs.rendered_required == 'false' }}
-        run: echo "Existing instruction files changed; fast quality gates ran. Runtime/content/workflow changes and unknown ranges require rendered checks."
+        if: ${{ steps.scope.outputs.rendered_required == 'false' && steps.baseline.outputs.available == 'true' }}
+        run: echo "Existing instruction files changed; fast quality gates ran and the exact trusted base passed quality. Runtime/content/workflow changes and unknown ranges or baselines require rendered checks."
       - name: Publish review evidence on failure
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
