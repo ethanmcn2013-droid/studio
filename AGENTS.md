@@ -97,6 +97,8 @@ Confident, premium, expressive; edited without timidity. Use Geist and indigo `#
 
 ## Pointers
 
+Before marketing research or drafting, read `.agents/product-marketing.md` and the current commercial sources it links. The scoped guide flags historical product/access conflicts; research does not authorize publication, outreach or commercial changes.
+
 Infrastructure → `docs/INFRASTRUCTURE.md`. Brand + voice → `BRAND.md`. Strategy → `docs/VISION.md`. Deprecated, do not follow: `DESIGN.md` and `docs/BRAND.md` are v1 history, superseded by `BRAND.md` (voice) and Signal Design System 2.0 (visual tokens).
 
 <!-- BEGIN:nextjs-agent-rules -->
