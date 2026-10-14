@@ -6,16 +6,20 @@ import { join, resolve, basename, sep } from 'node:path';
 import test from 'node:test';
 import { classifyScope } from './ci-scope.mjs';
 
-function fixture(t) {
+function fixture(t, omitted = []) {
   const directory = mkdtempSync(join(tmpdir(), 'studio-ci-fixture-'));
   t.after(() => {
     if (!resolve(directory).startsWith(resolve(tmpdir()) + sep) || !basename(directory).startsWith('studio-ci-fixture-')) throw Error('Unexpected fixture cleanup target');
     rmSync(directory, { recursive: true, force: true });
   });
   const git = args => execFileSync('git', ['-C', directory, ...args], { encoding: 'utf8', windowsHide: true }).trim();
-  git(['init', '-q']); git(['config', 'user.name', 'Workflow Test']); git(['config', 'user.email', 'workflow@example.invalid']);
+  mkdirSync(join(directory, 'empty-template'));
+  git(['init', '-q', '--template', join(directory, 'empty-template')]);
+  git(['config', 'core.hooksPath', join(directory, 'empty-template')]);
+  git(['config', 'core.autocrlf', 'false']); git(['config', 'commit.gpgsign', 'false']);
+  git(['config', 'user.name', 'Workflow Test']); git(['config', 'user.email', 'workflow@example.invalid']);
   mkdirSync(join(directory, '.agents'));
-  for (const file of ['AGENTS.md', 'CLAUDE.md', '.agents/product-marketing.md', 'runtime.js']) writeFileSync(join(directory, file), 'baseline\n');
+  for (const file of ['AGENTS.md', 'CLAUDE.md', '.agents/product-marketing.md', 'runtime.js'].filter(file => !omitted.includes(file))) writeFileSync(join(directory, file), 'baseline\n');
   const commit = () => { git(['add', '-A']); git(['commit', '-qm', 'fixture']); return git(['rev-parse', 'HEAD']); };
   return { directory, git, commit, base: commit() };
 }
@@ -27,15 +31,41 @@ test('only existing modified instruction files can omit rendered checks', t => {
   for (const event of ['pull_request', 'push']) assert.deepEqual(classifyScope({ repository: f.directory, base: f.base, head, event }), { renderedRequired: false, reason: 'modified-existing-instructions-only' });
 });
 
-test('runtime, new files, deletion, rename and binary instruction changes require rendering', async t => {
-  for (const kind of ['runtime', 'new', 'delete', 'rename', 'binary']) await t.test(kind, sub => {
-    const f = fixture(sub);
+test('runtime, additions, deletion, rename, mode and invalid instruction bytes require rendering', async t => {
+  for (const kind of ['runtime', 'new', 'new-approved-path', 'delete', 'rename', 'binary', 'invalid-utf8', 'executable']) await t.test(kind, sub => {
+    const f = fixture(sub, kind === 'new-approved-path' ? ['CLAUDE.md'] : []);
     if (kind === 'runtime') writeFileSync(join(f.directory, 'runtime.js'), 'changed\n');
     if (kind === 'new') writeFileSync(join(f.directory, '.agents/new-guide.md'), 'new\n');
+    if (kind === 'new-approved-path') writeFileSync(join(f.directory, 'CLAUDE.md'), 'new\n');
     if (kind === 'delete') f.git(['rm', 'AGENTS.md']);
     if (kind === 'rename') f.git(['mv', 'AGENTS.md', 'old-guide.md']);
     if (kind === 'binary') writeFileSync(join(f.directory, 'AGENTS.md'), Buffer.from([65, 0, 66]));
-    assert.equal(classifyScope({ repository: f.directory, base: f.base, head: f.commit(), event: 'pull_request' }).renderedRequired, true);
+    if (kind === 'invalid-utf8') writeFileSync(join(f.directory, 'AGENTS.md'), Buffer.from([65, 255]));
+    let head;
+    if (kind === 'executable') { f.git(['update-index', '--chmod=+x', 'AGENTS.md']); f.git(['commit', '-qm', 'mode fixture']); head = f.git(['rev-parse', 'HEAD']); }
+    else head = f.commit();
+    assert.equal(classifyScope({ repository: f.directory, base: f.base, head, event: 'pull_request' }).renderedRequired, true);
+  });
+});
+
+test('actual workflow shell uses trusted base policy and fails closed during bootstrap and manual runs', async t => {
+  const quality = readFileSync(new URL('../.github/workflows/design-quality.yml', import.meta.url), 'utf8');
+  const script = quality.match(/# scope-classifier:start\r?\n([\s\S]*?)\s*# scope-classifier:end/)[1].replace(/^ {10}/gm, '').trim();
+  const bash = process.platform === 'win32' ? 'C:/Program Files/Git/bin/bash.exe' : 'bash';
+  for (const kind of ['instructions', 'malicious-head-policy', 'missing-base-policy', 'manual']) await t.test(kind, sub => {
+    const f = fixture(sub);
+    mkdirSync(join(f.directory, 'scripts'));
+    let base = f.base;
+    if (kind !== 'missing-base-policy') { writeFileSync(join(f.directory, 'scripts/ci-scope.mjs'), readFileSync(new URL('./ci-scope.mjs', import.meta.url))); base = f.commit(); }
+    writeFileSync(join(f.directory, 'AGENTS.md'), 'changed\n');
+    if (kind === 'malicious-head-policy') writeFileSync(join(f.directory, 'scripts/ci-scope.mjs'), 'console.log("rendered_required=false");\n');
+    const head = f.commit();
+    const runner = join(f.directory, 'runner'); mkdirSync(runner);
+    const output = join(runner, 'output'); writeFileSync(output, '');
+    const posix = value => value.replace(/\\/g, '/');
+    const result = spawnSync(bash, ['-e', '-o', 'pipefail', '-c', script], { cwd: f.directory, env: { ...process.env, BASE_SHA: base, HEAD_SHA: head, EVENT_NAME: kind === 'manual' ? 'workflow_dispatch' : 'pull_request', GITHUB_WORKSPACE: posix(f.directory), RUNNER_TEMP: posix(runner), GITHUB_OUTPUT: posix(output) }, encoding: 'utf8', windowsHide: true });
+    assert.ifError(result.error); assert.equal(result.status, 0, result.stderr);
+    assert.match(readFileSync(output, 'utf8'), new RegExp(`^rendered_required=${kind === 'instructions' ? 'false' : 'true'}$`, 'm'));
   });
 });
 
