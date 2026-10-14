@@ -18,6 +18,22 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Classify rendered-check scope using the receiving branch policy
+        id: scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || '' }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          classifier="$RUNNER_TEMP/studio-ci-scope.mjs"
+          if [[ ! "$BASE_SHA" =~ ^[a-f0-9]{40}$ ]] || ! git show "${BASE_SHA}:scripts/ci-scope.mjs" > "$classifier"; then
+            echo "rendered_required=true" >> "$GITHUB_OUTPUT"
+            echo "scope_reason=no-trusted-base-policy" >> "$GITHUB_OUTPUT"
+          else
+            node "$classifier" --repository "$GITHUB_WORKSPACE" --base "$BASE_SHA" --head "$HEAD_SHA" --event "$EVENT_NAME" >> "$GITHUB_OUTPUT"
+          fi
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
@@ -33,9 +49,14 @@ jobs:
       - name: Run UX Assurance specialist modes
         run: pnpm run ux:assure -- --enforce
       - name: Install deterministic browser
+        if: ${{ steps.scope.outputs.rendered_required != 'false' }}
         run: pnpm exec playwright install --with-deps chromium
       - name: Accessibility and visual harness
+        if: ${{ steps.scope.outputs.rendered_required != 'false' }}
         run: pnpm exec playwright test
+      - name: Record instruction-only rendered-check decision
+        if: ${{ steps.scope.outputs.rendered_required == 'false' }}
+        run: echo "Existing instruction files changed; fast quality gates ran. Runtime/content/workflow changes and unknown ranges require rendered checks."
       - name: Publish review evidence on failure
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
