@@ -1,6 +1,10 @@
 import { defineConfig } from "@playwright/test";
 
-const baseURL = "http://127.0.0.1:4387";
+const port = Number(process.env.SIGNAL_TEST_PORT ?? "4387");
+if (!Number.isInteger(port) || port < 1 || port > 65535) {
+  throw new Error("SIGNAL_TEST_PORT must be an integer between 1 and 65535");
+}
+const baseURL = `http://127.0.0.1:${port}`;
 
 export default defineConfig({
   testDir: "./tests/experience",
@@ -34,13 +38,14 @@ export default defineConfig({
     { name: "firefox", use: { browserName: "firefox" } },
   ],
   webServer: {
-    command: "pnpm exec next dev -H 127.0.0.1 -p 4387",
+    command: `pnpm exec next dev -H 127.0.0.1 -p ${port}`,
     env: {
       SIGNAL_ACCESS_MODE: "review",
       NEXT_PUBLIC_SIGNAL_ACCESS_MODE: "review",
     },
     url: `${baseURL}/__design-lab/product-handoff?progress=0`,
-    reuseExistingServer: true,
+    // A responding server may belong to another checkout. Never reuse it.
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });
