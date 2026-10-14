@@ -20,7 +20,7 @@ Access is waitlist-first. A verified contract status does not prove paid access 
 
 Apply the available `signal-brand-voice` skill and [BRAND.md §3](../BRAND.md): plain English, active verbs, specific claims, no exclamation marks, hype, AI promotion or project-management jargon. Use **Signal Studio** in body copy and `signal studio.` for the wordmark. Do not introduce Signal as a standalone product or company label.
 
-Use the current surface's action and destination. The product page currently says **Join the waitlist**; historical “Open the…” examples do not authorize an access promise. Competitor comparisons must acknowledge strengths and distinguish observed facts from hypotheses. Distribution channels and return on effort require evidence; do not claim SEO or directories outperform launches without measured results.
+Use the current surface's action and destination. Read the [current product-page component](../src/components/marketing/product-marketing-page.tsx) for its action text and destination; it currently says **Join the waitlist**. Historical “Open the…” examples do not authorize an access promise. Competitor comparisons must acknowledge strengths and distinguish observed facts from hypotheses. Distribution channels and return on effort require evidence; do not claim SEO or directories outperform launches without measured results.
 
 Visuals follow Signal Design System 2.0 and the current repository design rules. `DESIGN.md` and `docs/BRAND.md` are deprecated history; BRAND's old visual tokens are superseded.
 
