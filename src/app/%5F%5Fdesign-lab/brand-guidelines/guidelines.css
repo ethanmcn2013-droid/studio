@@ -2434,7 +2434,10 @@
     transition-delay: 0ms !important;
   }
 
+  /* Match hidden-state specificity so reduced motion keeps chapters visible. */
   .guidelines-root.is-enhanced .guidelines-chapter .guidelines-chapter-head > *,
+  .guidelines-root.is-enhanced .guidelines-chapter:not(.guidelines-introduction) .guidelines-chapter-head > *,
+  .guidelines-root.is-enhanced .guidelines-chapter:not(.guidelines-introduction) .guidelines-chapter-rule,
   .guidelines-root.is-enhanced .guidelines-logo .guidelines-logo-build-mask > *,
   .guidelines-root.is-enhanced .guidelines-typography .guidelines-weight-lanes p,
   .guidelines-root.is-enhanced .guidelines-moodboard-section .guidelines-moodboard-item {
