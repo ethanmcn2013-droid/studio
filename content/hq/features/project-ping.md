@@ -11,6 +11,16 @@ owner: Ethan
 lastVerified: 2026-10-15
 ---
 
+## Product telemetry and bounded Prepare candidate · 15 October 2026
+
+App construction source `aefa56d0e8d18f592967f5d46d9ee48b0a8e8485` adds optional, default-OFF diagnostics to the maintained typed path and browser-local speech handoff. It separates readiness, Prepare, review, Execute, original-receipt recovery, canonical refresh, accepted Tasks hydration, React commit and a render opportunity. These observations do not prove painted pixels or genuine speech recognition. Closed metadata uses fixed categories and fresh diagnostic identifiers, excluding speech, task content and account identities. Bounded export never retries a task action; receiver acknowledgement does not establish retained logs or delivered alerts.
+
+Offline analysis separates source, clock, input mode, outcome and evidence cohort. It retains failures, dropped, missing and unfinished measurements rather than counting them as successful or zero-duration observations. The guided fixture now preserves its timing observations across reloads and keeps review time separate; its earlier recorded two-sample results remain a distinct fixture cohort. Browser recovery continues to check the exact original receipt without replaying Execute. Export timeout blocks another physical export until the first settles, then permits fresh events without replaying the old batch.
+
+The bounded Prepare change reads up to ten selected task snapshots in one parameterized Project-scoped query, retaining authorization, exact-ID and stale-snapshot checks. A local paired experiment completed 216 synthetic attempts: 180 measured, 30 warmups and six no-op checks, with no failed or missing attempts. For selections of one, five and ten tasks, actual SQL-driver calls changed from **7/11/16 to 7/7/7**. These include transaction boundaries and are not measured network round trips. A separate 40-pair telemetry on/off experiment measured **1.85 ms median added time** in a synthetic unsupported-request handler with an in-memory fixture. It did not measure SQL execution, a successful task commit, browser completion or production overhead. Neither experiment establishes live latency or a full-flow improvement.
+
+This records construction and bounded local evidence. Final App capture, required checks, receiving and integration remain separate; no deployment, instrumentation activation or operating service is claimed here. Programme acceptance remains **32/58 sections (55.2%), 2/13 gates; original voice G2 STOP**. Genuine input, founder use, consent, exposure, staffed operation and all existing real-data, release and production-activation holds remain unchanged.
+
 ## Guided local session candidate · 15 October 2026
 
 The new internal runner mounts the real Tasks view and Ping overlay beside a guide rail, using a retained local database of invented tasks and members. Its 100 planned cases are a target, not 100 completed observations. Expected answers stay private and are not sent to the participant guide. The runner checks the original command and receipt, complete stored effects and the matching mounted Tasks view separately before advancing. It records started, observed, verified, skipped and unresolved cases separately.
