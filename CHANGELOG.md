@@ -8,6 +8,10 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-15 · S·192 · reads · HQ records the floating Ping candidate
+
+**HQ separates the new Ping interface from the voice and release proof still needed.** The internal candidate leads with a floating voice overlay and keeps typing available. Activation fixes the target before listening; voice Finish and run waits for observed finals and native end, then uses one validated automatic execution. Typing retains Review changes and Apply. The local English speech candidate remains default OFF, with native recognition receiving unfinished and the maintained PCM/provider route unconnected. This records candidate scope, not a shipped feature, a provider winner or a changed G2 STOP decision. Programme receiving stays 31/58 sections and 2/13 gates; earlier failed observations remain intact.
+
 ## 2026-10-15 · S·191 · reads · HQ clarifies Drive custody and recovery
 
 **HQ now explains how Project files use Google Drive and which recovery evidence remains open.** The custody risk replaces the obsolete no-cryptography claim with current source controls, preserves the earlier revocation finding and describes its source repair without claiming fresh live proof. The new Atlas entry separates accepted Preview and bounded production observations from wider release, Notes token storage and operational recovery limits. This is an internal context correction; it changes no App behavior, provider setting or release hold.
