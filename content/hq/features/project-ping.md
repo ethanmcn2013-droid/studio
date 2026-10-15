@@ -8,10 +8,22 @@ priority: High
 effort: Large
 impact: High
 owner: Ethan
-lastVerified: 2026-10-10
+lastVerified: 2026-10-15
 ---
 
-## App release preparation, 10 October 2026
+## Floating Ping candidate — 15 October 2026
+
+The current internal App candidate puts Ping in a floating overlay, with voice first and a typed fallback. Source `752f655bd930c8918ecad0ad40b960e57173bb83` records this candidate; it is not a shipped or enabled feature. Ping remains default OFF. Programme receiving remains **31/58 sections (53.4%), 2/13 gates; G2 STOP**. The original failed G2 result remains preserved. This interface work does not change human-use, consent, exposure or participant requirements.
+
+The two input paths keep different confirmation boundaries. Activation freezes the actor, Project, selection and task-snapshot envelope before listening. Voice **Finish and run** stops capture and waits for all observed final segments and native end before using the existing Prepare path. These application predicates do not prove that speech recognition captured the full spoken tail. It automatically executes once only when the plan is valid, current and durably marked; there is no second Apply click. The typed fallback retains **Review changes** and **Apply**. Neither path authorizes a changed Project, selection or original request, or automatic replay after an unknown result.
+
+The new local speech candidate uses the standard English browser API with `processLocally: true` and a fixed literal command grammar. It requires `NEXT_PUBLIC_PROJECT_PING_LOCAL_SPEECH_ENABLED` and the existing typed feature gate. It uses no LLM, API key, cloud fallback or server audio endpoint. The free English language pack was installed and read back as available in the test browser. That installation is not genuine ASR qualification: the native attempts remain preserved, and genuine ASR qualification remains open. One native attempt observed the real UI install the free pack once, read availability back and start listening separately with a live invented audio track in local mode. Its harness waited for interim output before Finish and timed out without HTTP; A separate explicit-Finish attempt also produced no observed transcript or task effect; genuine speech recognition and qualification remain open. The existing maintained PCM/provider route remains unconnected; the new browser-local candidate is not a provider winner or G2 acceptance.
+
+Source review accepts the bounded local controller, panel and typed bridge, with separate lint and Dock-delta receiving. Maintained typed checks passed 62/62 and local engine checks 16/16. The preceding mounted packet passed 7/7 with two synthetic executions and two receipts at its actual earlier source; those observations are not relabelled as execution of this final candidate. At final product source `752f655bd930c8918ecad0ad40b960e57173bb83`, the guarded deterministic Dock packet passed 7/7 with two executions and two receipts. Four settled light/dark and desktop/mobile captures received bounded UI acceptance, including the observed 20px mobile BulkBar gap. The normal 204-case capture is still running; neither it nor native recognition is claimed complete. Production activation, deployment and live-user acceptance are not established by these candidate checks.
+
+The dated records below retain their original sources, denominators, failures and evidence boundaries. They describe earlier checkpoints rather than the current candidate.
+
+## Historical release preparation, 10 October 2026
 
 **11 October update.** App PR 266 passed all five required hosted gates on head `652c97` and merged to App main at `b9178f0f9923ce4136757e6c17a1c8c6041c1d8a`, tree `fb91114f61e755dad908b16a33792b31d302380c`. The received change includes the focused five-file dependency-name privacy repair from PR 207; exact comparison against this main exited 0. Reopened PR 207 head `9b87924ab5c8af7817aa907b72a69dcc9d802e0a` was closed as superseded at 06:56:50 UTC, with its branch preserved. This is source and hosted-check evidence, not current browser privacy acceptance. A fresh 196-case fixture run (`tasks-playwright-f09f492a0af3c19f63853e43`, fixture-source field `9f2ee2dbfd7241f3eb203d8c51c9aa7f6213d13a`) ran 06:00:26–06:12:43 UTC; the fixture receipt is bound to that source; the later metadata-only commit and exact received tree establish continuity to main. It does not establish browser-specific privacy DOM/scenario coverage or authenticated live acceptance. Private evidence PR 117 was received at `04543509f5f20727085e3146684c8abafa394d5c` (tree `a3c59981a98fd46213c04739ea49afe3a66b8198`) at 07:13:54 UTC. Independent fresh receiving review passed all 315 bodies: 86 LFS pointers and 229 ordinary Git blobs matched the received tree. This records bounded evidence custody, not overall programme acceptance.
 
@@ -32,7 +44,7 @@ Received Studio main records 22/58 sections, 36 open and bounded G1 at 1/13 prog
 
 Project Ping will let someone carry out an explicit command in the Project they are visibly working in, using voice or typing. The first supported outcome is a bounded compound change to selected tasks, or creation of one to ten top-level placeholder tasks in an existing Project.
 
-## Current state
+## Historical construction checkpoints
 
 Execution was authorized on 6 October 2026. The first isolated engineering proof started from App source `ae9713bcb40a94f047ee92e0c1747f04e3629efc`. An earlier typed panel candidate appeared in draft [App PR 220](https://github.com/ethanmcn2013-droid/app/pull/220) at source `b3f984bf470f64ba5149172b9e1c511ebb002218`; the latest candidate and its evidence boundary are recorded below. This is not a deployed feature or user acceptance.
 
