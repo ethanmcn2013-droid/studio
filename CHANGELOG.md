@@ -8,6 +8,10 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-15 · S·193 · reads · HQ records bounded everyday Ping commands
+
+**HQ now distinguishes a more useful Ping candidate from the proof still needed to use it live.** The internal candidate adds finite everyday wording, the singular `create 1 task` form and help, plus an exact current-Project member add that preserves existing assignees. Its received synthetic two-case proof includes a known zero-write Cancel and one scripted compound execution; native speech recognition remains unqualified. Default OFF, 31/58 sections, 2/13 gates, G2 STOP and the January 21 release holds remain unchanged. Fresh global capture and hosted utility receiving are still pending; this is an internal record, not activation or a launch claim.
+
 ## 2026-10-15 · S·192 · reads · HQ records the floating Ping candidate
 
 **HQ separates the new Ping interface from the voice and release proof still needed.** The internal candidate leads with a floating voice overlay and keeps typing available. Activation fixes the target before listening; voice Finish and run waits for observed finals and native end, then uses one validated automatic execution. Typing retains Review changes and Apply. The local English speech candidate remains default OFF, with native recognition receiving unfinished and the maintained PCM/provider route unconnected. This records candidate scope, not a shipped feature, a provider winner or a changed G2 STOP decision. Programme receiving stays 31/58 sections and 2/13 gates; earlier failed observations remain intact.
