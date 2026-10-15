@@ -50,7 +50,7 @@ while pending and retries the same generation. Missing keys or provider
 failure remain unconfirmed. The earlier PR178 finding at `27af50c0`—where a
 fresh disconnected status lost this distinction—is retained as historical
 evidence, with the current source repair described in the
-[custody risk](/hq/risks/drive-refresh-token-custody).
+[custody risk](https://github.com/ethanmcn2013-droid/studio/blob/main/content/hq/risks/drive-refresh-token-custody.md).
 
 A storage-owner handover changes future storage; it does not move historical
 Google files into the successor's account. Old file identity, account
@@ -70,7 +70,7 @@ rows/grants were removed and the private native Blob became unreadable.
 Earlier steps keep their original source labels; this receipt did not
 activate production Drive.
 
-The existing [feature record](/hq/features/project-files-in-drive) separately
+The existing [feature record](https://github.com/ethanmcn2013-droid/studio/blob/9fad526facfabe3e76cf18d1a0ef4f9182485ba4/content/hq/features/project-files-in-drive.md) separately
 records later bounded founder-controlled production consent, exact file-byte
 checks, reconnect/restore, handover and member-removal observations, with
 migrations through `0038`. Receiving evidence is preserved in private workspace

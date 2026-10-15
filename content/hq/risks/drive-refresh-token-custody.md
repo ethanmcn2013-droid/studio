@@ -41,7 +41,7 @@ cover reload/retry, interruption, missing keys, overlapping consent and
 migration `0038` preserving old ciphertext without inventing confirmation.
 Those tests were inspected, not rerun for this documentation repair.
 
-The [feature record](/hq/features/project-files-in-drive) preserves accepted
+The [feature record](https://github.com/ethanmcn2013-droid/studio/blob/9fad526facfabe3e76cf18d1a0ef4f9182485ba4/content/hq/features/project-files-in-drive.md) preserves accepted
 Preview lifecycle evidence and later bounded founder-controlled production
 observations. Its historical receipts do not establish today's live provider
 state or a complete customer lifecycle. Retired consent rows must not be
