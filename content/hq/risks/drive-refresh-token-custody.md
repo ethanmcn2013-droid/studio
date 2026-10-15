@@ -1,53 +1,66 @@
 ---
 id: drive-refresh-token-custody
-title: Holding a customer's Google refresh token, in a repository that has never had any cryptography in it.
+title: Google refresh-token custody and recovery
 category: Security
 likelihood: Medium
 impact: High
 status: Needs attention
 owner: Ethan
-reviewDate: 2026-09-30
+reviewDate: 2026-10-15
 ---
 
-## Mitigation
+## Mitigation and remaining risk
 
-Opened 2026-08-27 with the Project Drive decision. Not yet mitigated — the
-substrate does not exist. Recorded now because the point at which it becomes
-urgent is the point at which it is cheapest to get wrong.
+The August 2026 claim that the App has no cryptography is historical. At App
+source `380ab1c7c999dc014a8101b8a466a610712d1f92`,
+[`secret-box.ts`](https://github.com/ethanmcn2013-droid/app/blob/380ab1c7c999dc014a8101b8a466a610712d1f92/src/server/crypto/secret-box.ts)
+implements AES-256-GCM envelopes, key versions and context-bound encryption.
+Drive seals refresh tokens and mints request-local access tokens. Its requested
+scope is exactly `drive.file`; Signal's Project authorization and folder/grant
+checks remain separate controls. See the [Drive system record](/hq/atlas/project-files-in-drive).
 
-The feature requires a long-lived Google refresh token per connected account.
-There is no `createCipheriv` anywhere in the app repository today, and the one
-precedent is the wrong one: `calendar_connections` in the Notes module stores
-its Google refresh token in **plaintext**, relying on Turso encryption at rest,
-and its own comment flags this as a follow-up nobody has come back to. Copying
-that shape for Drive would take a known shortcut and multiply it.
+A runtime that can reach both the key and ciphertext can still use the durable
+credential. Versioned encryption supports rotation; source support alone does
+not prove deployed keys, a completed rotation, restore or provider recovery.
+Likelihood remains Medium and impact High.
 
-The plan's WP-2 builds `secret-box` (AES-256-GCM, key from `PROVIDER_TOKEN_KEY`,
-explicit `keyVersion` so rotation is possible) before any token exists to store,
-along with scrubbing at the Sentry boundary and omission from account export.
-WP-0's hard-rule ratchet already fails CI on a schema column named
-`access_token`, and on a refresh-token column not named `_cipher`, so the
-plaintext shape cannot land quietly even before WP-2 ships.
+## Disconnect uncertainty: historical finding and current source
 
-Three things keep the blast radius from being unbounded. The scope is
-`drive.file` permanently, so a leaked token reaches only files our app created
-— the rest of that person's Drive is not data we promise not to read, it is
-data the token cannot address. Access tokens are minted per request and never
-persisted. And the ratchet is a standing control rather than a review habit.
+PR178 recorded a validated local finding at App `27af50c0`: successful, failed
+and in-flight revocations produced the same fresh disconnected status, and a
+repeat disconnect could imply confirmation without retrying. Preserve that
+finding at its original scope; it was not observed production exposure.
 
-Honest residual: a refresh token is a durable credential to a real person's
-account, and encryption at rest does not help if the key and the ciphertext are
-reachable together. Likelihood Medium until WP-2 lands and the Notes table is
-retrofitted; impact stays High regardless.
+Current [`drive-connections.ts`](https://github.com/ethanmcn2013-droid/app/blob/380ab1c7c999dc014a8101b8a466a610712d1f92/src/server/connections/drive-connections.ts)
+addresses that gap in source. It persists requested/confirmed timestamps and
+attempt identity, exposes pending revocation after reload, fences OAuth entry
+and completion while pending, and retries the same credential generation. A
+disconnect with no current or pending request returns no confirmation. Missing
+keys and failed provider calls leave the request unconfirmed. Existing tests
+cover reload/retry, interruption, missing keys, overlapping consent and
+migration `0038` preserving old ciphertext without inventing confirmation.
+Those tests were inspected, not rerun for this documentation repair.
 
-## Notes
+The [feature record](https://github.com/ethanmcn2013-droid/studio/blob/9fad526facfabe3e76cf18d1a0ef4f9182485ba4/content/hq/features/project-files-in-drive.md) preserves accepted
+Preview lifecycle evidence and later bounded founder-controlled production
+observations. Its historical receipts do not establish today's live provider
+state or a complete customer lifecycle. Retired consent rows must not be
+relabelled as confirmed revocations, and old same-account credentials must not
+be retried against a newer current grant.
 
-Two follow-ons this risk owns:
+## Remaining evidence and ownership
 
-1. Retrofitting `calendar_connections` once `secret-box` exists. Small and
-   obviously correct; must not be allowed to block Project Drive, and must not
-   be forgotten once it stops blocking anything.
-2. The consent screen must be published out of Testing on day one of WP-1.
-   While it is in Testing, Google expires refresh tokens after seven days —
-   which will look exactly like a bug in our own token handling for a week, at
-   the moment the team is least able to tell the difference.
+Notes is a separate inherited exposure: at the same App pin,
+`src/modules/notes/server/db/notes-schema.ts` retains
+`calendar_connections.refresh_token` without application-layer encryption;
+its comment says live population is unverified. Do not infer active customer
+credentials or a completed remediation. Any change needs its own scoped
+assessment and safe migration/rollback.
+
+The owning Delivery task must retain the exact deployment/provider evidence,
+key rotation and restore proof, and actual OAuth configuration/reauthentication
+limits relevant to its release. This context correction neither changes that
+configuration nor authorizes publication of a consent screen. Wider-user,
+physical-phone and real elapsed-use acceptance are not established here.
+This risk remains **Needs attention**. Old PR175/178 branches and their other
+work remain preserved; this record does not close their entire scopes.
