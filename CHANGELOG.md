@@ -12,7 +12,7 @@ entries before 2026-05-22; the vocabulary starts at the next pass.
 
 **The landing page says what the product does and keeps the waitlist within reach.**
 
-Cuts repeated audience pitches, the anti-jargon word display, filler captions and motivational sample responses. Headlines, descriptions and metadata use concrete actions. Sample disclosures, source-linked answer context, forecast basis, access terms, derived pricing, company particulars, keyboard instructions and waitlist behavior remain. Original secondary pages and unused section components stay in source.
+Cuts repeated audience pitches, the anti-jargon word display, filler captions and motivational sample responses. Headlines, descriptions and metadata use concrete actions. Sample disclosures, source-linked answer context, forecast basis, access terms, derived pricing, company particulars, keyboard instructions and waitlist behavior remain. Original secondary pages and unused section components stay in source. Shorter labels keep a reserved mobile status row; validation focus stays in place. Deferred captures wait horizontally outside their frames so native reloads retain their vertical position.
 
 ## 2026-10-16 · S·194 · holds · The public site waits on one page
 

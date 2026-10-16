@@ -684,7 +684,7 @@ test.describe("the home page, One Friday", () => {
     }
     await expect(showing).toHaveAttribute("data-shot", "ledger-desk", { timeout: 15_000 });
     await expect(tabs.nth(1)).toHaveAttribute("aria-selected", "true");
-    await expect(page.locator('[data-cap="pl-projects"]')).toHaveText("The same projects as rows, for when you want to compare them.");
+    await expect(page.locator('[data-cap="pl-projects"]')).toHaveText("Compare projects in a list.");
 
     await tabs.nth(1).press("ArrowRight");
     await expect(tabs.nth(2)).toBeFocused();
@@ -933,7 +933,7 @@ test.describe("the home page, One Friday", () => {
     await expect(page.locator("#wl-err")).toHaveText("That does not look like an email address.");
     // What joining gets you, in the site's own published facts.
     await expect(page.locator("#wl-note")).toHaveText(
-      "Free to join. No card and no newsletter. One email when it is your turn, from January 2027. There is a free plan, and Pro is €12 a month.",
+      "Free to join. No card. No newsletter. One email when your access is ready. Free plan. Pro €12 a month.",
     );
     if (LANDING_ONLY) {
       await expect(page.locator('#join a[href^="/"]')).toHaveCount(0);
@@ -1174,7 +1174,7 @@ test.describe("the home page, One Friday", () => {
     const context = await browser.newContext({ javaScriptEnabled: false, viewport: DESK });
     const page = await context.newPage();
     await page.goto(DARK);
-    await expect(page.locator(".noscript")).toContainText("This page reads in full without JavaScript.");
+    await expect(page.locator(".noscript")).toContainText("JavaScript enables the interactive samples.");
     const state = await page.evaluate(() => {
       const shown = (selector: string) => Array.from(document.querySelectorAll<HTMLElement>(selector));
       return {

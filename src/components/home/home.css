@@ -275,7 +275,8 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
    captures on arrival. The boot script and the runtime mark a frame `near` at 1200 px, the
    picture drops into place unfetched, and lazy loading takes it from there. It stays in
    the accessibility tree throughout, with its description. Without script nothing waits. */
-.lp.js .shot:not(.near) img { transform: translateY(-20000px); }
+/* Keep the vertical image position stable for native reload scroll restoration. */
+.lp.js .shot:not(.near) img { transform: translateX(-20000px); }
 /* A capture that failed to load says what it was, in the frame. */
 .lp .shot img.failed { position: static; width: auto; height: auto; padding: 24px; font-size: 0.875rem; line-height: 1.5; color: var(--lp-p-text-2); }
 /* Where a crop cannot end on a row, it ends in a deliberate fade to the window's own surface. */
@@ -766,6 +767,8 @@ html:has(.lp)::view-transition-old(root), html:has(.lp)::view-transition-new(roo
   .lp .respond { min-height: 2.8em; }
   .lp .live { margin-top: 24px; }
   .lp .live-label { margin-bottom: 8px; font-size: 0.875rem; }
+  /* Keep the sample label and changing status on separate rows at every text length. */
+  .lp .live-label > p:first-child { flex-basis: 100%; }
   .lp .step p { font-size: 1rem; }
   .lp .wl-row { flex-direction: column; }
   .lp .wl input[type="email"] { flex: none; width: 100%; }

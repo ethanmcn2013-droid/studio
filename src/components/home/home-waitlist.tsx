@@ -114,7 +114,7 @@ export function HomeWaitlist({
       event.preventDefault();
       setLocalError(problem);
       setTries((count) => count + 1);
-      input?.focus();
+      input?.focus({ preventScroll: true });
       return;
     }
     setLocalError("");

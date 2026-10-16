@@ -31,7 +31,7 @@ export function HomeHero() {
           <a className="btn btn-ghost" href="#sample">Try the sample <svg className="down" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg></a>
         </div>
 
-        <div className="live lp-rise" style={v({ "--lp-i": 3 })} id="sample">
+        <div className="live" id="sample">
           <div className="live-label">
             <p>Sample venue: The Orchard, Kinsale.</p>
             <p className="respond" id="respond"><i aria-hidden="true"></i><span>Tick a task.</span></p>
