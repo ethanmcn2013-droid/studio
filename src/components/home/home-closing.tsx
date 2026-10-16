@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LANDING_ONLY } from "@/lib/landing-only";
 import { getConsumerPricingPresentation } from "@/lib/commercial-terms";
 import { COMPANY_META } from "@/lib/hq/company";
 import { HomeWaitlist } from "./home-waitlist";
@@ -119,7 +120,7 @@ export function HomeClose() {
         <HomeWaitlist variant="close" source="home_close" artifact="close_form" />
         <div className="wl-note lp-reveal" style={v({ "--lp-i": 3 })}>
           <p id="wl-note">Free to join. No card and no newsletter. One email when it is your turn, from January 2027. There is a free plan, and Pro is {pricing.plans.pro.price} a month.</p>
-          <p className="wl-links"><Link className="tlink" href="/pricing" prefetch={false}>See pricing</Link><span aria-hidden="true"> · </span><Link className="tlink" href="/privacy" prefetch={false}>Privacy</Link></p>
+          {!LANDING_ONLY && <p className="wl-links"><Link className="tlink" href="/pricing" prefetch={false}>See pricing</Link><span aria-hidden="true"> · </span><Link className="tlink" href="/privacy" prefetch={false}>Privacy</Link></p>}
           <p>{COMPANY_META.legalName} is registered in Ireland. Questions go to <a className="tlink" href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>.</p>
         </div>
       </div>

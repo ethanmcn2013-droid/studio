@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { LANDING_ONLY, LANDING_ONLY_SOURCE } from "./src/lib/landing-only";
 
 /**
  * ── Security headers (Plan 4.1) ────────────────────────────────────
@@ -84,6 +85,14 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
+      // Temporary launch boundary. 302 is deliberate; permanent:false is 307.
+      // Retired product hosts retain their existing deep-link/share rules below.
+      ...(LANDING_ONLY ? [LANDING_ONLY_SOURCE].map((source) => ({
+        source,
+        destination: "/",
+        statusCode: 302 as const,
+        missing: [{ type: "host" as const, value: "(?:notes|timeline|signal|roadmap|analytics)\\.signalstudio\\.ie" }],
+      })) : []),
       {
         // One host. www served the whole site as a duplicate with no
         // redirect; the apex is the canonical origin (round 2, Q19).

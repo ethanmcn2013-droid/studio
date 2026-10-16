@@ -1,3 +1,4 @@
+import { LANDING_ONLY } from "../../src/lib/landing-only";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
@@ -101,6 +102,15 @@ test.describe("the home page, One Friday", () => {
       .poll(() => page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor))
       .toBe("rgb(244, 243, 241)");
 
+    if (LANDING_ONLY) {
+      await page.goto("/pricing");
+      await expect(page).toHaveURL(/\/$/);
+      await expect(root).toHaveAttribute("data-theme", "light");
+      await page.goto("/waitlist");
+      await expect(page).toHaveURL(/\/$/);
+      await expect(page.locator("#nav")).toBeVisible();
+      return;
+    }
     await page.goto("/pricing");
     await expect(page.locator(".pricing-page")).toHaveAttribute("data-theme", "light");
     await expect(page.locator("#nav")).toBeVisible();
@@ -153,6 +163,23 @@ test.describe("the home page, One Friday", () => {
       await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor),
     ).toBe("rgb(12, 12, 13)");
 
+    if (LANDING_ONLY) {
+      for (const signal of [
+        { extraHTTPHeaders: { "x-signal-authed": "1" } },
+        { storageState: { cookies: [{ name: "__session", value: "signed-in", domain: "127.0.0.1", path: "/", expires: -1, httpOnly: false, secure: false, sameSite: "Lax" as const }], origins: [] } },
+      ]) {
+        const context = await browser.newContext(signal);
+        const visitor = await context.newPage();
+        await visitor.goto(DARK);
+        await expect(visitor.locator(".lp")).toHaveCount(1);
+        await expect(visitor.locator("#nav")).toBeVisible();
+        expect(new URL(visitor.url()).pathname).toBe("/");
+        expect(await browserBar(visitor)).toBe("rgb(12, 12, 13)");
+        await context.close();
+      }
+      expect(errors).toEqual([]);
+      return;
+    }
     // Pricing shares the landing palette; leaving that family restores the site bar.
     await page.locator(".lp header").getByRole("link", { name: "Pricing" }).click();
     await expect(page).toHaveURL(/\/pricing$/, { timeout: 30_000 });
@@ -192,7 +219,7 @@ test.describe("the home page, One Friday", () => {
   test("keeps the launcher's own route internal, and the public page free of the request", async ({ page, request }) => {
     // Asked for by name, the launcher's route is the home page.
     const direct = await request.get("/launcher", { maxRedirects: 0 });
-    expect(direct.status()).toBe(307);
+    expect(direct.status()).toBe(LANDING_ONLY ? 302 : 307);
     expect(direct.headers()["location"]).toBe("/");
     await page.goto("/launcher");
     await expect(page).toHaveURL(/\/$/);
@@ -375,8 +402,12 @@ test.describe("the home page, One Friday", () => {
       "Analytics",
       "Whiteboard",
     ]);
-    await expect(page.locator('#navlinks a[href="/pricing"]')).toBeVisible();
-    await expect(page.locator('#navlinks a[href="/about"]')).toBeVisible();
+    if (LANDING_ONLY) {
+      await expect(page.locator('#navlinks a[href="/pricing"], #navlinks a[href="/about"]')).toHaveCount(0);
+    } else {
+      await expect(page.locator('#navlinks a[href="/pricing"]')).toBeVisible();
+      await expect(page.locator('#navlinks a[href="/about"]')).toBeVisible();
+    }
     await expect(page.locator(".lp-footer .site-footer")).toContainText(
       /Registered in Ireland\. CRO number: \d+\./,
     );
@@ -483,8 +514,13 @@ test.describe("the home page, One Friday", () => {
     // The page's own jump, then a link away, then Back.
     await page.locator("#nav a.btn").click();
     await expect.poll(() => landing(page, "join")).toBe(direct);
-    await page.locator("#join").getByRole("link", { name: "See pricing" }).click();
-    await expect(page).toHaveURL(/\/pricing$/, { timeout: 30_000 });
+    if (LANDING_ONLY) {
+      await page.goto("/pricing");
+      await expect(page).toHaveURL(/\/$/);
+    } else {
+      await page.locator("#join").getByRole("link", { name: "See pricing" }).click();
+      await expect(page).toHaveURL(/\/pricing$/, { timeout: 30_000 });
+    }
     await page.goBack();
     await expect(page.locator(".lp")).toHaveCount(1);
     await expect.poll(() => landing(page, "join"), { timeout: 10_000 }).toBe(direct);
@@ -901,8 +937,12 @@ test.describe("the home page, One Friday", () => {
     await expect(page.locator("#wl-note")).toHaveText(
       "Free to join. No card and no newsletter. One email when it is your turn, from January 2027. There is a free plan, and Pro is €12 a month.",
     );
-    await expect(page.locator("#join").getByRole("link", { name: "See pricing" })).toHaveAttribute("href", "/pricing");
-    await expect(page.locator("#join").getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
+    if (LANDING_ONLY) {
+      await expect(page.locator('#join a[href^="/"]')).toHaveCount(0);
+    } else {
+      await expect(page.locator("#join").getByRole("link", { name: "See pricing" })).toHaveAttribute("href", "/pricing");
+      await expect(page.locator("#join").getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
+    }
     await expect(page.locator("#wl-email")).toHaveAttribute("enterkeyhint", "send");
     // "What do you run?" is optional and rides along in two fields.
     await expect(page.locator('#waitlist-form input[name="audience"]')).toHaveValue("");

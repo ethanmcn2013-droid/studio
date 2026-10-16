@@ -1,3 +1,4 @@
+import { LANDING_ONLY } from "@/lib/landing-only";
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site-url";
 
@@ -45,7 +46,7 @@ const routes: Array<{
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((route) => ({
+  return routes.filter((route) => !LANDING_ONLY || route.path === "").map((route) => ({
     url: `${SITE_URL}${route.path}`,
     lastModified: route.lastModified,
     changeFrequency: route.changeFrequency,

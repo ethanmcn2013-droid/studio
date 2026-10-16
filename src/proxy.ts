@@ -1,3 +1,4 @@
+import { LANDING_ONLY } from "@/lib/landing-only";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import {
@@ -169,7 +170,7 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
   if (hqResult) return hqResult;
 
   // 2. Suite launcher redirect (M routes, authed, no escape hatch)
-  const suiteResult = suiteRedirect(request);
+  const suiteResult = LANDING_ONLY ? null : suiteRedirect(request);
   if (suiteResult) return suiteResult;
 
   return NextResponse.next();
