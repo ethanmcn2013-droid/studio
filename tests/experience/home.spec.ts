@@ -958,11 +958,11 @@ test.describe("the home page, One Friday", () => {
       await expect(page.locator(`#waitlist-form input[name="${name}"]`)).toHaveValue(value);
     }
     // Venues have a second way in, by email, and everyone else has the list.
-    await expect(page.locator("#venue").getByRole("link", { name: "Run a venue? Ask to try it now" })).toHaveAttribute(
+    await expect(page.locator("#venue").getByRole("link", { name: "Request a venue preview" })).toHaveAttribute(
       "href",
       "mailto:hello@signalstudio.ie?subject=Trying%20Signal%20Studio%20at%20our%20venue",
     );
-    await expect(page.locator("#venue")).toContainText("Everyone else, join the waitlist.");
+    await expect(page.locator("#venue")).toContainText("For launch access, join the waitlist.");
   });
 
   test("asks for an address in the hero and after the sample and Files, with one form's rules", async ({ page }) => {
