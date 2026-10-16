@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-16 · S·194 · holds · The public site waits on one page
+
+**The prepared site keeps the landing page and its waitlist open, with the rest of the public pages held until launch.**
+
+Secondary addresses temporarily return to the landing page, and its header, footer and closing links stay on that page. The other pages remain in source for a reversible return. Icons, private operations and retired-domain compatibility retain their existing roles. Local production-build checks cover desktop and phone navigation, actual icon images and a waitlist save in an isolated test database; no live deployment or production waitlist result is claimed.
+
 ## 2026-10-15 · S·193 · reads · HQ records bounded everyday Ping commands
 
 **HQ now distinguishes a more useful Ping candidate from the proof still needed to use it live.** The internal candidate adds finite everyday wording, the singular `create 1 task` form and help, plus an exact current-Project member add that preserves existing assignees. Its received synthetic two-case proof includes a known zero-write Cancel and one scripted compound execution; native speech recognition remains unqualified. The product 6e57b206 construction snapshot is 31/58 sections (53.4%), 2/13 gates and G2 STOP; [Delivery 49](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/49) holds current acceptance. [The delegated PP-103 decision](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/111#issuecomment-6195788659) permits early scoped typed construction and technical acceptance before PP-043, GY-funding and G6, without passing those gates; its GO is one working day, at most eight active hours and $0 provider inference. Benefit against BulkBar remains unmeasured. The full revision-bound proof, integration, matching HQ record and deployment-boundary receiving are still required; capture, receipts, validators and CI are recorded separately in canonical Delivery 111. Default OFF and January 21, production and human-use holds remain unchanged; this is an internal record, not acceptance by decision alone or activation.

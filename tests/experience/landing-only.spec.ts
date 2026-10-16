@@ -19,6 +19,14 @@ test("landing-only routing, desktop/mobile navigation and real waitlist persiste
     const hq = await request.get("/hq", { maxRedirects: 0 });
     expect(hq.headers().location).toContain("/hq/access");
     expect((await request.get("/share/signal-studio-card-v2.png")).status()).toBe(200);
+    for (const path of ["/icon", "/icon1", "/icon2", "/icon3", "/icon4", "/apple-icon"]) {
+      const response = await request.get(path, { maxRedirects: 0 });
+      expect(response.status(), path).toBe(200);
+      expect(response.headers()["content-type"], path).toContain("image/png");
+      expect(response.headers().location, path).toBeUndefined();
+      expect((await response.body()).subarray(0, 8), path).toEqual(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+    }
+    expect((await (await request.get("/manifest.webmanifest")).json()).shortcuts).toEqual([]);
     for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
       await page.setViewportSize(viewport);
       await page.goto("/?theme=dark");

@@ -6,6 +6,7 @@ import config from "../../next.config";
 import { proxy } from "../proxy";
 import { createHqAccessToken, HQ_ACCESS_COOKIE } from "./hq/auth";
 import sitemap from "../app/sitemap";
+import manifest from "../app/manifest";
 
 const origin = "https://signalstudio.ie";
 async function route(path: string, host = "signalstudio.ie") {
@@ -21,7 +22,7 @@ test("secondary and retired marketing URLs temporarily return exactly 302 to hom
 });
 
 test("root, private operations and required assets escape isolation", async () => {
-  for (const path of ["/", "/api/csp-report", "/hq", "/hq/access", "/_next/static/test.js", "/landing/captures/test.webp", "/share/signal-studio-card-v2.png", "/brand/business-loan-pack-2026.html", "/favicon.ico", "/robots.txt", "/sitemap.xml"]) {
+  for (const path of ["/", "/api/csp-report", "/hq", "/hq/access", "/_next/static/test.js", "/landing/captures/test.webp", "/share/signal-studio-card-v2.png", "/brand/business-loan-pack-2026.html", "/favicon.ico", "/icon", "/icon1", "/icon2", "/icon3", "/icon4", "/apple-icon", "/robots.txt", "/sitemap.xml"]) {
     assert.notEqual((await route(path)).status, 302, path);
   }
   assert.equal((await route("/about", "www.signalstudio.ie")).status, 302);
@@ -60,4 +61,8 @@ test("HQ and confidential brand assets still require their password cookie", asy
 
 test("sitemap advertises only the accessible landing page", () => {
   assert.deepEqual(sitemap().map(({ url }) => url), [origin]);
+});
+
+test("installed landing page advertises no secondary-page shortcuts", () => {
+  assert.deepEqual(manifest().shortcuts, []);
 });
