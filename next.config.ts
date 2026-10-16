@@ -83,6 +83,8 @@ const yearImmutable = [
 const nextConfig: NextConfig = {
   // Do not advertise the framework in every response (round 2, Q27).
   poweredByHeader: false,
+  // Let the temporary 302 boundary receive slash variants before Next normalizes them.
+  skipTrailingSlashRedirect: LANDING_ONLY,
   async redirects() {
     return [
       // Temporary launch boundary. 302 is deliberate; permanent:false is 307.

@@ -23,6 +23,18 @@ test("secondary and retired marketing URLs temporarily return exactly 302 to hom
   }
 });
 
+test("slash variants go directly home with tracking queries retained", async () => {
+  assert.equal(config.skipTrailingSlashRedirect, true);
+  for (const [path, destination] of [["/about/", "/"], ["/pricing/?utm_source=test", "/?utm_source=test"], ["/brand/loader.html/", "/"], ["/unknown/", "/"]]) {
+    const response = await route(path);
+    assert.equal(response.status, 302, path);
+    assert.equal(getRedirectUrl(response), origin + destination, path);
+  }
+  const www = await route("/about/", "www.signalstudio.ie");
+  assert.equal(www.status, 302);
+  assert.equal(getRedirectUrl(www), "https://www.signalstudio.ie/");
+});
+
 test("root, private operations and required assets escape isolation", async () => {
   for (const path of ["/", "/api/csp-report", "/hq", "/hq/access", "/_next/static/test.js", "/landing/captures/test.webp", "/share/signal-studio-card-v2.png", "/brand/business-loan-pack-2026.html", "/favicon.ico", "/icon", "/icon1", "/icon2", "/icon3", "/icon4", "/apple-icon", "/robots.txt", "/sitemap.xml"]) {
     assert.notEqual((await route(path)).status, 302, path);
@@ -71,6 +83,7 @@ test("installed landing page advertises no secondary-page shortcuts", () => {
 
 } else {
   test("the retained public estate resumes its normal marketing routes", async () => {
+    assert.equal(config.skipTrailingSlashRedirect, false);
     for (const path of ["/about", "/pricing", "/privacy", "/terms", "/waitlist", "/principles", "/press"]) {
       const response = await route(path);
       assert.equal(response.status, 200, path);

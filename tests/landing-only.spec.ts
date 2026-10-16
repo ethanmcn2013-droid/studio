@@ -16,6 +16,15 @@ test("landing-only routing, desktop/mobile navigation and real waitlist persiste
       expect(response.status(), path).toBe(302);
       expect(response.headers().location, path).toBe("/");
     }
+    for (const [path, destination] of [["/about/", "/"], ["/pricing/?utm_source=test", "/?utm_source=test"], ["/brand/loader.html/", "/"], ["/unknown/", "/"]]) {
+      const response = await request.get(path, { maxRedirects: 0 });
+      expect(response.status(), path).toBe(302);
+      expect(response.headers().location, path).toBe(destination);
+    }
+    const wwwSlash = await request.get("/about/", { headers: { host: "www.signalstudio.ie" }, maxRedirects: 0 });
+    expect(wwwSlash.status()).toBe(302);
+    expect(wwwSlash.headers().location).toBe("/");
+    expect((await request.get("/?utm_source=test", { maxRedirects: 0 })).status()).toBe(200);
     const hq = await request.get("/hq", { maxRedirects: 0 });
     expect(hq.headers().location).toContain("/hq/access");
     expect((await request.get("/share/signal-studio-card-v2.png")).status()).toBe(200);
