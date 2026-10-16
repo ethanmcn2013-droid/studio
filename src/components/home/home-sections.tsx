@@ -10,18 +10,18 @@ export function HomeProjects() {
         <div className="sec-head">
           <div>
             <p className="mono kicker lp-reveal">Projects</p>
-            <h2 id="h-projects" className="lp-reveal" style={v({ "--lp-i": 1 })}>Fifteen things on at once. One page.</h2>
+            <h2 id="h-projects" className="lp-reveal" style={v({ "--lp-i": 1 })}>Every project. One view.</h2>
           </div>
-          <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>The Orchard has a wedding, a supper club, a roof repair and twelve more on the go. Each one says how it is doing in plain words: on track, at risk, off track.</p>
+          <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>See dates, progress and what is running late.</p>
         </div>
         <div className="sec-body lp-reveal">
           <div className="plate-bar">
             <div className="tabs" role="tablist" aria-label="Projects views" data-for="pl-projects">
               <button type="button" role="tab" id="tab-projects-0" aria-selected="true" aria-controls="pl-projects">Covers</button><button type="button" role="tab" id="tab-projects-1" aria-selected="false" aria-controls="pl-projects" tabIndex={-1}>List</button><button type="button" role="tab" id="tab-projects-2" aria-selected="false" aria-controls="pl-projects" tabIndex={-1}>One project</button>
             </div>
-            <p className="cap" data-cap="pl-projects" aria-live="polite">A cover for every project: its date, who is on it and how far along it is.</p>
+            <p className="cap" data-cap="pl-projects" aria-live="polite">Dates, people and progress.</p>
           </div>
-          <div className="plate window" id="pl-projects" role="tabpanel" tabIndex={0} aria-labelledby="tab-projects-0" data-tabs="" data-caps="A cover for every project: its date, who is on it and how far along it is.|The same projects as rows, for when you want to compare them.|Open one and it says what is yours, what is late and what the team said last.">
+          <div className="plate window" id="pl-projects" role="tabpanel" tabIndex={0} aria-labelledby="tab-projects-0" data-tabs="" data-caps="Dates, people and progress.|Compare projects in a list.|Your tasks, late work and team updates.">
             <Shot name="projects-desk" className="on" fade view={0} alt="Projects as covers. 15 active projects, 2 off track, 2 at risk, 10 on track. Mara and Finn's wedding: in 8 days, 23 of 44 done, 2 late, at risk." />
             <Shot name="ledger-desk" fade view={1} alt="Projects as a list: each project in a row with how it is doing, open tasks, tasks done, its next big date and who leads it." />
             <Shot name="project-home-desk" fade view={2} alt="One project, Mara and Finn's wedding: at risk, in 8 days, 23 of 44 tasks done, 2 late, with the team's latest updates." />
@@ -46,9 +46,9 @@ export function HomeTimeline() {
         <div className="sec-head">
           <div>
             <p className="mono kicker lp-reveal">Timeline</p>
-            <h2 id="h-timeline" className="lp-reveal" style={v({ "--lp-i": 1 })}>The couple gets their own timeline.</h2>
+            <h2 id="h-timeline" className="lp-reveal" style={v({ "--lp-i": 1 })}>Share the plan.</h2>
           </div>
-          <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>Mara and Finn see the big dates: what is done, what is next and how many days are left. It is the same plan the venue works from, on a page made for them.</p>
+          <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>Give clients the dates, progress and next steps.</p>
         </div>
         <div className="sec-body lp-reveal">
           <div className="plate window">
@@ -56,7 +56,7 @@ export function HomeTimeline() {
             <Shot name="a-timeline-tablet" fade alt="The shared wedding timeline on a tablet. Mara and Finn, 8 days until the wedding day, Saturday 3 October 2026. 3 of 8 complete." />
             <Shot name="a-timeline-phone" fade alt="The shared wedding timeline on a phone. Mara and Finn, 8 days until the wedding day, Saturday 3 October 2026. 3 of 8 complete." />
           </div>
-          <p className="cap">A builder&apos;s client sees the same for their extension. A parent sees it for the school play.</p>
+          <p className="cap">For weddings, building jobs and school events.</p>
         </div>
       </div>
     </section>
@@ -74,8 +74,8 @@ export function HomeFiles() {
             <h2 id="h-files" className="lp-reveal" style={v({ "--lp-i": 1 })}>Ask your files a question.</h2>
           </div>
           <div className="stack">
-            <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>Every quote, plan and brochure sits with the project it belongs to. You do not hunt through folders. You ask.</p>
-            <p className="quote lp-reveal" style={v({ "--lp-i": 3 })}><b>“Which seating plan did Mara approve?”</b><br />Seating plan v3, on Mon 21 Sep: 118 guests at 15 tables. The answer arrives with the sentence it was read from and the page to open.</p>
+            <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>Keep quotes, plans and brochures with their project.</p>
+            <p className="quote lp-reveal" style={v({ "--lp-i": 3 })}><b>“Which seating plan did Mara approve?”</b><br />Seating plan v3, approved 21 Sep. See the source beside the answer.</p>
           </div>
         </div>
         <div className="sec-body lp-reveal">
@@ -85,7 +85,7 @@ export function HomeFiles() {
             <Shot name="files-phone" alt="Files on a phone, answering the question: Seating plan v3, on 21 Sep, 118 guests at 15 tables. v4 has been with Mara since Thu 24 Sep." />
           </div>
           <div className="prompt">
-            <p><b>That is the idea.</b> Leave your email and we will write when you can try it.</p>
+            <p>Get an email when your access is ready.</p>
             <HomeWaitlist variant="prompt" id="files" source="home_files" artifact="files_prompt" />
           </div>
         </div>
@@ -102,9 +102,9 @@ export function HomeAnalytics() {
         <div className="sec-head">
           <div>
             <p className="mono kicker lp-reveal">Analytics</p>
-            <h2 id="h-analytics" className="lp-reveal" style={v({ "--lp-i": 1 })}>Ask if you will make the date.</h2>
+            <h2 id="h-analytics" className="lp-reveal" style={v({ "--lp-i": 1 })}>Will you make the date?</h2>
           </div>
-          <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>It answers in a sentence first. The chart is there if you want it.</p>
+          <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>See the finish date at your current pace.</p>
         </div>
         <div className="sec-body lp-reveal">
           <div className="plate-bar">

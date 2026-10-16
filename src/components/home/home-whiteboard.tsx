@@ -40,12 +40,12 @@ export function HomeWhiteboard() {
         <div className="sec-head">
           <div>
             <p className="mono kicker lp-reveal">Whiteboard</p>
-            <h2 id="h-wb" className="lp-reveal" style={v({ "--lp-i": 1 })}>Throw it all on the wall. Tidy it later.</h2>
+            <h2 id="h-wb" className="lp-reveal" style={v({ "--lp-i": 1 })}>Plan together on one wall.</h2>
           </div>
-          <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>The whole wedding on one wall, with the team moving it about together. You see who is here and what they are touching. Press Tidy and the mess falls into columns.</p>
+          <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>Move notes. Add comments. Group ideas.</p>
         </div>
         <div className="sec-body lp-reveal">
-          <p className="wb-hint"><span><span className="h-fine">Try it. Drag a note, or click one and then click where it should go.</span><span className="h-coarse">Try it. Press and hold a note to drag it, or tap one and then tap where it should go.</span></span><span>Nothing here is saved. Aoife, Dara, Dev and Niamh are sample people.</span></p>
+          <p className="wb-hint"><span><span className="h-fine">Drag a note, or click to select and place it.</span><span className="h-coarse">Hold to drag a note, or tap to select and place it.</span></span><span>Sample people. Changes are not saved.</span></p>
           <div className="wbx window">
             <div className="wb-head">
               <h3>Whiteboard</h3>

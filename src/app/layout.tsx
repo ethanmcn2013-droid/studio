@@ -35,9 +35,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Signal Studio · Project management for people not in tech.",
+  title: "Signal Studio · Know what needs you today.",
   description:
-    "Project management for people not in tech. Signal Studio tells you what needs you today, in words you would use yourself, whether you run a venue, a trade crew, a studio or a school.",
+    "Projects, tasks and files in one place. Join the Signal Studio waitlist.",
   metadataBase: new URL(
     SITE_URL
   ),
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     canonical: "./",
   },
   openGraph: {
-    title: "Signal Studio · Project management for people not in tech.",
+    title: "Signal Studio · Know what needs you today.",
     description:
-      "Signal Studio tells you what needs you today, in words you would use yourself, whether you run a venue, a trade crew, a studio or a school.",
+      "Projects, tasks and files in one place. Join the Signal Studio waitlist.",
     type: "website",
     url: "./",
     siteName: "Signal Studio",
@@ -127,7 +127,7 @@ const structuredData = [
     operatingSystem: "Web",
     url: SITE_URL,
     description:
-      "Project management for people not in tech. Signal Studio tells you what needs you today, in words you would use yourself. Tasks, dates, files and people live together.",
+      "Projects, tasks, dates and files in one place.",
     offers: [
       {
         "@type": "Offer",

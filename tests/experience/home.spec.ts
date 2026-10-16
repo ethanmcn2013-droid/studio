@@ -393,7 +393,7 @@ test.describe("the home page, One Friday", () => {
     await expect(page.locator("header.site-nav")).toHaveCount(0);
     await expect(page.locator("header")).toHaveCount(1);
     await expect(page.locator("main")).toHaveCount(1);
-    await expect(page.locator("h1")).toHaveText("Project management for people not in tech.");
+    await expect(page.locator("h1")).toHaveText("Know what needs you today.");
     await expect(page.locator("#navlinks > a")).toHaveText([
       "Projects",
       "Tasks",
@@ -419,14 +419,12 @@ test.describe("the home page, One Friday", () => {
     expect(order).toEqual([
       "top",
       "yours",
-      "who",
       "projects",
       "tasks",
       "timeline",
       "files",
       "analytics",
       "whiteboard",
-      "words",
       "venue",
       "join",
     ]);
@@ -585,7 +583,7 @@ test.describe("the home page, One Friday", () => {
     expect(await counts(page)).toBe("4/10/36");
     // The window's foot says what was done; the reply is the label on top of the sample.
     await expect(toast).toContainText("Marked done.");
-    await expect(page.locator("#respond")).toHaveText("That is it. You just did project management.");
+    await expect(page.locator("#respond")).toHaveText("One task done.");
     await expect(first).toHaveAttribute("aria-pressed", "true");
     await expect(page.locator("#live")).toContainText("Undo with Control Z.");
     await expect(act).toHaveText(/^Undo/);
@@ -620,7 +618,7 @@ test.describe("the home page, One Friday", () => {
     await page.keyboard.press("Control+Z");
     await page.keyboard.press("Control+Z");
     expect(await counts(page)).toBe("5/11/35");
-    await expect(toast).toContainText("Undone. Everything is back as it was.");
+    await expect(toast).toContainText("All changes undone.");
     await expect(act).toHaveText(/^Redo/);
     await expect(page.locator(".tick.hint")).toHaveCount(1);
 
@@ -628,10 +626,10 @@ test.describe("the home page, One Friday", () => {
     await page.getByRole("button", { name: "Mark done: Send the final invoice to Mara and Finn" }).click();
     await expect(toast).toContainText("Reopened.");
     await expect(open).toHaveText("22");
-    await expect(page.locator("#respond")).toHaveText("The counts moved with you. Keep going.");
+    await expect(page.locator("#respond")).toHaveText("Counts updated.");
     await page.getByRole("button", { name: "Nudge Fern and Furrow" }).click();
     await expect(page.locator("#nudge")).toHaveAccessibleName("Nudged today");
-    await expect(toast).toContainText("Nudged. This is a sample, so nothing was really sent.");
+    await expect(toast).toContainText("Sample reminder. Nothing sent.");
     // Escape puts the toast away.
     await page.keyboard.press("Escape");
     await expect(toast).not.toHaveClass(/(^| )on( |$)/);
@@ -1015,7 +1013,7 @@ test.describe("the home page, One Friday", () => {
     // After Files: a form, not a jump.
     const files = page.locator("#wl-files-form");
     await files.scrollIntoViewIfNeeded();
-    await expect(page.locator("#files .prompt")).toContainText("That is the idea. Leave your email and we will write when you can try it.");
+    await expect(page.locator("#files .prompt")).toContainText("Get an email when your access is ready.");
     await expect(files.locator('input[name="source"]')).toHaveValue("home_files");
     await expect(files.locator('input[name="artifact"]')).toHaveValue("files_prompt");
     await page.locator("#wl-files-submit").click();
@@ -1026,7 +1024,7 @@ test.describe("the home page, One Friday", () => {
     await expect(page.locator("#wl-sample-form")).toBeHidden();
     await page.getByRole("button", { name: "Mark done: Agree the winter price list" }).click();
     await expect(page.locator("#wl-sample-form")).toBeVisible();
-    await expect(page.locator("#sample-prompt")).toContainText("That is the idea.");
+    await expect(page.locator("#sample-prompt")).toContainText("Get an email when your access is ready.");
     await expect(page.locator('#wl-sample-form input[name="source"]')).toHaveValue("home_sample");
     await expect(page.locator('#wl-sample-form input[name="artifact"]')).toHaveValue("sample_prompt");
     await page.locator("#wl-sample-email").fill("still@not");
@@ -1062,20 +1060,14 @@ test.describe("the home page, One Friday", () => {
     }
   });
 
-  test("strikes only words the page itself never uses", async ({ page }) => {
+  test("uses plain language without a jargon display", async ({ page }) => {
     await page.setViewportSize(DESK);
     await page.goto(DARK);
-    const { struck, rest } = await page.evaluate(() => {
-      const list = document.querySelector(".struck")!;
-      const words = Array.from(list.querySelectorAll("del")).map((del) => del.textContent!.toLowerCase());
-      const clone = document.querySelector(".lp")!.cloneNode(true) as HTMLElement;
-      clone.querySelector(".struck")!.remove();
-      const alts = Array.from(clone.querySelectorAll("img")).map((img) => img.alt).join(" ");
-      const labels = Array.from(clone.querySelectorAll("[aria-label]")).map((el) => el.getAttribute("aria-label")).join(" ");
-      return { struck: words, rest: `${clone.textContent} ${alts} ${labels}`.toLowerCase() };
-    });
-    expect(struck).toHaveLength(14);
-    for (const word of struck) expect(rest.includes(word), `"${word}" appears on the page`).toBe(false);
+    await expect(page.locator("#who, #words, .struck")).toHaveCount(0);
+    const text = (await page.locator(".lp").innerText()).toLowerCase();
+    for (const word of ["sprint", "stakeholder", "kanban", "synergy", "supercharge", "seamless"]) {
+      expect(text.includes(word), `"${word}" appears on the page`).toBe(false);
+    }
   });
 
   test("never scrolls sideways, at any width, in either theme", async ({ page }) => {
@@ -1137,7 +1129,6 @@ test.describe("the home page, One Friday", () => {
         chosenTab: edge('.tabs [role="tab"][aria-selected="true"]'),
         note: edge("#wb .note"),
         themeSwitch: edge("#theme"),
-        struck: getComputedStyle(document.querySelector(".struck del")!).textDecorationLine,
       };
     });
     expect(edges).toEqual({
@@ -1148,7 +1139,6 @@ test.describe("the home page, One Friday", () => {
       chosenTab: true,
       note: true,
       themeSwitch: true,
-      struck: "line-through",
     });
   });
 

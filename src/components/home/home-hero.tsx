@@ -24,8 +24,8 @@ export function HomeHero() {
     <section className="hero" id="top" aria-labelledby="h1">
       <div className="wrap">
         <p className="stamp mono lp-rise"><b aria-hidden="true"></b><span>Launching January 2027<i> · Wedding venues in private preview</i></span></p>
-        <h1 id="h1" className="lp-move">Project management for people <em>not</em> in tech.</h1>
-        <p className="lede lp-rise" style={v({ "--lp-i": 1 })}>Signal Studio tells you what needs you today, in words you would use yourself, whether you run a venue, a trade crew, a studio or a school.</p>
+        <h1 id="h1" className="lp-move">Know what needs you <em>today.</em></h1>
+        <p className="lede lp-rise" style={v({ "--lp-i": 1 })}>Projects, tasks and files in one place.</p>
         <div className="cta-row lp-rise" style={v({ "--lp-i": 2 })}>
           <HomeWaitlist variant="hero" source="home_hero" artifact="hero_form" />
           <a className="btn btn-ghost" href="#sample">Try the sample <svg className="down" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg></a>
@@ -33,8 +33,8 @@ export function HomeHero() {
 
         <div className="live lp-rise" style={v({ "--lp-i": 3 })} id="sample">
           <div className="live-label">
-            <p>A Friday at The Orchard, a wedding venue in Kinsale.</p>
-            <p className="respond" id="respond"><i aria-hidden="true"></i><span>This one is live. Tick a task.</span></p>
+            <p>Sample venue: The Orchard, Kinsale.</p>
+            <p className="respond" id="respond"><i aria-hidden="true"></i><span>Tick a task.</span></p>
           </div>
           <div className="win window capped" id="home" role="region" aria-labelledby="h-sample">
             <h2 id="h-sample" className="vh">Home, a working sample of Signal Studio</h2>
@@ -105,7 +105,7 @@ export function HomeHero() {
                 </ul>
               </aside>
             </div>
-            <div className="win-more"><button type="button" id="win-more" aria-expanded="false" aria-controls="home">Show the rest of the sample</button></div>
+            <div className="win-more"><button type="button" id="win-more" aria-expanded="false" aria-controls="home">Show full sample</button></div>
             {/* The window's foot. It rides the bottom of the screen while the window runs past
                 it, and what the visitor just did is said here, with the way to take it back. */}
             <div className="win-foot">
@@ -115,7 +115,7 @@ export function HomeHero() {
           </div>
           {/* Shown once the visitor has done something in the sample. */}
           <div className="prompt" id="sample-prompt" hidden>
-            <p><b>That is the idea.</b> Leave your email and we will write when you can try it.</p>
+            <p>Get an email when your access is ready.</p>
             <HomeWaitlist variant="prompt" id="sample" source="home_sample" artifact="sample_prompt" />
           </div>
         </div>
