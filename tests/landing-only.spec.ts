@@ -41,7 +41,7 @@ test("landing-only routing, desktop/mobile navigation and real waitlist persiste
       await page.goto("/?theme=dark");
       await expect(page.locator(".lp")).toHaveClass(/smooth/, { timeout: 30_000 });
       await expect(page.locator("#nav")).toBeVisible();
-      await expect(page.locator("h1")).toHaveText("Project management for people not in tech.");
+      await expect(page.locator("h1")).toHaveText("Know what needs you today.");
       const secondary = await page.locator('a[href^="/"]').evaluateAll(links => links.map(link => link.getAttribute("href")).filter(href => href !== "/" && !href?.startsWith("/#")));
       expect(secondary).toEqual([]);
       await expect(page.locator(".wl-hero")).toBeVisible();

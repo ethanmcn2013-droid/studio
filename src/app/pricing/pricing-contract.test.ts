@@ -140,18 +140,16 @@ describe("public story proof contract", () => {
     assert.match(home, /<HomePage>/);
     // Round 2 (2026-10-02): the page runs in the header's order, with the
     // form last. Round 3 (the same day): the same thing in other trades'
-    // words comes straight after the sample, then who it is for.
+    // words comes straight after the sample. Repeated audience/jargon sections are cut.
     const story = [
       "<HomeHero />",
       "<HomeYours />",
-      "<HomeWho />",
       "<HomeProjects />",
       "<HomeTasks />",
       "<HomeTimeline />",
       "<HomeFiles />",
       "<HomeAnalytics />",
       "<HomeWhiteboard />",
-      "<HomeWords />",
       "<HomeVenue />",
       "<HomeClose />",
     ];

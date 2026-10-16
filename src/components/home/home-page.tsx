@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { HomeBoot, HomeBootScript } from "./home-boot";
-import { HomeClose, HomeVenue, HomeWho, HomeWords, HomeYours } from "./home-closing";
+import { HomeClose, HomeVenue, HomeYours } from "./home-closing";
 import { HomeHeader } from "./home-header";
 import { HomeHero } from "./home-hero";
 import { HomeAnalytics, HomeFiles, HomeProjects, HomeTimeline } from "./home-sections";
@@ -40,8 +40,8 @@ const BOOT = `(function(){var d=document.currentScript&&document.currentScript.p
  *
  * The order: the sample, the same thing in other trades' words, who it is
  * for, then the header's six in the header's order (Projects, the Friday
- * story, Timeline, Files, Analytics, Whiteboard), plain words, venues and the
- * form.
+ * story, Timeline, Files, Analytics, Whiteboard), venues and the form.
+ * Repeated audience and anti-jargon sections remain in source, off this page.
  *
  * The markup is static and complete: every frame has its size in the HTML,
  * so the page is its final length before any script runs and reads with no
@@ -55,19 +55,17 @@ export function HomePage({ children }: { children: ReactNode }) {
       <HomeBootScript code={BOOT} />
       <HomeHeader />
       <noscript>
-        <p className="noscript">This page reads in full without JavaScript. The sample, the tabs and the whiteboard need it to respond.</p>
+        <p className="noscript">JavaScript enables the interactive samples.</p>
       </noscript>
       <main id="main" tabIndex={-1}>
         <HomeHero />
         <HomeYours />
-        <HomeWho />
         <HomeProjects />
         <HomeTasks />
         <HomeTimeline />
         <HomeFiles />
         <HomeAnalytics />
         <HomeWhiteboard />
-        <HomeWords />
         <HomeVenue />
         <HomeClose />
       </main>

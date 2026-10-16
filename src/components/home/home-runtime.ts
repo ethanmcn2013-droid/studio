@@ -385,14 +385,14 @@ export function startHome(root) {
       var parts = [];
       if (jobs) parts.push(NUM[jobs] + (jobs === 1 ? " task done" : " tasks done"));
       if (appr) parts.push(NUM[appr] + (appr === 1 ? " file approved" : " files approved"));
-      if (S.nudged) parts.push("one reminder sent");
-      var tally = parts.join(", "); tally = tally.charAt(0).toUpperCase() + tally.slice(1) + ", no meeting held.";
-      var line = !S.acts ? "This one is live. Tick a task."
-        : !parts.length ? "The counts moved with you. Keep going."
-        : need === 0 ? "All done, and no meeting held. That is the whole point of the thing."
-        : parts.length === 1 && jobs === 1 ? "That is it. You just did project management."
-        : parts.length === 1 && S.nudged ? "Fern and Furrow gets one polite reminder. You get your morning back."
-        : tally + " Keep going.";
+      if (S.nudged) parts.push("one sample reminder marked sent");
+      var tally = parts.join(", "); tally = tally.charAt(0).toUpperCase() + tally.slice(1) + ".";
+      var line = !S.acts ? "Tick a task."
+        : !parts.length ? "Counts updated."
+        : need === 0 ? "All done."
+        : parts.length === 1 && jobs === 1 ? "One task done."
+        : parts.length === 1 && S.nudged ? "Sample reminder marked sent."
+        : tally;
       replyLine = S.acts && parts.length ? line : "";
       var span = $("span", respond);
       if (span.textContent !== line) { var fresh = document.createElement("span"); fresh.textContent = line; respond.replaceChild(fresh, span); }
@@ -432,7 +432,7 @@ export function startHome(root) {
       ahead.push({ s: JSON.stringify(S), el: last.el });
       S = JSON.parse(last.s); render();
       /* True to what happened: one step back, and only "everything" when nothing is left to undo. */
-      say(past.length ? "Undone." : "Undone. Everything is back as it was.", "", "redo");
+      say(past.length ? "Undone." : "All changes undone.", "", "redo");
       return true;
     }
     function redo() {
@@ -445,8 +445,8 @@ export function startHome(root) {
       var b = e.target.closest("button"); if (!b || b === moreBtn || b === actBtn) return;
       var row = b.closest(".row");
       if (b === nudge) {
-        if (S.nudged) return say("Already nudged today. One reminder is enough.");
-        return act("Nudged. This is a sample, so nothing was really sent.", function () { S.nudged = 1; }, b, false);
+        if (S.nudged) return say("Already nudged today.");
+        return act("Sample reminder. Nothing sent.", function () { S.nudged = 1; }, b, false);
       }
       if (row && row.dataset.id) {
         var id = row.dataset.id;

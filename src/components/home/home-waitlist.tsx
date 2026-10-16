@@ -114,7 +114,7 @@ export function HomeWaitlist({
       event.preventDefault();
       setLocalError(problem);
       setTries((count) => count + 1);
-      input?.focus();
+      input?.focus({ preventScroll: true });
       return;
     }
     setLocalError("");
@@ -186,7 +186,7 @@ export function HomeWaitlist({
         <p key={tries} className={errorClass} id={ids.err} role="alert">{error}</p>
         {close ? (
           <fieldset>
-            <legend>What do you run? <span>You can skip this.</span></legend>
+            <legend>What do you run? <span>Optional.</span></legend>
             <div className="chips">
               {RUNS.map((item) => (
                 <label key={item.value}>

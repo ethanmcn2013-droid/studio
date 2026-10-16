@@ -88,7 +88,7 @@ export function SiteFooter({
         >
           <Wordmark size="sm" animate={false} />
           <p className="site-footer-promise">
-            Tasks, dates, files and people live together. Built for the work.
+            Tasks, dates, files and people.
           </p>
           <SocialLinks />
           {showDot && <FooterDot />}
@@ -116,8 +116,7 @@ export function SiteFooter({
 
       <div className={WRAP}>
         <div className="site-footer-bar">
-          <span>&copy; {year} Signal Studio. Made by Signal Studio.</span>
-          <span>Clarity, not configuration.</span>
+          <span>&copy; {year} Signal Studio.</span>
         </div>
         <div className="site-footer-particulars">
           <p className="site-footer-registration">{REGISTRATION_LINE}</p>
@@ -140,7 +139,7 @@ function CompactFooter({ year }: { year: number }) {
         <div>
           <Wordmark size="sm" animate={false} />
           <p className="site-footer-promise">
-            Tasks, dates, files and people live together. Built for the work.
+            Tasks, dates, files and people.
           </p>
         </div>
         <nav aria-label="Signal Studio">
@@ -163,7 +162,7 @@ function CompactFooter({ year }: { year: number }) {
 
       <div className={WRAP_COMPACT}>
         <div className="site-footer-bar">
-          <span>&copy; {year} Signal Studio. Made by Signal Studio.</span>
+          <span>&copy; {year} Signal Studio.</span>
         </div>
         <div className="site-footer-particulars">
           <p className="site-footer-registration">{REGISTRATION_LINE}</p>

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { LANDING_ONLY } from "@/lib/landing-only";
 import { getConsumerPricingPresentation } from "@/lib/commercial-terms";
-import { COMPANY_META } from "@/lib/hq/company";
 import { HomeWaitlist } from "./home-waitlist";
 import { v } from "./style-vars";
 
@@ -55,10 +54,9 @@ export function HomeYours() {
       <div className="wrap">
         <div className="sec-head">
           <div>
-            <p className="mono kicker lp-reveal">Not a venue</p>
-            <h2 id="h-yours" className="lp-reveal" style={v({ "--lp-i": 1 })}>The same thing in your words.</h2>
+            <p className="mono kicker lp-reveal">Examples</p>
+            <h2 id="h-yours" className="lp-reveal" style={v({ "--lp-i": 1 })}>For crews, schools and studios.</h2>
           </div>
-          <p className="sub lp-reveal" style={v({ "--lp-i": 2 })}>The Orchard is the sample. For a building crew, a school or a studio, the first line on Home would read like this.</p>
         </div>
         <ul className="yours-list">
           <li className="window lp-reveal"><span className="mono">A building crew</span><p>{HOURGLASS}<span><b>Slates for the Kavanagh job</b> have waited 4 days on the supplier.</span></p></li>
@@ -96,12 +94,12 @@ export function HomeVenue() {
       <div className="wrap">
         <div className="venue-card lp-reveal">
           <div className="txt">
-            <h2 id="h-venue">Wedding venues are trying it first.</h2>
-            <p className="sub">In private preview with wedding venues, before it opens in January 2027.</p>
+            <h2 id="h-venue">Wedding venues get the first preview.</h2>
+            <p className="sub">Private preview. Launching January 2027.</p>
           </div>
           <div className="side">
-            <a className="btn btn-ghost" href="mailto:hello@signalstudio.ie?subject=Trying%20Signal%20Studio%20at%20our%20venue">Run a venue? Ask to try it now {ARROW}</a>
-            <p className="venue-note">Everyone else, <a className="tlink" href="#join">join the waitlist</a>.</p>
+            <a className="btn btn-ghost" href="mailto:hello@signalstudio.ie?subject=Trying%20Signal%20Studio%20at%20our%20venue">Request a venue preview {ARROW}</a>
+            <p className="venue-note">For launch access, <a className="tlink" href="#join">join the waitlist</a>.</p>
           </div>
         </div>
       </div>
@@ -116,12 +114,12 @@ export function HomeClose() {
     <section className="close" id="join" aria-labelledby="h-close">
       <div className="wrap">
         <p className="mono kicker lp-reveal">Launching January 2027</p>
-        <h2 id="h-close" className="lp-reveal" style={v({ "--lp-i": 1 })}>Start your Friday with five things, <em>not</em> fifty.</h2>
+        <h2 id="h-close" className="lp-reveal" style={v({ "--lp-i": 1 })}>Join the waitlist.</h2>
         <HomeWaitlist variant="close" source="home_close" artifact="close_form" />
         <div className="wl-note lp-reveal" style={v({ "--lp-i": 3 })}>
-          <p id="wl-note">Free to join. No card and no newsletter. One email when it is your turn, from January 2027. There is a free plan, and Pro is {pricing.plans.pro.price} a month.</p>
+          <p id="wl-note">Free to join. No card. No newsletter. One email when your access is ready. Free plan. Pro {pricing.plans.pro.price} a month.</p>
           {!LANDING_ONLY && <p className="wl-links"><Link className="tlink" href="/pricing" prefetch={false}>See pricing</Link><span aria-hidden="true"> · </span><Link className="tlink" href="/privacy" prefetch={false}>Privacy</Link></p>}
-          <p>{COMPANY_META.legalName} is registered in Ireland. Questions go to <a className="tlink" href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>.</p>
+          <p>Questions? <a className="tlink" href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>.</p>
         </div>
       </div>
     </section>

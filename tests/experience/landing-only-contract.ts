@@ -16,7 +16,7 @@ export function landingOnlyPageContract(subject: string, paths: string[]) {
           expect(new URL(page.url()).pathname).toBe("/");
           await expect(page.locator(".lp")).toHaveClass(/smooth/);
           await expect(page.locator("#nav")).toBeVisible();
-          await expect(page.locator("h1")).toHaveText("Project management for people not in tech.");
+          await expect(page.locator("h1")).toHaveText("Know what needs you today.");
           await expect(page.locator("#wl-hero-form")).toBeVisible();
           await expect(page.locator("#wl-hero-email")).toBeInViewport();
           await expect(page.locator("#wl-hero-submit")).toHaveText("Join the waitlist");
