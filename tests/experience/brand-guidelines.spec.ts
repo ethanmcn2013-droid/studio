@@ -1,3 +1,5 @@
+import { LANDING_ONLY } from "../../src/lib/landing-only";
+import { landingOnlyPageContract } from "./landing-only-contract";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
@@ -9,6 +11,9 @@ const VIEWPORTS = [
   { name: "desktop", width: 1440, height: 900 },
 ] as const;
 
+if (LANDING_ONLY) {
+  landingOnlyPageContract("Principles and retained review lab", ['/principles', '/__design-lab/brand-guidelines']);
+} else {
 test("the review route is hidden from canonical production hosts", async ({
   request,
 }) => {
@@ -202,3 +207,5 @@ test("reduced motion resolves content and the page has no serious accessibility 
     .analyze();
   expect(accessibilityScanResults.violations).toEqual([]);
 });
+
+}

@@ -1,3 +1,5 @@
+import { LANDING_ONLY } from "../../src/lib/landing-only";
+import { landingOnlyPageContract } from "./landing-only-contract";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
@@ -12,6 +14,9 @@ const VIEWPORTS = [
   { width: 320, height: 720 },
 ] as const;
 
+if (LANDING_ONLY) {
+  landingOnlyPageContract("Pricing", ['/pricing']);
+} else {
 test.describe("Signal Ledger pricing page", () => {
   test.describe.configure({ mode: "serial", timeout: 60_000 });
 
@@ -615,3 +620,5 @@ test.describe("Signal Ledger pricing page", () => {
     expect(failedRequests).toEqual([]);
   });
 });
+
+}

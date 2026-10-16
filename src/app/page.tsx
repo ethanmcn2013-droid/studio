@@ -1,3 +1,4 @@
+import { LANDING_ONLY } from "@/lib/landing-only";
 import type { Viewport } from "next";
 import { HomePage } from "@/components/home/home-page";
 import { SiteFooter } from "@/components/landing/site-footer";
@@ -42,7 +43,7 @@ export const viewport: Viewport = {
 export default function Home() {
   return (
     <HomePage>
-      <SiteFooter />
+      <SiteFooter landingOnly={LANDING_ONLY} />
     </HomePage>
   );
 }

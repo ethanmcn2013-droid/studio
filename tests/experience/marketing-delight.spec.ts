@@ -1,3 +1,5 @@
+import { LANDING_ONLY } from "../../src/lib/landing-only";
+import { landingOnlyPageContract } from "./landing-only-contract";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
@@ -8,6 +10,9 @@ import { expect, test } from "@playwright/test";
 // covering it properly needs a settled-state hook this spec does not have.
 const MARKETING_ROUTES = ["/pricing", "/about"] as const;
 
+if (LANDING_ONLY) {
+  landingOnlyPageContract("Public marketing", ['/pricing', '/about']);
+} else {
 test.describe("public marketing delight contract", () => {
   test.describe.configure({ mode: "serial", timeout: 60_000 });
 
@@ -200,3 +205,5 @@ test.describe("public marketing delight contract", () => {
     }
   });
 });
+
+}

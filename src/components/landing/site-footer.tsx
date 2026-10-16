@@ -59,9 +59,11 @@ const ACTION = "marketing-footer-action site-footer-target transition-colors";
 export function SiteFooter({
   compact = false,
   showDot = false,
+  landingOnly = false,
 }: {
   compact?: boolean;
   showDot?: boolean;
+  landingOnly?: boolean;
 }) {
   const year = new Date().getFullYear();
 
@@ -92,6 +94,7 @@ export function SiteFooter({
           {showDot && <FooterDot />}
         </div>
 
+        {landingOnly ? <FooterCol heading="Product" links={[{ href: "#join", label: "Join the waitlist" }]} /> : <>
         <FooterCol
           heading="Product"
           links={[
@@ -108,6 +111,7 @@ export function SiteFooter({
             { href: "/about#contact", label: "Contact" },
           ]}
         />
+        </>}
       </div>
 
       <div className={WRAP}>
@@ -117,7 +121,7 @@ export function SiteFooter({
         </div>
         <div className="site-footer-particulars">
           <p className="site-footer-registration">{REGISTRATION_LINE}</p>
-          <LegalLinks />
+          {!landingOnly && <LegalLinks />}
         </div>
       </div>
     </footer>

@@ -1,3 +1,4 @@
+import { LANDING_ONLY } from "@/lib/landing-only";
 import type { MetadataRoute } from "next";
 import { SIGNAL_TILE } from "@/lib/brand/suite-mark";
 
@@ -69,7 +70,7 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "maskable",
       },
     ],
-    shortcuts: [
+    shortcuts: LANDING_ONLY ? [] : [
       {
         name: "Pricing",
         short_name: "Pricing",
