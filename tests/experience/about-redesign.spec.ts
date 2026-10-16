@@ -1,3 +1,5 @@
+import { LANDING_ONLY } from "../../src/lib/landing-only";
+import { landingOnlyPageContract } from "./landing-only-contract";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
@@ -32,6 +34,9 @@ function collectPageErrors(page: Page): string[] {
   return errors;
 }
 
+if (LANDING_ONLY) {
+  landingOnlyPageContract("About", ['/about']);
+} else {
 test.describe("About in the landing page design system, production evidence", () => {
   test.describe.configure({ mode: "serial", timeout: 90_000 });
 
@@ -247,3 +252,5 @@ test.describe("About in the landing page design system, production evidence", ()
     expect(metrics.loadMs).toBeLessThan(2_000);
   });
 });
+
+}

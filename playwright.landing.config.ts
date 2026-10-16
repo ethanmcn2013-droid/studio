@@ -2,8 +2,8 @@ import { defineConfig } from "@playwright/test";
 import { resolve } from "node:path";
 const port = 4398;
 export default defineConfig({
-  testDir: "./tests/experience",
-  testMatch: ["landing-only.spec.ts", "home.spec.ts"],
+  testDir: "./tests",
+  testMatch: ["landing-only.spec.ts", "**/experience/home.spec.ts"],
   workers: 1,
   retries: 0,
   reporter: "line",
