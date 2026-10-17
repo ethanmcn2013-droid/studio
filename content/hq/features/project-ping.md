@@ -8,8 +8,20 @@ priority: High
 effort: Large
 impact: High
 owner: Ethan
-lastVerified: 2026-10-15
+lastVerified: 2026-10-18
 ---
+
+## Text-first assistant expansion · 18 October 2026
+
+**Internal implementation in progress.** The founder authorized a text-first assistant build under [Delivery 111](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/111#issuecomment-6243060368). The existing issue remains the execution authority. Speech work is deferred while the typed path is built and received.
+
+The intended flow turns a typed request into a finite, validated action plan. Its scope covers Project creation, task creation and updates, reversible task archive, comments, nudges, member invitations, messages, navigation and bounded reads of Tasks, chat and Timeline. Targets must resolve uniquely and pass fresh actor and Project authorization. Ordinary execute requests proceed without another approval ritual; an explicitly requested draft stays unapplied until the user applies it. Ambiguous or unsupported requests stop with a clear outcome. This is bounded application behavior, with no arbitrary tool execution or publication authority.
+
+The implementation routes simple planning to Claude Haiku and compound or bulk planning to Claude Sonnet. The authorized budget is USD 5 for the initial development work and USD 100 total. Persistent reservations cover a conservative full-context bound before generation; trustworthy usage can reconcile the estimate, while unknown usage retains its reservation. Rate-card estimates do not establish settled provider billing. Credentials enter through protected operating custody later; no credentials belong in this record.
+
+Durable actor-owned runs, stable step identities and original receipts support cancellation, fenced local commits and recovery after a lost response. Local effects and their completed receipt commit together. Queued, accepted and uncertain external delivery remain distinct; an uncertain send is not automatically repeated. Existing communication receipts and delivery mechanisms retain their own custody. The implementation uses synthetic delivery for tests rather than sending real messages.
+
+This entry records authorized construction, not completed receiving. The assistant remains default OFF, with no production activation, migration, publication or real-message authority from this update. Real-model quality, credentialed behavior and end-to-end receiving remain unverified. Existing evidence cohorts, failures, original voice G2 STOP and the recorded section/gate acceptance remain unchanged; no new acceptance against the 58-section programme is claimed.
 
 ## Product telemetry and bounded Prepare candidate · 15 October 2026
 
