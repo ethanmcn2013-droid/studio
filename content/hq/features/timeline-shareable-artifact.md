@@ -3,11 +3,12 @@ id: timeline-shareable-artifact
 title: Signal Timeline shareable artifact
 product: Signal Timeline
 category: Core
-status: Built
+status: In Progress
 priority: High
 effort: Large
 impact: High
 owner: Ethan
+lastVerified: 2026-10-18
 principleAlignment: 99
 relatedCampaign: Founding Venue Programme
 relatedMetric: Qualified Timeline views
@@ -15,12 +16,16 @@ relatedMetric: Qualified Timeline views
 
 ## Current state
 
-Option D is the selected and shipped public artifact. It renders one
-horizontal, date-scaled line that makes completion legible before the viewer
-reads copy. Milestones are points on the line. A separate Today dash shows the
-current position between them. The primary readout can move between
-completion and days remaining, and the next unfinished point is labelled
-**Our next milestone**.
+The final Master 3 package (canvas version 49, after the round-6 fixes) has
+been ported to native React for the App candidate. The countdown, milestone
+sequence, Coming up rows and phone list use real projected dates. Light and
+dark themes, returning-guest hints, no-date states and post-event states are
+included. A date passing does not mark an incomplete Task as done.
+
+Source checks and visual qualification are ongoing. This replacement is not
+live or fully accepted. The older artifact releases recorded below remain
+historical evidence, not acceptance of Master 3. Current work remains in the
+existing [Delivery #111](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/111) lane.
 
 The owner works at `app.signalstudio.ie/app/timeline`, which resolves directly
 to the current project artifact with a project switcher and clear View, Edit,
@@ -28,6 +33,38 @@ and Preview and share modes. The recipient receives an unguessable `/s/*`
 link without the app shell. Branded
 `timeline.signalstudio.ie/s/*` links are preserved through the Studio
 compatibility edge.
+
+## Master 3 integration candidate · 18 October 2026
+
+Owner-entered presentation settings cover the title treatment, event notes,
+location consent and optional wedding, opening or school wording. Private
+current preview reads the owner's current project; it does not publish the
+project or expose guest sharing, follow controls or venue referrals. Published
+pages continue to read a frozen, allowlisted projection. Editing current
+settings must not silently change an existing publication.
+
+Calendar choices distinguish a selected event from an all-dates calendar or
+feed. Opening Google Calendar or downloading a file is not a claim that the
+guest saved an event. No-date pages offer no fabricated calendar date.
+
+The guest-services candidate includes double opt-in following, unsubscribe
+and Undo, and date-based reminder selection. Following requires server
+confirmation; a local form state is not proof of subscription or email
+delivery. Provider acceptance is not inbox delivery. Unknown send outcomes
+must not be retried automatically.
+
+Timeline migration `0002_master3_presentation`, its encrypted backup and
+restore custody, and guest-email runtime configuration are still pending
+production receiving. The Timeline-only release adapter has local checks;
+it is not evidence of a production apply. Dedicated Timeline credentials and
+an independently received target hash are not yet configured for that path.
+No live follow, reminder or delivery claim follows from this candidate.
+
+Location, public notes and links enter the guest page only through the
+explicit public presentation contract. Private Tasks bodies, account details
+and guest email addresses stay outside the public projection. Full browser
+and accessibility receiving, migration proof and configured-runtime checks
+remain required before acceptance.
 
 ## Publication boundary
 
@@ -44,7 +81,7 @@ deduplicates a publication within the session window, and stores only a
 hashed receipt plus the publication aggregate. It does not retain the raw
 share token, IP address, referrer, or user-agent.
 
-## Release evidence
+## Historical release evidence
 
 - Timeline PR #28: migration, adoption proof, backup, dry-run, production
   receipt, export, and erasure coverage.
@@ -53,8 +90,8 @@ share token, IP address, referrer, or user-agent.
   isolation.
 - Studio PR #90: exact branded wedding path repair and production smoke.
 
-The owner workspace now opens on this component and preserves the publication
-boundary. The retired Timeline marketing page used this artifact contract as its
+Those releases established the owner workspace and publication boundary.
+The retired Timeline marketing page used that artifact contract as its
 product proof.
 
 ## Tasks date-source repair (App candidate, 23 September 2026)
