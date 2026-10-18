@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-18 · S·196 · ships · Private chat keeps files beside your work
+
+**You can keep a file with a private note, return to the conversation and download it again.**
+
+Files are enabled on desktop for the current internal accounts. This is not a public launch.
+
 ## 2026-10-16 · S·195 · reads · The landing page gets to the point
 
 **The landing page says what the product does and keeps the waitlist within reach.**
