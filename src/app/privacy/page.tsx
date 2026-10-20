@@ -47,7 +47,7 @@ const SECTIONS = [
     body: [
       "Account records: Clerk (United States). Workspace and product data: Turso (managed libSQL, primarily Frankfurt). Error reports: Sentry (United States, with personal data scrubbed before send). Static hosting and serverless functions: Vercel (United States and edge regions).",
       "Product-event counts: PostHog EU cloud (European Union). AI actions: Anthropic (United States), per request, for that request only.",
-      "Outbound mail (account and access emails, and operator notifications) is sent through Resend.",
+      "Outbound mail (account and access emails, task digests and notifications, and operator notifications) is sent through Resend.",
       "Our subprocessors are listed below. We will update this list before adding a new one.",
     ],
   },
