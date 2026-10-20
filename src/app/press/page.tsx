@@ -71,7 +71,7 @@ export default function PressPage() {
             <Section title="One-line description">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is three small products, Notes, Tasks and Timeline, with a daily briefing built into Home. Together they give people outside tech a clear view of their work, in plain English.",
+                  "Signal Studio is three small products, Notes, Tasks and Timeline, in one signed-in app. Together they give people outside tech a clear view of their work, in plain English.",
                 ]}
               />
             </Section>
@@ -79,7 +79,7 @@ export default function PressPage() {
             <Section title="Boilerplate: 50 words">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio makes work software for people who don’t work in tech: wedding planners, tradespeople, freelancers, students, small businesses. Notes captures ideas. Tasks runs the work. Timeline shows the plan. A daily briefing reports what changed. All of it in plain English. In private preview with staged access, from Limerick, Ireland.",
+                  "Signal Studio makes work software for people who don’t work in tech: wedding planners, tradespeople, freelancers, students, small businesses. Notes captures ideas. Tasks runs the work. Timeline shows the plan. Home shows how the week went. All of it in plain English. In private preview with staged access, from Limerick, Ireland.",
                 ]}
               />
             </Section>
@@ -87,7 +87,7 @@ export default function PressPage() {
             <Section title="Boilerplate: 150 words">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is a suite of three small products for the eighty percent of working people who don’t live inside a software stack. Signal Tasks shows the same work as a board, a list, a timeline, or a calendar. Switch views without re-entering anything. Signal Timeline is a plan your customers can actually read: one public link, plain English, no login. Signal Notes is a private notebook that hands a thought to Tasks when it’s ready to become work. Home, the signed-in front door, opens with a daily briefing that names what needs your attention today. Every sentence comes from a hand-written phrasing library. Nothing is machine-written. Everything shares one typeface, one accent colour, and one rule: if a sentence needs translating, it gets rewritten. Built and run by one person, Ethan McNamara, in Limerick, Ireland. The roadmap is public, and every product says what it will never do.",
+                  "Signal Studio is a suite of three small products for the eighty percent of working people who don’t live inside a software stack. Signal Tasks shows the same work as a board, a list, a timeline, or a calendar. Switch views without re-entering anything. Signal Timeline is a plan your customers can actually read: one public link, plain English, no login. Signal Notes is a private notebook that hands a thought to Tasks when it’s ready to become work. Home, the signed-in front door, counts down to your next project date and shows what got done this week. Everything shares one typeface, one accent colour, and one rule: if a sentence needs translating, it gets rewritten. Built and run by one person, Ethan McNamara, in Limerick, Ireland. The roadmap is public, and every product says what it will never do.",
                 ]}
               />
             </Section>
@@ -96,7 +96,7 @@ export default function PressPage() {
               <CopyableQuote
                 paragraphs={[
                   "Signal Studio is a three-product suite for the eighty percent of working people the productivity category left behind. It runs on a single argument. Twenty years of project-management software has been written by tech companies for other tech companies, then sold downmarket with the vocabulary unchanged. That is why wedding planners, freelance designers, tradespeople, students, and small-business owners keep churning out of every tool they try.",
-                  "The three products each do one thing. Signal Tasks is a live workspace that shows the same items as a board, a list, a timeline, or a calendar. Switch views without re-entering anything, with real-time presence and shareable read-only views on the free tier. Signal Timeline is a public plan your customers can read at midnight on a phone: plain English, one link, no login. Signal Notes is a private notebook for the half-formed thought. It hands the thought to Tasks when it’s ready to become work, and raw notes never leave the notebook. Home is the signed-in front door, and it opens with a daily briefing that surfaces what needs your attention today. A rules engine reads your Tasks workspace overnight, finds held-up work, overdue items, and quiet risks, and writes the briefing from a hand-curated phrasing library. Nothing is machine-written.",
+                  "The three products each do one thing. Signal Tasks is a live workspace that shows the same items as a board, a list, a timeline, or a calendar. Switch views without re-entering anything, with real-time presence and shareable read-only views on the free tier. Signal Timeline is a public plan your customers can read at midnight on a phone: plain English, one link, no login. Signal Notes is a private notebook for the half-formed thought. It hands the thought to Tasks when it’s ready to become work, and raw notes never leave the notebook. Home is the signed-in front door. It counts down to your next project date and shows what got done this week.",
                   "The three products share one typeface, one accent colour, one voice. Every page, every empty state, every error message reads the same way, and every product publishes the features it will never ship, whatever the customer asks. The roadmap is public.",
                   "Signal Studio is built and run by one person, Ethan McNamara, in Limerick, Ireland. The products are in private preview with staged access. signalstudio.ie. hello@signalstudio.ie.",
                 ]}
@@ -120,14 +120,6 @@ export default function PressPage() {
                   when they&rsquo;re ready.
                 </li>
               </ul>
-              <p>
-                Attention clarity comes from the{" "}
-                <ExternalLink href="https://signalstudio.ie/features/daily-briefing">
-                  daily briefing
-                </ExternalLink>
-                , built into Home rather than sold as a separate product.
-                Nothing in it is machine-written.
-              </p>
             </Section>
 
             <Section title="Brand assets">

@@ -28,7 +28,7 @@ Home at `/app/home` is the signed-in front door. It replaces the former task-lis
 - Reads are scoped to the Projects the reader can open; review and demo mode never touch the database.
 - A figure that could not be read shows a dash and says so; nothing is guessed.
 - Done this week and Activity count work finished across the reader's Projects, not personal attribution.
-- The Full Briefing remains at `/app/home/briefing`; Home no longer links to it. Retire it or give it a link is an open founder decision.
+- The Full Briefing is retired (founder decision, 2026-10-20). `/app/home/briefing` and legacy `/app/signal` links redirect to `/app/home`, and the daily briefing email is retired with it.
 
 ## Status
 

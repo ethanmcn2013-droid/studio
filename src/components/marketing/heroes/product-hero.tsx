@@ -1,5 +1,4 @@
 import { NotesBeforeItLeaves } from "./notes/before-it-leaves";
-import { SignalTheRead } from "./signal/the-read";
 import { TasksTheBoard } from "./tasks/hero";
 import { TimelineTheLine } from "./timeline/the-line";
 import type { ProductId } from "@/lib/product-urls";
@@ -19,12 +18,15 @@ import type { ProductId } from "@/lib/product-urls";
  * `PRODUCT_MARKETING`, and `definition.headline` still drives metadata and
  * the boundary copy.
  *
- * All four are client components with scoped CSS and their own motion. They
+ * All three are client components with scoped CSS and their own motion. They
  * self-gate on `prefers-reduced-motion`.
+ *
+ * 2026-10-20: the Signal hero ("The Read") was deleted with the Full
+ * Briefing, which is retired across Signal Studio. Signal has no hero.
  */
 export function ProductHero({ product }: { product: ProductId }) {
   if (product === "tasks") return <TasksTheBoard />;
   if (product === "timeline") return <TimelineTheLine />;
   if (product === "notes") return <NotesBeforeItLeaves />;
-  return <SignalTheRead />;
+  return null;
 }

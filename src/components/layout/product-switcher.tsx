@@ -12,8 +12,8 @@ const PRODUCTS: {
   url: string;
 }[] = [
   // The three products (Signal → Home consolidation, 2026-08-04).
-  // Signal left the product line; the daily-briefing story lives at
-  // /features/daily-briefing, linked below the product list.
+  // Signal left the product line. The daily briefing it became was
+  // retired on 2026-10-20, so nothing rides below the list.
   { slug: "notes", word: "notes", tagline: "Capture clarity", url: PRODUCT_MARKETING_URLS.notes },
   { slug: "tasks", word: "tasks", tagline: "Execution clarity", url: PRODUCT_MARKETING_URLS.tasks },
   { slug: "timeline", word: "timeline", tagline: "Direction clarity", url: PRODUCT_MARKETING_URLS.timeline },
@@ -25,8 +25,8 @@ const INDIGO = "#4f46e5";
  * Umbrella-side product switcher. Mirrors the SuiteLauncher contract
  * used inside the app, same popover chrome, same product order, but the
  * trigger here reads "Products" because the user is on signalstudio.ie
- * itself. Three products; the daily briefing rides below as a system
- * capability, never a fourth product.
+ * itself. Three products. Home is the app's front door, never a fourth
+ * product.
  */
 export function ProductSwitcher() {
   const [open, setOpen] = useState(false);

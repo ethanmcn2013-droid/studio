@@ -18,7 +18,7 @@ const SECTIONS = [
     heading: "What we collect",
     body: [
       "Signing in to a Signal Studio product creates an account through Clerk, our authentication provider. Clerk stores your email, name (if you provide one), and an opaque user identifier. We never see your password.",
-      "Inside each product, we store the work you create: tasks, notes, timeline items, briefing preferences. We store who made what, who shared what with whom, and when. We do not store anything you didn't enter yourself.",
+      "Inside each product, we store the work you create: tasks, notes, timeline items, and any briefing preferences you set before the daily briefing was retired. We store who made what, who shared what with whom, and when. We do not store anything you didn't enter yourself.",
       "Planning Period and Workspace context stores the label, context type, calendar dates, timezone and archive/order state you choose. Context changes the language and grouping; it is not a permanent account role.",
       "Where a school or venue sponsors access, we keep entitlement, invitation and activation records. Sponsorship does not give the sponsor access to private Notes, Tasks or unpublished Timeline material. Optional Workspace metadata is shared with a sponsor only through a separate, field-level consent you can revoke.",
       "The school design-partner experience does not require or store pupil accounts, pupil names, pupil emails, grades, attendance or pupil identifiers.",
@@ -47,7 +47,7 @@ const SECTIONS = [
     body: [
       "Account records: Clerk (United States). Workspace and product data: Turso (managed libSQL, primarily Frankfurt). Error reports: Sentry (United States, with personal data scrubbed before send). Static hosting and serverless functions: Vercel (United States and edge regions).",
       "Product-event counts: PostHog EU cloud (European Union). AI actions: Anthropic (United States), per request, for that request only.",
-      "Outbound mail (briefing emails and operator notifications) is sent through Resend.",
+      "Outbound mail (account and access emails, and operator notifications) is sent through Resend.",
       "Our subprocessors are listed below. We will update this list before adding a new one.",
     ],
   },
@@ -115,7 +115,7 @@ export default function PrivacyPage() {
           what we hold, who else touches it, and how to take it back.
         </>
       }
-      updated="2026-09-08"
+      updated="2026-10-20"
       sections={SECTIONS}
       footnote={
         <>

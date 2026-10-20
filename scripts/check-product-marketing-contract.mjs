@@ -76,7 +76,6 @@ for (const [product, component] of [
   ["tasks", "TasksTheBoard"],
   ["timeline", "TimelineTheLine"],
   ["notes", "NotesBeforeItLeaves"],
-  ["signal", "SignalTheRead"],
 ]) {
   assert.match(
     hero,
@@ -85,10 +84,17 @@ for (const [product, component] of [
   );
   assert.match(hero, new RegExp(`<${component}\\s*/>`), `${product} hero unused`);
 }
-// Signal is the fallthrough return, so it carries no product comparison.
 for (const product of ["tasks", "timeline", "notes"]) {
   assert.match(hero, new RegExp(`product === "${product}"`));
 }
+// The Full Briefing is retired (2026-10-20). Signal's hero sold only the
+// briefing, so it was deleted and Signal falls through to no hero at all.
+assert.doesNotMatch(hero, /SignalTheRead/);
+assert.match(hero, /return null;/);
+assert.ok(
+  !existsSync(resolve("../src/components/marketing/heroes/signal/the-read.tsx")),
+  "the Signal briefing hero was retired with the Full Briefing; do not reinstate",
+);
 
 // ── Footer stays compact on mobile ─────────────────────────────────────────
 // Two columns on wide, not four. The 2026-09-11 estate cut archived every
@@ -99,5 +105,5 @@ assert.match(footer, /grid-cols-2/);
 assert.match(footer, /lg:grid-cols-\[1\.35fr_repeat\(2,1fr\)\]/);
 
 console.log(
-  "[product-marketing-contract] ok (three-product handoff + Home close, legacy Signal hero retained, compact mobile footer)",
+  "[product-marketing-contract] ok (three-product handoff + Home close, Signal briefing hero retired, compact mobile footer)",
 );

@@ -263,10 +263,6 @@ function IncludedStack() {
           <span className="text-ink">Signal Timeline</span>{" "}
           <span className="text-ink-quiet">· share what&rsquo;s coming.</span>
         </li>
-        <li>
-          <span className="text-ink">Daily briefing</span>{" "}
-          <span className="text-ink-quiet">· built into Home, what needs attention today.</span>
-        </li>
       </ul>
     </div>
   );
@@ -313,7 +309,7 @@ function claimableCopy(
     return {
       eyebrow: view.sponsor.name,
       headline: `${view.sponsor.name} is sponsoring your access to Signal Studio.`,
-      sub: "Plan your wedding in plain English. Three small tools and a daily briefing, free to you for the next year.",
+      sub: "Plan your wedding in plain English. Three small tools, free to you for the next year.",
       cta: "Claim your seat",
     };
   }
@@ -329,7 +325,7 @@ function claimableCopy(
   return {
     eyebrow: null,
     headline: "Welcome to Signal Studio.",
-    sub: "A complimentary account, on us. Tasks, Timeline and Notes, with a daily briefing.",
+    sub: "A complimentary account, on us. Tasks, Timeline and Notes.",
     cta: "Open your account",
   };
 }
