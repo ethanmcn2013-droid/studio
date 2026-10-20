@@ -8,7 +8,7 @@ priority: High
 effort: Large
 impact: High
 owner: Ethan
-lastVerified: 2026-10-18
+lastVerified: 2026-10-20
 principleAlignment: 99
 relatedCampaign: Founding Venue Programme
 relatedMetric: Qualified Timeline views
@@ -17,14 +17,18 @@ relatedMetric: Qualified Timeline views
 ## Current state
 
 The final Master 3 package (canvas version 49, after the round-6 fixes) has
-been ported to native React for the App candidate. The countdown, milestone
+been ported to native React and merged in App PR #299. The countdown, milestone
 sequence, Coming up rows and phone list use real projected dates. Light and
 dark themes, returning-guest hints, no-date states and post-event states are
 included. A date passing does not mark an incomplete Task as done.
 
-Source checks and visual qualification are ongoing. This replacement is not
-live or fully accepted. The older artifact releases recorded below remain
-historical evidence, not acceptance of Master 3. Current work remains in the
+App PR #299 merged as `33a97e58eb2124745e635a6ce9b0d13c6e6b6350`
+(tree `9530f2933974261f07c57dc30d18939198b97eb8`). Its final PR checks
+passed, including exact-head and merge-candidate Verify and the normal Design
+capture's 204/204 cases. These are source and rendered qualification, not
+production receiving or a quality-council certification. Migration and
+deployment remain pending; Master 3 is not live or fully accepted. The older
+artifact releases below remain historical evidence. Current work stays in the
 existing [Delivery #111](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/111) lane.
 
 The owner works at `app.signalstudio.ie/app/timeline`, which resolves directly
@@ -34,7 +38,7 @@ link without the app shell. Branded
 `timeline.signalstudio.ie/s/*` links are preserved through the Studio
 compatibility edge.
 
-## Master 3 integration candidate · 18 October 2026
+## Master 3 merged source · 20 October 2026
 
 Owner-entered presentation settings cover the title treatment, event notes,
 location consent and optional wedding, opening or school wording. Private
@@ -47,7 +51,7 @@ Calendar choices distinguish a selected event from an all-dates calendar or
 feed. Opening Google Calendar or downloading a file is not a claim that the
 guest saved an event. No-date pages offer no fabricated calendar date.
 
-The guest-services candidate includes double opt-in following, unsubscribe
+The merged guest-services implementation includes double opt-in following, unsubscribe
 and Undo, and date-based reminder selection. Following requires server
 confirmation; a local form state is not proof of subscription or email
 delivery. Provider acceptance is not inbox delivery. Unknown send outcomes
@@ -55,10 +59,33 @@ must not be retried automatically.
 
 Timeline migration `0002_master3_presentation`, its encrypted backup and
 restore custody, and guest-email runtime configuration are still pending
-production receiving. The Timeline-only release adapter has local checks;
-it is not evidence of a production apply. Dedicated Timeline credentials and
-an independently received target hash are not yet configured for that path.
-No live follow, reminder or delivery claim follows from this candidate.
+production receiving. The Timeline-only release adapter and its source checks
+are not evidence of a production apply. No independently received production
+target or apply receipt is recorded here. No live follow, reminder or email
+delivery claim follows from the merge.
+
+The additive migration declares `timeline_project_presentation` for private
+owner settings, `timeline_publication_presentation` for frozen public settings,
+`timeline_guest_subscriptions` for confirmation and unsubscribe state, and
+`timeline_guest_deliveries` for the durable notification outbox. The canonical
+App source is `drizzle-timeline/migration-ledger.json`; its production ledger
+is `signal_timeline_schema_migrations`. Private settings do not replace a
+publication's frozen settings until an explicit publication operation.
+
+The source schedule calls `/api/timeline/reminders` every five minutes with
+`CRON_SECRET` bearer authentication. The worker cleans expired subscriptions,
+queues due reminders and claims delivery attempts before sending; it checks
+the current publication and subscription again and does not automatically
+retry sending or unknown outcomes. Signed subscriber links require
+`TIMELINE_FOLLOW_SIGNING_SECRET`. Its name is a configuration requirement,
+not proof that the deployed runtime is configured. The production runtime
+remains on App `2afe37a44fb5d56d83c26dee318327a000d793f6` at this checkpoint;
+Ping private access remains on and its current Timeline remains unpublished.
+
+Source evidence: [App PR #299](https://github.com/ethanmcn2013-droid/app/pull/299),
+[final Verify](https://github.com/ethanmcn2013-droid/app/actions/runs/39473723359)
+and [normal Design capture](https://github.com/ethanmcn2013-droid/app/actions/runs/39473723658).
+`lastVerified` records this source review, not production acceptance.
 
 Location, public notes and links enter the guest page only through the
 explicit public presentation contract. Private Tasks bodies, account details

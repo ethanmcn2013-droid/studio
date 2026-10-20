@@ -3,10 +3,10 @@ title: Turso databases — five DBs, read-only tokens, tag-as-project
 slug: turso-databases-and-reads
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-07-31
+lastVerified: 2026-10-20
 links: [signal-daily-cron, five-products-as-a-system, pricing-and-entitlements, log-cycle-cross-repo-writer]
 tags: [Turso, libSQL, read-only token, tag-as-project, Tasks DB, Signal DB, Timeline DB, Notes DB, signal-entitlements, Cycle 9.4b, drizzle]
-references: [drizzle/, drizzle-entitlements/, drizzle-entitlements.config.ts, drizzle.config.ts, tasks/drizzle/, signal/drizzle/, timeline/drizzle/, notes/drizzle/, notes/src/server/actions/notes.ts]
+references: [drizzle/, drizzle-entitlements/, drizzle-entitlements.config.ts, drizzle.config.ts, tasks/drizzle/, signal/drizzle/, timeline/drizzle/, notes/drizzle/, notes/src/server/actions/notes.ts, app/drizzle-timeline/migration-ledger.json, app/drizzle-timeline/0002_master3_presentation.sql, app/src/modules/timeline/server/db/timeline-schema.ts]
 summary: Per-product Turso libSQL databases plus the shared signal-entitlements DB. Cross-product reads use scoped read-only tokens; tag-as-project in Tasks; Notes promotes one-way into Tasks.
 status: complete
 pinned: false
@@ -38,7 +38,7 @@ Ethan owns every database, every migration, every token. No external operators. 
 
 - **Tasks DB** — `tasks/drizzle/` migrations. Live workspace data, migrated to Turso on 2026-05-08.
 - **Signal DB** — `analytics/drizzle/` migrations. User prefs, phrasing-rotation persistence, briefing audit.
-- **Timeline DB** — `roadmap/drizzle/` migrations. Workspaces, items, activity log. Token sharing stays removed (`isPublic` + `shareToken` dropped via `drizzle/0001_drop_isPublic_shareToken.sql`, 2026-05-12). Public reachability is now **publish-state**, not token: seamless-ecosystem L1 (2026-05-18) added `publishedAt` (`drizzle/0004_add_published_at.sql`) for the operator-ratified draft-by-default + explicit Publish model — a published workspace's public URL stays no-auth; a draft is owner-only. Conscious reversal of the "no private workspaces" refusal (see [[project-timeline]] / [[project-seamless-ecosystem-2026-05-18]]).
+- **Timeline DB** — App owns `drizzle-timeline/migration-ledger.json` and the database ledger `signal_timeline_schema_migrations`, with baseline `0000_timeline_baseline` and additive forwards. Master 3's merged `0002_master3_presentation` source adds `timeline_project_presentation` (private settings), `timeline_publication_presentation` (frozen publication settings), `timeline_guest_subscriptions` (private subscriber and confirmation state) and `timeline_guest_deliveries` (durable notification outbox). Production apply of `0002` remains pending; this source review does not establish either production or preview migration state. The earlier `roadmap/drizzle/` and publish-state account belongs to the historical standalone product, not the current App publication ledger; current guest access resolves an active publication and its hashed bearer share (see [[timeline-shareable-artifact]]).
 - **Notes DB** — `notes/drizzle/` migrations. Notes content, extracts, capture surfaces.
 - **signal-entitlements DB** — `drizzle-entitlements/` + `drizzle-entitlements.config.ts` (in studio repo). Shared canonical store: sponsors, license_codes, entitlements, redemptions, processed_webhooks. Every product reads it via a copy-pasted `entitlements-shared` module — no monorepo.
 - **Cross-repo writer (Notes → Tasks)** — `notes/src/server/actions/notes.ts` posts to `TASKS_API_URL` with `NOTES_TO_TASKS_SECRET`. One-way only; the destination owns the task row.
@@ -56,6 +56,7 @@ The pattern across the five is consistent.
 
 ## WHEN — current state
 
+- 2026-10-20, scoped Timeline source review: App PR #299 merged as `33a97e58eb2124745e635a6ce9b0d13c6e6b6350`, tree `9530f2933974261f07c57dc30d18939198b97eb8`, with passing final PR checks and 204/204 normal Design cases. The four Master 3 tables above are source declarations, not a live schema receipt. Migration `0002`, encrypted backup/restore custody, independently received production target and deployment remain pending. No new cross-product reader or token boundary is introduced by these tables. `lastVerified` covers this Timeline amendment; the older topology, mapping and command history below was not requalified and is not the production migration runbook. Follow current App `DEPLOY.md` and its receipt-ledger adapter rather than the historical push/manual-apply commands below.
 - 5 Turso DBs live as of 2026-05-14.
 - Notes→Tasks promote shipped Cycle 9.4b.
 - Tasks→Signal read-only token live; carry-forward bug fixed Cycle 6.4.
