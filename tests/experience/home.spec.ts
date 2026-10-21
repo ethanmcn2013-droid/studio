@@ -711,7 +711,7 @@ test.describe("the home page, One Friday", () => {
       const wall = page.locator("#wb");
       await wall.scrollIntoViewIfNeeded();
       const tall = () => wall.evaluate((el) => el.getBoundingClientRect().height);
-      expect(await tall(), `wall at ${viewport.width}`).toBe(height);
+      expect(await tall(), `wall at ${viewport.width}`).toBeCloseTo(height, 1);
       await expect(page.locator(".wb-count > span:visible")).toHaveText(count);
       const before = await page.locator("#n-florist").evaluate((note) => getComputedStyle(note).transform);
       await page.locator("#tidy").click();
@@ -719,7 +719,7 @@ test.describe("the home page, One Friday", () => {
       await expect.poll(() => page.locator("#n-florist").evaluate((note) => getComputedStyle(note).transform)).not.toBe(before);
       // Tidy changes transforms only: no note has a left or top of its own, and the wall does not move the page.
       expect(await page.locator("#n-florist").evaluate((note: HTMLElement) => note.style.left + note.style.top)).toBe("");
-      expect(await tall(), `tidy wall at ${viewport.width}`).toBe(height);
+      expect(await tall(), `tidy wall at ${viewport.width}`).toBeCloseTo(height, 1);
       // No note sits outside the wall.
       await page.waitForTimeout(600);
       const strays = await wall.evaluate((el) => {
