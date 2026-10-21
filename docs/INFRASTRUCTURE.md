@@ -4,6 +4,29 @@ Canonical as of the 2026-08-09 Wave 0 deployment rebaseline. If reality and this
 disagree, fix one of them in the same change. App-side deploy detail lives
 in the app repo's `DEPLOY.md`.
 
+Scoped receiving update, 21 October 2026: Timeline migration `0002` was
+received in production through run `39578171064`. Encrypted backup artifact
+`12335715483` was uploaded and acknowledged before apply; the independent
+production target hash matched. Restore/rehearsal checks and production
+current-ledger, schema-fingerprint and second no-op checks passed. Application
+deployment subsequently reached READY on the canonical alias. Combined App source `55772b2a9d968975f148f9dcf7b95c54d97ede9c`
+(tree `080af0e3c4bc4991fc25dc8beafd3aeb52613f9b`) includes the daily schedule
+fix. PR #301 head and merge checks passed; final main Verify, Design and
+drift subsequently passed, with 188/188 normal Design cases.
+The strict provenance failure remains recorded under a separately approved
+source-equivalence exception: 45 line-ending-only files and 312 generated
+extras, with no substantive changed or missing source. The canonical provider
+bindings were received; scheduled execution and reminder delivery remain
+unproven. The controlled guest flow confirmed and then unsubscribed one
+self-test subscription; all test publication links were revoked. Scoped
+read-only production SQL confirmed the four tables and these effects.
+Unauthenticated reminder access returned 401. No second email was sent.
+The temporary migration credential was removed from the owned GitHub secret
+and private handoff after receiving. Its provider-issued expiry remains
+22 October at 09:29 UTC; no account-wide token invalidation or existing App
+credential rotation was performed.
+Other infrastructure facts retain their prior verification dates.
+
 ## Accounts
 
 | Layer | Account | Holds |
@@ -26,7 +49,7 @@ Preview siblings are independent databases too, never branches.
 |---|---|---|---|
 | `tasks-prod` / `tasks-preview` | app repo · Tasks product | studio Today API (read-only token) | `app/drizzle` receipt-ledger, baseline 0014 + forwards |
 | `notes-prod` / `notes-preview` | app repo · Notes product | studio Today API | `app/drizzle-notes/0000` |
-| `timeline-prod` / `timeline-preview` | app repo · Timeline product | studio Today API | `app/drizzle-timeline/0000` |
+| `timeline-prod` / `timeline-preview` | app repo · Timeline product | studio Today API | `app/drizzle-timeline/migration-ledger.json`: `0000` baseline + forwards; `0002_master3_presentation` production apply received 2026-10-21; preview state not established |
 | `signal-prod` / `signal-preview` | app repo · Home briefing capability and preferences (legacy database name) | studio Today API | `app/drizzle-signal/0000` |
 | `entitlements-prod` / `entitlements-preview` | app (Stripe webhook) + studio scripts | every product (read) | `studio/drizzle-entitlements/0000` |
 | `studio-prod` (no preview, by design) | studio | — | `studio/drizzle/0000` |
@@ -51,8 +74,22 @@ value. Rules:
 |---|---|---|---|
 | studio | `/api/cron/sponsored-use` | daily 06:20 UTC | `CRON_SECRET` |
 | app | `/api/cron/digest?send=1` | daily 09:00 UTC | `CRON_SECRET` |
+| app (production schedule binding received) | `/api/timeline/reminders` | temporary private-cohort fallback: daily 09:00 UTC, `0 9 * * *` | `CRON_SECRET` bearer |
 | app → studio | `/api/internal/cron-ping` | after app crons | `STUDIO_CRON_PING_SECRET` = studio's `CRON_PING_SECRET` (one value, two names — rotate together) |
 | app repo CI | `db-migration-drift` workflow | daily 07:00 UTC | Actions secrets `TASKS_DATABASE_URL` / `TASKS_AUTH_TOKEN` |
+
+The merged Timeline worker cleans expired subscriptions, schedules due
+reminders and dispatches a bounded durable outbox with subscription and
+publication reauthorization. A deployed schedule alone would not prove a
+successful worker run or email delivery; no new Studio cron-ping heartbeat is
+claimed. Each invocation attempts at most 20 globally due outbox rows,
+including suppression, failure and unknown outcomes; this is not a count of
+delivered messages. Overflowing date reminders can expire and be suppressed.
+There is no prompt-update or all-subscriber coverage promise. Follow
+confirmation email is synchronous; no five-minute schedule or purchase is
+claimed. Its four additive tables are documented in
+`content/atlas/turso-databases-and-reads.md` and
+`content/atlas/timeline-shareable-artifact.md`.
 
 ## Webhooks
 
@@ -72,6 +109,12 @@ value. Rules:
 `STUDIO_MIGRATE_SECRET`, `SIGNAL_HQ_PASSWORD`, `EXPERIENCE_CAPTURE_PASSWORD`
 (Actions). Regenerate all of them at any credential-hygiene pass; none is
 held by a third party.
+
+The merged Timeline guest-follow source additionally requires
+`TIMELINE_FOLLOW_SIGNING_SECRET` for personal subscriber links. Only the
+configuration name is recorded here. Bounded production receiving confirmed
+one approved self-test email, confirmation-link subscription and Unfollow. This is not a scheduled reminder or general
+delivery guarantee. No value belongs in this document.
 
 ## Provisioned deliberately later (post-reset pass)
 

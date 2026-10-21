@@ -8,7 +8,7 @@ priority: High
 effort: Large
 impact: High
 owner: Ethan
-lastVerified: 2026-10-18
+lastVerified: 2026-10-21
 principleAlignment: 99
 relatedCampaign: Founding Venue Programme
 relatedMetric: Qualified Timeline views
@@ -17,24 +17,32 @@ relatedMetric: Qualified Timeline views
 ## Current state
 
 The final Master 3 package (canvas version 49, after the round-6 fixes) has
-been ported to native React for the App candidate. The countdown, milestone
+been ported to native React and merged in App PR #299. The countdown, milestone
 sequence, Coming up rows and phone list use real projected dates. Light and
 dark themes, returning-guest hints, no-date states and post-event states are
 included. A date passing does not mark an incomplete Task as done.
 
-Source checks and visual qualification are ongoing. This replacement is not
-live or fully accepted. The older artifact releases recorded below remain
-historical evidence, not acceptance of Master 3. Current work remains in the
+App PR #299 merged as `33a97e58eb2124745e635a6ce9b0d13c6e6b6350`
+(tree `9530f2933974261f07c57dc30d18939198b97eb8`). Its final PR checks
+passed, including exact-head and merge-candidate Verify and the normal Design
+capture's 204/204 cases. These are source and rendered qualification, not
+production receiving or a quality-council certification. Migration `0002`
+was received on 21 October; the canonical deployment and one controlled
+owner/guest/self-email flow were subsequently received. Wider acceptance
+remains bounded by the limits below. The older
+artifact releases below remain historical evidence. Current work stays in the
 existing [Delivery #111](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/111) lane.
 
-The owner works at `app.signalstudio.ie/app/timeline`, which resolves directly
-to the current project artifact with a project switcher and clear View, Edit,
-and Preview and share modes. The recipient receives an unguessable `/s/*`
-link without the app shell. Branded
+The owner enters at `app.signalstudio.ie/app/timeline`. With the portfolio
+enabled and available, the bare route (including a workspace-only link)
+shows All projects. Explicit Project or plan links open an existing
+authorized plan; when none exists, the owner gets a creation empty state.
+Private current preview is separate and does not publish a Timeline. The
+recipient receives an unguessable `/s/*` link without the app shell. Branded
 `timeline.signalstudio.ie/s/*` links are preserved through the Studio
 compatibility edge.
 
-## Master 3 integration candidate · 18 October 2026
+## Master 3 source and migration receiving · 21 October 2026
 
 Owner-entered presentation settings cover the title treatment, event notes,
 location consent and optional wedding, opening or school wording. Private
@@ -47,24 +55,91 @@ Calendar choices distinguish a selected event from an all-dates calendar or
 feed. Opening Google Calendar or downloading a file is not a claim that the
 guest saved an event. No-date pages offer no fabricated calendar date.
 
-The guest-services candidate includes double opt-in following, unsubscribe
+The merged guest-services implementation includes double opt-in following, unsubscribe
 and Undo, and date-based reminder selection. Following requires server
 confirmation; a local form state is not proof of subscription or email
 delivery. Provider acceptance is not inbox delivery. Unknown send outcomes
 must not be retried automatically.
 
-Timeline migration `0002_master3_presentation`, its encrypted backup and
-restore custody, and guest-email runtime configuration are still pending
-production receiving. The Timeline-only release adapter has local checks;
-it is not evidence of a production apply. Dedicated Timeline credentials and
-an independently received target hash are not yet configured for that path.
-No live follow, reminder or delivery claim follows from this candidate.
+On 21 October, [production migration run 39578171064](https://github.com/ethanmcn2013-droid/app/actions/runs/39578171064)
+applied `0002_master3_presentation` once from exact release
+`cf6db6716df4a4db76cc8e8417a2d2b48aa14516`. The independently observed
+production target hash matched. Encrypted backup artifact `12335715483` was
+uploaded and acknowledged before apply. Restored-copy row/DDL, integrity and
+foreign-key checks, rehearsal and its second no-op passed. Production
+postchecks established the current ledger, the rehearsed schema fingerprint
+and a second no-op. The backup remains encrypted; recovery still requires
+the approved offline identity and restored-copy verification.
+
+No live Follow, reminder or email-delivery claim follows from the migration.
+
+The additive migration declares `timeline_project_presentation` for private
+owner settings, `timeline_publication_presentation` for frozen public settings,
+`timeline_guest_subscriptions` for confirmation and unsubscribe state, and
+`timeline_guest_deliveries` for the durable notification outbox. The canonical
+App source is `drizzle-timeline/migration-ledger.json`; its production ledger
+is `signal_timeline_schema_migrations`. Private settings do not replace a
+publication's frozen settings until an explicit publication operation.
+
+The current source schedules `/api/timeline/reminders` daily at 09:00 UTC
+(`0 9 * * *`), authenticated with `CRON_SECRET` bearer. This is an admitted
+temporary fallback for the private cohort on the existing hosting plan.
+Each invocation attempts at most 20 globally due outbox rows, including rows
+that become suppressed, failed or unknown; this is not 20 delivered messages.
+Overflowing date reminders can expire and be suppressed. The schedule does
+not promise prompt updates or coverage of every subscriber. Confirmation
+email is sent synchronously by the Follow request. No five-minute schedule
+or hosting purchase is part of this receiving. The worker cleans expired subscriptions,
+queues due reminders and claims delivery attempts before sending; it checks
+the current publication and subscription again and does not automatically
+retry sending or unknown outcomes. Signed subscriber links require
+`TIMELINE_FOLLOW_SIGNING_SECRET`. Its name is a configuration requirement,
+not proof that the deployed runtime is configured. The combined Home, Timeline
+and daily-schedule source is App `55772b2a9d968975f148f9dcf7b95c54d97ede9c`,
+tree `080af0e3c4bc4991fc25dc8beafd3aeb52613f9b`. PR #301 head and merge
+checks passed. Final main Verify, Design and drift subsequently passed; the
+normal Design run recorded 188/188 cases on the combined source. Production
+deployment and one controlled guest-email flow were subsequently received.
+
+Source evidence: [App PR #299](https://github.com/ethanmcn2013-droid/app/pull/299),
+[final Verify](https://github.com/ethanmcn2013-droid/app/actions/runs/39473723359)
+and [normal Design capture](https://github.com/ethanmcn2013-droid/app/actions/runs/39473723658).
+On 21 October, the canonical production deployment reached READY on exact
+App source `55772b2a9d968975f148f9dcf7b95c54d97ede9c`. Provider receiving
+confirmed the existing environment bindings and daily 09:00 UTC Timeline
+schedule. The private owner preview rendered Master 3 and editable fields,
+with privacy, social and location choices off by default. No original project
+was edited. A disposable synthetic publication rendered the new guest
+artifact. Exactly one approved self-test confirmation email arrived with
+SPF, DKIM and DMARC passing; its confirmation link reached Following, and
+the guest check showed the masked subscription and next date. Unfollow
+completed. This is one controlled live flow, not scheduled reminder delivery,
+all-subscriber coverage or wider programme acceptance.
+
+The disposable publication's active links were all revoked; reopening the
+guest address showed that the link had ended. Scoped read-only production
+SQL confirmed the four new tables, one synthetic item, zero active test
+links, one accepted confirmation send and a confirmed-then-unsubscribed
+subscription. The original private project's active published-link count
+remained zero. An unauthenticated reminder request returned 401. No second
+email was sent. The existing archive UI is unreachable and deletion is
+permanent, so the isolated synthetic project is retained privately with all
+test links revoked and its follow unsubscribed.
+
+The strict source-provenance failure remains recorded. A separately approved
+source-equivalence exception covered 45 line-ending-only files and 312
+generated extras, with no substantive changed or missing source; it does
+not turn that strict failure into a pass. Generated evidence images
+were not individually reviewed, and full deployment-lambda tracing was
+unavailable. Clean-export custody remains a follow-up.
+
+`lastVerified` records these bounded source, migration and live observations.
 
 Location, public notes and links enter the guest page only through the
 explicit public presentation contract. Private Tasks bodies, account details
 and guest email addresses stay outside the public projection. Full browser
-and accessibility receiving, migration proof and configured-runtime checks
-remain required before acceptance.
+and accessibility qualification, actual reminder execution and broader
+configured-runtime receiving remain separate from this bounded live check.
 
 ## Publication boundary
 
