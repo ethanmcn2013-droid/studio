@@ -169,7 +169,7 @@ const nextConfig: NextConfig = {
       {
         source: "/app/:path*",
         has: [{ type: "host", value: "signal.signalstudio.ie" }],
-        destination: "https://app.signalstudio.ie/app/signal",
+        destination: "https://app.signalstudio.ie/app/home",
         permanent: true,
       },
       {
@@ -196,7 +196,7 @@ const nextConfig: NextConfig = {
       {
         source: "/app/:path*",
         has: [{ type: "host", value: "analytics.signalstudio.ie" }],
-        destination: "https://app.signalstudio.ie/app/signal",
+        destination: "https://app.signalstudio.ie/app/home",
         permanent: true,
       },
       {

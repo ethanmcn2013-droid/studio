@@ -26,8 +26,8 @@ These product and programme rules apply to Signal work. Personal work follows it
 ## What this is
 
 Studio is **signalstudio.ie** — the marketing site for the three-product suite
-(Signal Notes, Signal Tasks, Signal Timeline) and the daily-briefing capability
-inside authenticated Home — plus **Signal HQ** at `/hq`, a private,
+(Signal Notes, Signal Tasks, Signal Timeline), whose signed-in front door is
+authenticated Home (the daily briefing was retired 2026-10-20) — plus **Signal HQ** at `/hq`, a private,
 password-gated founder dashboard for product, launch, growth, campaigns,
 decisions, risks, and next actions. Home is the app front door, not a fourth
 product; Signal is the company and the outcome, not a product label. HQ is not

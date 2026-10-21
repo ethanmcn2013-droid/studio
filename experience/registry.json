@@ -6185,7 +6185,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "5a33d032bd77a1f8"
+      "materialityHash": "473464636db2ba0c"
     },
     {
       "id": "studio.page.pricing",
@@ -6317,7 +6317,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "5e5bb3cc402e76e3"
+      "materialityHash": "1d4bd99e547478f4"
     },
     {
       "id": "studio.page.redeem-by-code",
@@ -6363,7 +6363,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "205fa4ca258cfd64"
+      "materialityHash": "a20e28b96336e1ad"
     },
     {
       "id": "studio.page.root",

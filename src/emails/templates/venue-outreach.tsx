@@ -36,9 +36,8 @@ export function VenueOutreachEmail({
       </BodyText>
       <BodyText direction={direction}>
         Signal Studio gives each of your couples one clear place to plan:
-        their tasks, their timeline, their private notes, and a short morning
-        briefing that points at the few things needing attention. Your name
-        sits quietly at the top of their workspace. There is nothing for your
+        their tasks, their timeline and their private notes. Your name sits
+        quietly at the top of their workspace. There is nothing for your
         team to set up or run.
       </BodyText>
       <PrivacyBoundary direction={direction}>
@@ -82,7 +81,7 @@ export function venueOutreachText(data: VenueOutreachData): TextDoc {
     salutation: `Hello ${data.contactFirstName},`,
     blocks: [
       { kind: "p", text: `Couples choose ${data.venueName} for how considered the day itself feels. The months before it rarely feel that way. Their planning lives in group chats, spreadsheets and late-night lists, and none of it reflects the venue they chose.` },
-      { kind: "p", text: "Signal Studio gives each of your couples one clear place to plan: their tasks, their timeline, their private notes, and a short morning briefing that points at the few things needing attention. Your name sits quietly at the top of their workspace. There is nothing for your team to set up or run." },
+      { kind: "p", text: "Signal Studio gives each of your couples one clear place to plan: their tasks, their timeline and their private notes. Your name sits quietly at the top of their workspace. There is nothing for your team to set up or run." },
       { kind: "quiet", text: `The couple\u2019s planning stays theirs. ${data.venueName} never sees their notes or their lists. We would not build it any other way.` },
       { kind: "p", text: `Sixty seconds on what the planning year looks like when ${data.venueName} stands behind it.` },
       { kind: "link", label: "Watch the film (60 seconds)", href: "https://signalstudio.ie/films/venues" },

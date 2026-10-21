@@ -39,8 +39,9 @@ export const PRODUCT_APP_PATHS: Readonly<Record<ProductId, string>> =
 
 /**
  * Home — the authenticated front door (Signal → Home consolidation,
- * 2026-08-04). Not a product: the daily briefing (Today's Signal) lives
- * here, with the Full Briefing at /app/home/briefing.
+ * 2026-08-04). Not a product. The daily briefing (Today's Signal) and the
+ * Full Briefing were retired on 2026-10-20; the app redirects
+ * /app/home/briefing and /app/signal to /app/home.
  */
 export const HOME_APP_URL = `${APP_ORIGIN}/app/home`;
 
