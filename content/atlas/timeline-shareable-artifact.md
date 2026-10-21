@@ -124,8 +124,8 @@ the approved offline identity and restored-copy verification.
 
 Combined App source `55772b2a9d968975f148f9dcf7b95c54d97ede9c` (tree
 `080af0e3c4bc4991fc25dc8beafd3aeb52613f9b`) includes Home, Timeline and the
-daily schedule fix. PR #301 head and merge checks passed; post-merge checks
-remain active at that checkpoint.
+daily schedule fix. PR #301 head and merge checks passed. Final main Verify,
+Design and drift subsequently passed; normal Design recorded 188/188 cases.
 
 On 21 October, the canonical production deployment reached READY on exact
 App source `55772b2a9d968975f148f9dcf7b95c54d97ede9c`. Provider receiving

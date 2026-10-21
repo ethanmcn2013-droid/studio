@@ -11,7 +11,8 @@ production target hash matched. Restore/rehearsal checks and production
 current-ledger, schema-fingerprint and second no-op checks passed. Application
 deployment subsequently reached READY on the canonical alias. Combined App source `55772b2a9d968975f148f9dcf7b95c54d97ede9c`
 (tree `080af0e3c4bc4991fc25dc8beafd3aeb52613f9b`) includes the daily schedule
-fix; PR #301 head and merge checks passed, with post-merge checks still active.
+fix. PR #301 head and merge checks passed; final main Verify, Design and
+drift subsequently passed, with 188/188 normal Design cases.
 The strict provenance failure remains recorded under a separately approved
 source-equivalence exception: 45 line-ending-only files and 312 generated
 extras, with no substantive changed or missing source. The canonical provider
@@ -20,6 +21,10 @@ unproven. The controlled guest flow confirmed and then unsubscribed one
 self-test subscription; all test publication links were revoked. Scoped
 read-only production SQL confirmed the four tables and these effects.
 Unauthenticated reminder access returned 401. No second email was sent.
+The temporary migration credential was removed from the owned GitHub secret
+and private handoff after receiving. Its provider-issued expiry remains
+22 October at 09:29 UTC; no account-wide token invalidation or existing App
+credential rotation was performed.
 Other infrastructure facts retain their prior verification dates.
 
 ## Accounts

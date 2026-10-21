@@ -95,7 +95,8 @@ retry sending or unknown outcomes. Signed subscriber links require
 not proof that the deployed runtime is configured. The combined Home, Timeline
 and daily-schedule source is App `55772b2a9d968975f148f9dcf7b95c54d97ede9c`,
 tree `080af0e3c4bc4991fc25dc8beafd3aeb52613f9b`. PR #301 head and merge
-checks passed; post-merge checks remain active at this checkpoint. Production
+checks passed. Final main Verify, Design and drift subsequently passed; the
+normal Design run recorded 188/188 cases on the combined source. Production
 deployment and one controlled guest-email flow were subsequently received.
 
 Source evidence: [App PR #299](https://github.com/ethanmcn2013-droid/app/pull/299),
