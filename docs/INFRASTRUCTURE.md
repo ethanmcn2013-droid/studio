@@ -111,10 +111,9 @@ claimed. Its four additive tables are documented in
 held by a third party.
 
 The merged Timeline guest-follow source additionally requires
-`TIMELINE_FOLLOW_SIGNING_SECRET` for personal subscriber links. This records
-the required name only; deployed configuration and guest-email runtime
-receiving includes one approved self-test confirmation, confirmation-link
-subscription and Unfollow. This is not a scheduled reminder or general
+`TIMELINE_FOLLOW_SIGNING_SECRET` for personal subscriber links. Only the
+configuration name is recorded here. Bounded production receiving confirmed
+one approved self-test email, confirmation-link subscription and Unfollow. This is not a scheduled reminder or general
 delivery guarantee. No value belongs in this document.
 
 ## Provisioned deliberately later (post-reset pass)

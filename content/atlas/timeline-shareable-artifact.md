@@ -145,24 +145,14 @@ SQL confirmed the four new tables, one synthetic item, zero active test
 links, one accepted confirmation send and a confirmed-then-unsubscribed
 subscription. The original private project's active published-link count
 remained zero. An unauthenticated reminder request returned 401. No second
-email was sent. The private synthetic test project remains retained; its
-archivability is a separate check.
-
-The disposable publication's active links were all revoked; reopening the
-guest address showed that the link had ended. Scoped read-only production
-SQL confirmed the four new tables, one synthetic item, zero active test
-links, one accepted confirmation send and a confirmed-then-unsubscribed
-subscription. The original private project's active published-link count
-remained zero. An unauthenticated reminder request returned 401. No second
-email was sent. The private synthetic test project remains retained; its
-archivability is a separate check.
+email was sent. The existing archive UI is unreachable and deletion is
+permanent, so the isolated synthetic project is retained privately with all
+test links revoked and its follow unsubscribed.
 
 The strict source-provenance failure remains recorded. A separately approved
 source-equivalence exception covered 45 line-ending-only files and 312
 generated extras, with no substantive changed or missing source; it does
 not turn that strict failure into a pass. Generated evidence images
-were not individually reviewed, and full deployment-lambda tracing was
-unavailable. Clean-export custody remains a follow-up. Generated evidence images
 were not individually reviewed, and full deployment-lambda tracing was
 unavailable. Clean-export custody remains a follow-up.
 
