@@ -33,10 +33,12 @@ remains bounded by the limits below. The older
 artifact releases below remain historical evidence. Current work stays in the
 existing [Delivery #111](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/111) lane.
 
-The owner works at `app.signalstudio.ie/app/timeline`, which resolves directly
-to the current project artifact with a project switcher and clear View, Edit,
-and Preview and share modes. The recipient receives an unguessable `/s/*`
-link without the app shell. Branded
+The owner enters at `app.signalstudio.ie/app/timeline`. With the portfolio
+enabled and available, the bare route (including a workspace-only link)
+shows All projects. Explicit Project or plan links open an existing
+authorized plan; when none exists, the owner gets a creation empty state.
+Private current preview is separate and does not publish a Timeline. The
+recipient receives an unguessable `/s/*` link without the app shell. Branded
 `timeline.signalstudio.ie/s/*` links are preserved through the Studio
 compatibility edge.
 

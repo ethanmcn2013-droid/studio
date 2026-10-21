@@ -35,7 +35,11 @@ that publication and nothing else.
 
 ## WHERE
 
-- Owner module: `app.signalstudio.ie/app/timeline`.
+- Owner entry: `app.signalstudio.ie/app/timeline`. With the portfolio enabled
+  and available, the bare route or a workspace-only link shows All projects.
+  Explicit Project or plan links open an existing authorized plan; otherwise
+  the owner gets a creation empty state. Private current preview is separate
+  and does not publish a Timeline.
 - Audience management: `app.signalstudio.ie/app/timeline/audience`.
 - Shared artifact: `/s/<unguessable token>` outside the authenticated app
   shell.
