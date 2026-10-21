@@ -3,14 +3,14 @@ title: Timeline shareable artifact
 slug: timeline-shareable-artifact
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-10-20
+lastVerified: 2026-10-21
 links: [five-products-as-a-system, turso-databases-and-reads, pricing-and-entitlements]
 tags: [Timeline, publication, link-only, share token, qualified view, privacy, unified app, Master 3, guest follow, reminders]
 references: [app/src/modules/timeline, app/src/app/s, app/drizzle-timeline/migration-ledger.json, app/drizzle-timeline/0002_master3_presentation.sql, app/src/modules/timeline/server/db/timeline-schema.ts, app/src/modules/timeline/server/guest-http.ts, app/src/modules/timeline/server/guest-notifications.ts, app/vercel.json, docs/architecture/ADR-006-planning-periods-and-audience-publication.md, content/hq/decisions/timeline-option-d-selected-2026-07-22.md]
-summary: Frozen Timeline publications keep private work out; the merged Master 3 presentation and guest-follow implementation await production migration and deployment.
+summary: Frozen Timeline publications keep private work out; the merged Master 3 presentation and guest-follow implementation have received production migration and a controlled live owner/guest/self-email check.
 status: live
 pinned: false
-execWhat: Owners share selected project dates on a standalone page. The new countdown and guest-follow implementation is merged, with production receiving still pending.
+execWhat: Owners share selected project dates on a standalone page. The new countdown is deployed, with one controlled Follow confirmation and Unfollow received.
 execMatters: This is the suite's clearest travelling object. A couple, planner, client, friend, or colleague can see progress and the next milestone without joining the private workspace.
 execRisk: The share link is a bearer secret. A weak projection can leak private work, and a request-based counter can overstate interest or retain unnecessary viewer data.
 ---
@@ -22,7 +22,7 @@ The previously released artifact uses a horizontal date-scaled line. The
 merged Master 3 replacement uses a countdown, ordered milestone sequence,
 Coming up rows and a phone list, with real projected dates and separate
 completion facts. A date passing does not complete an unfinished Task.
-Master 3 migration and production deployment remain pending. Only the
+Master 3 migration and a controlled production owner/guest flow were received on 21 October. Only the
 link-only public route may record a qualified view; private owner preview
 does not publish or offer guest services.
 
@@ -46,9 +46,10 @@ that publication and nothing else.
   `src/modules/timeline/server/db/timeline-schema.ts`.
 - Guest HTTP and worker composition: App
   `src/modules/timeline/server/guest-http.ts` and `guest-notifications.ts`.
-- Source schedule: App `vercel.json`, `/api/timeline/reminders` every five
-  minutes (`*/5 * * * *` UTC), authenticated with `CRON_SECRET` bearer.
-  Deployment and scheduled execution of this new route are not yet received.
+- Source schedule: App `vercel.json`, `/api/timeline/reminders` daily at
+  09:00 UTC (`0 9 * * *`), authenticated with `CRON_SECRET` bearer.
+  The production schedule binding is received; an actual scheduled run and
+  reminder delivery are not established.
 
 ## HOW
 
@@ -75,7 +76,7 @@ that publication and nothing else.
    `timeline_guest_subscriptions` holds confirmation, unsubscribe and bounded
    Undo state; `timeline_guest_deliveries` is the durable notification outbox.
    The subscription's email address is private delivery data, never part of
-   the public projection. This is the source schema, not a production apply.
+   the public projection. Production apply was received on 21 October.
 8. Following requires explicit server confirmation. Signed personal view and
    unsubscribe links require `TIMELINE_FOLLOW_SIGNING_SECRET`; the source
    checks email, signing, scheduler and production rate-limit readiness.
@@ -88,6 +89,16 @@ that publication and nothing else.
    outcomes. Provider acceptance is not inbox delivery. None of these source
    behaviors establishes an observed production scheduler or email receipt.
 
+The current source schedules `/api/timeline/reminders` daily at 09:00 UTC
+(`0 9 * * *`), authenticated with `CRON_SECRET` bearer. This is an admitted
+temporary fallback for the private cohort on the existing hosting plan.
+Each invocation attempts at most 20 globally due outbox rows, including rows
+that become suppressed, failed or unknown; this is not 20 delivered messages.
+Overflowing date reminders can expire and be suppressed. The schedule does
+not promise prompt updates or coverage of every subscriber. Confirmation
+email is sent synchronously by the Follow request. No five-minute schedule
+or hosting purchase is part of this receiving.
+
 ## WHEN
 
 Option D was selected on 22 July 2026. Timeline PR #28 applied the production
@@ -99,15 +110,67 @@ merged as `33a97e58eb2124745e635a6ce9b0d13c6e6b6350` (tree
 `9530f2933974261f07c57dc30d18939198b97eb8`). Final PR Verify passed and
 the normal Design capture recorded 204/204 cases. This qualifies the merged
 source and rendered candidate, not production migration, deployment,
-guest-email delivery or quality-council certification. The production runtime
-checkpoint remains App `2afe37a44fb5d56d83c26dee318327a000d793f6`; Ping
-private access is on and its current Timeline is unpublished. Migration
-`0002_master3_presentation`, encrypted backup/restore custody and configured
-runtime receiving remain pending in existing Delivery #111.
+guest-email delivery or quality-council certification.
 
-`lastVerified` records review of this merged source and its pending release
-boundary. The live status above refers to the older published-artifact
-capability; it does not label Master 3 live.
+On 21 October, [production migration run 39578171064](https://github.com/ethanmcn2013-droid/app/actions/runs/39578171064)
+applied `0002_master3_presentation` once from exact release
+`cf6db6716df4a4db76cc8e8417a2d2b48aa14516`. The independently observed
+production target hash matched. Encrypted backup artifact `12335715483` was
+uploaded and acknowledged before apply. Restored-copy row/DDL, integrity and
+foreign-key checks, rehearsal and its second no-op passed. Production
+postchecks established the current ledger, the rehearsed schema fingerprint
+and a second no-op. The backup remains encrypted; recovery still requires
+the approved offline identity and restored-copy verification.
+
+Combined App source `55772b2a9d968975f148f9dcf7b95c54d97ede9c` (tree
+`080af0e3c4bc4991fc25dc8beafd3aeb52613f9b`) includes Home, Timeline and the
+daily schedule fix. PR #301 head and merge checks passed; post-merge checks
+remain active at that checkpoint.
+
+On 21 October, the canonical production deployment reached READY on exact
+App source `55772b2a9d968975f148f9dcf7b95c54d97ede9c`. Provider receiving
+confirmed the existing environment bindings and daily 09:00 UTC Timeline
+schedule. The private owner preview rendered Master 3 and editable fields,
+with privacy, social and location choices off by default. No original project
+was edited. A disposable synthetic publication rendered the new guest
+artifact. Exactly one approved self-test confirmation email arrived with
+SPF, DKIM and DMARC passing; its confirmation link reached Following, and
+the guest check showed the masked subscription and next date. Unfollow
+completed. This is one controlled live flow, not scheduled reminder delivery,
+all-subscriber coverage or wider programme acceptance.
+
+The disposable publication's active links were all revoked; reopening the
+guest address showed that the link had ended. Scoped read-only production
+SQL confirmed the four new tables, one synthetic item, zero active test
+links, one accepted confirmation send and a confirmed-then-unsubscribed
+subscription. The original private project's active published-link count
+remained zero. An unauthenticated reminder request returned 401. No second
+email was sent. The private synthetic test project remains retained; its
+archivability is a separate check.
+
+The disposable publication's active links were all revoked; reopening the
+guest address showed that the link had ended. Scoped read-only production
+SQL confirmed the four new tables, one synthetic item, zero active test
+links, one accepted confirmation send and a confirmed-then-unsubscribed
+subscription. The original private project's active published-link count
+remained zero. An unauthenticated reminder request returned 401. No second
+email was sent. The private synthetic test project remains retained; its
+archivability is a separate check.
+
+The strict source-provenance failure remains recorded. A separately approved
+source-equivalence exception covered 45 line-ending-only files and 312
+generated extras, with no substantive changed or missing source; it does
+not turn that strict failure into a pass. Generated evidence images
+were not individually reviewed, and full deployment-lambda tracing was
+unavailable. Clean-export custody remains a follow-up. Generated evidence images
+were not individually reviewed, and full deployment-lambda tracing was
+unavailable. Clean-export custody remains a follow-up.
+
+Remaining receiving stays in existing Delivery #111.
+
+`lastVerified` records source, migration and the controlled live flow above.
+The live status includes this bounded Master 3 receiving; it does not certify
+reminder delivery, complete accessibility qualification or the wider programme.
 
 ## WHY
 

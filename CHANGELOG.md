@@ -8,6 +8,25 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-21 · S·197 · reads · Timeline records its bounded live receiving
+
+**HQ records the received Timeline migration, canonical deployment and one controlled guest confirmation.**
+
+The four Master 3 tables were applied after encrypted backup upload and
+acknowledgment, restored-copy checks and rehearsal. Production postchecks
+confirmed the current ledger and a second no-op. The temporary private-cohort
+reminder schedule is daily at 09:00 UTC, with at most 20 globally due outbox
+row attempts per invocation, including suppressed, failed and unknown
+outcomes. It does not promise prompt updates or coverage of every subscriber.
+Confirmation email is synchronous. A private owner preview and synthetic
+guest publication rendered the new design; exactly one approved self-test
+email arrived, confirmed the follow and completed Unfollow. All test share
+links were revoked and reopening the guest link showed it had ended. Scoped
+read-only production SQL confirmed these effects. Original project
+data was not edited. Scheduled reminder delivery remains unproven. The
+strict source-provenance failure and its separately approved equivalence
+exception remain recorded; this does not complete the wider programme.
+
 ## 2026-10-18 · S·196 · ships · Private chat keeps files beside your work
 
 **You can keep a file with a private note, return to the conversation and download it again.**
