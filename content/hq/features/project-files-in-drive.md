@@ -8,6 +8,12 @@ lastVerified: 2026-09-23
 
 # Project files in the storage owner's Google Drive
 
+## Files presentation release · 22 October 2026
+
+The approved Files Sources + shelf presentation is separate from Drive connection and storage access. App PR [311](https://github.com/ethanmcn2013-droid/app/pull/311) adds `FILES_SOURCES_SHELF_ENABLED=true` so a signed-in member can see the new layout without becoming an administrator. Existing app access, Project authorization, file loading, downloads and storage permissions remain unchanged. Demo and review builds retain their existing view.
+
+This release follows a confirmed stale-source production upload which displaced the accepted Home, Chat and Ping designs. The previously tested App main `56bf9504` was restored; the Files display switch and a live-source deployment preflight are being qualified together. Final deployment identity and authenticated receiving belong to Delivery issue [111](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/111). A merge alone is not evidence of the Files rollout. No new Drive scopes, administrator grants, migrations or Timeline publication are part of this presentation release.
+
 A Project can name a **storage owner**: a member who connects Google Drive.
 Signal Studio creates a Project folder inside that person's private `Signal
 Studio` root and grants the Project's other members access to that folder. The
