@@ -8,8 +8,22 @@ priority: High
 effort: Large
 impact: High
 owner: Ethan
-lastVerified: 2026-10-21
+lastVerified: 2026-10-23
 ---
+
+## Private production receiving · 23 October 2026
+
+The speed-only correction in [App PR314](https://github.com/ethanmcn2013-droid/app/pull/314) is deployed. Accepted App source is `a60deb0c7abbd693c1dbd136ff890c4077fa37b3`, tree `5bf3d77775fa7f4ec86e68cdf7590496497b96d0`. Canonical `app.signalstudio.ie` receiving matched READY deployment `dpl_DNsWYWA8F42wJE5vRaDzK1rGQDwz` and all 5,048 uploaded source-file hashes. The signed-in readback covered Home, the current Files sources and shelf, the single Chat list and private Ping with its nine saved results. It used no new request, Apply, provider call, database write or configuration change.
+
+This release removes one duplicate plan-ready database write. A local matched comparison measured 32.46 to 25.10 milliseconds median across twenty pairs with a fixed planner and local SQLite. That comparison establishes neither production nor Sonnet latency. Private Ping stays on, broader Ping stays off, and Timeline stays unpublished. The historical 58/62 model qualification and original 32/58 programme acceptance remain separate measures.
+
+## Expanded Project controls candidate · 23 October 2026
+
+Ethan authorized more direct Project and file controls under the existing [Delivery 111](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/111#issuecomment-6366142791). [App PR317](https://github.com/ethanmcn2013-droid/app/pull/317) is an unreleased candidate. It adds Project archive and restore with owner or co-owner permission, an exact Project state captured before Apply, and conflict-safe per-step Undo. Ordinary Project and task delete requests remain recoverable archive requests. Permanent deletion is unsupported. Lifecycle plans may batch distinct Projects; task and chat edits use a separate approved plan. Archiving retains tasks, members and history and leaves an already published Timeline unchanged.
+
+The same candidate adds one named immediate child beneath an already active managed Project Drive folder. It uses existing management permission, connection and folder access. It cannot connect an account, set up a Project root, broaden OAuth scopes, grant access or accept a provider folder ID from the model. The implementation binds the parent and storage generation before Apply, records the original operation and reconciles uncertain creation without a duplicate. Safe receipt links, measured provider outcomes and account-erasure handling are included in the candidate. Untouched cancelled requests can be retired so a new same-name request is possible; an attempted or uncertain create keeps its original custody. Folder creation has no Undo.
+
+The additive `0046_project_drive_subfolders` package is prepared in [App PR315](https://github.com/ethanmcn2013-droid/app/pull/315); its pinned release manifest is [App PR316](https://github.com/ethanmcn2013-droid/app/pull/316). Both remain pending. No production application of this migration or release of PR317 is recorded here. Exact checks, migration execution and receiving remain separate release gates. Local Windows native-client failures stay failed; passing assertions or a synthetic UI fixture do not replace a successful process exit or real backend receiving. The approved Chat/Ping design, explicit Apply plan, private replies and no guest access remain in force.
 
 ## Release 2 private production receiving · 21 October 2026
 

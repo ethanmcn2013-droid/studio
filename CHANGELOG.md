@@ -8,6 +8,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-23 · S·198 · reads · HQ separates deployed Ping changes from controls awaiting release
+
+**HQ shows which Ping changes are live and which still await release.**
+
+The speed-only App PR314 correction is received at source `a60deb0c7abbd693c1dbd136ff890c4077fa37b3` on canonical deployment `dpl_DNsWYWA8F42wJE5vRaDzK1rGQDwz`. It removes one duplicate plan-ready database write. The local fixed-planner comparison remains a local measurement, with no production or model latency claim.
+
+Project archive, restore and named Drive subfolders remain the separate App PR317 candidate. Migration data PR315 and pinned manifest PR316 are pending. The feature and decision records retain explicit Apply, existing account permissions, safe recovery and the absence of folder Undo. Historical programme and model scores stay unchanged; candidate source, passing assertions and synthetic UI replies do not establish production receiving.
+
 ## 2026-10-21 · S·197 · reads · Timeline records its bounded live receiving
 
 **HQ records the received Timeline migration, canonical deployment and one controlled guest confirmation.**
