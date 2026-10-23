@@ -8,8 +8,24 @@ priority: High
 effort: Large
 impact: High
 owner: Ethan
-lastVerified: 2026-10-21
+lastVerified: 2026-10-23
 ---
+
+## Private production receiving · 23 October 2026
+
+The speed-only correction in [App PR314](https://github.com/ethanmcn2013-droid/app/pull/314) is deployed. Accepted App source is `a60deb0c7abbd693c1dbd136ff890c4077fa37b3`, tree `5bf3d77775fa7f4ec86e68cdf7590496497b96d0`. Canonical `app.signalstudio.ie` receiving matched READY deployment `dpl_DNsWYWA8F42wJE5vRaDzK1rGQDwz` and all 5,048 uploaded source-file hashes. The signed-in readback covered Home, the current Files sources and shelf, the single Chat list and private Ping with its nine saved results. It used no new request, Apply, provider call, database write or configuration change.
+
+This release removes one duplicate plan-ready database write. A local matched comparison measured 32.46 to 25.10 milliseconds median across twenty pairs with a fixed planner and local SQLite. That comparison establishes neither production nor Sonnet latency. Private Ping stays on, broader Ping stays off, and Timeline stays unpublished. The historical 58/62 model qualification and original 32/58 programme acceptance remain separate measures.
+
+## Expanded Project controls deployed; live receiving in progress · 23 October 2026
+
+Ethan authorized more direct Project and file controls under the existing [Delivery 111](https://github.com/ethanmcn2013-droid/signal-studio-workspace/issues/111#issuecomment-6366142791). [App PR317](https://github.com/ethanmcn2013-droid/app/pull/317) merged at `891eee1c646397c4b5ddd29266717cc5bf9922da`, tree `7b96787d92d8c67bb7472b576db1f58e8119f1f0`. Canonical `app.signalstudio.ie` now resolves to READY deployment `dpl_47C3NtapY8FpvLRSkdtEhSqhQCfv`; all 5,063 provider source files matched the clean export after both mandatory deployment preflights. Required Verify, Design and migration-drift checks passed at that exact main revision. The release adds Project archive and restore with owner or co-owner permission, an exact Project state captured before Apply, and conflict-safe per-step Undo. Ordinary Project and task delete requests remain recoverable archive requests. Permanent deletion through Ping is unsupported. Lifecycle plans may batch distinct Projects; task and chat edits use a separate approved plan. Archiving retains tasks, members and history and leaves an already published Timeline unchanged.
+
+The same release adds one named immediate child beneath an already active managed Project Drive folder. It uses existing management permission, connection and folder access. It cannot connect an account, set up a Project root, broaden OAuth scopes, grant access or accept a provider folder ID from the model. The implementation binds the parent and storage generation before Apply, records the original operation and reconciles uncertain creation without a duplicate. Safe receipt links, measured provider outcomes and account-erasure handling are included. Untouched cancelled requests can be retired so a new same-name request is possible; an attempted or uncertain create keeps its original custody. Folder creation has no Undo.
+
+The additive `0046_project_drive_subfolders` migration is applied. Its pinned execution manifest merged through [App PR316](https://github.com/ethanmcn2013-droid/app/pull/316) at `24b63fcd`. After acknowledged encrypted backup and rehearsal, [migration run 39990659877](https://github.com/ethanmcn2013-droid/app/actions/runs/39990659877) succeeded and applied `0046` once. [App PR315](https://github.com/ethanmcn2013-droid/app/pull/315) then merged the migration package at main `16ec855e`; [post-main status run 39992101871](https://github.com/ethanmcn2013-droid/app/actions/runs/39992101871) confirmed the database is current with no pending migration. The runtime deployment did not rerun the migration or change configuration. Local Windows native-client failures stay failed; passing assertions or a synthetic UI fixture do not replace a successful process exit or real backend receiving.
+
+The first bounded private production canary showed the exact one-folder plan before Apply, then returned one successful folder result and a Drive link after one Apply. One unique Sonnet run has an estimated cost of USD 0.040148. Its submission response took 6,952 milliseconds and the Apply response 9,870 milliseconds; server planning was 5,770 milliseconds and execution 7,157 milliseconds. These are one-run stage measurements, not model-only latency, a p95 or an improvement comparison. Browser control then became unavailable. A subsequent read-only Google Drive connector check and independent receipt review confirmed the exact child name and ID beneath the expected parent, with shared=false. Task archive/Undo, Project archive/Undo and restore/Undo remain pending; the completed create will not be replayed. The approved Chat/Ping design, explicit Apply plan, private replies and no guest access remain in force. This deployed increment does not change original programme acceptance of 32/58 sections or voice G2 STOP.
 
 ## Release 2 private production receiving · 21 October 2026
 

@@ -8,6 +8,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-23 · S·198 · reads · HQ records the Ping controls release and remaining live checks
+
+**HQ records the expanded Ping controls now deployed and the checks still in progress.**
+
+The speed-only App PR314 correction is received at source `a60deb0c7abbd693c1dbd136ff890c4077fa37b3` on canonical deployment `dpl_DNsWYWA8F42wJE5vRaDzK1rGQDwz`. It removes one duplicate plan-ready database write. The local fixed-planner comparison remains a local measurement, with no production or model latency claim.
+
+Project archive, restore and named Drive subfolders are deployed from App PR317 at exact main `891eee1c`, canonical READY deployment `dpl_47C3NtapY8FpvLRSkdtEhSqhQCfv`. Required main CI, both deployment preflights and all 5,063 uploaded source files are received. The pinned manifest PR316 merged at `24b63fcd`; encrypted migration run `39990659877` applied `0046` once after acknowledged backup and rehearsal. Migration package PR315 merged at main `16ec855e`, and post-main status run `39992101871` confirmed current state with no pending migration. A private one-folder plan and Apply returned a successful receipt. Read-only Drive receiving and independent review confirmed the exact private child under its expected parent; the remaining archive/restore checks await browser control. The original create will not be replayed. The feature and decision records retain explicit Apply, existing account permissions, safe recovery and the absence of folder Undo. Historical programme and model scores stay unchanged.
+
 ## 2026-10-21 · S·197 · reads · Timeline records its bounded live receiving
 
 **HQ records the received Timeline migration, canonical deployment and one controlled guest confirmation.**

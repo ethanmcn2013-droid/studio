@@ -4,9 +4,23 @@ title: Execute Ping through a strict command and recovery proof
 category: Product
 date: 2026-10-06
 status: Active
-reviewDate: 2026-10-21
+reviewDate: 2026-10-23
 relatedObjects: [Project Ping, Signal Tasks]
 ---
+
+## Expanded-control recommendation recorded · 23 October 2026
+
+Ethan requested broader Ping control, including Project deletion and archive, task deletion and folder creation. Under his standing execution delegation, the coordinator retains recoverable archive for ordinary delete requests, adds Project restore and exact-state Undo, and keeps irreversible Project or file deletion unsupported. This extends commands inside the person's existing account permissions. It grants no administrator access, guest exposure or broader Ping rollout.
+
+[App PR317](https://github.com/ethanmcn2013-droid/app/pull/317) is deployed at main `891eee1c646397c4b5ddd29266717cc5bf9922da` on canonical READY deployment `dpl_47C3NtapY8FpvLRSkdtEhSqhQCfv`, with exact-main CI, mandatory preflights and all 5,063 provider source files received. The first folder scope is one named immediate child beneath an already active managed Project Drive folder. The existing connection and parent audience stay authoritative. Root setup, OAuth expansion and grant changes remain separate. The original operation identity, bound parent and storage generation, measured provider outcomes and exact receipt survive uncertainty. A create that may have reached Drive is reconciled through its original marker and is never blindly repeated. Untouched cancelled intent can retire; accepted or uncertain external work keeps its recovery custody. Folder creation has no Undo.
+
+The separate additive migration is applied. [App PR316](https://github.com/ethanmcn2013-droid/app/pull/316) merged the pinned manifest at `24b63fcd`. After acknowledged encrypted backup and rehearsal, [run 39990659877](https://github.com/ethanmcn2013-droid/app/actions/runs/39990659877) succeeded and applied `0046` once. [App PR315](https://github.com/ethanmcn2013-droid/app/pull/315) merged the migration package at main `16ec855e`; [status run 39992101871](https://github.com/ethanmcn2013-droid/app/actions/runs/39992101871) then confirmed current state with no pending migration. The subsequent runtime release did not rerun the migration or change configuration.
+
+One private invented canary produced an exact folder plan and one successful Apply receipt. Its original run and external folder custody are preserved while browser access is unavailable. Do not repeat that create. Read-only Google Drive receiving and independent review subsequently confirmed the exact private child under the expected parent. The three remaining archive/restore canaries must still be received before claiming complete live behavior. Existing private access, the unpublished Timeline, capped spend and original programme/voice boundaries remain unchanged.
+
+The separate speed-only [App PR314](https://github.com/ethanmcn2013-droid/app/pull/314) is deployed at source `a60deb0c7abbd693c1dbd136ff890c4077fa37b3` on READY canonical deployment `dpl_DNsWYWA8F42wJE5vRaDzK1rGQDwz`. Its local 32.46 to 25.10 millisecond matched median measures one fewer plan-ready database write, with a fixed planner and SQLite. It does not establish production or model latency. This deployed correction does not release the expanded controls.
+
+The approved conversation design and explicit Apply plan remain settled. Lifecycle-only plans may batch distinct Projects; task and chat edits use separate plans. Published Timeline links remain unchanged by archive. Founder-dependent operating evidence, historical model qualification and deferred speech keep their original acceptance boundaries.
 
 ## Decision
 
