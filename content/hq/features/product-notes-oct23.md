@@ -27,7 +27,7 @@ The brief's retained source digest is `e491f0e102a5736764ab74caae1e2a200fd47870e
 | Projects — D1–D4 | Keep one done/open progress bar per Project, retain the visible owner, remove “Needs a look”, and replace absent declared status with factual task progress or an unavailable state. “See timeline” previews authorized dated milestone Tasks with explicit limits; it does not publish a guest timeline. |
 | Tasks — D6, E1–E5 | Refine light-mode surfaces, preserve existing assignee avatars, collapse and reorder board columns, show Project progress, and switch Board/Calendar/List in the client. A finished-Project moment offers archive after an observed completion transition; it does not archive automatically and respects reduced motion. |
 | Chat — G5, G7, G8 | Saved-notes image paste, personal conversation hide/restore, and removal of an always-visible counter are bounded candidate changes. Project/DM attachments are a separate admitted schema, custody, privacy and client slice; saved-notes paste does not prove those attachments work. |
-| Analytics — H1 | Centre the existing search and simplify the count-explanation area. Detail cards and custom report building remain outside this small cleanup. |
+| Analytics — H1 | Centre the existing search, align question cards and remove the overview count explanation. Opened-answer explanations remain; custom report building stays outside this cleanup. |
 
 ## Designs and existing capability remain intact
 
@@ -39,19 +39,26 @@ The released Chat/Ping redesign remains the baseline. Floating chat, Saved notes
 
 Existing Timeline overview, guest-facing content and phone preview are preserved. Project milestone previews add no Timeline publication or guest access. Existing app/tool icons and browser dictation are not evidence of newly completed design sprints or qualified voice Ping.
 
-## Evidence snapshot — 23 October, 18:28 UTC
+## Evidence snapshot — 23 October, draft preparation
 
-The implementation tracker was recorded at 18:23 UTC; the release matrix was recorded at 18:28 UTC. The matrix says all five cloud captures were in progress, no new product-note changes were merged or deployed, and no new materiality attestation was accepted. The table names those candidate heads rather than implying later results.
+A fresh GitHub readback shows the following open App candidates. The ordered release stack is Analytics → Shell → Tasks → Projects → Chat → Account methods → Header collaboration → Project menus. These are unreleased candidates, not a production receipt. Revision-bound source reviews cover the bounded implementations and reviewed stack prefixes; any later head change still requires its own review and receiving checks.
 
-| App candidate | Recorded head | Source-review state in the matrix | Cloud and receiving boundary |
-|---|---|---|---|
-| [Analytics PR 318](https://github.com/ethanmcn2013-droid/app/pull/318) | `7c75fdeddc58c5f6d5ba8b536d97e077a81a3b03` | Revision-bound source review recorded | Hosted verification, design and capture runs started; acceptance pending. |
-| [Projects PR 319](https://github.com/ethanmcn2013-droid/app/pull/319) | `08245f257561f18de230c83077bc884b2f1cda76` | Revision-bound source review recorded | Fresh capture and viewport/focus followup must be received at their final revision. |
-| [Chat PR 320](https://github.com/ethanmcn2013-droid/app/pull/320) | `9f8236d2089d0c181c2ed53a617ba35508d52bcc` | Revision-bound source review recorded | Combined browser acceptance and current cloud gates remain separate. |
-| [Tasks PR 321](https://github.com/ethanmcn2013-droid/app/pull/321) | `050f4fb71d24a12f765e554fa19c753b58a2e58e` | Final review rebind requested | Fresh capture, final gates and live receiving pending. |
-| [Shell PR 322](https://github.com/ethanmcn2013-droid/app/pull/322) | `b6971ef3a7f4bb4e8385cc722956c7098cc07193` | Final review rebind requested | Stable toast selector and collaborator-state corrections require combined receiving. |
+| App candidate | Observed head | Remaining evidence boundary |
+|---|---|---|
+| [Analytics PR 318](https://github.com/ethanmcn2013-droid/app/pull/318) | `315b243f5193172b1752707cb03566aaaf7bbde1` | Discovery cleanup; detail explanation retained. |
+| [Shell PR 322](https://github.com/ethanmcn2013-droid/app/pull/322) | `1465f9ea806b35bfedad9dd27e5f583ae1fe7523` | Navigation, Inbox and scoped Tasks invitations. |
+| [Tasks PR 321](https://github.com/ethanmcn2013-droid/app/pull/321) | `f29c4c0e88ddd4157727c6828eced1ca018bb938` | Board controls and view state; final revision receiving remains separate. |
+| [Projects PR 319](https://github.com/ethanmcn2013-droid/app/pull/319) | `9c57fb1e648eedee3f12336f61088378ded9efda` | Progress and authorized milestone preview. |
+| [Chat PR 320](https://github.com/ethanmcn2013-droid/app/pull/320) | `a7f35844d4e3c7d54a5372938e67764f6c05ce64` | Personal visibility and clipboard tools; no shared attachment activation. |
+| [Account methods PR 325](https://github.com/ethanmcn2013-droid/app/pull/325) | `99144c465e35f03556074003239ee28476fafe14` | Truthful connected-provider display; phone is an identifier, not proof of enabled phone sign-in. |
+| [Header collaboration PR 327](https://github.com/ethanmcn2013-droid/app/pull/327) | `09757460e14b4c7b782a8a460340f7b75b9eb065` | Explicit authorized Files and single-Project Analytics only; private and aggregate routes excluded. |
+| [Project menus draft PR 329](https://github.com/ethanmcn2013-droid/app/pull/329) | `2cc8fe951695c12f6ad985de05ea77d3e1dd3040` | Lifecycle actions remain governed by existing roles and recovery rules. |
 
-Focused source tests and synthetic component fixtures support the candidate implementations. They do not establish authenticated Next routing, production data behavior, complete cloud CI, or live acceptance. Prior materiality receipts remain bound to their older complete fixture manifest; they cannot be relabelled as proof of these new candidates. Later Project-menu and Project/DM-attachment slices require their own final revision, review and receiving evidence.
+Separate draft candidates prepare shared conversation attachment custody ([323](https://github.com/ethanmcn2013-droid/app/pull/323)), its migration manifest ([324](https://github.com/ethanmcn2013-droid/app/pull/324)), a migration regression fixture ([326](https://github.com/ethanmcn2013-droid/app/pull/326)), and default-off Notes archival/offline custody ([328](https://github.com/ethanmcn2013-droid/app/pull/328)). These drafts do not authorize a production migration, shared attachment enablement or Notes archival.
+
+Focused source tests and synthetic component fixtures support the implementations. They do not establish authenticated Next routing, production data behavior, complete cloud CI, or live acceptance. Independent source review is recorded for the implementations and frozen stack prefixes; final cloud checks and independently received captures must bind to the actual release revision. Prior materiality receipts remain bound to their original fixture manifests. This snapshot makes no claim that every current head has passed every cloud or rendered gate.
+
+The local design selector contains eight topics and 21 directions. Isolated desktop/mobile browser checks covered navigation, keyboard focus, overflow and actual selection downloads. Those downloads are automated samples, not Ethan's design choices; no sprint selection is inferred from a recommended default.
 
 ## Decisions and production actions still held
 
