@@ -39,38 +39,38 @@ test("landing-only routing, desktop/mobile navigation and real waitlist persiste
     for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
       await page.setViewportSize(viewport);
       await page.goto("/?theme=dark");
-      await expect(page.locator(".lp")).toHaveClass(/smooth/, { timeout: 30_000 });
-      await expect(page.locator("#nav")).toBeVisible();
+      await expect(page.locator(".ss[data-ready]")).toBeAttached({ timeout: 30_000 });
+      await expect(page.getByRole("navigation", { name: "Main" })).toBeVisible();
       await expect(page.locator("h1")).toHaveText("Know what needs you today.");
       const secondary = await page.locator('a[href^="/"]').evaluateAll(links => links.map(link => link.getAttribute("href")).filter(href => href !== "/" && !href?.startsWith("/#")));
       expect(secondary).toEqual([]);
-      await expect(page.locator(".wl-hero")).toBeVisible();
+      await expect(page.locator(".hero-form")).toBeVisible();
       // Let the real entrance animation finish; do not disable motion for evidence.
-      await page.locator(".hero .lp-rise, .hero .lp-move").evaluateAll(async elements => {
+      await page.locator(".hero .rise").evaluateAll(async elements => {
         await document.fonts.ready;
         await Promise.allSettled(elements.flatMap(element => element.getAnimations()).map(animation => animation.finished));
       });
-      await expect.poll(() => page.locator(".hero .lp-rise, .hero .lp-move").evaluateAll(elements => elements.every(element => getComputedStyle(element).opacity === "1"))).toBe(true);
+      await expect.poll(() => page.locator(".hero .rise").evaluateAll(elements => elements.every(element => getComputedStyle(element).opacity === "1"))).toBe(true);
       await page.screenshot({ path: `experience/output/playwright-results/landing-only/home-${viewport.width}.png`, fullPage: false });
       if (viewport.width < 600) {
-        await page.locator("#nav details summary").click();
-        await expect(page.locator(".menu-panel")).toBeVisible();
-        await page.locator('.menu-panel a[href="#projects"]').click();
-        await expect(page.locator("#nav details")).not.toHaveAttribute("open");
+        // On a phone the header is the mark and one button; it goes to the waitlist.
+        await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Join the waitlist" }).click();
+        await expect(page.locator("#waitlist")).toBeInViewport();
+        await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
       }
     }
-    await page.locator(".lp-footer").scrollIntoViewIfNeeded();
-    await page.locator(".lp-footer").evaluate(async element => {
+    await page.locator("footer").scrollIntoViewIfNeeded();
+    await page.locator("footer").evaluate(async element => {
       await document.fonts.ready;
       await Promise.allSettled(element.getAnimations({ subtree: true }).filter(animation => animation.effect?.getTiming().iterations !== Infinity).map(animation => animation.finished));
       await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
     });
     await page.screenshot({ path: "experience/output/playwright-results/landing-only/footer-phone.png" });
-    await page.locator("#wl-hero-email").fill("landing-review@example.invalid");
+    await page.locator("#hero-email").fill("landing-review@example.invalid");
     const submission = page.waitForResponse(response => response.request().method() === "POST" && new URL(response.url()).pathname === "/");
-    await page.locator("#wl-hero-submit").click();
+    await page.locator(".hero-form button[type=submit]").click();
     expect((await submission).status()).toBe(200);
-    await expect(page.locator("#wl-hero-done")).toContainText("You are on the list.");
+    await expect(page.locator("#hero-done")).toContainText("on the list");
     const saved = await db.execute("SELECT email, source, path, status FROM waitlist_entries");
     expect(saved.rows).toHaveLength(1);
     expect(saved.rows[0]).toMatchObject({ email: "landing-review@example.invalid", source: "home_hero", path: "/", status: "waiting" });

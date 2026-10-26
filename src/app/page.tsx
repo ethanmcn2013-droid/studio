@@ -5,10 +5,7 @@ import { HOME_THEME_COLOR } from "@/components/home/theme-color";
 /**
  * The browser bar on the public home page takes the page's floor, by the
  * device setting. This is all the server says, so the page can be built once
- * and served from cache. A visitor's own choice (`?theme=light|dark`, or the
- * switch) is settled in the browser: the page's boot script puts one
- * theme-color tag of its own first in the head while the page is parsed, and
- * the home runtime keeps it in step with the toggle after that.
+ * and served from cache.
  */
 export const viewport: Viewport = {
   themeColor: [

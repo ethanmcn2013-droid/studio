@@ -49,7 +49,7 @@ class LandingV3 extends React.Component<any, any> {
     this.played = {};
     this.chatT = [];
     this.setRoot = (el) => { if (el) this.root = el; };
-    this.state.theme = 'light';
+    this.state.theme = null;
   }
 
   later(fn, ms) { const t = setTimeout(fn, ms); this.timers.push(t); return t; }
@@ -60,9 +60,13 @@ class LandingV3 extends React.Component<any, any> {
   componentDidMount() {
     try {
       const mq = window.matchMedia('(prefers-color-scheme: dark)');
-      const pick = () => this.setState({ theme: document.documentElement.dataset.lv3Theme || (mq.matches ? 'dark' : 'light') });
+      const q = new URLSearchParams(window.location.search).get('theme');
+      const forced = q === 'light' || q === 'dark' ? q : null;
+      const pick = () => this.setState({ theme: forced || (mq.matches ? 'dark' : 'light') });
       pick(); mq.addEventListener('change', pick); this.mq = () => mq.removeEventListener('change', pick);
     } catch (e) {}
+    // tests and tooling wait on this: the page has hydrated and its runtime is live
+    if (this.root) this.root.setAttribute('data-ready', '');
     const root = this.root || document.querySelector('.ss');
     if (!root) return;
     this.root = root;
@@ -393,7 +397,7 @@ class LandingV3 extends React.Component<any, any> {
     const run = this.state.run;
     const sticky = this.state.sticky && this.state.wl !== 'done';
     return {
-      themeClass: this.state.theme === 'dark' ? 'dark' : '',
+      themeClass: this.state.theme || '',
       setRoot: this.setRoot,
       tlN: String(this.state.tlN), tlCls: this.state.tlRoll ? 'roll' : '',
       bd: this.renderBoard(),
@@ -424,7 +428,7 @@ class LandingV3 extends React.Component<any, any> {
   render() {
     const v = this.renderVals();
     return (
-<div suppressHydrationWarning className={`ss ${v.themeClass}`} ref={v.setRoot} style={{minHeight: '100vh', width: '100%'}}>
+<div id="top" className={`ss ${v.themeClass}`} ref={v.setRoot} style={{minHeight: '100vh', width: '100%'}}>
 <a href="#waitlist" className="skip">Skip to the waitlist</a>
 <header className="wrap">
 <nav className="nav" aria-label="Main">
@@ -442,7 +446,7 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </nav>
 </header>
-<main id="top">
+<main id="main" tabIndex="-1">
 <section className="hero" id="tasks" aria-labelledby="hero-title" data-reveal="hero">
 <div className="dots" aria-hidden="true" />
 <div className="dots-fade" aria-hidden="true" />
@@ -838,7 +842,7 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </fieldset>
 <button type="submit" className={`btn btn-solid wl-btn wl-submit ${v.wl.btnCls}`} aria-disabled={v.wl.busy}><span className="wl-spin" aria-hidden="true" /><span>{v.wl.btnLabel}</span></button>
-<p className="wl-privacy">Your email is used only to tell you when your access is ready. <a href="/privacy">Privacy notice</a></p>
+<p className="wl-privacy">Your email is used only to tell you when your access is ready. {this.props.landingOnly ? null : (<a href="/privacy">Privacy notice</a>)}</p>
 </form>
 </>) : null}
 {(v.wl.done) ? (<>
@@ -871,7 +875,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="wrap">
 <p className="foot-word" aria-hidden="true">Signal Studio<i>.</i></p>
 <nav className="foot-links" aria-label="Footer">
-<a href="#venues">For venues</a><a href="#timeline">Timeline</a><a href="#analytics">Analytics</a><a href="#files">Files</a><a href="#chat">Chat</a><a href="#pricing">Pricing</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>
+<a href="#venues">For venues</a><a href="#timeline">Timeline</a><a href="#analytics">Analytics</a><a href="#files">Files</a><a href="#chat">Chat</a><a href="#pricing">Pricing</a>{this.props.landingOnly ? null : (<a href="/privacy">Privacy</a>)}{this.props.landingOnly ? null : (<a href="/terms">Terms</a>)}<a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>
 </nav>
 <p className="foot-legal">© 2026 Signal Studio Limited. Registered in Ireland, CRO 823488. Made in Limerick.</p>
 </div>
