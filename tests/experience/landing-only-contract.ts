@@ -16,7 +16,7 @@ export function landingOnlyPageContract(subject: string, paths: string[]) {
           expect(new URL(page.url()).pathname).toBe("/");
           await expect(page.locator(".ss[data-ready]")).toBeAttached({ timeout: 30_000 });
           await expect(page.getByRole("navigation", { name: "Main" })).toBeVisible();
-          await expect(page.locator("h1")).toHaveText("Know what needs you today.");
+          await expect(page.locator("h1")).toHaveText("Project management for the 80% not in tech.");
           await expect(page.locator(".hero-form")).toBeVisible();
           await expect(page.locator("#hero-email")).toBeInViewport();
           await expect(page.locator(".hero-form button[type=submit]")).toHaveText("Join the waitlist");

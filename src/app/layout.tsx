@@ -35,7 +35,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Signal Studio · Know what needs you today.",
+  title: "Signal Studio · Project management for the 80% not in tech.",
   description:
     "Projects, tasks and files in one place. Join the Signal Studio waitlist.",
   metadataBase: new URL(
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     canonical: "./",
   },
   openGraph: {
-    title: "Signal Studio · Know what needs you today.",
+    title: "Signal Studio · Project management for the 80% not in tech.",
     description:
       "Projects, tasks and files in one place. Join the Signal Studio waitlist.",
     type: "website",
