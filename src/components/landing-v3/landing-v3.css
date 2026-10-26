@@ -1352,10 +1352,10 @@
   color: var(--v3-text);
 }
 @media (prefers-reduced-motion: no-preference) {.ss .files_shelf_main{
-    animation: lv3-files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
+    animation: files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
   }
 .ss .files_shelf_sourceItem, .ss .files_shelf_cardItem{
-    animation: lv3-files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
+    animation: files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
     animation-delay: calc(var(--i, 0) * 24ms);
   }}
 @media (prefers-reduced-motion: reduce) {.ss .files_shelf_source, .ss .files_shelf_card, .ss .files_shelf_cardThumb, .ss .files_shelf_row, .ss .files_shelf_paper, .ss .files_shelf_folderFront, .ss .files_shelf_field{
@@ -2760,3 +2760,5 @@
 .ss[data-motion] .tl-sec:not([data-in]) .tl-phone{opacity:1;visibility:hidden}
 .ss .price-v small{white-space:nowrap}
 @media (max-width:760px){.ss .price-v small{display:block;margin:8px 0 0}}
+@media (max-width:760px){.ss .price-g{grid-template-columns:minmax(0,1fr)}
+.ss .price-v small{display:inline;margin:0 0 0 6px}}

@@ -469,7 +469,7 @@ class LandingV3 extends React.Component<any, any> {
 {(v.wl.done) ? (<>
 <p className="hero-done rise" id="hero-done" tabIndex="-1"><span className="hd-ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg></span>You’re on the list. I will email <b>{v.wl.email}</b> once, when your access is ready.</p>
 </>) : null}
-<p className="trust rise d3">Free to join. No card. Running a venue? <a href="#venues" className="trust-link">See the Founding 25 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg></a></p>
+<p className="trust rise d3">No card needed to join. Running a venue? <a href="#venues" className="trust-link">See the Founding 25 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg></a></p>
 <div className="win-wrap rise d4" id="sample">
 <div className="win" role="group" aria-label="A working sample of the task board for The Orchard" data-reveal="board">
 <aside className="side" aria-hidden="true">
@@ -596,7 +596,7 @@ class LandingV3 extends React.Component<any, any> {
 <h2 className="h2" id="venue-title">Gift every couple their own plan.</h2>
 <p>Every couple who books their wedding with you gets a private place to plan it. Your name is on it, quietly. There is nothing for your team to run.</p>
 <dl className="band-facts">
-<div><dt>What it costs them</dt><dd>Nothing. It is a gift from you.</dd></div>
+<div><dt>What it costs</dt><dd>€125 a month for you, with up to 80 couples included. Nothing for them.</dd></div>
 <div><dt>What you see</dt><dd>That they opened it. Not what is in it.</dd></div>
 <div><dt>After the wedding</dt><dd>It stays open, read-only, and they can download everything in one click.</dd></div>
 <div><dt>The Founding 25</dt><dd>Twenty-five venues in Limerick and the surrounding counties, from January 2027.</dd></div>
@@ -863,11 +863,11 @@ class LandingV3 extends React.Component<any, any> {
 <div className="price" id="pricing" aria-labelledby="price-title">
 <h3 className="price-h" id="price-title">Planned pricing at launch</h3>
 <div className="price-g">
+<div className="price-c"><b>Venues and schools</b><span className="price-v">€125<small>a month</small></span><p>Gift an account to every couple you book, or every teacher on your staff.</p><p className="price-n">80 accounts included. More at a lower price each.</p></div>
 <div className="price-c"><b>Pro</b><span className="price-v">€12<small>a month</small></span><p>For work that keeps moving across projects.</p><p className="price-n">Or €120 a year.</p></div>
-<div className="price-c"><b>Organisation</b><span className="price-v">€125<small>a month</small></span><p>For a whole organisation on one plan.</p><p className="price-n">Up to 80 accounts.</p></div>
 </div>
 </div>
-<p className="price-venue">Venues have separate terms, agreed one to one.</p>
+<p className="price-venue">Couples and teachers never pay. Their account is a gift from you.</p>
 <figure className="founder">
 <blockquote><p>I am building Signal Studio in Limerick for the people the work runs through, not the people who run software.</p></blockquote>
 <figcaption>Ethan, founder, Limerick</figcaption>
