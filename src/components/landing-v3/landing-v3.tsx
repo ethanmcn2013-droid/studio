@@ -65,8 +65,13 @@ class LandingV3 extends React.Component<any, any> {
       const pick = () => this.setState({ theme: forced || (mq.matches ? 'dark' : 'light') });
       pick(); mq.addEventListener('change', pick); this.mq = () => mq.removeEventListener('change', pick);
     } catch (e) {}
-    // tests and tooling wait on this: the page has hydrated and its runtime is live
-    if (this.root) this.root.setAttribute('data-ready', '');
+    // tests and tooling wait on this: the page has hydrated and its runtime is live,
+    // once the hero's entrance has finished, so nothing measured is mid-fade
+    if (this.root) {
+      const root = this.root;
+      const anims = Array.from(root.querySelectorAll('.hero .rise')).flatMap((el) => (el.getAnimations ? el.getAnimations() : []));
+      Promise.allSettled(anims.map((a) => a.finished)).then(() => root.setAttribute('data-ready', ''));
+    }
     const root = this.root || document.querySelector('.ss');
     if (!root) return;
     this.root = root;

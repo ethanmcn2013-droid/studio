@@ -1352,10 +1352,10 @@
   color: var(--v3-text);
 }
 @media (prefers-reduced-motion: no-preference) {.ss .files_shelf_main{
-    animation: lv3-files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
+    animation: files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
   }
 .ss .files_shelf_sourceItem, .ss .files_shelf_cardItem{
-    animation: lv3-files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
+    animation: files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
     animation-delay: calc(var(--i, 0) * 24ms);
   }}
 @media (prefers-reduced-motion: reduce) {.ss .files_shelf_source, .ss .files_shelf_card, .ss .files_shelf_cardThumb, .ss .files_shelf_row, .ss .files_shelf_paper, .ss .files_shelf_folderFront, .ss .files_shelf_field{
@@ -2752,3 +2752,9 @@
 @media (max-width:760px){.ss .band-phone{display:none}
 .ss .foot-links a[href^="mailto"]{grid-column:1/-1}}
 .ss main:focus{outline:none}
+.ss-zoom{transition:transform var(--t-arrive) var(--ease-out) 820ms,visibility 0s linear 820ms}
+.ss[data-motion] .season:not([data-in]) .ss-zoom{opacity:1;visibility:hidden;transform:translateY(8px)}
+.ss .t3-flag{transition:transform var(--t-change) var(--ease-out),visibility 0s linear;transition-delay:inherit}
+.ss[data-motion] .tl-sec:not([data-in]) .t3-flag{opacity:1;visibility:hidden;transform:translateY(4px)}
+.ss .tl-phone{transition:transform 380ms var(--ease-out) 120ms,visibility 0s linear 120ms}
+.ss[data-motion] .tl-sec:not([data-in]) .tl-phone{opacity:1;visibility:hidden}
