@@ -59,18 +59,12 @@ describe("product URL contract", () => {
     // relay component it guarded. What still holds: nothing opens a new tab,
     // nothing links into the app, every anchor has a section to land on and
     // every other link stays on signalstudio.ie.
-    const homeSources = [
-      "home-page.tsx",
-      "home-header.tsx",
-      "home-hero.tsx",
-      "home-tasks.tsx",
-      "home-sections.tsx",
-      "home-whiteboard.tsx",
-      "home-closing.tsx",
-      "home-waitlist.tsx",
-    ]
+    // Landing v3 (2026-10-26): the route renders one LandingPage, generated
+    // from the Design canvas into components/landing-v3. The rules below are
+    // unchanged; only the sources they read moved.
+    const homeSources = ["landing-page.tsx", "landing-v3.tsx"]
       .map((file) =>
-        readFileSync(new URL(`../components/home/${file}`, import.meta.url), "utf8"),
+        readFileSync(new URL(`../components/landing-v3/${file}`, import.meta.url), "utf8"),
       )
       .join("\n");
     const homepage = readFileSync(
@@ -78,7 +72,7 @@ describe("product URL contract", () => {
       "utf8",
     );
 
-    assert.match(homepage, /<HomePage>/);
+    assert.match(homepage, /<LandingPage \/>/);
     assert.doesNotMatch(homepage, /RevealProducts/);
     const hrefs = [...homeSources.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
     assert.ok(hrefs.length > 0, "the home page has links to check");
@@ -93,7 +87,7 @@ describe("product URL contract", () => {
         // questions go to the one company address by email.
         assert.match(
           href,
-          /^(?:\/(?:pricing|about|privacy)|mailto:hello@signalstudio\.ie(?:\?subject=[A-Za-z0-9%]+)?)$/,
+          /^(?:\/(?:pricing|about|privacy|terms)|mailto:hello@signalstudio\.ie(?:\?subject=[A-Za-z0-9%]+)?)$/,
           `${href} stays on the umbrella`,
         );
       }
