@@ -1352,10 +1352,10 @@
   color: var(--v3-text);
 }
 @media (prefers-reduced-motion: no-preference) {.ss .files_shelf_main{
-    animation: lv3-files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
+    animation: files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
   }
 .ss .files_shelf_sourceItem, .ss .files_shelf_cardItem{
-    animation: lv3-files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
+    animation: files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
     animation-delay: calc(var(--i, 0) * 24ms);
   }}
 @media (prefers-reduced-motion: reduce) {.ss .files_shelf_source, .ss .files_shelf_card, .ss .files_shelf_cardThumb, .ss .files_shelf_row, .ss .files_shelf_paper, .ss .files_shelf_folderFront, .ss .files_shelf_field{
@@ -2787,3 +2787,34 @@
 .ss .f4-col li a, .ss .f4-col li span{min-height:44px}
 .ss .f4-base{flex-direction:column;align-items:flex-start;gap:4px;margin-top:40px}
 .ss .f4-legal-links a{min-height:44px}}
+.ss{--t-exit:150ms;--t-ping:640ms;--ping:var(--accent)}
+@keyframes lv3-rise{from{clip-path:inset(0 0 100% 0);transform:translateY(10px)}to{clip-path:inset(0 0 0 0);transform:none}}
+@keyframes lv3-cxin{from{clip-path:inset(0 0 100% 0);transform:translateY(8px)}to{clip-path:inset(0 0 0 0);transform:none}}
+@keyframes lv3-rowin{from{clip-path:inset(0 0 100% 0);transform:translateY(4px)}to{clip-path:inset(0 0 0 0);transform:none}}
+@keyframes lv3-swap{from{clip-path:inset(0 0 100% 0);transform:translateY(6px)}to{clip-path:inset(0 0 0 0);transform:none}}
+.ss .an-card .an-ans, .ss .an-card .an-stat, .ss .an-card .an-foot{transition:none}
+.ss .an-card.is-swap .an-ans, .ss .an-card.is-swap .an-stat, .ss .an-card.is-swap .an-foot, .ss .an-card.is-swap .an-list-h b{opacity:1;filter:none;animation:lv3-swap var(--t-change) var(--ease-out)}
+.ss .fsx.is-swap .fx-row{opacity:1;filter:none}
+.ss .band .vp-from{transition:clip-path var(--t-arrive) var(--ease-io)}
+.ss[data-motion] .band .vp-from:not(.on){clip-path:inset(0 100% 0 0)}
+@keyframes lv3-sping{from{transform:scale(1);opacity:.55}to{transform:scale(2.2);opacity:0}}
+@keyframes lv3-spingbox{from{box-shadow:0 0 0 0 color-mix(in srgb,var(--ping) 55%,transparent)}to{box-shadow:0 0 0 12px color-mix(in srgb,var(--ping) 0%,transparent)}}
+.ss .tk.cue .tk-ck::after{border-color:var(--good);animation:lv3-sping var(--t-ping) var(--ease-out) 1}
+.ss .cp-apply.is-ready::after{transform:none;opacity:1;box-shadow:none;animation:lv3-spingbox var(--t-ping) var(--ease-out) 1}
+.ss .chip.flash{animation:lv3-spingbox var(--t-ping) var(--ease-out) 1}
+.ss .wl-check, .ss .hd-ck{position:relative}
+.ss .wl-check::after, .ss .hd-ck::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:2px solid var(--good);opacity:0;pointer-events:none}
+.ss .wl-done .wl-check::after, .ss .hero-done .hd-ck::after{animation:lv3-sping var(--t-ping) var(--ease-out) 120ms 1}
+.ss .f4-mark .ring{position:relative;transition:transform var(--t-press) var(--ease-out)}
+.ss .f4-mark .ring::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--ping);opacity:0;pointer-events:none}
+.ss[data-motion] .foot4[data-in] .f4-mark .ring::after{animation:lv3-sping var(--t-ping) var(--ease-out) 200ms 1}
+.ss [id]{scroll-margin-top:24px}
+.ss .win-toast{transition:opacity var(--t-exit) var(--ease-out),transform var(--t-exit) var(--ease-out)}
+.ss .win-toast.on{transition-duration:var(--t-change)}
+@media (prefers-reduced-motion:reduce){.ss .rise, .ss .cx-in, .ss .cp-plan li, .ss .wl-done, .ss .an-row, .ss .an-card.is-swap .an-ans, .ss .an-card.is-swap .an-stat, .ss .an-card.is-swap .an-foot, .ss .an-card.is-swap .an-list-h b{animation:none}
+.ss[data-motion] .band .vp-from:not(.on){clip-path:none}
+.ss .band .vp-from{transition:none}
+.ss[data-motion] .an-sec:not([data-in]) .an-rule-bar .done, .ss .an-rule-bar .done{transform:none;transition:none}
+.ss .tk.cue .tk-ck::after, .ss .cp-apply.is-ready::after, .ss .chip.flash, .ss .wl-done .wl-check::after, .ss .hero-done .hd-ck::after, .ss[data-motion] .foot4[data-in] .f4-mark .ring::after{animation:none}
+.ss .tk.cue .tk-ck::after{opacity:1;transform:none}
+.ss .cp-apply.is-ready{box-shadow:0 0 0 2px var(--ping)}}

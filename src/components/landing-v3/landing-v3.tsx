@@ -76,6 +76,31 @@ class LandingV3 extends React.Component<any, any> {
     if (!root) return;
     this.root = root;
     root.setAttribute('data-motion', '');
+    // In-page links all arrive the same way: a short trip glides, a long one jumps most of the way
+    // and glides the last stretch. Focus follows, so keyboard and screen-reader users land too.
+    this.onAnchor = (e) => {
+      const a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a || !root.contains(a) || e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      const id = a.getAttribute('href').slice(1);
+      const target = id && root.querySelector('#' + CSS.escape(id));
+      if (!target) return;
+      e.preventDefault();
+      const wide = window.innerWidth > 760;
+      const dest = id === 'pricing' && wide ? (target.closest('section') || target) : target;
+      const margin = parseFloat(getComputedStyle(dest).scrollMarginTop) || 0;
+      const y = Math.max(0, dest.getBoundingClientRect().top + window.scrollY - margin);
+      const far = Math.abs(y - window.scrollY) > window.innerHeight * 1.5;
+      if (this.reduced()) window.scrollTo({ top: y, behavior: 'instant' });
+      else {
+        if (far) window.scrollTo({ top: y + (y > window.scrollY ? -120 : 120), behavior: 'instant' });
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+      if (history.pushState) history.pushState(null, '', '#' + id);
+      const focusable = target.matches('a,button,input,[tabindex]') ? target : null;
+      if (!focusable) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    };
+    root.addEventListener('click', this.onAnchor);
     if (this.reduced()) this.setState({ tlN: 8 });
     const els = root.querySelectorAll('[data-reveal]');
     const fire = (el) => {
@@ -111,6 +136,7 @@ class LandingV3 extends React.Component<any, any> {
 
   componentWillUnmount() {
     if (this.mq) this.mq();
+    if (this.root && this.onAnchor) this.root.removeEventListener('click', this.onAnchor);
     this.timers.forEach(clearTimeout);
     [this.io, this.boardIo, this.stickyIo, this.chatIo].forEach((o) => { if (o) o.disconnect(); });
   }
@@ -358,7 +384,13 @@ class LandingV3 extends React.Component<any, any> {
     const input = from === 'hero' ? '#hero-email' : '#wl-email';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
       this.setState({ wl: 'error', wlFrom: from, wlMsg: v ? 'That email looks incomplete. Check it and try again.' : 'Enter your email address to join.' });
-      this.later(() => { const el = this.$(input); if (el) el.focus(); }, 20);
+      this.later(() => {
+        const el = this.$(input);
+        if (!el) return;
+        el.focus();
+        // tell them again on every failed try, not only the first
+        if (!this.reduced() && el.animate) el.animate([{ transform: 'none' }, { transform: 'translateX(-4px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 240, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
+      }, 20);
       return;
     }
     this.setState({ wl: 'busy', wlMsg: '', wlFrom: from });
@@ -872,7 +904,7 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </section>
 </main>
-<footer className="foot4">
+<footer className="foot4" data-reveal="foot">
 <div className="wrap">
 <div className="f4-top">
 <div className="f4-brand">
