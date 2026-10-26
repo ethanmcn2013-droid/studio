@@ -36,11 +36,11 @@ test("slash variants go directly home with tracking queries retained", async () 
 });
 
 test("root, private operations and required assets escape isolation", async () => {
-  for (const path of ["/", "/api/csp-report", "/hq", "/hq/access", "/_next/static/test.js", "/landing/captures/test.webp", "/share/signal-studio-card-v2.png", "/brand/business-loan-pack-2026.html", "/favicon.ico", "/icon", "/icon1", "/icon2", "/icon3", "/icon4", "/apple-icon", "/robots.txt", "/sitemap.xml"]) {
+  for (const path of ["/", "/api/csp-report", "/hq", "/hq/access", "/_next/static/test.js", "/landing/captures/test.webp", "/share/signal-studio-card-v3.png", "/brand/business-loan-pack-2026.html", "/favicon.ico", "/icon", "/icon1", "/icon2", "/icon3", "/icon4", "/apple-icon", "/robots.txt", "/sitemap.xml"]) {
     assert.notEqual((await route(path)).status, 302, path);
   }
   assert.equal((await route("/about", "www.signalstudio.ie")).status, 302);
-  assert.equal(getRedirectUrl(await route("/opengraph-image")), `${origin}/share/signal-studio-card-v2.png`);
+  assert.equal(getRedirectUrl(await route("/opengraph-image")), `${origin}/share/signal-studio-card-v3.png`);
 });
 
 test("retired product domains and public artifact rewrites retain their destinations", async () => {
