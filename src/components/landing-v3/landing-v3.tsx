@@ -193,6 +193,7 @@ class LandingV3 extends React.Component<any, any> {
       const y = window.scrollY, past = y > hero.offsetTop + hero.offsetHeight - 80;
       const state = !past ? 'top' : (y < lastY - 4 ? 'shown' : (y > lastY + 4 ? 'hidden' : root.getAttribute('data-nav')));
       if (state && root.getAttribute('data-nav') !== state) root.setAttribute('data-nav', state);
+      if (state === 'top' && this.navSec) { this.navSec = null; this.placeNav && this.placeNav(null); }
       lastY = y;
     };
     this.onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
@@ -210,6 +211,7 @@ class LandingV3 extends React.Component<any, any> {
       dot.style.opacity = '1';
       dot.style.transform = `translateX(${(r.left - box.left + r.width / 2 - 3).toFixed(1)}px)`;
     };
+    this.placeNav = place;
     this.onResize = () => { if (this.navSec) place(this.navSec); };
     window.addEventListener('resize', this.onResize);
     if (typeof IntersectionObserver === 'undefined') return;
@@ -288,7 +290,7 @@ class LandingV3 extends React.Component<any, any> {
       const col = this.$('.cl-form');
       if (col) { const h = col.getBoundingClientRect().height; if (Math.abs(h - snap.clH) > 1) this.anim(col, [{ height: snap.clH + 'px', overflow: 'clip' }, { height: h + 'px', overflow: 'clip' }], { duration: 320, easing: EASE_IO, fill: 'none' }); }
       // you are on the signal now: the nav mark pings once
-      this.anim(this.$('.nav .mark .ring'), [{ boxShadow: '0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent)' }, { boxShadow: '0 0 0 10px color-mix(in srgb, var(--accent) 0%, transparent)' }], { duration: 640, delay: 300, fill: 'none' });
+      this.anim(this.$('.nav .mark .lv'), [{ boxShadow: '0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent)' }, { boxShadow: '0 0 0 10px color-mix(in srgb, var(--accent) 0%, transparent)' }], { duration: 640, delay: 300, fill: 'none' });
     }
     const stream = this.$('[data-stream]');
     if (stream && snap.streamH && stream.scrollHeight > snap.streamH && !this.reduced() && stream.animate) {
@@ -323,7 +325,12 @@ class LandingV3 extends React.Component<any, any> {
     if (name === 'chat') this.waitForChat();
     if (name === 'files') this.later(() => this.setState({ filesSettled: true }), 1600);
     if (name === 'analytics') { this.setState({ anReveal: true }); this.later(() => this.setState({ anReveal: false }), 1400); this.whenSeen(this.$('.an-rule-bar'), 0.5, () => this.playRace()); }
-    if (name === 'season') this.whenSeen(this.$('.season-plot'), 0.5, () => this.playSeason());
+    if (name === 'season') {
+      // on a phone the year plot is not drawn, so the zoom panel is what plays
+      const plot = this.$('.season-plot'), zoom = this.$('.ss-zoom');
+      const shown = plot && getComputedStyle(plot).display !== 'none';
+      this.whenSeen(shown ? plot : (zoom || plot), shown ? 0.5 : 0.3, () => this.playSeason());
+    }
     if (name === 'venues') this.later(() => this.setState({ vp: true }), this.reduced() ? 0 : 640);
   }
 
@@ -716,7 +723,7 @@ class LandingV3 extends React.Component<any, any> {
 <a href="#waitlist" className="skip">Skip to the waitlist</a>
 <header className="wrap">
 <nav className="nav" aria-label="Main">
-<a href="#top" className="mark" aria-label="Signal Studio home"><span className="ring" aria-hidden="true"><i /></span>Signal Studio</a>
+<a href="#top" className="mark" aria-label="Signal Studio home"><span className="lv" aria-hidden="true"><svg className="lv-mark" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="8" cy="8" r="2.87" fill="currentColor" /></svg></span>Signal Studio</a>
 <div className="nav-links">
 <a href="#venues">For venues</a>
 <a href="#timeline">Timeline</a>
@@ -736,8 +743,8 @@ class LandingV3 extends React.Component<any, any> {
 <div className="dots" aria-hidden="true" />
 <div className="dots-fade" aria-hidden="true" />
 <div className="wrap hero-in">
-<h1 className="h1 hl" id="hero-title"><span className="w"><span style={{'--k': '0'}}>Know</span></span> <span className="w"><span style={{'--k': '1'}}>what</span></span> <span className="w"><span style={{'--k': '2'}}>needs</span></span> <span className="w"><span style={{'--k': '3'}}>you</span></span> <span className="w"><span style={{'--k': '4'}}>today<em>.</em></span></span></h1>
-<p className="lede rise d2">Tasks, dates, files and chat in one place, for the people who run venues, crews, schools and studios, not software.</p>
+<h1 className="h1 hl" id="hero-title"><span className="w"><span style={{'--k': '0'}}>Project</span></span> <span className="w"><span style={{'--k': '1'}}>management</span></span> <span className="w"><span style={{'--k': '2'}}>for</span></span> <span className="w"><span style={{'--k': '3'}}>the</span></span> <span className="w"><span style={{'--k': '4'}}>80%</span></span> <span className="w"><span style={{'--k': '5'}}>not</span></span> <span className="w"><span style={{'--k': '6'}}>in</span></span> <span className="w"><span style={{'--k': '7'}}>tech<em>.</em></span></span></h1>
+<p className="lede rise d2">Tasks, dates, files and chat in one place, for the people who run venues, crews, schools and studios.</p>
 {(v.wl.showForm) ? (<>
 <form className="hero-form rise d3" noValidate={true} onSubmit={v.wl.submitHero}>
 <label htmlFor="hero-email" className="hero-l">Your email</label>
@@ -753,7 +760,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="win-wrap rise d4" id="sample">
 <div className="win" role="group" aria-label="A working sample of the task board for The Orchard" data-reveal="board">
 <aside className="side" aria-hidden="true">
-<span className="mark"><span className="ring"><i /></span>Signal Studio</span>
+<span className="mark"><span className="lv" aria-hidden="true"><svg className="lv-mark" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="8" cy="8" r="2.87" fill="currentColor" /></svg></span>Signal Studio</span>
 <div className="side-search"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4-4" /></svg>Find a task</div>
 <div className="side-ws"><span className="lg">O</span><span><b>The Orchard, events</b><small>Adare</small></span></div>
 <span className="side-i"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" /></svg>Home</span>
@@ -1161,8 +1168,8 @@ class LandingV3 extends React.Component<any, any> {
 <div className="wrap">
 <div className="f4-top">
 <div className="f4-brand">
-<a href="#top" className="mark f4-mark" aria-label="Signal Studio, back to top"><span className="ring" aria-hidden="true"><i /></span>Signal Studio</a>
-<p className="f4-line">Project management for the 80% not in tech.</p>
+<a href="#top" className="mark f4-mark" aria-label="Signal Studio, back to top"><span className="lv" aria-hidden="true"><svg className="lv-mark" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="8" cy="8" r="2.87" fill="currentColor" /></svg></span>Signal Studio</a>
+<p className="f4-line">Know what needs you today.</p>
 </div>
 <nav className="f4-cols" aria-label="Footer">
 <div className="f4-col"><h2 className="f4-h">Product</h2><ul><li><a href="#timeline">Timeline</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#files">Files</a></li><li><a href="#chat">Chat</a></li></ul></div>
@@ -1171,7 +1178,7 @@ class LandingV3 extends React.Component<any, any> {
 </nav>
 </div>
 <div className="f4-base">
-<p className="f4-legal">© 2026 Signal Studio Limited. Registered in Ireland, CRO 823488.</p>
+<p className="f4-legal">© 2026 Signal Studio Limited. Registered in Ireland, <span className="nw">CRO 823488</span>.</p>
 <p className="f4-legal-links">{this.props.landingOnly ? null : (<a href="/privacy">Privacy</a>)}{this.props.landingOnly ? null : (<a href="/terms">Terms</a>)}</p>
 </div>
 </div>

@@ -55,7 +55,7 @@ test.describe("the home page, landing v3", () => {
     await expect(page.getByRole("navigation", { name: "Main" })).toBeVisible();
     await expect(page.locator("main")).toHaveCount(1);
     await expect(page.locator("h1")).toHaveCount(1);
-    await expect(page.locator("h1")).toHaveText("Know what needs you today.");
+    await expect(page.locator("h1")).toHaveText("Project management for the 80% not in tech.");
     for (const id of SECTIONS) await expect(page.locator(`#${id}`), id).toBeAttached();
     await expect(page.locator("footer")).toContainText("Signal Studio Limited");
     // Every in-page link has somewhere to land.
