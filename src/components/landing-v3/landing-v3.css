@@ -2762,3 +2762,28 @@
 @media (max-width:760px){.ss .price-v small{display:block;margin:8px 0 0}}
 @media (max-width:760px){.ss .price-g{grid-template-columns:minmax(0,1fr)}
 .ss .price-v small{display:inline;margin:0 0 0 6px}}
+.ss .foot4{margin-top:0;border-top:1px solid var(--line);background:var(--bg-2);color:var(--ink-2)}
+.ss .foot4 .wrap{padding-top:72px;padding-bottom:40px}
+.ss .f4-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.9fr);gap:48px;align-items:start}
+.ss .f4-mark{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:18px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.ss .f4-line{margin-top:8px;max-width:36ch;text-wrap:balance;font-size:15px;line-height:1.5;color:var(--ink-2)}
+.ss .f4-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.ss .f4-h{margin:0 0 6px;font-size:13px;font-weight:600;letter-spacing:0;color:var(--ink)}
+.ss .f4-col ul{list-style:none;margin:0;padding:0}
+.ss .f4-col li a, .ss .f4-col li span{display:inline-flex;align-items:center;min-height:36px;font-size:15px;color:var(--ink-2);text-decoration:none;transition:color var(--t-press) var(--ease-out)}
+.ss .f4-col li span{color:var(--ink-3)}
+.ss .f4-base{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:64px;padding-top:24px;border-top:1px solid var(--line)}
+.ss .f4-legal{font-size:13px;color:var(--ink-3)}
+.ss .f4-legal-links{display:flex;gap:24px;font-size:13px}
+.ss .f4-legal-links a{display:inline-flex;align-items:center;min-height:36px;color:var(--ink-3);text-decoration:none;transition:color var(--t-press) var(--ease-out)}
+.ss .f4-col a:focus-visible, .ss .f4-legal-links a:focus-visible, .ss .f4-mark:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+@media (hover:hover) and (pointer:fine){.ss .f4-col li a:hover, .ss .f4-legal-links a:hover{color:var(--ink)}
+.ss .f4-mark:hover .ring{transform:scale(1.06)}}
+@media (max-width:900px){.ss .f4-top{grid-template-columns:minmax(0,1fr);gap:40px}}
+@media (max-width:760px){.ss .foot4{margin-top:0}
+.ss .foot4 .wrap{padding-top:48px;padding-bottom:104px}
+.ss .f4-cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+.ss .f4-col:last-child{grid-column:1/-1}
+.ss .f4-col li a, .ss .f4-col li span{min-height:44px}
+.ss .f4-base{flex-direction:column;align-items:flex-start;gap:4px;margin-top:40px}
+.ss .f4-legal-links a{min-height:44px}}

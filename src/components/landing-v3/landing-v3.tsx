@@ -868,21 +868,27 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </div>
 <p className="price-venue">Couples and teachers never pay. Their account is a gift from their venue or school.</p>
-<figure className="founder">
-<blockquote><p>I am building Signal Studio in Limerick for the people the work runs through, not the people who run software.</p></blockquote>
-<figcaption>Ethan, founder, Limerick</figcaption>
-</figure>
 </div>
 </div>
 </section>
 </main>
-<footer className="foot3">
+<footer className="foot4">
 <div className="wrap">
-<p className="foot-word" aria-hidden="true">Signal Studio<i>.</i></p>
-<nav className="foot-links" aria-label="Footer">
-<a href="#venues">For venues</a><a href="#timeline">Timeline</a><a href="#analytics">Analytics</a><a href="#files">Files</a><a href="#chat">Chat</a><a href="#pricing">Pricing</a>{this.props.landingOnly ? null : (<a href="/privacy">Privacy</a>)}{this.props.landingOnly ? null : (<a href="/terms">Terms</a>)}<a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>
+<div className="f4-top">
+<div className="f4-brand">
+<a href="#top" className="mark f4-mark" aria-label="Signal Studio, back to top"><span className="ring" aria-hidden="true"><i /></span>Signal Studio</a>
+<p className="f4-line">Project management for the 80% not in tech.</p>
+</div>
+<nav className="f4-cols" aria-label="Footer">
+<div className="f4-col"><h2 className="f4-h">Product</h2><ul><li><a href="#timeline">Timeline</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#files">Files</a></li><li><a href="#chat">Chat</a></li></ul></div>
+<div className="f4-col"><h2 className="f4-h">Signal Studio</h2><ul><li><a href="#venues">For venues</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#waitlist">Join the waitlist</a></li></ul></div>
+<div className="f4-col"><h2 className="f4-h">Contact</h2><ul><li><a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a></li><li><span>Limerick, Ireland</span></li></ul></div>
 </nav>
-<p className="foot-legal">© 2026 Signal Studio Limited. Registered in Ireland, CRO 823488. Made in Limerick.</p>
+</div>
+<div className="f4-base">
+<p className="f4-legal">© 2026 Signal Studio Limited. Registered in Ireland, CRO 823488.</p>
+<p className="f4-legal-links">{this.props.landingOnly ? null : (<a href="/privacy">Privacy</a>)}{this.props.landingOnly ? null : (<a href="/terms">Terms</a>)}</p>
+</div>
 </div>
 </footer>
 <div className={`sticky-cta ${v.stickyCls}`} aria-hidden={v.stickyHidden}><a href="#waitlist" className="btn btn-solid" tabIndex={v.stickyTab}>Join the waitlist</a></div>
