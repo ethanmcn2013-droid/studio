@@ -16,7 +16,7 @@ const proxy = source("src", "proxy.ts");
 const layout = source("src", "app", "layout.tsx");
 const manifest = source("src", "app", "manifest.ts");
 const home = source("src", "app", "page.tsx");
-const homePage = source("src", "components", "home", "home-page.tsx");
+const landingV3 = source("src", "components", "landing-v3", "landing-v3.tsx");
 const fixture = source(
   "src",
   "components",
@@ -134,26 +134,23 @@ describe("public pricing truth and decision contract", () => {
 
 describe("public story proof contract", () => {
   it("keeps the landing story to hero, product proof, wedge and invitation", () => {
-    // Home page v3 (2026-10-02, content/hq/decisions/home-page-v3-2026-10-02.md):
-    // the route renders one HomePage, and HomePage holds the story order.
-    assert.doesNotMatch(home + homePage, /RevealManifesto/);
-    assert.match(home, /<HomePage>/);
-    // Round 2 (2026-10-02): the page runs in the header's order, with the
-    // form last. Round 3 (the same day): the same thing in other trades'
-    // words comes straight after the sample. Repeated audience/jargon sections are cut.
+    // Landing v3 (2026-10-26): the route renders one LandingPage, and the
+    // generated landing-v3 component holds the story order: hero and working
+    // sample, the venue wedge, product proof, then the invitation and pricing.
+    assert.doesNotMatch(home + landingV3, /RevealManifesto/);
+    assert.match(home, /<LandingPage \/>/);
     const story = [
-      "<HomeHero />",
-      "<HomeYours />",
-      "<HomeProjects />",
-      "<HomeTasks />",
-      "<HomeTimeline />",
-      "<HomeFiles />",
-      "<HomeAnalytics />",
-      "<HomeWhiteboard />",
-      "<HomeVenue />",
-      "<HomeClose />",
+      'id="top"',
+      'id="sample"',
+      'id="venues"',
+      'id="timeline"',
+      'id="analytics"',
+      'id="files"',
+      'id="chat"',
+      'id="waitlist"',
+      'id="pricing"',
     ];
-    const positions = story.map((part) => homePage.indexOf(part));
+    const positions = story.map((part) => landingV3.indexOf(part));
     assert.ok(
       positions.every((position) => position >= 0),
       "hero, product proof, wedge and invitation are all rendered",

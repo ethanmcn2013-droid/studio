@@ -14,12 +14,12 @@ export function landingOnlyPageContract(subject: string, paths: string[]) {
           await page.setViewportSize({ width, height: 900 });
           await page.goto(path);
           expect(new URL(page.url()).pathname).toBe("/");
-          await expect(page.locator(".lp")).toHaveClass(/smooth/);
-          await expect(page.locator("#nav")).toBeVisible();
+          await expect(page.locator(".ss[data-ready]")).toBeAttached({ timeout: 30_000 });
+          await expect(page.getByRole("navigation", { name: "Main" })).toBeVisible();
           await expect(page.locator("h1")).toHaveText("Know what needs you today.");
-          await expect(page.locator("#wl-hero-form")).toBeVisible();
-          await expect(page.locator("#wl-hero-email")).toBeInViewport();
-          await expect(page.locator("#wl-hero-submit")).toHaveText("Join the waitlist");
+          await expect(page.locator(".hero-form")).toBeVisible();
+          await expect(page.locator("#hero-email")).toBeInViewport();
+          await expect(page.locator(".hero-form button[type=submit]")).toHaveText("Join the waitlist");
           expect(await page.locator('a[href^="/"]').evaluateAll(links => links.map(link => link.getAttribute("href")).filter(href => href !== "/" && !href?.startsWith("/#")))).toEqual([]);
           for (const asset of ["/icon", "/icon1", "/icon2", "/icon3", "/icon4", "/apple-icon"]) {
             const response = await request.get(asset, { maxRedirects: 0 });
