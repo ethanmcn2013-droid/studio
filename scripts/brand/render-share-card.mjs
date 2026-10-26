@@ -18,7 +18,7 @@ import { chromium } from "@playwright/test";
 
 const base = process.argv[2];
 if (!base) throw new Error("Usage: render-share-card.mjs <base url of a running site>");
-const out = new URL("../../public/share/signal-studio-card-v2.png", import.meta.url);
+const out = new URL("../../public/share/signal-studio-card-v3.png", import.meta.url);
 mkdirSync(new URL("./", out), { recursive: true });
 
 const CARD = `
@@ -37,7 +37,7 @@ const CARD = `
   .rings b { position: absolute; left: 1010px; top: 150px; width: 148px; height: 148px; margin: -74px 0 0 -74px; border-radius: 50%; background: rgb(104 96 255); }
   .brand { position: relative; display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 500; letter-spacing: -0.025em; }
   .brand svg { width: 44px; height: 44px; display: block; }
-  h1 { position: relative; margin: 0; max-width: 860px; font-size: 104px; line-height: 0.96; letter-spacing: -0.052em; font-weight: 600; }
+  h1 { position: relative; margin: 0; max-width: 860px; font-size: 92px; line-height: 0.96; letter-spacing: -0.052em; font-weight: 600; }
   h1 em { font-style: normal; color: rgb(125 120 255); }
   .foot { position: relative; font-size: 26px; letter-spacing: -0.01em; color: rgb(180 180 177); }
 </style>
@@ -48,7 +48,7 @@ const CARD = `
     signal studio
   </div>
   <div>
-    <h1>Project management for people <em>not</em> in tech.</h1>
+    <h1>Project management<br>for the 80% <em>not</em><br>in tech.</h1>
   </div>
   <div class="foot">signalstudio.ie</div>
 </div>`;
@@ -68,4 +68,4 @@ const family = await page.evaluate(() => getComputedStyle(document.querySelector
 if (!/geist/i.test(family)) throw new Error(`The card is not set in Geist (got ${family}).`);
 await page.screenshot({ path: decodeURIComponent(out.pathname).replace(/^\/([A-Za-z]:)/, "$1"), clip: { x: 0, y: 0, width: 1200, height: 630 } });
 await browser.close();
-console.log("Share card written: public/share/signal-studio-card-v2.png");
+console.log("Share card written: public/share/signal-studio-card-v3.png");

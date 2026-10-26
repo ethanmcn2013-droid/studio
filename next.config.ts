@@ -105,9 +105,9 @@ const nextConfig: NextConfig = {
       },
       // The share card was a route before it was a file. Old links to the
       // route, and the Twitter variant crawlers guess at, land on the file.
-      { source: "/opengraph-image", destination: "/share/signal-studio-card-v2.png", permanent: true },
-      { source: "/about/opengraph-image", destination: "/share/signal-studio-card-v2.png", permanent: true },
-      { source: "/twitter-image", destination: "/share/signal-studio-card-v2.png", permanent: true },
+      { source: "/opengraph-image", destination: "/share/signal-studio-card-v3.png", permanent: true },
+      { source: "/about/opengraph-image", destination: "/share/signal-studio-card-v3.png", permanent: true },
+      { source: "/twitter-image", destination: "/share/signal-studio-card-v3.png", permanent: true },
       {
         // The brand page retired 2026-07-06 and the design page left the
         // public estate 2026-09-08 (archived behind the design-lab gate).

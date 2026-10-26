@@ -8,6 +8,24 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-26 · S·202 · reads · The headline names who the product is for
+
+**The home page now opens on "Project management for the 80% not in tech." and the picture people see when the site is shared says the same.**
+
+The page title, the social title, the app manifest description and the share card all carry the new line. The share card is redrawn at `public/share/signal-studio-card-v3.png` by `scripts/brand/render-share-card.mjs`, set over three lines so "not" still lands in indigo; the old routes and every page that lists the card point at the new file, and the v2 file stays for links already shared. The nav and footer mark now use the same ring and dot as the favicon, which also removes a white glow the old mark picked up from a utility class with the same name.
+
+## 2026-10-26 · S·201 · ships · Venues and schools gift accounts, and the free plan goes
+
+**There are now two plans: Pro at €12 a month or €120 a year, and Organisations at €125 a month, which lets a venue or school gift an account to each couple or teacher.**
+
+Organisations includes 80 accounts, with more at a lower price each; the people receiving a gifted account never pay. The free plan and the founding offer are gone from the page. The venue section explains what a venue sees (that a couple opened their plan, not what is in it), what happens after the wedding, and how the venue's name appears. The separate pricing page and the HQ finance notes still describe the earlier plans and wait on a founder decision.
+
+## 2026-10-26 · S·200 · ships · The landing page is rebuilt around the work itself
+
+**The home page shows a sample board, timeline, files and chat you can use, with motion that shows what changed, and a footer that says who runs the company and how to reach them.**
+
+Landing v3 was designed on the canvas and ported as one scoped component in `src/components/landing-v3/`. Ticking a card sends a dot to the done count and Undo brings it back; the countdown rolls; the season view draws at true speed; the analytics list re-sorts in place; the folder opens; the chat hands off from the composer and applies its plan. The nav hides on the way down and returns on the way up, with a dot for the section in view. Every scene settles to its finished state under reduced motion, text never half-fades, and dark mode follows the device with no flash and no hydration mismatch. The waitlist posts to the real signup action. The founder quote is cut, and the footer carries the company name, registration number, contact and the privacy and terms links (hidden while the site is in landing-only mode). The experience and landing-only test suites are rewritten for the new page.
+
 ## 2026-10-23 · S·199 · reads · HQ separates prepared product changes from live acceptance
 
 **The October product-note record keeps built changes, review, cloud checks and live use separate.**

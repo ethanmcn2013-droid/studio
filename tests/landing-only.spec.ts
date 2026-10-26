@@ -27,7 +27,7 @@ test("landing-only routing, desktop/mobile navigation and real waitlist persiste
     expect((await request.get("/?utm_source=test", { maxRedirects: 0 })).status()).toBe(200);
     const hq = await request.get("/hq", { maxRedirects: 0 });
     expect(hq.headers().location).toContain("/hq/access");
-    expect((await request.get("/share/signal-studio-card-v2.png")).status()).toBe(200);
+    expect((await request.get("/share/signal-studio-card-v3.png")).status()).toBe(200);
     for (const path of ["/icon", "/icon1", "/icon2", "/icon3", "/icon4", "/apple-icon"]) {
       const response = await request.get(path, { maxRedirects: 0 });
       expect(response.status(), path).toBe(200);

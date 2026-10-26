@@ -15,9 +15,9 @@
  * root layout's wholesale, picture included, so they list this card again.
  */
 export const SHARE_CARD = {
-  url: "/share/signal-studio-card-v2.png",
+  url: "/share/signal-studio-card-v3.png",
   width: 1200,
   height: 630,
   type: "image/png",
-  alt: "Signal Studio. Project management for people not in tech.",
+  alt: "Signal Studio. Project management for the 80% not in tech.",
 } as const;
