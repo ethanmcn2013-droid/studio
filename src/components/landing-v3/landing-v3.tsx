@@ -469,7 +469,7 @@ class LandingV3 extends React.Component<any, any> {
 {(v.wl.done) ? (<>
 <p className="hero-done rise" id="hero-done" tabIndex="-1"><span className="hd-ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg></span>You’re on the list. I will email <b>{v.wl.email}</b> once, when your access is ready.</p>
 </>) : null}
-<p className="trust rise d3">No card needed to join. Running a venue? <a href="#venues" className="trust-link">See the Founding 25 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg></a></p>
+<p className="trust rise d3">No card needed to join. Running a venue? <a href="#venues" className="trust-link">See how gifting works <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg></a></p>
 <div className="win-wrap rise d4" id="sample">
 <div className="win" role="group" aria-label="A working sample of the task board for The Orchard" data-reveal="board">
 <aside className="side" aria-hidden="true">
@@ -594,14 +594,14 @@ class LandingV3 extends React.Component<any, any> {
 <div className="band">
 <div className="band-copy">
 <h2 className="h2" id="venue-title">Gift every couple their own plan.</h2>
-<p>Every couple who books their wedding with you gets a private place to plan it. Your name is on it, quietly. There is nothing for your team to run.</p>
+<p>Every couple who books their wedding with you gets a private place to plan it. There is nothing for your team to run.</p>
 <dl className="band-facts">
 <div><dt>What it costs</dt><dd>€125 a month for you, with up to 80 couples included. Nothing for them.</dd></div>
 <div><dt>What you see</dt><dd>That they opened it. Not what is in it.</dd></div>
 <div><dt>After the wedding</dt><dd>It stays open, read-only, and they can download everything in one click.</dd></div>
-<div><dt>The Founding 25</dt><dd>Twenty-five venues in Limerick and the surrounding counties, from January 2027.</dd></div>
+<div><dt>Your name on it</dt><dd>Said once, quietly. No logo and no colours.</dd></div>
 </dl>
-<div className="ctas band-cta"><a href="mailto:hello@signalstudio.ie?subject=Founding%2025%20venue" className="btn btn-w">Ask me a question</a><span className="band-cta-s">It goes to me, not a form.<br />hello@signalstudio.ie</span></div>
+<div className="ctas band-cta"><a href="mailto:hello@signalstudio.ie?subject=Venue" className="btn btn-w">Ask me a question</a><span className="band-cta-s">It goes to me, not a form.<br />hello@signalstudio.ie</span></div>
 </div>
 <figure className="phone band-phone" role="img" aria-label="A couple's phone. One quiet line at the top says the plan is from The Orchard.">
 <div className="phone-in vp" aria-hidden="true">
@@ -832,7 +832,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="wrap cl-grid">
 <div className="cl-form">
 <h2 className="h2" id="wl-title">Be first in.</h2>
-<p className="sub">Venues first, in January 2027. Everyone else after that. One email, when it is your turn.</p>
+<p className="sub">One email, when your access is ready. Nothing else.</p>
 {(v.wl.showForm) ? (<>
 <form className="wl-form" noValidate={true} onSubmit={v.wl.submit}>
 <label htmlFor="wl-email" className="field-l">Email address</label>
@@ -863,11 +863,11 @@ class LandingV3 extends React.Component<any, any> {
 <div className="price" id="pricing" aria-labelledby="price-title">
 <h3 className="price-h" id="price-title">Planned pricing at launch</h3>
 <div className="price-g">
-<div className="price-c"><b>Venues and schools</b><span className="price-v">€125<small>a month</small></span><p>Gift an account to every couple you book, or every teacher on your staff.</p><p className="price-n">80 accounts included. More at a lower price each.</p></div>
 <div className="price-c"><b>Pro</b><span className="price-v">€12<small>a month</small></span><p>For work that keeps moving across projects.</p><p className="price-n">Or €120 a year.</p></div>
+<div className="price-c"><b>Organisations</b><span className="price-v">€125<small>a month</small></span><p>Gift an account to every couple you book, or every teacher on your staff.</p><p className="price-n">80 accounts included. More at a lower price each.</p></div>
 </div>
 </div>
-<p className="price-venue">Couples and teachers never pay. Their account is a gift from you.</p>
+<p className="price-venue">Couples and teachers never pay. Their account is a gift from their venue or school.</p>
 <figure className="founder">
 <blockquote><p>I am building Signal Studio in Limerick for the people the work runs through, not the people who run software.</p></blockquote>
 <figcaption>Ethan, founder, Limerick</figcaption>
