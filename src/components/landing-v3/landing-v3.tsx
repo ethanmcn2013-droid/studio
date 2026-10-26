@@ -31,6 +31,7 @@ const SCOPES = [
 ];
 const DRAFT = '@Ping move the table names to Thursday and remind Dara about the tonic.';
 const EASE_OUT = 'cubic-bezier(0.23, 1, 0.32, 1)';
+const EASE_IO = 'cubic-bezier(0.77, 0, 0.175, 1)';
 
 class LandingV3 extends React.Component<any, any> {
   constructor(props) {
@@ -56,6 +57,35 @@ class LandingV3 extends React.Component<any, any> {
   reduced() { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } }
   $(sel) { const r = this.root || document; return r.querySelector(sel); }
   $$(sel) { const r = this.root || document; return Array.prototype.slice.call(r.querySelectorAll(sel)); }
+  // one animation, skipped entirely when motion is off
+  anim(el, kf, opt) {
+    if (!el || !el.animate || this.reduced()) return null;
+    return el.animate(kf, Object.assign({ easing: EASE_OUT, fill: 'backwards' }, opt));
+  }
+  // run fn once el is at least `ratio` in view
+  whenSeen(el, ratio, fn) {
+    if (!el || typeof IntersectionObserver === 'undefined') { fn(); return; }
+    const io = new IntersectionObserver((en) => { en.forEach((e) => { if (e.intersectionRatio >= ratio) { io.disconnect(); fn(); } }); }, { threshold: [ratio] });
+    io.observe(el); (this.ios = this.ios || []).push(io);
+  }
+  // a small dot that travels between two points on screen (done goes somewhere)
+  flyDot(fromEl, toEl, opt) {
+    if (!fromEl || !toEl || !this.root || this.reduced() || !document.body.animate) { if (opt && opt.done) opt.done(); return; }
+    const a = fromEl.getBoundingClientRect(), b = toEl.getBoundingClientRect();
+    const sx = a.left + a.width / 2, sy = a.top + a.height / 2;
+    const ex = (opt && opt.toLeft) ? b.left + 14 : b.left + b.width / 2, ey = b.top + b.height / 2;
+    const dot = document.createElement('span');
+    dot.className = 'fly-dot'; dot.setAttribute('aria-hidden', 'true');
+    dot.style.left = (sx - 5) + 'px'; dot.style.top = (sy - 5) + 'px';
+    this.root.appendChild(dot);
+    const dx = ex - sx, dy = ey - sy, lift = Math.min(80, Math.abs(dx) * 0.25 + 24);
+    const an = dot.animate([
+      { transform: 'translate(0, 0) scale(1)' },
+      { transform: `translate(${dx * 0.5}px, ${dy * 0.5 - lift}px) scale(1.15)`, offset: 0.5 },
+      { transform: `translate(${dx}px, ${dy}px) scale(.55)` }
+    ], { duration: 480, delay: (opt && opt.delay) || 0, easing: EASE_OUT, fill: 'both' });
+    an.onfinish = () => { dot.remove(); if (opt && opt.done) opt.done(); };
+  }
 
   componentDidMount() {
     try {
@@ -101,6 +131,16 @@ class LandingV3 extends React.Component<any, any> {
       target.focus({ preventScroll: true });
     };
     root.addEventListener('click', this.onAnchor);
+    // chips fill from where you pressed them
+    this.onPress = (e) => {
+      const c = e.target.closest && e.target.closest('.chip');
+      if (!c) return;
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--px', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+      c.style.setProperty('--py', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+    };
+    root.addEventListener('pointerdown', this.onPress);
+    this.setupNav(root);
     if (this.reduced()) this.setState({ tlN: 8 });
     const els = root.querySelectorAll('[data-reveal]');
     const fire = (el) => {
@@ -136,19 +176,77 @@ class LandingV3 extends React.Component<any, any> {
 
   componentWillUnmount() {
     if (this.mq) this.mq();
+    if (this.root && this.onPress) this.root.removeEventListener('pointerdown', this.onPress);
+    if (this.onScroll) window.removeEventListener('scroll', this.onScroll);
+    if (this.onResize) window.removeEventListener('resize', this.onResize);
     if (this.root && this.onAnchor) this.root.removeEventListener('click', this.onAnchor);
     this.timers.forEach(clearTimeout);
-    [this.io, this.boardIo, this.stickyIo, this.chatIo].forEach((o) => { if (o) o.disconnect(); });
+    [this.io, this.boardIo, this.stickyIo, this.chatIo].concat(this.ios || []).forEach((o) => { if (o) o.disconnect(); });
+  }
+
+  setupNav(root) {
+    const header = root.querySelector(':scope > header'), hero = root.querySelector('.hero');
+    if (!header || !hero) return;
+    let lastY = window.scrollY, raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY, past = y > hero.offsetTop + hero.offsetHeight - 80;
+      const state = !past ? 'top' : (y < lastY - 4 ? 'shown' : (y > lastY + 4 ? 'hidden' : root.getAttribute('data-nav')));
+      if (state && root.getAttribute('data-nav') !== state) root.setAttribute('data-nav', state);
+      lastY = y;
+    };
+    this.onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    root.setAttribute('data-nav', 'top');
+    // the section you are reading lights its link; one dot slides between them
+    const links = Array.prototype.slice.call(root.querySelectorAll('.nav-links a[href^="#"]'));
+    const dot = root.querySelector('.nav-dot');
+    const place = (id) => {
+      links.forEach((a) => { if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+      const a = links.find((l) => l.getAttribute('href') === '#' + id);
+      if (!dot) return;
+      if (!a) { dot.style.opacity = '0'; return; }
+      const box = a.parentElement.getBoundingClientRect(), r = a.getBoundingClientRect();
+      dot.style.opacity = '1';
+      dot.style.transform = `translateX(${(r.left - box.left + r.width / 2 - 3).toFixed(1)}px)`;
+    };
+    this.onResize = () => { if (this.navSec) place(this.navSec); };
+    window.addEventListener('resize', this.onResize);
+    if (typeof IntersectionObserver === 'undefined') return;
+    const secs = links.map((a) => root.querySelector(a.getAttribute('href') === '#pricing' ? '#waitlist' : a.getAttribute('href'))).filter(Boolean);
+    const io = new IntersectionObserver((en) => {
+      en.forEach((e) => { if (e.isIntersecting) { const id = e.target.id === 'waitlist' ? 'pricing' : e.target.id; this.navSec = id; place(id); } });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    secs.forEach((s) => io.observe(s));
+    (this.ios = this.ios || []).push(io);
+    // over the dark venue band the phone's sticky button turns light
+    const band = root.querySelector('.band');
+    if (band) {
+      const bio = new IntersectionObserver((en) => { en.forEach((e) => { if (e.isIntersecting) root.setAttribute('data-overband', ''); else root.removeAttribute('data-overband'); }); }, { rootMargin: '-88% 0px 0px 0px', threshold: 0 });
+      bio.observe(band); this.ios.push(bio);
+    }
   }
 
   // ---------- FLIP: things that move keep their place on screen ----------
   getSnapshotBeforeUpdate(prevProps, prevState) {
     const snap = {};
     const s = this.state;
-    if (prevState.scope !== s.scope) snap.rows = this.rects('.an-row:not(.is-out)', 'data-row');
-    if (prevState.q !== s.q || prevState.src !== s.src || prevState.view !== s.view) snap.files = this.rects('.files_shelf_cardItem:not(.is-out)', 'data-file');
+    if (prevState.scope !== s.scope) {
+      snap.rows = this.rects('.an-row:not(.is-out)', 'data-row');
+      const list = this.$('.an-rows'); if (list) snap.listH = list.getBoundingClientRect().height;
+    }
+    if (prevState.q !== s.q || prevState.src !== s.src || prevState.view !== s.view) {
+      snap.files = this.rects('.files_shelf_cardItem:not(.is-out)', 'data-file');
+      snap.filesView = prevState.view !== s.view;
+      snap.sum = prevState.q !== s.q || prevState.src !== s.src;
+      if (snap.filesView) {
+        snap.thumbs = {};
+        this.$$('.files_shelf_cardItem:not(.is-out)').forEach((el) => { const t = el.querySelector('.files_shelf_cardThumb'); if (t) snap.thumbs[el.getAttribute('data-file')] = t.getBoundingClientRect(); });
+      }
+    }
     const stream = this.$('[data-stream]');
     if (stream) snap.streamH = stream.scrollHeight;
+    if (prevState.wl !== s.wl && s.wl === 'done') { const col = this.$('.cl-form'); if (col) snap.clH = col.getBoundingClientRect().height; }
     return snap;
   }
   rects(sel, attr) { const m = {}; this.$$(sel).forEach((el) => { m[el.getAttribute(attr)] = el.getBoundingClientRect(); }); return m; }
@@ -163,13 +261,59 @@ class LandingV3 extends React.Component<any, any> {
   }
   componentDidUpdate(prevProps, prevState, snap) {
     if (!snap) return;
-    if (snap.rows) this.flip('.an-row:not(.is-out)', 'data-row', snap.rows);
-    if (snap.files) this.flip('.files_shelf_cardItem:not(.is-out)', 'data-file', snap.files);
+    if (snap.rows) {
+      this.flip('.an-row:not(.is-out)', 'data-row', snap.rows);
+      const list = this.$('.an-rows');
+      if (list && snap.listH != null) {
+        const h = list.getBoundingClientRect().height;
+        if (Math.abs(h - snap.listH) > 1) this.anim(list, [{ height: snap.listH + 'px', overflow: 'clip' }, { height: h + 'px', overflow: 'clip' }], { duration: 280, fill: 'none' });
+      }
+      // rows that just joined race their own bars: time first, then the work
+      this.$$('.an-row:not(.is-out)').filter((r) => !snap.rows[r.getAttribute('data-row')]).forEach((r, i) => {
+        const tick = r.querySelector('.an-track b'), barI = r.querySelector('.an-track i');
+        if (tick) { const t = getComputedStyle(tick).transform; this.anim(tick, [{ transform: 'translateX(0)' }, { transform: t }], { duration: 420, delay: 60 + i * 40, easing: EASE_IO }); }
+        if (barI) { const t = getComputedStyle(barI).transform; this.anim(barI, [{ transform: 'scaleX(0)' }, { transform: t }], { duration: 480, delay: 140 + i * 40 }); }
+      });
+    }
+    if (snap.files && snap.filesView) this.morphFiles(snap);
+    else if (snap.files) {
+      this.flip('.files_shelf_cardItem:not(.is-out)', 'data-file', snap.files);
+      // files that join the shelf grow in, one after another
+      this.$$('.files_shelf_cardItem:not(.is-out)').filter((el) => !snap.files[el.getAttribute('data-file')]).forEach((el, i) => {
+        this.anim(el, [{ transform: 'scale(.96)', clipPath: 'inset(0 0 100% 0)' }, { transform: 'none', clipPath: 'inset(0 0 0 0)' }], { duration: 220, delay: Math.min(i, 8) * 25 });
+      });
+    }
+    if (snap.sum) ['.fx-sum', '.files_shelf_resultsTitle', '.fx-title'].forEach((sel) => this.anim(this.$(sel), [{ transform: 'translateY(6px)', clipPath: 'inset(0 0 100% 0)' }, { transform: 'none', clipPath: 'inset(0 0 0 0)' }], { duration: 180 }));
+    if (snap.clH != null) {
+      const col = this.$('.cl-form');
+      if (col) { const h = col.getBoundingClientRect().height; if (Math.abs(h - snap.clH) > 1) this.anim(col, [{ height: snap.clH + 'px', overflow: 'clip' }, { height: h + 'px', overflow: 'clip' }], { duration: 320, easing: EASE_IO, fill: 'none' }); }
+      // you are on the signal now: the nav mark pings once
+      this.anim(this.$('.nav .mark .ring'), [{ boxShadow: '0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent)' }, { boxShadow: '0 0 0 10px color-mix(in srgb, var(--accent) 0%, transparent)' }], { duration: 640, delay: 300, fill: 'none' });
+    }
     const stream = this.$('[data-stream]');
     if (stream && snap.streamH && stream.scrollHeight > snap.streamH && !this.reduced() && stream.animate) {
       const dh = Math.min(stream.scrollHeight - snap.streamH, 160);
       stream.animate([{ transform: `translateY(${dh}px)` }, { transform: 'none' }], { duration: 320, easing: EASE_OUT });
     }
+  }
+
+  // cards and list are one set of files: each travels to its new place, its picture shrinks or grows into it
+  morphFiles(snap) {
+    if (this.reduced()) return;
+    this.$$('.files_shelf_cardItem:not(.is-out)').forEach((el, i) => {
+      const id = el.getAttribute('data-file'), b = snap.files[id]; if (!b || !el.animate) return;
+      const a = el.getBoundingClientRect();
+      const delay = Math.min(i, 8) * 18;
+      el.animate([{ transform: `translate(${b.left - a.left}px, ${b.top - a.top}px)` }, { transform: 'none' }], { duration: 320, delay: delay, easing: EASE_IO, fill: 'backwards' });
+      const t = el.querySelector('.files_shelf_cardThumb'), bt = snap.thumbs && snap.thumbs[id];
+      if (t && bt) {
+        const at = t.getBoundingClientRect();
+        const dx = (bt.left - b.left) - (at.left - a.left), dy = (bt.top - b.top) - (at.top - a.top);
+        const sx = at.width ? bt.width / at.width : 1, sy = at.height ? bt.height / at.height : 1;
+        t.animate([{ transformOrigin: '0 0', transform: `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})` }, { transformOrigin: '0 0', transform: 'none' }], { duration: 320, delay: delay, easing: EASE_IO, fill: 'backwards' });
+      }
+      el.querySelectorAll('.files_shelf_cardName, .files_shelf_cardMeta').forEach((x) => x.animate([{ visibility: 'hidden', transform: 'translateY(4px)' }, { visibility: 'hidden', transform: 'translateY(4px)', offset: 0.5 }, { visibility: 'visible', transform: 'none' }], { duration: 360, delay: delay, easing: EASE_OUT, fill: 'backwards' }));
+    });
   }
 
   onReveal(name) {
@@ -178,19 +322,98 @@ class LandingV3 extends React.Component<any, any> {
     if (name === 'timeline') this.countDown();
     if (name === 'chat') this.waitForChat();
     if (name === 'files') this.later(() => this.setState({ filesSettled: true }), 1600);
-    if (name === 'analytics') { this.setState({ anReveal: true }); this.later(() => this.setState({ anReveal: false }), 1400); }
-    if (name === 'venues') this.later(() => this.setState({ vp: true }), this.reduced() ? 0 : 450);
+    if (name === 'analytics') { this.setState({ anReveal: true }); this.later(() => this.setState({ anReveal: false }), 1400); this.whenSeen(this.$('.an-rule-bar'), 0.5, () => this.playRace()); }
+    if (name === 'season') this.whenSeen(this.$('.season-plot'), 0.5, () => this.playSeason());
+    if (name === 'venues') this.later(() => this.setState({ vp: true }), this.reduced() ? 0 : 640);
   }
 
   cueBoard() {
     if (this.reduced() || this.touched) return;
     const first = this.visibleCards()[0];
     if (!first) return;
-    this.setState({ cue: first.id });
-    this.later(() => this.setState({ cue: null }), 1900);
+    // "what needs you": the late chips light in reading order, then the first card invites a tick
+    const late = this.$$('.win .dc.late');
+    late.forEach((el, i) => this.anim(el, [{ transform: 'scale(1)' }, { transform: 'scale(1.08)' }, { transform: 'scale(1)' }], { duration: 280, delay: i * 50, fill: 'none' }));
+    const lead = Math.min(late.length, 12) * 50 + 200;
+    this.later(() => { if (!this.touched) this.setState({ cue: first.id }); }, lead);
+    this.later(() => this.setState({ cue: null }), lead + 1900);
   }
 
-  countDown() {}
+  countDown() {
+    const sec = this.$('.tl-sec');
+    if (!sec) return;
+    if (this.reduced()) { sec.setAttribute('data-tick', ''); return; }
+    this.later(() => sec.setAttribute('data-tick', ''), 900);
+  }
+
+  // ---------- the quiet year: constant-speed draw, dates land when time reaches them, then the zoom opens ----------
+  playSeason() {
+    const fig = this.$('.season');
+    if (!fig || fig.hasAttribute('data-play')) return;
+    fig.setAttribute('data-play', '');
+    if (this.reduced()) return;
+    const D = 1000;
+    const fill = fig.querySelector('.ss-fill');
+    const end = fill ? parseFloat(fill.style.width) || 100 : 100;
+    this.anim(fill, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: D, easing: 'linear' });
+    const at = (el) => Math.max(0, Math.min(1, (parseFloat(el.style.left) || 0) / end)) * D;
+    fig.querySelectorAll('.ss-dot').forEach((dot) => {
+      const base = getComputedStyle(dot).transform; const b = base === 'none' ? '' : base + ' ';
+      this.anim(dot, [{ transform: b + 'scale(.6)', opacity: 0 }, { transform: b + 'scale(1.12)', opacity: 1, offset: 0.6 }, { transform: base === 'none' ? 'none' : base }], { duration: 260, delay: at(dot) });
+    });
+    fig.querySelectorAll('.ss-lab').forEach((lab) => {
+      this.anim(lab, [{ visibility: 'hidden', transform: 'translateY(4px)' }, { visibility: 'visible', transform: 'none' }], { duration: 220, delay: at(lab) });
+    });
+    const crunch = fig.querySelector('.ss-crunch');
+    this.anim(crunch, [{ opacity: 0 }, { opacity: 1 }], { duration: 200, delay: D + 60 });
+    this.anim(crunch, [{ boxShadow: '0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent)' }, { boxShadow: '0 0 0 12px color-mix(in srgb, var(--accent) 0%, transparent)' }], { duration: 640, delay: D + 260, fill: 'none' });
+    // the box opens into the nine-day panel
+    const zoom = fig.querySelector('.ss-zoom'), zbox = fig.querySelector('.ss-zbox'), trap = fig.querySelector('.ss-trap');
+    const Z = D + 520;
+    if (zoom) this.anim(zoom, [{ visibility: 'hidden' }, { visibility: 'visible' }], { duration: 1, delay: Z });
+    if (zbox && crunch && getComputedStyle(zbox).display !== 'none') {
+      const r1 = crunch.getBoundingClientRect(), r2 = zbox.getBoundingClientRect();
+      if (r2.width && r2.height && getComputedStyle(trap || zbox).display !== 'none' && trap) {
+        const tx = r1.left - r2.left, ty = r1.top - r2.top, sx = Math.max(0.02, r1.width / r2.width), sy = Math.max(0.05, r1.height / r2.height);
+        this.anim(zbox, [{ transformOrigin: '0 0', transform: `translate(${tx}px, ${ty}px) scale(${sx}, ${sy})` }, { transformOrigin: '0 0', transform: 'none' }], { duration: 560, delay: Z, easing: EASE_IO });
+        const m = (trap.style.clipPath || '').match(/polygon\(\s*([^,]+),\s*([^,]+),/);
+        if (m) this.anim(trap, [{ clipPath: `polygon(${m[1]}, ${m[2]}, ${m[2]}, ${m[1]})` }, { clipPath: trap.style.clipPath }], { duration: 560, delay: Z, easing: EASE_IO });
+      }
+      const inner = Z + 560;
+      zbox.querySelectorAll('.ss-zday, .ss-zlab, .ss-zcap').forEach((t) => this.anim(t, [{ visibility: 'hidden', transform: 'translateY(4px)' }, { visibility: 'visible', transform: 'none' }], { duration: 200, delay: inner + 80 }));
+      const mid = zbox.clientWidth / 2;
+      zbox.querySelectorAll('.ss-ztick').forEach((tk, i) => {
+        const x = tk.offsetLeft;
+        this.anim(tk, [{ transform: `translateX(${mid - x}px)`, opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 380, delay: inner + i * 30 });
+      });
+    }
+  }
+
+  // ---------- analytics: time outruns the work ----------
+  playRace() {
+    const sec = this.$('.an-sec');
+    if (!sec || sec.hasAttribute('data-race')) return;
+    sec.setAttribute('data-race', '');
+    if (this.reduced()) return;
+    const bar = sec.querySelector('.an-rule-bar'); if (!bar) return;
+    const q = (s) => bar.querySelector(s);
+    this.anim(q('.tick'), [{ left: '0%' }, { left: '65%' }], { duration: 900, easing: EASE_IO });
+    this.anim(q('.l-time'), [{ left: '0%', transform: 'translateX(0)' }, { left: '65%', transform: 'translateX(-50%)' }], { duration: 900, easing: EASE_IO });
+    this.anim(q('.done'), [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 700, delay: 120 });
+    this.anim(q('.l-done'), [{ visibility: 'hidden', transform: 'translateY(4px)' }, { visibility: 'visible', transform: 'none' }], { duration: 200, delay: 120 });
+    this.anim(q('.gap'), [{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0 0 0)' }], { duration: 260, delay: 920 });
+    this.anim(q('.l-gap'), [{ visibility: 'hidden', transform: 'translateX(-50%) translateY(4px)' }, { visibility: 'visible', transform: 'translateX(-50%)' }], { duration: 220, delay: 1180 });
+  }
+  // the filter is a lens: rows leave, the card settles to its new height, newcomers draw their own race
+  anPick(id) {
+    if (id === this.state.scope) return;
+    const next = (SCOPES.find((s) => s.id === id) || SCOPES[0]).order;
+    const leaving = this.$$('.an-row:not(.is-out)').filter((r) => next.indexOf(r.getAttribute('data-row')) === -1);
+    const go = () => { this.setState({ scope: id, anSwap: true }); this.later(() => this.setState({ anSwap: false }), 240); };
+    if (this.reduced() || !leaving.length || !leaving[0].animate) { go(); return; }
+    leaving.forEach((r) => r.animate([{ clipPath: 'inset(0 0 0 0)', transform: 'none' }, { clipPath: 'inset(0 0 100% 0)', transform: 'translateY(-4px)' }], { duration: 140, easing: EASE_OUT, fill: 'forwards' }));
+    this.later(() => { leaving.forEach((r) => r.getAnimations().forEach((a) => a.cancel())); go(); }, 140);
+  }
 
   // ---------- chat ----------
   waitForChat() {
@@ -209,7 +432,16 @@ class LandingV3 extends React.Component<any, any> {
     at(() => this.setState({ typed: DRAFT.length }), t + 28);
     t += 420;
     at(() => this.setState({ sending: true }), t);
-    at(() => this.setState({ cx: 1, sending: false }), t + 140);
+    at(() => {
+      const box = this.$('.cp-box2'); const from = box ? box.getBoundingClientRect() : null;
+      this.setState({ cx: 1, sending: false }, () => {
+        const body = this.$$('.cx-stream .cp-msg.cx-in:not(.ping) .cp-body')[0];
+        if (!from || !body || !body.animate) return;
+        const to = body.getBoundingClientRect();
+        const msg = body.closest('.cp-msg'); if (msg) msg.style.animation = 'none';
+        body.animate([{ transform: `translate(${from.left + 40 - to.left}px, ${from.top + (from.height - to.height) / 2 - to.top}px)` }, { transform: 'none' }], { duration: 380, easing: EASE_OUT });
+      });
+    }, t + 140);
     at(() => this.setState({ cx: 2 }), t + 640);
     at(() => this.setState({ cx: 3 }), t + 1500);
     at(() => { if (!this.state.applied) this.setState({ ring: true }); }, t + 2300);
@@ -219,6 +451,9 @@ class LandingV3 extends React.Component<any, any> {
     this.chatT.forEach(clearTimeout); this.chatT = [];
     this.setState({ applied: true, ring: false });
     if (this.reduced()) { this.setState({ reply: true }); return; }
+    const dara = this.$$('.cp-rail .cp-av').find((a) => a.textContent.trim() === 'DQ');
+    this.chatT.push(this.later(() => this.anim(dara, [{ boxShadow: '0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent)' }, { boxShadow: '0 0 0 10px color-mix(in srgb, var(--accent) 0%, transparent)' }], { duration: 640, fill: 'none' }), 520));
+    this.anim(this.$('.cp-ph span'), [{ transform: 'translateY(6px)', clipPath: 'inset(0 0 100% 0)' }, { transform: 'none', clipPath: 'inset(0 0 0 0)' }], { duration: 220, delay: 360 });
     this.chatT.push(this.later(() => this.setState({ mTyping: true }), 700));
     this.chatT.push(this.later(() => this.setState({ mTyping: false, reply: true }), 1400));
   }
@@ -239,11 +474,16 @@ class LandingV3 extends React.Component<any, any> {
     clearTimeout(this.toastT); clearTimeout(this.bumpT);
     const toast = (this.state.toast || []).concat(id);
     this.setState({ done: this.state.done.concat(id), toast: toast, say: card.title + ' marked done. Undo is in the message at the top of the board.', cue: null, kb: kb });
+    // the circle fills and the title is struck; a dot carries the work to the "done" count,
+    // which counts it on landing; only then does the card fold away
+    const chip = this.$('.tdone');
+    this.later(() => this.flyDot(this.$(`[data-card="${id}"] .tk-ck`), chip, { toLeft: true, delay: 0 }), kb ? 40 : 120);
     this.goneT[id] = this.later(() => {
       this.setState((st) => ({ gone: st.gone.concat(id), bump: true, rover: next || st.rover }));
       if (kb && next) this.focusCard(next);
+      this.anim(chip, [{ transform: 'scale(1)' }, { transform: 'scale(1.08)' }, { transform: 'scale(1)' }], { duration: 240, fill: 'none' });
       clearTimeout(this.bumpT); this.bumpT = this.later(() => this.setState({ bump: false }), 360);
-    }, kb ? 200 : 360);
+    }, kb ? 440 : 600);
     this.toastT = this.later(() => this.setState({ toast: [] }), 5200);
   }
   undo() {
@@ -255,6 +495,10 @@ class LandingV3 extends React.Component<any, any> {
     const say = ids.length === 1 ? CARDS.find((c) => c.id === first).title + ' is back on the board.' : ids.length + ' cards are back on the board.';
     this.setState({ done: this.state.done.filter((x) => ids.indexOf(x) === -1), gone: this.state.gone.filter((x) => ids.indexOf(x) === -1), toast: [], rover: first, say: say });
     this.focusCard(first);
+    this.later(() => {
+      const card = this.$(`[data-card="${first}"] .tk`);
+      this.flyDot(this.$('.tdone'), this.$(`[data-card="${first}"] .tk-ck`), { done: () => this.anim(card, [{ transform: 'scale(.97)' }, { transform: 'none' }], { duration: 220, fill: 'none' }) });
+    }, 60);
   }
   boardKey(e) {
     const keys = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1, Home: 'first', End: 'last' };
@@ -298,7 +542,7 @@ class LandingV3 extends React.Component<any, any> {
     PROJECTS.forEach((pr) => { const i = cur.order.indexOf(pr.slug); p[pr.slug] = { cls: i === -1 ? 'is-out' : '', o: String(i === -1 ? 99 : i) }; });
     return {
       scopes: SCOPES.map((s) => ({ label: s.label, n: String(s.n), pressed: s.id === cur.id ? 'true' : 'false',
-        pick: () => { if (s.id === this.state.scope) return; this.setState({ scope: s.id, anSwap: true }); this.later(() => this.setState({ anSwap: false }), 240); } })),
+        pick: () => this.anPick(s.id) })),
       lead: cur.lead, rest: cur.rest, onTime: String(cur.onTime), late: String(cur.late), lateSub: cur.lateSub,
       listTitle: cur.listTitle, foot: cur.foot, p: p,
       cardCls: (this.state.anSwap ? 'is-swap' : '') + (this.state.anReveal ? ' is-revealing' : '')
@@ -372,7 +616,7 @@ class LandingV3 extends React.Component<any, any> {
       badge: '2',
       apply: () => this.apply(),
       undo: () => { this.chatT.forEach(clearTimeout); this.chatT = []; this.setState({ applied: false, reply: false, mTyping: false }); },
-      replay: () => { this.played.chat = true; this.playChat(); }
+      replay: () => { this.played.chat = true; this.anim(this.$('.cx-replay svg'), [{ transform: 'rotate(0deg)' }, { transform: 'rotate(-360deg)' }], { duration: 500, easing: EASE_IO, fill: 'none' }); this.playChat(); }
     };
   }
 
@@ -443,6 +687,9 @@ class LandingV3 extends React.Component<any, any> {
       cx: this.renderChat(),
       wl: this.renderWaitlist(),
       vpCls: this.state.vp ? 'on' : '',
+      // the answer to "What do you run?" points at the plan that fits
+      hiOrg: run === 'Venue' || run === 'School' ? 'is-hi' : '',
+      hiPro: run && run !== 'Venue' && run !== 'School' ? 'is-hi' : '',
       venueCta: () => { this.setState({ run: 'Venue', flashRun: true }); this.later(() => this.setState({ flashRun: false }), 1400); },
       stickyCls: sticky ? 'on' : '', stickyHidden: sticky ? 'false' : 'true', stickyTab: sticky ? '0' : '-1',
       runs: labels.map((l, i) => ({
@@ -477,6 +724,7 @@ class LandingV3 extends React.Component<any, any> {
 <a href="#files">Files</a>
 <a href="#chat">Chat</a>
 <a href="#pricing">Pricing</a>
+<span className="nav-dot" aria-hidden="true" />
 </div>
 <div className="nav-r">
 <a href="#waitlist" className="btn btn-line btn-sm">Join the waitlist</a>
@@ -488,7 +736,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="dots" aria-hidden="true" />
 <div className="dots-fade" aria-hidden="true" />
 <div className="wrap hero-in">
-<h1 className="h1 rise d1" id="hero-title">Know what needs you today<em>.</em></h1>
+<h1 className="h1 hl" id="hero-title"><span className="w"><span style={{'--k': '0'}}>Know</span></span> <span className="w"><span style={{'--k': '1'}}>what</span></span> <span className="w"><span style={{'--k': '2'}}>needs</span></span> <span className="w"><span style={{'--k': '3'}}>you</span></span> <span className="w"><span style={{'--k': '4'}}>today<em>.</em></span></span></h1>
 <p className="lede rise d2">Tasks, dates, files and chat in one place, for the people who run venues, crews, schools and studios, not software.</p>
 {(v.wl.showForm) ? (<>
 <form className="hero-form rise d3" noValidate={true} onSubmit={v.wl.submitHero}>
@@ -634,6 +882,7 @@ class LandingV3 extends React.Component<any, any> {
 <div><dt>Your name on it</dt><dd>Said once, quietly. No logo and no colours.</dd></div>
 </dl>
 <div className="ctas band-cta"><a href="mailto:hello@signalstudio.ie?subject=Venue" className="btn btn-w">Ask me a question</a><span className="band-cta-s">It goes to me, not a form.<br />hello@signalstudio.ie</span></div>
+<div className="vp-tag" aria-hidden="true"><small>From The Orchard</small><b>Mara and Finn</b><span>Saturday 2 October · 8 days to go</span></div>
 </div>
 <figure className="phone band-phone" role="img" aria-label="A couple's phone. One quiet line at the top says the plan is from The Orchard.">
 <div className="phone-in vp" aria-hidden="true">
@@ -647,6 +896,10 @@ class LandingV3 extends React.Component<any, any> {
 <li><span>Guests</span><b>96 of 118 replied</b></li>
 <li><span>Your jobs</span><b>4 open</b></li>
 </ul>
+<div className="vp-frost" />
+<span className="vp-pill">Opened · Tuesday</span>
+<span className="vp-note n-gift">A gift from The Orchard</span>
+<span className="vp-note n-after">Read-only since 2 October · Download everything</span>
 </div>
 </figure>
 </div>
@@ -666,7 +919,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="t3-head"><span className="t3-word">timeline<i>.</i></span><span className="t3-share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12" /><path d="M7.5 7.5L12 3l4.5 4.5" /><path d="M8 11H6a1.5 1.5 0 0 0-1.5 1.5v7A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 18 11h-2" /></svg>Share this timeline</span></div>
 <div className="t3-top">
 <div><p className="t3-eye">A shared wedding timeline</p><h3 className="t3-name">Mara &amp; Finn</h3>
-<p className="t3-count"><b className={`tl-n ${v.tlCls}`}>{v.tlN}</b><span>days until<br />the wedding day</span></p></div>
+<p className="t3-count"><b className="tl-n"><span className="rl-i" data-prev="9">8</span></b><span>days until<br />the wedding day</span></p></div>
 <div className="t3-panel"><p className="t3-eye">The wedding day</p><p className="t3-date">Saturday 2 October 2027</p><p className="t3-place">2pm · The Orchard · Adare</p>
 <p className="t3-prog">3 of 8 dates done</p><span className="t3-bar"><i /></span>
 <span className="t3-cal"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" /><path d="M3.5 10h17" /><path d="M8 3v4" /><path d="M16 3v4" /></svg>Add to my calendar</span></div>
@@ -690,7 +943,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="pt-head"><span className="t3-word">timeline<i>.</i></span><span className="pt-share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12" /><path d="M7.5 7.5L12 3l4.5 4.5" /><path d="M8 11H6a1.5 1.5 0 0 0-1.5 1.5v7A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 18 11h-2" /></svg></span></div>
 <p className="t3-eye">A shared wedding timeline</p>
 <p className="pt-name">Mara &amp; Finn</p>
-<p className="pt-count"><b className={`tl-n ${v.tlCls}`}>{v.tlN}</b><span>days until<br />the wedding day</span></p>
+<p className="pt-count"><b className="tl-n"><span className="rl-i" data-prev="9">8</span></b><span>days until<br />the wedding day</span></p>
 <div className="pt-today"><span className="pt-ring"><i /></span><span><small>Your job</small><b>Reply by Monday 27 September</b></span></div>
 <ul className="pt-rows">
 <li><span className="pt-n">3<small>days</small></span><span><b>RSVP deadline</b><em>You</em></span></li>
@@ -824,7 +1077,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="cp-msg cx-in"><span className="cp-av" style={{background: 'var(--tone-plum-bg)', color: 'var(--tone-plum-fg)'}} aria-hidden="true">OB</span><div><p className="cp-hd"><b>Orla</b><time>09:14</time></p><p className="cp-body"><span className="cp-mention">@Ping</span> move the table names to Thursday and remind Dara about the tonic.</p></div></div>
 </>) : null}
 {(v.cx.typing) ? (<>
-<div className="cp-typing cx-in"><span className="cp-dots" aria-hidden="true"><i /><i /><i /></span>Ping is drafting a plan</div>
+<div className="cp-typing cx-in is-ai"><span className="cp-dots" aria-hidden="true"><i /><i /><i /></span>Ping is drafting a plan</div>
 </>) : null}
 {(v.cx.s3) ? (<>
 <div className="cp-msg ping cx-in"><span className="cp-pm" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="var(--accent)" strokeWidth="2" /><circle cx="12" cy="12" r="4" fill="var(--accent)" /></svg></span><div><p className="cp-hd"><b>Ping</b><span className="cp-priv"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>Only you see this</span></p>
@@ -895,8 +1148,8 @@ class LandingV3 extends React.Component<any, any> {
 <div className="price" id="pricing" aria-labelledby="price-title">
 <h3 className="price-h" id="price-title">Planned pricing at launch</h3>
 <div className="price-g">
-<div className="price-c"><b>Pro</b><span className="price-v">€12<small>a month</small></span><p>For work that keeps moving across projects.</p><p className="price-n">Or €120 a year.</p></div>
-<div className="price-c"><b>Organisations</b><span className="price-v">€125<small>a month</small></span><p>Gift an account to every couple you book, or every teacher on your staff.</p><p className="price-n">80 accounts included. More at a lower price each.</p></div>
+<div className={`price-c ${v.hiPro}`}><b>Pro</b><span className="price-v">€12<small>a month</small></span><p>For work that keeps moving across projects.</p><p className="price-n">Or €120 a year.</p></div>
+<div className={`price-c ${v.hiOrg}`}><b>Organisations</b><span className="price-v">€125<small>a month</small></span><p>Gift an account to every couple you book, or every teacher on your staff.</p><p className="price-n">80 accounts included. More at a lower price each.</p></div>
 </div>
 </div>
 <p className="price-venue">Couples and teachers never pay. Their account is a gift from their venue or school.</p>

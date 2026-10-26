@@ -2818,3 +2818,138 @@
 .ss .tk.cue .tk-ck::after, .ss .cp-apply.is-ready::after, .ss .chip.flash, .ss .wl-done .wl-check::after, .ss .hero-done .hd-ck::after, .ss[data-motion] .foot4[data-in] .f4-mark .ring::after{animation:none}
 .ss .tk.cue .tk-ck::after{opacity:1;transform:none}
 .ss .cp-apply.is-ready{box-shadow:0 0 0 2px var(--ping)}}
+.ss .hl .w{display:inline-block;overflow:clip;padding:0 .05em .16em;margin:0 -.05em -.16em;vertical-align:top}
+.ss .hl .w>span{display:inline-block;animation:lv3-hlw var(--t-arrive) var(--ease-out) backwards;animation-delay:calc(var(--k) * 45ms + 60ms)}
+.ss .hl em{display:inline-block;animation:lv3-hldot var(--t-change) var(--ease-out) 420ms backwards}
+@keyframes lv3-hlw{from{transform:translateY(108%)}to{transform:none}}
+@keyframes lv3-hldot{0%{transform:scale(0)}70%{transform:scale(1.18)}100%{transform:none}}
+.ss .tk.is-done{opacity:1;transform:none}
+.ss .tkw.is-gone .tk{opacity:0;transform:scale(.97)}
+.ss .tk.is-done .tk-ck{animation:lv3-tkpop var(--t-change) var(--ease-out)}
+.ss .tk.is-done .tk-ck path{stroke-dasharray:24;stroke-dashoffset:0;animation:lv3-tkdraw 180ms var(--ease-out) 60ms backwards}
+@keyframes lv3-tkpop{0%{transform:scale(.8)}60%{transform:scale(1.12)}100%{transform:none}}
+@keyframes lv3-tkdraw{from{stroke-dashoffset:24}to{stroke-dashoffset:0}}
+.ss .tk-t{background:linear-gradient(currentColor,currentColor) no-repeat 0 56%/0 1.5px;transition:background-size var(--t-change) var(--ease-out) 80ms}
+.ss .tk.is-done .tk-t{background-size:100% 1.5px;color:var(--ink-2)}
+.ss .fly-dot{position:fixed;z-index:60;width:10px;height:10px;border-radius:50%;background:var(--good);box-shadow:0 0 0 3px color-mix(in srgb,var(--good) 22%,transparent);pointer-events:none}
+.ss .tk.cue{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(0,0,0,.35),var(--card-shadow);transition:transform var(--t-change) var(--ease-out),box-shadow var(--t-change) var(--ease-out)}
+.ss .t3-count .tl-n, .ss .pt-count .tl-n{box-sizing:content-box;height:.8em;overflow:clip;padding:.3em 0 .12em;margin:-.3em 0 -.12em;min-width:0}
+.ss .tl-n .rl-i{display:block;line-height:.8;transform:translateY(-1.25em);transition:transform var(--t-arrive) var(--ease-out)}
+.ss .tl-n .rl-i::before{content:attr(data-prev);content:attr(data-prev) / "";display:block;height:.8em;margin-bottom:.45em}
+.ss[data-motion] .tl-sec:not([data-tick]) .tl-n .rl-i{transform:none}
+.ss .pt-count .tl-n .rl-i{transition-delay:60ms}
+.ss .tl-sec[data-tick] .pt-ring, .ss .tl-sec[data-tick] .t3-todo.you{animation:lv3-spingbox var(--t-ping) var(--ease-out) 560ms 1}
+.ss .t3-bar i{transform-origin:left center;transition:transform var(--t-arrive) var(--ease-io) 200ms}
+.ss[data-motion] .tl-sec:not([data-in]) .t3-bar i{transform:scaleX(0)}
+.ss .tl-phone{transition:transform 560ms var(--ease-out) 160ms,visibility 0s linear 160ms}
+.ss[data-motion] .tl-sec:not([data-in]) .tl-phone{transform:translateY(28px)}
+.ss .season .ss-fill, .ss .season .ss-dot, .ss .season .ss-crunch, .ss .season .ss-zoom{transition:none}
+.ss[data-motion] .season:not([data-play]) .ss-fill{transform:scaleX(0)}
+.ss[data-motion] .season:not([data-play]) .ss-dot, .ss[data-motion] .season:not([data-play]) .ss-crunch{opacity:0}
+.ss[data-motion] .season:not([data-play]) .ss-lab, .ss[data-motion] .season:not([data-play]) .ss-zoom{visibility:hidden}
+.ss[data-motion] .season[data-play] .ss-zoom{visibility:visible;transform:none}
+.ss .an-rule-bar .done{transition:none}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .done{transform:scaleX(0)}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .tick, .ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .l-time{left:0}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .l-time{transform:none}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .gap{clip-path:inset(0 100% 0 0)}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .l-gap, .ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .l-done{visibility:hidden}
+@media (prefers-reduced-motion:reduce){.ss .hl .w>span, .ss .hl em, .ss .tk.is-done .tk-ck, .ss .tk.is-done .tk-ck path, .ss .tl-sec[data-tick] .pt-ring, .ss .tl-sec[data-tick] .t3-todo.you{animation:none}
+.ss .tk-t, .ss .tl-n .rl-i, .ss .t3-bar i, .ss .tl-phone, .ss .tk.cue{transition:none}
+.ss .tl-n .rl-i, .ss[data-motion] .tl-sec:not([data-tick]) .tl-n .rl-i{transform:translateY(-1.25em)}
+.ss[data-motion] .tl-sec:not([data-in]) .t3-bar i, .ss[data-motion] .tl-sec:not([data-in]) .tl-phone, .ss .tk.cue{transform:none}
+.ss[data-motion] .season:not([data-play]) .ss-fill{transform:none}
+.ss[data-motion] .season:not([data-play]) .ss-dot, .ss[data-motion] .season:not([data-play]) .ss-crunch{opacity:1}
+.ss[data-motion] .season:not([data-play]) .ss-lab, .ss[data-motion] .season:not([data-play]) .ss-zoom{visibility:visible}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .done{transform:none}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .tick, .ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .l-time{left:65%}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .l-time{transform:translateX(-50%)}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .gap{clip-path:none}
+.ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .l-gap, .ss[data-motion] .an-sec:not([data-race]) .an-rule-bar .l-done{visibility:visible}}
+@media (min-width:1081px){.ss .win-toast{left:calc(var(--side-w,224px) + 16px)}}
+.ss .band-phone{transition:transform 720ms var(--ease-out) 120ms}
+.ss[data-motion] .vn-sec:not([data-in]) .band-phone{transform:translateY(96px)}
+.ss .vp-from~.vp-hi, .ss .vp-from~.vp-lede, .ss .vp-from~.vp-card, .ss .vp-from~.vp-rows li{transition:transform var(--t-arrive) var(--ease-out),clip-path var(--t-arrive) var(--ease-out)}
+.ss[data-motion] .vp-from:not(.on)~.vp-hi, .ss[data-motion] .vp-from:not(.on)~.vp-lede, .ss[data-motion] .vp-from:not(.on)~.vp-card, .ss[data-motion] .vp-from:not(.on)~.vp-rows li{transform:translateY(8px);clip-path:inset(0 0 100% 0)}
+.ss .vp-from.on~.vp-hi{transition-delay:120ms}
+.ss .vp-from.on~.vp-lede{transition-delay:170ms}
+.ss .vp-from.on~.vp-card{transition-delay:220ms}
+.ss .vp-from.on~.vp-rows li:nth-child(1){transition-delay:270ms}
+.ss .vp-from.on~.vp-rows li:nth-child(2){transition-delay:320ms}
+.ss .vp-from.on~.vp-rows li:nth-child(3){transition-delay:370ms}
+.ss .vp-from{position:relative}
+.ss .vp-from::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left center;transition:transform var(--t-arrive) var(--ease-io) 80ms,height var(--t-change) var(--ease-out)}
+.ss .vp-from.on::after{transform:scaleX(.32)}
+.ss .band-phone .phone-in{position:relative}
+.ss .vp-frost{position:absolute;left:0;right:0;top:118px;bottom:0;border-radius:0 0 28px 28px;background:color-mix(in srgb,var(--surface) 55%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity var(--t-change) var(--ease-out),visibility 0s linear var(--t-change);pointer-events:none}
+.ss .vp-pill{position:absolute;left:50%;top:150px;transform:translate(-50%,8px);padding:6px 12px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:600;white-space:nowrap;visibility:hidden;transition:transform var(--t-change) var(--ease-out),visibility 0s linear var(--t-change);pointer-events:none}
+.ss .vp-note{position:absolute;left:20px;right:20px;bottom:24px;padding:10px 12px;border-radius:12px;background:var(--accent);color:var(--lv3-c-ffffff);font-size:12.5px;font-weight:600;line-height:1.35;transform:translateY(10px);visibility:hidden;transition:transform var(--t-change) var(--ease-out),visibility 0s linear var(--t-change);pointer-events:none}
+@media (hover:hover) and (pointer:fine){.ss .band-facts div{cursor:default;transition:border-color var(--t-change) var(--ease-out)}
+.ss .band-facts div:hover{border-top-color:color-mix(in srgb,var(--band-ink) 60%,transparent)}
+.ss .band:has(.band-facts div:nth-child(2):hover) .vp-frost, .ss .band:has(.band-facts div:nth-child(4):hover) .vp-frost{opacity:1;visibility:visible;transition:opacity var(--t-change) var(--ease-out),visibility 0s}
+.ss .band:has(.band-facts div:nth-child(2):hover) .vp-pill{visibility:visible;transform:translate(-50%,0);transition:transform var(--t-change) var(--ease-out),visibility 0s}
+.ss .band:has(.band-facts div:nth-child(1):hover) .n-gift, .ss .band:has(.band-facts div:nth-child(3):hover) .n-after{visibility:visible;transform:none;transition:transform var(--t-change) var(--ease-out),visibility 0s}
+.ss .band:has(.band-facts div:nth-child(4):hover) .vp-from::after{height:2px;transform:scaleX(1)}}
+.ss .vp-tag{display:none}
+@media (max-width:760px){.ss .vp-tag{display:grid;gap:2px;margin:28px 0 -1px;padding:16px 18px 20px;border-radius:18px 18px 0 0;background:var(--surface);color:var(--ink);transition:transform 520ms var(--ease-out) 160ms}
+.ss .vp-tag small{font-size:13px;color:var(--ink-3);padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.ss .vp-tag b{font-size:22px;font-weight:600;letter-spacing:-.03em}
+.ss .vp-tag span{font-size:14px;color:var(--ink-2)}
+.ss[data-motion] .vn-sec:not([data-in]) .vp-tag{transform:translateY(48px)}}
+.ss .files_shelf_source[aria-pressed="true"] .files_shelf_paper1{transform:translateY(-12px) rotate(2.5deg)}
+.ss .files_shelf_source[aria-pressed="true"] .files_shelf_paper2{transform:translateY(-16px) rotate(-3deg)}
+.ss .files_shelf_source[aria-pressed="true"] .files_shelf_folderFront{transform-origin:50% 100%;transform:scaleY(.9) translateY(3px)}
+.ss .files_shelf_source .files_shelf_paper, .ss .files_shelf_source .files_shelf_folderFront{transition:transform 360ms var(--ease-out)}
+.ss .fsx.has-src .files_shelf_source[aria-pressed="false"]{opacity:1}
+.ss .fsx.has-src .files_shelf_source[aria-pressed="false"] .files_shelf_folder{opacity:.5}
+.ss .cp-plan li{animation-delay:calc(var(--i) * 160ms + 120ms)}
+.ss .cp-pf{animation:lv3-cxin var(--t-change) var(--ease-out) 640ms backwards}
+.ss .cp-plan.is-applied .cp-box{transition-delay:calc(var(--i) * 120ms);animation:lv3-cpbox 260ms var(--ease-out) backwards;animation-delay:calc(var(--i) * 120ms)}
+@keyframes lv3-cpbox{0%{transform:scale(.6)}60%{transform:scale(1.08)}100%{transform:none}}
+.ss .cp-plan.is-applied .what{transition:color var(--t-change) var(--ease-out);transition-delay:calc(var(--i) * 120ms + 120ms)}
+.ss .cp-typing.is-ai .cp-dots i{background:var(--accent);animation:lv3-aiwave 1s var(--ease-io) infinite}
+.ss .cp-typing.is-ai .cp-dots i:nth-child(2){animation-delay:120ms}
+.ss .cp-typing.is-ai .cp-dots i:nth-child(3){animation-delay:240ms}
+@keyframes lv3-aiwave{0%,60%,100%{transform:none}30%{transform:translateY(-3px)}}
+.ss .cp-new::after{transform-origin:left center;animation:lv3-newline 400ms var(--ease-out) 120ms backwards}
+@keyframes lv3-newline{from{transform:scaleX(0)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){.ss .band-phone, .ss .vp-tag, .ss .vp-from~*, .ss .vp-from::after, .ss .vp-frost, .ss .vp-pill, .ss .vp-note{transition:none}
+.ss[data-motion] .vn-sec:not([data-in]) .band-phone, .ss[data-motion] .vn-sec:not([data-in]) .vp-tag{transform:none}
+.ss[data-motion] .vp-from:not(.on)~.vp-hi, .ss[data-motion] .vp-from:not(.on)~.vp-lede, .ss[data-motion] .vp-from:not(.on)~.vp-card, .ss[data-motion] .vp-from:not(.on)~.vp-rows li{transform:none;clip-path:none}
+.ss .files_shelf_source .files_shelf_paper, .ss .files_shelf_source .files_shelf_folderFront{transition:none}
+.ss .cp-pf, .ss .cp-plan.is-applied .cp-box, .ss .cp-typing.is-ai .cp-dots i, .ss .cp-new::after{animation:none}}
+.ss .fx-row.is-list, .ss .fx-row.is-list:not(.is-search), .ss .fx-row.is-list.is-search{grid-template-columns:minmax(0,1fr);gap:0}
+@media (min-width:761px){.ss[data-nav]>header{position:sticky;top:0;z-index:45;transition:transform 220ms var(--ease-out),background-color 220ms var(--ease-out),box-shadow 220ms var(--ease-out)}
+.ss[data-nav="shown"]>header, .ss[data-nav="hidden"]>header{background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);box-shadow:0 1px 0 var(--line)}
+.ss[data-nav="hidden"]>header{transform:translateY(-100%);transition-duration:var(--t-exit);transition-timing-function:ease-in}
+.ss[data-nav] [id]{scroll-margin-top:84px}}
+.ss .nav-links{position:relative}
+.ss .nav-dot{position:absolute;left:0;bottom:2px;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:0;pointer-events:none;transition:transform var(--t-change) var(--ease-io),opacity var(--t-change) var(--ease-out)}
+.ss .nav-links a[aria-current="location"]{color:var(--ink)}
+.ss .price-c{transition:transform var(--t-change) var(--ease-out),box-shadow var(--t-change) var(--ease-out)}
+.ss .price-c.is-hi{transform:translateY(-2px);box-shadow:0 0 0 1.5px var(--accent),0 14px 30px -18px color-mix(in srgb,var(--accent) 60%,transparent)}
+.ss .price-g .price-c{transition:transform var(--t-arrive) var(--ease-out),box-shadow var(--t-change) var(--ease-out),visibility 0s}
+.ss[data-motion] .cl-sec:not([data-in]) .price-g .price-c{visibility:hidden;transform:translateY(12px)}
+.ss .cl-sec[data-in] .price-g .price-c:nth-child(2){transition-delay:60ms,0s,60ms}
+.ss .wl-done .wl-check{animation:lv3-tkpop var(--t-change) var(--ease-out) 60ms backwards}
+.ss .wl-done>*{animation:lv3-cxin var(--t-arrive) var(--ease-out) backwards}
+.ss .wl-done>:nth-child(2){animation-delay:120ms}
+.ss .wl-done>:nth-child(3){animation-delay:180ms}
+.ss .wl-done>:nth-child(4){animation-delay:240ms}
+.ss .wl-done{animation:none}
+.ss .chip{position:relative;isolation:isolate;overflow:hidden}
+.ss .chip::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);clip-path:circle(0 at var(--px,50%) var(--py,50%));transition:clip-path var(--t-change) var(--ease-out)}
+.ss .chip[aria-checked="true"]{background:transparent}
+.ss .chip[aria-checked="true"]::before{clip-path:circle(150% at var(--px,50%) var(--py,50%))}
+@keyframes lv3-ringin{from{outline-offset:7px;outline-color:transparent}}
+.ss :focus-visible{animation:lv3-ringin var(--t-press) var(--ease-out)}
+.ss .f4-col li a, .ss .f4-legal-links a{background:linear-gradient(currentColor,currentColor) no-repeat 0 calc(50% + .72em)/0 1px;transition:color var(--t-press) var(--ease-out),background-size var(--t-change) var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.ss .f4-col li a:hover, .ss .f4-legal-links a:hover{background-size:100% 1px}}
+.ss .sticky-cta{transition:transform var(--t-exit) ease-in}
+.ss .sticky-cta.on{transition:transform var(--t-change) var(--ease-out)}
+.ss .sticky-cta .btn{transition:background-color var(--t-change) var(--ease-out),color var(--t-change) var(--ease-out)}
+.ss[data-overband] .sticky-cta .btn{background:var(--surface);color:var(--ink)}
+.ss .sticky-cta{bottom:calc(12px + env(safe-area-inset-bottom))}
+@media (prefers-reduced-motion:reduce){.ss[data-nav]>header, .ss .nav-dot, .ss .price-c, .ss .price-g .price-c, .ss .chip::before, .ss .f4-col li a, .ss .f4-legal-links a, .ss .sticky-cta, .ss .sticky-cta.on, .ss .sticky-cta .btn{transition:none}
+.ss[data-motion] .cl-sec:not([data-in]) .price-g .price-c{visibility:visible;transform:none}
+.ss .wl-done .wl-check, .ss .wl-done>*, .ss :focus-visible{animation:none}}
