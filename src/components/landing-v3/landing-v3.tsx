@@ -1156,7 +1156,7 @@ class LandingV3 extends React.Component<any, any> {
 <h3 className="price-h" id="price-title">Planned pricing at launch</h3>
 <div className="price-g">
 <div className={`price-c ${v.hiPro}`}><b>Pro</b><span className="price-v">€12<small>a month</small></span><p>For work that keeps moving across projects.</p><p className="price-n">Or €120 a year.</p></div>
-<div className={`price-c ${v.hiOrg}`}><b>Organisations</b><span className="price-v">€125<small>a month</small></span><p>Gift an account to every couple you book, or every teacher on your staff.</p><p className="price-n">80 accounts included. More at a lower price each.</p></div>
+<div className={`price-c ${v.hiOrg}`}><b>Organisations</b><span className="price-v">€125<small>a month</small></span><p>Gift an account to every couple you book, or every teacher on your staff.</p><p className="price-n">80 accounts included. Add more yourself, at a lower price each.</p></div>
 </div>
 </div>
 <p className="price-venue">Couples and teachers never pay. Their account is a gift from their venue or school.</p>
@@ -1164,7 +1164,7 @@ class LandingV3 extends React.Component<any, any> {
 <h3 className="price-qa-h" id="qa-title">What venues and schools ask</h3>
 <dl>
 <div><dt>Where is our data kept?</dt><dd>In the EU, mainly in Frankfurt. Sign-in is handled by our account provider in the United States.</dd></div>
-<div><dt>What if we need more than 80 accounts?</dt><dd>Add as many as you need, at a lower price each. Tell us your numbers and we will quote.</dd></div>
+<div><dt>What if we need more than 80 accounts?</dt><dd>Add them yourself, whenever you need them, at a lower price each. They are ready straight away. No quote, no call.</dd></div>
 <div><dt>Can we take our records with us?</dt><dd>Yes. Ask at any time and we send you a copy of everything we hold.</dd></div>
 </dl>
 </div>

@@ -49,7 +49,7 @@ export function SchoolOutreachEmail({
       <VideoPoster
         direction={direction}
         src="/email-assets/poster-schools.png"
-        alt="A Signal Timeline showing a school year, with the spring term plan marked by a thin indigo line and published to a class page. Plan the classes, not the pupils. A 60 second film."
+        alt="A Signal Studio timeline showing a school year, with the spring term plan marked by a thin indigo line and published to a class page. Plan the classes, not the pupils. A 60 second film."
         href="https://signalstudio.ie/films/schools"
         width={536}
         height={302}

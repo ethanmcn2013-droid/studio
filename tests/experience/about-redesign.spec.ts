@@ -7,7 +7,7 @@ const ABOUT_URL = "/about";
 const TITLE = "Most productivity tools were built for the people who build them.";
 
 const SECTIONS = [
-  { id: "system", heading: "One app. Three parts, each owning one kind of clarity." },
+  { id: "system", heading: "One app. Everything the work needs, in plain words." },
   { id: "founder", heading: "Built by one person." },
   { id: "refusals", heading: "You can measure a company by what it refuses." },
   { id: "contact", heading: "Write to a person, not a form." },
@@ -65,16 +65,14 @@ test.describe("About in the landing page design system, production evidence", ()
         ).toBeVisible();
       }
 
-      // Three cards, and pre-launch they are descriptions rather than links.
-      // The product pages are archived until launch, so a card reading
-      // "Explore Notes" that redirected to the home page would be worse than
-      // a card that does not offer. This assertion is the other half of that
-      // decision: restore the product pages and this test fails, which is the
-      // reminder to make the cards links again.
+      // One app, described by what it does. The cards are descriptions, not
+      // links, and the retired Notes/Tasks/Timeline product names stay off
+      // the page.
       const products = page.locator("#system li");
-      await expect(products).toHaveCount(3);
+      await expect(products).toHaveCount(5);
       await expect(products.locator("a")).toHaveCount(0);
-      await expect(products.first()).toContainText("Capture clarity");
+      await expect(products.first()).toContainText("What needs doing");
+      await expect(page.locator("main")).not.toContainText(/\b(Notes|Tasks)\b/);
 
       const refusals = page.locator("#refusals li");
       expect(await refusals.count()).toBeGreaterThanOrEqual(5);

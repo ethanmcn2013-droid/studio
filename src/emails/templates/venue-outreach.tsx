@@ -51,7 +51,7 @@ export function VenueOutreachEmail({
       <VideoPoster
         direction={direction}
         src="/email-assets/poster-venues.png"
-        alt="A Signal Tasks window showing one task, send final guest count to catering, marked with a thin indigo line. Make the planning feel as considered as the day. A 60 second film."
+        alt="A Signal Studio board showing one task, send final guest count to catering, marked with a thin indigo line. Make the planning feel as considered as the day. A 60 second film."
         href="https://signalstudio.ie/films/venues"
         width={536}
         height={302}

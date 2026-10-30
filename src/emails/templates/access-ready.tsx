@@ -31,12 +31,13 @@ export function AccessReadyEmail({
       </EmailHeading>
       <LeadText direction={direction}>
         {greeting} place on the waitlist came up today. Your account is ready,
-        starting with one workspace on the Free plan. No card needed.
+        starting with one workspace.
       </LeadText>
       <BodyText direction={direction}>
-        Three products share that workspace. Tasks holds the live work.
-        Timeline is the plan other people can read. Notes keeps your thinking
-        private until you decide otherwise. Home is the front door. It counts
+        Everything sits in one app. The board holds the live work and who
+        has it. The timeline puts every date in order, ready to share with
+        the people who need it. Files stay with the job, and the chat changes
+        the plan only when you approve it. Home is the front door. It counts
         down to your next project date and shows what got done this week.
       </BodyText>
       <ProductFrame
@@ -69,8 +70,8 @@ export function accessReadyText(data: AccessReadyData): TextDoc {
     dateISO: data.metaDateISO,
     heading: "Signal Studio is open for you.",
     blocks: [
-      { kind: "p", text: `${greeting} place on the waitlist came up today. Your account is ready, starting with one workspace on the Free plan. No card needed.` },
-      { kind: "p", text: "Three products share that workspace. Tasks holds the live work. Timeline is the plan other people can read. Notes keeps your thinking private until you decide otherwise. Home is the front door. It counts down to your next project date and shows what got done this week." },
+      { kind: "p", text: `${greeting} place on the waitlist came up today. Your account is ready, starting with one workspace.` },
+      { kind: "p", text: "Everything sits in one app. The board holds the live work and who has it. The timeline puts every date in order, ready to share with the people who need it. Files stay with the job, and the chat changes the plan only when you approve it. Home is the front door. It counts down to your next project date and shows what got done this week." },
       { kind: "action", label: "Open your workspace", href: data.workspaceProduct },
       { kind: "quiet", text: "Start with the thing you are planning right now. The rest of the suite is there when you reach for it." },
     ],
