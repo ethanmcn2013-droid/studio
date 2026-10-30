@@ -14,12 +14,12 @@ import "./about.css";
 export const metadata: Metadata = {
   title: "About · Signal Studio",
   description:
-    "Signal Studio is one app with Notes, Tasks and Timeline inside it, in plain English. Why we exist, what we refuse, and who builds it.",
+    "Signal Studio is one app for running real work in plain English. Why we exist, what we refuse, and who builds it.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About · Signal Studio",
     description:
-      "One app. Notes, Tasks and Timeline. Plain English. For the other 80%.",
+      "One app. Plain English. For the other 80%.",
     url: "/about",
     type: "website",
     siteName: "Signal Studio",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About · Signal Studio",
     description:
-      "One app. Notes, Tasks and Timeline. Plain English. For the other 80%.",
+      "One app. Plain English. For the other 80%.",
     images: [SHARE_CARD],
   },
 };
@@ -103,25 +103,34 @@ function buildMailto(
    linking to pages that would only bounce back to the home page. */
 const PRODUCTS = [
   {
-    id: "notes",
-    name: "notes",
-    label: "Notes",
-    kind: "Capture clarity",
-    desc: "Where ideas and decisions live while they take shape.",
-  },
-  {
-    id: "tasks",
-    name: "tasks",
-    label: "Tasks",
-    kind: "Execution clarity",
-    desc: "What needs to happen next, clear enough to act on today.",
+    id: "board",
+    name: "board",
+    kind: "What needs doing",
+    desc: "Every job, who has it, and what is running late.",
   },
   {
     id: "timeline",
     name: "timeline",
-    label: "Timeline",
-    kind: "Direction clarity",
-    desc: "Where the work is going, written so a client can read it.",
+    kind: "When it happens",
+    desc: "Every date in order, counting down to the one that matters.",
+  },
+  {
+    id: "pace",
+    name: "pace",
+    kind: "Whether you are on track",
+    desc: "A plain answer, with the reason, before it becomes a problem.",
+  },
+  {
+    id: "files",
+    name: "files",
+    kind: "Where things are kept",
+    desc: "Quotes, contracts and photos, kept with the job they belong to.",
+  },
+  {
+    id: "chat",
+    name: "chat",
+    kind: "Changing the plan",
+    desc: "Ask in your own words. Nothing changes until you approve it.",
   },
 ] as const;
 
@@ -149,15 +158,15 @@ const REFUSALS = [
 ] as const;
 
 const QUESTIONS = [
-  "Where do ideas go while they take shape?",
-  "What needs to happen next?",
-  "Where is the work going?",
+  "What needs me today?",
+  "What is coming next?",
+  "Are we on pace?",
 ] as const;
 
 const FACTS = [
   { label: "Founded", value: "2025" },
   { label: "Based in", value: "Limerick, Ireland" },
-  { label: "One app", value: "Notes, Tasks, Timeline" },
+  { label: "Apps to learn", value: "One" },
   { label: "Setup", value: "Zero" },
   { label: "Built by", value: "Ethan McNamara" },
 ] as const;
@@ -232,18 +241,12 @@ export default async function AboutPage({
         <div className="ab-system" id="system">
           <div className="wrap">
             <div className="ab-band">
-              <h2 id="system-title">One app. Three parts, each owning one kind of clarity.</h2>
+              <h2 id="system-title">One app. Everything the work needs, in plain words.</h2>
               <div className="ab-band-copy">
               <p>
-                Named so you don’t have to ask what they do. A note stays
-                private. The line you approve becomes a task with an owner.
-                The date the owner confirms is what the timeline shows.
-              </p>
-              <p>
-                Around them sit the things every project needs: files kept
-                with the work, a plain read on whether you are on pace, and
-                a chat that changes the plan only when you approve it. One
-                subscription covers all of it.
+                Named so you don’t have to ask what they do. Everything sits
+                in one place, so nothing has to be copied from one tool to
+                another, and one subscription covers all of it.
               </p>
               </div>
             </div>
@@ -301,8 +304,8 @@ export default async function AboutPage({
                   ))}
                 </ol>
                 <p>
-                  Signal Studio is my answer. Notes holds the thinking. Tasks
-                  runs the day. Timeline shows the direction. One person,
+                  Signal Studio is my answer: one app that shows what needs
+                  you today, what is coming, and whether you are on pace. One person,
                   building slowly, refusing anything that turns the customer
                   into an operator of software.
                 </p>

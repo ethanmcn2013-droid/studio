@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-30 · S·204 · reads · Extra accounts are self-serve, and About drops the retired product names
+
+**Venues and schools add accounts past 80 themselves, straight away, with no quote; the About page describes one app by what it does.**
+
+The Organisations card and the buyer answer under pricing now say accounts beyond 80 are added by the customer, at a lower price each, ready at once. About no longer names Notes, Tasks or Timeline: the system section lists the board, timeline, pace, files and chat in plain words, the founder letter's three questions match the home page, and the facts row says there is one app to learn. About is still held behind the launch boundary.
+
 ## 2026-10-30 · S·203 · tightens · Pricing answers the questions a venue asks before it signs
 
 **Under the plans, the home page now answers where the data is kept, what happens past 80 accounts, and whether a venue can take its records with it.**

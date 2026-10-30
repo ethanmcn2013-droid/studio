@@ -72,7 +72,7 @@ test.describe("public marketing delight contract", () => {
     ).toBeVisible();
 
     const movements = [
-      ["system", "One app. Three parts, each owning one kind of clarity."],
+      ["system", "One app. Everything the work needs, in plain words."],
       ["founder", "Built by one person."],
       ["refusals", "You can measure a company by what it refuses."],
       ["contact", "Write to a person, not a form."],
