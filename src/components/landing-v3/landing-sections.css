@@ -206,3 +206,6 @@
   .ss .lsx-tile:nth-last-child(-n + 2) { border-bottom: 0; }
   .ss .lsx-acc-panel { padding-left: clamp(16px, 2cqw, 24px); }
 }
+
+/* Hero: "not" lands in indigo, as on the share card (S·202). Hand-placed, keep on re-port. */
+.ss .h1 .hl-not { color: var(--accent); }

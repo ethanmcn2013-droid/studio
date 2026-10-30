@@ -747,7 +747,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="dots" aria-hidden="true" />
 <div className="dots-fade" aria-hidden="true" />
 <div className="wrap hero-in">
-<h1 className="h1 hl" id="hero-title"><span className="w"><span style={{'--k': '0'}}>Project</span></span> <span className="w"><span style={{'--k': '1'}}>management</span></span> <span className="w"><span style={{'--k': '2'}}>for</span></span> <span className="w"><span style={{'--k': '3'}}>the</span></span> <span className="w"><span style={{'--k': '4'}}>80%</span></span> <span className="w"><span style={{'--k': '5'}}>not</span></span> <span className="w"><span style={{'--k': '6'}}>in</span></span> <span className="w"><span style={{'--k': '7'}}>tech<em>.</em></span></span></h1>
+<h1 className="h1 hl" id="hero-title"><span className="w"><span style={{'--k': '0'}}>Project</span></span> <span className="w"><span style={{'--k': '1'}}>management</span></span> <span className="w"><span style={{'--k': '2'}}>for</span></span> <span className="w"><span style={{'--k': '3'}}>the</span></span> <span className="w"><span style={{'--k': '4'}}>80%</span></span> <span className="w"><span className="hl-not" style={{'--k': '5'}}>not</span></span> <span className="w"><span style={{'--k': '6'}}>in</span></span> <span className="w"><span style={{'--k': '7'}}>tech<em>.</em></span></span></h1>
 <p className="lede rise d2">Tasks, dates, files and chat in one place, for the people who run venues, crews, schools and studios.</p>
 {(v.wl.showForm) ? (<>
 <form className="hero-form rise d3" noValidate={true} onSubmit={v.wl.submitHero}>

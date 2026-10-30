@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-30 · S·210 · tightens · "not" is indigo in the headline
+
+**The home page headline now sets "not" in indigo, as the share card already does: Project management for the 80% not in tech.**
+
+Founder request on 30 October. The word keeps its arrival motion; only its colour changes, from the page's accent token, so it follows light and dark with the closing dot.
+
 ## 2026-10-30 · S·209 · ships · Dot is back in the footer
 
 **Dot, the mascot, plays its full film beside the brand line in the home page footer again.**
