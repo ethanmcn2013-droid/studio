@@ -38,7 +38,7 @@ export function StudentVerifiedEmail({
         rows={[
           { key: "Plan", value: "Student · €9.99 a year" },
           { key: "Verified with", value: data.studentEmail },
-          { key: "Covers", value: "Signal Tasks, Signal Timeline, Signal Notes and Signal" },
+          { key: "Covers", value: "The whole Signal Studio app" },
           { key: "Valid until", value: data.validUntil, strong: true },
         ]}
       />
@@ -67,7 +67,7 @@ export function studentVerifiedText(data: StudentVerifiedData): TextDoc {
       { kind: "facts", rows: [
         ["Plan", "Student \u00b7 \u20ac9.99 a year"],
         ["Verified with", data.studentEmail],
-        ["Covers", "Signal Tasks, Signal Timeline, Signal Notes and Signal"],
+        ["Covers", "The whole Signal Studio app"],
         ["Valid until", data.validUntil],
       ] },
       { kind: "p", text: `Around ${data.validUntil} we will ask you to confirm you are still studying. One check a year, nothing in between.` },

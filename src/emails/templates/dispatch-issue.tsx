@@ -49,11 +49,11 @@ export function DispatchIssueEmail({
         email address.
       </LeadText>
       <BodyText direction={d}>
-        Three products, one workspace: Tasks for the live work, Timeline for
-        the plan other people can read, Notes for the thinking that is not
-        ready for the room. Home is the front door. It counts down to your
-        next project date and shows what got done this week. Built for the
-        80% who do not work in tech.
+        One app: a board for the live work, a timeline for the plan other
+        people can read, files kept with the job, and a chat that changes
+        the plan only when you approve it. Home is the front door. It counts
+        down to your next project date and shows what got done this week.
+        Built for the 80% who do not work in tech.
       </BodyText>
       <ProductFrame
         direction={d}
@@ -94,7 +94,7 @@ export function dispatchIssueText(data: DispatchIssueData): TextDoc {
     heading: data.headline,
     blocks: [
       { kind: "p", text: "Signal Studio opens in small batches, as each product and privacy gate is ready. The waitlist is how you hold a place, and it takes one email address." },
-      { kind: "p", text: "Three products, one workspace: Tasks for the live work, Timeline for the plan other people can read, Notes for the thinking that is not ready for the room. Home is the front door. It counts down to your next project date and shows what got done this week. Built for the 80% who do not work in tech." },
+      { kind: "p", text: "One app: a board for the live work, a timeline for the plan other people can read, files kept with the job, and a chat that changes the plan only when you approve it. Home is the front door. It counts down to your next project date and shows what got done this week. Built for the 80% who do not work in tech." },
       { kind: "action", label: "Join the waitlist", href: "https://signalstudio.ie/waitlist" },
       { kind: "p", story: 2, text: "Meet Dot. The design page introduces the dot that carries the brand, drawn frame by frame, awake through a working day. See it at signalstudio.ie/design." },
     ],

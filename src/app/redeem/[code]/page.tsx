@@ -252,16 +252,16 @@ function IncludedStack() {
       </div>
       <ul className="space-y-1.5 text-[14px] text-ink">
         <li>
-          <span className="text-ink">Signal Tasks</span>{" "}
-          <span className="text-ink-quiet">· a live workspace for the work.</span>
+          <span className="text-ink">Board</span>{" "}
+          <span className="text-ink-quiet">· what needs doing and who has it.</span>
         </li>
         <li>
-          <span className="text-ink">Signal Notes</span>{" "}
-          <span className="text-ink-quiet">· private capture, promotes to Tasks.</span>
+          <span className="text-ink">Timeline</span>{" "}
+          <span className="text-ink-quiet">· every date in order, ready to share.</span>
         </li>
         <li>
-          <span className="text-ink">Signal Timeline</span>{" "}
-          <span className="text-ink-quiet">· share what&rsquo;s coming.</span>
+          <span className="text-ink">Files and chat</span>{" "}
+          <span className="text-ink-quiet">· everything kept with the work.</span>
         </li>
       </ul>
     </div>
@@ -309,7 +309,7 @@ function claimableCopy(
     return {
       eyebrow: view.sponsor.name,
       headline: `${view.sponsor.name} is sponsoring your access to Signal Studio.`,
-      sub: "Plan your wedding in plain English. Three small tools, free to you for the next year.",
+      sub: "Plan your wedding in plain English, in one app, free to you for the next year.",
       cta: "Claim your seat",
     };
   }
@@ -317,7 +317,7 @@ function claimableCopy(
     return {
       eyebrow: "Review access",
       headline: "Ninety days of Signal Studio.",
-      sub: "All three products, the same as the paying surface. Beat the system or break it, that’s the point.",
+      sub: "The whole app, the same as a paying account. Beat the system or break it, that’s the point.",
       cta: "Open the review account",
     };
   }
@@ -325,7 +325,7 @@ function claimableCopy(
   return {
     eyebrow: null,
     headline: "Welcome to Signal Studio.",
-    sub: "A complimentary account, on us. Tasks, Timeline and Notes.",
+    sub: "A complimentary account, on us. The whole app, in plain English.",
     cta: "Open your account",
   };
 }

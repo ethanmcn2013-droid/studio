@@ -71,7 +71,7 @@ export default function PressPage() {
             <Section title="One-line description">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is three small products, Notes, Tasks and Timeline, in one signed-in app. Together they give people outside tech a clear view of their work, in plain English.",
+                  "Signal Studio is one plain-English app for running real work, built for the 80% of people who don’t work in tech.",
                 ]}
               />
             </Section>
@@ -79,7 +79,7 @@ export default function PressPage() {
             <Section title="Boilerplate: 50 words">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio makes work software for people who don’t work in tech: wedding planners, tradespeople, freelancers, students, small businesses. Notes captures ideas. Tasks runs the work. Timeline shows the plan. Home shows how the week went. All of it in plain English. In private preview with staged access, from Limerick, Ireland.",
+                  "Signal Studio makes project management for people who don’t work in tech: wedding venues, schools, tradespeople, studios, small businesses. One app shows what needs doing, every date in order, whether you are on pace, and every file in one place. All of it in plain English. Built in Limerick, Ireland.",
                 ]}
               />
             </Section>
@@ -87,7 +87,7 @@ export default function PressPage() {
             <Section title="Boilerplate: 150 words">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is a suite of three small products for the eighty percent of working people who don’t live inside a software stack. Signal Tasks shows the same work as a board, a list, a timeline, or a calendar. Switch views without re-entering anything. Signal Timeline is a plan your customers can actually read: one public link, plain English, no login. Signal Notes is a private notebook that hands a thought to Tasks when it’s ready to become work. Home, the signed-in front door, counts down to your next project date and shows what got done this week. Everything shares one typeface, one accent colour, and one rule: if a sentence needs translating, it gets rewritten. Built and run by one person, Ethan McNamara, in Limerick, Ireland. The roadmap is public, and every product says what it will never do.",
+                  "Signal Studio is project management for the eighty percent of working people who don’t live inside a software stack. It is one app. A board shows what needs doing, who has it and what is running late. A timeline puts every date in order and counts down to the one that matters. A plain read says whether the work is on pace, and why. Quotes, contracts and photos stay with the job they belong to, and a chat changes the plan only when you approve it. Venues and schools can gift an account to every couple they book or every teacher on their staff. Everything shares one typeface, one accent colour, and one rule: if a sentence needs translating, it gets rewritten. Built and run by one person, Ethan McNamara, in Limerick, Ireland.",
                 ]}
               />
             </Section>
@@ -95,31 +95,26 @@ export default function PressPage() {
             <Section title="Boilerplate: 400 words">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is a three-product suite for the eighty percent of working people the productivity category left behind. It runs on a single argument. Twenty years of project-management software has been written by tech companies for other tech companies, then sold downmarket with the vocabulary unchanged. That is why wedding planners, freelance designers, tradespeople, students, and small-business owners keep churning out of every tool they try.",
-                  "The three products each do one thing. Signal Tasks is a live workspace that shows the same items as a board, a list, a timeline, or a calendar. Switch views without re-entering anything, with real-time presence and shareable read-only views on the free tier. Signal Timeline is a public plan your customers can read at midnight on a phone: plain English, one link, no login. Signal Notes is a private notebook for the half-formed thought. It hands the thought to Tasks when it’s ready to become work, and raw notes never leave the notebook. Home is the signed-in front door. It counts down to your next project date and shows what got done this week.",
-                  "The three products share one typeface, one accent colour, one voice. Every page, every empty state, every error message reads the same way, and every product publishes the features it will never ship, whatever the customer asks. The roadmap is public.",
-                  "Signal Studio is built and run by one person, Ethan McNamara, in Limerick, Ireland. The products are in private preview with staged access. signalstudio.ie. hello@signalstudio.ie.",
+                  "Signal Studio is project management for the eighty percent of working people the productivity category left behind. It runs on a single argument. Twenty years of project-management software has been written by tech companies for other tech companies, then sold downmarket with the vocabulary unchanged. That is why wedding planners, teachers, tradespeople, studios and small-business owners keep churning out of every tool they try.",
+                  "Signal Studio is one app, and it describes itself by what it does. A board shows what needs doing, who has it and what is running late. A timeline puts every date in order and counts down to the one that matters. A plain read says whether the work is on pace, with the reason, before it becomes a problem. Quotes, contracts and photos are kept with the job they belong to. A chat takes a request in your own words and shows the change before anything moves; nothing changes until you approve it.",
+                  "It is sold to the organisations that hold the relationship. A wedding venue or a school pays one subscription and gifts an account to every couple it books or every teacher on its staff. The people who receive an account never pay. Individuals can subscribe on their own.",
+                  "Every page, every empty state and every error message reads the same way: plain English, no jargon, no exclamation marks. The company publishes what it refuses to build, whatever customers ask.",
+                  "Signal Studio is built and run by one person, Ethan McNamara, in Limerick, Ireland. Access opens through the waitlist. signalstudio.ie. hello@signalstudio.ie.",
                 ]}
               />
             </Section>
 
-            <Section title="The three products">
+            <Section title="What it does">
               <ul className="space-y-2 text-[15px]">
-                <li>
-                  <ExternalLink href={waitlistHref("tasks")}>Signal Tasks</ExternalLink>.
-                  Execution clarity. Board, list, timeline, calendar over the
-                  same items.
-                </li>
-                <li>
-                  <ExternalLink href={waitlistHref("timeline")}>Signal Timeline</ExternalLink>.
-                  Direction clarity. Public timelines customers can read.
-                </li>
-                <li>
-                  <ExternalLink href={waitlistHref("notes")}>Signal Notes</ExternalLink>.
-                  Capture clarity. Private by design. Hands thoughts to Tasks
-                  when they&rsquo;re ready.
-                </li>
+                <li>Board. What needs doing, who has it, and what is running late.</li>
+                <li>Timeline. Every date in order, counting down to the one that matters.</li>
+                <li>Pace. Whether you are on track, said plainly, with the reason.</li>
+                <li>Files. Quotes, contracts and photos, kept with the job.</li>
+                <li>Chat. Ask in your own words; nothing changes until you approve it.</li>
               </ul>
+              <p className="mt-3">
+                <ExternalLink href={waitlistHref("press")}>Join the waitlist</ExternalLink>.
+              </p>
             </Section>
 
             <Section title="Brand assets">

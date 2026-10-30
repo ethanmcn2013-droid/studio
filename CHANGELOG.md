@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-30 · S·205 · reads · The rest of the site and the emails call it one app
+
+**Terms, privacy, press, the gift-code page and the emails stop naming Notes, Tasks and Timeline, and describe one app by what it does.**
+
+The founder retired the three product names on 30 October; the decision is recorded in HQ and the marketing guide now follows it. Terms and privacy keep every commitment and change only how the product is named, with both dates moved to 30 October: a sponsor still cannot see private work or an unpublished plan, and nothing anyone writes is used as training data. The press boilerplates describe the board, timeline, pace, files and chat and the venue and school model. The access email no longer promises a Free plan. The pricing page, still held behind the launch boundary, keeps the earlier plan model and needs a rebuild rather than a wording pass.
+
 ## 2026-10-30 · S·204 · reads · Extra accounts are self-serve, and About drops the retired product names
 
 **Venues and schools add accounts past 80 themselves, straight away, with no quote; the About page describes one app by what it does.**

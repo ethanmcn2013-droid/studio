@@ -4,7 +4,7 @@ Read this file explicitly before marketing research or drafting. It is scoped gu
 
 ## Product and audience
 
-Signal Studio is the company and one signed-in app with **Signal Notes, Signal Tasks and Signal Timeline**. **Home** is the authenticated front door, with Today's Signal and the Full Briefing; it is not a fourth product. Roadmap and Analytics are retired product names.
+Signal Studio is the company and one signed-in app, described by what it does: a board, a timeline, a plain read on pace, files and a chat that changes the plan on approval. **Signal Notes, Signal Tasks and Signal Timeline are retired names** and stay out of customer copy ([decision, 2026-10-30](../content/hq/decisions/one-app-no-product-names-2026-10-30.md)). **Home** is the authenticated front door; it is not a product. Roadmap and Analytics are also retired product names.
 
 Use [BRAND.md §1](../BRAND.md) and the [Home consolidation](../docs/consolidation/signal-home-2026-08-04.md) for that model. Marketing lives at signalstudio.ie; the app lives at app.signalstudio.ie. Classify each destination as marketing, authenticated app, public artifact, service or compatibility before changing a link. Preserve public/service routes; old helper exports are not evidence of a current product.
 
