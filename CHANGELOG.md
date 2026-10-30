@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-30 · S·208 · tightens · Who it's for and In practice read as one piece
+
+**The two new sections now sit together straight after the hero, the way the film shows them, instead of either side of the venue offer.**
+
+Founder request on 30 October: keep the asset whole. The grid flips, then the working sample follows directly below it, with the film's own gap between them. The venue offer now follows both.
+
 ## 2026-10-30 · S·207 · ships · The home page says who it is for, and shows the work in practice
 
 **Two new sections on the home page: "Built for the work, not the job title." after the hero, and "One place, every kind of work." after the venue offer, with a working sample that nudges a supplier, ticks off a late part, shares a timeline or chases a rota.**

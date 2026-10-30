@@ -880,6 +880,7 @@ class LandingV3 extends React.Component<any, any> {
 </section>
 {/* landing-sections: keep on re-port */}
 <WhoItsFor />
+<InPractice />
 <section className="sec vn-sec" id="venues" aria-labelledby="venue-title" data-reveal="venues">
 <div className="wrap">
 <div className="band">
@@ -916,8 +917,6 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </div>
 </section>
-{/* landing-sections: keep on re-port */}
-<InPractice />
 <section className="sec tl-sec" id="timeline" aria-labelledby="tl-title" data-reveal="timeline">
 <div className="wrap">
 <div className="sec-head">
