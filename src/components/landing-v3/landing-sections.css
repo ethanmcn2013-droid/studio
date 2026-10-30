@@ -18,6 +18,9 @@
   --x-indigo: var(--lv3-c-4f46e5);
 }
 .ss .lsx-c { container-type: inline-size; }
+/* The two sections read as one piece, as in the film: the gap between them is the
+   source's 121 of 930, not the page's section rhythm. */
+.ss .lsx + .lsx { padding-top: clamp(64px, 11.2vw, 150px); }
 .ss .lsx :where(h2, h3, p, ul) { margin: 0; }
 
 /* Head: chip, two-line headline, lede on the right at 630/930. */
@@ -203,3 +206,6 @@
   .ss .lsx-tile:nth-last-child(-n + 2) { border-bottom: 0; }
   .ss .lsx-acc-panel { padding-left: clamp(16px, 2cqw, 24px); }
 }
+
+/* Hero: "not" lands in indigo, as on the share card (S·202). Hand-placed, keep on re-port. */
+.ss .h1 .hl-not { color: var(--accent); }

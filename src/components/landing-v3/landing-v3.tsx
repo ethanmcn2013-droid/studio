@@ -9,6 +9,8 @@ import "./landing-v3-palette.css";
 import "./landing-v3.css";
 // Hand-placed, not from the canvas port: keep these two sections when re-porting.
 import { WhoItsFor, InPractice } from "./landing-sections";
+// Hand-placed, not from the canvas port: Dot, the mascot, keeps its place in the footer.
+import { FooterDot } from "../landing/footer-dot";
 
 const USE_CASE = { Venue: "venues", "Building crew": "trades", School: "other", Studio: "small-business", "Something else": "other" };
 
@@ -745,7 +747,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="dots" aria-hidden="true" />
 <div className="dots-fade" aria-hidden="true" />
 <div className="wrap hero-in">
-<h1 className="h1 hl" id="hero-title"><span className="w"><span style={{'--k': '0'}}>Project</span></span> <span className="w"><span style={{'--k': '1'}}>management</span></span> <span className="w"><span style={{'--k': '2'}}>for</span></span> <span className="w"><span style={{'--k': '3'}}>the</span></span> <span className="w"><span style={{'--k': '4'}}>80%</span></span> <span className="w"><span style={{'--k': '5'}}>not</span></span> <span className="w"><span style={{'--k': '6'}}>in</span></span> <span className="w"><span style={{'--k': '7'}}>tech<em>.</em></span></span></h1>
+<h1 className="h1 hl" id="hero-title"><span className="w"><span style={{'--k': '0'}}>Project</span></span> <span className="w"><span style={{'--k': '1'}}>management</span></span> <span className="w"><span style={{'--k': '2'}}>for</span></span> <span className="w"><span style={{'--k': '3'}}>the</span></span> <span className="w"><span style={{'--k': '4'}}>80%</span></span> <span className="w"><span className="hl-not" style={{'--k': '5'}}>not</span></span> <span className="w"><span style={{'--k': '6'}}>in</span></span> <span className="w"><span style={{'--k': '7'}}>tech<em>.</em></span></span></h1>
 <p className="lede rise d2">Tasks, dates, files and chat in one place, for the people who run venues, crews, schools and studios.</p>
 {(v.wl.showForm) ? (<>
 <form className="hero-form rise d3" noValidate={true} onSubmit={v.wl.submitHero}>
@@ -880,6 +882,7 @@ class LandingV3 extends React.Component<any, any> {
 </section>
 {/* landing-sections: keep on re-port */}
 <WhoItsFor />
+<InPractice />
 <section className="sec vn-sec" id="venues" aria-labelledby="venue-title" data-reveal="venues">
 <div className="wrap">
 <div className="band">
@@ -916,8 +919,6 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </div>
 </section>
-{/* landing-sections: keep on re-port */}
-<InPractice />
 <section className="sec tl-sec" id="timeline" aria-labelledby="tl-title" data-reveal="timeline">
 <div className="wrap">
 <div className="sec-head">
@@ -1181,9 +1182,11 @@ class LandingV3 extends React.Component<any, any> {
 <footer className="foot4" data-reveal="foot">
 <div className="wrap">
 <div className="f4-top">
-<div className="f4-brand">
+<div className="f4-brand site-footer-brand-with-dot">
 <a href="#top" className="mark f4-mark" aria-label="Signal Studio, back to top"><span className="lv" aria-hidden="true"><svg className="lv-mark" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="8" cy="8" r="2.87" fill="currentColor" /></svg></span>Signal Studio</a>
 <p className="f4-line">Know what needs you today.</p>
+{/* footer-dot: keep on re-port */}
+<FooterDot />
 </div>
 <nav className="f4-cols" aria-label="Footer">
 <div className="f4-col"><h2 className="f4-h">Product</h2><ul><li><a href="#timeline">Timeline</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#files">Files</a></li><li><a href="#chat">Chat</a></li></ul></div>
