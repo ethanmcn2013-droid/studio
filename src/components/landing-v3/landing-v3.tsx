@@ -7,6 +7,8 @@ import { joinWaitlistAction } from "@/app/waitlist/actions";
 import { initialWaitlistFormState } from "@/app/waitlist/types";
 import "./landing-v3-palette.css";
 import "./landing-v3.css";
+// Hand-placed, not from the canvas port: keep these two sections when re-porting.
+import { WhoItsFor, InPractice } from "./landing-sections";
 
 const USE_CASE = { Venue: "venues", "Building crew": "trades", School: "other", Studio: "small-business", "Something else": "other" };
 
@@ -876,6 +878,8 @@ class LandingV3 extends React.Component<any, any> {
 <p className="win-cap rise d4">A working sample. Tick any card. Nothing here is saved or sent.</p>
 </div>
 </section>
+{/* landing-sections: keep on re-port */}
+<WhoItsFor />
 <section className="sec vn-sec" id="venues" aria-labelledby="venue-title" data-reveal="venues">
 <div className="wrap">
 <div className="band">
@@ -912,6 +916,8 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </div>
 </section>
+{/* landing-sections: keep on re-port */}
+<InPractice />
 <section className="sec tl-sec" id="timeline" aria-labelledby="tl-title" data-reveal="timeline">
 <div className="wrap">
 <div className="sec-head">

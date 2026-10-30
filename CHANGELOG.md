@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-30 · S·207 · ships · The home page says who it is for, and shows the work in practice
+
+**Two new sections on the home page: "Built for the work, not the job title." after the hero, and "One place, every kind of work." after the venue offer, with a working sample that nudges a supplier, ticks off a late part, shares a timeline or chases a rota.**
+
+Founder request on 30 October: a rebrand of a reference landing clip in Signal Studio's own colours, type and voice, with the same composition and motion. The grid names twelve kinds of work and flips once, diagonally, when it first comes into view. The sample sits on a slow indigo satin, plays its story once when it scrolls into view and otherwise waits for the reader; it says plainly that nothing is sent. Every fact in it comes from the landing's existing sample world. The design went through a seven-seat review and its fixes before shipping; the lab, gates and film live in the operations workspace under `docs/design/labs/landing-sections-2026-10`.
+
 ## 2026-10-30 · S·206 · ships · Pro starts with two weeks free
 
 **The Pro plan now offers a two-week free trial, shown as a badge on the card and spelled out underneath: try it free for two weeks, then €12 a month, or €120 a year.**
