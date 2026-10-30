@@ -215,9 +215,9 @@ class LandingV3 extends React.Component<any, any> {
     this.onResize = () => { if (this.navSec) place(this.navSec); };
     window.addEventListener('resize', this.onResize);
     if (typeof IntersectionObserver === 'undefined') return;
-    const secs = links.map((a) => root.querySelector(a.getAttribute('href') === '#pricing' ? '#waitlist' : a.getAttribute('href'))).filter(Boolean);
+    const secs = links.map((a) => root.querySelector(a.getAttribute('href'))).filter(Boolean);
     const io = new IntersectionObserver((en) => {
-      en.forEach((e) => { if (e.isIntersecting) { const id = e.target.id === 'waitlist' ? 'pricing' : e.target.id; this.navSec = id; place(id); } });
+      en.forEach((e) => { if (e.isIntersecting) { const id = e.target.id; this.navSec = id; place(id); } });
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
     secs.forEach((s) => io.observe(s));
     (this.ios = this.ios || []).push(io);
@@ -1120,8 +1120,52 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </div>
 </section>
+<section className="sec pr-sec" id="pricing" aria-labelledby="price-title" data-reveal="pricing">
+<div className="wrap">
+<header className="pr-head">
+<h2 className="h2 pr-title" id="price-title">Pick the plan <span>that fits</span></h2>
+<p className="sub">Planned pricing at launch. Joining the waitlist is free.</p>
+</header>
+<div className="plans">
+<article className={`plan ${v.hiPro}`} aria-labelledby="plan-pro">
+<div className="plan-top"><h3 className="plan-name" id="plan-pro">Pro</h3><span className="plan-tag">Two weeks free</span></div>
+<p className="plan-price"><b>€12</b><span>/month</span></p>
+<p className="plan-desc">For work that keeps moving across projects.</p>
+<p className="plan-inc">Includes:</p>
+<ul className="plan-list">
+<li>Two weeks free, then €12 a month</li>
+<li>Board, timeline, analytics, files and chat</li>
+<li>Plain English, nothing to set up</li>
+<li>Or €120 a year, two months free</li>
+</ul>
+<a href="#waitlist" className="btn plan-btn">Join the waitlist</a>
+</article>
+<article className={`plan plan-feature ${v.hiOrg}`} aria-labelledby="plan-org">
+<div className="plan-top"><h3 className="plan-name" id="plan-org">Organisations</h3><span className="plan-tag">Venues and schools</span></div>
+<p className="plan-price"><b>€125</b><span>/month</span></p>
+<p className="plan-desc">Gift an account to every couple you book, or every teacher on your staff.</p>
+<p className="plan-inc">Includes:</p>
+<ul className="plan-list">
+<li>80 accounts to gift, included</li>
+<li>Add more yourself, at a lower price each</li>
+<li>Couples and teachers never pay</li>
+<li>You see that they opened it, not what is in it</li>
+</ul>
+<a href="mailto:hello@signalstudio.ie?subject=Organisations" className="btn plan-btn">Ask about Organisations</a>
+</article>
+</div>
+<div className="pr-qa" aria-labelledby="qa-title">
+<h3 className="pr-qa-h" id="qa-title">What venues and schools ask</h3>
+<dl>
+<div><dt>Where is our data kept?</dt><dd>In the EU, mainly in Frankfurt. Sign-in is handled by our account provider in the United States.</dd></div>
+<div><dt>What if we need more than 80 accounts?</dt><dd>Add them yourself, whenever you need them, at a lower price each. They are ready straight away. No quote, no call.</dd></div>
+<div><dt>Can we take our records with us?</dt><dd>Yes. Ask at any time and we send you a copy of everything we hold.</dd></div>
+</dl>
+</div>
+</div>
+</section>
 <section className="sec cl-sec field" id="waitlist" aria-labelledby="wl-title" data-reveal="waitlist">
-<div className="wrap cl-grid">
+<div className="wrap cl-grid cl-solo">
 <div className="cl-form">
 <h2 className="h2" id="wl-title">Be first in.</h2>
 <p className="sub">One email, when your access is ready. Nothing else.</p>
@@ -1150,24 +1194,6 @@ class LandingV3 extends React.Component<any, any> {
 <button type="button" className="btn btn-line btn-sm" onClick={v.wl.reset}>Use a different email</button>
 </div>
 </>) : null}
-</div>
-<div className="cl-side">
-<div className="price" id="pricing" aria-labelledby="price-title">
-<h3 className="price-h" id="price-title">Planned pricing at launch</h3>
-<div className="price-g">
-<div className={`price-c ${v.hiPro}`}><b className="price-name">Pro <span className="price-trial">Two weeks free</span></b><span className="price-v">€12<small>a month</small></span><p>For work that keeps moving across projects.</p><p className="price-n">Try it free for two weeks, then €12 a month. Or €120 a year.</p></div>
-<div className={`price-c ${v.hiOrg}`}><b>Organisations</b><span className="price-v">€125<small>a month</small></span><p>Gift an account to every couple you book, or every teacher on your staff.</p><p className="price-n">80 accounts included. Add more yourself, at a lower price each.</p></div>
-</div>
-</div>
-<p className="price-venue">Couples and teachers never pay. Their account is a gift from their venue or school.</p>
-<div className="price-qa" aria-labelledby="qa-title">
-<h3 className="price-qa-h" id="qa-title">What venues and schools ask</h3>
-<dl>
-<div><dt>Where is our data kept?</dt><dd>In the EU, mainly in Frankfurt. Sign-in is handled by our account provider in the United States.</dd></div>
-<div><dt>What if we need more than 80 accounts?</dt><dd>Add them yourself, whenever you need them, at a lower price each. They are ready straight away. No quote, no call.</dd></div>
-<div><dt>Can we take our records with us?</dt><dd>Yes. Ask at any time and we send you a copy of everything we hold.</dd></div>
-</dl>
-</div>
 </div>
 </div>
 </section>

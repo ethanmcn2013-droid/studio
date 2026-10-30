@@ -136,7 +136,7 @@ describe("public story proof contract", () => {
   it("keeps the landing story to hero, product proof, wedge and invitation", () => {
     // Landing v3 (2026-10-26): the route renders one LandingPage, and the
     // generated landing-v3 component holds the story order: hero and working
-    // sample, the venue wedge, product proof, then the invitation and pricing.
+    // sample, the venue wedge, product proof, then the plans and the invitation.
     assert.doesNotMatch(home + landingV3, /RevealManifesto/);
     assert.match(home, /<LandingPage \/>/);
     const story = [
@@ -147,8 +147,8 @@ describe("public story proof contract", () => {
       'id="analytics"',
       'id="files"',
       'id="chat"',
-      'id="waitlist"',
       'id="pricing"',
+      'id="waitlist"',
     ];
     const positions = story.map((part) => landingV3.indexOf(part));
     assert.ok(
