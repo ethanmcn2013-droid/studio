@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-30 · S·203 · tightens · Pricing answers the questions a venue asks before it signs
+
+**Under the plans, the home page now answers where the data is kept, what happens past 80 accounts, and whether a venue can take its records with it.**
+
+The answers come from the privacy notice: workspace data stored in the EU, mainly Frankfurt, with sign-in held by the account provider in the United States, and a copy of everything on request. The About page, still held behind the launch boundary, now describes one app with Notes, Tasks and Timeline inside it rather than three products, names the files, pace read and chat that sit around them, says one subscription covers it all, and adds the same data reassurance to the founder letter. The landing port also stops double-prefixing a keyframe name, so the Files shelf entrance plays as designed.
+
 ## 2026-10-26 · S·202 · reads · The headline names who the product is for
 
 **The home page now opens on "Project management for the 80% not in tech." and the picture people see when the site is shared says the same.**

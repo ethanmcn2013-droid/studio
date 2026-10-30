@@ -7,7 +7,7 @@ const ABOUT_URL = "/about";
 const TITLE = "Most productivity tools were built for the people who build them.";
 
 const SECTIONS = [
-  { id: "system", heading: "Three products. Each owns one kind of clarity." },
+  { id: "system", heading: "One app. Three parts, each owning one kind of clarity." },
   { id: "founder", heading: "Built by one person." },
   { id: "refusals", heading: "You can measure a company by what it refuses." },
   { id: "contact", heading: "Write to a person, not a form." },

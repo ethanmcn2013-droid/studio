@@ -14,12 +14,12 @@ import "./about.css";
 export const metadata: Metadata = {
   title: "About · Signal Studio",
   description:
-    "Signal Studio builds Notes, Tasks and Timeline. Three products, one system, plain English. Why we exist, what we refuse, and who builds it.",
+    "Signal Studio is one app with Notes, Tasks and Timeline inside it, in plain English. Why we exist, what we refuse, and who builds it.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About · Signal Studio",
     description:
-      "Three products. One system. Plain English. For the other 80%.",
+      "One app. Notes, Tasks and Timeline. Plain English. For the other 80%.",
     url: "/about",
     type: "website",
     siteName: "Signal Studio",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About · Signal Studio",
     description:
-      "Three products. One system. Plain English. For the other 80%.",
+      "One app. Notes, Tasks and Timeline. Plain English. For the other 80%.",
     images: [SHARE_CARD],
   },
 };
@@ -157,7 +157,7 @@ const QUESTIONS = [
 const FACTS = [
   { label: "Founded", value: "2025" },
   { label: "Based in", value: "Limerick, Ireland" },
-  { label: "Products", value: "Three" },
+  { label: "One app", value: "Notes, Tasks, Timeline" },
   { label: "Setup", value: "Zero" },
   { label: "Built by", value: "Ethan McNamara" },
 ] as const;
@@ -232,12 +232,20 @@ export default async function AboutPage({
         <div className="ab-system" id="system">
           <div className="wrap">
             <div className="ab-band">
-              <h2 id="system-title">Three products. Each owns one kind of clarity.</h2>
+              <h2 id="system-title">One app. Three parts, each owning one kind of clarity.</h2>
+              <div className="ab-band-copy">
               <p>
                 Named so you don’t have to ask what they do. A note stays
                 private. The line you approve becomes a task with an owner.
                 The date the owner confirms is what the timeline shows.
               </p>
+              <p>
+                Around them sit the things every project needs: files kept
+                with the work, a plain read on whether you are on pace, and
+                a chat that changes the plan only when you approve it. One
+                subscription covers all of it.
+              </p>
+              </div>
             </div>
             <ul className="ab-products" aria-labelledby="system-title">
               {PRODUCTS.map((product) => (
@@ -297,6 +305,12 @@ export default async function AboutPage({
                   runs the day. Timeline shows the direction. One person,
                   building slowly, refusing anything that turns the customer
                   into an operator of software.
+                </p>
+                <p>
+                  One person building it should not mean your records depend
+                  on me. Your work is stored in the EU, mainly in Frankfurt.
+                  You can ask for a copy of everything we hold at any time, and
+                  a finished plan stays open to read after the work is done.
                 </p>
                 <p className="ab-pull">
                   <span className="ab-pull-text">
