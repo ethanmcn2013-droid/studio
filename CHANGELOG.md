@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-30 · S·206 · ships · Pro starts with two weeks free
+
+**The Pro plan now offers a two-week free trial, shown as a badge on the card and spelled out underneath: try it free for two weeks, then €12 a month, or €120 a year.**
+
+Founder decision on 30 October. Only Pro carries the trial; Organisations is unchanged. The prices are still listed as planned pricing at launch.
+
 ## 2026-10-30 · S·205 · reads · The rest of the site and the emails call it one app
 
 **Terms, privacy, press, the gift-code page and the emails stop naming Notes, Tasks and Timeline, and describe one app by what it does.**
