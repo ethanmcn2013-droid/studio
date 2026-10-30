@@ -10,9 +10,9 @@ entries before 2026-05-22; the vocabulary starts at the next pass.
 
 ## 2026-10-30 · S·207 · tightens · Pricing gets its own section and cards that say what is included
 
-**The plans now sit in their own section above the waitlist: Pro and Organisations side by side, each with a large price, what it includes, and its own button, with Organisations in brand indigo.**
+**The plans now sit in their own section above the waitlist: Pro and Organisations side by side, each with a large price, what it includes, and its own button, with Organisations on an ink card.**
 
-Pro lists the two weeks free, the board, timeline, analytics, files and chat, nothing to set up, and the yearly price; its button goes to the waitlist. Organisations lists the 80 gifted accounts, adding more yourself, couples and teachers never paying, and that a venue sees only that a plan was opened; its button writes to hello@signalstudio.ie. A slow light drifts across the indigo card and stops under reduced motion. The buyer questions sit in a row beneath the cards, and the waitlist form now stands alone and centred. The nav's Pricing link and its section dot follow the new section.
+Pro lists the two weeks free, the board, timeline, analytics, files and chat, nothing to set up, and the yearly price; its button goes to the waitlist. Organisations lists the 80 gifted accounts, adding more yourself, couples and teachers never paying, and that a venue sees only that a plan was opened; its button writes to hello@signalstudio.ie. Organisations sits on a near-black ink card with an indigo light drifting in from one corner and a solid indigo button; on dark pages it gains an indigo rim. The light stops under reduced motion. The buyer questions sit in a row beneath the cards, and the waitlist form now stands alone and centred. The nav's Pricing link and its section dot follow the new section.
 
 ## 2026-10-30 · S·206 · ships · Pro starts with two weeks free
 
