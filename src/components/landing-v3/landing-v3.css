@@ -2992,3 +2992,5 @@
 .ss .price-qa dt{font-size:14px;font-weight:600;color:var(--ink)}
 .ss .price-qa dd{margin:2px 0 0;font-size:14px;line-height:1.5;color:var(--ink-2)}
 @media (max-width:760px){.ss .price-qa dt, .ss .price-qa dd{font-size:13px}}
+.ss .price-name{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ss .price-trial{font-size:11.5px;font-weight:600;letter-spacing:.01em;line-height:1;padding:5px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink)}

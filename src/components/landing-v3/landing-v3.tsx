@@ -1155,7 +1155,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="price" id="pricing" aria-labelledby="price-title">
 <h3 className="price-h" id="price-title">Planned pricing at launch</h3>
 <div className="price-g">
-<div className={`price-c ${v.hiPro}`}><b>Pro</b><span className="price-v">€12<small>a month</small></span><p>For work that keeps moving across projects.</p><p className="price-n">Or €120 a year.</p></div>
+<div className={`price-c ${v.hiPro}`}><b className="price-name">Pro <span className="price-trial">Two weeks free</span></b><span className="price-v">€12<small>a month</small></span><p>For work that keeps moving across projects.</p><p className="price-n">Try it free for two weeks, then €12 a month. Or €120 a year.</p></div>
 <div className={`price-c ${v.hiOrg}`}><b>Organisations</b><span className="price-v">€125<small>a month</small></span><p>Gift an account to every couple you book, or every teacher on your staff.</p><p className="price-n">80 accounts included. Add more yourself, at a lower price each.</p></div>
 </div>
 </div>
