@@ -9,6 +9,8 @@ import "./landing-v3-palette.css";
 import "./landing-v3.css";
 // Hand-placed, not from the canvas port: keep these two sections when re-porting.
 import { WhoItsFor, InPractice } from "./landing-sections";
+// Hand-placed, not from the canvas port: Dot, the mascot, keeps its place in the footer.
+import { FooterDot } from "../landing/footer-dot";
 
 const USE_CASE = { Venue: "venues", "Building crew": "trades", School: "other", Studio: "small-business", "Something else": "other" };
 
@@ -1180,9 +1182,11 @@ class LandingV3 extends React.Component<any, any> {
 <footer className="foot4" data-reveal="foot">
 <div className="wrap">
 <div className="f4-top">
-<div className="f4-brand">
+<div className="f4-brand site-footer-brand-with-dot">
 <a href="#top" className="mark f4-mark" aria-label="Signal Studio, back to top"><span className="lv" aria-hidden="true"><svg className="lv-mark" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="8" cy="8" r="2.87" fill="currentColor" /></svg></span>Signal Studio</a>
 <p className="f4-line">Know what needs you today.</p>
+{/* footer-dot: keep on re-port */}
+<FooterDot />
 </div>
 <nav className="f4-cols" aria-label="Footer">
 <div className="f4-col"><h2 className="f4-h">Product</h2><ul><li><a href="#timeline">Timeline</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#files">Files</a></li><li><a href="#chat">Chat</a></li></ul></div>

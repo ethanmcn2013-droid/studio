@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-30 · S·209 · ships · Dot is back in the footer
+
+**Dot, the mascot, plays its full film beside the brand line in the home page footer again.**
+
+Founder request on 30 October. The October landing footer had left Dot out. It now uses the same component as before: the complete Dot Studio film at 1.4×, one clock that runs only while Dot is on screen and the tab is visible, a tap to pause, and a still pose for reduced motion. The brand block reserves Dot's height, so the film never reaches the columns when the footer stacks on a phone.
+
 ## 2026-10-30 · S·208 · tightens · Who it's for and In practice read as one piece
 
 **The two new sections now sit together straight after the hero, the way the film shows them, instead of either side of the venue offer.**

@@ -61,3 +61,14 @@
     max-width: calc(100% - 104px);
   }
 }
+
+/* Landing v3 footer: the brand line keeps clear of Dot at every width. */
+/* The brand block reserves Dot's height, so the film's orbits never reach the columns
+   below it when the footer stacks. */
+.ss .f4-brand.site-footer-brand-with-dot {
+  min-height: 136px;
+}
+
+.ss .site-footer-brand-with-dot .f4-line {
+  max-width: min(36ch, calc(100% - 134px));
+}
