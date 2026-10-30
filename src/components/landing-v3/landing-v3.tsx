@@ -1160,6 +1160,14 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </div>
 <p className="price-venue">Couples and teachers never pay. Their account is a gift from their venue or school.</p>
+<div className="price-qa" aria-labelledby="qa-title">
+<h3 className="price-qa-h" id="qa-title">What venues and schools ask</h3>
+<dl>
+<div><dt>Where is our data kept?</dt><dd>In the EU, mainly in Frankfurt. Sign-in is handled by our account provider in the United States.</dd></div>
+<div><dt>What if we need more than 80 accounts?</dt><dd>Add as many as you need, at a lower price each. Tell us your numbers and we will quote.</dd></div>
+<div><dt>Can we take our records with us?</dt><dd>Yes. Ask at any time and we send you a copy of everything we hold.</dd></div>
+</dl>
+</div>
 </div>
 </div>
 </section>

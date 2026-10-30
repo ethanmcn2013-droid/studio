@@ -1352,10 +1352,10 @@
   color: var(--v3-text);
 }
 @media (prefers-reduced-motion: no-preference) {.ss .files_shelf_main{
-    animation: files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
+    animation: lv3-files_shelf_shelf-rise 320ms var(--v3-ease) both;
   }
 .ss .files_shelf_sourceItem, .ss .files_shelf_cardItem{
-    animation: files_shelf_shelf-lv3-rise 320ms var(--v3-ease) both;
+    animation: lv3-files_shelf_shelf-rise 320ms var(--v3-ease) both;
     animation-delay: calc(var(--i, 0) * 24ms);
   }}
 @media (prefers-reduced-motion: reduce) {.ss .files_shelf_source, .ss .files_shelf_card, .ss .files_shelf_cardThumb, .ss .files_shelf_row, .ss .files_shelf_paper, .ss .files_shelf_folderFront, .ss .files_shelf_field{
@@ -2986,3 +2986,9 @@
 @media (prefers-color-scheme:dark){.ss:not(.light) .band{background:color-mix(in srgb,var(--lv3-c-8b87f8) 9%,var(--lv3-c-141419))}}
 @media (max-width:760px){.ss .foot4 .wrap{padding-bottom:84px}}
 .ss .nw{white-space:nowrap}
+.ss .price-qa{margin-top:4px;padding-top:18px;border-top:1px solid var(--line)}
+.ss .price-qa-h{font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--ink-2);margin:0 0 10px}
+.ss .price-qa dl{margin:0;display:grid;gap:12px}
+.ss .price-qa dt{font-size:14px;font-weight:600;color:var(--ink)}
+.ss .price-qa dd{margin:2px 0 0;font-size:14px;line-height:1.5;color:var(--ink-2)}
+@media (max-width:760px){.ss .price-qa dt, .ss .price-qa dd{font-size:13px}}

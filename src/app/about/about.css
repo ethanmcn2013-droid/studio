@@ -70,3 +70,4 @@
 @media (forced-colors: active) { .lp.about-page .ab-accent, .lp.about-page .ab-creed-fail, .lp.about-page .ab-contact-mail a { color: LinkText; } }
 
 .lp.about-page .ab-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.lp.about-page .ab-band-copy p + p { margin-top: 16px; }
