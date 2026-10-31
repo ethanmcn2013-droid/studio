@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-10-31 · S·211 · ships · The footer ends on Dot
+
+**The home page footer now closes on "signal studio" set as wide as the page, and its full stop is Dot. The "In practice" section is gone.**
+
+Founder request on 31 October. "In practice" and its working sample are removed; "Who it's for" stays straight after the hero. The new footer opens with "Everything important. Nothing distracting." and the waitlist button, then the links, then the name. The full stop wakes once when you reach it, watches your pointer, giggles or gets grumpy when poked, rolls off in a huff after five pokes and comes back, and falls asleep if left alone. Without scripting, or with reduced motion, it is a still full stop with open eyes, and nothing about it loads until the footer is near.
+
 ## 2026-10-30 · S·210 · tightens · "not" is indigo in the headline
 
 **The home page headline now sets "not" in indigo, as the share card already does: Project management for the 80% not in tech.**

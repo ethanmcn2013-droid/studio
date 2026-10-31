@@ -8,9 +8,9 @@ import { initialWaitlistFormState } from "@/app/waitlist/types";
 import "./landing-v3-palette.css";
 import "./landing-v3.css";
 // Hand-placed, not from the canvas port: keep these two sections when re-porting.
-import { WhoItsFor, InPractice } from "./landing-sections";
-// Hand-placed, not from the canvas port: Dot, the mascot, keeps its place in the footer.
-import { FooterDot } from "../landing/footer-dot";
+import { WhoItsFor } from "./landing-sections";
+// Hand-placed, not from the canvas port: the footer, with Dot as the wordmark's full stop.
+import { LandingFooter } from "./landing-footer";
 
 const USE_CASE = { Venue: "venues", "Building crew": "trades", School: "other", Studio: "small-business", "Something else": "other" };
 
@@ -882,7 +882,6 @@ class LandingV3 extends React.Component<any, any> {
 </section>
 {/* landing-sections: keep on re-port */}
 <WhoItsFor />
-<InPractice />
 <section className="sec vn-sec" id="venues" aria-labelledby="venue-title" data-reveal="venues">
 <div className="wrap">
 <div className="band">
@@ -1179,27 +1178,8 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </section>
 </main>
-<footer className="foot4" data-reveal="foot">
-<div className="wrap">
-<div className="f4-top">
-<div className="f4-brand site-footer-brand-with-dot">
-<a href="#top" className="mark f4-mark" aria-label="Signal Studio, back to top"><span className="lv" aria-hidden="true"><svg className="lv-mark" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="8" cy="8" r="2.87" fill="currentColor" /></svg></span>Signal Studio</a>
-<p className="f4-line">Know what needs you today.</p>
-{/* footer-dot: keep on re-port */}
-<FooterDot />
-</div>
-<nav className="f4-cols" aria-label="Footer">
-<div className="f4-col"><h2 className="f4-h">Product</h2><ul><li><a href="#timeline">Timeline</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#files">Files</a></li><li><a href="#chat">Chat</a></li></ul></div>
-<div className="f4-col"><h2 className="f4-h">Signal Studio</h2><ul><li><a href="#venues">For venues</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#waitlist">Join the waitlist</a></li></ul></div>
-<div className="f4-col"><h2 className="f4-h">Contact</h2><ul><li><a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a></li><li><span>Limerick, Ireland</span></li></ul></div>
-</nav>
-</div>
-<div className="f4-base">
-<p className="f4-legal">© 2026 Signal Studio Limited. Registered in Ireland, <span className="nw">CRO 823488</span>.</p>
-<p className="f4-legal-links">{this.props.landingOnly ? null : (<a href="/privacy">Privacy</a>)}{this.props.landingOnly ? null : (<a href="/terms">Terms</a>)}</p>
-</div>
-</div>
-</footer>
+{/* landing-footer: keep on re-port */}
+<LandingFooter landingOnly={this.props.landingOnly} />
 <div className={`sticky-cta ${v.stickyCls}`} aria-hidden={v.stickyHidden}><a href="#waitlist" className="btn btn-solid" tabIndex={v.stickyTab}>Join the waitlist</a></div>
 </div>
     );
