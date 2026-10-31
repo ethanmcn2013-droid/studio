@@ -1,0 +1,126 @@
+/* The home page footer: a sign-off, the links, and the company's name as wide as the page with Dot
+   for its full stop. Hand-placed, not from the canvas port. Page colours come from the .ss tokens,
+   so light and dark follow the device with the rest of the page; Dot's own colours are artwork and
+   come from the palette, the same in both themes, as in the Dot canon. */
+
+.ss .lf {
+  position: relative; overflow: clip;
+  border-top: 1px solid var(--line); background: var(--bg-2); color: var(--ink-2);
+  /* Dot's body: the brand indigo in both themes. Its marks are ink, or indigo where they are
+     fills (a sweat drop, a sparkle) on the light page; on the dark page indigo would sink into
+     the background, so fills turn to ink there too. Never cyan, teal or lavender. */
+  --lf-dot: var(--lv3-c-4f46e5);
+  --lf-eye: var(--lv3-c-ffffff);
+  --lf-mark: var(--lv3-c-4f46e5);
+}
+.ss.dark .lf { --lf-mark: var(--ink); }
+@media (prefers-color-scheme: dark) { .ss:not(.light) .lf { --lf-mark: var(--ink); } }
+
+.ss .lf :where(h2, p, ul) { margin: 0; }
+.ss .lf-wrap { padding-top: 88px; padding-bottom: 28px; }
+
+/* 1 · The sign-off: BRAND.md's operating principle, set like a section subhead, two tones as the
+   page's other headlines are, and the page's one action beside it. */
+.ss .lf-sign { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; }
+.ss .lf-line {
+  max-width: 18ch; color: var(--ink);
+  font-size: clamp(28px, 3.4vw, 44px); font-weight: 500; line-height: 1.05; letter-spacing: -0.04em; text-wrap: balance;
+}
+.ss .lf-line span { color: var(--ink-3); }
+.ss .lf-cta { flex: none; }
+
+/* 2 · The links. Labels in the system's label register; links one step down from ink, ink on hover. */
+.ss .lf-cols {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px;
+  margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--line);
+}
+.ss .lf-h {
+  margin-bottom: 14px;
+  font-family: var(--font-geist-mono), "Geist Mono", ui-monospace, monospace;
+  font-size: 11px; font-weight: 500; line-height: 16px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+}
+.ss .lf-col ul { list-style: none; padding: 0; display: grid; gap: 4px; }
+.ss .lf-col a, .ss .lf-meta { display: inline-flex; align-items: center; min-height: 28px; font-size: 15px; line-height: 1.4; }
+.ss .lf-col a { color: var(--ink-2); text-decoration: none; transition: color var(--t-press) var(--ease-out); }
+/* Where you are, not somewhere to go: plain meta, a step quieter than the links, never underlined. */
+.ss .lf-meta { margin-top: 4px; color: var(--ink-3); cursor: default; }
+@media (hover: hover) and (pointer: fine) { .ss .lf-col a:hover, .ss .lf-links a:hover { color: var(--ink); } }
+
+/* 3 · The wordmark. "signal studio" in lowercase, Geist 600, tracked in hard, as wide as the wrap:
+   the font size is the wrap's width over the set width of the line in ems (measured in Chromium:
+   5.65em with its full stop; 5.68 leaves a hair of air), with a vw fallback where container units are missing.
+   Ink, argued: the letters are --ink mixed a tenth of the way toward the footer's own background.
+   Full ink at this size is a black wall that outshouts the full stop; a pale tint turns the name
+   into texture. Nine-tenths ink still reads as the company's name, in both themes, while the one
+   saturated thing in the footer is Dot. */
+.ss .lf-mark { container-type: inline-size; margin-top: 72px; }
+.ss .lf-word {
+  --lf-size: min(15.5vw, 202px);
+  display: block; width: max-content; max-width: 100%;
+  font-size: var(--lf-size); font-weight: 600; line-height: 0.9; letter-spacing: -0.05em; white-space: nowrap;
+  color: color-mix(in oklab, var(--ink) 90%, var(--bg-2));
+  font-kerning: normal; font-feature-settings: "kern";
+  /* The g's descender clears the hairline, and Dot, the height of a full stop, can roll beneath
+     the baseline along it. */
+  padding-bottom: 0.3em;
+}
+@supports (width: 1cqi) { .ss .lf-word { --lf-size: calc(100cqi / 5.68); } }
+/* The full stop's box: a period's size at this weight, on the baseline, a hair after the o. */
+.ss .lf-stop { position: relative; display: inline-block; width: 0.15em; height: 0.15em; margin-left: 0.035em; vertical-align: baseline; }
+.ss .lf-still { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; border-radius: 50%; }
+.ss .lf-still-body { fill: var(--lf-dot); }
+.ss .lf-still-eye { fill: var(--lf-eye); }
+/* Dot is a button at least 44 px square, centred on the full stop. */
+.ss .lf-dot {
+  position: absolute; left: 50%; top: 50%; z-index: 2;
+  width: max(44px, 100%); height: max(44px, 100%); transform: translate(-50%, -50%);
+  padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+.ss .lf-dot:focus-visible { outline: none; animation: none; }
+/* Without the engine, the ring is drawn round the still: a gap in the footer's colour, then the accent. */
+.ss .lf-dot:focus-visible + .lf-still { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* 4 · The bottom bar. Its top edge is the hairline: the floor Dot drops to in a huff. */
+.ss .lf-base {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap;
+  padding-top: 18px; border-top: 1px solid var(--line-2);
+}
+.ss .lf-legal { font-size: 13px; line-height: 1.5; color: var(--ink-3); }
+.ss .lf-links { display: flex; gap: 24px; font-size: 13px; }
+.ss .lf-links a { display: inline-flex; align-items: center; min-height: 32px; color: var(--ink-3); text-decoration: none; transition: color var(--t-press) var(--ease-out); }
+.ss .lf-col a:focus-visible, .ss .lf-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+/* The live Dot, drawn by the engine over the still, which it hides in the same task. */
+.ss .lf[data-dot] .lf-still { visibility: hidden; }
+.ss .lf[data-dot] .lf-dot:focus-visible + .lf-still { outline: none; }
+.ss .lf-stage { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 1; }
+.ss .lf-stage .dot-body { fill: var(--lf-dot); }
+.ss .lf-stage .dot-eye { fill: var(--lf-eye); }
+.ss .lf-stage .dot-eye-shut { stroke: var(--lf-eye); }
+.ss .lf-stage .dot-shadow { fill: var(--ink); }
+.ss .lf-stage .dot-ring, .ss .lf-stage .dot-ring-gap { fill: none; stroke-linejoin: round; }
+.ss .lf-stage .dot-ring { stroke: var(--accent); stroke-width: 10px; }
+.ss .lf-stage .dot-ring-gap { stroke: var(--bg-2); stroke-width: 5px; }
+.ss .lf-stage .dot-mark-fill { fill: var(--mark, var(--lf-mark)); }
+.ss .lf-stage .dot-mark-body { fill: var(--lf-dot); }
+.ss .lf-stage .dot-mark-ink { fill: var(--ink); }
+.ss .lf-stage .dot-mark-inkline { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.ss .lf-stage .dot-mark-puff { fill: var(--line-2); }
+.ss .lf-stage .lf-z { display: none; }
+.ss .lf[data-dot="asleep"] .lf-stage .lf-z { display: inline; }
+/* In the dark the eyes glow, as the canon has it. */
+.ss.dark .lf :is(.lf-still-eye, .lf-stage .dot-eye, .lf-stage .dot-eye-shut) { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7)); }
+@media (prefers-color-scheme: dark) { .ss:not(.light) .lf :is(.lf-still-eye, .lf-stage .dot-eye, .lf-stage .dot-eye-shut) { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7)); } }
+
+@media (max-width: 760px) {
+  .ss .lf-wrap { padding-top: 56px; padding-bottom: 92px; }
+  .ss .lf-sign { flex-direction: column; align-items: flex-start; }
+  .ss .lf-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; margin-top: 40px; padding-top: 32px; }
+  .ss .lf-col:last-child { grid-column: 1 / -1; }
+  .ss .lf-col a, .ss .lf-meta { min-height: 30px; }
+  .ss .lf-col ul { gap: 2px; }
+  .ss .lf-mark { margin-top: 48px; }
+  .ss .lf-base { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { .ss .lf-col a, .ss .lf-links a { transition: none; } }

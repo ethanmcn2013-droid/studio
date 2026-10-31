@@ -1,26 +1,9 @@
-/* Who it's for · In practice. Two landing sections rebranded one-to-one from a reference clip
+/* Who it's for. A landing section rebranded one-to-one from a reference clip
    (lab: signal-studio-workspace docs/design/labs/landing-sections-2026-10). Lengths are the
    source's measurements over its 930px column, in container units, so the composition scales
    with the wrap. Page colours come from the .ss tokens, so light and dark follow the device with
-   the rest of the page. The panel and its glass card keep one look in both themes, like a
-   photograph set into the page. */
-.ss .lsx {
-  --x-panel: rgb(4, 4, 12);
-  --x-glass: rgba(14, 14, 30, 0.44);
-  --x-glass-line: rgba(255, 255, 255, 0.16);
-  --x-glass-rule: rgba(255, 255, 255, 0.1);
-  --x-glass-well: rgba(255, 255, 255, 0.07);
-  --x-glass-ink: rgb(244, 244, 248);
-  --x-glass-mute: rgb(196, 196, 208);
-  --x-cta: rgb(242, 241, 238);
-  --x-cta-ink: var(--lv3-c-0b0b0e);
-  --x-cta-hover: var(--lv3-c-d9d9e0);
-  --x-indigo: var(--lv3-c-4f46e5);
-}
+   the rest of the page. */
 .ss .lsx-c { container-type: inline-size; }
-/* The two sections read as one piece, as in the film: the gap between them is the
-   source's 121 of 930, not the page's section rhythm. */
-.ss .lsx + .lsx { padding-top: clamp(64px, 11.2vw, 150px); }
 .ss .lsx :where(h2, h3, p, ul) { margin: 0; }
 
 /* Head: chip, two-line headline, lede on the right at 630/930. */
@@ -42,7 +25,6 @@
 .ss .lsx-title span { display: block; color: var(--ink-3); }
 .ss .lsx-lede-col { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; gap: clamp(12px, 1.6cqw, 20px); align-items: flex-start; }
 .ss .lsx-s1 .lsx-lede-col { align-self: start; }
-.ss .lsx-s2 .lsx-lede-col { align-self: end; }
 .ss .lsx-lede { color: var(--ink-2); font-size: clamp(13px, 1.36cqw, 16px); line-height: 1.55; text-wrap: pretty; }
 .ss .lsx-btn {
   display: inline-flex; align-items: center; gap: 8px;
@@ -84,119 +66,15 @@
 .ss .lsx-tile b { display: block; font-weight: 500; font-size: clamp(13px, 1.38cqw, 15.5px); letter-spacing: -0.01em; line-height: 1.3; }
 .ss .lsx-tile small { display: block; color: var(--ink-3); font-size: clamp(11.5px, 1.16cqw, 13px); line-height: 1.35; margin-top: 2px; }
 
-/* Practice: accordion 458 + 13 gap + visual 459, 377 tall in the source. */
-.ss .lsx-practice {
-  margin-top: clamp(28px, 4.4cqw, 52px);
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.4cqw;
-  min-height: clamp(360px, 40.5cqw, 486px);
-}
-.ss .lsx-acc { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); display: flex; flex-direction: column; overflow: hidden; }
-.ss .lsx-acc-item { border-bottom: 1px solid var(--line); }
-.ss .lsx-acc-item:last-child { border-bottom: 0; }
-.ss .lsx-acc-item > h3 { font: inherit; }
-.ss .lsx-acc-btn {
-  width: 100%; display: grid; grid-template-columns: 3.4cqw 1fr auto; align-items: center;
-  min-height: clamp(46px, 5.5cqw, 66px); padding: 0 clamp(16px, 2cqw, 24px);
-  background: none; border: 0; cursor: pointer; text-align: left; color: var(--ink);
-  font-size: clamp(14px, 1.45cqw, 16px); font-weight: 500; line-height: 1.3; letter-spacing: -0.01em;
-  transition: background 80ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-.ss .lsx-acc-btn:hover { background: color-mix(in srgb, var(--ink) 4%, transparent); }
-.ss .lsx-acc-btn .n { font-family: var(--font-geist-mono), "Geist Mono", ui-monospace, monospace; font-size: clamp(11px, 1.1cqw, 12px); font-weight: 500; line-height: 1; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-/* The source's state dot: filled when open, a ring when closed. */
-.ss .lsx-acc-btn .dot { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--ink-3); transition: background 140ms cubic-bezier(0.23, 1, 0.32, 1), border-color 140ms cubic-bezier(0.23, 1, 0.32, 1); }
-.ss .lsx-acc-btn[aria-expanded="true"] .dot { background: var(--ink); border-color: var(--ink); }
-.ss .lsx-acc-btn:hover .dot { border-color: var(--ink); }
-.ss .lsx-acc-panel { padding: 0 clamp(16px, 2cqw, 24px) clamp(14px, 2.6cqw, 31px) calc(clamp(16px, 2cqw, 24px) + 3.4cqw); }
-.ss .lsx-acc-panel[hidden] { display: none; }
-.ss .lsx-acc-panel h3 { font-size: clamp(16px, 1.9cqw, 23px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.2; }
-.ss .lsx-acc-panel p { color: var(--ink-2); font-size: clamp(12.5px, 1.3cqw, 15px); margin-top: 6px; line-height: 1.5; max-width: 48ch; }
-.ss .lsx-acc-panel ul { list-style: none; padding: 0; margin-top: clamp(9px, 1cqw, 12px); display: grid; gap: 4px; }
-.ss .lsx-acc-panel li { display: flex; gap: 9px; align-items: center; font-size: clamp(12.5px, 1.28cqw, 14.5px); line-height: 1.4; color: var(--ink-2); }
-.ss .lsx-acc-panel li svg { width: 13px; height: 13px; fill: none; stroke: var(--ink); stroke-width: 2.2; flex: none; }
-
-.ss .lsx-stage {
-  position: relative; border-radius: 12px; overflow: hidden; isolation: isolate;
-  background: var(--x-panel); display: grid; place-items: center;
-  padding: clamp(24px, 4.2cqw, 56px) clamp(16px, 3cqw, 40px);
-}
-.ss .lsx-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.ss .lsx-fallback {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(70% 55% at 30% 30%, rgba(79, 70, 229, 0.55) 0%, transparent 70%),
-    radial-gradient(60% 50% at 75% 75%, rgba(79, 70, 229, 0.3) 0%, transparent 70%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.06), transparent 40%), var(--x-panel);
-}
-.ss .lsx-fallback[hidden] { display: none; }
-
-/* The glass card: 300 of 459 in the source, centred. */
-.ss .lsx-card {
-  position: relative; width: min(100%, 65.4%); min-width: min(100%, 300px);
-  background: var(--x-glass); border: 1px solid var(--x-glass-line); border-radius: 12px;
-  -webkit-backdrop-filter: blur(26px) saturate(1.35); backdrop-filter: blur(26px) saturate(1.35);
-  color: var(--x-glass-ink); padding: clamp(13px, 1.6cqw, 18px);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 48px -24px rgba(0, 0, 0, 0.55);
-  font-size: clamp(12.5px, 1.3cqw, 14px); line-height: 1.5;
-}
-.ss .lsx-card-h { display: flex; align-items: center; gap: 9px; padding-bottom: clamp(9px, 1.1cqw, 12px); border-bottom: 1px solid var(--x-glass-rule); }
-.ss .lsx-app { width: 20px; height: 20px; border-radius: 6px; background: var(--x-glass-ink); display: grid; place-items: center; flex: none; }
-.ss .lsx-app i { width: 9px; height: 9px; border-radius: 50%; border: 1.6px solid var(--x-indigo); display: grid; place-items: center; }
-.ss .lsx-app i::after { content: ""; width: 3px; height: 3px; border-radius: 50%; background: var(--x-indigo); }
-.ss .lsx-card-h b { font-weight: 500; letter-spacing: -0.01em; }
-.ss .lsx-card-h small { margin-left: auto; color: var(--x-glass-mute); font-size: 0.92em; font-variant-numeric: tabular-nums; display: inline-block; }
-.ss .lsx-rows { list-style: none; padding: 0; }
-.ss .lsx-row { display: flex; align-items: center; gap: 10px; min-height: clamp(31px, 3.1cqw, 38px); border-bottom: 1px solid var(--x-glass-rule); min-width: 0; }
-.ss .lsx-row > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-/* Status by fill, not hue, as the source: solid, muted, outline. */
-.ss .lsx-pill { margin-left: auto; flex: none; display: inline-block; font-size: 0.86em; line-height: 1; padding: 4px 8px; border-radius: 999px; white-space: nowrap; border: 1px solid transparent; }
-.ss .lsx-pill[data-k="solid"] { background: var(--x-glass-ink); color: var(--x-cta-ink); }
-.ss .lsx-pill[data-k="muted"] { background: var(--x-glass-well); color: var(--x-glass-ink); }
-.ss .lsx-pill[data-k="line"] { border-color: rgba(255, 255, 255, 0.5); color: var(--x-glass-ink); }
-.ss .lsx-note {
-  margin-top: clamp(11px, 1.3cqw, 14px); padding: 10px 11px; border-radius: 8px;
-  border: 1px solid var(--x-glass-line); background: var(--x-glass-well); line-height: 1.45;
-  text-wrap: pretty; min-height: calc(2 * 1.45em + 22px);
-}
-.ss .lsx-note-t { display: block; }
-.ss .lsx-act {
-  margin-top: clamp(9px, 1.1cqw, 12px); width: 100%; height: clamp(32px, 3.2cqw, 38px); border-radius: 8px; border: 0; cursor: pointer;
-  background: var(--x-cta); color: var(--x-cta-ink); font-size: 1em; font-weight: 500; line-height: 1;
-  display: inline-flex; align-items: center; justify-content: center;
-  transition: background 80ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-.ss .lsx-act:not([aria-disabled="true"]):hover { background: var(--x-cta-hover); }
-.ss .lsx-act:not([aria-disabled="true"]):active { transform: scale(0.985); }
-.ss .lsx-act[aria-disabled="true"] { background: var(--x-glass-well); color: var(--x-glass-ink); cursor: default; }
-.ss .lsx-act-t { display: inline-flex; align-items: center; gap: 7px; }
-.ss .lsx-act svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.2; }
-.ss .lsx-sample {
-  margin-top: clamp(9px, 1.1cqw, 12px); text-align: center;
-  font-family: var(--font-geist-mono), "Geist Mono", ui-monospace, monospace; font-size: 10.5px; font-weight: 500; line-height: 1.3;
-  letter-spacing: 0.02em; color: var(--x-glass-mute);
-}
-.ss .lsx-sample button[hidden] { display: none; }
-.ss .lsx-sample button {
-  background: none; border: 0; padding: 0 8px; margin: -8px 0; min-height: 28px;
-  display: inline-flex; align-items: center; vertical-align: middle;
-  font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
-}
-.ss .lsx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 @container (max-width: 860px) {
   .ss .lsx-head { grid-template-columns: minmax(0, 1fr); }
   .ss .lsx-lede-col { grid-column: 1; grid-row: auto; margin-top: 20px; }
-  .ss .lsx-s2 .lsx-lede-col { align-self: start; }
   .ss .lsx-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .ss .lsx-tile:nth-child(6n) { border-right: 1px solid var(--line); }
   .ss .lsx-tile:nth-child(3n) { border-right: 0; }
   .ss .lsx-tile:nth-last-child(-n + 6) { border-bottom: 1px solid var(--line); }
   .ss .lsx-tile:nth-last-child(-n + 3) { border-bottom: 0; }
-  .ss .lsx-practice { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .ss .lsx-acc-btn { grid-template-columns: 34px 1fr auto; }
-  .ss .lsx-acc-panel { padding-left: calc(clamp(16px, 2cqw, 24px) + 34px); }
-  .ss .lsx-stage { min-height: 420px; }
-  .ss .lsx-card { width: 100%; max-width: 360px; }
 }
 @container (max-width: 480px) {
   .ss .lsx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -204,7 +82,6 @@
   .ss .lsx-tile:nth-child(2n) { border-right: 0; }
   .ss .lsx-tile:nth-last-child(-n + 3) { border-bottom: 1px solid var(--line); }
   .ss .lsx-tile:nth-last-child(-n + 2) { border-bottom: 0; }
-  .ss .lsx-acc-panel { padding-left: clamp(16px, 2cqw, 24px); }
 }
 
 /* Hero: "not" lands in indigo, as on the share card (S·202). Hand-placed, keep on re-port. */
