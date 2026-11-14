@@ -671,7 +671,7 @@ class LandingV3 extends React.Component<any, any> {
     const busy = wl === 'busy', err = wl === 'error';
     const mine = (f) => wlFrom === f;
     return {
-      email: email, showForm: wl !== 'done', done: wl === 'done', busy: busy ? 'true' : 'false',
+      email: email, showForm: !this.props.publicSignupOpen && wl !== 'done', done: wl === 'done', busy: busy ? 'true' : 'false',
       invalid: err && mine('close') ? 'true' : 'false', invalidHero: err && mine('hero') ? 'true' : 'false',
       btnLabel: busy && mine('close') ? 'Joining' : 'Join the waitlist', btnCls: busy && mine('close') ? 'is-busy' : '',
       btnLabelHero: busy && mine('hero') ? 'Joining' : 'Join the waitlist', btnClsHero: busy && mine('hero') ? 'is-busy' : '',
@@ -724,7 +724,7 @@ class LandingV3 extends React.Component<any, any> {
     const v = this.renderVals();
     return (
 <div id="top" className={`ss ${v.themeClass}`} ref={v.setRoot} style={{minHeight: '100vh', width: '100%'}}>
-<a href="#waitlist" className="skip">Skip to the waitlist</a>
+<a href={this.props.publicSignupOpen ? this.props.signUpUrl : "#waitlist"} className="skip">{this.props.publicSignupOpen ? "Skip to create an account" : "Skip to the waitlist"}</a>
 <header className="wrap">
 <nav className="nav" aria-label="Main">
 <a href="#top" className="mark" aria-label="Signal Studio home"><span className="lv" aria-hidden="true"><svg className="lv-mark" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="8" cy="8" r="2.87" fill="currentColor" /></svg></span>Signal Studio</a>
@@ -738,7 +738,7 @@ class LandingV3 extends React.Component<any, any> {
 <span className="nav-dot" aria-hidden="true" />
 </div>
 <div className="nav-r">
-<a href="#waitlist" className="btn btn-line btn-sm">Join the waitlist</a>
+{this.props.publicSignupOpen ? <><a href={this.props.signInUrl} className="btn btn-line btn-sm">Sign in</a><a href={this.props.signUpUrl} className="btn btn-solid btn-sm">Create account</a></> : <a href="#waitlist" className="btn btn-line btn-sm">Join the waitlist</a>}
 </div>
 </nav>
 </header>
@@ -749,7 +749,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="wrap hero-in">
 <h1 className="h1 hl" id="hero-title"><span className="w"><span style={{'--k': '0'}}>Project</span></span> <span className="w"><span style={{'--k': '1'}}>management</span></span> <span className="w"><span style={{'--k': '2'}}>for</span></span> <span className="w"><span style={{'--k': '3'}}>the</span></span> <span className="w"><span style={{'--k': '4'}}>80%</span></span> <span className="w"><span className="hl-not" style={{'--k': '5'}}>not</span></span> <span className="w"><span style={{'--k': '6'}}>in</span></span> <span className="w"><span style={{'--k': '7'}}>tech<em>.</em></span></span></h1>
 <p className="lede rise d2">Tasks, dates, files and chat in one place, for the people who run venues, crews, schools and studios.</p>
-{(v.wl.showForm) ? (<>
+{this.props.publicSignupOpen ? (<div className="hero-form rise d3"><a href={this.props.signUpUrl} className="btn btn-solid">Create a free account</a><a href={this.props.signInUrl} className="btn btn-line">Sign in</a></div>) : (v.wl.showForm) ? (<>
 <form className="hero-form rise d3" noValidate={true} onSubmit={v.wl.submitHero}>
 <label htmlFor="hero-email" className="hero-l">Your email</label>
 <input id="hero-email" type="email" placeholder="you@example.ie" autoComplete="email" value={v.wl.email} onChange={v.wl.onEmail} aria-invalid={v.wl.invalidHero} aria-describedby="hero-msg" />
@@ -760,7 +760,7 @@ class LandingV3 extends React.Component<any, any> {
 {(v.wl.done) ? (<>
 <p className="hero-done rise" id="hero-done" tabIndex="-1"><span className="hd-ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg></span>You’re on the list. I will email <b>{v.wl.email}</b> once, when your access is ready.</p>
 </>) : null}
-<p className="trust rise d3">No card needed to join. Running a venue? <a href="#venues" className="trust-link">See how gifting works <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg></a></p>
+<p className="trust rise d3">{this.props.publicSignupOpen ? "No payment is needed to create a free account." : "No card needed to join."} Running a venue? <a href="#venues" className="trust-link">See how gifting works <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg></a></p>
 <div className="win-wrap rise d4" id="sample">
 <div className="win" role="group" aria-label="A working sample of the task board for The Orchard" data-reveal="board">
 <aside className="side" aria-hidden="true">
@@ -1132,7 +1132,7 @@ class LandingV3 extends React.Component<any, any> {
 <div className="cl-form">
 <h2 className="h2" id="wl-title">Be first in.</h2>
 <p className="sub">One email, when your access is ready. Nothing else.</p>
-{(v.wl.showForm) ? (<>
+{this.props.publicSignupOpen ? (<div className="wl-open"><p className="wl-done-t">Accounts are open.</p><p className="wl-done-s">Create a free account to get started, or sign in to continue.</p><a href={this.props.signUpUrl} className="btn btn-solid">Create a free account</a> <a href={this.props.signInUrl} className="btn btn-line">Sign in</a></div>) : (v.wl.showForm) ? (<>
 <form className="wl-form" noValidate={true} onSubmit={v.wl.submit}>
 <label htmlFor="wl-email" className="field-l">Email address</label>
 <input id="wl-email" className="wl-input" type="email" placeholder="you@example.ie" autoComplete="email" value={v.wl.email} onChange={v.wl.onEmail} aria-invalid={v.wl.invalid} aria-describedby="wl-msg" />
@@ -1190,7 +1190,7 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 <nav className="f4-cols" aria-label="Footer">
 <div className="f4-col"><h2 className="f4-h">Product</h2><ul><li><a href="#timeline">Timeline</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#files">Files</a></li><li><a href="#chat">Chat</a></li></ul></div>
-<div className="f4-col"><h2 className="f4-h">Signal Studio</h2><ul><li><a href="#venues">For venues</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#waitlist">Join the waitlist</a></li></ul></div>
+<div className="f4-col"><h2 className="f4-h">Signal Studio</h2><ul><li><a href="#venues">For venues</a></li><li><a href="#pricing">Pricing</a></li><li><a href={this.props.publicSignupOpen ? this.props.signUpUrl : "#waitlist"}>{this.props.publicSignupOpen ? "Create an account" : "Join the waitlist"}</a></li></ul></div>
 <div className="f4-col"><h2 className="f4-h">Contact</h2><ul><li><a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a></li><li><span>Limerick, Ireland</span></li></ul></div>
 </nav>
 </div>
@@ -1200,7 +1200,7 @@ class LandingV3 extends React.Component<any, any> {
 </div>
 </div>
 </footer>
-<div className={`sticky-cta ${v.stickyCls}`} aria-hidden={v.stickyHidden}><a href="#waitlist" className="btn btn-solid" tabIndex={v.stickyTab}>Join the waitlist</a></div>
+<div className={`sticky-cta ${v.stickyCls}`} aria-hidden={v.stickyHidden}><a href={this.props.publicSignupOpen ? this.props.signUpUrl : "#waitlist"} className="btn btn-solid" tabIndex={v.stickyTab}>{this.props.publicSignupOpen ? "Create account" : "Join the waitlist"}</a></div>
 </div>
     );
   }

@@ -1,4 +1,6 @@
 import { LANDING_ONLY } from "@/lib/landing-only";
+import { isPreLaunch } from "@/lib/launch";
+import { APP_ORIGIN, tasksSignUpUrl } from "@/lib/product-urls";
 import LandingV3 from "./landing-v3";
 
 /**
@@ -10,5 +12,13 @@ import LandingV3 from "./landing-v3";
  * the page before React hydrates it. After hydration `?theme=light|dark` can override the device.
  */
 export function LandingPage() {
-  return <LandingV3 landingOnly={LANDING_ONLY} />;
+  const publicSignupOpen = !isPreLaunch();
+  return (
+    <LandingV3
+      landingOnly={LANDING_ONLY}
+      publicSignupOpen={publicSignupOpen}
+      signUpUrl={tasksSignUpUrl()}
+      signInUrl={`${APP_ORIGIN}/sign-in`}
+    />
+  );
 }

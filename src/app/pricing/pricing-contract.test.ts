@@ -35,9 +35,10 @@ describe("public pricing truth and decision contract", () => {
     assert.match(pricing, /id: "pro"/);
     assert.match(pricing, /id: "enterprise"/);
 
-    for (const plan of ["Free", "Student", "Pro"]) {
+    for (const plan of ["Student", "Pro"]) {
       assert.match(pricing, new RegExp(`Join the ${plan} waitlist`));
     }
+    assert.match(pricing, /isPreLaunch\(\) \? "Join the Free waitlist" : "Create a free account"/);
     assert.match(pricing, /cta: "Discuss Enterprise"/);
     assert.match(pricing, /subject=enterprise/);
     assert.doesNotMatch(pricing, /Join the Event waitlist|pricing_event|id: "event"/);
@@ -91,6 +92,14 @@ describe("public pricing truth and decision contract", () => {
     assert.match(waitlistLine, /pricing_pro: "Pro"/);
     assert.match(waitlistLine, /You came from/);
     assert.match(waitlistLine, /You can change plans\s+before access/);
+  });
+
+  it("opens free account links while preserving the paid and eligibility waitlists", () => {
+    assert.match(pricing, /tasksSignUpUrl\(\)/);
+    assert.match(waitlistPage, /if \(!isPreLaunch\(\)/);
+    assert.match(waitlistPage, /!audienceParam/);
+    assert.match(landingV3, /this\.props\.publicSignupOpen/);
+    assert.match(landingV3, /this\.props\.signInUrl/);
   });
 
   it("leaves pricing available to signed-in people choosing or changing access", () => {
