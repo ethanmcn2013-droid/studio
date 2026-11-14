@@ -1,4 +1,6 @@
 import { SHARE_CARD } from "@/lib/brand/share-card";
+import { isPreLaunch } from "@/lib/launch";
+import { tasksSignUpUrl } from "@/lib/product-urls";
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { MarketingShell } from "@/components/home/marketing-shell";
@@ -87,8 +89,10 @@ const PLANS: readonly PricingPlan[] = [
       },
       { label: "Access", value: PRICING.plans.free.access },
     ],
-    cta: "Join the Free waitlist",
-    href: waitlistHref("pricing_free", "free"),
+    cta: isPreLaunch() ? "Join the Free waitlist" : "Create a free account",
+    href: isPreLaunch()
+      ? waitlistHref("pricing_free", "free")
+      : tasksSignUpUrl(),
     microcopy: "No card or charge today.",
     mobileSummary: "1 workspace · 3 editing guests",
     window: {

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { SHARE_CARD } from "@/lib/brand/share-card";
+import { isPreLaunch } from "@/lib/launch";
+import { tasksSignUpUrl } from "@/lib/product-urls";
 import { WaitlistLine } from "./waitlist-line";
 
 export const metadata: Metadata = {
@@ -45,9 +48,17 @@ export default async function WaitlistPage({
   searchParams: Promise<Search>;
 }) {
   const params = await searchParams;
+  const plan = pick(params.plan);
+  const audienceParam = pick(params.audience);
+  // Generic waitlist calls and the Free plan now lead to public account
+  // creation. Keep Student and venue/school programme interest on the
+  // waitlist while their separate eligibility and sponsorship terms apply.
+  if (!isPreLaunch() && (!plan || plan === "free") && !audienceParam) {
+    redirect(tasksSignUpUrl());
+  }
   const source = pick(params.source) ?? "waitlist_page";
   const campaign = pick(params.campaign) ?? "pre_access_waitlist";
-  const audience = pick(params.audience);
+  const audience = audienceParam;
   const artifact =
     pick(params.artifact) ?? pick(params.product) ?? pick(params.plan);
   const touch = pick(params.touch) ?? "site";

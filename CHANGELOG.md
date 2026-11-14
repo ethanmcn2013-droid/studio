@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-11-14 · Public free account access
+
+**Free Signal Studio accounts can now be created without an invitation; paid access remains waitlist-first.**
+
+The founder asked to open sign-up and sign-in to anyone. The home page and Free plan link lead to account creation; the app admits signed-in accounts after Clerk provisions their personal workspace. Student and Pro eligibility waitlists and paid checkout remain closed. This release does not authorize outreach or paid promotion.
+
 ## 2026-10-30 · S·210 · tightens · "not" is indigo in the headline
 
 **The home page headline now sets "not" in indigo, as the share card already does: Project management for the 80% not in tech.**

@@ -3,7 +3,7 @@ id: waitlist-first-public-access
 title: Public access routes through the waitlist until staged access opens.
 category: Access
 date: 2026-07-08
-status: Active
+status: Superseded
 reviewDate: 2026-08-08
 relatedObjects: [Waitlist page, Public CTAs, Public access, Signal HQ]
 ---
@@ -23,3 +23,5 @@ The rule applies to marketing pages, pricing, public product rows, comparison pa
 ## Notes
 
 Waitlist submissions write to the `waitlist_entries` ledger and are visible in Signal HQ at `/hq/waitlist`.
+
+Superseded on 2026-11-14 by [Public free account access](./public-free-account-access-2026-11-14.md). Paid access, pricing and outbound launch activity remain separately gated.
